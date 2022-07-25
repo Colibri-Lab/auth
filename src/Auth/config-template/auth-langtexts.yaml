@@ -52,4 +52,17 @@ auth-storages-sessions-fields-secret-desc:
   ru: Секретный ключ
 auth-storages-sessions-fields-secret-note:
   ru: Ключ для декодирования сессии
+auth-storages-apps-fields-params-roles-desc:
+  ru: Роли
+auth-storages-apps-fields-params-roles-note:
+  ru: Роли, которые могут исполнять пользователи. Реальная обработка ролей происходит
+    на клиенте
+auth-storages-apps-fields-params-roles-name-desc:
+  ru: Наименование роли
+auth-storages-apps-fields-params-roles-desc-desc:
+  ru: Описание роли
+auth-storages-apps-fields-params-defaultrole-desc:
+  ru: Роль по умолчанию
+auth-storages-apps-fields-params-defaultrole-note:
+  ru: Роль, которая выставляется по умолчанию
 ...

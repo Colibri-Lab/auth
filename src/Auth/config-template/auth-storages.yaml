@@ -11,7 +11,7 @@ apps:
   module: Auth
   fields:
     key:
-      desc: Ключ приложения  (наименование)
+      desc: '#{auth-storages-apps-fields-key-desc;Ключ приложения  (наименование)}'
       type: varchar
       length: "255"
       component: Text
@@ -21,17 +21,20 @@ apps:
         required: false
         enabled: true
         readonly: false
-        visual: false
-        code: ""
         list: true
         greed: ""
-        vertical: false
         viewer: ~
+        vertical: false
+        visual: false
+        code: ""
         mask: ""
+        generator: ""
+      group: window
     token:
       group: window
-      desc: Токен приложения (постоянный)
-      note: Токен приложения, генерируется автоматически
+      desc: '#{auth-storages-apps-fields-token-desc;Токен приложения (постоянный)}'
+      note: '#{auth-storages-apps-fields-token-note;Токен приложения, генерируется
+        автоматически}'
       type: varchar
       length: "32"
       component: Text
@@ -51,8 +54,8 @@ apps:
         generator: (value) => { return String.MD5((new Date().getTime()) + ''); }
     params:
       group: window
-      desc: Параметры
-      note: Параметры приложения
+      desc: '#{auth-storages-apps-fields-params-desc;Параметры}'
+      note: '#{auth-storages-apps-fields-params-note;Параметры приложения}'
       type: json
       component: Object
       class: ObjectField
@@ -71,8 +74,8 @@ apps:
         generator: ""
       fields:
         livetime:
-          desc: Время жизни
-          note: Время жизни токена
+          desc: '#{auth-storages-apps-fields-params-livetime-desc;Время жизни}'
+          note: '#{auth-storages-apps-fields-params-livetime-note;Время жизни токена}'
           type: int
           component: Number
           class: int
@@ -91,8 +94,9 @@ apps:
             generator: ""
           default: "3600"
         domains:
-          desc: Домены
-          note: Паттерны доменов, с которых разрешен доступ к приложению
+          desc: '#{auth-storages-apps-fields-params-domains-desc;Домены}'
+          note: '#{auth-storages-apps-fields-params-domains-note;Паттерны доменов,
+            с которых разрешен доступ к приложению}'
           type: json
           component: Array
           class: ArrayField
@@ -111,9 +115,11 @@ apps:
             generator: ""
           fields:
             pattern:
-              desc: Паттерн домена
-              note: Используйте *-у для указания любого количества символов и цифр
-                и ? для указания одного символа и цифры
+              desc: '#{auth-storages-apps-fields-params-domains-pattern-desc;Паттерн
+                домена}'
+              note: '#{auth-storages-apps-fields-params-domains-pattern-note;Используйте
+                *-у для указания любого количества символов и цифр и ? для указания
+                одного символа и цифры}'
               type: varchar
               length: "255"
               component: Text
@@ -131,10 +137,13 @@ apps:
                 code: ""
                 mask: ""
                 generator: ""
+          default: json_array()
         allowrenew:
-          desc: Разрешить восстановление по короткому токену
-          note: Дает возможность получить текущий сессионный токен по короткому постоянному
-            токену пользователя (НЕ БЕЗОПАСНО)
+          desc: '#{auth-storages-apps-fields-params-allowrenew-desc;Разрешить восстановление
+            по короткому токену}'
+          note: '#{auth-storages-apps-fields-params-allowrenew-note;Дает возможность
+            получить текущий сессионный токен по короткому постоянному токену пользователя
+            (НЕ БЕЗОПАСНО)}'
           type: bool
           component: Checkbox
           class: bool
@@ -152,6 +161,89 @@ apps:
             code: ""
             mask: ""
             generator: ""
+        roles:
+          desc: '#{auth-storages-apps-fields-params-roles-desc;Роли}'
+          note: '#{auth-storages-apps-fields-params-roles-note;Роли, которые могут
+            исполнять пользователи. Реальная обработка ролей происходит на клиенте}'
+          type: json
+          component: Array
+          class: ArrayField
+          default: json_array()
+          attrs: []
+          params:
+            required: false
+            enabled: true
+            readonly: false
+            list: true
+            greed: ""
+            viewer: Colibri.UI.ArrayViewer
+            vertical: false
+            visual: false
+            code: ""
+            mask: ""
+            generator: ""
+          fields:
+            name:
+              desc: '#{auth-storages-apps-fields-params-roles-name-desc;Наименование
+                роли}'
+              type: varchar
+              length: "255"
+              component: Text
+              class: string
+              attrs: []
+              params:
+                required: false
+                enabled: true
+                readonly: false
+                list: false
+                greed: ""
+                viewer: ~
+                vertical: false
+                visual: false
+                code: ""
+                mask: ""
+                generator: ""
+            desc:
+              desc: '#{auth-storages-apps-fields-params-roles-desc-desc;Описание роли}'
+              type: varchar
+              length: "255"
+              component: Text
+              class: string
+              attrs: []
+              params:
+                required: false
+                enabled: true
+                readonly: false
+                list: false
+                greed: ""
+                viewer: ~
+                vertical: false
+                visual: false
+                code: ""
+                mask: ""
+                generator: ""
+        defaultrole:
+          desc: '#{auth-storages-apps-fields-params-defaultrole-desc;Роль по умолчанию}'
+          note: '#{auth-storages-apps-fields-params-defaultrole-note;Роль, которая
+            выставляется по умолчанию}'
+          type: varchar
+          length: "255"
+          component: Text
+          class: string
+          attrs: []
+          params:
+            required: true
+            enabled: true
+            readonly: false
+            list: false
+            greed: ""
+            viewer: ~
+            vertical: false
+            visual: false
+            code: ""
+            mask: ""
+            generator: ""
+      default: json_object()
   indices:
     apps_token_idx:
       fields:
