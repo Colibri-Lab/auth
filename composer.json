@@ -9,7 +9,7 @@
         "php": ">=8.0.0",
         "colibri/core": "dev-master",
         "colibri/ui": "dev-master",
-        "firebase/php-jwt": "dev-main"
+        "firebase/php-jwt": "^6"
     },
     "autoload": {
         "psr-4": {
