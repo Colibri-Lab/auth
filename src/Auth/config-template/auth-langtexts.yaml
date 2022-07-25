@@ -65,4 +65,37 @@ auth-storages-apps-fields-params-defaultrole-desc:
   ru: Роль по умолчанию
 auth-storages-apps-fields-params-defaultrole-note:
   ru: Роль, которая выставляется по умолчанию
+auth-storages-members-desc:
+  ru: Пользователи
+auth-storages-members-fields-token-desc:
+  ru: Токен пользователя
+auth-storages-members-fields-token-note:
+  ru: Постоянный токен пользователя
+auth-storages-members-fields-email-desc:
+  ru: Эл. адрес пользователя
+auth-storages-members-fields-email-note:
+  ru: Электронный адрес указанный при регистрации
+auth-storages-members-fields-phone-desc:
+  ru: Телефон
+auth-storages-members-fields-phone-note:
+  ru: Телефон в формате «код страны»«код внутри страны»«номер» без знаков, только
+    цифры
+auth-storages-members-fields-password-desc:
+  ru: Пароль
+auth-storages-members-fields-password-note:
+  ru: Пароль, закодирован, нет обратной кодировки
+auth-storages-members-fields-firstName-desc:
+  ru: Имя
+auth-storages-members-fields-lastName-desc:
+  ru: Фамилия
+auth-storages-members-fields-patronymic-desc:
+  ru: Отчество
+auth-storages-members-fields-birthdate-desc:
+  ru: Дата рождения
+auth-storages-members-fields-gender-desc:
+  ru: Пол
+auth-storages-members-fields-gender-values-male:
+  ru: Мужской
+auth-storages-members-fields-gender-values-female:
+  ru: Женский
 ...
