@@ -37,15 +37,15 @@ class Installer
             $modules['entries'] = [];
         }
 
-        $modules['entries'][] = [
+        $modules['entries'] = array_merge($modules['entries'], [[
             'name' => 'Auth',
             'entry' => '\Auth\Module',
-            'desc' => 'Парсер Лотарей',
+            'desc' => 'Система авторизации Colibri',
             'enabled' => true,
             'visible' => true,
             'for' => ['manage', 'auth'],
             'config' => 'include(/config/auth.yaml)'
-        ];
+        ]]);
 
         self::_saveConfig($file, $modules);
 

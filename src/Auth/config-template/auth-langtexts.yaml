@@ -1,0 +1,55 @@
+---
+auth-storages-apps-desc:
+  ru: Приложения
+auth-storages-apps-fields-key-desc:
+  ru: Ключ приложения  (наименование)
+auth-storages-apps-fields-token-desc:
+  ru: Токен приложения (постоянный)
+auth-storages-apps-fields-token-note:
+  ru: Токен приложения, генерируется автоматически
+auth-storages-apps-fields-params-desc:
+  ru: Параметры
+auth-storages-apps-fields-params-note:
+  ru: Параметры приложения
+auth-storages-apps-fields-params-livetime-desc:
+  ru: Время жизни
+auth-storages-apps-fields-params-livetime-note:
+  ru: Время жизни токена
+auth-storages-apps-fields-params-domains-desc:
+  ru: Домены
+auth-storages-apps-fields-params-domains-note:
+  ru: Паттерны доменов, с которых разрешен доступ к приложению
+auth-storages-apps-fields-params-domains-pattern-desc:
+  ru: Паттерн домена
+auth-storages-apps-fields-params-domains-pattern-note:
+  ru: Используйте *-у для указания любого количества символов и цифр и ? для указания
+    одного символа и цифры
+auth-storages-apps-fields-params-allowrenew-desc:
+  ru: Разрешить восстановление по короткому токену
+auth-storages-apps-fields-params-allowrenew-note:
+  ru: Дает возможность получить текущий сессионный токен по короткому постоянному
+    токену пользователя (НЕ БЕЗОПАСНО)
+auth-storages-sessions-desc:
+  ru: Сессии
+auth-storages-sessions-fields-member-desc:
+  ru: Токен пользователя
+auth-storages-sessions-fields-member-note:
+  ru: Постоянный токен пользователя
+auth-storages-sessions-fields-key-desc:
+  ru: Ключ сессии
+auth-storages-sessions-fields-key-note:
+  ru: Генерируется автоматически из токена сессии (нужен для поиска)
+auth-storages-sessions-fields-token-desc:
+  ru: Токен сессии (JWT)
+auth-storages-sessions-fields-token-note:
+  ru: JWT токен
+auth-storages-sessions-fields-expires-desc:
+  ru: Время жизни
+auth-storages-sessions-fields-expires-note:
+  ru: Количество секунд жизни токена, после того, как это время пройдет с момента
+    создания, сессия будет заморожена, и ее нужно будет восстановить
+auth-storages-sessions-fields-secret-desc:
+  ru: Секретный ключ
+auth-storages-sessions-fields-secret-note:
+  ru: Ключ для декодирования сессии
+...
