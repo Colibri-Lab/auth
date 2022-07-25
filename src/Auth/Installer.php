@@ -181,7 +181,7 @@ class Installer
     public static function PostPackageInstall($event)
     {
  
-        print_r('Установка и настройка модуля EvaBeta Auth'."\n");
+        print_r('Установка и настройка модуля Colibri Auth'."\n");
  
         $vendorDir = $event->getComposer()->getConfig()->get('vendor-dir').'/';
         $operation = $event->getOperation();
