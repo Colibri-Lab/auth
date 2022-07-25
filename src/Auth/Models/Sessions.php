@@ -9,6 +9,8 @@ use Colibri\Data\Storages\Storage;
 use Colibri\Utils\Logs\Logger;
 use Colibri\Data\Storages\Models\DataTable as BaseModelDataTable;
 use App\Modules\Auth\Models\Session;
+use Colibri\App;
+use Colibri\Utils\Cache\Mem;
 
 /**
  * Таблица, представление данных в хранилище #{auth-storages-sessions-desc;Сессии}
@@ -79,6 +81,56 @@ class Sessions extends BaseModelDataTable {
     {
         $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', null, ['id' => $id], false);
         return $table && $table->Count() > 0 ? $table->First() : null;
+    }
+
+    /**
+     * Возвращает модель по key
+     * @param string $key key строки
+     * @return Session|null
+     */
+    static function LoadByKey(string $key) : Session|null 
+    {
+        $table = self::LoadByFilter(1, 1, '{key}=[[key:string]]', null, ['key' => $key], false);
+        return $table && $table->Count() > 0 ? $table->First() : null;
+    }
+
+    static function LoadFromRequest(): ?Session
+    {
+     
+        $jwt = App::$request->cookie->{'cc-jwt'};
+        if(!$jwt) {
+            return self::CreateGuestSession();
+        }
+
+        $key = md5($jwt);
+
+        if($session = self::LoadGuestSession($key)) {
+            return $session;
+        }
+
+        return self::LoadByKey($key);
+        
+    }
+
+    static function CreateGuestSession(): Session
+    {
+        $session = self::LoadEmpty();
+        $session->GenerateToken();
+        Mem::Write('sess'.$session->key, $session->ToArray(true));
+        return $session;
+    }
+
+    static function LoadGuestSession(string $key): ?Session
+    {
+        if(!Mem::Exists('sess'.$key)) {
+            return null;
+        }
+        $sessionData = Mem::Read('sess'.$key);
+        $session = self::LoadEmpty();
+        foreach($sessionData as $k => $v) {
+            $session->$k = $v;
+        }
+        return $session;
     }
 
     /**

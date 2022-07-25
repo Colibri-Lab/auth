@@ -6,6 +6,8 @@ namespace App\Modules\Auth\Models;
 use Colibri\Data\Storages\Fields\DateTimeField;
 # endregion Uses;
 use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
+use Colibri\Common\RandomizationHelper;
+use Firebase\JWT\JWT;
 
 /**
  * Представление строки в таблице в хранилище #{auth-storages-sessions-desc;Сессии}
@@ -29,5 +31,48 @@ class Session extends BaseModelDataRow {
     
     # endregion Consts;
 
+    public function GenerateSecret()
+    {
+        $this->secret = md5(microtime(true));
+    }
+
+    public function GenerateToken(bool $force = false)
+    {
+
+        if($this->token && !$force) {
+            return;
+        }
+
+        $arr = $this->ToArray(true);
+        if(!$this->secret) {
+            $this->GenerateSecret();
+        }
+        unset($arr['token']);
+        unset($arr['key']);
+        unset($arr['secret']);
+        if($this->member) {
+            $member = Members::LoadByKey($this->member);
+            $arr['member'] = $member->ExportForUserInterface();
+        }
+        $this->token = JWT::encode($arr, $this->secret, 'HS256');
+        $this->key = md5($this->token);
+
+    }
+
+    public function Save(): bool
+    {
+        $this->GenerateToken(true);
+        return parent::Save();
+    }
+
+    public function ExportForUserInterface(): array
+    {
+        $arr = $this->ToArray(true);
+        unset($arr['id']);
+        unset($arr['datecreated']);
+        unset($arr['datemodified']);
+        unset($arr['secret']);
+        return $arr;
+    }
 
 }

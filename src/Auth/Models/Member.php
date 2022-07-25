@@ -38,5 +38,14 @@ class Member extends BaseModelDataRow {
 	public const GenderFemale = 'female';
     # endregion Consts;
 
+    public function ExportForUserInterface(): array
+    {
+        $arr = $this->ToArray(true);
+        unset($arr['id']);
+        unset($arr['datecreated']);
+        unset($arr['datemodified']);
+        unset($arr['password']);
+        return $arr;
+    }
 
 }

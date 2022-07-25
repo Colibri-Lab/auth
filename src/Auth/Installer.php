@@ -59,17 +59,17 @@ class Installer
         }
 
         if($mode === 'local') {
-            $hosts['domains']['auth'] = ['*_gate.local.bsft.loc'];
+            $hosts['domains']['auth'] = ['*_auth-v5.local.bsft.loc'];
         }
         else if($mode === 'test') {
-            $hosts['domains']['manage'] = array_merge($hosts['domains']['manage'], ['backend.lotteryhub.colibrilab.ru']);
-            $hosts['domains']['auth'] = ['lotteryhub.colibrilab.ru'];
+            $hosts['domains']['manage'] = array_merge($hosts['domains']['manage'], ['backend.authv5.repeatme.online']);
+            $hosts['domains']['auth'] = ['*.authv5.repeatme.online'];
         }
         else if($mode === 'prod') {
             // захватываем управление админкой
             // управляющий модуль должен быть один
-            $hosts['domains']['manage'] = array_merge($hosts['domains']['manage'], ['147.182.148.136:8080', 'db-pr.bookieratings.net', 'backend.prod.lotteryhub.colibrilab.ru']);
-            $hosts['domains']['auth'] = ['147.182.148.136:8080', 'db-pr.bookieratings.net', 'prod.lotteryhub.colibrilab.ru'];
+            $hosts['domains']['manage'] = array_merge($hosts['domains']['manage'], ['backend.auth.ecolo-place.com']);
+            $hosts['domains']['auth'] = ['auth.ecolo-place.com'];
         }
         self::_saveConfig($file, $hosts);
         
@@ -201,6 +201,10 @@ class Installer
         $webRoot = \getenv('COLIBRI_WEBROOT');
         if(!$webRoot) {
             $webRoot = 'web'; 
+        }
+        $permanent = \getenv('COLIBRI_PERMANENT');
+        if(!$permanent) {
+            $permanent = 'res/'; 
         }
         $mode = self::_getMode($configDir.'app.yaml'); 
  

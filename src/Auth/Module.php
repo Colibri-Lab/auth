@@ -23,12 +23,15 @@ use Colibri\Utils\Logs\Logger;
 use App\Modules\Auth\Models\Histories;
 use App\Modules\Auth\Models\Lotteries;
 use App\Modules\Auth\Models\Sources;
+use App\Modules\Auth\Models\Applications;
+use App\Modules\Auth\Models\Application;
 
 
 /**
  * Описание модуля
  * @package App\Modules\Auth
  *
+ * @property-read Application $application
  *
  */
 class Module extends BaseModule
@@ -41,6 +44,8 @@ class Module extends BaseModule
      */
     public static ?Module $instance = null;
 
+    private ?Application $_app;
+
     /**
      * Инициализация модуля
      * @return void
@@ -48,6 +53,19 @@ class Module extends BaseModule
     public function InitializeModule(): void
     {
         self::$instance = $this;
+
+        App::$instance->HandleEvent(EventsContainer::RpcGotRequest, function($event, $args) {
+            if(isset($args->class) && strstr($args->class, '\\Auth') !== false) {
+                if(!Module::$instance->LoadApplication()) {
+                    $args->cancel = true;
+                    $args->result = (object)[
+                        'code' => 403,
+                        'message' => 'Unauthorized',
+                        'result' => []
+                    ];
+                }
+            }
+        });
 
         // @No Code
         // App::$instance->HandleEvent([EventsContainer::RpcRequestProcessed, EventsContainer::RpcRequestError], function($event, $args) {
@@ -86,26 +104,39 @@ class Module extends BaseModule
         return $permissions;
     }
 
-
     public function Backup(Logger $logger, string $path) {
         // Do nothing   
         
         $modulePath = $path . 'modules/Auth/';
 
-        $logger->debug('Exporting Histories...');
-        $table = Histories::LoadAll();
-        $table->ExportJson($modulePath . 'histories.json');
-
-        $logger->debug('Exporting Lotteries...');
-        $table = Lotteries::LoadAll();
-        $table->ExportJson($modulePath . 'lotteries.json');
-
-        $logger->debug('Exporting Sources...');
-        $table = Sources::LoadAll();
-        $table->ExportJson($modulePath . 'sources.json');
+        // $logger->debug('Exporting Sources...');
+        // $table = Sources::LoadAll();
+        // $table->ExportJson($modulePath . 'sources.json');
 
 
+    }
+    
 
+    /**
+     * Загрижает текущее приложение из запроса
+     */
+    public function LoadApplication(): bool
+    {
+        $this->_app = Applications::LoadFromRequest();
+        if(!$this->_app) {
+            return false;
+        }
+        return true;
+    }
+
+    public function __get(string $prop): mixed
+    {
+        if(strtolower($prop) == 'application') {
+            return $this->_app;
+        }
+        else {
+            return parent::__get($prop); 
+        }
     }
 
 }

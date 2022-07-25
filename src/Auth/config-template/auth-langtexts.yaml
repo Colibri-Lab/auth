@@ -98,4 +98,47 @@ auth-storages-members-fields-gender-values-male:
   ru: Мужской
 auth-storages-members-fields-gender-values-female:
   ru: Женский
+auth-storages-applications-desc:
+  ru: Приложения
+auth-storages-applications-fields-key-desc:
+  ru: Ключ приложения  (наименование)
+auth-storages-applications-fields-token-desc:
+  ru: Токен приложения (постоянный)
+auth-storages-applications-fields-token-note:
+  ru: Токен приложения, генерируется автоматически
+auth-storages-applications-fields-params-desc:
+  ru: Параметры
+auth-storages-applications-fields-params-note:
+  ru: Параметры приложения
+auth-storages-applications-fields-params-livetime-desc:
+  ru: Время жизни
+auth-storages-applications-fields-params-livetime-note:
+  ru: Время жизни токена
+auth-storages-applications-fields-params-domains-desc:
+  ru: Домены
+auth-storages-applications-fields-params-domains-note:
+  ru: Паттерны доменов, с которых разрешен доступ к приложению
+auth-storages-applications-fields-params-domains-pattern-desc:
+  ru: Паттерн домена
+auth-storages-applications-fields-params-domains-pattern-note:
+  ru: Используйте *-у для указания любого количества символов и цифр и ? для указания
+    одного символа и цифры
+auth-storages-applications-fields-params-allowrenew-desc:
+  ru: Разрешить восстановление по короткому токену
+auth-storages-applications-fields-params-allowrenew-note:
+  ru: Дает возможность получить текущий сессионный токен по короткому постоянному
+    токену пользователя (НЕ БЕЗОПАСНО)
+auth-storages-applications-fields-params-roles-desc:
+  ru: Роли
+auth-storages-applications-fields-params-roles-note:
+  ru: Роли, которые могут исполнять пользователи. Реальная обработка ролей происходит
+    на клиенте
+auth-storages-applications-fields-params-roles-name-desc:
+  ru: Наименование роли
+auth-storages-applications-fields-params-roles-desc-desc:
+  ru: Описание роли
+auth-storages-applications-fields-params-defaultrole-desc:
+  ru: Роль по умолчанию
+auth-storages-applications-fields-params-defaultrole-note:
+  ru: Роль, которая выставляется по умолчанию
 ...

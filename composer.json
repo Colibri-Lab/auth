@@ -8,7 +8,8 @@
     "require": {
         "php": ">=8.0.0",
         "colibri/core": "dev-master",
-        "colibri/ui": "dev-master"
+        "colibri/ui": "dev-master",
+        "firebase/php-jwt": "dev-main"
     },
     "autoload": {
         "psr-4": {

@@ -2,7 +2,7 @@
 
 
 
-namespace App\Modules\Auth\Controllers\V1;
+namespace App\Modules\Auth\Controllers;
 
 
 use Colibri\App;
@@ -18,6 +18,7 @@ use Colibri\Web\View;
 use ScssPhp\ScssPhp\Compiler;
 use ScssPhp\ScssPhp\OutputStyle;
 use Colibri\Web\PayloadCopy;
+use App\Modules\Auth\Models\Sessions;
 
 
 class SessionController extends WebController
@@ -33,12 +34,13 @@ class SessionController extends WebController
     public function Start(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
     {
 
+        $session = Sessions::LoadFromRequest();
         
         // финишируем контроллер
         return $this->Finish(
             200,
             'ok',
-            [],
+            $session->ExportForUserInterface(),
             'utf-8'
         );
     }

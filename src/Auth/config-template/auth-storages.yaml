@@ -1,17 +1,17 @@
 ---
-apps:
-  desc: '#{auth-storages-apps-desc;Приложения}'
+applications:
+  desc: '#{auth-storages-applications-desc;Приложения}'
   access-point: auth
   models:
-    table: Models\Apps
-    row: Models\App
+    table: Models\Applications
+    row: Models\Application
   params:
     visible: true
     maybepublished: false
   module: Auth
   fields:
     key:
-      desc: '#{auth-storages-apps-fields-key-desc;Ключ приложения  (наименование)}'
+      desc: '#{auth-storages-applications-fields-key-desc;Ключ приложения  (наименование)}'
       type: varchar
       length: "255"
       component: Text
@@ -32,8 +32,8 @@ apps:
       group: window
     token:
       group: window
-      desc: '#{auth-storages-apps-fields-token-desc;Токен приложения (постоянный)}'
-      note: '#{auth-storages-apps-fields-token-note;Токен приложения, генерируется
+      desc: '#{auth-storages-applications-fields-token-desc;Токен приложения (постоянный)}'
+      note: '#{auth-storages-applications-fields-token-note;Токен приложения, генерируется
         автоматически}'
       type: varchar
       length: "32"
@@ -54,8 +54,8 @@ apps:
         generator: (value) => { return String.MD5((new Date().getTime()) + ''); }
     params:
       group: window
-      desc: '#{auth-storages-apps-fields-params-desc;Параметры}'
-      note: '#{auth-storages-apps-fields-params-note;Параметры приложения}'
+      desc: '#{auth-storages-applications-fields-params-desc;Параметры}'
+      note: '#{auth-storages-applications-fields-params-note;Параметры приложения}'
       type: json
       component: Object
       class: ObjectField
@@ -74,8 +74,8 @@ apps:
         generator: ""
       fields:
         livetime:
-          desc: '#{auth-storages-apps-fields-params-livetime-desc;Время жизни}'
-          note: '#{auth-storages-apps-fields-params-livetime-note;Время жизни токена}'
+          desc: '#{auth-storages-applications-fields-params-livetime-desc;Время жизни}'
+          note: '#{auth-storages-applications-fields-params-livetime-note;Время жизни токена}'
           type: int
           component: Number
           class: int
@@ -94,8 +94,8 @@ apps:
             generator: ""
           default: "3600"
         domains:
-          desc: '#{auth-storages-apps-fields-params-domains-desc;Домены}'
-          note: '#{auth-storages-apps-fields-params-domains-note;Паттерны доменов,
+          desc: '#{auth-storages-applications-fields-params-domains-desc;Домены}'
+          note: '#{auth-storages-applications-fields-params-domains-note;Паттерны доменов,
             с которых разрешен доступ к приложению}'
           type: json
           component: Array
@@ -115,9 +115,9 @@ apps:
             generator: ""
           fields:
             pattern:
-              desc: '#{auth-storages-apps-fields-params-domains-pattern-desc;Паттерн
+              desc: '#{auth-storages-applications-fields-params-domains-pattern-desc;Паттерн
                 домена}'
-              note: '#{auth-storages-apps-fields-params-domains-pattern-note;Используйте
+              note: '#{auth-storages-applications-fields-params-domains-pattern-note;Используйте
                 *-у для указания любого количества символов и цифр и ? для указания
                 одного символа и цифры}'
               type: varchar
@@ -139,9 +139,9 @@ apps:
                 generator: ""
           default: json_array()
         allowrenew:
-          desc: '#{auth-storages-apps-fields-params-allowrenew-desc;Разрешить восстановление
+          desc: '#{auth-storages-applications-fields-params-allowrenew-desc;Разрешить восстановление
             по короткому токену}'
-          note: '#{auth-storages-apps-fields-params-allowrenew-note;Дает возможность
+          note: '#{auth-storages-applications-fields-params-allowrenew-note;Дает возможность
             получить текущий сессионный токен по короткому постоянному токену пользователя
             (НЕ БЕЗОПАСНО)}'
           type: bool
@@ -162,8 +162,8 @@ apps:
             mask: ""
             generator: ""
         roles:
-          desc: '#{auth-storages-apps-fields-params-roles-desc;Роли}'
-          note: '#{auth-storages-apps-fields-params-roles-note;Роли, которые могут
+          desc: '#{auth-storages-applications-fields-params-roles-desc;Роли}'
+          note: '#{auth-storages-applications-fields-params-roles-note;Роли, которые могут
             исполнять пользователи. Реальная обработка ролей происходит на клиенте}'
           type: json
           component: Array
@@ -184,7 +184,7 @@ apps:
             generator: ""
           fields:
             name:
-              desc: '#{auth-storages-apps-fields-params-roles-name-desc;Наименование
+              desc: '#{auth-storages-applications-fields-params-roles-name-desc;Наименование
                 роли}'
               type: varchar
               length: "255"
@@ -204,7 +204,7 @@ apps:
                 mask: ""
                 generator: ""
             desc:
-              desc: '#{auth-storages-apps-fields-params-roles-desc-desc;Описание роли}'
+              desc: '#{auth-storages-applications-fields-params-roles-desc-desc;Описание роли}'
               type: varchar
               length: "255"
               component: Text
@@ -223,8 +223,8 @@ apps:
                 mask: ""
                 generator: ""
         defaultrole:
-          desc: '#{auth-storages-apps-fields-params-defaultrole-desc;Роль по умолчанию}'
-          note: '#{auth-storages-apps-fields-params-defaultrole-note;Роль, которая
+          desc: '#{auth-storages-applications-fields-params-defaultrole-desc;Роль по умолчанию}'
+          note: '#{auth-storages-applications-fields-params-defaultrole-note;Роль, которая
             выставляется по умолчанию}'
           type: varchar
           length: "255"
@@ -245,12 +245,12 @@ apps:
             generator: ""
       default: json_object()
   indices:
-    apps_token_idx:
+    applications_token_idx:
       fields:
       - token
       type: UNIQUE
       method: BTREE
-    apps_key_idx:
+    applications_key_idx:
       fields:
       - key
       type: UNIQUE
@@ -389,7 +389,7 @@ members:
   desc: '#{auth-storages-members-desc;Пользователи}'
   access-point: auth
   models:
-    table: Models\Mebers
+    table: Models\Members
     row: Models\Member
   params:
     visible: true

@@ -20,7 +20,7 @@ use App\Modules\Auth\Models\Member;
  * @method Member _read()
  * 
  */
-class Mebers extends BaseModelDataTable {
+class Members extends BaseModelDataTable {
 
     /**
      * Конструктор
@@ -43,9 +43,9 @@ class Mebers extends BaseModelDataTable {
      * @param string $filter строка фильтрации
      * @param string $order сортировка
      * @param array $params параметры к запросу
-     * @return Mebers
+     * @return Members
      */
-    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true) : ?Mebers
+    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true) : ?Members
     {
         $storage = Storages::Create()->Load('members');
         $additionalParams = ['page' => $page, 'pagesize' => $pagesize, 'params' => $params];
@@ -63,9 +63,9 @@ class Mebers extends BaseModelDataTable {
      * Загружает без фильтра
      * @param int $page страница
      * @param int $pagesize размер страницы
-     * @return Mebers 
+     * @return Members 
      */
-    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : ?Mebers
+    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : ?Members
     {
         return self::LoadByFilter($page, $pagesize, null, null, [], $calculateAffected);
     }
@@ -78,6 +78,17 @@ class Mebers extends BaseModelDataTable {
     static function LoadById(int $id) : Member|null 
     {
         $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', null, ['id' => $id], false);
+        return $table && $table->Count() > 0 ? $table->First() : null;
+    }
+
+    /**
+     * Возвращает модель по key
+     * @param string $key ID строки
+     * @return Member|null
+     */
+    static function LoadByKey(string $key) : Member|null 
+    {
+        $table = self::LoadByFilter(1, 1, '{key}=[[key:string]]', null, ['key' => $key], false);
         return $table && $table->Count() > 0 ? $table->First() : null;
     }
 

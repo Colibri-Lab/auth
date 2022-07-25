@@ -2,7 +2,7 @@
 
 
 
-namespace App\Modules\Auth\Controllers\V1;
+namespace App\Modules\Auth\Controllers;
 
 
 use Colibri\App;
@@ -18,30 +18,30 @@ use Colibri\Web\View;
 use ScssPhp\ScssPhp\Compiler;
 use ScssPhp\ScssPhp\OutputStyle;
 use Colibri\Web\PayloadCopy;
+use App\Modules\Auth\Module;
 
-
-class MemberController extends WebController
+class AppController extends WebController
 {
 
     /**
-     * Создание сессии
+     * Получение настроек приложения
      * @param RequestCollection $get данные GET
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
      */
-    public function Register(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    public function Settings(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
     {
 
+        $app = Module::$instance->application;
         
         // финишируем контроллер
         return $this->Finish(
             200,
             'ok',
-            [],
+            $app->ExportForUserInterface(),
             'utf-8'
         );
     }
-
 
 }
