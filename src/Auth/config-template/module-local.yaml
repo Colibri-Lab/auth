@@ -1,0 +1,34 @@
+
+texts: include(auth-langtexts.yaml)
+
+databases:
+
+  access-points: 
+
+    drivers:
+      mysql:
+        connection: Colibri\Data\MySql\Connection
+        command: Colibri\Data\MySql\Command
+        reader: Colibri\Data\MySql\DataReader
+        querybuilder: Colibri\Data\MySql\QueryBuilder
+
+    connections:
+      auth:
+        # драйвер, который существует в секции access-points.drivers
+        type: mysql
+        # адрес подключения
+        host: localhost
+        # порт подключения
+        port: 3306
+        # пользователь
+        user: web
+        # пароль
+        password: 123456
+
+    points:
+      auth: 
+        connection: auth
+        database: auth
+
+  storages: include(auth-storages.yaml)
+      

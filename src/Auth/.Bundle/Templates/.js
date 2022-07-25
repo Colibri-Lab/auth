@@ -1,0 +1,1 @@
+App.Modules.Auth.Templates = class {};

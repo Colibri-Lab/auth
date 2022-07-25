@@ -1,0 +1,8 @@
+
+  
+texts: include(auth-langtexts.yaml)
+
+databases:
+
+  storages: include(auth-storages.yaml)
+      

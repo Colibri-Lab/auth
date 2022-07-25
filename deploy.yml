@@ -1,0 +1,108 @@
+- name: Working with localhost - prepare project
+  hosts: localhost
+  gather_facts: false
+  vars:
+    awd: "{{lookup('env', 'PWD')}}"
+  environment:
+    COLIBRI_MODE: "{{ mode }}"
+
+  tasks:
+    - debug:
+        msg: "Current directory  = {{ awd }} "
+
+    - name: Create a directory if it exist remove it and create
+      ansible.builtin.file:
+        path: "{{ awd }}/{{ folder }}"
+        state: "{{ item }}"
+      with_items:
+        - absent
+        - directory
+
+    - name: Create blank project mode="{{ mode }}" 
+      community.general.composer:
+        command: create-project
+        arguments: colibri/blank-project:dev-master "{{ awd }}/{{ folder }}" --no-dev --stability=dev --remove-vcs --repository="{\"url\":\"https://gitlab.repeatme.online/api/v4/group/7/-/packages/composer/packages.json\",\"type\":\"composer\"}"
+        working_dir: "{{ awd }}/{{ folder }}"
+        composer_executable: "/usr/bin/composer{{ composer | default('') }}" 
+        executable: "/usr/bin/php{{ php | default('') }}" 
+        prefer_dist: yes
+
+    - name: Download and install "modules" {{ modules }}
+      community.general.composer:
+        command: require
+        arguments: "{{ item }}"
+        working_dir: "{{ awd }}/{{ folder }}"
+        composer_executable: "/usr/bin/composer{{ composer | default('') }}"
+        executable: "/usr/bin/php{{ php | default('') }}"
+        prefer_dist: yes
+      loop: "{{ modules }}"
+
+    - name: Download passwords from vault
+      ansible.builtin.shell: "/usr/bin/php{{ php | default('') }} index.php localhost /vault.json"
+      args:
+        chdir: "{{ awd }}/{{ folder }}/web"
+ 
+- name: Deploy profect to {{ host }}
+  hosts: "{{ host }}"
+  gather_facts: false
+  become: yes
+  vars:
+    awd: "{{lookup('env', 'PWD')}}"
+
+  tasks:
+    - name: Make target directory if not
+      ansible.builtin.file:
+        path: "/var/www/{{ project_dir }}"
+        state: directory
+
+    - name: Synchronize passing in extra rsync options
+      ansible.posix.synchronize:
+        delete: false
+        src: "{{ awd }}/{{ folder }}/"
+        dest: /var/www/{{ project_dir }}
+        recursive: true
+        rsync_opts:
+          - "--exclude=.git"
+          - "--exclude=README.md"
+          - "--exclude=.gitignore"
+          - "--exclude=.git"
+          - "--exclude=.gitlab-ci.yml"
+          - "--exclude=deploy.yml"
+
+
+    - name: Remove and create directory "_cache/code"
+      ansible.builtin.file:
+        path: "/var/www/{{ project_dir }}/web/_cache/code"
+        state: "{{ item }}"
+      with_items:
+        - absent
+        - directory
+
+    - name: Set owner and group to "www-data"
+      ansible.builtin.file:
+        path: "/var/www/{{ project_dir }}"
+        state: directory
+        recurse: yes
+        owner: www-data
+        group: www-data
+
+    - name: Set 766 to "_cache" directory
+      ansible.builtin.file:
+        path: "/var/www/{{ project_dir }}/web/_cache"
+        state: directory
+        recurse: yes
+        mode: "0766"
+
+    - name: Set 766 to "/bin" directory
+      ansible.builtin.file:
+        path: "/var/www/{{ project_dir }}/bin"
+        state: directory
+        recurse: yes
+        mode: "0777"
+
+    - name: Execute migration
+      ansible.builtin.shell: "/bin/sh {{ item }} || true" 
+      args:
+        chdir: "/var/www/{{ project_dir }}/bin"
+      loop: "{{ bin_scripts }}"
+  
