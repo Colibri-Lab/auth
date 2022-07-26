@@ -25,6 +25,10 @@ use App\Modules\Auth\Models\Lotteries;
 use App\Modules\Auth\Models\Sources;
 use App\Modules\Auth\Models\Applications;
 use App\Modules\Auth\Models\Application;
+use Colibri\Utils\Debug;
+use App\Modules\Auth\Controllers\SessionController;
+use App\Modules\Auth\Controllers\MemberController;
+use App\Modules\Auth\Controllers\AppController;
 
 
 /**
@@ -46,6 +50,12 @@ class Module extends BaseModule
 
     private ?Application $_app;
 
+    const NeedAuthorization = [
+        SessionController::class,
+        MemberController::class,
+        AppController::class
+    ];
+
     /**
      * Инициализация модуля
      * @return void
@@ -55,7 +65,7 @@ class Module extends BaseModule
         self::$instance = $this;
 
         App::$instance->HandleEvent(EventsContainer::RpcGotRequest, function($event, $args) {
-            if(isset($args->class) && strstr($args->class, '\\Auth') !== false) {
+            if(isset($args->class) && in_array($args->class, self::NeedAuthorization)) {
                 if(!Module::$instance->LoadApplication()) {
                     $args->cancel = true;
                     $args->result = (object)[
