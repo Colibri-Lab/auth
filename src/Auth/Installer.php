@@ -62,8 +62,8 @@ class Installer
             $hosts['domains']['auth'] = ['*_auth-v5.local.bsft.loc'];
         }
         else if($mode === 'test') {
-            $hosts['domains']['manage'] = array_merge($hosts['domains']['manage'], ['backend.authv5.repeatme.online']);
-            $hosts['domains']['auth'] = ['*.authv5.repeatme.online'];
+            $hosts['domains']['manage'] = array_merge($hosts['domains']['manage'], ['backend.auth.repeatme.online']);
+            $hosts['domains']['auth'] = ['*_auth.repeatme.online'];
         }
         else if($mode === 'prod') {
             // захватываем управление админкой
