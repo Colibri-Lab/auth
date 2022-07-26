@@ -141,4 +141,38 @@ auth-storages-applications-fields-params-defaultrole-desc:
   ru: Роль по умолчанию
 auth-storages-applications-fields-params-defaultrole-note:
   ru: Роль, которая выставляется по умолчанию
+auth-storages-confirmations-desc:
+  ru: Коды верификации
+auth-storages-confirmations-fields-property-desc:
+  ru: Свойство
+auth-storages-confirmations-fields-property-note:
+  ru: Свойство, которое нужно верифицировать
+auth-storages-confirmations-fields-property-values-email:
+  ru: Эл. адрес
+auth-storages-confirmations-fields-property-values-phone:
+  ru: Телефон
+auth-storages-confirmations-fields-code-desc:
+  ru: Код
+auth-storages-confirmations-fields-code-note:
+  ru: Сгенерированный код верификации
+auth-storages-confirmations-fields-member-desc:
+  ru: Пользователь
+auth-storages-confirmations-fields-member-note:
+  ru: Пользователь, который верифицирует
+auth-storages-confirmations-fields-verified-desc:
+  ru: Верифицирован
+auth-storages-confirmations-fields-verified-note:
+  ru: Отметка об успешной верификации
+auth-storages-members-fields-email_confirmed-desc:
+  ru: Почта подтверждена
+auth-storages-members-fields-phone_confirmed-desc:
+  ru: Телефон подтвержден
+auth-storages-members-fields-last_name-desc:
+  ru: Фамилия
+auth-storages-members-fields-first_name-desc:
+  ru: Имя
+auth-storages-members-fields-role-desc:
+  ru: Роль
+auth-storages-members-fields-role-note:
+  ru: Роль выбранная из списка ролей приложения
 ...

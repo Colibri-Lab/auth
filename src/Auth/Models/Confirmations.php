@@ -8,19 +8,19 @@ use Colibri\Data\Storages\Storages;
 use Colibri\Data\Storages\Storage;
 use Colibri\Utils\Logs\Logger;
 use Colibri\Data\Storages\Models\DataTable as BaseModelDataTable;
-use App\Modules\Auth\Models\Member;
+use App\Modules\Auth\Models\Confirmation;
 
 /**
- * Таблица, представление данных в хранилище #{auth-storages-members-desc;Пользователи}
+ * Таблица, представление данных в хранилище #{auth-storages-confirmations-desc;Коды верификации}
  * @author <author name and email>
  * @package App\Modules\Auth\Models
  * 
- * @method Member[] getIterator()
- * @method Member _createDataRowObject()
- * @method Member _read()
+ * @method Confirmation[] getIterator()
+ * @method Confirmation _createDataRowObject()
+ * @method Confirmation _read()
  * 
  */
-class Members extends BaseModelDataTable {
+class Confirmations extends BaseModelDataTable {
 
     /**
      * Конструктор
@@ -30,7 +30,7 @@ class Members extends BaseModelDataTable {
      * @param Storage|null $storage хранилище
      * @return void 
      */
-    public function __construct(DataAccessPoint $point, IDataReader $reader = null, string $returnAs = 'Member', Storage|null $storage = null)
+    public function __construct(DataAccessPoint $point, IDataReader $reader = null, string $returnAs = 'Confirmation', Storage|null $storage = null)
     {
         parent::__construct($point, $reader, $returnAs, $storage);
     }
@@ -43,11 +43,11 @@ class Members extends BaseModelDataTable {
      * @param string $filter строка фильтрации
      * @param string $order сортировка
      * @param array $params параметры к запросу
-     * @return Members
+     * @return Confirmations
      */
-    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true) : ?Members
+    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true) : ?Confirmations
     {
-        $storage = Storages::Create()->Load('members');
+        $storage = Storages::Create()->Load('confirmations');
         $additionalParams = ['page' => $page, 'pagesize' => $pagesize, 'params' => $params];
         $additionalParams['type'] = $calculateAffected ? DataAccessPoint::QueryTypeReader : DataAccessPoint::QueryTypeBigData;
         return self::LoadByQuery(
@@ -63,9 +63,9 @@ class Members extends BaseModelDataTable {
      * Загружает без фильтра
      * @param int $page страница
      * @param int $pagesize размер страницы
-     * @return Members 
+     * @return Confirmations 
      */
-    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : ?Members
+    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : ?Confirmations
     {
         return self::LoadByFilter($page, $pagesize, null, null, [], $calculateAffected);
     }
@@ -73,71 +73,35 @@ class Members extends BaseModelDataTable {
     /**
      * Возвращает модель по ID
      * @param int $id ID строки
-     * @return Member|null
+     * @return Confirmation|null
      */
-    static function LoadById(int $id) : Member|null 
+    static function LoadById(int $id) : Confirmation|null 
     {
         $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', null, ['id' => $id], false);
         return $table && $table->Count() > 0 ? $table->First() : null;
     }
 
     /**
-     * Возвращает модель по token
-     * @param string $token ID строки
-     * @return Member|null
+     * Возвращает модель по пользователю
+     * @param string $property что подтверждаем
+     * @param string $member пользователь
+     * @return Confirmation|null
      */
-    static function LoadByToken(string $token) : Member|null 
+    static function LoadByMember(string $property, string $member) : Confirmation|null 
     {
-        $table = self::LoadByFilter(1, 1, '{token}=[[token:string]]', null, ['token' => $token], false);
-        return $table && $table->Count() > 0 ? $table->First() : null;
-    }
-
-    /**
-     * Возвращает модель по email
-     * @param string $email ID строки
-     * @return Member|null
-     */
-    static function LoadByEmail(string $email) : Member|null 
-    {
-        $table = self::LoadByFilter(1, 1, '{email}=[[email:string]]', null, ['email' => $email], false);
-        return $table && $table->Count() > 0 ? $table->First() : null;
-    }
-
-    /**
-     * Возвращает модель по phone
-     * @param string $phone ID строки
-     * @return Member|null
-     */
-    static function LoadByPhone(string $phone) : Member|null 
-    {
-        $table = self::LoadByFilter(1, 1, '{phone}=[[phone:string]]', null, ['phone' => $phone], false);
+        $table = self::LoadByFilter(1, 1, '{property}=[[property:string]] and {member}=[[member:string]]', null, ['property' => $property, 'member' => $member], false);
         return $table && $table->Count() > 0 ? $table->First() : null;
     }
 
     /**
      * Создание модели по названию хранилища
-     * @return Member
+     * @return Confirmation
      */
-    static function LoadEmpty() : Member
+    static function LoadEmpty() : Confirmation
     {
         $table = self::LoadByFilter(-1, 20, 'false', null, [], false);
         return $table->CreateEmptyRow();
     }
-
-    /**
-     * Регистрация пользователя
-     * @return Member
-     */
-    static function Register(string $email, string $phone, string $password) : Member
-    {
-        $model = self::LoadEmpty();
-        $model->email = $email;
-        $model->phone = $phone;
-        $model->password = $password;
-        return $model;
-    }
-
-    
 
     /**
      * Удаляет все по списку ID
@@ -156,7 +120,7 @@ class Members extends BaseModelDataTable {
      */
     static function DeleteAllByFilter(string $filter): bool
     {
-        return self::DeleteByFilter('members', $filter);
+        return self::DeleteByFilter('confirmations', $filter);
     }
 
     static function DataMigrate(?Logger $logger = null): bool

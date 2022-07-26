@@ -39,4 +39,13 @@ class Application extends BaseModelDataRow {
         return $arr;
     }
 
+    public function CheckRole(string $role) {
+        foreach($this->params->roles as $r) {
+            if($r->name === $role) {
+                return true;
+            } 
+        }
+        return false;
+    }
+
 }

@@ -75,7 +75,8 @@ applications:
       fields:
         livetime:
           desc: '#{auth-storages-applications-fields-params-livetime-desc;Время жизни}'
-          note: '#{auth-storages-applications-fields-params-livetime-note;Время жизни токена}'
+          note: '#{auth-storages-applications-fields-params-livetime-note;Время жизни
+            токена}'
           type: int
           component: Number
           class: int
@@ -95,8 +96,8 @@ applications:
           default: "3600"
         domains:
           desc: '#{auth-storages-applications-fields-params-domains-desc;Домены}'
-          note: '#{auth-storages-applications-fields-params-domains-note;Паттерны доменов,
-            с которых разрешен доступ к приложению}'
+          note: '#{auth-storages-applications-fields-params-domains-note;Паттерны
+            доменов, с которых разрешен доступ к приложению}'
           type: json
           component: Array
           class: ArrayField
@@ -139,8 +140,8 @@ applications:
                 generator: ""
           default: json_array()
         allowrenew:
-          desc: '#{auth-storages-applications-fields-params-allowrenew-desc;Разрешить восстановление
-            по короткому токену}'
+          desc: '#{auth-storages-applications-fields-params-allowrenew-desc;Разрешить
+            восстановление по короткому токену}'
           note: '#{auth-storages-applications-fields-params-allowrenew-note;Дает возможность
             получить текущий сессионный токен по короткому постоянному токену пользователя
             (НЕ БЕЗОПАСНО)}'
@@ -163,8 +164,8 @@ applications:
             generator: ""
         roles:
           desc: '#{auth-storages-applications-fields-params-roles-desc;Роли}'
-          note: '#{auth-storages-applications-fields-params-roles-note;Роли, которые могут
-            исполнять пользователи. Реальная обработка ролей происходит на клиенте}'
+          note: '#{auth-storages-applications-fields-params-roles-note;Роли, которые
+            могут исполнять пользователи. Реальная обработка ролей происходит на клиенте}'
           type: json
           component: Array
           class: ArrayField
@@ -204,7 +205,8 @@ applications:
                 mask: ""
                 generator: ""
             desc:
-              desc: '#{auth-storages-applications-fields-params-roles-desc-desc;Описание роли}'
+              desc: '#{auth-storages-applications-fields-params-roles-desc-desc;Описание
+                роли}'
               type: varchar
               length: "255"
               component: Text
@@ -223,9 +225,10 @@ applications:
                 mask: ""
                 generator: ""
         defaultrole:
-          desc: '#{auth-storages-applications-fields-params-defaultrole-desc;Роль по умолчанию}'
-          note: '#{auth-storages-applications-fields-params-defaultrole-note;Роль, которая
-            выставляется по умолчанию}'
+          desc: '#{auth-storages-applications-fields-params-defaultrole-desc;Роль
+            по умолчанию}'
+          note: '#{auth-storages-applications-fields-params-defaultrole-note;Роль,
+            которая выставляется по умолчанию}'
           type: varchar
           length: "255"
           component: Text
@@ -429,7 +432,7 @@ members:
       params:
         required: true
         enabled: true
-        readonly: false
+        readonly: true
         list: true
         greed: ""
         viewer: ~
@@ -482,9 +485,9 @@ members:
         code: ""
         mask: ""
         generator: ""
-    firstName:
+    first_name:
       group: window
-      desc: '#{auth-storages-members-fields-firstName-desc;Имя}'
+      desc: '#{auth-storages-members-fields-first_name-desc;Имя}'
       type: varchar
       length: "255"
       component: Text
@@ -502,9 +505,9 @@ members:
         code: ""
         mask: ""
         generator: ""
-    lastName:
+    last_name:
       group: window
-      desc: '#{auth-storages-members-fields-lastName-desc;Фамилия}'
+      desc: '#{auth-storages-members-fields-last_name-desc;Фамилия}'
       type: varchar
       length: "255"
       component: Text
@@ -534,7 +537,7 @@ members:
         required: false
         enabled: true
         readonly: false
-        list: false
+        list: true
         greed: ""
         viewer: ~
         vertical: false
@@ -586,4 +589,184 @@ members:
         title: '#{auth-storages-members-fields-gender-values-male;Мужской}'
       - value: female
         title: '#{auth-storages-members-fields-gender-values-female;Женский}'
+    role:
+      group: window
+      desc: '#{auth-storages-members-fields-role-desc;Роль}'
+      note: '#{auth-storages-members-fields-role-note;Роль выбранная из списка ролей
+        приложения}'
+      type: varchar
+      length: "20"
+      component: Text
+      class: string
+      attrs: []
+      params:
+        required: false
+        enabled: true
+        readonly: false
+        list: true
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: ""
+        mask: ""
+        generator: ""
+    email_confirmed:
+      group: window
+      desc: '#{auth-storages-members-fields-email_confirmed-desc;Почта подтверждена}'
+      type: bool
+      component: Checkbox
+      class: bool
+      default: "0"
+      attrs: []
+      params:
+        required: true
+        enabled: true
+        readonly: false
+        list: true
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: ""
+        mask: ""
+        generator: ""
+    phone_confirmed:
+      group: window
+      desc: '#{auth-storages-members-fields-phone_confirmed-desc;Телефон подтвержден}'
+      type: bool
+      component: Checkbox
+      class: bool
+      default: "0"
+      attrs: []
+      params:
+        required: true
+        enabled: true
+        readonly: false
+        list: true
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: ""
+        mask: ""
+        generator: ""
+  indices:
+    members_token_idx:
+      fields:
+      - token
+      type: UNIQUE
+      method: BTREE
+    members_email_idx:
+      fields:
+      - email
+      type: UNIQUE
+      method: BTREE
+    members_phone_idx:
+      fields:
+      - phone
+      type: UNIQUE
+      method: BTREE
+confirmations:
+  desc: '#{auth-storages-confirmations-desc;Коды верификации}'
+  access-point: auth
+  models:
+    table: Models\Confirmations
+    row: Models\Confirmation
+  params:
+    visible: true
+    maybepublished: false
+  module: Auth
+  fields:
+    member:
+      group: window
+      desc: '#{auth-storages-confirmations-fields-member-desc;Пользователь}'
+      note: '#{auth-storages-confirmations-fields-member-note;Пользователь, который
+        верифицирует}'
+      type: varchar
+      length: "32"
+      component: Text
+      class: string
+      attrs: []
+      params:
+        required: true
+        enabled: true
+        readonly: true
+        list: true
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: ""
+        mask: ""
+        generator: ""
+    property:
+      group: window
+      desc: '#{auth-storages-confirmations-fields-property-desc;Свойство}'
+      note: '#{auth-storages-confirmations-fields-property-note;Свойство, которое
+        нужно верифицировать}'
+      type: enum
+      component: Select
+      class: ValueField
+      attrs: []
+      params:
+        required: true
+        enabled: true
+        readonly: true
+        list: true
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: ""
+        mask: ""
+        generator: ""
+      values:
+      - value: email
+        title: '#{auth-storages-confirmations-fields-property-values-email;Эл. адрес}'
+      - value: phone
+        title: '#{auth-storages-confirmations-fields-property-values-phone;Телефон}'
+    code:
+      group: window
+      desc: '#{auth-storages-confirmations-fields-code-desc;Код}'
+      note: '#{auth-storages-confirmations-fields-code-note;Сгенерированный код верификации}'
+      type: varchar
+      length: "10"
+      component: Text
+      class: string
+      attrs: []
+      params:
+        required: true
+        enabled: true
+        readonly: true
+        list: true
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: ""
+        mask: ""
+        generator: ""
+    verified:
+      group: window
+      desc: '#{auth-storages-confirmations-fields-verified-desc;Верифицирован}'
+      note: '#{auth-storages-confirmations-fields-verified-note;Отметка об успешной
+        верификации}'
+      type: bool
+      component: Checkbox
+      class: bool
+      default: "0"
+      attrs: []
+      params:
+        required: true
+        enabled: true
+        readonly: true
+        list: true
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: ""
+        mask: ""
+        generator: ""
 ...

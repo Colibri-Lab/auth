@@ -11,6 +11,7 @@ use Colibri\Data\Storages\Models\DataTable as BaseModelDataTable;
 use App\Modules\Auth\Models\Session;
 use Colibri\App;
 use Colibri\Utils\Cache\Mem;
+use Colibri\Data\Storages\Fields\DateTimeField;
 
 /**
  * Таблица, представление данных в хранилище #{auth-storages-sessions-desc;Сессии}
@@ -108,15 +109,25 @@ class Sessions extends BaseModelDataTable {
             return $session;
         }
 
-        return self::LoadByKey($key);
+        // на всякий удаляем из памяти, чтобы не было переполнения
+        Mem::Delete('sess'.$key);
+
+        $session = self::LoadByKey($key);
+        if(!$session) {
+            $session = self::CreateGuestSession();
+        }
+
+        return $session;
         
     }
 
     static function CreateGuestSession(): Session
     {
         $session = self::LoadEmpty();
-        $session->GenerateToken();
-        Mem::Write('sess'.$session->key, $session->ToArray(true));
+        $session->expires = 3600;
+        $session->member = null;
+        $session->datecreated = new DateTimeField('now');
+        $session->Save();
         return $session;
     }
 
@@ -125,22 +136,17 @@ class Sessions extends BaseModelDataTable {
         if(!Mem::Exists('sess'.$key)) {
             return null;
         }
-        $sessionData = Mem::Read('sess'.$key);
-        $session = self::LoadEmpty();
-        foreach($sessionData as $k => $v) {
-            $session->$k = $v;
-        }
-        return $session;
+        return self::LoadEmpty(Mem::Read('sess'.$key));
     }
 
     /**
      * Создание модели по названию хранилища
      * @return Session
      */
-    static function LoadEmpty() : Session
+    static function LoadEmpty(object|array $data = []) : Session
     {
         $table = self::LoadByFilter(-1, 20, 'false', null, [], false);
-        return $table->CreateEmptyRow();
+        return $table->CreateEmptyRow($data);
     }
 
     /**

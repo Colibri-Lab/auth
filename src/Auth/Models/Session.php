@@ -8,6 +8,8 @@ use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
 use Colibri\Common\RandomizationHelper;
 use Firebase\JWT\JWT;
+use Colibri\App;
+use Colibri\Utils\Cache\Mem;
 
 /**
  * Представление строки в таблице в хранилище #{auth-storages-sessions-desc;Сессии}
@@ -31,48 +33,85 @@ class Session extends BaseModelDataRow {
     
     # endregion Consts;
 
-    public function GenerateSecret()
+    private function _generateSecret()
     {
-        $this->secret = md5(microtime(true));
+        $this->_data['sessions_secret'] = md5(microtime(true));
     }
 
-    public function GenerateToken(bool $force = false)
+    private function _generateToken(bool $force = false)
     {
 
-        if($this->token && !$force) {
+        if(($this->_data['sessions_token'] ?? null) && !$force) {
             return;
         }
 
         $arr = $this->ToArray(true);
-        if(!$this->secret) {
-            $this->GenerateSecret();
+        if(!($this->_data['sessions_secret'] ?? null)) {
+            $this->_generateSecret();
         }
+        
         unset($arr['token']);
         unset($arr['key']);
         unset($arr['secret']);
-        if($this->member) {
-            $member = Members::LoadByKey($this->member);
-            $arr['member'] = $member->ExportForUserInterface();
-        }
-        $this->token = JWT::encode($arr, $this->secret, 'HS256');
-        $this->key = md5($this->token);
 
+        $this->_data['sessions_token'] = JWT::encode($arr, $this->_data['sessions_secret'], 'HS256');
+
+        if(($this->_data['sessions_key'] ?? null)) {
+            Mem::Delete('sess'.$this->_data['sessions_key']);
+        }
+        $this->_data['sessions_key'] = md5($this->_data['sessions_token']);
+
+    }
+
+    public function _typeExchange(string $mode, string $property, $value = false): mixed
+    {
+        $ret = parent::_typeExchange($mode, $property, $value);
+        if($mode === 'set' && in_array($property, ['sessions_member', 'sessions_secret', 'sessions_key'])) {
+            $this->_generateToken(true);
+        }
+        return $ret;
     }
 
     public function Save(): bool
     {
-        $this->GenerateToken(true);
-        return parent::Save();
+        $this->_generateToken();
+        if(!$this->member) {
+            if($this->id) {
+                Sessions::DeleteAllByIds([$this->id]);
+            }
+            Mem::Write('sess'.$this->key, $this->ExportForMemcached(), $this->expires ?: 3600);
+            return true;
+        }
+        else {
+            return parent::Save();
+        }
     }
 
     public function ExportForUserInterface(): array
     {
         $arr = $this->ToArray(true);
         unset($arr['id']);
-        unset($arr['datecreated']);
         unset($arr['datemodified']);
         unset($arr['secret']);
+        if($arr['member'] ?? null) {
+            $member = Members::LoadByToken($arr['member']);
+            $arr['member'] = $member->ExportForUserInterface();
+        }        
         return $arr;
+    }
+
+    public function ExportForMemcached(): array
+    {
+        $arr = $this->ToArray(false);
+        unset($arr['sesions_id']);
+        unset($arr['sesions_datemodified']);
+        return $arr;
+    }
+
+    public function GenerateCookie(bool $secure = true): object
+    { 
+        // $this->expires
+        return (object)['name' => 'cc-jwt', 'value' => $this->token, 'expire' => time() + 365 * 86400, 'domain' => App::$request->host, 'path' => '/', 'secure' => $secure];
     }
 
 }

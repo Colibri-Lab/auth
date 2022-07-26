@@ -19,6 +19,7 @@ use ScssPhp\ScssPhp\Compiler;
 use ScssPhp\ScssPhp\OutputStyle;
 use Colibri\Web\PayloadCopy;
 use App\Modules\Auth\Models\Sessions;
+use App\Modules\Auth\Models\Members;
 
 
 class SessionController extends WebController
@@ -41,7 +42,9 @@ class SessionController extends WebController
             200,
             'ok',
             $session->ExportForUserInterface(),
-            'utf-8'
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
         );
     }
 
@@ -55,13 +58,44 @@ class SessionController extends WebController
     public function Login(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
     {
 
+        $session = Sessions::LoadFromRequest();
+        if($session->member) {
+            return $this->Finish(403, 'Member is allready logged on');
+        }
+
         
+        $payloadArray = $payload->ToArray();
+        $login = $payloadArray['login'] ?? $post->login;
+        $password = $payloadArray['password'] ?? $post->password;
+
+        if(!$login || !$password) {
+            return $this->Finish(400, 'Bad Request');
+        }
+
+        $member = Members::LoadByEmail($login);
+        if(!$member) {
+            $member = Members::LoadByPhone($login);
+        }
+
+        if(!$member) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        if(!$member->Authorize($password)) {
+            return $this->Finish(403, 'Permission denied');
+        }
+
+        $session->member = $member->token;
+        $session->Save();
+
         // финишируем контроллер
         return $this->Finish(
             200,
             'ok',
-            [],
-            'utf-8'
+            $session->ExportForUserInterface(),
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
         );
     }
 
@@ -75,13 +109,18 @@ class SessionController extends WebController
     public function Logout(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
     {
         
-        
+        $session = Sessions::LoadFromRequest();
+        $session->member = null;
+        $session->Save();
+
         // финишируем контроллер
         return $this->Finish(
             200,
             'ok',
-            [],
-            'utf-8'
+            $session->ExportForUserInterface(),
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
         );
     }
 
@@ -94,14 +133,16 @@ class SessionController extends WebController
      */
     public function Decode(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
     {
-        
-        
+        $session = Sessions::LoadFromRequest();
+
         // финишируем контроллер
         return $this->Finish(
             200,
             'ok',
-            [],
-            'utf-8'
+            $session->ExportForUserInterface(),
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
         );
     }
 
