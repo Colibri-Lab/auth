@@ -62,14 +62,14 @@ class Installer
             $hosts['domains']['auth'] = ['*_auth-v5.local.bsft.loc'];
         }
         else if($mode === 'test') {
-            $hosts['domains']['manage'] = array_merge($hosts['domains']['manage'], ['backend.auth.repeatme.online']);
-            $hosts['domains']['auth'] = ['*_auth.repeatme.online'];
+            $hosts['domains']['manage'] = array_merge($hosts['domains']['manage'], ['backend.auth.test.colibrilab.ru']);
+            $hosts['domains']['auth'] = ['*_auth.test.colibrilab.ru'];
         }
         else if($mode === 'prod') {
             // захватываем управление админкой
             // управляющий модуль должен быть один
             $hosts['domains']['manage'] = array_merge($hosts['domains']['manage'], ['backend.auth.ecolo-place.com']);
-            $hosts['domains']['auth'] = ['auth.ecolo-place.com'];
+            $hosts['domains']['auth'] = ['*_auth.ecolo-place.com'];
         }
         self::_saveConfig($file, $hosts);
         
