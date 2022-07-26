@@ -70,7 +70,7 @@ test:
       -e mode="test"
       -e ui_version="master" 
       -e module_name="auth"
-      -e project_dir="auth.com"
+      -e project_dir="auth-test.repeatme.online"
       -e folder="ecolo-place_dist"
       -e "modules=['colibri/security:dev-master','colibri/mainframe:dev-master','colibri/manage:dev-master','colibri/sites:dev-master','colibri/tools:dev-master','colibri/lang:dev-master','evabeta/auth:dev-$CI_COMMIT_REF_NAME']"
       -e "bin_scripts=['auth-migrate.sh']"
