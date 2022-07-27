@@ -125,12 +125,12 @@ class Installer
         $databases['access-points']['connections']['default_connection']['host'] = 'localhost';
         $databases['access-points']['connections']['default_connection']['user'] = 'lotteryhub';
         if($mode === 'prod') {
-            $databases['access-points']['connections']['default_connection']['password'] = 'vault(vault.repeatme.online:1271c4168d0e73b8bbf45bb8b00898c5:lottery_db_password)';
+            $databases['access-points']['connections']['default_connection']['password'] = 'vault(vault.repeatme.online:ef97938ae449337d2644daf48c01e336:auth_db_password)';
         }
         else {
             $databases['access-points']['connections']['default_connection']['password'] = '123456';
         }
-        $databases['access-points']['points']['main']['database'] = 'lotteryhub';
+        $databases['access-points']['points']['main']['database'] = 'auth';
         
         self::_saveConfig($configDir.'databases.yaml', $databases);
         $storagesConfigs = self::_findStoragesConfigFiles($configDir);
