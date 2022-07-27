@@ -123,8 +123,11 @@ class Installer
         $databases = self::_loadConfig($configDir.'databases.yaml');
         // обновляем данные основного подключения
         $databases['access-points']['connections']['default_connection']['host'] = 'localhost';
-        $databases['access-points']['connections']['default_connection']['user'] = 'lotteryhub';
+        $databases['access-points']['connections']['default_connection']['user'] = 'auth';
         if($mode === 'prod') {
+            $databases['access-points']['connections']['default_connection']['password'] = 'vault(vault.repeatme.online:ef97938ae449337d2644daf48c01e336:auth_db_password)';
+        }
+        else if($mode === 'test') {
             $databases['access-points']['connections']['default_connection']['password'] = 'vault(vault.repeatme.online:ef97938ae449337d2644daf48c01e336:auth_db_password)';
         }
         else {
