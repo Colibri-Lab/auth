@@ -1,0 +1,624 @@
+{
+	"info": {
+		"_postman_id": "0a8a8f9f-04e1-4e47-beb9-7c5766c57465",
+		"name": "Colibri",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "App",
+			"item": [
+				{
+					"name": "Settings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-AppToken",
+								"value": "{{app-key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/modules/auth/app/settings",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"modules",
+								"auth",
+								"app",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Session",
+			"item": [
+				{
+					"name": "Start",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set('jwt-from-cookie', jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-AppToken",
+								"value": "{{app-key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/modules/auth/session/start",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"modules",
+								"auth",
+								"session",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set('jwt-from-cookie', jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-AppToken",
+								"value": "{{app-key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"spawn.1@e-time.ru\",\r\n    \"password\": \"D2f0u0f8ypg77well1977^^^\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/modules/auth/session/login",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"modules",
+								"auth",
+								"session",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set('jwt-from-cookie', jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-AppToken",
+								"value": "{{app-key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/modules/auth/session/logout",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"modules",
+								"auth",
+								"session",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Member",
+			"item": [
+				{
+					"name": "Confirmation",
+					"item": [
+						{
+							"name": "BeginConfirmationProcess",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set('jwt-from-cookie', jsonData.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-AppToken",
+										"value": "{{app-key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"property\": \"email\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/modules/auth/member/begin-confirmation-process",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"modules",
+										"auth",
+										"member",
+										"begin-confirmation-process"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ConfirmProperty",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set('jwt-from-cookie', jsonData.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-AppToken",
+										"value": "{{app-key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"property\": \"email\",\r\n    \"code\": \"926611\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/modules/auth/member/confirm-property",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"modules",
+										"auth",
+										"member",
+										"confirm-property"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Reset",
+					"item": [
+						{
+							"name": "BeginPasswordResetProcess",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set('jwt-from-cookie', jsonData.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-AppToken",
+										"value": "{{app-key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"spawn.1@e-time.ru\",\r\n    \"phone\": \"7999999999\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/modules/auth/member/begin-password-reset-process",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"modules",
+										"auth",
+										"member",
+										"begin-password-reset-process"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ResetPassword",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set('jwt-from-cookie', jsonData.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-AppToken",
+										"value": "{{app-key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"spawn.1@e-time.ru\",\r\n    \"phone\": \"7999999999\",\r\n    \"code\": \"599128\",\r\n    \"password\": \"D2f0^u0f7^ypg7^7well\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/modules/auth/member/reset-password",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"modules",
+										"auth",
+										"member",
+										"reset-password"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Profile & Identity",
+					"item": [
+						{
+							"name": "UpdateProfile",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set('jwt-from-cookie', jsonData.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-AppToken",
+										"value": "{{app-key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Ваган\",\r\n    \"lastName\": \"Григорян\",\r\n    \"patronymic\": \"\",\r\n    \"gender\": \"male\",\r\n    \"birthdate\": \"1977-09-22\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/modules/auth/member/update-profile",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"modules",
+										"auth",
+										"member",
+										"update-profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateIdentity",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set('jwt-from-cookie', jsonData.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-AppToken",
+										"value": "{{app-key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"spawn.2@e-time.ru\",\r\n    \"phone\": \"7999999999\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/modules/auth/member/update-identity",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"modules",
+										"auth",
+										"member",
+										"update-identity"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdatePassword",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set('jwt-from-cookie', jsonData.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-AppToken",
+										"value": "{{app-key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"current\": \"D2f0^u0f7^ypg7^7well\",\r\n    \"new\": \"D2f0u0f8ypg77well1977^^^\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/modules/auth/member/update-password",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"modules",
+										"auth",
+										"member",
+										"update-password"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set('jwt-from-cookie', jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-AppToken",
+								"value": "{{app-key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"vahan.grigoryan@gmail.com\",\r\n    \"phone\": \"79898889988\",\r\n    \"firstName\": \"Ваган\",\r\n    \"lastName\": \"Григорян\",\r\n    \"patronymic\": \"\",\r\n    \"gender\": \"male\",\r\n    \"birthdate\": \"1977-09-22\",\r\n    \"password\": \"D2f0u0f8ypg77well1977^^^\",\r\n    \"confirmation\": \"D2f0u0f8ypg77well1977^^^\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/modules/auth/member/register",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"modules",
+								"auth",
+								"member",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "jwt-from-cookie",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "app-key",
+			"value": "ef8377e3098531e648e1c5318b75eb88",
+			"type": "string"
+		},
+		{
+			"key": "host",
+			"value": "ecolo-place_auth.test.colibrilab.pro",
+			"type": "string"
+		}
+	]
+}
