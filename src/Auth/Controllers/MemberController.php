@@ -222,7 +222,6 @@ class MemberController extends WebController
 
         if(!$member->UpdateProfile($firstName, $lastName, $patronymic, $gender, $birthdate)) {
             return $this->Finish(400, 'Bad Request');
-
         }
 
         return $this->Finish(
