@@ -48,7 +48,7 @@ class Module extends BaseModule
      */
     public static ?Module $instance = null;
 
-    private ?Application $_app;
+    private ?Application $_app = null;
 
     const NeedAuthorization = [
         SessionController::class,
@@ -65,6 +65,7 @@ class Module extends BaseModule
         self::$instance = $this;
 
         App::$instance->HandleEvent(EventsContainer::RpcGotRequest, function($event, $args) {
+            Debug::Out(trim($args->class, '/'), self::NeedAuthorization);
             if(isset($args->class) && in_array(trim($args->class, '/'), self::NeedAuthorization)) {
                 if(!Module::$instance->LoadApplication()) {
                     $args->cancel = true;
