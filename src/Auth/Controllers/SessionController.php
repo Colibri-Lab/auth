@@ -41,7 +41,7 @@ class SessionController extends WebController
         return $this->Finish(
             200,
             'ok',
-            $session->ExportForUserInterface(),
+            ['session' => $session->ExportForUserInterface()],
             'utf-8',
             [], 
             [ $session->GenerateCookie(true) ]
@@ -60,7 +60,7 @@ class SessionController extends WebController
 
         $session = Sessions::LoadFromRequest();
         if($session->member) {
-            return $this->Finish(403, 'Member is allready logged on');
+            return $this->Finish(403, 'Forbidden', ['message' => 'Member is allready logged on', 'code' => 403]);
         }
 
         
@@ -69,7 +69,7 @@ class SessionController extends WebController
         $password = $payloadArray['password'] ?? $post->password;
 
         if(!$login || !$password) {
-            return $this->Finish(400, 'Bad Request');
+            return $this->Finish(400, 'Bad Request', ['message' => 'Invalid data in request', 'code' => 400]);
         }
 
         $member = Members::LoadByEmail($login);
@@ -78,11 +78,11 @@ class SessionController extends WebController
         }
 
         if(!$member) {
-            return $this->Finish(403, 'Permission denied');
+            return $this->Finish(403, 'Forbidden', ['message' => 'Permission denied', 'code' => 403]);
         }
 
         if(!$member->Authorize($password)) {
-            return $this->Finish(403, 'Permission denied');
+            return $this->Finish(403, 'Forbidden', ['message' => 'Permission denied', 'code' => 403]);
         }
 
         $session->member = $member->token;
@@ -92,7 +92,7 @@ class SessionController extends WebController
         return $this->Finish(
             200,
             'ok',
-            $session->ExportForUserInterface(),
+            ['session' => $session->ExportForUserInterface()],
             'utf-8',
             [], 
             [ $session->GenerateCookie(true) ]
@@ -117,7 +117,7 @@ class SessionController extends WebController
         return $this->Finish(
             200,
             'ok',
-            $session->ExportForUserInterface(),
+            ['session' => $session->ExportForUserInterface()],
             'utf-8',
             [], 
             [ $session->GenerateCookie(true) ]
@@ -139,7 +139,7 @@ class SessionController extends WebController
         return $this->Finish(
             200,
             'ok',
-            $session->ExportForUserInterface(),
+            ['session' => $session->ExportForUserInterface()],
             'utf-8',
             [], 
             [ $session->GenerateCookie(true) ]

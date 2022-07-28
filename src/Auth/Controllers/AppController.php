@@ -39,7 +39,7 @@ class AppController extends WebController
         return $this->Finish(
             200,
             'ok',
-            $app->ExportForUserInterface(),
+            ['settings' => $app->ExportForUserInterface()],
             'utf-8'
         );
     }
