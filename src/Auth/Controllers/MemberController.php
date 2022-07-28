@@ -151,6 +151,52 @@ class MemberController extends WebController
     }
 
     /**
+     * Начинает процесс подтверждения
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function BeginPasswordResetProcess(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    {
+        $session = Sessions::LoadFromRequest();
+        if($session->member) {
+            return $this->Finish(400, 'Member is logged on');
+        }
+
+        $payloadArray = $payload->ToArray();
+        $email = $payloadArray['email'] ?? $post->email;
+        $phone = $payloadArray['phone'] ?? $post->phone;
+        
+        if(!$email || !$phone) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        $member = Members::LoadByEmail($email);
+        if(!$member) {
+            return $this->Finish(400, 'Member not found');
+        }
+
+        if($member->phone != $phone) {
+            return $this->Finish(400, 'Incorrect phone number');
+        }
+
+        if(!$member->SendResetMessage()) {
+            return $this->Finish(400, 'Can not send reset message');
+        }
+
+        return $this->Finish(
+            200,
+            'ok',
+            $session->ExportForUserInterface(),
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
+        );
+       
+    }
+
+    /**
      * Подтверждает свойство
      * @param RequestCollection $get данные GET
      * @param RequestCollection $post данные POST
@@ -177,7 +223,57 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad request');
         }
 
-        $member->ConfirmProperty($property, $code);
+        if(!$member->ConfirmProperty($property, $code)) {
+            return $this->Finish(400, 'Error confirming property');
+        }
+
+        return $this->Finish(
+            200,
+            'ok',
+            $session->ExportForUserInterface(),
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
+        );
+       
+    }
+
+    /**
+     * Подтверждает свойство
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function ResetPassword(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    {
+        $session = Sessions::LoadFromRequest();
+        if($session->member) {
+            return $this->Finish(400, 'Member is logged on');
+        }
+
+        $payloadArray = $payload->ToArray();
+        $email = $payloadArray['email'] ?? $post->email;
+        $phone = $payloadArray['phone'] ?? $post->phone;
+        $code = $payloadArray['code'] ?? $post->code;
+        $password = $payloadArray['password'] ?? $post->password;
+        
+        if(!$email || !$phone || !$code || !$password) {
+            return $this->Finish(400, 'Bad request');
+        }
+
+        $member = Members::LoadByEmail($email);
+        if(!$member) {
+            return $this->Finish(400, 'Member not found');
+        }
+        
+        if($member->phone != $phone) {
+            return $this->Finish(400, 'Incorrect phone number');
+        }
+
+        if(!$member->ResetPassword($code, $password)) {
+            return $this->Finish(400, 'Can not save this password');
+        }
 
         return $this->Finish(
             200,
@@ -262,10 +358,25 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad Request');
         }
 
+        if($member->email != $email && Members::LoadByEmail($email)) {
+            return $this->Finish(400, 'Email allready exists');
+        }
+        if($member->email != $email && !$member->email_confirmed) {
+            return $this->Finish(400, 'Please confirm current email before changing');
+        }
+        if($member->phone != $email && Members::LoadByPhone($phone)) {
+            return $this->Finish(400, 'Phone allready exists');
+        }
+        if($member->phone != $phone && !$member->phone_confirmed) {
+            return $this->Finish(400, 'Please confirm current phone before changing');
+        }
+
         if(!$member->UpdateIdentity($email, $phone)) {
             return $this->Finish(400, 'Bad Request');
-
         }
+
+        $session->member = $member->token;
+        $session->Save();
 
         return $this->Finish(
             200,

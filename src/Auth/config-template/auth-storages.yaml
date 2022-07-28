@@ -726,6 +726,9 @@ confirmations:
         title: '#{auth-storages-confirmations-fields-property-values-email;Эл. адрес}'
       - value: phone
         title: '#{auth-storages-confirmations-fields-property-values-phone;Телефон}'
+      - value: reset
+        title: '#{auth-storages-confirmations-fields-property-values-reset;Восстановление
+          пароля}'
     code:
       group: window
       desc: '#{auth-storages-confirmations-fields-code-desc;Код}'

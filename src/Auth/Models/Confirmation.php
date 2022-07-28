@@ -26,28 +26,35 @@ use App\Modules\Tools\Models\Notices;
  */
 class Confirmation extends BaseModelDataRow {
     
-    # region Consts:
-    	/** #{auth-storages-confirmations-fields-property-values-email;Эл. адрес} */
+    
+	# region Consts:
+	/** #{auth-storages-confirmations-fields-property-values-email;Эл. адрес} */
 	public const PropertyEmail = 'email';
 	/** #{auth-storages-confirmations-fields-property-values-phone;Телефон} */
 	public const PropertyPhone = 'phone';
-    # endregion Consts;
+	/** #{auth-storages-confirmations-fields-property-values-reset;Восстановление пароля} */
+	public const PropertyReset = 'reset';
+	# endregion Consts;
 
 	public function Send(): bool
 	{
 		$member = Members::LoadByToken($this->member);
+		if(!$member) {
+			return false;
+		}
 		$memberData = $member->ExportForUserInterface();
 		$memberData['code'] = $this->code;
 
 		$noticeName = 'confirmation_'.$this->property;
 		$notice = Notices::LoadByName($noticeName);
 		$notice->Apply($memberData);
-		if((string)$this->property === 'email') {
+		if( (string)$this->property === 'email' ) {
 			return Notices::Send($member->email, $notice);
 		}
 		else {
+			return Notices::Send($member->email, $notice);
 			// надо отправить SMS
-			return false;
+			// return false;
 		}
 
 	}

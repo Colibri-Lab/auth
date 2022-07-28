@@ -175,4 +175,6 @@ auth-storages-members-fields-role-desc:
   ru: Роль
 auth-storages-members-fields-role-note:
   ru: Роль выбранная из списка ролей приложения
+auth-storages-confirmations-fields-property-values-reset:
+  ru: Восстановление пароля
 ...

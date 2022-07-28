@@ -11,6 +11,7 @@ use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
 use Colibri\Encryption\Crypt;
 use Psr\Log\InvalidArgumentException;
 use Colibri\Common\RandomizationHelper;
+use Throwable;
 
 /**
  * Представление строки в таблице в хранилище #{auth-storages-members-desc;Пользователи}
@@ -123,22 +124,44 @@ class Member extends BaseModelDataRow {
 
     public function SendConfirmationMessage(string $property): bool 
     {
+        if(!in_array($property, [Confirmation::PropertyEmail, Confirmation::PropertyPhone])) {
+            return false;
+        }
+
         $confirmation = Confirmations::LoadByMember($property, $this->token);
         if(!$confirmation) {
             $confirmation = Confirmations::LoadEmpty();
             $confirmation->property = $property;
             $confirmation->member = $this->token;
-            $confirmation->code = RandomizationHelper::Numeric(6);
-            $confirmation->Save();
         }
+
+        $confirmation->code = RandomizationHelper::Numeric(6);
+        $confirmation->Save();
 
         return $confirmation->Send();
     }
 
+    public function SendResetMessage(): bool 
+    {
+
+        $confirmation = Confirmations::LoadByMember(Confirmation::PropertyReset, $this->token);
+        if(!$confirmation) {
+            $confirmation = Confirmations::LoadEmpty();
+            $confirmation->property = Confirmation::PropertyReset;
+            $confirmation->member = $this->token;
+        }
+
+        $confirmation->code = RandomizationHelper::Numeric(6);
+        $confirmation->Save();
+
+        return $confirmation->Send();
+    }
+
+
     public function ConfirmProperty(string $property, string $code): bool
     {
         $confirmation = Confirmations::LoadByMember($property, $this->token);
-        if($confirmation->code === $code) {
+        if($confirmation && $confirmation->code === $code) {
             $this->{$property.'_confirmed'} = true;
             $this->Save();
             $confirmation->Delete();
@@ -169,7 +192,7 @@ class Member extends BaseModelDataRow {
 
     public function UpdateIdentity(string $email, string $phone): bool
     {
-
+        
         $this->email = $email;
         $this->phone = $phone;
 
@@ -193,6 +216,26 @@ class Member extends BaseModelDataRow {
         }
         $this->password = $newPassword;
         return $this->Save();
+    }
+
+    public function ResetPassword(string $code, string $newPassword): bool
+    {
+        $confirmation = Confirmations::LoadByMember(Confirmation::PropertyReset, $this->token);
+        if(!$confirmation) {
+            return false;
+        }
+
+        if($confirmation->code !== $code) {
+            return false;
+        }
+
+        try {
+            $this->password = $newPassword;
+            return $this->Save();
+        }
+        catch(Throwable $e) {
+            return false;
+        }
     }
 
 
