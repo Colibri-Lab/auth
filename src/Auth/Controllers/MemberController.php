@@ -190,4 +190,134 @@ class MemberController extends WebController
        
     }
 
+    /**
+     * Обновляет профиль
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function UpdateProfile(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    {
+        $session = Sessions::LoadFromRequest();
+        if(!$session->member) {
+            return $this->Finish(400, 'Member is not logged on');
+        }
+
+        $member = Members::LoadByToken($session->member);
+        if(!$member) {
+            return $this->Finish(500, 'Error in data consistency');
+        }
+        
+        $payloadArray = $payload->ToArray();
+        $firstName = $payloadArray['firstName'] ?? $post->firstName;
+        $lastName = $payloadArray['lastName'] ?? $post->lastName;
+        $patronymic = $payloadArray['patronymic'] ?? $post->patronymic;
+        $gender = $payloadArray['gender'] ?? $post->gender;
+        $birthdate = $payloadArray['birthdate'] ?? $post->birthdate;
+        
+        if(!$firstName || !$lastName) {
+            return $this->Finish(400, 'Bad Request');
+        }
+
+        if(!$member->UpdateProfile($firstName, $lastName, $patronymic, $gender, $birthdate)) {
+            return $this->Finish(400, 'Bad Request');
+
+        }
+
+        return $this->Finish(
+            200,
+            'ok',
+            $session->ExportForUserInterface(),
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
+        );
+       
+    }
+
+    /**
+     * Обновляет идентификационные данные
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function UpdateIdentity(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    {
+        $session = Sessions::LoadFromRequest();
+        if(!$session->member) {
+            return $this->Finish(400, 'Member is not logged on');
+        }
+
+        $member = Members::LoadByToken($session->member);
+        if(!$member) {
+            return $this->Finish(500, 'Error in data consistency');
+        }
+        
+        $payloadArray = $payload->ToArray();
+        $email = $payloadArray['email'] ?? $post->email;
+        $phone = $payloadArray['phone'] ?? $post->phone;
+        
+        if(!$email || !$phone) {
+            return $this->Finish(400, 'Bad Request');
+        }
+
+        if(!$member->UpdateIdentity($email, $phone)) {
+            return $this->Finish(400, 'Bad Request');
+
+        }
+
+        return $this->Finish(
+            200,
+            'ok',
+            $session->ExportForUserInterface(),
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
+        );
+       
+    }
+    
+    /**
+     * Обновляет пароль
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function UpdatePassword(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    {
+        $session = Sessions::LoadFromRequest();
+        if(!$session->member) {
+            return $this->Finish(400, 'Member is not logged on');
+        }
+
+        $member = Members::LoadByToken($session->member);
+        if(!$member) {
+            return $this->Finish(500, 'Error in data consistency');
+        }
+        
+        $payloadArray = $payload->ToArray();
+        $currentPassword = $payloadArray['current'] ?? $post->current;
+        $newPassword = $payloadArray['new'] ?? $post->new;
+        
+        if(!$currentPassword || !$newPassword) {
+            return $this->Finish(400, 'Bad Request');
+        }
+
+        if(!$member->UpdatePassword($currentPassword, $newPassword)) {
+            return $this->Finish(400, 'Bad Request');
+        }
+
+        return $this->Finish(
+            200,
+            'ok',
+            $session->ExportForUserInterface(),
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
+        );
+       
+    }
 }

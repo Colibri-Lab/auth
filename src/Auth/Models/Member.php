@@ -147,4 +147,53 @@ class Member extends BaseModelDataRow {
         return false;
     }
 
+    public function UpdateProfile(string $firstName, string $lastName, string $patronymic, string $gender = null, DateTimeField|string|null $birthdate = null): bool
+    {
+
+        if($gender && !in_array($gender, [self::GenderMale, self::GenderFemale])) {
+            return false;
+        }
+
+        if(is_string($birthdate)) {
+            $birthdate = new DateTimeField($birthdate);
+        }
+
+        $this->first_name = $firstName;
+        $this->last_name = $lastName;
+        $this->patronymic = $patronymic;
+        $this->gender = $gender;
+        $this->birthdate = $birthdate;
+        return $this->Save();
+
+    }
+
+    public function UpdateIdentity(string $email, string $phone): bool
+    {
+
+        $this->email = $email;
+        $this->phone = $phone;
+
+        if($this->IsPropertyChanged('email')) {
+            $this->email_confirmed = false;
+            $this->SendConfirmationMessage('email');
+        }
+        if($this->IsPropertyChanged('phone')) {
+            $this->phone_confirmed = false;
+            $this->SendConfirmationMessage('phone');
+        }
+
+        return $this->Save();
+
+    }
+
+    public function UpdatePassword(string $currentPassword, string $newPassword): bool
+    {
+        if(!$this->Authorize($currentPassword)) {
+            return false;
+        }
+        $this->password = $newPassword;
+        return $this->Save();
+    }
+
+
 }

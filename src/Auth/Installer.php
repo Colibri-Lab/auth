@@ -168,7 +168,7 @@ class Installer
 
         $settings = self::_loadConfig($file);
 
-        $settings['host'] = 'comet.colibrilab.ru';
+        $settings['host'] = 'comet.colibrilab.pro';
         $settings['port'] = '3005';
 
         self::_saveConfig($file, $settings);
