@@ -65,7 +65,7 @@ class Module extends BaseModule
         self::$instance = $this;
 
         App::$instance->HandleEvent(EventsContainer::RpcGotRequest, function($event, $args) {
-            Debug::Out($args->class);
+            Debug::Out($args->class, self::NeedAuthorization);
             if(isset($args->class) && in_array($args->class, self::NeedAuthorization)) {
                 if(!Module::$instance->LoadApplication()) {
                     $args->cancel = true;
