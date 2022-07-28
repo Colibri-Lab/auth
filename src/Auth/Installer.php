@@ -62,8 +62,8 @@ class Installer
             $hosts['domains']['auth'] = ['*_auth-v5.local.bsft.loc'];
         }
         else if($mode === 'test') {
-            $hosts['domains']['manage'] = array_merge($hosts['domains']['manage'], ['backend.auth.test.colibrilab.ru']);
-            $hosts['domains']['auth'] = ['*.auth.test.colibrilab.ru'];
+            $hosts['domains']['manage'] = array_merge($hosts['domains']['manage'], ['backend_auth.test.colibrilab.pro']);
+            $hosts['domains']['auth'] = ['*_auth.test.colibrilab.pro'];
         }
         else if($mode === 'prod') {
             // захватываем управление админкой
