@@ -187,4 +187,16 @@ auth-storages-applications-fields-params-design-images-key-desc:
   ru: Ключ изображения
 auth-storages-applications-fields-params-design-images-file-desc:
   ru: Изображение (SVG)
+auth-loginform-email-desc:
+  ru: Электронная почта
+auth-loginform-login-validation1:
+  ru: Пожалуйста, введите эл. адрес
+auth-loginform-login-validation2:
+  ru: Пожалуйста, введите корректный эл. адрес
+auth-loginform-password-desc:
+  ru: Пароль
+auth-loginform-password-validation1:
+  ru: Пожалуйста, введите пароль
+auth-login-button:
+  ru: Войти
 ...
