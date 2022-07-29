@@ -1,0 +1,52 @@
+<div ComponentName="App.Modules.Auth.Components.LoginForm">
+
+    <Pane name="form-container" shown="true">    
+        <Forms.Form name="form" shown="true">
+            <fields>
+                {
+                    login: {
+                        component: 'Text',
+                        placeholder: 'name@domain.com',
+                        desc: '#{auth-loginform-email-desc;Электронная почта}',
+                        params: {
+                            required: true,
+                            readonly: false,
+                            validate: [
+                                {
+                                    message: '#{auth-loginform-login-validation1;Пожалуйста, введите эл. адрес}',
+                                    method: '(field, validator) => !!field.value'
+                                },
+                                {
+                                    message: '#{auth-loginform-login-validation2;Пожалуйста, введите корректный эл. адрес}',
+                                    method: '(field, validator) => !!field.value'
+                                }
+                            ]
+                        }
+                    },
+                    password: {
+                        component: 'Password',
+                        placeholder: '********',
+                        desc: '#{auth-loginform-password-desc;Пароль}',
+                        params: {
+                            required: true,
+                            reqdonly: false,
+                            validate: [
+                                {
+                                    message: '#{auth-loginform-password-validation1;Пожалуйста, введите пароль}',
+                                    method: '(field, validator) => !!field.value'
+                                }
+                            ]
+                        }
+                    }
+                }
+            </fields>
+        </Forms.Form>
+    </Pane>
+    <FlexBox name="links-container" shown="true">
+        <Link name="reset" shown="true">Забыли пароль?</Link>
+    </FlexBox>
+    <Pane name="button-container" shown="true">            
+        <SuccessButton name="login" shown="true">#{auth-login-button;Войти}</SuccessButton>
+    </Pane>
+
+</div>

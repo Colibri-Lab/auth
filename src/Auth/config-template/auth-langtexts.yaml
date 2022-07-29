@@ -177,4 +177,14 @@ auth-storages-members-fields-role-note:
   ru: Роль выбранная из списка ролей приложения
 auth-storages-confirmations-fields-property-values-reset:
   ru: Восстановление пароля
+auth-storages-applications-fields-params-design-desc:
+  ru: Макет
+auth-storages-applications-fields-params-design-images-desc:
+  ru: Изображения
+auth-storages-applications-fields-params-design-images-note:
+  ru: Логотип и другие изображения
+auth-storages-applications-fields-params-design-images-key-desc:
+  ru: Ключ изображения
+auth-storages-applications-fields-params-design-images-file-desc:
+  ru: Изображение (SVG)
 ...

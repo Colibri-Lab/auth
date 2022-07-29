@@ -24,9 +24,10 @@ use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
  */
 class Application extends BaseModelDataRow {
     
-    # region Consts:
     
-    # endregion Consts;
+	# region Consts:
+
+	# endregion Consts;
 
     public function ExportForUserInterface(): array
     {
@@ -40,7 +41,7 @@ class Application extends BaseModelDataRow {
     }
 
     public function CheckRole(string $role) {
-        foreach($this->params->roles as $r) {
+        foreach($this->params->roles as $r) { 
             if($r->name === $role) {
                 return true;
             } 

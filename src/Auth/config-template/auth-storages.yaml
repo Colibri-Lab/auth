@@ -246,6 +246,88 @@ applications:
             code: ""
             mask: ""
             generator: ""
+        design:
+          desc: '#{auth-storages-applications-fields-params-design-desc;Макет}'
+          type: json
+          component: Object
+          class: ObjectField
+          attrs: []
+          params:
+            required: false
+            enabled: true
+            readonly: false
+            list: true
+            greed: ""
+            viewer: Colibri.UI.ObjectViewer
+            vertical: true
+            visual: false
+            code: ""
+            mask: ""
+            generator: ""
+          fields:
+            images:
+              desc: '#{auth-storages-applications-fields-params-design-images-desc;Изображения}'
+              note: '#{auth-storages-applications-fields-params-design-images-note;Логотип
+                и другие изображения}'
+              type: json
+              component: Array
+              class: ArrayField
+              default: json_array()
+              attrs: []
+              params:
+                required: false
+                enabled: true
+                readonly: false
+                list: true
+                greed: ""
+                viewer: Colibri.UI.ArrayViewer
+                vertical: true
+                visual: false
+                code: ""
+                mask: ""
+                generator: ""
+              fields:
+                key:
+                  desc: '#{auth-storages-applications-fields-params-design-images-key-desc;Ключ
+                    изображения}'
+                  type: varchar
+                  length: "50"
+                  component: Text
+                  class: string
+                  attrs: []
+                  params:
+                    required: false
+                    enabled: true
+                    readonly: false
+                    list: false
+                    greed: ""
+                    viewer: ~
+                    vertical: false
+                    visual: false
+                    code: ""
+                    mask: ""
+                    generator: ""
+                image:
+                  desc: '#{auth-storages-applications-fields-params-design-images-file-desc;Изображение
+                    (SVG)}'
+                  type: longtext
+                  component: TextArea
+                  class: string
+                  attrs:
+                    height: "120"
+                  params:
+                    required: false
+                    enabled: true
+                    readonly: false
+                    list: false
+                    greed: ""
+                    viewer: ~
+                    vertical: false
+                    visual: false
+                    code: ""
+                    mask: ""
+                    generator: ""
+          default: json_object()
       default: json_object()
   indices:
     applications_token_idx:
