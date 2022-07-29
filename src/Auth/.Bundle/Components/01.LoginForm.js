@@ -1,4 +1,4 @@
-App.Modules.Auth.Components.LoginForm = class extends Colibri.Ui.Component  {
+App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
     
     constructor(name, container) {
         /* создаем компонент и передаем шаблон */
