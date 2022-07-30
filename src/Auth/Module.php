@@ -66,6 +66,12 @@ class Module extends BaseModule
 
         App::$instance->HandleEvent(EventsContainer::RpcGotRequest, function($event, $args) {
             if(isset($args->class) && in_array(trim($args->class, '\\'), self::NeedAuthorization)) {
+                if(App::$request->server->request_method === 'OPTIONS') {
+                    App::$response->Origin();
+                    App::$response->Close(200, 'ok');
+                    exit;
+                }
+
                 if(!Module::$instance->LoadApplication()) {
                     $args->cancel = true;
                     $args->result = (object)[

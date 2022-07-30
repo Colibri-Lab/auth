@@ -110,7 +110,7 @@ class Controller extends WebController
                     $componentName = $matches[1];
                 }
                 $compiledContent = str_replace('\'', '\\\'', str_replace("\n", "", str_replace("\r", "", $args->content)));
-                $compiledContent = str_replace('ComponentName="'.$componentName.'"', '', $compiledContent);
+                $compiledContent = str_replace('ComponentName="'.$componentName.'"', 'namespace="'.$componentName.'"', $compiledContent);
                 $args->content = 'Colibri.UI.AddTemplate(\'' . $componentName . '\', \'' . $compiledContent . '\');' . "\n";
             }
 
@@ -121,7 +121,7 @@ class Controller extends WebController
         ]);
         $cssBundle = Bundle::Automate(App::$domainKey, 'assets.bundle.css', 'scss', array(
             ['path' => App::$moduleManager->auth->modulePath . '.Bundle/'],
-        ));
+        ), 'https://' . App::$request->host);
 
         return $this->Finish(
             200,
