@@ -1,8 +1,8 @@
-App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
+App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
     
     constructor(name, container) {
         /* создаем компонент и передаем шаблон */
-        super(name, container, Colibri.UI.Templates['App.Modules.Auth.Components.LoginForm']);
+        super(name, container, Colibri.UI.Templates['App.Modules.Auth.Components.RegisterForm']);
  
         this.AddClass('app-auth-login-form-component'); 
 
@@ -23,8 +23,7 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
     } 
 
     _registerEvents() {
-        this.RegisterEvent('RegisterButtonClicked', true, 'Когда нажата кнопка регистрации');
-        this.RegisterEvent('ResetButtonClicked', true, 'Когда нажата кнопка восстановления пароля');
+        this.RegisterEvent('LoginButtonClicked', true, 'Когда нажата кнопка входа');
     }
 
     set shown(value) {
