@@ -117,7 +117,7 @@ class Controller extends WebController
         });
 
         $jsBundle = Bundle::Automate(App::$domainKey, 'assets.bundle.js', 'js', [
-            ['path' => App::$moduleManager->auth->modulePath . '.Bundle/', ['exts' => ['js', 'html']]],
+            ['path' => App::$moduleManager->auth->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
         ]);
         $cssBundle = Bundle::Automate(App::$domainKey, 'assets.bundle.css', 'scss', array(
             ['path' => App::$moduleManager->auth->modulePath . '.Bundle/'],
