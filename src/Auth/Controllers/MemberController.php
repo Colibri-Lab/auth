@@ -24,6 +24,9 @@ use Colibri\Data\Storages\Fields\DateTimeField;
 use Psr\Log\InvalidArgumentException;
 use Throwable;
 use App\Modules\Auth\Module;
+use Colibri\Common\VariableHelper;
+use Colibri\Common\StringHelper;
+use App\Modules\Auth\Models\Member;
 
 
 class MemberController extends WebController
@@ -50,21 +53,59 @@ class MemberController extends WebController
         $gender = $payloadArray['gender'] ?? $post->gender;
         $birthdate = $payloadArray['birthdate'] ?? $post->birthdate;
         $password = $payloadArray['password'] ?? $post->password;
-        $confirmation = $payloadArray['confirmation'] ?? $post->confirmation;
+        // $confirmation = $payloadArray['confirmation'] ?? $post->confirmation;
         $role = $payloadArray['role'] ?? $post->role;
 
-        if(!$email || !$phone || !$password || !$confirmation || !$firstName || !$lastName) {
-            return $this->Finish(400, 'Bad Request', ['message' => 'Invalid data in request', 'code' => 400]);
+        if(!$email || !$phone || !$password/* || !$confirmation*/ || !$firstName || !$lastName) {
+            $validation = [];
+            if(!$email) {
+                $validation['email'] = 'Field «email» is required';
+            }
+            if(!$phone) {
+                $validation['phone'] = 'Field «phone» is required';
+            }
+            if(!$password) {
+                $validation['password'] = 'Field «password» is required';
+            }
+            if(!$firstName) {
+                $validation['firstName'] = 'Field «firstName» is required';
+            }
+            if(!$lastName) {
+                $validation['lastName'] = 'Field «lastName» is required';
+            }
+            return $this->Finish(400, 'Bad Request', [
+                'message' => 'Invalid data in request', 
+                'code' => 400,
+                'validation' => $validation
+            ]);
         }
 
-        if(Members::LoadByEmail($email) !== null || Members::LoadByPhone($phone) !== null) {
-            return $this->Finish(400, 'Bad Request', ['message' => 'Member with this email and/or phone allready exists', 'code' => 400]);
-
+        if(!StringHelper::IsEmail($email)) {
+            $validation['email'] = 'Field «email» contains invalid email address';
         }
 
-        if($password != $confirmation) {
-            return $this->Finish(400, 'Bad Request', ['message' => 'Password is not confirmed', 'code' => 400]);
+        if(Members::LoadByEmail($email) !== null) {
+            return $this->Finish(400, 'Bad Request', [
+                'message' => 'Member with this email allready exists', 
+                'code' => 400,
+                'validation' => [
+                    'email' => 'Member with this email allready exists'
+                ]
+            ]);
         }
+        if(Members::LoadByPhone($phone) !== null) {
+            return $this->Finish(400, 'Bad Request', [
+                'message' => 'Member with this phone allready exists', 
+                'code' => 400,
+                'validation' => [
+                    'phone' => 'Member with this phone allready exists'
+                ]
+            ]);
+        }
+
+        // if($password != $confirmation) {
+        //     return $this->Finish(400, 'Bad Request', ['message' => 'Password is not confirmed', 'code' => 400]);
+        // }
 
         if(!$role) {
             $role = Module::$instance->application->params->defaultrole;
@@ -72,6 +113,16 @@ class MemberController extends WebController
 
         if(!Module::$instance->application->CheckRole($role)) {
             return $this->Finish(400, 'Bad Request', ['message' => 'Role does not exists in application params', 'code' => 400]);
+        }
+
+        if( ($strength = Member::CheckPasswordStrength($email, $password)) < 20 ) {
+            return $this->Finish(400, 'Bad request', [
+                'message' => 'Password strength must be at least 20%, you got ' . $strength . '%', 
+                'code' => 400,
+                'validation' => [
+                    'password' => 'Password strength must be at least 20%, you got ' . $strength . '%'
+                ]
+            ]);
         }
 
         try {

@@ -59,8 +59,8 @@ App.Modules.Auth = class extends Colibri.Modules.Module {
     get Session() {
         return this._session;
     }
-    get Member() {
-        return this._member;
+    get Members() {
+        return this._members;
     }
     get App() {
         return this._app;

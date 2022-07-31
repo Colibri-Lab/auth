@@ -19,6 +19,7 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         
         this._registerButton.AddHandler('Clicked', (event, args) => this.Dispatch('RegisterButtonClicked', args));
         this._resetButton.AddHandler('Clicked', (event, args) => this.Dispatch('ResetButtonClicked', args));
+        this._loginButton.AddHandler('Clicked', (event, args) => this.__loginFormLoginButtonClicked(event, args));
 
     } 
 
@@ -30,6 +31,19 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
     set shown(value) {
         super.shown = value;
         this._form.Focus();
+    }
+
+    __loginFormLoginButtonClicked(event, args) {
+
+        Auth.Session.Login(this._form.value.login, this._form.value.password).then((session) => {
+            console.log(session);
+        }).catch(response => {
+            response.result = JSON.parse(response.result);
+            this._validator.Invalidate('login', response.result.message);
+            this._form.Children('login').Focus();
+            console.log(response);
+        });
+
     }
 
 }

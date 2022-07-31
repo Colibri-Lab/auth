@@ -10,17 +10,26 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this._validator = new Colibri.UI.FormValidator(this._form);
 
         Auth.Store.AsyncQuery('auth.settings').then((settings) => {
+            settings.forms.register.fields.password.params.validate = [
+                {
+                    message: (field) => 'Password strength must be at least 20%, you got ' + field.CalcPasswordStrength().toFixed(2) + '%',
+                    method: '(field, validator) => {console.log(field.CalcPasswordStrength()); return field.CalcPasswordStrength() > 20;}'
+                }
+            ];
             this._form.fields = settings.forms.register.fields; 
+                
+            this._validator.AddHandler('Validated', (event, args) => {
+                this._registerButton.enabled = this._validator.Validate(true, false);
+            });
+            
         });
 
         this._loginButton = this.Children('button-container/login');
         this._registerButton = this.Children('button-container/register');
 
-        this._validator.AddHandler('Validated', (event, args) => {
-            this._registerButton.enabled = this._validator.Validate(true, false);
-        });
-        
         this._loginButton.AddHandler('Clicked', (event, args) => this.Dispatch('LoginButtonClicked', args));
+        this._registerButton.AddHandler('Clicked', (event, args) => this.__registerFormRegisterButtonClicked(event, args));
+
 
     } 
 
@@ -31,6 +40,32 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
     set shown(value) {
         super.shown = value;
         this._form.Focus();
+    }
+
+    __registerFormRegisterButtonClicked(event, args) {
+ 
+        const formData = this._form.value;
+        console.log(formData);
+        Auth.Members.Register(
+            formData.email, formData.phone, formData.password, '', formData.first_name, formData.last_name, formData.patronymic, formData.gender, formData.birthdate
+        ).then((session) => {
+            console.log(session);
+        }).catch(response => {
+            response.result = JSON.parse(response.result);
+            if(response.result.validation && Object.keys(response.result.validation).length > 0) {
+                Object.forEach(response.result.validation, (field, message, index) => {
+                    this._validator.Invalidate(field, message);
+                    if(index === 0) {
+                        this._form.Children(field).Focus();
+                    }
+                });
+            }
+            else {
+                this._validator.Invalidate('email', response.result.message);
+                this._form.Children('email').Focus();
+            }
+        });
+
     }
 
 }

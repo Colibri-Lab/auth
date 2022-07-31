@@ -68,7 +68,7 @@ class Member extends BaseModelDataRow {
 
     public function setPropertyPassword(string $value): void
     {
-        if(($strength = $this->_checkPasswordStrength($value)) < 20) {
+        if(($strength = self::CheckPasswordStrength($this->email, $value)) < 20) {
             throw new InvalidArgumentException('Password strength must be at least 20%, you got ' . $strength . '%');
         }
         $this->_data['members_password'] = md5(Crypt::Encrypt(self::PasswordKey, $value));
@@ -79,7 +79,7 @@ class Member extends BaseModelDataRow {
         return $this->password === md5(Crypt::Encrypt(self::PasswordKey, $password));
     }
 
-    private function _checkPasswordStrength(string $password): float
+    public static function CheckPasswordStrength(string $email, string $password): float
     {
     
         if (strlen($password) < 8) {
@@ -88,7 +88,7 @@ class Member extends BaseModelDataRow {
 
         $lc_pass = strtolower($password);
         $denum_pass = strtr($lc_pass,'5301!','seoll');
-        $lc_email = strtolower($this->email);
+        $lc_email = strtolower($email);
         $lc_email = explode('@', $lc_email)[0];
     
         if (($lc_pass == $lc_email) || ($lc_pass == strrev($lc_email)) ||
@@ -119,6 +119,12 @@ class Member extends BaseModelDataRow {
         $other = $other * 100 / $max;
 
         $percents = [$uc, $lc, $num, $other];
+        foreach($percents as $p) {
+            if($p === 0) {
+                return 0;
+            }
+        }
+        
         return array_sum($percents) / count($percents);
     }
 
