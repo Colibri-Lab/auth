@@ -19,6 +19,8 @@ use ScssPhp\ScssPhp\Compiler;
 use ScssPhp\ScssPhp\OutputStyle;
 use Colibri\Web\PayloadCopy;
 use App\Modules\Auth\Module;
+use Colibri\Data\Storages\Storages;
+use Colibri\Common\NoLangHelper;
 
 class AppController extends WebController
 {
@@ -34,12 +36,37 @@ class AppController extends WebController
     {
 
         $app = Module::$instance->application;
+        $settings = $app->ExportForUserInterface();
+
+        $membersStorage = Storages::Create()->Load('members');
+        $memberForm = $membersStorage->ToArray();
+
+        unset($memberForm['fields']['token']);
+        unset($memberForm['fields']['role']);
+        unset($memberForm['fields']['email_confirmed']);
+        unset($memberForm['fields']['phone_confirmed']);
+        $memberForm['fields']['email']['params']['readonly'] = false;
+        $memberForm['fields']['phone']['params']['readonly'] = false;
+        $memberForm['fields']['password']['params']['readonly'] = false;
+        $memberForm['fields']['email']['note'] = '';
+        $memberForm['fields']['phone']['note'] = '';
+        $memberForm['fields']['password']['note'] = '';
         
+
+        if(App::$moduleManager->lang) {
+            $memberForm = App::$moduleManager->lang->ParseArray($memberForm);
+        }
+        else {
+            $memberForm = NoLangHelper::ParseArray($memberForm);
+        }
+
+        $settings['forms']['register'] = $memberForm;
+
         // финишируем контроллер
         return $this->Finish(
             200,
             'ok',
-            ['settings' => $app->ExportForUserInterface()],
+            $settings,
             'utf-8'
         );
     }

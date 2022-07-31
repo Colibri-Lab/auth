@@ -23,8 +23,20 @@
     flex-direction: column;
     gap: 20px;
 
+    [data-object-name="form-container"] {
+        width: 345px;
+        .app-form-component {
+            width: 345px;
+                    
+            .app-component-field {
+                width: 345px;
+            }
+        }
+    }
+
     [data-object-name="button-container"] {
         gap: 20px;
     }
+
 
 }

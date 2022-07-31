@@ -543,7 +543,7 @@ members:
         vertical: false
         visual: false
         code: ""
-        mask: ""
+        mask: "99999999999"
         generator: ""
     password:
       group: window
@@ -552,7 +552,7 @@ members:
         обратной кодировки}'
       type: varchar
       length: "128"
-      component: Text
+      component: Password
       class: string
       attrs: []
       params:

@@ -17,6 +17,8 @@ App.Modules.Auth = class extends Colibri.Modules.Module {
         console.log('Initializing module Auth');
         
         this._store = App.Store.AddChild('app.auth', {});
+        this._store.AddPathLoader('auth.settings', () => this.Settings());
+
 
         this._app_token = appToken;
         this.useAuthorizationCookie = useCookie;
@@ -68,6 +70,17 @@ App.Modules.Auth = class extends Colibri.Modules.Module {
         return this._app_token;
     }
 
+    Settings(returnPromise = true) {
+        const promise = this.Call('App', 'Settings', {}, {'X-AppToken': Auth.appToken});
+        if(returnPromise) {
+            return promise;
+        }
+        promise.then((settings) => {
+            Auth.Store.Set('auth.settings', settings.result);
+            resolve(settings.result);
+        }).catch(response => reject(response));
+    }
+
 }
 
 App.Modules.Auth.Session = class extends Colibri.IO.RpcRequest  {
@@ -78,27 +91,27 @@ App.Modules.Auth.Session = class extends Colibri.IO.RpcRequest  {
 
     Start() {
         return new Promise((resolve, reject) => {
-            this.Call('Session', 'Start', {}, {'X-AppToken': Auth.appToken}).then((session) => {
-                Auth.Store.Set('auth.session', session);
-                resolve(session);
+            this.Call('Session', 'Start', {}, {'X-AppToken': Auth.appToken}).then((response) => {
+                Auth.Store.Set('auth.session', response.result.session);
+                resolve(response.result.session);
             }).catch(response => reject(response));
         });
     }
 
     Login(login, password) {
         return new Promise((resolve, reject) => {
-            this.Call('Session', 'Login', {login: login, password: password}, {'X-AppToken': Auth.appToken}).then((session) => {
-                Auth.Store.Set('auth.session', session);
-                resolve(session);
+            this.Call('Session', 'Login', {login: login, password: password}, {'X-AppToken': Auth.appToken}).then((response) => {
+                Auth.Store.Set('auth.session', response.result.session);
+                resolve(response.result.session);
             }).catch(response => reject(response));
         });
     }
 
     Logout() {
         return new Promise((resolve, reject) => {
-            this.Call('Session', 'Logout', {}, {'X-AppToken': Auth.appToken}).then((session) => {
-                Auth.Store.Set('auth.session', session);
-                resolve(session);
+            this.Call('Session', 'Logout', {}, {'X-AppToken': Auth.appToken}).then((response) => {
+                Auth.Store.Set('auth.session', response.result.session);
+                resolve(response.result.session);
             }).catch(response => reject(response));
         });
     }
@@ -124,27 +137,27 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
                 gender: gender,
                 birthdate: birthdate,
                 role: 'user'
-            }, {'X-AppToken': Auth.appToken}).then((session) => {
-                Auth.Store.Set('auth.session', session);
-                resolve(session);
+            }, {'X-AppToken': Auth.appToken}).then((response) => {
+                Auth.Store.Set('auth.session', response.result.session);
+                resolve(response.result.session);
             }).catch(response => reject(response));
         });
     }
 
     BeginConfirmationProcess(property = 'email') {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'BeginConfirmationProcess', {property: property}, {'X-AppToken': Auth.appToken}).then((session) => {
-                Auth.Store.Set('auth.session', session);
-                resolve(session);
+            this.Call('Member', 'BeginConfirmationProcess', {property: property}, {'X-AppToken': Auth.appToken}).then((response) => {
+                Auth.Store.Set('auth.session', response.result.session);
+                resolve(response.result.session);
             }).catch(response => reject(response));
         });
     }
 
     ConfirmProperty(code, property = 'email') {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'ConfirmProperty', {property: property, code: code}, {'X-AppToken': Auth.appToken}).then((session) => {
-                Auth.Store.Set('auth.session', session);
-                resolve(session);
+            this.Call('Member', 'ConfirmProperty', {property: property, code: code}, {'X-AppToken': Auth.appToken}).then((response) => {
+                Auth.Store.Set('auth.session', response.result.session);
+                resolve(response.result.session);
             }).catch(response => reject(response));
         });
     }
@@ -160,8 +173,8 @@ App.Modules.Auth.Application = class extends Colibri.IO.RpcRequest  {
     Settings() {
         return new Promise((resolve, reject) => {
             this.Call('App', 'Settings', {}, {'X-AppToken': Auth.appToken}).then((settings) => {
-                Auth.Store.Set('auth.settings', settings);
-                resolve(settings);
+                Auth.Store.Set('auth.settings', settings.result);
+                resolve(settings.result);
             }).catch(response => reject(response));
         });
     }
