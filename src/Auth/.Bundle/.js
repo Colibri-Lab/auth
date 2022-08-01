@@ -124,15 +124,15 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
         super('Auth', Auth.requestType, Auth.remoteDomain);
     }
 
-    Register(email, phone, password, confirmation, firstName, lastName, patronymic = '', gender = 'male', birthdate = null) {
+    Register(email, phone, password, confirmation, first_name, last_name, patronymic = '', gender = 'male', birthdate = null) {
         return new Promise((resolve, reject) => {
             this.Call('Member', 'Register', {
                 email: email,
                 phone: phone,
                 password: password,
                 confirmation: confirmation,
-                firstName: firstName,
-                lastName: lastName,
+                first_name: first_name,
+                last_name: last_name,
                 patronymic: patronymic,
                 gender: gender,
                 birthdate: birthdate,
@@ -147,7 +147,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
     BeginConfirmationProcess(property = 'email') {
         return new Promise((resolve, reject) => {
             this.Call('Member', 'BeginConfirmationProcess', {property: property}, {'X-AppToken': Auth.appToken}).then((response) => {
-                Auth.Store.Set('auth.session', response.result.session);
+                // Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
         });
@@ -156,7 +156,25 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
     ConfirmProperty(code, property = 'email') {
         return new Promise((resolve, reject) => {
             this.Call('Member', 'ConfirmProperty', {property: property, code: code}, {'X-AppToken': Auth.appToken}).then((response) => {
-                Auth.Store.Set('auth.session', response.result.session);
+                // Auth.Store.Set('auth.session', response.result.session);
+                resolve(response.result.session);
+            }).catch(response => reject(response));
+        });
+    }
+
+    BeginPasswordResetProcess(email, phone) {
+        return new Promise((resolve, reject) => {
+            this.Call('Member', 'BeginPasswordResetProcess', {email: email, phone: phone}, {'X-AppToken': Auth.appToken}).then((response) => {
+                // Auth.Store.Set('auth.session', response.result.session);
+                resolve(response.result.session);
+            }).catch(response => reject(response));
+        });
+    }
+
+    ResetPassword(email, phone, code, password, confirmation) {
+        return new Promise((resolve, reject) => {
+            this.Call('Member', 'ResetPassword', {email: email, phone: phone, code: code, password: password, confirmation: confirmation}, {'X-AppToken': Auth.appToken}).then((response) => {
+                // Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
         });

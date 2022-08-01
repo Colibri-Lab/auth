@@ -1,0 +1,252 @@
+App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
+    
+    constructor(name, container) {
+        /* создаем компонент и передаем шаблон */
+        super(name, container, Colibri.UI.Templates['App.Modules.Auth.Components.ResetForm']);
+ 
+        this.AddClass('app-auth-reset-form-component'); 
+
+        this._form = this.Children('form-container/form');
+        this._validator = new Colibri.UI.FormValidator(this._form);
+
+        this._form.fields = {
+            email: {
+                component: 'Text',
+                placeholder: 'name@domain.com',
+                desc: '#{auth-resetform-email-desc;Электронная почта}',
+                params: {
+                    required: true,
+                    readonly: false,
+                    validate: [
+                        {
+                            message: '#{auth-resetform-email-validation1;Пожалуйста, введите эл. адрес}',
+                            method: '(field, validator) => !!field.value'
+                        },
+                        {
+                            message: '#{auth-resetform-email-validation2;Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!}',
+                            method: '(field, validator) => field.value.isEmail()'
+                        }
+                    ]
+                },
+                attrs: {
+                    width: 450
+                }
+            },
+            phone: {
+                component: 'Text',
+                placeholder: '79999999999',
+                desc: '#{auth-resetform-phone-desc;Телефон}',
+                params: {
+                    required: true,
+                    readonly: false,
+                    mask: 'SSSSSSSSSSS',
+                    validate: [
+                        {
+                            message: '#{auth-resetform-phone-validation1;Пожалуйста, введите телефон}',
+                            method: '(field, validator) => !!field.value'
+                        }
+                    ]
+                },
+                attrs: {
+                    width: 250
+                }
+            }
+        };
+
+        this._resetButton = this.Children('button-container/reset');
+        this._loginButton = this.Children('button-container/login');
+
+        this._validator.AddHandler('Validated', (event, args) => {
+            this._resetButton.enabled = this._validator.Validate(true, false);
+        });
+        
+        this._loginButton.AddHandler('Clicked', (event, args) => this.Dispatch('LoginButtonClicked', args));
+        this._resetButton.AddHandler('Clicked', (event, args) => this.__resetFormResetButtonClicked(event, args));
+
+    } 
+
+    _registerEvents() {
+        this.RegisterEvent('LoginButtonClicked', true, 'Когда нажата кнопка входа');
+    }
+
+    set shown(value) {
+        super.shown = value;
+        this._form.Focus();
+    }
+
+    _showCodeAndPasswordFields() {
+        const value = this._form.value;
+        this._form.fields = this._form.fields = {
+            email: {
+                component: 'Text',
+                placeholder: 'name@domain.com',
+                desc: '#{auth-resetform-email-desc;Электронная почта}',
+                params: {
+                    required: true,
+                    readonly: true,
+                    validate: [
+                        {
+                            message: '#{auth-resetform-email-validation1;Пожалуйста, введите эл. адрес}',
+                            method: '(field, validator) => !!field.value'
+                        },
+                        {
+                            message: '#{auth-resetform-email-validation2;Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!}',
+                            method: '(field, validator) => field.value.isEmail()'
+                        }
+                    ]
+                },
+                attrs: {
+                    width: 450
+                }
+            },
+            phone: {
+                component: 'Text',
+                placeholder: '79999999999',
+                desc: '#{auth-resetform-phone-desc;Телефон}',
+                params: {
+                    required: true,
+                    readonly: true,
+                    mask: 'SSSSSSSSSSS',
+                    validate: [
+                        {
+                            message: '#{auth-resetform-phone-validation1;Пожалуйста, введите телефон}',
+                            method: '(field, validator) => !!field.value'
+                        }
+                    ]
+                },
+                attrs: {
+                    width: 250
+                }
+            },
+            code: {
+                component: 'Text',
+                desc: '#{auth-resetform-code-desc;Код восстановления}',
+                params: {
+                    required: true,
+                    readonly: false
+                },
+                attrs: {
+                    width: 250
+                }
+            },
+            pass: {
+                component: 'Object',
+                desc: '#{auth-resetform-pass-desc;Пароль}',
+                params: {
+                    merged: true,
+                    validate: [
+                        {
+                            message: '#{auth-resetform-password-validation1;Пожалуйста, введите пароль}',
+                            method: '(field, validator) => !!field.value.password'
+                        },
+                        {
+                            message: '#{auth-resetform-password-validation2;Пожалуйста, повторите пароль}',
+                            method: '(field, validator) => !!field.value.password'
+                        },
+                        {
+                            message: '#{auth-resetform-password-validation3;Пароль не соответствует требованиям}',
+                            method: '(field, validator) => validator.form.FindField("pass/password").CalcPasswordStrength() > 60'
+                        },
+                        {
+                            message: '#{auth-resetform-confirmation-validation4;Пароли должны совпадать}',
+                            method: '(field, validator) => field.value.password == field.value.confirmation'
+                        }
+                    ]
+                },
+                fields: {
+                    password: {
+                        component: 'Password',
+                        placeholder: '********',
+                        desc: '#{auth-resetform-password-desc;Пароль}',
+                        params: {
+                            required: true,
+                            readonly: false,
+                            icon: App.Modules.Auth.Icons.PasswordIcon,
+                            tip: {
+                                parent: 'pass',
+                                text: '#{auth-resetform-password-tip-text;Придумайте пароль, который сложно подобрать}',
+                                success: '#{auth-resetform-password-tip-success;Пароль соотвествует требованиям}',
+                                error: '#{auth-resetform-password-tip-error;Пароль не соответствует требованиям}',
+                                generate: '#{auth-resetform-password-tip-generate;Сгенерировать пароль}',
+                                copied: '#{auth-resetform-password-tip-copied;Пароль скопирован в буфер обмена}',
+                                digits: ['#{auth-resetform-password-tip-digits-1;символ}','#{auth-resetform-password-tip-digits-2;символа}','#{auth-resetform-password-tip-digits-3;символов}'],
+                                additional: [
+                                    '#{auth-resetform-password-tip-additional-1;цифры}', 
+                                    '#{auth-resetform-password-tip-additional-2;символы (!, $, ^ и др.)}',
+                                    '#{auth-resetform-password-tip-additional-3;заглавные латинские буквы}', 
+                                    '#{auth-resetform-password-tip-additional-4;строчные латинские буквы}'
+                                ]
+                            },
+                            requirements: {
+                                digits: 8,
+                                strength: 60
+                            }
+                        },
+                        attrs: {
+                            width: 345
+                        }
+                    },
+                    confirmation: {
+                        component: 'Password',
+                        placeholder: '********',
+                        desc: '#{auth-resetform-confirmation-desc;Повторите пароль}',
+                        params: {
+                            required: true,
+                            readonly: false                    
+                        },
+                        attrs: {
+                            width: 345
+                        }
+                    } 
+                }
+            },
+        };
+        this._form.value = value;
+    }
+
+    __resetFormResetButtonClicked(event, args) {
+
+        if(this._form.value.code) {
+
+            Auth.Members.ResetPassword(this._form.value.email, this._form.value.phone, this._form.value.code, this._form.value.pass.password, this._form.value.pass.confirmation).then((session) => {
+                this._loginButton.Dispatch('Clicked');
+            }).catch(response => {
+                response.result = JSON.parse(response.result);
+                if(response.result.validation && Object.keys(response.result.validation).length > 0) {
+                    Object.forEach(response.result.validation, (field, message, index) => {
+                        this._validator.Invalidate(field, message);
+                        if(index === 0) {
+                            this._form.FindField(field).Focus();
+                        }
+                    });
+                }
+                else {
+                    this._validator.Invalidate('email', response.result.message);
+                    this._form.Children('email').Focus();
+                }
+            });    
+
+        }
+        else {
+            Auth.Members.BeginPasswordResetProcess(this._form.value.email, this._form.value.phone).then((session) => {
+                this._showCodeAndPasswordFields();
+            }).catch(response => {
+                response.result = JSON.parse(response.result);
+                if(response.result.validation && Object.keys(response.result.validation).length > 0) {
+                    Object.forEach(response.result.validation, (field, message, index) => {
+                        this._validator.Invalidate(field, message);
+                        if(index === 0) {
+                            this._form.FindField(field).Focus();
+                        }
+                    });
+                }
+                else {
+                    this._validator.Invalidate('email', response.result.message);
+                    this._form.Children('email').Focus();
+                }
+            });    
+        }
+
+    }
+
+}

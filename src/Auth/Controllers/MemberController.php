@@ -47,13 +47,13 @@ class MemberController extends WebController
         $payloadArray = $payload->ToArray();
         $email = $payloadArray['email'] ?? $post->email;
         $phone = $payloadArray['phone'] ?? $post->phone;
-        $firstName = $payloadArray['firstName'] ?? $post->firstName;
-        $lastName = $payloadArray['lastName'] ?? $post->lastName;
+        $firstName = $payloadArray['first_name'] ?? $post->first_name;
+        $lastName = $payloadArray['last_name'] ?? $post->last_name;
         $patronymic = $payloadArray['patronymic'] ?? $post->patronymic;
         $gender = $payloadArray['gender'] ?? $post->gender;
         $birthdate = $payloadArray['birthdate'] ?? $post->birthdate;
         $password = $payloadArray['password'] ?? $post->password;
-        // $confirmation = $payloadArray['confirmation'] ?? $post->confirmation;
+        $confirmation = $payloadArray['confirmation'] ?? $post->confirmation;
         $role = $payloadArray['role'] ?? $post->role;
 
         if(!$email || !$phone || !$password/* || !$confirmation*/ || !$firstName || !$lastName) {
@@ -103,9 +103,9 @@ class MemberController extends WebController
             ]);
         }
 
-        // if($password != $confirmation) {
-        //     return $this->Finish(400, 'Bad Request', ['message' => 'Password is not confirmed', 'code' => 400]);
-        // }
+        if($password != $confirmation) {
+            return $this->Finish(400, 'Bad Request', ['message' => 'Password is not confirmed', 'code' => 400]);
+        }
 
         if(!$role) {
             $role = Module::$instance->application->params->defaultrole;
@@ -115,7 +115,7 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad Request', ['message' => 'Role does not exists in application params', 'code' => 400]);
         }
 
-        if( ($strength = Member::CheckPasswordStrength($email, $password)) < 20 ) {
+        if( ($strength = Member::CheckPasswordStrength($email, $password)) < 60 ) {
             return $this->Finish(400, 'Bad request', [
                 'message' => 'Password strength must be at least 20%, you got ' . $strength . '%', 
                 'code' => 400,
@@ -221,20 +221,45 @@ class MemberController extends WebController
         $phone = $payloadArray['phone'] ?? $post->phone;
         
         if(!$email || !$phone) {
-            return $this->Finish(400, 'Bad Request', ['message' => 'Invalid data in request', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', [
+                'message' => 'Invalid data in request', 
+                'code' => 400,
+                'validation' => [
+                    'email' => 'This field is required',
+                    'password' => 'This field is required',
+                ]
+            ]);
         }
 
         $member = Members::LoadByEmail($email);
         if(!$member) {
-            return $this->Finish(400, 'Bad Request', ['message' => 'Member not found', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', [
+                'message' => 'Member not found', 
+                'code' => 400,
+                'validation' => [
+                    'email' => 'Member with this email is not found'
+                ]
+            ]);
         }
 
         if($member->phone != $phone) {
-            return $this->Finish(400, 'Bad Request', ['message' => 'Incorrect phone number', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', [
+                'message' => 'Incorrect phone number', 
+                'code' => 400,
+                'validation' => [
+                    'phone' => 'Member with this phone is not found'
+                ]
+            ]);
         }
 
         if(!$member->SendResetMessage()) {
-            return $this->Finish(400, 'Bad Request', ['message' => 'Can not send reset message', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', [
+                'message' => 'Can not send reset message', 
+                'code' => 400,
+                'validation' => [
+                    'email' => 'Can not send reset message'
+                ]
+            ]);
         }
 
         return $this->Finish(
@@ -259,7 +284,7 @@ class MemberController extends WebController
     {
         $session = Sessions::LoadFromRequest();
         if(!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => 'Member is not logged one', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => 'Member is not logged on', 'code' => 400]);
         }
 
         $member = Members::LoadByToken($session->member);
@@ -309,6 +334,7 @@ class MemberController extends WebController
         $phone = $payloadArray['phone'] ?? $post->phone;
         $code = $payloadArray['code'] ?? $post->code;
         $password = $payloadArray['password'] ?? $post->password;
+        $confirmation = $payloadArray['confirmation'] ?? $post->confirmation;
         
         if(!$email || !$phone || !$code || !$password) {
             return $this->Finish(400, 'Bad Request', ['message' => 'Bad request', 'code' => 400]);
@@ -316,11 +342,33 @@ class MemberController extends WebController
 
         $member = Members::LoadByEmail($email);
         if(!$member) {
-            return $this->Finish(400, 'Bad Request', ['message' => 'Member not found', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', [
+                'message' => 'Member not found', 
+                'code' => 400,
+                'validation' => [
+                    'email' => 'Can not find the member with that email'
+                ]
+            ]);
         }
         
         if($member->phone != $phone) {
-            return $this->Finish(400, 'Bad Request', ['message' => 'Incorrect phone number', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', [
+                'message' => 'Incorrect phone number', 
+                'code' => 400,
+                'validation' => [
+                    'phone' => 'Can not find the member with that phone'
+                ]
+            ]);
+        }
+
+        if($password != $confirmation) {
+            return $this->Finish(400, 'Bad Request', [
+                'message' => 'Password is not confirmed', 
+                'code' => 400,
+                'validation' => [
+                    'password' => 'Password is not confirmed properly'
+                ]
+            ]);
         }
 
         if(!$member->ResetPassword($code, $password)) {

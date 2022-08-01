@@ -92,14 +92,14 @@ class Member extends BaseModelDataRow {
 
         $score = 0;
         // award every unique letter until 5 repetitions
-        $letters = (object)[];
-        for ($i=0; i<strlen($password); $i++) {
-            $letters[substr($password, $i, 1)] = ($letters[substr($password, $i, 1)] || 0) + 1;
+        $letters = [];
+        for ($i=0; $i<strlen($password); $i++) {
+            $letters[substr($password, $i, 1)] = ($letters[substr($password, $i, 1)] ?? 0) + 1;
             $score += 5.0 / $letters[substr($password, $i, 1)];
         }
 
         // bonus points for mixing it up
-        $variations = (object)[
+        $variations = [
             'digits' => preg_match('/\d/', $password),
             'lower' => preg_match('/[a-z]/', $password),
             'upper' => preg_match('/[A-Z]/', $password),
@@ -108,7 +108,7 @@ class Member extends BaseModelDataRow {
 
         $variationCount = 0;
         foreach ($variations as $check) {
-            $variationCount += ($variations[$check] == true) ? 1 : 0;
+            $variationCount += (($variations[$check] ?? false) === true) ? 1 : 0;
         }
         $score += ($variationCount - 1) * 10;
 

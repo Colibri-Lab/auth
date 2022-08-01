@@ -4,7 +4,7 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         /* создаем компонент и передаем шаблон */
         super(name, container, Colibri.UI.Templates['App.Modules.Auth.Components.RegisterForm']);
  
-        this.AddClass('app-auth-login-form-component'); 
+        this.AddClass('app-auth-register-form-component'); 
 
         this._form = this.Children('form-container/form');
         this._validator = new Colibri.UI.FormValidator(this._form);
@@ -36,7 +36,7 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         const formData = this._form.value;
         console.log(formData);
         Auth.Members.Register(
-            formData.email, formData.phone, formData.password, '', formData.first_name, formData.last_name, formData.patronymic, formData.gender, formData.birthdate
+            formData.email, formData.phone, formData.pass.password, formData.pass.confirmation, formData.fio.first_name, formData.fio.last_name, formData.fio.patronymic, formData.gender, formData.birthdate
         ).then((session) => {
             console.log(session);
         }).catch(response => {
@@ -45,7 +45,7 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
                 Object.forEach(response.result.validation, (field, message, index) => {
                     this._validator.Invalidate(field, message);
                     if(index === 0) {
-                        this._form.Children(field).Focus();
+                        this._form.FindField(field).Focus();
                     }
                 });
             }

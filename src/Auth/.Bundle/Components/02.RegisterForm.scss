@@ -1,17 +1,19 @@
-.app-ui-component.app-auth-login-form-component {
+.app-ui-component.app-auth-register-form-component {
 
     background: #ffffff;
-    @if variable-exists($name: auth-login-form-background-color) {
-        background: $auth-login-form-background-color;
+    @if variable-exists($name: auth-register-form-background-color) {
+        background: $auth-register-form-background-color;
     }    
     border-radius: 20px;
-    @if variable-exists($name: auth-login-form-radius) {
-        border-radius: $auth-login-form-radius;
+    @if variable-exists($name: auth-register-form-radius) {
+        border-radius: $auth-register-form-radius;
     }
     padding: 55px 90px;
-    @if variable-exists($name: auth-login-form-padding) {
-        padding: $auth-login-form-padding;
+    @if variable-exists($name: auth-register-form-padding) {
+        padding: $auth-register-form-padding;
     }
+
+    width: 800px;
 
     &.app-component-shown {
         display: flex;
@@ -24,13 +26,10 @@
     gap: 20px;
 
     [data-object-name="form-container"] {
-        width: 345px;
+        width: 100%;
         .app-form-component {
-            width: 345px;
+            width: 100%;
                     
-            .app-component-field {
-                width: 345px;
-            }
         }
     }
 
