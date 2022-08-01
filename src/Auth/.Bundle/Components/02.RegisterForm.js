@@ -9,27 +9,16 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this._form = this.Children('form-container/form');
         this._validator = new Colibri.UI.FormValidator(this._form);
 
-        Auth.Store.AsyncQuery('auth.settings').then((settings) => {
-            settings.forms.register.fields.password.params.validate = [
-                {
-                    message: (field) => 'Password strength must be at least 20%, you got ' + field.CalcPasswordStrength().toFixed(2) + '%',
-                    method: '(field, validator) => {console.log(field.CalcPasswordStrength()); return field.CalcPasswordStrength() > 20;}'
-                }
-            ];
-            this._form.fields = settings.forms.register.fields; 
-                
-            this._validator.AddHandler('Validated', (event, args) => {
-                this._registerButton.enabled = this._validator.Validate(true, false);
-            });
-            
-        });
-
         this._loginButton = this.Children('button-container/login');
         this._registerButton = this.Children('button-container/register');
 
         this._loginButton.AddHandler('Clicked', (event, args) => this.Dispatch('LoginButtonClicked', args));
         this._registerButton.AddHandler('Clicked', (event, args) => this.__registerFormRegisterButtonClicked(event, args));
 
+        this._validator.AddHandler('Validated', (event, args) => {
+            this._registerButton.enabled = this._validator.Validate(true, false);
+        });
+        
 
     } 
 

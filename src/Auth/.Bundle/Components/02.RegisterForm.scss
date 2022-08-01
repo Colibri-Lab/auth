@@ -38,5 +38,28 @@
         gap: 20px;
     }
 
+    .password-progress {
+        width: 100%;
+        background: #F3F2F2;
+        border-radius: 2px;
+        height: 4px;
+        span {
+            display: block;
+            height: 4px;
+            border-radius: 2px;
+            background: #FD3434;
+            min-width: 1%;
+            max-width: 100%;
+        }
+        &.weak span {
+            background: #ff7b00;
+        }
+        &.good span {
+            background: #49c7a8;
+        }
+        &.strong span {
+            background: #2b792b;
+        }
+    }
 
 }

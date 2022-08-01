@@ -68,8 +68,8 @@ class Member extends BaseModelDataRow {
 
     public function setPropertyPassword(string $value): void
     {
-        if(($strength = self::CheckPasswordStrength($this->email, $value)) < 20) {
-            throw new InvalidArgumentException('Password strength must be at least 20%, you got ' . $strength . '%');
+        if(($strength = self::CheckPasswordStrength($this->email, $value)) < 60) {
+            throw new InvalidArgumentException('Password strength must be at least 60%, you got ' . $strength . '%');
         }
         $this->_data['members_password'] = md5(Crypt::Encrypt(self::PasswordKey, $value));
     }
@@ -86,46 +86,40 @@ class Member extends BaseModelDataRow {
             return 0;
         }
 
-        $lc_pass = strtolower($password);
-        $denum_pass = strtr($lc_pass,'5301!','seoll');
-        $lc_email = strtolower($email);
-        $lc_email = explode('@', $lc_email)[0];
-    
-        if (($lc_pass == $lc_email) || ($lc_pass == strrev($lc_email)) ||
-            ($denum_pass == $lc_email) || ($denum_pass == strrev($lc_email))) {
+        if (!$password) {
             return 0;
         }
-    
-        // count how many lowercase, uppercase, and digits are in the password 
-        $uc = 0; $lc = 0; $num = 0; $other = 0;
-        for ($i = 0, $j = strlen($password); $i < $j; $i++) {
-            $c = substr($password, $i, 1);
-            if (preg_match('/^[[:upper:]]$/',$c)) {
-                $uc++;
-            } elseif (preg_match('/^[[:lower:]]$/',$c)) {
-                $lc++;
-            } elseif (preg_match('/^[[:digit:]]$/',$c)) {
-                $num++;
-            } else {
-                $other++;
-            }
-        }
-    
-        $max = $j - 2;
 
-        $uc = $uc * 100 / $max;
-        $lc = $lc * 100 / $max;
-        $num = $num * 100 / $max;
-        $other = $other * 100 / $max;
-
-        $percents = [$uc, $lc, $num, $other];
-        foreach($percents as $p) {
-            if($p === 0) {
-                return 0;
-            }
+        $score = 0;
+        // award every unique letter until 5 repetitions
+        $letters = (object)[];
+        for ($i=0; i<strlen($password); $i++) {
+            $letters[substr($password, $i, 1)] = ($letters[substr($password, $i, 1)] || 0) + 1;
+            $score += 5.0 / $letters[substr($password, $i, 1)];
         }
-        
-        return array_sum($percents) / count($percents);
+
+        // bonus points for mixing it up
+        $variations = (object)[
+            'digits' => preg_match('/\d/', $password),
+            'lower' => preg_match('/[a-z]/', $password),
+            'upper' => preg_match('/[A-Z]/', $password),
+            'nonWords' => preg_match('/\W/', $password),
+        ];
+
+        $variationCount = 0;
+        foreach ($variations as $check) {
+            $variationCount += ($variations[$check] == true) ? 1 : 0;
+        }
+        $score += ($variationCount - 1) * 10;
+
+        if($score > 100) {
+            $score = 100;
+        }
+
+        $score = (int)($score);
+
+        return $score;
+
     }
 
     public function SendConfirmationMessage(string $property): bool 
