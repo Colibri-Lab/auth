@@ -72,7 +72,7 @@ class Module extends BaseModule
                     exit;
                 }
 
-                if(!Module::$instance->LoadApplication()) {
+                if(!Module::$instance->LoadApplication()) { 
                     $args->cancel = true;
                     $args->result = (object)[
                         'code' => 403,
