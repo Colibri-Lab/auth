@@ -11,6 +11,10 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         this._form = this.Children('form-container/form');
         this._validator = new Colibri.UI.FormValidator(this._form);
 
+        this._timer = this.Children('timer-container/timer');
+        this._timerTemplate = this._timer.value;
+        this._requestCode = this.Children('timer-container/request-code-again');
+
         this._validator.AddHandler('Validated', (event, args) => {
             if(this._validator.Validate(true, false) && !this._confirming) {
                 this._confirming = true;
@@ -72,10 +76,26 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
 
     }
 
+    _startTimer() {
+        this._timeLeft = 60;
+        Colibri.Common.StartTimer('request-code-timer', 1000, () => {
+            if(this._timeLeft <= 0) {
+                Colibri.Common.StopTimer('request-code-timer');
+                this._timer.shown = false;
+                this._requestCode.shown = true;
+            }
+            this._timeLeft --;
+            this._timer.shown = true;
+            this._requestCode.shown = false;
+            this._timer.value = this._timerTemplate.replaceAll('%s', this._timeLeft);
+        });
+    }
+
     Show(property) {
         if(property) {
             this._property = property;
         }
+        this._startTimer();
         Auth.Members.BeginConfirmationProcess(this._property).then((session) => {
             super.Show();
         }).catch(response => {
