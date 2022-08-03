@@ -1,30 +1,4 @@
 .app-ui-component.app-auth-reset-form-component {
 
-    background: #ffffff;
-    @if variable-exists($name: auth-reset-form-background-color) {
-        background: $auth-reset-form-background-color;
-    }    
-    border-radius: 20px;
-    @if variable-exists($name: auth-reset-form-radius) {
-        border-radius: $auth-reset-form-radius;
-    }
-    padding: 55px 90px;
-    @if variable-exists($name: auth-reset-form-padding) {
-        padding: $auth-reset-form-padding;
-    }
-
-    &.app-component-shown {
-        display: flex;
-    }
-
-    align-items: center;
-    justify-content: center;
-
-    flex-direction: column;
-    gap: 20px;
-
-    [data-object-name="button-container"] {
-        gap: 20px;
-    }
 
 }

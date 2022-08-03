@@ -280,4 +280,8 @@ auth-storages-confirmations-fields-verified-desc:
   ru: Верифицирован
 auth-storages-confirmations-fields-verified-note:
   ru: Отметка об успешной верификации
+auth-confirmationform-code-desc:
+  ru: Введите код восстановления
+auth-confirmationform-code-validation1:
+  ru: Пожалуйста, введите эл. адрес
 ...

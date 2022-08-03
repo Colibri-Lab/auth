@@ -1,0 +1,62 @@
+.app-ui-component.app-auth-form-component {
+
+    background: #ffffff;
+    @if variable-exists($name: auth-form-background-color) {
+        background: $auth-form-background-color;
+    }    
+    border-radius: 20px;
+    @if variable-exists($name: auth-form-radius) {
+        border-radius: $auth-form-radius;
+    }
+    padding: 55px 90px;
+    @if variable-exists($name: auth-form-padding) {
+        padding: $auth-form-padding;
+    }
+
+    &.app-component-shown {
+        display: flex;
+    }
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+    gap: 20px;
+
+    [data-object-name="form-container"] {
+        width: 100%;
+        .app-form-component {
+            width: 100%;
+                    
+        }
+    }
+
+    [data-object-name="button-container"] {
+        gap: 20px;
+    }
+
+}
+
+.password-progress {
+    width: 100%;
+    background: #F3F2F2;
+    border-radius: 2px;
+    height: 4px;
+    span {
+        display: block;
+        height: 4px;
+        border-radius: 2px;
+        background: #FD3434;
+        min-width: 1%;
+        max-width: 100%;
+    }
+    &.weak span {
+        background: #ff7b00;
+    }
+    &.good span {
+        background: #49c7a8;
+    }
+    &.strong span {
+        background: #2b792b;
+    }
+}
