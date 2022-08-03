@@ -284,4 +284,8 @@ auth-confirmationform-code-desc:
   ru: Введите код восстановления
 auth-confirmationform-code-validation1:
   ru: Пожалуйста, введите эл. адрес
+auth-confirmation-timer-value:
+  ru: Вы сможете снова запросить код через %s секунд.
+auth-confirmation-requestagain:
+  ru: Получить новый код
 ...
