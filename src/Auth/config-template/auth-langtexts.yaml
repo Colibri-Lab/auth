@@ -582,4 +582,6 @@ auth-confirmation-requestagain:
   ru: Получить новый код
   en: Get a new code
   hy: Ստացեք նոր կոդը
+auth-storages-members-fields-blocked-desc:
+  ru: Заблокирован (удален)
 ...

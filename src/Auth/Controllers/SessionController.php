@@ -77,12 +77,13 @@ class SessionController extends WebController
             $member = Members::LoadByPhone($login);
         }
 
-        if(!$member) {
-            return $this->Finish(403, 'Forbidden', ['message' => 'Permission denied', 'code' => 403]);
+        if(!$member || $member->blocked) {
+            return $this->Finish(403, 'Forbidden', ['message' => 'Account does not exists', 'code' => 403]);
         }
 
+
         if(!$member->Authorize($password)) {
-            return $this->Finish(403, 'Forbidden', ['message' => 'Permission denied', 'code' => 403]);
+            return $this->Finish(403, 'Forbidden', ['message' => 'Invalid credentials', 'code' => 403]);
         }
 
         $session->member = $member->token;
@@ -112,6 +113,40 @@ class SessionController extends WebController
         $session = Sessions::LoadFromRequest();
         $session->member = null;
         $session->Save();
+
+        // финишируем контроллер
+        return $this->Finish(
+            200,
+            'ok',
+            ['session' => $session->ExportForUserInterface()],
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
+        );
+    }
+
+    /**
+     * Создание сессии
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function LogoutFromAll(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    {
+        
+        $session = Sessions::LoadFromRequest();
+        if(!$session->member) {
+            return $this->Finish(403, 'Forbidden', ['message' => 'Member is not logged on', 'code' => 403]);
+        }
+
+        $sessions = Sessions::LoadByMember($session->member);
+        foreach($sessions as $s) {
+            $s->member = null;
+            $s->Save();
+        }
+
+        $session->member = null;
 
         // финишируем контроллер
         return $this->Finish(

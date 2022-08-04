@@ -85,6 +85,16 @@ class Sessions extends BaseModelDataTable {
     }
 
     /**
+     * Возвращает модель по пользователю
+     * @param Member|string $member ID строки
+     * @return Sessions|null
+     */
+    static function LoadByMember(Member|string $member) : Sessions|null 
+    {
+        return self::LoadByFilter(1, 1, '{member}=[[member:string]]', null, ['member' => $member instanceof Member ? $member->token : $member], false);
+    }
+
+    /**
      * Возвращает модель по key
      * @param string $key key строки
      * @return Session|null

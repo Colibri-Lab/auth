@@ -176,6 +176,45 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "LogoutFromAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set('jwt-from-cookie', jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-AppToken",
+								"value": "{{app-key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/modules/auth/session/logout-from-all",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"modules",
+								"auth",
+								"session",
+								"logout-from-all"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -617,7 +656,7 @@
 		},
 		{
 			"key": "host",
-			"value": "ecolo-place_auth.test.colibrilab.pro",
+			"value": "ecolo-place_auth-v5.local.bsft.loc",
 			"type": "string"
 		}
 	]
