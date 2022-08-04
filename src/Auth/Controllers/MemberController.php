@@ -56,7 +56,7 @@ class MemberController extends WebController
         $confirmation = $payloadArray['confirmation'] ?? $post->confirmation;
         $role = $payloadArray['role'] ?? $post->role;
 
-        if(!$email || !$phone || !$password/* || !$confirmation*/ || !$firstName || !$lastName) {
+        if(!$email || !$phone || !$password || !$confirmation || !$firstName || !$lastName) {
             $validation = [];
             if(!$email) {
                 $validation['email'] = 'Field «email» is required';
@@ -66,6 +66,9 @@ class MemberController extends WebController
             }
             if(!$password) {
                 $validation['password'] = 'Field «password» is required';
+            }
+            if(!$confirmation) {
+                $validation['confirmation'] = 'Field «confirmation» is required';
             }
             if(!$firstName) {
                 $validation['firstName'] = 'Field «firstName» is required';
@@ -104,7 +107,9 @@ class MemberController extends WebController
         }
 
         if($password != $confirmation) {
-            return $this->Finish(400, 'Bad Request', ['message' => 'Password is not confirmed', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => 'Password is not confirmed', 'code' => 400, 'validation' => [
+                'confirmation' => 'Password is not confirmed'
+            ]]);
         }
 
         if(!$role) {
@@ -115,12 +120,12 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad Request', ['message' => 'Role does not exists in application params', 'code' => 400]);
         }
 
-        if( ($strength = Member::CheckPasswordStrength($email, $password)) < 60 ) {
+        if( ($strength = Member::CheckPasswordStrength($email, $password)) < 40 ) {
             return $this->Finish(400, 'Bad request', [
-                'message' => 'Password strength must be at least 20%, you got ' . $strength . '%', 
+                'message' => 'Password strength must be at least 40%, you got ' . $strength . '%', 
                 'code' => 400,
                 'validation' => [
-                    'password' => 'Password strength must be at least 20%, you got ' . $strength . '%'
+                    'password' => 'Password strength must be at least 40%, you got ' . $strength . '%'
                 ]
             ]);
         }

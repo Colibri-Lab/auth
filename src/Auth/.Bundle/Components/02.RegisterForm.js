@@ -44,6 +44,10 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
             response.result = JSON.parse(response.result);
             if(response.result.validation && Object.keys(response.result.validation).length > 0) {
                 Object.forEach(response.result.validation, (field, message, index) => {
+                    if(['password', 'confirmation'].indexOf(field) !== -1) {
+                        field = 'pass';
+                    }
+
                     this._validator.Invalidate(field, message);
                     if(index === 0) {
                         this._form.FindField(field).Focus();

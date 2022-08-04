@@ -15,12 +15,17 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         this._timerTemplate = this._timer.value;
         this._requestCode = this.Children('timer-container/request-code-again');
 
+        this._timeLeft = 60;
+        this._timer.value = this._timerTemplate.replaceAll('%s', this._timeLeft);
+
         this._validator.AddHandler('Validated', (event, args) => {
             if(this._validator.Validate(true, false) && !this._confirming) {
                 this._confirming = true;
                 this.__confirmationFormConfirmationButtonClicked(event, args);
             }
         });
+
+        this._requestCode.AddHandler('Clicked', (event, args) => this.__requestCodeAgainClicked(event, args));
 
     } 
 
@@ -47,6 +52,11 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
 
     get value() {
         return this._form.value;
+    }
+
+    __requestCodeAgainClicked(event, args) {
+        this._form.enabled = false;
+        this.RequestCode();
     }
 
     __confirmationFormConfirmationButtonClicked(event, args) {
@@ -77,12 +87,16 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
     }
 
     _startTimer() {
+        this._timer.shown = true;
+        this._requestCode.shown = false;
         this._timeLeft = 60;
+        this._timer.value = this._timerTemplate.replaceAll('%s', this._timeLeft);
         Colibri.Common.StartTimer('request-code-timer', 1000, () => {
-            if(this._timeLeft <= 0) {
+            if(this._timeLeft <= 2) {
                 Colibri.Common.StopTimer('request-code-timer');
                 this._timer.shown = false;
                 this._requestCode.shown = true;
+                return;
             }
             this._timeLeft --;
             this._timer.shown = true;
@@ -95,9 +109,16 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         if(property) {
             this._property = property;
         }
-        this._startTimer();
+        super.Show();
+        this._form.enabled = false;
+        this.RequestCode();
+
+    }
+
+    RequestCode() {
         Auth.Members.BeginConfirmationProcess(this._property).then((session) => {
-            super.Show();
+            this._form.enabled = true;
+            this._startTimer();
         }).catch(response => {
             response.result = JSON.parse(response.result);
             if(response.result.validation && Object.keys(response.result.validation).length > 0) {
@@ -113,7 +134,6 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
                 this._form.Children('email').Focus();
             }
         }); 
-
     }
 
 }
