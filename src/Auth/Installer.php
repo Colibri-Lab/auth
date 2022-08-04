@@ -229,7 +229,7 @@ class Installer
         self::_copyOrSymlink($mode, $path.'/src/Auth/bin/', './bin/', 'auth-models-generate.sh', 'auth-models-generate.sh');
 
         print_r('Установка стилей'."\n");
-        self::_copyOrSymlink($mode, $path.'/src/Auth/web/res/css/', './'.$webRoot.'/res/css/', 'auth-styles.scss', 'ecolo-place-styles.scss');
+        self::_copyOrSymlink($mode, $path.'/src/Auth/web/res/css/', './'.$webRoot.'/res/css/', 'auth-styles.scss', 'auth-styles.scss');
 
         print_r('Установка завершена'."\n");
  
