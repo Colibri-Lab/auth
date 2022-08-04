@@ -120,6 +120,7 @@ class Controller extends WebController
             ['path' => App::$moduleManager->auth->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
         ]);
         $cssBundle = Bundle::Automate(App::$domainKey, 'assets.bundle.css', 'scss', array(
+            ['path' => App::$moduleManager->auth->modulePath . 'web/res/css/'],
             ['path' => App::$moduleManager->auth->modulePath . '.Bundle/'],
         ), 'https://' . App::$request->host);
 
