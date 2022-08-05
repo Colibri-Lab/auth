@@ -198,6 +198,15 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
         });
     }
 
+    ChangePassword(original, password, confirmation) {
+        return new Promise((resolve, reject) => {
+            this.Call('Member', 'ChangePassword', {original: original, password: password, confirmation: confirmation}, {'X-AppToken': Auth.appToken}).then((response) => {
+                // Auth.Store.Set('auth.session', response.result.session);
+                resolve(response.result.session);
+            }).catch(response => reject(response));
+        });
+    }
+
 }
 
 App.Modules.Auth.Application = class extends Colibri.IO.RpcRequest  {

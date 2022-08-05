@@ -392,6 +392,65 @@ class MemberController extends WebController
     }
 
     /**
+     * Подтверждает свойство
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function ChangePassword(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    {
+        $session = Sessions::LoadFromRequest();
+        if(!$session->member) {
+            return $this->Finish(400, 'Bad Request', ['message' => 'Member is not logged on', 'code' => 400]);
+        }
+
+        $member = Members::LoadByToken($session->member);
+
+        $payloadArray = $payload->ToArray();
+        $original = $payloadArray['original'] ?? $post->original;
+        $password = $payloadArray['password'] ?? $post->password;
+        $confirmation = $payloadArray['confirmation'] ?? $post->confirmation;
+        
+        if(!$original || !$password || !$confirmation) {
+            return $this->Finish(400, 'Bad Request', ['message' => 'Bad request', 'code' => 400]);
+        }
+        
+        if(!$member->Authorize($original)) {
+            return $this->Finish(400, 'Bad Request', [
+                'message' => 'Incorrect current password', 
+                'code' => 400,
+                'validation' => [
+                    'original' => 'Incorrect current password'
+                ]
+            ]);
+        }
+
+        if($password != $confirmation) {
+            return $this->Finish(400, 'Bad Request', [
+                'message' => 'Password is not confirmed', 
+                'code' => 400,
+                'validation' => [
+                    'password' => 'Password is not confirmed properly'
+                ]
+            ]);
+        }
+
+        $member->password = $password;
+        $member->Save();
+
+        return $this->Finish(
+            200,
+            'ok',
+            ['session' => $session->ExportForUserInterface()],
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
+        );
+       
+    }
+
+    /**
      * Обновляет профиль
      * @param RequestCollection $get данные GET
      * @param RequestCollection $post данные POST

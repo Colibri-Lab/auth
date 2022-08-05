@@ -1,0 +1,90 @@
+<div ComponentName="App.Modules.Auth.Components.ChangePassForm">
+
+    <Pane name="form-container" shown="true">    
+        <Forms.Form name="form" shown="true">
+            <fields>
+                {
+                    original: {
+                        component: 'Password',
+                        placeholder: '********',
+                        desc: '#{auth-changepassform-original-desc;Текущий пароль}',
+                        params: {
+                            required: true,
+                            readonly: false,
+                            icon: App.Modules.Auth.Icons.PasswordIcon
+                        },
+                        attrs: {
+                            width: 345
+                        }
+                    },
+                    password: {
+                        component: 'Password',
+                        placeholder: '********',
+                        desc: '#{auth-changepassform-password-desc;Новый пароль}',
+                        params: {
+                            required: true,
+                            readonly: false,
+                            icon: App.Modules.Auth.Icons.PasswordIcon,
+                            tip: {
+                                text: '#{auth-changepassform-password-tip-text;Придумайте пароль, который сложно подобрать}',
+                                success: '#{auth-changepassform-password-tip-success;Пароль соотвествует требованиям}',
+                                error: '#{auth-changepassform-password-tip-error;Пароль не соответствует требованиям}',
+                                generate: '#{auth-changepassform-password-tip-generate;Сгенерировать пароль}',
+                            copied: '#{auth-changepassform-password-tip-copied;Пароль скопирован в буфер обмена}',
+                                digits: ['#{auth-changepassform-password-tip-digits-1;символ}','#{auth-changepassform-password-tip-digits-2;символа}','#{auth-changepassform-password-tip-digits-3;символов}'],
+                                additional: [
+                                    '#{auth-changepassform-password-tip-additional-1;цифры}', 
+                                    '#{auth-changepassform-password-tip-additional-2;символы (!, $, ^ и др.)}',
+                                    '#{auth-changepassform-password-tip-additional-3;заглавные латинские буквы}', 
+                                    '#{auth-changepassform-password-tip-additional-4;строчные латинские буквы}'
+                                ],
+                                validate: [
+                                    {
+                                        message: '#{auth-changepassform-password-validation1;Пожалуйста, введите пароль}',
+                                        method: '(field, validator) => !!field.value'
+                                    },
+                                    {
+                                        message: '#{auth-changepassform-password-validation2;Пожалуйста, повторите пароль}',
+                                        method: '(field, validator) => !!field.value'
+                                    },
+                                    {
+                                        message: '#{auth-changepassform-password-validation3;Пароль не соответствует требованиям}',
+                                        method: '(field, validator) => validator.form.FindField("password").CalcPasswordStrength() > 60'
+                                    },
+                                    {
+                                        message: '#{auth-changepassform-confirmation-validation4;Пароли должны совпадать}',
+                                        method: '(field, validator) => field.value == validator.form.value.confirmation'
+                                    }
+                                ]
+                            },
+                            requirements: {
+                                digits: 8,
+                                strength: 60
+                            }
+                        },
+                        attrs: {
+                            width: 345
+                        }
+                    },
+                    confirmation: {
+                        component: 'Password',
+                        placeholder: '********',
+                        desc: '#{auth-changepassform-confirmation-desc;Повторите новый пароль}',
+                        params: {
+                            required: true,
+                            readonly: false,
+                            icon: App.Modules.Auth.Icons.PasswordIcon,
+                        },
+                        attrs: {
+                            width: 345
+                        }
+                    } 
+                }
+            </fields>
+        </Forms.Form>
+    </Pane>
+    <FlexBox name="button-container" shown="true">            
+        <SuccessButton name="save" shown="true" enabled="false" tabIndex="true">#{auth-changepass-button;Обновить пароль}</SuccessButton>
+    </FlexBox>
+
+</div>
