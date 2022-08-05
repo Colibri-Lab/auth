@@ -392,7 +392,7 @@ class MemberController extends WebController
     }
 
     /**
-     * Подтверждает свойство
+     * Изменяет пароль
      * @param RequestCollection $get данные GET
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
@@ -438,6 +438,38 @@ class MemberController extends WebController
 
         $member->password = $password;
         $member->Save();
+
+        return $this->Finish(
+            200,
+            'ok',
+            ['session' => $session->ExportForUserInterface()],
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
+        );
+       
+    }
+
+    /**
+     * Блокирует доступ пользователя
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function BlockAccount(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    {
+        $session = Sessions::LoadFromRequest();
+        if(!$session->member) {
+            return $this->Finish(400, 'Bad Request', ['message' => 'Member is not logged on', 'code' => 400]);
+        }
+
+        $member = Members::LoadByToken($session->member);
+        $member->blocked = 1;
+        $member->Save();
+
+        $session->member = null;
+        $session->Save();
 
         return $this->Finish(
             200,
