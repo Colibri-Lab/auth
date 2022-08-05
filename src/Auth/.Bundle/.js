@@ -183,7 +183,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
     ResetPassword(email, phone, code, password, confirmation) {
         return new Promise((resolve, reject) => {
             this.Call('Member', 'ResetPassword', {email: email, phone: phone, code: code, password: password, confirmation: confirmation}, {'X-AppToken': Auth.appToken}).then((response) => {
-                Auth.Store.Set('auth.session', response.result.session);
+                // Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
         });

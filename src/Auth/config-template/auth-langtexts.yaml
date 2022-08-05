@@ -584,4 +584,32 @@ auth-confirmation-requestagain:
   hy: Ստացեք նոր կոդը
 auth-storages-members-fields-blocked-desc:
   ru: Заблокирован (удален)
+auth-profileform-last_name-placeholder:
+  ru: 'Например: Иванов'
+auth-profileform-first_name-placeholder:
+  ru: 'Например: Иван'
+auth-profileform-birtdate-desc:
+  ru: Дата рождения
+auth-profileform-gender-desc:
+  ru: Пол
+auth-profileform-gender-values-male:
+  ru: Мужской
+auth-profileform-gender-values-female:
+  ru: Женский
+auth-profile-button:
+  ru: Сохранить
+auth-registerform-fio-patronymic-placeholder:
+  ru: 'Например: Иванович'
+auth-profileform-last_name-desc:
+  ru: Фамилия
+auth-profileform-last_name-validation1:
+  ru: Пожалуйста, введите вашу фамилию
+auth-profileform-first_name-desc:
+  ru: Имя
+auth-profileform-first_name-validation1:
+  ru: Пожалуйста, введите ваше имя
+auth-profileform-partonymic-desc:
+  ru: Отчество
+auth-profileform-partonymic-placeholder:
+  ru: 'Например: Иванович'
 ...
