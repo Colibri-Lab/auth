@@ -209,4 +209,153 @@ auth-changepassform-confirmation-desc:
   ru: Повторите новый пароль
 auth-changepass-button:
   ru: Обновить пароль
+auth-logincontainer-login-title:
+  ru: Вход в систему
+auth-logincontainer-register-title:
+  ru: Регистрация в системе
+auth-logincontainer-reset-title:
+  ru: Восстановление пароль
+auth-storages-applications-desc:
+  ru: Приложения
+auth-storages-applications-fields-key-desc:
+  ru: Ключ приложения  (наименование)
+auth-storages-applications-fields-token-desc:
+  ru: Токен приложения (постоянный)
+auth-storages-applications-fields-token-note:
+  ru: Токен приложения, генерируется автоматически
+auth-storages-applications-fields-params-desc:
+  ru: Параметры
+auth-storages-applications-fields-params-note:
+  ru: Параметры приложения
+auth-storages-applications-fields-params-livetime-desc:
+  ru: Время жизни
+auth-storages-applications-fields-params-livetime-note:
+  ru: Время жизни токена
+auth-storages-applications-fields-params-domains-desc:
+  ru: Домены
+auth-storages-applications-fields-params-domains-note:
+  ru: Паттерны доменов, с которых разрешен доступ к приложению
+auth-storages-applications-fields-params-domains-pattern-desc:
+  ru: Паттерн домена
+auth-storages-applications-fields-params-domains-pattern-note:
+  ru: Используйте *-у для указания любого количества символов и цифр и ? для указания
+    одного символа и цифры
+auth-storages-applications-fields-params-allowrenew-desc:
+  ru: Разрешить восстановление по короткому токену
+auth-storages-applications-fields-params-allowrenew-note:
+  ru: Дает возможность получить текущий сессионный токен по короткому постоянному
+    токену пользователя (НЕ БЕЗОПАСНО)
+auth-storages-applications-fields-params-roles-desc:
+  ru: Роли
+auth-storages-applications-fields-params-roles-note:
+  ru: Роли, которые могут исполнять пользователи. Реальная обработка ролей происходит
+    на клиенте
+auth-storages-applications-fields-params-roles-name-desc:
+  ru: Наименование роли
+auth-storages-applications-fields-params-roles-desc-desc:
+  ru: Описание роли
+auth-storages-applications-fields-params-defaultrole-desc:
+  ru: Роль по умолчанию
+auth-storages-applications-fields-params-defaultrole-note:
+  ru: Роль, которая выставляется по умолчанию
+auth-storages-applications-fields-params-design-desc:
+  ru: Макет
+auth-storages-applications-fields-params-design-images-desc:
+  ru: Изображения
+auth-storages-applications-fields-params-design-images-note:
+  ru: Логотип и другие изображения
+auth-storages-applications-fields-params-design-images-key-desc:
+  ru: Ключ изображения
+auth-storages-applications-fields-params-design-images-file-desc:
+  ru: Изображение (SVG)
+auth-storages-sessions-desc:
+  ru: Сессии
+auth-storages-sessions-fields-member-desc:
+  ru: Токен пользователя
+auth-storages-sessions-fields-member-note:
+  ru: Постоянный токен пользователя
+auth-storages-sessions-fields-key-desc:
+  ru: Ключ сессии
+auth-storages-sessions-fields-key-note:
+  ru: Генерируется автоматически из токена сессии (нужен для поиска)
+auth-storages-sessions-fields-token-desc:
+  ru: Токен сессии (JWT)
+auth-storages-sessions-fields-token-note:
+  ru: JWT токен
+auth-storages-sessions-fields-expires-desc:
+  ru: Время жизни
+auth-storages-sessions-fields-expires-note:
+  ru: Количество секунд жизни токена, после того, как это время пройдет с момента
+    создания, сессия будет заморожена, и ее нужно будет восстановить
+auth-storages-sessions-fields-secret-desc:
+  ru: Секретный ключ
+auth-storages-sessions-fields-secret-note:
+  ru: Ключ для декодирования сессии
+auth-storages-members-desc:
+  ru: Пользователи
+auth-storages-members-fields-token-desc:
+  ru: Токен пользователя
+auth-storages-members-fields-token-note:
+  ru: Постоянный токен пользователя
+auth-storages-members-fields-email-desc:
+  ru: Эл. адрес пользователя
+auth-storages-members-fields-email-note:
+  ru: Электронный адрес указанный при регистрации
+auth-storages-members-fields-phone-desc:
+  ru: Телефон
+auth-storages-members-fields-phone-note:
+  ru: Телефон в формате «код страны»«код внутри страны»«номер» без знаков, только
+    цифры
+auth-storages-members-fields-password-desc:
+  ru: Пароль
+auth-storages-members-fields-password-note:
+  ru: Пароль, закодирован, нет обратной кодировки
+auth-storages-members-fields-first_name-desc:
+  ru: Имя
+auth-storages-members-fields-last_name-desc:
+  ru: Фамилия
+auth-storages-members-fields-patronymic-desc:
+  ru: Отчество
+auth-storages-members-fields-birthdate-desc:
+  ru: Дата рождения
+auth-storages-members-fields-gender-desc:
+  ru: Пол
+auth-storages-members-fields-gender-values-male:
+  ru: Мужской
+auth-storages-members-fields-gender-values-female:
+  ru: Женский
+auth-storages-members-fields-role-desc:
+  ru: Роль
+auth-storages-members-fields-role-note:
+  ru: Роль выбранная из списка ролей приложения
+auth-storages-members-fields-email_confirmed-desc:
+  ru: Почта подтверждена
+auth-storages-members-fields-phone_confirmed-desc:
+  ru: Телефон подтвержден
+auth-storages-members-fields-blocked-desc:
+  ru: Заблокирован (удален)
+auth-storages-confirmations-desc:
+  ru: Коды верификации
+auth-storages-confirmations-fields-member-desc:
+  ru: Пользователь
+auth-storages-confirmations-fields-member-note:
+  ru: Пользователь, который верифицирует
+auth-storages-confirmations-fields-property-desc:
+  ru: Свойство
+auth-storages-confirmations-fields-property-note:
+  ru: Свойство, которое нужно верифицировать
+auth-storages-confirmations-fields-property-values-email:
+  ru: Эл. адрес
+auth-storages-confirmations-fields-property-values-phone:
+  ru: Телефон
+auth-storages-confirmations-fields-property-values-reset:
+  ru: Восстановление пароля
+auth-storages-confirmations-fields-code-desc:
+  ru: Код
+auth-storages-confirmations-fields-code-note:
+  ru: Сгенерированный код верификации
+auth-storages-confirmations-fields-verified-desc:
+  ru: Верифицирован
+auth-storages-confirmations-fields-verified-note:
+  ru: Отметка об успешной верификации
 ...
