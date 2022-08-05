@@ -34,13 +34,25 @@ App.Modules.Auth.Components.ProfileForm = class extends Colibri.UI.Component  {
 
     __profileFormSaveButtonClicked(event, args) {
 
-        Auth.Session.Login(this._form.value.login, this._form.value.password).then((session) => {
-            console.log(session);
+        Auth.Members.SaveProfile(this._form.value.last_name, this._form.value.first_name, this._form.value.patronymic, this._form.value.birthdate, this._form.value.gender).then((session) => {
+            this.Hide();
         }).catch(response => {
             response.result = JSON.parse(response.result);
-            this._validator.Invalidate('login', response.result.message);
-            this._form.Children('login').Focus();
-            console.log(response);
+            if(response.result.validation && Object.keys(response.result.validation).length > 0) {
+                Object.forEach(response.result.validation, (field, message, index) => {
+                    if(['password', 'confirmation'].indexOf(field) !== -1) {
+                        field = 'pass';
+                    }
+                    this._validator.Invalidate(field, message);
+                    if(index === 0) {
+                        this._form.FindField(field).Focus();
+                    }
+                });
+            }
+            else {
+                this._validator.Invalidate('last_name', response.result.message);
+                this._form.Children('last_name').Focus();
+            }
         });
 
     }

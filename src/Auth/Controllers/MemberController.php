@@ -411,8 +411,8 @@ class MemberController extends WebController
         }
         
         $payloadArray = $payload->ToArray();
-        $firstName = $payloadArray['firstName'] ?? $post->firstName;
-        $lastName = $payloadArray['lastName'] ?? $post->lastName;
+        $firstName = $payloadArray['first_name'] ?? $post->first_name;
+        $lastName = $payloadArray['last_name'] ?? $post->last_name;
         $patronymic = $payloadArray['patronymic'] ?? $post->patronymic;
         $gender = $payloadArray['gender'] ?? $post->gender;
         $birthdate = $payloadArray['birthdate'] ?? $post->birthdate;
