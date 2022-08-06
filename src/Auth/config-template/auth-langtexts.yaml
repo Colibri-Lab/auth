@@ -380,4 +380,8 @@ auth-storages-confirmations-fields-verified-desc:
   ru: Верифицирован
 auth-storages-confirmations-fields-verified-note:
   ru: Отметка об успешной верификации
+auth-errors-member-account-not-exists:
+  ru: Учетная запись не найдена
+auth-errors-member-invalid-creds:
+  ru: Некорректные учетные данные
 ...
