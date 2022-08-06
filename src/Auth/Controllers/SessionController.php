@@ -60,7 +60,7 @@ class SessionController extends WebController
 
         $session = Sessions::LoadFromRequest();
         if($session->member) {
-            return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-memberallreadylogged;Member is allready logged on}', 'code' => 403]);
+            return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-session-allreadylogged;Пользователь уже залогинен}', 'code' => 403]);
         }
 
         
@@ -69,7 +69,7 @@ class SessionController extends WebController
         $password = $payloadArray['password'] ?? $post->password;
 
         if(!$login || !$password) {
-            return $this->Finish(400, 'Bad Request', ['message' => 'Invalid data in request', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-session-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
         }
 
         $member = Members::LoadByEmail($login);
@@ -78,12 +78,12 @@ class SessionController extends WebController
         }
 
         if(!$member || $member->blocked) {
-            return $this->Finish(403, 'Forbidden', ['message' => 'Account does not exists', 'code' => 403]);
+            return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-account-not-exists;Учетная запись не найдена}', 'code' => 403]);
         }
 
 
         if(!$member->Authorize($password)) {
-            return $this->Finish(403, 'Forbidden', ['message' => 'Invalid credentials', 'code' => 403]);
+            return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-invalid-creds;Некорректные учетные данные}', 'code' => 403]);
         }
 
         $session->member = $member->token;
@@ -137,7 +137,7 @@ class SessionController extends WebController
         
         $session = Sessions::LoadFromRequest();
         if(!$session->member) {
-            return $this->Finish(403, 'Forbidden', ['message' => 'Member is not logged on', 'code' => 403]);
+            return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-session-notlogged;Пользователь не залогинен}', 'code' => 403]);
         }
 
         $sessions = Sessions::LoadByMember($session->member);
