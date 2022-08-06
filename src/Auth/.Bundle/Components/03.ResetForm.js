@@ -193,7 +193,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                                 },
                                 {
                                     message: '#{auth-resetform-confirmation-validation4;Пароли должны совпадать}',
-                                    method: '(field, validator) => field.value == validator.form.value.password'
+                                    method: '(field, validator) => field.value == validator.form.value.pass.password'
                                 }
                             ]                  
                         },

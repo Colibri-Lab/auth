@@ -60,7 +60,7 @@ class SessionController extends WebController
 
         $session = Sessions::LoadFromRequest();
         if($session->member) {
-            return $this->Finish(403, 'Forbidden', ['message' => 'Member is allready logged on', 'code' => 403]);
+            return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-memberallreadylogged;Member is allready logged on}', 'code' => 403]);
         }
 
         

@@ -89,19 +89,19 @@ class MemberController extends WebController
 
         if(Members::LoadByEmail($email) !== null) {
             return $this->Finish(400, 'Bad Request', [
-                'message' => 'Member with this email allready exists', 
+                'message' => '#{auth-errors-member-with-email-exists;Пользователь с таким email-ом существует}', 
                 'code' => 400,
                 'validation' => [
-                    'email' => 'Member with this email allready exists'
+                    'email' => '#{auth-errors-member-with-email-exists;Пользователь с таким email-ом существует}'
                 ]
             ]);
         }
         if(Members::LoadByPhone($phone) !== null) {
             return $this->Finish(400, 'Bad Request', [
-                'message' => 'Member with this phone allready exists', 
+                'message' => '#{auth-errors-member-with-phone-exists;Пользователь с таким телефоном существует}', 
                 'code' => 400,
                 'validation' => [
-                    'phone' => 'Member with this phone allready exists'
+                    'phone' => '#{auth-errors-member-with-phone-exists;Пользователь с таким телефоном существует}'
                 ]
             ]);
         }
