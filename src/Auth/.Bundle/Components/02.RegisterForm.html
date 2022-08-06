@@ -120,17 +120,7 @@
                         component: 'Object',
                         desc: '#{auth-registerform-fio-desc;Личные данные}',
                         params: {
-                            vertical: true,
-                            validate: [
-                                {
-                                    message: '#{auth-registerform-fio-validation1;Пожалуйста, введите ваше имя}',
-                                    method: '(field, validator) => !!field.value.first_name'
-                                },
-                                {
-                                    message: '#{auth-registerform-fio-validation2;Пожалуйста, введите фамилию}',
-                                    method: '(field, validator) => !!field.value.last_name'
-                                }
-                            ]
+                            vertical: true
                         },
                         fields: {
                             last_name: {
@@ -172,7 +162,7 @@
                                 placeholder: '#{auth-registerform-fio-patronymic-placeholder;Например: Иванович}',
                                 params: {
                                     required: true,
-                                    readonly: false                        
+                                    readonly: false           
                                 },
                                 attrs: {
                                     width: 480
@@ -209,8 +199,24 @@
                         attrs: {
                             width: 480
                         }
+                    },
+                    aggreenment: {
+                        component: 'Checkbox',
+                        placeholder: '#{auth-registerform-aggreenment-placeholder;Я соглашаюсь с условиями и даю согласие на обработку персональных данных}',
+                        params: {
+                            required: true,
+                            readonly: false,
+                            validate: [
+                                {
+                                    message: '#{auth-registerform-aggreenment-validation1;Пожалуйста, введите ваше имя}',
+                                    method: '(field, validator) => !!field.value'
+                                }
+                            ]              
+                        },
+                        attrs: {
+                            width: 480
+                        }
                     }
-                    
                 }
             </fields>
         </Forms.Form>

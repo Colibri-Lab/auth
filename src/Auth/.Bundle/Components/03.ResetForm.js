@@ -30,7 +30,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                     ]
                 },
                 attrs: {
-                    width: 450
+                    width: 480
                 }
             },
             phone: {
@@ -49,7 +49,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                     ]
                 },
                 attrs: {
-                    width: 250
+                    width: 480
                 }
             }
         };
@@ -97,7 +97,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                     ]
                 },
                 attrs: {
-                    width: 450
+                    width: 480
                 }
             },
             phone: {
@@ -116,55 +116,37 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                     ]
                 },
                 attrs: {
-                    width: 250
+                    width: 480
                 }
             },
             code: {
                 component: 'Text',
                 desc: '#{auth-resetform-code-desc;Код восстановления}',
+                placeholder: '#{auth-resetform-code-placeholder;Введите код полученный на электронную почту}',
                 params: {
                     required: true,
                     readonly: false
                 },
                 attrs: {
-                    width: 250
+                    width: 480
                 }
             },
             pass: {
                 component: 'Object',
                 desc: '#{auth-resetform-pass-desc;Пароль}',
                 params: {
-                    merged: true,
-                    validate: [
-                        {
-                            message: '#{auth-resetform-password-validation1;Пожалуйста, введите пароль}',
-                            method: '(field, validator) => !!field.value.password'
-                        },
-                        {
-                            message: '#{auth-resetform-password-validation2;Пожалуйста, повторите пароль}',
-                            method: '(field, validator) => !!field.value.password'
-                        },
-                        {
-                            message: '#{auth-resetform-password-validation3;Пароль не соответствует требованиям}',
-                            method: '(field, validator) => validator.form.FindField("pass/password").CalcPasswordStrength() > 60'
-                        },
-                        {
-                            message: '#{auth-resetform-confirmation-validation4;Пароли должны совпадать}',
-                            method: '(field, validator) => field.value.password == field.value.confirmation'
-                        }
-                    ]
+                    vertical: true,
                 },
                 fields: {
                     password: {
                         component: 'Password',
-                        placeholder: '********',
-                        desc: '#{auth-resetform-password-desc;Пароль}',
+                        placeholder: '#{auth-resetform-password-placeholder;Придумайте пароль}',
+                        /* desc: '#{auth-resetform-password-desc;Пароль}', */
                         params: {
                             required: true,
                             readonly: false,
-                            icon: App.Modules.Auth.Icons.PasswordIcon,
                             tip: {
-                                parent: 'pass',
+                                orientation: [Colibri.UI.ToolTip.LT, Colibri.UI.ToolTip.LB],
                                 text: '#{auth-resetform-password-tip-text;Придумайте пароль, который сложно подобрать}',
                                 success: '#{auth-resetform-password-tip-success;Пароль соотвествует требованиям}',
                                 error: '#{auth-resetform-password-tip-error;Пароль не соответствует требованиям}',
@@ -181,22 +163,42 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                             requirements: {
                                 digits: 8,
                                 strength: 60
-                            }
+                            },
+                            validate: [
+                                {
+                                    message: '#{auth-resetform-password-validation1;Пожалуйста, введите пароль}',
+                                    method: '(field, validator) => !!field.value'
+                                },
+                                {
+                                    message: '#{auth-resetform-password-validation3;Пароль не соответствует требованиям}',
+                                    method: '(field, validator) => validator.form.FindField("pass/password").CalcPasswordStrength() > 60'
+                                }
+                            ]
                         },
                         attrs: {
-                            width: 345
+                            width: 480
                         }
                     },
                     confirmation: {
                         component: 'Password',
-                        placeholder: '********',
-                        desc: '#{auth-resetform-confirmation-desc;Повторите пароль}',
+                        placeholder: '#{auth-resetform-confirmation-placeholder;Повторите пароль}',
+                        /* desc: '#{auth-resetform-confirmation-desc;Повторите пароль}', */
                         params: {
                             required: true,
-                            readonly: false                    
+                            readonly: false,
+                            validate: [
+                                {
+                                    message: '#{auth-resetform-password-validation2;Пожалуйста, повторите пароль}',
+                                    method: '(field, validator) => !!field.value'
+                                },
+                                {
+                                    message: '#{auth-resetform-confirmation-validation4;Пароли должны совпадать}',
+                                    method: '(field, validator) => field.value == validator.form.value.password'
+                                }
+                            ]                  
                         },
                         attrs: {
-                            width: 345
+                            width: 480
                         }
                     } 
                 }

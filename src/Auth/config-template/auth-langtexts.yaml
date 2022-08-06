@@ -217,4 +217,16 @@ auth-registerform-confirmation-placeholder:
   ru: Повторите пароль
 auth-login-register-text:
   ru: Уже есть аккаунт?
+auth-registerform-aggreenment-placeholder:
+  ru: Я соглашаюсь с условиями и даю согласие на обработку персональных данных
+auth-registerform-aggreenment-validation1:
+  ru: Пожалуйста, введите ваше имя
+auth-back-button:
+  ru: Назд
+auth-resetform-password-placeholder:
+  ru: Придумайте пароль
+auth-resetform-confirmation-placeholder:
+  ru: Повторите пароль
+auth-resetform-code-placeholder:
+  ru: Введите код полученный на электронную почту
 ...
