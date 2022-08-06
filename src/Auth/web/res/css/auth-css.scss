@@ -4,13 +4,20 @@
     @if variable-exists($name: auth-form-background-color) {
         background: $auth-form-background-color;
     }    
+
     border-radius: 20px;
     @if variable-exists($name: auth-form-radius) {
         border-radius: $auth-form-radius;
     }
-    padding: 55px 90px;
+
+    padding: 55px 60px;
     @if variable-exists($name: auth-form-padding) {
         padding: $auth-form-padding;
+    }
+
+    box-shadow: 0px 0px 20px rgba(196, 196, 196, 0.3);
+    @if variable-exists($name: auth-form-box-shadow) {
+        box-shadow: $auth-form-box-shadow;
     }
 
     &.app-component-shown {
@@ -25,13 +32,15 @@
 
     [data-object-name="form-container"] {
         width: 100%;
-        .app-form-component {
+        .app-form-component { 
             width: 100%;
                     
         }
     }
 
-    [data-object-name="button-container"] {
+    [data-object-name="button-container"], [data-object-name="button-container2"] {
+        align-items: center;
+        justify-content: center;
         gap: 20px;
     }
 

@@ -23,7 +23,7 @@
                             ]
                         },
                         attrs: {
-                            width: 450
+                            width: 480
                         }
                     },
                     phone: {
@@ -41,44 +41,25 @@
                             ]
                         },
                         attrs: {
-                            width: 250
+                            width: 480
                         }
                     },
                     pass: {
                         component: 'Object',
                         desc: '#{auth-registerform-pass-desc;Пароль}',
                         params: {
-                            merged: true,
-                            validate: [
-                                {
-                                    message: '#{auth-registerform-password-validation1;Пожалуйста, введите пароль}',
-                                    method: '(field, validator) => !!field.value.password'
-                                },
-                                {
-                                    message: '#{auth-registerform-password-validation2;Пожалуйста, повторите пароль}',
-                                    method: '(field, validator) => !!field.value.password'
-                                },
-                                {
-                                    message: '#{auth-registerform-password-validation3;Пароль не соответствует требованиям}',
-                                    method: '(field, validator) => validator.form.FindField("pass/password").CalcPasswordStrength() > 60'
-                                },
-                                {
-                                    message: '#{auth-registerform-confirmation-validation4;Пароли должны совпадать}',
-                                    method: '(field, validator) => field.value.password == field.value.confirmation'
-                                }
-                            ]
+                            vertical: true,
                         },
                         fields: {
                             password: {
                                 component: 'Password',
-                                placeholder: '********',
-                                desc: '#{auth-registerform-password-desc;Пароль}',
+                                placeholder: '#{auth-registerform-password-placeholder;Придумайте пароль}',
+                                /* desc: '#{auth-registerform-password-desc;Пароль}', */
                                 params: {
                                     required: true,
                                     readonly: false,
-                                    icon: App.Modules.Auth.Icons.PasswordIcon,
                                     tip: {
-                                        parent: 'pass',
+                                        orientation: [Colibri.UI.ToolTip.LT, Colibri.UI.ToolTip.LB],
                                         text: '#{auth-registerform-password-tip-text;Придумайте пароль, который сложно подобрать}',
                                         success: '#{auth-registerform-password-tip-success;Пароль соотвествует требованиям}',
                                         error: '#{auth-registerform-password-tip-error;Пароль не соответствует требованиям}',
@@ -95,31 +76,51 @@
                                     requirements: {
                                         digits: 8,
                                         strength: 60
-                                    }
+                                    },
+                                    validate: [
+                                        {
+                                            message: '#{auth-registerform-password-validation1;Пожалуйста, введите пароль}',
+                                            method: '(field, validator) => !!field.value'
+                                        },
+                                        {
+                                            message: '#{auth-registerform-password-validation3;Пароль не соответствует требованиям}',
+                                            method: '(field, validator) => validator.form.FindField("pass/password").CalcPasswordStrength() > 60'
+                                        }
+                                    ]
                                 },
                                 attrs: {
-                                    width: 345
+                                    width: 480
                                 }
                             },
                             confirmation: {
                                 component: 'Password',
-                                placeholder: '********',
-                                desc: '#{auth-registerform-confirmation-desc;Повторите пароль}',
+                                placeholder: '#{auth-registerform-confirmation-placeholder;Повторите пароль}',
+                                /* desc: '#{auth-registerform-confirmation-desc;Повторите пароль}', */
                                 params: {
                                     required: true,
-                                    readonly: false                    
+                                    readonly: false,
+                                    validate: [
+                                        {
+                                            message: '#{auth-registerform-password-validation2;Пожалуйста, повторите пароль}',
+                                            method: '(field, validator) => !!field.value'
+                                        },
+                                        {
+                                            message: '#{auth-registerform-confirmation-validation4;Пароли должны совпадать}',
+                                            method: '(field, validator) => field.value == validator.form.value.password'
+                                        }
+                                    ]                  
                                 },
                                 attrs: {
-                                    width: 345
+                                    width: 480
                                 }
                             } 
                         }
                     },
                     fio: {
                         component: 'Object',
-                        desc: '#{auth-registerform-fio-desc;ФИО}',
+                        desc: '#{auth-registerform-fio-desc;Личные данные}',
                         params: {
-                            merged: true,
+                            vertical: true,
                             validate: [
                                 {
                                     message: '#{auth-registerform-fio-validation1;Пожалуйста, введите ваше имя}',
@@ -134,35 +135,47 @@
                         fields: {
                             last_name: {
                                 component: 'Text',
-                                desc: '#{auth-registerform-fio-last_name-placeholder;Например: Иванов}',
+                                placeholder: '#{auth-registerform-fio-last_name-placeholder;Например: Иванов}',
                                 params: {
                                     required: true,
-                                    readonly: false                        
+                                    readonly: false,
+                                    validate: [
+                                        {
+                                            message: '#{auth-registerform-fio-validation1;Пожалуйста, введите ваше имя}',
+                                            method: '(field, validator) => !!field.value'
+                                        }
+                                    ]                    
                                 },
                                 attrs: {
-                                    width: 345
+                                    width: 480
                                 }
                             },
                             first_name: {
                                 component: 'Text',
-                                desc: '#{auth-registerform-fio-first_name-placeholder;Например: Иван}',
+                                placeholder: '#{auth-registerform-fio-first_name-placeholder;Например: Иван}',
                                 params: {
                                     required: true,
-                                    readonly: false                  
+                                    readonly: false,
+                                    validate: [
+                                        {
+                                            message: '#{auth-registerform-fio-validation2;Пожалуйста, введите фамилию}',
+                                            method: '(field, validator) => !!field.value'
+                                        }
+                                    ]               
                                 },
                                 attrs: {
-                                    width: 345
+                                    width: 480
                                 }
                             },
                             patronymic: {
                                 component: 'Text',
-                                desc: '#{auth-registerform-fio-patronymic-placeholder;Например: Иванович}',
+                                placeholder: '#{auth-registerform-fio-patronymic-placeholder;Например: Иванович}',
                                 params: {
                                     required: true,
                                     readonly: false                        
                                 },
                                 attrs: {
-                                    width: 345
+                                    width: 480
                                 }
                             } 
                         }
@@ -175,7 +188,7 @@
                             readonly: true
                         },
                         attrs: {
-                            width: 200
+                            width: 480
                         }
                     },
                     gender: {
@@ -194,7 +207,7 @@
                             {value: 'female', title: '#{auth-registerform-gender-values-female;Женский}'},
                         ],
                         attrs: {
-                            width: 180
+                            width: 480
                         }
                     }
                     
@@ -204,7 +217,10 @@
     </Pane>
     <FlexBox name="button-container" shown="true">            
         <SuccessButton name="register" shown="true" enabled="false" tabIndex="true">#{auth-register-button;Регистрация}</SuccessButton>
-        <OutlineBlueButton name="login" shown="true" enabled="true" tabIndex="true">#{auth-email-button;Вход}</OutlineBlueButton>
+    </FlexBox>
+    <FlexBox shown="true" name="button-container2">
+        <TextSpan shown="true">#{auth-login-register-text;Уже есть аккаунт?}</TextSpan>
+        <Link name="login" shown="true" enabled="true" tabIndex="true">#{auth-login-button;Вход}</Link>
     </FlexBox>
 
 </div>

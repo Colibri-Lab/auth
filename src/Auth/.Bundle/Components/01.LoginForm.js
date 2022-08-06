@@ -8,10 +8,10 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         this.AddClass('app-auth-login-form-component'); 
 
         this._form = this.Children('form-container/form');
-        this._validator = new Colibri.UI.FormValidator(this._form);
+        this._validator = new Colibri.UI.FormValidator(this._form); 
 
         this._loginButton = this.Children('button-container/login');
-        this._registerButton = this.Children('button-container/register');
+        this._registerButton = this.Children('button-container2/register');
         this._resetButton = this.Children('links-container/reset');
 
         this._validator.AddHandler('Validated', (event, args) => {

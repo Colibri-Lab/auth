@@ -10,7 +10,7 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this._form = this.Children('form-container/form');
         this._validator = new Colibri.UI.FormValidator(this._form);
 
-        this._loginButton = this.Children('button-container/login');
+        this._loginButton = this.Children('button-container2/login');
         this._registerButton = this.Children('button-container/register');
 
         this._loginButton.AddHandler('Clicked', (event, args) => this.Dispatch('LoginButtonClicked', args));
@@ -44,10 +44,6 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
             response.result = JSON.parse(response.result);
             if(response.result.validation && Object.keys(response.result.validation).length > 0) {
                 Object.forEach(response.result.validation, (field, message, index) => {
-                    if(['password', 'confirmation'].indexOf(field) !== -1) {
-                        field = 'pass';
-                    }
-
                     this._validator.Invalidate(field, message);
                     if(index === 0) {
                         this._form.FindField(field).Focus();
