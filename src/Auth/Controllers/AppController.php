@@ -6,21 +6,11 @@ namespace App\Modules\Auth\Controllers;
 
 
 use Colibri\App;
-use Colibri\Events\EventsContainer;
-use Colibri\IO\FileSystem\File;
-use Colibri\Utils\Cache\Bundle;
-use Colibri\Utils\Debug;
-use Colibri\Utils\ExtendedObject;
 use Colibri\Web\RequestCollection;
 use Colibri\Web\Controller as WebController;
-use Colibri\Web\Templates\PhpTemplate;
-use Colibri\Web\View;
-use ScssPhp\ScssPhp\Compiler;
-use ScssPhp\ScssPhp\OutputStyle;
 use Colibri\Web\PayloadCopy;
 use App\Modules\Auth\Module;
 use Colibri\Data\Storages\Storages;
-use Colibri\Common\NoLangHelper;
 
 class AppController extends WebController
 {
@@ -52,14 +42,6 @@ class AppController extends WebController
         $memberForm['fields']['phone']['note'] = '';
         $memberForm['fields']['password']['note'] = '';
         
-
-        if(App::$moduleManager->lang) {
-            $memberForm = App::$moduleManager->lang->ParseArray($memberForm);
-        }
-        else {
-            $memberForm = NoLangHelper::ParseArray($memberForm);
-        }
-
         $settings['forms']['register'] = $memberForm;
 
         // финишируем контроллер
