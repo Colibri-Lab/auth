@@ -68,8 +68,8 @@ class Member extends BaseModelDataRow {
 
     public function setPropertyPassword(string $value): void
     {
-        if(($strength = self::CheckPasswordStrength($this->email, $value)) < 60) {
-            throw new InvalidArgumentException('Password strength must be at least 60%, you got ' . $strength . '%');
+        if(($strength = self::CheckPasswordStrength($this->email, $value)) < 40) {
+            throw new InvalidArgumentException('#{auth-errors-member-password-strength-not-match;Пароль должен быть не менее 40% сложности, у вас }' . $strength . '%');
         }
         $this->_data['members_password'] = md5(Crypt::Encrypt(self::PasswordKey, $value));
     }
