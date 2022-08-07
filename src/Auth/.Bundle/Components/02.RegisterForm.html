@@ -175,7 +175,13 @@
                         desc: '#{auth-registerform-birtdate-desc;Дата рождения}',
                         params: {
                             required: false,
-                            readonly: true
+                            readonly: true,
+                            validate: [
+                                {
+                                    message: '#{auth-registerform-birthdate-validation1;Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние}',
+                                    method: '(field, validator) => !field.value || field.value.toDate().Diff(new Date()) > 18 * 365 * 86400'
+                                }
+                            ]  
                         },
                         attrs: {
                             width: 480
@@ -208,7 +214,7 @@
                             readonly: false,
                             validate: [
                                 {
-                                    message: '#{auth-registerform-aggreenment-validation1;Пожалуйста, введите ваше имя}',
+                                    message: '#{auth-registerform-aggreenment-validation1;Вам необходимо подтвердить соглашение на обработку персональных данных и согласие на условия}',
                                     method: '(field, validator) => !!field.value'
                                 }
                             ]              

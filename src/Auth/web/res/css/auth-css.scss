@@ -46,6 +46,13 @@
 
 }
 
+.app-component-window-content {
+    .app-ui-component.app-auth-form-component {
+        border: 0px;
+        box-shadow: none;
+    }
+}
+
 .password-progress {
     width: 100%;
     background: #F3F2F2;

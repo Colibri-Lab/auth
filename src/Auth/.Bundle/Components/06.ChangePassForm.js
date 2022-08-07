@@ -37,7 +37,7 @@ App.Modules.Auth.Components.ChangePassForm = class extends Colibri.UI.Component 
         Auth.Members.ChangePassword(this._form.value.original, this._form.value.password, this._form.value.confirmation).then((session) => {
             this.Hide();
         }).catch(response => {
-            response.result = JSON.parse(response.result);
+            response.result = JSON.parse(response.result); 
             if(response.result.validation && Object.keys(response.result.validation).length > 0) {
                 Object.forEach(response.result.validation, (field, message, index) => {
                     if(['password', 'confirmation'].indexOf(field) !== -1) {

@@ -19,7 +19,7 @@
                             ]               
                         },
                         attrs: {
-                            width: 345
+                            width: 480
                         }
                     },
                     first_name: {
@@ -37,7 +37,7 @@
                             ]                  
                         },
                         attrs: {
-                            width: 345
+                            width: 480
                         }
                     },
                     patronymic: {
@@ -49,7 +49,7 @@
                             readonly: false                        
                         },
                         attrs: {
-                            width: 345
+                            width: 480
                         }
                     },
                     birthdate: {
@@ -57,10 +57,16 @@
                         desc: '#{auth-profileform-birtdate-desc;Дата рождения}',
                         params: {
                             required: false,
-                            readonly: true
+                            readonly: true,
+                            validate: [
+                                {
+                                    message: '#{auth-profileform-birthdate-validation1;Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние}',
+                                    method: '(field, validator) => !field.value || field.value.toDate().Diff(new Date()) > 18 * 365 * 86400'
+                                }
+                            ]  
                         },
                         attrs: {
-                            width: 200
+                            width: 480
                         }
                     },
                     gender: {
@@ -79,7 +85,7 @@
                             {value: 'female', title: '#{auth-profileform-gender-values-female;Женский}'},
                         ],
                         attrs: {
-                            width: 180
+                            width: 480
                         }
                     }
                 }
