@@ -189,6 +189,24 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
         });
     }
 
+    BeginIdentityUpdateProcess(value, property = 'email') {
+        return new Promise((resolve, reject) => {
+            this.Call('Member', 'BeginIdentityUpdateProcess', {property: property, value: value}, {'X-AppToken': Auth.appToken}).then((response) => {
+                // Auth.Store.Set('auth.session', response.result.session);
+                resolve(response.result.session);
+            }).catch(response => reject(response));
+        });
+    }
+
+    ChangeIdentity(code, value, property = 'email') {
+        return new Promise((resolve, reject) => {
+            this.Call('Member', 'ChangeIdentity', {property: property, code: code, value: value}, {'X-AppToken': Auth.appToken}).then((response) => {
+                Auth.Store.Set('auth.session', response.result.session);
+                resolve(response.result.session);
+            }).catch(response => reject(response));
+        });
+    }
+
     SaveProfile(last_name, first_name, patronymic = null, birthdate = null, gender = null) {
         return new Promise((resolve, reject) => {
             this.Call('Member', 'UpdateProfile', {last_name: last_name, first_name: first_name, patronymic: patronymic, birthdate: birthdate, gender: gender}, {'X-AppToken': Auth.appToken}).then((response) => {

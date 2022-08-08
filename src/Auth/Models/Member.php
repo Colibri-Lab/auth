@@ -122,7 +122,7 @@ class Member extends BaseModelDataRow {
 
     }
 
-    public function SendConfirmationMessage(string $property): bool 
+    public function SendConfirmationMessage(string $property, ?string $value = null): bool 
     {
         if(!in_array($property, [Confirmation::PropertyEmail, Confirmation::PropertyPhone])) {
             return false;
@@ -138,7 +138,7 @@ class Member extends BaseModelDataRow {
         $confirmation->code = RandomizationHelper::Numeric(6);
         $confirmation->Save();
 
-        return $confirmation->Send();
+        return $confirmation->Send($value);
     }
 
     public function SendResetMessage(): bool 

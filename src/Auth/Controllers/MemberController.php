@@ -321,7 +321,7 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-phone-exists;Пользователь с таким телефоном существует}', 'code' => 400]);
         }
 
-        if(!$member->SendConfirmationMessage($property)) {
+        if(!$member->SendConfirmationMessage($property, $value)) {
             return $this->Finish(400, 'Bad Request', [
                 'message' => '#{auth-errors-member-property-send-error;Ошибка отправки сообщения}', 
                 'code' => 400,

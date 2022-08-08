@@ -36,7 +36,7 @@ class Confirmation extends BaseModelDataRow {
 	public const PropertyReset = 'reset';
 	# endregion Consts;
 
-	public function Send(): bool
+	public function Send(?string $value = null): bool
 	{
 		$member = Members::LoadByToken($this->member);
 		if(!$member) {
@@ -49,10 +49,10 @@ class Confirmation extends BaseModelDataRow {
 		$notice = Notices::LoadByName($noticeName);
 		$notice->Apply($memberData);
 		if( (string)$this->property === 'email' ) {
-			return Notices::Send($member->email, $notice);
+			return Notices::Send($value ? $value: $member->email, $notice);
 		}
 		else {
-			return Notices::Send($member->email, $notice);
+			return Notices::Send($value ? $value: $member->email, $notice);
 			// надо отправить SMS
 			// return false;
 		}
