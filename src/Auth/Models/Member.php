@@ -170,6 +170,19 @@ class Member extends BaseModelDataRow {
         return false;
     }
 
+    public function UpdateIdentify(string $property, string $code, string $value): bool
+    {
+        $confirmation = Confirmations::LoadByMember($property, $this->token);
+        if($confirmation && $confirmation->code === $code) {
+            $this->{$property.'_confirmed'} = true;
+            $this->$property = $value;
+            $this->Save();
+            $confirmation->Delete();
+            return true;
+        }
+        return false;
+    }
+
     public function UpdateProfile(string $firstName, string $lastName, string $patronymic, string $gender = null, DateTimeField|string|null $birthdate = null): bool
     {
 

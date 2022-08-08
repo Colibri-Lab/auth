@@ -282,6 +282,66 @@ class MemberController extends WebController
        
     }
 
+    
+    /**
+     * Обновляет идентификационные данные
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function BeginIdentityUpdateProcess(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    {
+        $session = Sessions::LoadFromRequest();
+        if(!$session->member) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+        }
+
+        $member = Members::LoadByToken($session->member);
+        if(!$member) {
+            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+        }
+
+        $payloadArray = $payload->ToArray();
+        $property = $payloadArray['property'] ?? $post->property;
+        $value = $payloadArray['value'] ?? $post->value;
+        
+        if(!$property || !$value) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
+        }
+
+        if( ($property === 'email' && $member->email === $value) || ($property === 'phone' && $member->phone === $value)) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
+        }
+
+        if($property === 'email' && Members::LoadByEmail($value)) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-email-exists;Пользователь с таким email-ом существует}', 'code' => 400]);
+        }
+        else if($property === 'phone' && Members::LoadByPhone($value)) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-phone-exists;Пользователь с таким телефоном существует}', 'code' => 400]);
+        }
+
+        if(!$member->SendConfirmationMessage($property)) {
+            return $this->Finish(400, 'Bad Request', [
+                'message' => '#{auth-errors-member-property-send-error;Ошибка отправки сообщения}', 
+                'code' => 400,
+                'validation' => [
+                    'email' => '#{auth-errors-member-property-send-error;Ошибка отправки сообщения}'
+                ]
+            ]);
+        }
+
+        return $this->Finish(
+            200,
+            'ok',
+            ['session' => $session->ExportForUserInterface()],
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
+        );
+       
+    }
+
     /**
      * Подтверждает свойство
      * @param RequestCollection $get данные GET
@@ -382,6 +442,60 @@ class MemberController extends WebController
 
         if(!$member->ResetPassword($code, $password)) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-reset-error;Невозможно сохранить этот пароль}', 'code' => 400]);
+        }
+
+        return $this->Finish(
+            200,
+            'ok',
+            ['session' => $session->ExportForUserInterface()],
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
+        );
+       
+    }
+
+    /**
+     * Подтверждает свойство
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function ChangeIdentity(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    {
+        $session = Sessions::LoadFromRequest();
+        if(!$session->member) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+        }
+
+        $member = Members::LoadByToken($session->member);
+        if(!$member) {
+            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+        }
+        
+        $payloadArray = $payload->ToArray();
+        $property = $payloadArray['property'] ?? $post->property;
+        $code = $payloadArray['code'] ?? $post->code;
+        $value = $payloadArray['value'] ?? $post->value;
+        
+        if(!$property || !$code || !$value) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
+        }
+
+        if( ($property === 'email' && $member->email === $value) || ($property === 'phone' && $member->phone === $value)) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
+        }
+
+        if($property === 'email' && Members::LoadByEmail($value)) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-email-exists;Пользователь с таким email-ом существует}', 'code' => 400]);
+        }
+        else if($property === 'phone' && Members::LoadByPhone($value)) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-phone-exists;Пользователь с таким телефоном существует}', 'code' => 400]);
+        }
+
+        if(!$member->UpdateIdentify($property, $code, $value)) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-update-error;Невозможно обновить свойство}', 'code' => 400]);
         }
 
         return $this->Finish(
@@ -531,63 +645,6 @@ class MemberController extends WebController
        
     }
 
-    /**
-     * Обновляет идентификационные данные
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
-     * @return object
-     */
-    public function UpdateIdentity(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
-    {
-        $session = Sessions::LoadFromRequest();
-        if(!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
-        }
-
-        $member = Members::LoadByToken($session->member);
-        if(!$member) {
-            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
-        }
-        
-        $payloadArray = $payload->ToArray();
-        $email = $payloadArray['email'] ?? $post->email;
-        $phone = $payloadArray['phone'] ?? $post->phone;
-        
-        if(!$email || !$phone) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
-        }
-
-        if($member->email != $email && Members::LoadByEmail($email)) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-email-exists;Пользователь с таким email-ом существует}', 'code' => 400]);
-        }
-        if($member->email != $email && !$member->email_confirmed) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-email-not-confirmed;Пожалуйста, подтвердите email перед обновлением}', 'code' => 400]);
-        }
-        if($member->phone != $email && Members::LoadByPhone($phone)) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-phone-exists;Пользователь с таким телефоном существует}', 'code' => 400]);
-        }
-        if($member->phone != $phone && !$member->phone_confirmed) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-phone-not-confirmed;Пожалуйста, подтвердите телефон перед обновлением}', 'code' => 400]);
-        }
-
-        if(!$member->UpdateIdentity($email, $phone)) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-error-identity;Не смогли обновить учетные данные}', 'code' => 400]);
-        }
-
-        $session->member = $member->token;
-        $session->Save();
-
-        return $this->Finish(
-            200,
-            'ok',
-            ['session' => $session->ExportForUserInterface()],
-            'utf-8',
-            [], 
-            [ $session->GenerateCookie(true) ]
-        );
-       
-    }
     
     /**
      * Обновляет пароль

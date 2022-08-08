@@ -234,4 +234,6 @@ auth-errors-member-not-logged:
   ru: Пользователь не залогинен
 auth-profileform-birthdate-validation1:
   ru: Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние
+auth-errors-member-confirmation-error:
+  ru: Невозможно подтвердить свойство
 ...
