@@ -63,7 +63,7 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
 
         if(this._form.value.code) {
 
-            Auth.Members.ConfirmProperty(this._form.value.code, this._property).then((session) => {
+            Auth.Members.ChangeIdentity(this._form.value.code, this._property).then((session) => {
                 this._confirming = false;
                 this.Dispatch('PropertyConfirmed', {property: this._property});
             }).catch(response => {
