@@ -236,4 +236,14 @@ auth-profileform-birthdate-validation1:
   ru: Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние
 auth-errors-member-confirmation-error:
   ru: Невозможно подтвердить свойство
+auth-identity-value-desc:
+  ru: Введите код восстановления
+auth-changeidentity-button:
+  ru: Отправить
+auth-changeform-property-validation1:
+  ru: Это поле обязательно для заполнения
+auth-errors-member-property-send-error:
+  ru: Ошибка отправки сообщения
+auth-errors-member-data-incorrect:
+  ru: Неверные данные в запросе
 ...

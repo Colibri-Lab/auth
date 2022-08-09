@@ -1,22 +1,21 @@
 <div ComponentName="App.Modules.Auth.Components.ChangeIdentityForm">
 
     <Pane name="form-container" shown="true">    
-        <Forms.Form name="form1" shown="true" shuffleFieldNames="true">
+        <Forms.Form name="form1" shown="false" shuffleFieldNames="true">
             <fields>
                 {
                     message: {
                         component: 'Label',
                     },
-                    value: {
+                    property: {
                         component: 'Text',
-                        placeholder: '#{auth-identity-value-desc;Введите код восстановления}',
                         params: {
                             required: true,
                             readonly: false,
                             validate: [
                                 {
-                                    message: '#{auth-confirmationform-code-validation1;Пожалуйста, введите эл. адрес}',
-                                    method: '(field, validator) => !!field.value &amp;&amp; field.value.length === 6'
+                                    message: '#{auth-changeform-property-validation1;Это поле обязательно для заполнения}',
+                                    method: '(field, validator) => !!field.value'
                                 }
                             ],
                         },
@@ -55,7 +54,8 @@
         </Forms.Form>
     </Pane>
     <Pane name="timer-container" shown="true">
-        <TextSpan name="timer" shown="true" value="#{auth-confirmation-timer-value;Вы сможете снова запросить код через %s секунд.}" />
+        <SuccessButton name="send" shown="true" enabled="false" tabIndex="true">#{auth-changeidentity-button;Отправить}</SuccessButton>
+        <TextSpan name="timer" shown="false" value="#{auth-confirmation-timer-value;Вы сможете снова запросить код через %s секунд.}" />
         <Link name="request-code-again" shown="false" value="#{auth-confirmation-requestagain;Получить новый код}" />
     </Pane>
 

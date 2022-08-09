@@ -498,6 +498,9 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-update-error;Невозможно обновить свойство}', 'code' => 400]);
         }
 
+        $session->member = $member->token;
+        $session->Save();
+
         return $this->Finish(
             200,
             'ok',
