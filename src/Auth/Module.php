@@ -29,6 +29,8 @@ use Colibri\Utils\Debug;
 use App\Modules\Auth\Controllers\SessionController;
 use App\Modules\Auth\Controllers\MemberController;
 use App\Modules\Auth\Controllers\AppController;
+use App\Modules\Auth\Models\Sessions;
+use App\Modules\Auth\Models\Session;
 
 
 /**
@@ -48,6 +50,8 @@ class Module extends BaseModule
      */
     public static ?Module $instance = null;
 
+    private static ?Session $session = null;
+
     private ?Application $_app = null;
 
     const NeedAuthorization = [
@@ -63,6 +67,8 @@ class Module extends BaseModule
     public function InitializeModule(): void
     {
         self::$instance = $this;
+
+        self::$session = Sessions::LoadFromRequest();
 
         App::$instance->HandleEvent(EventsContainer::RpcGotRequest, function($event, $args) {
             if(isset($args->class) && in_array(trim($args->class, '\\'), self::NeedAuthorization)) {
@@ -100,6 +106,11 @@ class Module extends BaseModule
         //     }
         // });
 
+    }
+
+    public function GetSession(): Session 
+    {
+        return self::$session;   
     }
 
     /**
