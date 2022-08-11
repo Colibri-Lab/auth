@@ -395,4 +395,8 @@ auth-logincontainer-register-title:
   ru: Регистрация
 auth-logincontainer-reset-title:
   ru: Восстановление пароля
+auth-errors-member-invalid-creds:
+  ru: Некорректные учетные данные
+auth-errors-member-account-not-exists:
+  ru: Учетная запись не найдена
 ...
