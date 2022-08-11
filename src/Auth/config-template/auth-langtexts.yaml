@@ -389,4 +389,10 @@ auth-storages-confirmations-fields-verified-desc:
   ru: Верифицирован
 auth-storages-confirmations-fields-verified-note:
   ru: Отметка об успешной верификации
+auth-logincontainer-login-title:
+  ru: Вход в систему
+auth-logincontainer-register-title:
+  ru: Регистрация
+auth-logincontainer-reset-title:
+  ru: Восстановление пароля
 ...
