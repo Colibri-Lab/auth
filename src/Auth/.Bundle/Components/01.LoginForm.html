@@ -7,13 +7,12 @@
                 {
                     login: {
                         component: 'Text',
-                        placeholder: 'name@domain.com',
                         desc: '#{auth-loginform-email-desc;Электронная почта}',
                         params: {
                             required: true,
                             readonly: false,
                             validate: [
-                                {
+                                { 
                                     message: '#{auth-loginform-login-validation1;Пожалуйста, введите эл. адрес}',
                                     method: '(field, validator) => !!field.value'
                                 },
@@ -21,8 +20,7 @@
                                     message: '#{auth-loginform-login-validation2;Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!}',
                                     method: '(field, validator) => field.value.isEmail()'
                                 }
-                            ],
-                            icon: App.Modules.Auth.Icons.UserIcon
+                            ]
                         },
                         attrs: {
                             width: 480
@@ -30,7 +28,6 @@
                     },
                     password: {
                         component: 'Password',
-                        placeholder: '********',
                         desc: '#{auth-loginform-password-desc;Пароль}',
                         params: {
                             required: true,
@@ -41,7 +38,6 @@
                                     method: '(field, validator) => !!field.value'
                                 }
                             ],
-                            icon: App.Modules.Auth.Icons.PasswordIcon,
                             eyeicon: true                        
                         },
                         attrs: {

@@ -7,7 +7,6 @@
                 {
                     email: {
                         component: 'Text',
-                        placeholder: 'name@domain.com',
                         desc: '#{auth-registerform-email-desc;Электронная почта}',
                         params: {
                             required: true,
@@ -29,7 +28,6 @@
                     },
                     phone: {
                         component: 'Text',
-                        placeholder: '79999999999',
                         desc: '#{auth-registerform-phone-desc;Телефон}',
                         params: {
                             required: true,
@@ -54,7 +52,7 @@
                         fields: {
                             password: {
                                 component: 'Password',
-                                placeholder: '#{auth-registerform-password-placeholder;Придумайте пароль}',
+                                desc: '#{auth-registerform-password-placeholder;Придумайте пароль}',
                                 /* desc: '#{auth-registerform-password-desc;Пароль}', */
                                 params: {
                                     required: true,
@@ -96,7 +94,7 @@
                             },
                             confirmation: {
                                 component: 'Password',
-                                placeholder: '#{auth-registerform-confirmation-placeholder;Повторите пароль}',
+                                desc: '#{auth-registerform-confirmation-placeholder;Повторите пароль}',
                                 /* desc: '#{auth-registerform-confirmation-desc;Повторите пароль}', */
                                 params: {
                                     required: true,
@@ -128,7 +126,7 @@
                         fields: {
                             last_name: {
                                 component: 'Text',
-                                placeholder: '#{auth-registerform-fio-last_name-placeholder;Например: Иванов}',
+                                desc: '#{auth-registerform-fio-last_name-placeholder;Фамилия}',
                                 params: {
                                     required: true,
                                     readonly: false,
@@ -145,7 +143,7 @@
                             },
                             first_name: {
                                 component: 'Text',
-                                placeholder: '#{auth-registerform-fio-first_name-placeholder;Например: Иван}',
+                                desc: '#{auth-registerform-fio-first_name-placeholder;Имя}',
                                 params: {
                                     required: true,
                                     readonly: false,
@@ -162,7 +160,7 @@
                             },
                             patronymic: {
                                 component: 'Text',
-                                placeholder: '#{auth-registerform-fio-patronymic-placeholder;Например: Иванович}',
+                                desc: '#{auth-registerform-fio-patronymic-placeholder;Отчество}',
                                 params: {
                                     required: true,
                                     readonly: false           
