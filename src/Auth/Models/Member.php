@@ -107,8 +107,8 @@ class Member extends BaseModelDataRow {
         ];
 
         $variationCount = 0;
-        foreach ($variations as $check) {
-            $variationCount += (($variations[$check] ?? false) === true) ? 1 : 0;
+        foreach ($variations as $check => $v) {
+            $variationCount += (($variations[$check] ?? false) === 1) ? 1 : 0;
         }
         $score += ($variationCount - 1) * 10;
 

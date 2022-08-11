@@ -399,4 +399,6 @@ auth-errors-member-invalid-creds:
   ru: Некорректные учетные данные
 auth-errors-member-account-not-exists:
   ru: Учетная запись не найдена
+auth-errors-member-reset-error:
+  ru: Невозможно сохранить этот пароль
 ...
