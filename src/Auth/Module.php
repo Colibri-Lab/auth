@@ -68,7 +68,6 @@ class Module extends BaseModule
     {
         self::$instance = $this;
 
-        self::$session = Sessions::LoadFromRequest();
 
         App::$instance->HandleEvent(EventsContainer::RpcGotRequest, function($event, $args) {
             if(isset($args->class) && in_array(trim($args->class, '\\'), self::NeedAuthorization)) {
@@ -110,6 +109,9 @@ class Module extends BaseModule
 
     public function GetSession(): Session 
     {
+        if(!self::$session) {
+            self::$session = Sessions::LoadFromRequest();
+        }
         return self::$session;   
     }
 
