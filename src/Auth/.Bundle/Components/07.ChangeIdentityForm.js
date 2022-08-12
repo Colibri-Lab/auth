@@ -10,10 +10,10 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
         this._changing = false;
 
         this._form1 = this.Children('form-container/form1');
-        this._validator1 = new App.Modules.Auth.Forms.Validator(this._form1);
+        this._validator1 = new Colibri.UI.SimpleFormValidator(this._form1);
 
         this._form2 = this.Children('form-container/form2');
-        this._validator2 = new App.Modules.Auth.Forms.Validator(this._form2);
+        this._validator2 = new Colibri.UI.SimpleFormValidator(this._form2);
 
         this._send = this.Children('timer-container/send');
 

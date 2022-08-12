@@ -8,7 +8,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
         this.AddClass('app-auth-reset-form-component'); 
 
         this._form = this.Children('form-container/form');
-        this._validator = new App.Modules.Auth.Forms.Validator(this._form);
+        this._validator = new Colibri.UI.SimpleFormValidator(this._form);
 
         this._form.fields = {
             email: {

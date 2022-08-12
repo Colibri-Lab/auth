@@ -9,7 +9,7 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         this._property = 'none';
 
         this._form = this.Children('form-container/form');
-        this._validator = new App.Modules.Auth.Forms.Validator(this._form);
+        this._validator = new Colibri.UI.SimpleFormValidator(this._form);
 
         this._timer = this.Children('timer-container/timer');
         this._timerTemplate = this._timer.value;

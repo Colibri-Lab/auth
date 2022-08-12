@@ -1,1 +1,0 @@
-App.Modules.Auth.Forms = class {};
