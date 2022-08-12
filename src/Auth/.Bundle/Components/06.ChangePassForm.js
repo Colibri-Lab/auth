@@ -8,11 +8,11 @@ App.Modules.Auth.Components.ChangePassForm = class extends Colibri.UI.Component 
         this.AddClass('app-auth-changepass-form-component'); 
 
         this._form = this.Children('form-container/form');
-        this._validator = new Colibri.UI.FormValidator(this._form);
+        this._validator = new App.Modules.Auth.Forms.Validator(this._form);
 
         this._saveButton = this.Children('button-container/save');
-        this._validator.AddHandler('Validated', (event, args) => {
-            this._saveButton.enabled = this._validator.Validate(true, false);
+        this._form.AddHandler('Changed', (event, args) => {
+            this._saveButton.enabled = this._validator.Status();
         });
         
         this._saveButton.AddHandler('Clicked', (event, args) => this.__profileFormSaveButtonClicked(event, args));
@@ -34,6 +34,10 @@ App.Modules.Auth.Components.ChangePassForm = class extends Colibri.UI.Component 
 
     __profileFormSaveButtonClicked(event, args) {
 
+        if(!this._validator.ValidateAll()) {
+            return;
+        }
+        
         Auth.Members.ChangePassword(this._form.value.original, this._form.value.password, this._form.value.confirmation).then((session) => {
             this.Hide();
         }).catch(response => {

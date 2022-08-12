@@ -6,12 +6,10 @@
                 {
                     original: {
                         component: 'Password',
-                        placeholder: '********',
                         desc: '#{auth-changepassform-original-desc;Текущий пароль}',
                         params: {
                             required: true,
                             readonly: false,
-                            icon: App.Modules.Auth.Icons.PasswordIcon
                         },
                         attrs: {
                             width: 480
@@ -19,12 +17,10 @@
                     },
                     password: {
                         component: 'Password',
-                        placeholder: '********',
                         desc: '#{auth-changepassform-password-desc;Новый пароль}',
                         params: {
                             required: true,
                             readonly: false,
-                            icon: App.Modules.Auth.Icons.PasswordIcon,
                             tip: {
                                 text: '#{auth-changepassform-password-tip-text;Придумайте пароль, который сложно подобрать}',
                                 success: '#{auth-changepassform-password-tip-success;Пароль соотвествует требованиям}',
@@ -68,12 +64,10 @@
                     },
                     confirmation: {
                         component: 'Password',
-                        placeholder: '********',
                         desc: '#{auth-changepassform-confirmation-desc;Повторите новый пароль}',
                         params: {
                             required: true,
-                            readonly: false,
-                            icon: App.Modules.Auth.Icons.PasswordIcon,
+                            readonly: false
                         },
                         attrs: {
                             width: 480

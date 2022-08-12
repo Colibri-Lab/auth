@@ -9,7 +9,7 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         this._property = 'none';
 
         this._form = this.Children('form-container/form');
-        this._validator = new Colibri.UI.FormValidator(this._form);
+        this._validator = new App.Modules.Auth.Forms.Validator(this._form);
 
         this._timer = this.Children('timer-container/timer');
         this._timerTemplate = this._timer.value;
@@ -18,14 +18,16 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         this._timeLeft = 60;
         this._timer.value = this._timerTemplate.replaceAll('%s', this._timeLeft);
 
-        this._validator.AddHandler('Validated', (event, args) => {
-            if(this._confirming) {
-                return;
-            }
+        this._form.AddHandler('Changed', (event, args) => {
+            if(this._validator.ValidateAll()) {
 
-            this._confirming = true;
-            if(this._validator.Validate(true, false)) {
+                if(this._confirming) {
+                    return;
+                }
+    
+                this._confirming = true;
                 this.__confirmationFormConfirmationButtonClicked(event, args);
+                
             }
         });
 
@@ -69,6 +71,7 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
 
             Auth.Members.ConfirmProperty(this._form.value.code, this._property).then((session) => {
                 this.Dispatch('PropertyConfirmed', {property: this._property});
+                this._confirming = false;
             }).catch(response => {
                 response.result = JSON.parse(response.result);
                 if(response.result.validation && Object.keys(response.result.validation).length > 0) {
@@ -83,6 +86,7 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
                     this._validator.Invalidate('code', response.result.message);
                     this._form.Children('code').Focus();
                 }
+                this._confirming = false;
             });    
 
         }
@@ -134,9 +138,10 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
                 });
             }
             else {
-                this._validator.Invalidate('email', response.result.message);
-                this._form.Children('email').Focus();
+                this._validator.Invalidate('code', response.result.message);
+                this._form.Children('code').Focus();
             }
+            this._confirming = false;
         }); 
     }
 

@@ -8,12 +8,11 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
         this.AddClass('app-auth-reset-form-component'); 
 
         this._form = this.Children('form-container/form');
-        this._validator = new Colibri.UI.FormValidator(this._form);
+        this._validator = new App.Modules.Auth.Forms.Validator(this._form);
 
         this._form.fields = {
             email: {
                 component: 'Text',
-                placeholder: 'name@domain.com',
                 desc: '#{auth-resetform-email-desc;Электронная почта}',
                 params: {
                     required: true,
@@ -35,7 +34,6 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
             },
             phone: {
                 component: 'Text',
-                placeholder: '79999999999',
                 desc: '#{auth-resetform-phone-desc;Телефон}',
                 params: {
                     required: true,
@@ -57,9 +55,10 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
         this._resetButton = this.Children('button-container/reset');
         this._loginButton = this.Children('button-container/login');
 
-        this._validator.AddHandler('Validated', (event, args) => {
-            this._resetButton.enabled = this._validator.Validate(true, false);
+        this._form.AddHandler('Changed', (event, args) => {
+            this._resetButton.enabled = this._validator.Status();
         });
+
         
         this._loginButton.AddHandler('Clicked', (event, args) => this.Dispatch('LoginButtonClicked', args));
         this._resetButton.AddHandler('Clicked', (event, args) => this.__resetFormResetButtonClicked(event, args));
@@ -77,10 +76,9 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
 
     _showCodeAndPasswordFields() {
         const value = this._form.value;
-        this._form.fields = this._form.fields = {
+        this._form.fields = {
             email: {
                 component: 'Text',
-                placeholder: 'name@domain.com',
                 desc: '#{auth-resetform-email-desc;Электронная почта}',
                 params: {
                     required: true,
@@ -102,7 +100,6 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
             },
             phone: {
                 component: 'Text',
-                placeholder: '79999999999',
                 desc: '#{auth-resetform-phone-desc;Телефон}',
                 params: {
                     required: true,
@@ -122,10 +119,15 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
             code: {
                 component: 'Text',
                 desc: '#{auth-resetform-code-desc;Код восстановления}',
-                placeholder: '#{auth-resetform-code-placeholder;Введите код полученный на электронную почту}',
                 params: {
                     required: true,
-                    readonly: false
+                    readonly: false,
+                    validate: [
+                        {
+                            message: '#{auth-confirmationform-code-validation1;Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт}',
+                            method: '(field, validator) => !!field.value &amp;&amp; field.value.length === 6'
+                        }
+                    ],
                 },
                 attrs: {
                     width: 480
@@ -140,7 +142,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                 fields: {
                     password: {
                         component: 'Password',
-                        placeholder: '#{auth-resetform-password-placeholder;Придумайте пароль}',
+                        desc: '#{auth-resetform-password-placeholder;Придумайте пароль}',
                         /* desc: '#{auth-resetform-password-desc;Пароль}', */
                         params: {
                             required: true,
@@ -181,8 +183,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                     },
                     confirmation: {
                         component: 'Password',
-                        placeholder: '#{auth-resetform-confirmation-placeholder;Повторите пароль}',
-                        /* desc: '#{auth-resetform-confirmation-desc;Повторите пароль}', */
+                        desc: '#{auth-resetform-confirmation-placeholder;Повторите пароль}',
                         params: {
                             required: true,
                             readonly: false,
@@ -208,7 +209,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
     }
 
     __resetFormResetButtonClicked(event, args) {
-
+        
         if(this._form.value.code) {
 
             Auth.Members.ResetPassword(this._form.value.email, this._form.value.phone, this._form.value.code, this._form.value.pass.password, this._form.value.pass.confirmation).then((session) => {
@@ -231,6 +232,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
 
         }
         else {
+
             Auth.Members.BeginPasswordResetProcess(this._form.value.email, this._form.value.phone).then((session) => {
                 this._showCodeAndPasswordFields();
             }).catch(response => {

@@ -1,4 +1,10 @@
 ---
+auth-errors-member-not-logged:
+  ru: Пользователь не залогинен
+auth-errors-member-data-incorrect:
+  ru: Неверные данные в запросе
+auth-errors-member-field-required:
+  ru: Это поле обязательно для заполнения
 auth-logincontainer-login-title:
   ru: Вход в систему
 auth-loginform-email-desc:
@@ -103,7 +109,7 @@ auth-login-register-text:
 auth-logincontainer-reset-title:
   ru: Восстановление пароля
 auth-back-button:
-  ru: Назд
+  ru: Назад
 auth-reset-button:
   ru: Восстановить
 auth-resetform-email-desc:
@@ -118,8 +124,6 @@ auth-resetform-phone-validation1:
   ru: Пожалуйста, введите телефон
 auth-resetform-code-desc:
   ru: Код восстановления
-auth-resetform-code-placeholder:
-  ru: Введите код полученный на электронную почту
 auth-resetform-pass-desc:
   ru: Пароль
 auth-resetform-password-placeholder:
@@ -156,14 +160,12 @@ auth-resetform-password-validation3:
   ru: Пароль не соответствует требованиям
 auth-resetform-confirmation-placeholder:
   ru: Повторите пароль
-auth-resetform-confirmation-desc:
-  ru: Повторите пароль
 auth-resetform-password-validation2:
   ru: Пожалуйста, повторите пароль
 auth-resetform-confirmation-validation4:
   ru: Пароли должны совпадать
 auth-confirmationform-code-desc:
-  ru: Введите код восстановления
+  ru: Введите код подтверждения
 auth-confirmationform-code-validation1:
   ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
 auth-confirmation-timer-value:
@@ -172,8 +174,6 @@ auth-confirmation-requestagain:
   ru: Получить новый код
 auth-profileform-last_name-desc:
   ru: Фамилия
-auth-profileform-last_name-placeholder:
-  ru: 'Например: Иванов'
 auth-profileform-last_name-validation1:
   ru: Пожалуйста, введите вашу фамилию
 auth-profileform-first_name-desc:
@@ -184,8 +184,6 @@ auth-profileform-first_name-validation1:
   ru: Пожалуйста, введите ваше имя
 auth-profileform-partonymic-desc:
   ru: Отчество
-auth-profileform-partonymic-placeholder:
-  ru: 'Например: Иванович'
 auth-profileform-birtdate-desc:
   ru: Дата рождения
 auth-profileform-birthdate-validation1:
@@ -242,4 +240,18 @@ auth-changeform-property-validation1:
   ru: Это поле обязательно для заполнения
 auth-changeidentity-button:
   ru: Отправить
+auth-errors-member-not-found:
+  ru: Пользователь не найден
+auth-errors-member-with-email-not-exists:
+  ru: Пользователь с таким email-ом не существует
+auth-errors-phone-incorrect:
+  ru: Неверный номер телефона
+auth-errors-member-with-phone-not-exists:
+  ru: Пользователь с таким телефоном не существует
+auth-errors-member-with-email-exists:
+  ru: Пользователь с таким email-ом существует
+auth-errors-member-with-phone-exists:
+  ru: Пользователь с таким телефоном существует
+auth-errors-member-confirmation-code-error:
+  ru: Неверный код подтверждения
 ...

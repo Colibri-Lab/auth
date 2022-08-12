@@ -230,13 +230,17 @@ class MemberController extends WebController
         $phone = $payloadArray['phone'] ?? $post->phone;
         
         if(!$email || !$phone) {
+            $validation = [];
+            if(!$email) {
+                $validation['email'] = '#{auth-errors-member-field-required;Это поле обязательно для заполнения}';
+            }
+            if(!$phone) {
+                $validation['phone'] = '#{auth-errors-member-field-required;Это поле обязательно для заполнения}';
+            }
             return $this->Finish(400, 'Bad Request', [
                 'message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 
                 'code' => 400,
-                'validation' => [
-                    'email' => '#{auth-errors-member-field-required;Это поле обязательно для заполнения}',
-                    'password' => '#{auth-errors-member-field-required;Это поле обязательно для заполнения}',
-                ]
+                'validation' => $validation
             ]);
         }
 
@@ -369,8 +373,20 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
         }
 
-        if(!$member->ConfirmProperty($property, $code)) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-confirmation-error;Невозможно подтвердить свойство}', 'code' => 400]);
+        try {
+            $member->ConfirmProperty($property, $code);
+        }
+        catch(\InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad Request', [
+                'message' => '#{auth-errors-member-confirmation-code-error;Неверный код подтверждения}', 
+                'code' => 400,
+                'validation' => [
+                    'code' => '#{auth-errors-member-confirmation-code-error;Неверный код подтверждения}'
+                ]
+            ]);
+        }
+        catch(Throwable $e) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-confirmation-error;Неизвестная ошибка}', 'code' => 400]);
         }
 
         return $this->Finish(
@@ -440,7 +456,21 @@ class MemberController extends WebController
             ]);
         }
 
-        if(!$member->ResetPassword($code, $password)) {
+        try {
+            $member->ResetPassword($code, $password);
+        }
+        catch(\InvalidArgumentException $e) {
+            if($e->getCode() == 400) {
+                return $this->Finish(400, 'Bad Request', [
+                    'message' => '#{auth-errors-member-reset-code-error;Неверный код подтверждения}', 
+                    'code' => 400,
+                    'validation' => [
+                        'code' => '#{auth-errors-member-reset-code-error;Неверный код подтверждения}'
+                    ]
+                ]);
+            }
+        }
+        catch(Throwable $e) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-reset-error;Невозможно сохранить этот пароль}', 'code' => 400]);
         }
 

@@ -10,9 +10,11 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
         this._changing = false;
 
         this._form1 = this.Children('form-container/form1');
-        this._validator1 = new Colibri.UI.FormValidator(this._form1);
+        this._validator1 = new App.Modules.Auth.Forms.Validator(this._form1);
+
         this._form2 = this.Children('form-container/form2');
-        this._validator2 = new Colibri.UI.FormValidator(this._form2);
+        this._validator2 = new App.Modules.Auth.Forms.Validator(this._form2);
+
         this._send = this.Children('timer-container/send');
 
         this._timer = this.Children('timer-container/timer');
@@ -22,16 +24,16 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
         this._timeLeft = 60;
         this._timer.value = this._timerTemplate.replaceAll('%s', this._timeLeft);
 
-        this._validator1.AddHandler('Validated', (event, args) => {
-            this._send.enabled = this._validator1.Validate(true, false);
+        this._form1.AddHandler('Changed', (event, args) => {
+            this._send.enabled = this._validator1.Status();
         });
-        this._validator2.AddHandler('Validated', (event, args) => {
-            if(this._changing) {
-                return;
-            }
-            this._changing = true;
-            if(this._validator2.Validate(true, false)) {
-                Colibri.Common.Delay(100).then(() => this.__changeFormChangeButtonClicked(event, args));
+        this._form2.AddHandler('Changed', (event, args) => {
+            if(this._validator2.ValidateAll()) {
+                if(this._changing) {
+                    return;
+                }
+                this._changing = true;
+                this.__changeFormChangeButtonClicked(event, args);
             }
         });
 
@@ -68,6 +70,13 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
         return this._message2;
     }
 
+    get desc() {
+        return this._form1.Children('property').title;
+    }
+    set desc(value) {
+        this._form1.Children('property').title = value;
+    }
+
     set shown(value) {
         super.shown = value;
         this._form1.Children('property').Focus();
@@ -82,6 +91,11 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
     }
 
     __requestCodeAgainClicked(event, args) {
+        
+        if(!this._validator1.ValidateAll()) {
+            return;
+        }
+        
         this._form1.enabled = false;
         this.RequestCode();
     }
@@ -92,6 +106,7 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
 
             Auth.Members.ChangeIdentity(this._form2.value.code, this._form1.value.property, this._property).then((session) => {
                 this.Dispatch('PropertyChanged', {property: this._property});
+                this._changing = false;
             }).catch(response => {
                 response.result = JSON.parse(response.result);
                 if(response.result.validation && Object.keys(response.result.validation).length > 0) {
@@ -106,6 +121,7 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
                     this._validator2.Invalidate('code', response.result.message);
                     this._form2.Children('code').Focus();
                 }
+                this._changing = false;
             });    
 
         }

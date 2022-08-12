@@ -167,7 +167,7 @@ class Member extends BaseModelDataRow {
             $confirmation->Delete();
             return true;
         }
-        return false;
+        throw new \InvalidArgumentException('Invalid code', 400);
     }
 
     public function UpdateIdentify(string $property, string $code, string $value): bool
@@ -239,7 +239,7 @@ class Member extends BaseModelDataRow {
         }
 
         if($confirmation->code !== $code) {
-            return false;
+            throw new InvalidArgumentException('Invalid code', 400);
         }
 
         try {
@@ -247,7 +247,7 @@ class Member extends BaseModelDataRow {
             return $this->Save();
         }
         catch(Throwable $e) {
-            return false;
+            throw new InvalidArgumentException('Invalid password', 405);
         }
     }
 

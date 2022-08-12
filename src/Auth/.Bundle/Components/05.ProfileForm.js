@@ -7,12 +7,12 @@ App.Modules.Auth.Components.ProfileForm = class extends Colibri.UI.Component  {
         this.AddClass('app-auth-form-component'); 
         this.AddClass('app-auth-profile-form-component'); 
 
-        this._form = this.Children('form-container/form');
-        this._validator = new Colibri.UI.FormValidator(this._form);
+        this._form = this.Children('form-container/form'); 
+        this._validator = new App.Modules.Auth.Forms.Validator(this._form);
 
         this._saveButton = this.Children('button-container/save');
-        this._validator.AddHandler('Validated', (event, args) => {
-            this._saveButton.enabled = this._validator.Validate(true, false);
+        this._form.AddHandler('Changed', (event, args) => {
+            this._saveButton.enabled = this._validator.Status();
         });
         
         this._saveButton.AddHandler('Clicked', (event, args) => this.__profileFormSaveButtonClicked(event, args));
@@ -33,6 +33,10 @@ App.Modules.Auth.Components.ProfileForm = class extends Colibri.UI.Component  {
     }
 
     __profileFormSaveButtonClicked(event, args) {
+        
+        if(!this._validator.ValidateAll()) {
+            return;
+        }
 
         Auth.Members.SaveProfile(this._form.value.last_name, this._form.value.first_name, this._form.value.patronymic, this._form.value.birthdate, this._form.value.gender).then((session) => {
             this.Hide();

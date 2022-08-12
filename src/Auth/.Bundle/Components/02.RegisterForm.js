@@ -8,7 +8,7 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this.AddClass('app-auth-register-form-component'); 
 
         this._form = this.Children('form-container/form');
-        this._validator = new Colibri.UI.FormValidator(this._form);
+        this._validator = new App.Modules.Auth.Forms.Validator(this._form);
 
         this._loginButton = this.Children('button-container2/login');
         this._registerButton = this.Children('button-container/register');
@@ -16,10 +16,9 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this._loginButton.AddHandler('Clicked', (event, args) => this.Dispatch('LoginButtonClicked', args));
         this._registerButton.AddHandler('Clicked', (event, args) => this.__registerFormRegisterButtonClicked(event, args));
 
-        this._validator.AddHandler('Validated', (event, args) => {
-            this._registerButton.enabled = this._validator.Validate(true, false);
+        this._form.AddHandler('Changed', (event, args) => {
+            this._registerButton.enabled = this._validator.Status();
         });
-        
 
     } 
 
@@ -33,6 +32,10 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
     }
 
     __registerFormRegisterButtonClicked(event, args) {
+
+        if(!this._validator.ValidateAll()) {
+            return;
+        }
  
         const formData = this._form.value;
         console.log(formData);
