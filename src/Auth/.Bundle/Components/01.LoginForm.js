@@ -17,7 +17,6 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         this._form.AddHandler('Changed', (event, args) => {
             this._loginButton.enabled = this._validator.Status();
         });
-
         
         this._registerButton.AddHandler('Clicked', (event, args) => this.Dispatch('RegisterButtonClicked', args));
         this._resetButton.AddHandler('Clicked', (event, args) => this.Dispatch('ResetButtonClicked', args));
