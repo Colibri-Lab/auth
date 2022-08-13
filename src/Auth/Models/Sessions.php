@@ -108,7 +108,7 @@ class Sessions extends BaseModelDataTable {
     static function LoadFromRequest(): ?Session
     {
      
-        $jwt = App::$request->cookie->{'cc-jwt'};
+        $jwt = App::$request->cookie->{'cc-jwt'} ?? App::$request->headers->authorization;
         if(!$jwt) {
             return self::CreateGuestSession();
         }
