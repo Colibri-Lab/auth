@@ -1,111 +1,217 @@
 ---
 auth-errors-member-not-logged:
   ru: Пользователь не залогинен
+  en: The user is not logged in
+  hy: Օգտվողը չի գրավի
 auth-errors-member-data-incorrect:
   ru: Неверные данные в запросе
+  en: Invalid data in the request
+  hy: Հարցման մեջ սխալ տվյալներ
 auth-errors-member-field-required:
   ru: Это поле обязательно для заполнения
+  en: This field is mandatory
+  hy: Այս դաշտը պարտադիր է լրացնել
 auth-logincontainer-login-title:
   ru: Вход в систему
+  en: Log in to the system
+  hy: Մուտք
 auth-loginform-email-desc:
   ru: Электронная почта
+  en: Email
+  hy: Էլեկտրոնային փոստ
 auth-loginform-login-validation1:
   ru: Пожалуйста, введите эл. адрес
+  en: Please enter your email address
+  hy: Խնդրում ենք մուտքագրել էլ. հասցե
 auth-loginform-login-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
+  en: You are entering an incorrect email address. Please try again!
+  hy: Դուք մտնում սխալ հասցե էլ. փոստ. Խնդրում ենք փորձեք կրկին!
 auth-loginform-password-desc:
   ru: Пароль
+  en: Password
+  hy: Գաղտնաբառ
 auth-loginform-password-validation1:
   ru: Пожалуйста, введите пароль
+  en: Please enter your password
+  hy: Խնդրում ենք մուտքագրել գաղտնաբառը
 auth-login-button:
   ru: Войти
+  en: Enter
+  hy: Մուտք
 auth-register-login-text:
   ru: У вас нет аккаунта?
+  en: Don't you have an account?
+  hy: 'Դուք չունեք հաշիվ:'
 auth-register-button:
   ru: Зарегистрироваться
+  en: Register
+  hy: Գրանցվել
 auth-logincontainer-register-title:
   ru: Регистрация
+  en: Registration
+  hy: Գրանցում
 auth-registerform-email-desc:
   ru: Электронная почта
+  en: Email
+  hy: Էլեկտրոնային փոստ
 auth-registerform-email-validation1:
   ru: Пожалуйста, введите эл. адрес
+  en: Please enter your email address
+  hy: Խնդրում ենք մուտքագրել էլ. հասցե
 auth-registerform-email-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
+  en: You are entering an incorrect email address. Please try again!
+  hy: Դուք մտնում սխալ հասցե էլ. փոստ. Խնդրում ենք փորձեք կրկին!
 auth-registerform-phone-desc:
   ru: Телефон
+  en: Telephone
+  hy: Հեռախոս
 auth-registerform-phone-validation1:
   ru: Пожалуйста, введите телефон
+  en: Please enter your phone number
+  hy: Խնդրում ենք մուտքագրել հեռախոսը
 auth-registerform-pass-desc:
   ru: Пароль
+  en: Password
+  hy: Գաղտնաբառ
 auth-registerform-password-placeholder:
   ru: Придумайте пароль
+  en: Come up with a password
+  hy: Մտածեք գաղտնաբառը
 auth-registerform-password-desc:
   ru: Пароль
+  en: Password
+  hy: Գաղտնաբառ
 auth-registerform-password-tip-text:
   ru: Придумайте пароль, который сложно подобрать
+  en: Come up with a password that is difficult to pick up
+  hy: Մտածեք մի գաղտնաբառ, որը դժվար է ընտրել
 auth-registerform-password-tip-success:
   ru: Пароль соотвествует требованиям
+  en: The password meets the requirements
+  hy: Գաղտնաբառը համապատասխանում է պահանջներին
 auth-registerform-password-tip-error:
   ru: Пароль не соответствует требованиям
+  en: The password does not meet the requirements
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
 auth-registerform-password-tip-generate:
   ru: Сгенерировать пароль
+  en: Generate a password
+  hy: Առաջացնում գաղտնաբառը
 auth-registerform-password-tip-copied:
   ru: Пароль скопирован в буфер обмена
+  en: The password has been copied to the clipboard
+  hy: Գաղտնաբառը պատճենահանված է clipboard
 auth-registerform-password-tip-digits-1:
   ru: символ
+  en: symbol
+  hy: խորհրդանիշ
 auth-registerform-password-tip-digits-2:
   ru: символа
+  en: symbol
+  hy: խորհրդանիշ
 auth-registerform-password-tip-digits-3:
   ru: символов
+  en: characters
+  hy: նիշ
 auth-registerform-password-tip-additional-1:
   ru: цифры
+  en: numbers
+  hy: թվեր
 auth-registerform-password-tip-additional-2:
   ru: символы (!, $, ^ и др.)
+  en: symbols (!, $, ^, etc.)
+  hy: նիշ (!,$, ^ եւ այլն)
 auth-registerform-password-tip-additional-3:
   ru: заглавные латинские буквы
+  en: capital latin letters
+  hy: լատիներեն տառեր
 auth-registerform-password-tip-additional-4:
   ru: строчные латинские буквы
+  en: lowercase latin letters
+  hy: փոքրատառ լատինական տառեր
 auth-registerform-password-validation1:
   ru: Пожалуйста, введите пароль
+  en: Please enter your password
+  hy: Խնդրում ենք մուտքագրել գաղտնաբառը
 auth-registerform-password-validation3:
   ru: Пароль не соответствует требованиям
+  en: The password does not meet the requirements
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
 auth-registerform-confirmation-placeholder:
   ru: Повторите пароль
+  en: Repeat the password
+  hy: Կրկնել գաղտնաբառը
 auth-registerform-confirmation-desc:
   ru: Повторите пароль
+  en: Repeat the password
+  hy: Կրկնել գաղտնաբառը
 auth-registerform-password-validation2:
   ru: Пожалуйста, повторите пароль
+  en: Please repeat the password
+  hy: Խնդրում ենք կրկնել գաղտնաբառը
 auth-registerform-confirmation-validation4:
   ru: Пароли должны совпадать
+  en: Passwords must match
+  hy: Գաղտնաբառերը պետք է համընկնեն
 auth-registerform-fio-desc:
   ru: Личные данные
+  en: Personal data
+  hy: Անձնական տվյալներ
 auth-registerform-fio-last_name-placeholder:
   ru: Фамилия
+  en: Surname
+  hy: Ազգանունը
 auth-registerform-fio-validation1:
   ru: Пожалуйста, введите ваше имя
+  en: Please enter your name
+  hy: Խնդրում ենք մուտքագրել Ձեր անունը
 auth-registerform-fio-first_name-placeholder:
   ru: Имя
+  en: Name
+  hy: Անունը
 auth-registerform-fio-validation2:
   ru: Пожалуйста, введите фамилию
+  en: Please enter your last name
+  hy: Խնդրում ենք մուտքագրել ազգանունը
 auth-registerform-fio-patronymic-placeholder:
   ru: Отчество
+  en: Middle name
+  hy: Հայրանունը
 auth-registerform-birtdate-desc:
   ru: Дата рождения
+  en: Date of birth
+  hy: Ծննդյան ամսաթիվ
 auth-registerform-birthdate-validation1:
   ru: Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние
+  en: You are too young, our project can only be used by adults
+  hy: Դուք շատ քիչ տարի է, մեր նախագիծը կարող է օգտվել միայն չափահաս
 auth-registerform-gender-desc:
   ru: Пол
+  en: Paul
+  hy: Հարկ
 auth-registerform-gender-values-male:
   ru: Мужской
+  en: Male
+  hy: Արական
 auth-registerform-gender-values-female:
   ru: Женский
+  en: Female
+  hy: Կանացի
 auth-registerform-aggreenment-placeholder:
   ru: Я соглашаюсь с условиями и даю согласие на обработку персональных данных
+  en: I agree to the terms and consent to the processing of personal data
+  hy: Ես համաձայն եմ պայմաններին և համաձայնում եմ անձնական տվյալների մշակմանը
 auth-registerform-aggreenment-validation1:
   ru: Вам необходимо подтвердить соглашение на обработку персональных данных и согласие
     на условия
+  en: You need to confirm the agreement on the processing of personal data and consent
+    to the terms
+  hy: Դուք պետք է հաստատեք անձնական տվյալների մշակման համաձայնագիրը և համաձայնեք պայմաններին
 auth-login-register-text:
   ru: Уже есть аккаунт?
+  en: Already have an account?
 auth-logincontainer-reset-title:
   ru: Восстановление пароля
 auth-back-button:

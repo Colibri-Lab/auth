@@ -41,12 +41,11 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         }
 
         Auth.Session.Login(this._form.value.login, this._form.value.password).then((session) => {
-            console.log(session);
+
         }).catch(response => {
             response.result = JSON.parse(response.result);
             this._validator.Invalidate('login', response.result.message);
             this._form.Children('login').Focus();
-            console.log(response);
         });
 
     }

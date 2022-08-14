@@ -38,11 +38,10 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         }
  
         const formData = this._form.value;
-        console.log(formData);
         Auth.Members.Register(
             formData.email, formData.phone, formData.pass.password, formData.pass.confirmation, formData.fio.first_name, formData.fio.last_name, formData.fio.patronymic, formData.gender, formData.birthdate
         ).then((session) => {
-            console.log(session);
+
         }).catch(response => {
             response.result = JSON.parse(response.result);
             if(response.result.validation && Object.keys(response.result.validation).length > 0) {
