@@ -54,8 +54,8 @@ App.Modules.Auth.Components.ChangePassForm = class extends Colibri.UI.Component 
                 });
             }
             else {
-                this._validator.Invalidate('original', response.result.message);
-                this._form.Children('original').Focus();
+                this._validator.Invalidate('form', response.result.message);
+                this._form.Focus();
             }
         });
 

@@ -54,8 +54,8 @@ App.Modules.Auth.Components.ProfileForm = class extends Colibri.UI.Component  {
                 });
             }
             else {
-                this._validator.Invalidate('last_name', response.result.message);
-                this._form.Children('last_name').Focus();
+                this._validator.Invalidate('form', response.result.message);
+                this._form.Focus();
             }
         });
 

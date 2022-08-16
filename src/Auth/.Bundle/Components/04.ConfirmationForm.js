@@ -83,8 +83,8 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
                     });
                 }
                 else {
-                    this._validator.Invalidate('code', response.result.message);
-                    this._form.Children('code').Focus();
+                    this._validator.Invalidate('form', response.result.message);
+                    this._form.Focus();
                 }
                 this._confirming = false;
             });    
@@ -138,8 +138,8 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
                 });
             }
             else {
-                this._validator.Invalidate('code', response.result.message);
-                this._form.Children('code').Focus();
+                this._validator.Invalidate('form', response.result.message);
+                this._form.Focus();
             }
             this._confirming = false;
         }); 

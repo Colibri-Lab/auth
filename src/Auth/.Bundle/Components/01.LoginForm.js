@@ -44,8 +44,8 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
 
         }).catch(response => {
             response.result = JSON.parse(response.result);
-            this._validator.Invalidate('login', response.result.message);
-            this._form.Children('login').Focus();
+            this._validator.Invalidate('form', response.result.message);
+            this._form.Focus();
         });
 
     }

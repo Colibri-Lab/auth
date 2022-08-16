@@ -139,7 +139,7 @@ class MemberController extends WebController
             $member->first_name = $firstName;
             $member->last_name = $lastName;
             $member->patronymic = $patronymic;
-            $member->birthdate = new DateTimeField($birthdate);
+            $member->birthdate = $birthdate ? new DateTimeField($birthdate) : null;
             $member->gender = $gender;
             $member->role = $role;
             $member->Save();

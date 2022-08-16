@@ -53,8 +53,8 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
                 });
             }
             else {
-                this._validator.Invalidate('email', response.result.message);
-                this._form.Children('email').Focus();
+                this._validator.Invalidate('form', response.result.message);
+                this._form.Focus();
             }
         });
 

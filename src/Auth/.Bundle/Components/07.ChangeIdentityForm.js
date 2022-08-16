@@ -118,8 +118,8 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
                     });
                 }
                 else {
-                    this._validator2.Invalidate('code', response.result.message);
-                    this._form2.Children('code').Focus();
+                    this._validator2.Invalidate('form', response.result.message);
+                    this._form2.Focus();
                 }
                 this._changing = false;
             });    

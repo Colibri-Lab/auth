@@ -56,7 +56,7 @@ class Member extends BaseModelDataRow {
         unset($arr['datemodified']);
         unset($arr['password']);
         $arr['gender'] = $arr['gender']['value'] ?? $arr['gender'];
-        $arr['birthdate'] = $arr['birthdate']->format('yyyy-MM-dd hh:mm:ss');
+        $arr['birthdate'] = $arr['birthdate'] ? $arr['birthdate']->format('yyyy-MM-dd hh:mm:ss') : null;
         return $arr;
     }
 
