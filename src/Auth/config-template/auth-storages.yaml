@@ -14,7 +14,7 @@ applications:
       desc: '#{auth-storages-applications-fields-key-desc;Ключ приложения  (наименование)}'
       type: varchar
       length: "255"
-      component: Text
+      component: Colibri.UI.Forms.Text
       class: string
       attrs: []
       params:
@@ -37,7 +37,7 @@ applications:
         автоматически}'
       type: varchar
       length: "32"
-      component: Text
+      component: Colibri.UI.Forms.Text
       class: string
       attrs: []
       params:
@@ -57,7 +57,7 @@ applications:
       desc: '#{auth-storages-applications-fields-params-desc;Параметры}'
       note: '#{auth-storages-applications-fields-params-note;Параметры приложения}'
       type: json
-      component: Object
+      component: Colibri.UI.Forms.Object
       class: ObjectField
       attrs: []
       params:
@@ -78,7 +78,7 @@ applications:
           note: '#{auth-storages-applications-fields-params-livetime-note;Время жизни
             токена}'
           type: int
-          component: Number
+          component: Colibri.UI.Forms.Number
           class: int
           attrs: []
           params:
@@ -99,7 +99,7 @@ applications:
           note: '#{auth-storages-applications-fields-params-domains-note;Паттерны
             доменов, с которых разрешен доступ к приложению}'
           type: json
-          component: Array
+          component: Colibri.UI.Forms.Array
           class: ArrayField
           attrs: []
           params:
@@ -123,7 +123,7 @@ applications:
                 одного символа и цифры}'
               type: varchar
               length: "255"
-              component: Text
+              component: Colibri.UI.Forms.Text
               class: string
               attrs: []
               params:
@@ -146,7 +146,7 @@ applications:
             получить текущий сессионный токен по короткому постоянному токену пользователя
             (НЕ БЕЗОПАСНО)}'
           type: bool
-          component: Checkbox
+          component: Colibri.UI.Forms.Checkbox
           class: bool
           default: "0"
           attrs: []
@@ -167,7 +167,7 @@ applications:
           note: '#{auth-storages-applications-fields-params-roles-note;Роли, которые
             могут исполнять пользователи. Реальная обработка ролей происходит на клиенте}'
           type: json
-          component: Array
+          component: Colibri.UI.Forms.Array
           class: ArrayField
           default: json_array()
           attrs: []
@@ -189,7 +189,7 @@ applications:
                 роли}'
               type: varchar
               length: "255"
-              component: Text
+              component: Colibri.UI.Forms.Text
               class: string
               attrs: []
               params:
@@ -209,7 +209,7 @@ applications:
                 роли}'
               type: varchar
               length: "255"
-              component: Text
+              component: Colibri.UI.Forms.Text
               class: string
               attrs: []
               params:
@@ -231,7 +231,7 @@ applications:
             которая выставляется по умолчанию}'
           type: varchar
           length: "255"
-          component: Text
+          component: Colibri.UI.Forms.Text
           class: string
           attrs: []
           params:
@@ -249,7 +249,7 @@ applications:
         design:
           desc: '#{auth-storages-applications-fields-params-design-desc;Макет}'
           type: json
-          component: Object
+          component: Colibri.UI.Forms.Object
           class: ObjectField
           attrs: []
           params:
@@ -270,7 +270,7 @@ applications:
               note: '#{auth-storages-applications-fields-params-design-images-note;Логотип
                 и другие изображения}'
               type: json
-              component: Array
+              component: Colibri.UI.Forms.Array
               class: ArrayField
               default: json_array()
               attrs: []
@@ -292,7 +292,7 @@ applications:
                     изображения}'
                   type: varchar
                   length: "50"
-                  component: Text
+                  component: Colibri.UI.Forms.Text
                   class: string
                   attrs: []
                   params:
@@ -311,7 +311,7 @@ applications:
                   desc: '#{auth-storages-applications-fields-params-design-images-file-desc;Изображение
                     (SVG)}'
                   type: longtext
-                  component: TextArea
+                  component: Colibri.UI.Forms.TextArea
                   class: string
                   attrs:
                     height: "120"
@@ -357,7 +357,7 @@ sessions:
       note: '#{auth-storages-sessions-fields-member-note;Постоянный токен пользователя}'
       type: varchar
       length: "32"
-      component: Text
+      component: Colibri.UI.Forms.Text
       class: string
       attrs: []
       params:
@@ -379,7 +379,7 @@ sessions:
         токена сессии (нужен для поиска)}'
       type: varchar
       length: "32"
-      component: Text
+      component: Colibri.UI.Forms.Text
       class: string
       attrs: []
       params:
@@ -400,7 +400,7 @@ sessions:
       note: '#{auth-storages-sessions-fields-token-note;JWT токен}'
       type: varchar
       length: "8192"
-      component: TextArea
+      component: Colibri.UI.Forms.TextArea
       class: string
       attrs: []
       params:
@@ -422,7 +422,7 @@ sessions:
         токена, после того, как это время пройдет с момента создания, сессия будет
         заморожена, и ее нужно будет восстановить}'
       type: int
-      component: Number
+      component: Colibri.UI.Forms.Number
       class: int
       default: "3600"
       attrs: []
@@ -444,7 +444,7 @@ sessions:
       note: '#{auth-storages-sessions-fields-secret-note;Ключ для декодирования сессии}'
       type: varchar
       length: "32"
-      component: Text
+      component: Colibri.UI.Forms.Text
       class: string
       attrs: []
       params:
@@ -486,7 +486,7 @@ members:
       note: '#{auth-storages-members-fields-token-note;Постоянный токен пользователя}'
       type: varchar
       length: "32"
-      component: Text
+      component: Colibri.UI.Forms.Text
       class: string
       attrs: []
       params:
@@ -508,7 +508,7 @@ members:
         при регистрации}'
       type: varchar
       length: "255"
-      component: Email
+      component: Colibri.UI.Forms.Email
       class: string
       attrs: []
       params:
@@ -530,7 +530,7 @@ members:
         внутри страны»«номер» без знаков, только цифры}'
       type: varchar
       length: "50"
-      component: Text
+      component: Colibri.UI.Forms.Text
       class: string
       attrs: []
       params:
@@ -552,7 +552,7 @@ members:
         обратной кодировки}'
       type: varchar
       length: "128"
-      component: Password
+      component: Colibri.UI.Forms.Password
       class: string
       attrs: []
       params:
@@ -572,7 +572,7 @@ members:
       desc: '#{auth-storages-members-fields-first_name-desc;Имя}'
       type: varchar
       length: "255"
-      component: Text
+      component: Colibri.UI.Forms.Text
       class: string
       attrs: []
       params:
@@ -592,7 +592,7 @@ members:
       desc: '#{auth-storages-members-fields-last_name-desc;Фамилия}'
       type: varchar
       length: "255"
-      component: Text
+      component: Colibri.UI.Forms.Text
       class: string
       attrs: []
       params:
@@ -612,7 +612,7 @@ members:
       desc: '#{auth-storages-members-fields-patronymic-desc;Отчество}'
       type: varchar
       length: "255"
-      component: Text
+      component: Colibri.UI.Forms.Text
       class: string
       attrs: []
       params:
@@ -631,7 +631,7 @@ members:
       group: window
       desc: '#{auth-storages-members-fields-birthdate-desc;Дата рождения}'
       type: date
-      component: Date
+      component: Colibri.UI.Forms.Date
       class: DateField
       attrs: []
       params:
@@ -650,7 +650,7 @@ members:
       group: window
       desc: '#{auth-storages-members-fields-gender-desc;Пол}'
       type: enum
-      component: Select
+      component: Colibri.UI.Forms.Select
       class: ValueField
       default: male
       attrs: []
@@ -678,7 +678,7 @@ members:
         приложения}'
       type: varchar
       length: "20"
-      component: Text
+      component: Colibri.UI.Forms.Text
       class: string
       attrs: []
       params:
@@ -697,7 +697,7 @@ members:
       group: window
       desc: '#{auth-storages-members-fields-email_confirmed-desc;Почта подтверждена}'
       type: bool
-      component: Checkbox
+      component: Colibri.UI.Forms.Checkbox
       class: bool
       default: "0"
       attrs: []
@@ -717,7 +717,7 @@ members:
       group: window
       desc: '#{auth-storages-members-fields-phone_confirmed-desc;Телефон подтвержден}'
       type: bool
-      component: Checkbox
+      component: Colibri.UI.Forms.Checkbox
       class: bool
       default: "0"
       attrs: []
@@ -737,7 +737,7 @@ members:
       group: window
       desc: '#{auth-storages-members-fields-blocked-desc;Заблокирован (удален)}'
       type: bool
-      component: Checkbox
+      component: Colibri.UI.Forms.Checkbox
       class: bool
       default: "0"
       attrs: []
@@ -787,7 +787,7 @@ confirmations:
         верифицирует}'
       type: varchar
       length: "32"
-      component: Text
+      component: Colibri.UI.Forms.Text
       class: string
       attrs: []
       params:
@@ -808,7 +808,7 @@ confirmations:
       note: '#{auth-storages-confirmations-fields-property-note;Свойство, которое
         нужно верифицировать}'
       type: enum
-      component: Select
+      component: Colibri.UI.Forms.Select
       class: ValueField
       attrs: []
       params:
@@ -837,7 +837,7 @@ confirmations:
       note: '#{auth-storages-confirmations-fields-code-note;Сгенерированный код верификации}'
       type: varchar
       length: "10"
-      component: Text
+      component: Colibri.UI.Forms.Text
       class: string
       attrs: []
       params:
@@ -858,7 +858,7 @@ confirmations:
       note: '#{auth-storages-confirmations-fields-verified-note;Отметка об успешной
         верификации}'
       type: bool
-      component: Checkbox
+      component: Colibri.UI.Forms.Checkbox
       class: bool
       default: "0"
       attrs: []
