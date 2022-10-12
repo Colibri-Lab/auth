@@ -773,4 +773,55 @@ class MemberController extends WebController
 
     }
 
+        /**
+     * Список пользователей
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function ListByRole(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    {
+
+        $session = Sessions::LoadFromRequest();
+        if(!$session->member) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+        }
+
+        $member = Members::LoadByToken($session->member);
+        if(!$member) {
+            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+        }
+
+        $payloadArray = $payload->ToArray();
+        $role = $payloadArray['role'] ?? $post->role;
+        if(!$role) {
+            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+        }
+
+        $ret = [];
+        $members = Members::LoadByRole($role);
+        foreach($members as $member) { 
+            $ret[$member->token] = $member->ToArray(true);
+            unset($ret[$member->token]['password']);
+            unset($ret[$member->token]['datecreated']);
+            unset($ret[$member->token]['datemodified']);
+            unset($ret[$member->token]['id']);
+            unset($ret[$member->token]['email_confirmed']);
+            unset($ret[$member->token]['phone_confirmed']);
+            $ret[$member->token]['fio'] = trim($ret[$member->token]['last_name'].' '.$ret[$member->token]['first_name'].' '.$ret[$member->token]['patronymic']);
+            $ret[$member->token]['gender'] = $ret[$member->token]['gender']['value'] ?? 'male';
+        }
+
+        return $this->Finish(
+            200,
+            'ok',
+            ['session' => $session->ExportForUserInterface(), 'list' => $ret],
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
+        );
+
+    }
+
 }

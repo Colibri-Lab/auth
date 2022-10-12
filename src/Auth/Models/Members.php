@@ -103,6 +103,16 @@ class Members extends BaseModelDataTable {
     }
 
     /**
+     * Возвращает модели по роли
+     * @param array $role
+     * @return Members|null
+     */
+    static function LoadByRole(string $role) : Members|null 
+    {
+        return self::LoadByFilter(1, 100, '{role}=[[role:string]]', null, ['role' => $role], false);
+    }
+
+    /**
      * Возвращает модель по email
      * @param string $email ID строки
      * @return Member|null
