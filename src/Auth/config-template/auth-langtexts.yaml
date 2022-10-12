@@ -212,299 +212,601 @@ auth-registerform-aggreenment-validation1:
 auth-login-register-text:
   ru: Уже есть аккаунт?
   en: Already have an account?
+  hy: Արդեն կա հաշիվ?
 auth-logincontainer-reset-title:
   ru: Восстановление пароля
+  en: Password Recovery
+  hy: Գաղտնաբառի վերականգնում
 auth-back-button:
   ru: Назад
+  en: Back
+  hy: Վերադառնալ
 auth-reset-button:
   ru: Восстановить
+  en: Recover
+  hy: Վերականգնել
 auth-resetform-email-desc:
   ru: Электронная почта
+  en: Email
+  hy: Էլ. փոստ
 auth-resetform-email-validation1:
   ru: Пожалуйста, введите эл. адрес
+  en: Please enter your email address
+  hy: Խնդրում ենք մուտքագրել էլ. հասցե
 auth-resetform-email-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
+  en: You are entering an incorrect email address. Please try again!
+  hy: Դուք մուտքագրեք սխալ հասցե էլ. փոստ. Խնդրում ենք փորձեք կրկին!
 auth-resetform-phone-desc:
   ru: Телефон
+  en: Telephone
+  hy: Հեռախոս
 auth-resetform-phone-validation1:
   ru: Пожалуйста, введите телефон
+  en: Please enter your phone number
+  hy: Խնդրում ենք մուտքագրել Ձեր հեռախոսը
 auth-resetform-code-desc:
   ru: Код восстановления
+  en: Recovery Code
+  hy: Վերականգնման կոդը
 auth-resetform-pass-desc:
   ru: Пароль
+  en: Password
+  hy: Գաղտնաբառ
 auth-resetform-password-placeholder:
   ru: Придумайте пароль
+  en: Come up with a password
+  hy: Մտածեք գաղտնաբառը
 auth-resetform-password-desc:
   ru: Пароль
+  en: Password
+  hy: Գաղտնաբառ
 auth-resetform-password-tip-text:
   ru: Придумайте пароль, который сложно подобрать
+  en: Come up with a password that is difficult to pick up
+  hy: Մտածեք մի գաղտնաբառ, որը դժվար է ընտրել
 auth-resetform-password-tip-success:
   ru: Пароль соотвествует требованиям
+  en: The password meets the requirements
+  hy: Գաղտնաբառը համապատասխանում է պահանջներին
 auth-resetform-password-tip-error:
   ru: Пароль не соответствует требованиям
+  en: Password does not meet the requirements
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
 auth-resetform-password-tip-generate:
   ru: Сгенерировать пароль
+  en: Generate a password
+  hy: Գեներացնել գաղտնաբառը
 auth-resetform-password-tip-copied:
   ru: Пароль скопирован в буфер обмена
+  en: The password has been copied to the clipboard
+  hy: Գաղտնաբառը պատճենված է clipboard
 auth-resetform-password-tip-digits-1:
   ru: символ
+  en: symbol
+  hy: խորհրդանիշ
 auth-resetform-password-tip-digits-2:
   ru: символа
+  en: symbol
+  hy: խորհրդանիշ
 auth-resetform-password-tip-digits-3:
   ru: символов
+  en: characters
+  hy: խորհրդանիշներ
 auth-resetform-password-tip-additional-1:
   ru: цифры
+  en: numbers
+  hy: թվեր
 auth-resetform-password-tip-additional-2:
   ru: символы (!, $, ^ и др.)
+  en: symbols (!, $, ^, etc.)
+  hy: խորհրդանիշներ (!,$, ^ եւ այլն)
 auth-resetform-password-tip-additional-3:
   ru: заглавные латинские буквы
+  en: capital latin letters
+  hy: մեծատառ լատինական տառեր
 auth-resetform-password-tip-additional-4:
   ru: строчные латинские буквы
+  en: lowercase latin letters
+  hy: փոքրատառ լատինական տառեր
 auth-resetform-password-validation1:
   ru: Пожалуйста, введите пароль
+  en: Please enter your password
+  hy: Խնդրում ենք մուտքագրել գաղտնաբառը
 auth-resetform-password-validation3:
   ru: Пароль не соответствует требованиям
+  en: The password does not meet the requirements
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
 auth-resetform-confirmation-placeholder:
   ru: Повторите пароль
+  en: Repeat the password
+  hy: Կրկնել գաղտնաբառը
 auth-resetform-password-validation2:
   ru: Пожалуйста, повторите пароль
+  en: Please repeat the password
+  hy: Խնդրում ենք կրկնել գաղտնաբառը
 auth-resetform-confirmation-validation4:
   ru: Пароли должны совпадать
+  en: Passwords must match
+  hy: Գաղտնաբառերը պետք է համընկնեն
 auth-confirmationform-code-desc:
   ru: Введите код подтверждения
+  en: Enter the confirmation code
+  hy: Մուտքագրեք հաստատման կոդը
 auth-confirmationform-code-validation1:
   ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
+  en: Please enter the 6-digit code that we have sent to your contact
+  hy: Խնդրում ենք մուտքագրել կոդը 6 թվանշաններից, որոնք մենք ուղարկել ենք Ձեզ
 auth-confirmation-timer-value:
   ru: Вы сможете снова запросить код через %s секунд.
+  en: You will be able to request the code again in %s seconds.
+  hy: Դուք կարող եք կրկին պահանջել կոդը միջոցով %s վայրկյան.
 auth-confirmation-requestagain:
   ru: Получить новый код
+  en: Get a new code
+  hy: Ստանալ նոր կոդը
 auth-profileform-last_name-desc:
   ru: Фамилия
+  en: Surname
+  hy: Ազգանունը
 auth-profileform-last_name-validation1:
   ru: Пожалуйста, введите вашу фамилию
+  en: Please enter your last name
+  hy: Խնդրում ենք մուտքագրել Ձեր ազգանունը
 auth-profileform-first_name-desc:
   ru: Имя
+  en: Name
+  hy: Անուն
 auth-profileform-first_name-placeholder:
   ru: 'Например: Иван'
+  en: 'For example: Ivan'
+  hy: Օրինակ ' Իվան
 auth-profileform-first_name-validation1:
   ru: Пожалуйста, введите ваше имя
+  en: Please enter your name
+  hy: Խնդրում ենք մուտքագրել Ձեր անունը
 auth-profileform-partonymic-desc:
   ru: Отчество
+  en: Middle name
+  hy: Հայրանունը
 auth-profileform-birtdate-desc:
   ru: Дата рождения
+  en: Date of birth
+  hy: Ծննդյան ամսաթիվ
 auth-profileform-birthdate-validation1:
   ru: Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние
+  en: You are too young, our project can only be used by adults
+  hy: Դուք շատ քիչ տարեկան եք, մեր նախագծից կարող են օգտվել միայն չափահասները
 auth-profileform-gender-desc:
   ru: Пол
+  en: Paul
+  hy: Պոլ
 auth-profileform-gender-values-male:
   ru: Мужской
+  en: Male
+  hy: Արական
 auth-profileform-gender-values-female:
   ru: Женский
+  en: Female
+  hy: Կանացի
 auth-profile-button:
   ru: Сохранить
+  en: Save
+  hy: Պահպանել
 auth-changepassform-original-desc:
   ru: Текущий пароль
+  en: Current password
+  hy: Ընթացիկ գաղտնաբառը
 auth-changepassform-password-desc:
   ru: Новый пароль
+  en: New password
+  hy: Նոր գաղտնաբառ
 auth-changepassform-password-tip-text:
   ru: Придумайте пароль, который сложно подобрать
+  en: Come up with a password that is difficult to pick up
+  hy: Մտածեք մի գաղտնաբառ, որը դժվար է ընտրել
 auth-changepassform-password-tip-success:
   ru: Пароль соотвествует требованиям
+  en: The password meets the requirements
+  hy: Գաղտնաբառը համապատասխանում է պահանջներին
 auth-changepassform-password-tip-error:
   ru: Пароль не соответствует требованиям
+  en: The password does not meet the requirements
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
 auth-changepassform-password-tip-generate:
   ru: Сгенерировать пароль
+  en: Generate a password
+  hy: Գեներացնել գաղտնաբառը
 auth-changepassform-password-tip-copied:
   ru: Пароль скопирован в буфер обмена
+  en: The password has been copied to the clipboard
+  hy: Գաղտնաբառը պատճենված է clipboard
 auth-changepassform-password-tip-digits-1:
   ru: символ
+  en: symbol
+  hy: խորհրդանիշ
 auth-changepassform-password-tip-digits-2:
   ru: символа
+  en: symbol
+  hy: խորհրդանիշ
 auth-changepassform-password-tip-digits-3:
   ru: символов
+  en: characters
+  hy: խորհրդանիշներ
 auth-changepassform-password-tip-additional-1:
   ru: цифры
+  en: numbers
+  hy: թվեր
 auth-changepassform-password-tip-additional-2:
   ru: символы (!, $, ^ и др.)
+  en: symbols (!, $, ^, etc.)
+  hy: խորհրդանիշներ (!,$, ^ եւ այլն)
 auth-changepassform-password-tip-additional-3:
   ru: заглавные латинские буквы
+  en: capital latin letters
+  hy: մեծատառ լատինական տառեր
 auth-changepassform-password-tip-additional-4:
   ru: строчные латинские буквы
+  en: lowercase latin letters
+  hy: փոքրատառ լատինական տառեր
 auth-changepassform-password-validation1:
   ru: Пожалуйста, введите пароль
+  en: Please enter your password
+  hy: Խնդրում ենք մուտքագրել գաղտնաբառը
 auth-changepassform-password-validation2:
   ru: Пожалуйста, повторите пароль
+  en: Please repeat the password
+  hy: Խնդրում ենք կրկնել գաղտնաբառը
 auth-changepassform-password-validation3:
   ru: Пароль не соответствует требованиям
+  en: The password does not meet the requirements
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
 auth-changepassform-confirmation-validation4:
   ru: Пароли должны совпадать
+  en: Passwords must match
+  hy: Գաղտնաբառերը պետք է համընկնեն
 auth-changepassform-confirmation-desc:
   ru: Повторите новый пароль
+  en: Repeat the new password
+  hy: Կրկնել նոր գաղտնաբառը
 auth-changepass-button:
   ru: Обновить пароль
+  en: Update Password
+  hy: Թարմացնել գաղտնաբառը
 auth-changeform-property-validation1:
   ru: Это поле обязательно для заполнения
+  en: This field is required
+  hy: Այս դաշտը պարտադիր է լրացնել
 auth-changeidentity-button:
   ru: Отправить
+  en: Send
+  hy: Ուղարկել
 auth-errors-member-not-found:
   ru: Пользователь не найден
+  en: User not found
+  hy: Օգտագործողը չի գտնվել
 auth-errors-member-with-email-not-exists:
   ru: Пользователь с таким email-ом не существует
+  en: A user with such an email does not exist
+  hy: Օգտվող նման email-om գոյություն չունի
 auth-errors-phone-incorrect:
   ru: Неверный номер телефона
+  en: Invalid phone number
+  hy: Սխալ հեռախոսահամար
 auth-errors-member-with-phone-not-exists:
   ru: Пользователь с таким телефоном не существует
+  en: A user with such a phone does not exist
+  hy: Նման հեռախոսով օգտվող գոյություն չունի
 auth-errors-member-with-email-exists:
   ru: Пользователь с таким email-ом существует
+  en: A user with such an email exists
+  hy: Օգտվող նման email-om գոյություն ունի
 auth-errors-member-with-phone-exists:
   ru: Пользователь с таким телефоном существует
+  en: A user with such a phone exists
+  hy: Նման հեռախոսով օգտվող կա
 auth-errors-member-confirmation-code-error:
   ru: Неверный код подтверждения
+  hy: Սխալ հաստատման կոդը
+  en: Invalid confirmation code
 auth-storages-applications-desc:
   ru: Приложения
+  hy: Ծրագրեր
+  en: Applications
 auth-storages-applications-fields-key-desc:
   ru: Ключ приложения  (наименование)
+  hy: Հավելվածի բանալի (անվանում)
+  en: Application key (name)
 auth-storages-applications-fields-token-desc:
   ru: Токен приложения (постоянный)
+  hy: Դիմումի նշան (մշտական)
+  en: Application Token (permanent)
 auth-storages-applications-fields-token-note:
   ru: Токен приложения, генерируется автоматически
+  hy: Հավելվածի նշանը գեներացվում է ավտոմատ կերպով
+  en: Application token, generated automatically
 auth-storages-applications-fields-params-desc:
   ru: Параметры
+  hy: Պարամետրեր
+  en: Parameters
 auth-storages-applications-fields-params-note:
   ru: Параметры приложения
+  hy: Հավելվածի ընտրանքները
+  en: Application Parameters
 auth-storages-applications-fields-params-livetime-desc:
   ru: Время жизни
+  hy: Կյանքի ժամանակը
+  en: Lifetime
 auth-storages-applications-fields-params-livetime-note:
   ru: Время жизни токена
+  hy: Նշան կյանքի ժամանակը
+  en: Token lifetime
 auth-storages-applications-fields-params-domains-desc:
   ru: Домены
+  hy: Դոմեններ
+  en: Domains
 auth-storages-applications-fields-params-domains-note:
   ru: Паттерны доменов, с которых разрешен доступ к приложению
+  hy: Դոմենների պատտերններ, որոնցից թույլատրված է մուտք գործել հավելված
+  en: Patterns of domains from which access to the application is allowed
 auth-storages-applications-fields-params-domains-pattern-desc:
   ru: Паттерн домена
+  hy: Դոմենի պատտերն
+  en: Domain Pattern
 auth-storages-applications-fields-params-domains-pattern-note:
   ru: Используйте *-у для указания любого количества символов и цифр и ? для указания
     одного символа и цифры
+  hy: Օգտագործեք * - y ցույց տալ ցանկացած շարք կերպարների եւ թվերի եւ ? մեկ նիշ եւ
+    թվեր նշելու համար
+  en: Use *-y to specify any number of characters and numbers and ? to specify a single
+    character and a number
 auth-storages-applications-fields-params-allowrenew-desc:
   ru: Разрешить восстановление по короткому токену
+  hy: Թույլ տալ վերականգնել կարճ նշան
+  en: Allow recovery by short token
 auth-storages-applications-fields-params-allowrenew-note:
   ru: Дает возможность получить текущий сессионный токен по короткому постоянному
     токену пользователя (НЕ БЕЗОПАСНО)
+  hy: Հնարավորություն է տալիս ստանալ ընթացիկ սեսիոն նշան է կարճ մշտական նշան է օգտագործողի
+    (ոչ անվտանգ)
+  en: Makes it possible to get the current session token using a short permanent user
+    token (NOT SECURE)
 auth-storages-applications-fields-params-roles-desc:
   ru: Роли
+  hy: Դերերը
+  en: Roles
 auth-storages-applications-fields-params-roles-note:
   ru: Роли, которые могут исполнять пользователи. Реальная обработка ролей происходит
     на клиенте
+  hy: 'Դերերը, որոնք կարող են կատարել օգտվողները: Իրական դերերի մշակման տեղի է ունենում
+    հաճախորդի'
+  en: Roles that users can perform. The actual role processing takes place on the
+    client
 auth-storages-applications-fields-params-roles-name-desc:
   ru: Наименование роли
+  hy: Դերերի անվանումը
+  en: Name of the role
 auth-storages-applications-fields-params-roles-desc-desc:
   ru: Описание роли
+  hy: Դերերի Նկարագրություն
+  en: Description of the role
 auth-storages-applications-fields-params-defaultrole-desc:
   ru: Роль по умолчанию
+  hy: Լռակյաց դերը
+  en: Default role
 auth-storages-applications-fields-params-defaultrole-note:
   ru: Роль, которая выставляется по умолчанию
+  hy: Դերը, որը ենթարկվում է լռելյայն
+  en: The role that is set by default
 auth-storages-applications-fields-params-design-desc:
   ru: Макет
+  hy: Դասավորությունը
+  en: Layout
 auth-storages-applications-fields-params-design-images-desc:
   ru: Изображения
+  hy: Նկարներ
+  en: Images
 auth-storages-applications-fields-params-design-images-note:
   ru: Логотип и другие изображения
+  hy: Logo եւ այլ պատկերներ
+  en: Logo and other images
 auth-storages-applications-fields-params-design-images-key-desc:
   ru: Ключ изображения
+  hy: Հիմնական պատկերը
+  en: Image Key
 auth-storages-applications-fields-params-design-images-file-desc:
   ru: Изображение (SVG)
+  hy: Պատկեր (SVG)
+  en: Image (SVG)
 auth-storages-sessions-desc:
   ru: Сессии
+  hy: Սեսիաներ
+  en: Sessions
 auth-storages-sessions-fields-member-desc:
   ru: Токен пользователя
+  hy: Օգտագործողի նշանը
+  en: User Token
 auth-storages-sessions-fields-member-note:
   ru: Постоянный токен пользователя
+  hy: Օգտագործողի մշտական նշան
+  en: User's permanent token
 auth-storages-sessions-fields-key-desc:
   ru: Ключ сессии
+  hy: Նիստի բանալին
+  en: Session Key
 auth-storages-sessions-fields-key-note:
   ru: Генерируется автоматически из токена сессии (нужен для поиска)
+  hy: Ավտոմատ կերպով գեներացվում է նստաշրջանի նշաններից (անհրաժեշտ է որոնել)
+  en: Generated automatically from the session token (needed for search)
 auth-storages-sessions-fields-token-desc:
   ru: Токен сессии (JWT)
+  hy: Նստաշրջանի նշան (JWT)
+  en: Session Token (JWT)
 auth-storages-sessions-fields-token-note:
   ru: JWT токен
+  hy: JWT նշան
+  en: JWT token
 auth-storages-sessions-fields-expires-desc:
   ru: Время жизни
+  hy: Կյանքի ժամանակը
+  en: Lifetime
 auth-storages-sessions-fields-expires-note:
   ru: Количество секунд жизни токена, после того, как это время пройдет с момента
     создания, сессия будет заморожена, и ее нужно будет восстановить
+  hy: Միավորների քան-վայրկյան կյանքի նշան, այն բանից հետո, այս անգամ տեղի կունենա,
+    քանի որ ստեղծման, նիստը պետք է սառեցվի, եւ այն պետք է վերականգնել
+  en: The number of seconds of the token's life, after this time has passed since
+    its creation, the session will be frozen and it will need to be restored
 auth-storages-sessions-fields-secret-desc:
   ru: Секретный ключ
+  hy: Գաղտնի բանալին
+  en: Secret key
 auth-storages-sessions-fields-secret-note:
   ru: Ключ для декодирования сессии
+  hy: Նիստի ապակոդավորման բանալին
+  en: The key for decoding the session
 auth-storages-members-desc:
   ru: Пользователи
+  hy: Users
+  en: Users
 auth-storages-members-fields-token-desc:
   ru: Токен пользователя
+  hy: Օգտագործողի նշանը
+  en: User Token
 auth-storages-members-fields-token-note:
   ru: Постоянный токен пользователя
+  hy: Օգտագործողի մշտական նշան
+  en: User's permanent token
 auth-storages-members-fields-email-desc:
   ru: Эл. адрес пользователя
+  hy: Էլ. օգտվողի հասցեն
+  en: User's email address
 auth-storages-members-fields-email-note:
   ru: Электронный адрес указанный при регистрации
+  hy: Գրանցման ժամանակ նշված էլեկտրոնային հասցեն
+  en: The email address specified during registration
 auth-storages-members-fields-phone-desc:
   ru: Телефон
+  hy: Հեռախոս
+  en: Telephone
 auth-storages-members-fields-phone-note:
   ru: Телефон в формате «код страны»«код внутри страны»«номер» без знаков, только
     цифры
+  hy: Հեռախոս "երկրի կոդ" ձեւաչափով "երկրի կոդը ""համարը" առանց նշանների, միայն թվեր
+  en: Phone in the "country code" format"country code""number" without signs, only
+    numbers
 auth-storages-members-fields-password-desc:
   ru: Пароль
+  hy: Գաղտնաբառ
+  en: Password
 auth-storages-members-fields-password-note:
   ru: Пароль, закодирован, нет обратной кодировки
+  hy: Գաղտնաբառ կոդավորված, ոչ backlink կոդավորում
+  en: Password, encoded, no reverse encoding
 auth-storages-members-fields-first_name-desc:
   ru: Имя
+  hy: Անուն
+  en: Name
 auth-storages-members-fields-last_name-desc:
   ru: Фамилия
+  hy: Ազգանունը
+  en: Surname
 auth-storages-members-fields-patronymic-desc:
   ru: Отчество
+  hy: Հայրանունը
+  en: Middle name
 auth-storages-members-fields-birthdate-desc:
   ru: Дата рождения
+  hy: Ծննդյան ամսաթիվ
+  en: Date of birth
 auth-storages-members-fields-gender-desc:
   ru: Пол
+  en: Paul
+  hy: Պոլ
 auth-storages-members-fields-gender-values-male:
   ru: Мужской
+  en: Male
+  hy: Արական
 auth-storages-members-fields-gender-values-female:
   ru: Женский
+  en: Female
+  hy: Կանացի
 auth-storages-members-fields-role-desc:
   ru: Роль
+  en: Role
+  hy: Դերը
 auth-storages-members-fields-role-note:
   ru: Роль выбранная из списка ролей приложения
+  en: The role selected from the list of application roles
+  hy: Ծրագրի դերերի ցանկից ընտրված դերը
 auth-storages-members-fields-email_confirmed-desc:
   ru: Почта подтверждена
+  en: Mail confirmed
+  hy: Փոստը հաստատված է
 auth-storages-members-fields-phone_confirmed-desc:
   ru: Телефон подтвержден
+  en: Phone number confirmed
+  hy: Հեռախոսը հաստատված է
 auth-storages-members-fields-blocked-desc:
   ru: Заблокирован (удален)
+  en: Blocked (deleted)
+  hy: Արգելափակված (ջնջված)
 auth-storages-confirmations-desc:
   ru: Коды верификации
+  en: Verification codes
+  hy: Ստուգման կոդեր
 auth-storages-confirmations-fields-member-desc:
   ru: Пользователь
+  en: User
+  hy: Օգտվող
 auth-storages-confirmations-fields-member-note:
   ru: Пользователь, который верифицирует
+  en: The user who verifies
+  hy: Օգտվող, ով վավերացնում է
 auth-storages-confirmations-fields-property-desc:
   ru: Свойство
+  en: Property
+  hy: Գույքը
 auth-storages-confirmations-fields-property-note:
   ru: Свойство, которое нужно верифицировать
+  en: The property to be verified
+  hy: Գույքը, որը պետք է ստուգվի
 auth-storages-confirmations-fields-property-values-email:
   ru: Эл. адрес
+  en: Email address
+  hy: Էլ. հասցե
 auth-storages-confirmations-fields-property-values-phone:
   ru: Телефон
+  en: Telephone
+  hy: Հեռախոս
 auth-storages-confirmations-fields-property-values-reset:
   ru: Восстановление пароля
+  en: Password Recovery
+  hy: Գաղտնաբառի վերականգնում
 auth-storages-confirmations-fields-code-desc:
   ru: Код
+  en: Code
+  hy: Կոդ
 auth-storages-confirmations-fields-code-note:
   ru: Сгенерированный код верификации
+  en: Generated verification code
+  hy: Գեներացվել ստուգման կոդը
 auth-storages-confirmations-fields-verified-desc:
   ru: Верифицирован
+  en: Verified
+  hy: Ստուգված
 auth-storages-confirmations-fields-verified-note:
   ru: Отметка об успешной верификации
+  en: A mark of successful verification
+  hy: Նշում հաջող ստուգման մասին
 auth-errors-member-account-not-exists:
   ru: Учетная запись не найдена
+  en: Account not found
+  hy: Հաշիվ չի գտնվել
 auth-errors-member-invalid-creds:
   ru: Некорректные учетные данные
+  en: Invalid credentials
+  hy: Սխալ հավատարմագրերը
+auth-errors-member-data-consistency:
+  ru: Ошибка консистентности данных
 ...

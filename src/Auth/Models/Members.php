@@ -93,6 +93,16 @@ class Members extends BaseModelDataTable {
     }
 
     /**
+     * Возвращает модели по token-ам
+     * @param array $tokens
+     * @return Members|null
+     */
+    static function LoadByTokens(array $tokens) : Members|null 
+    {
+        return self::LoadByFilter(1, 100, '{token} in (\''.implode('\',\'', $tokens).'\')', null, [], false);
+    }
+
+    /**
      * Возвращает модель по email
      * @param string $email ID строки
      * @return Member|null
