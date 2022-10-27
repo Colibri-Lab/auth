@@ -817,7 +817,7 @@ confirmations:
         readonly: true
         list: true
         greed: ""
-        viewer: ~
+        viewer: Colibri.UI.SelectViewer
         vertical: false
         visual: false
         code: ""
