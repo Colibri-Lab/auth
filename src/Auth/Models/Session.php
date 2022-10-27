@@ -103,8 +103,8 @@ class Session extends BaseModelDataRow {
     public function ExportForMemcached(): array
     {
         $arr = $this->ToArray(false);
-        unset($arr['sesions_id']);
-        unset($arr['sesions_datemodified']);
+        unset($arr['sessions_id']);
+        unset($arr['sessions_datemodified']);
         return $arr;
     }
 
