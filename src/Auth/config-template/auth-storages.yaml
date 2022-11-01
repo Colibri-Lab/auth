@@ -558,7 +558,7 @@ members:
       params:
         required: true
         enabled: true
-        readonly: true
+        readonly: false
         list: false
         greed: ""
         viewer: ~
