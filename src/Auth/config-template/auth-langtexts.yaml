@@ -809,4 +809,8 @@ auth-errors-member-invalid-creds:
   hy: Սխալ հավատարմագրերը
 auth-errors-member-data-consistency:
   ru: Ошибка консистентности данных
+auth-errors-member-property-send-error:
+  ru: Ошибка отправки сообщения
+auth-registerform-label-desc:
+  ru: Учетные данные
 ...
