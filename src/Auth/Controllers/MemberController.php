@@ -330,7 +330,7 @@ class MemberController extends WebController
                 'message' => '#{auth-errors-member-property-send-error;Ошибка отправки сообщения}', 
                 'code' => 400,
                 'validation' => [
-                    'email' => '#{auth-errors-member-property-send-error;Ошибка отправки сообщения}'
+                    'property' => '#{auth-errors-member-property-send-error;Ошибка отправки сообщения}'
                 ]
             ]);
         }

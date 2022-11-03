@@ -181,14 +181,14 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
             response.result = JSON.parse(response.result);
             if(response.result.validation && Object.keys(response.result.validation).length > 0) {
                 Object.forEach(response.result.validation, (field, message, index) => {
-                    this._validator.Invalidate(field, message);
+                    this._validator1.Invalidate(field, message);
                     if(index === 0) {
                         this._form1.FindField(field).Focus();
                     }
                 });
             }
             else {
-                this._validator.Invalidate('property', response.result.message);
+                this._validator1.Invalidate('property', response.result.message);
                 this._form1.Children('property').Focus();
             }
             this._form1.enabled = true;

@@ -52,7 +52,7 @@ class Confirmation extends BaseModelDataRow {
 			return Notices::Send($value ? $value: $member->email, $notice);
 		}
 		else {
-			return Notices::Send($value ? $value: $member->email, $notice);
+			return Notices::Send($member->email, $notice);
 			// надо отправить SMS
 			// return false;
 		}
