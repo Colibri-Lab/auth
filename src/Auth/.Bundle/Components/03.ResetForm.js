@@ -125,7 +125,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                     validate: [
                         {
                             message: '#{auth-confirmationform-code-validation1;Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт}',
-                            method: '(field, validator) => !!field.value &amp;&amp; field.value.length === 6'
+                            method: '(field, validator) => !!field.value && field.value.length === 6'
                         }
                     ],
                 },
