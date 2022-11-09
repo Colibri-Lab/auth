@@ -107,9 +107,14 @@ class Members extends BaseModelDataTable {
      * @param array $role
      * @return Members|null
      */
-    static function LoadByRole(string $role) : Members|null 
+    static function LoadByRole(string|array $role) : Members|null 
     {
-        return self::LoadByFilter(1, 100, '{role}=[[role:string]]', null, ['role' => $role], false);
+        if(is_array($role)) {
+            return self::LoadByFilter(1, 100, '{role} in (\''.implode('\',\'', $role).'\')', null, [], false);
+        }
+        else {
+            return self::LoadByFilter(1, 100, '{role}=[[role:string]]', null, ['role' => $role], false);
+        }
     }
 
     /**
