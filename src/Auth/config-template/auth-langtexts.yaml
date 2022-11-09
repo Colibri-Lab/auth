@@ -813,4 +813,8 @@ auth-errors-member-property-send-error:
   ru: Ошибка отправки сообщения
 auth-registerform-label-desc:
   ru: Учетные данные
+auth-bool-data-false:
+  ru: Нет
+auth-bool-data-true:
+  ru: Да
 ...

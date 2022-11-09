@@ -5,6 +5,7 @@
 namespace App\Modules\Auth\Controllers;
 
 
+use App\Modules\Tools\Models\Notices;
 use Colibri\App;
 use Colibri\Events\EventsContainer;
 use Colibri\IO\FileSystem\File;
@@ -182,7 +183,7 @@ class MemberController extends WebController
 
         $member = Members::LoadByToken($session->member);
         if(!$member) {
-            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
         }
         
         $payloadArray = $payload->ToArray();
@@ -303,7 +304,7 @@ class MemberController extends WebController
 
         $member = Members::LoadByToken($session->member);
         if(!$member) {
-            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
         }
 
         $payloadArray = $payload->ToArray();
@@ -362,7 +363,7 @@ class MemberController extends WebController
 
         $member = Members::LoadByToken($session->member);
         if(!$member) {
-            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
         }
         
         $payloadArray = $payload->ToArray();
@@ -484,6 +485,7 @@ class MemberController extends WebController
         );
        
     }
+    
 
     /**
      * Подтверждает свойство
@@ -501,7 +503,7 @@ class MemberController extends WebController
 
         $member = Members::LoadByToken($session->member);
         if(!$member) {
-            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
         }
         
         $payloadArray = $payload->ToArray();
@@ -649,7 +651,7 @@ class MemberController extends WebController
 
         $member = Members::LoadByToken($session->member);
         if(!$member) {
-            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
         }
         
         $payloadArray = $payload->ToArray();
@@ -695,7 +697,7 @@ class MemberController extends WebController
 
         $member = Members::LoadByToken($session->member);
         if(!$member) {
-            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
         }
         
         $payloadArray = $payload->ToArray();
@@ -738,11 +740,11 @@ class MemberController extends WebController
 
         $member = Members::LoadByToken($session->member);
         if(!$member) {
-            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
         }
 
         if($member->role === 'user') {
-            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
         }
 
         $payloadArray = $payload->ToArray();
@@ -751,15 +753,7 @@ class MemberController extends WebController
         $ret = [];
         $members = Members::LoadByTokens((array)$tokens);
         foreach($members as $member) { 
-            $ret[$member->token] = $member->ToArray(true);
-            unset($ret[$member->token]['password']);
-            unset($ret[$member->token]['datecreated']);
-            unset($ret[$member->token]['datemodified']);
-            unset($ret[$member->token]['id']);
-            unset($ret[$member->token]['email_confirmed']);
-            unset($ret[$member->token]['phone_confirmed']);
-            $ret[$member->token]['fio'] = trim($ret[$member->token]['last_name'].' '.$ret[$member->token]['first_name'].' '.$ret[$member->token]['patronymic']);
-            $ret[$member->token]['gender'] = $ret[$member->token]['gender']['value'] ?? 'male';
+            $ret[$member->token] = $member->ExportForUserInterface(true);
         }
 
         return $this->Finish(
@@ -790,27 +784,19 @@ class MemberController extends WebController
 
         $member = Members::LoadByToken($session->member);
         if(!$member) {
-            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
         }
 
         $payloadArray = $payload->ToArray();
         $role = $payloadArray['role'] ?? $post->role;
         if(!$role) {
-            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
         }
 
         $ret = [];
         $members = Members::LoadByRole($role);
         foreach($members as $member) { 
-            $ret[$member->token] = $member->ToArray(true);
-            unset($ret[$member->token]['password']);
-            unset($ret[$member->token]['datecreated']);
-            unset($ret[$member->token]['datemodified']);
-            unset($ret[$member->token]['id']);
-            unset($ret[$member->token]['email_confirmed']);
-            unset($ret[$member->token]['phone_confirmed']);
-            $ret[$member->token]['fio'] = trim($ret[$member->token]['last_name'].' '.$ret[$member->token]['first_name'].' '.$ret[$member->token]['patronymic']);
-            $ret[$member->token]['gender'] = $ret[$member->token]['gender']['value'] ?? 'male';
+            $ret[$member->token] = $member->ExportForUserInterface(true);
         }
 
         return $this->Finish(
@@ -841,11 +827,11 @@ class MemberController extends WebController
 
         $member = Members::LoadByToken($session->member);
         if(!$member) {
-            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
         }
 
         if($member->role === 'user') {
-            return $this->Finish(500, 'Bad Request', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
         }
 
         $payloadArray = $payload->ToArray();
@@ -854,15 +840,8 @@ class MemberController extends WebController
         $ret = [];
         $members = Members::LoadByFilter(-1, 20, 'concat({last_name}, \' \', {first_name}, \' \', {patronymic}, \' \', {phone}, \' \', {email}) like \'%'.$term.'%\'');
         foreach($members as $member) { 
-            $ret[$member->token] = $member->ToArray(true);
-            unset($ret[$member->token]['password']);
-            unset($ret[$member->token]['datecreated']);
-            unset($ret[$member->token]['datemodified']);
-            unset($ret[$member->token]['id']);
-            unset($ret[$member->token]['email_confirmed']);
-            unset($ret[$member->token]['phone_confirmed']);
-            $ret[$member->token]['fio'] = trim($ret[$member->token]['last_name'].' '.$ret[$member->token]['first_name'].' '.$ret[$member->token]['patronymic']);
-            $ret[$member->token]['gender'] = $ret[$member->token]['gender']['value'] ?? 'male';
+            /** @var Member */
+            $ret[$member->token] = $member->ExportForUserInterface(true);
         }
 
         return $this->Finish(
@@ -876,4 +855,63 @@ class MemberController extends WebController
 
     }
 
+    public function PerformMutation(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    {
+
+        $session = Sessions::LoadFromRequest();
+        if(!$session->member) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+        }
+
+        $member = Members::LoadByToken($session->member);
+        if(!$member) {
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+        }
+
+        if($member->role !== 'administrator') {
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+        }
+
+        $payloadArray = $payload->ToArray();
+        $memberToken = $payloadArray['member'] ?? $post->member;
+        $mutation = $payloadArray['mutation'] ?? $post->mutation;
+
+        $member = Members::LoadByToken($memberToken);
+        if($member->Update($mutation) === true) {
+ 
+            $data = [];
+            foreach($mutation as $key => $value) {
+                $field = $member->Storage()->fields->$key;
+                if($field->type === 'bool') {
+                    $data[] = $field->desc.': '.($value ? '#{auth-bool-data-true;Да}' : '#{auth-bool-data-false;Нет}');
+                }
+                else {
+                    $data[] = $field->desc.': '.$value;
+                }
+            }
+
+            $dataAsString = implode('<br />', $data);
+            if(App::$moduleManager->lang) {
+                /** @var \App\Modules\Lang\Module */
+                $langModule = App::$moduleManager->lang;
+                $dataAsString = $langModule->ParseString($dataAsString);
+            }
+
+            $notice = Notices::LoadByName('administrator_reset');
+            $notice->Apply(['data' => $dataAsString, 'first_name' => $member->first_name]);
+            Notices::Send($member->email, $notice);
+    
+        }
+
+        
+        return $this->Finish(
+            200,
+            'ok',
+            ['session' => $session->ExportForUserInterface(), 'member' => $member->ExportForUserInterface(true)],
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
+        );
+
+    }
 }

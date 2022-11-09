@@ -3,6 +3,7 @@
 namespace App\Modules\Auth\Models;
 
 # region Uses:
+use Colibri\Data\SqlClient\QueryInfo;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\DateField;
 use Colibri\Data\Storages\Fields\ValueField;
@@ -48,17 +49,6 @@ class Member extends BaseModelDataRow {
 	public const GenderFemale = 'female';
 	# endregion Consts;
 
-    public function ExportForUserInterface(): array
-    {
-        $arr = $this->ToArray(true);
-        unset($arr['id']);
-        unset($arr['datecreated']);
-        unset($arr['datemodified']);
-        unset($arr['password']);
-        $arr['gender'] = $arr['gender']['value'] ?? $arr['gender'];
-        $arr['birthdate'] = $arr['birthdate'] ? $arr['birthdate']->format('yyyy-MM-dd hh:mm:ss') : null;
-        return $arr;
-    }
 
     public function setPropertyEmail(string $value): void
     {
@@ -157,6 +147,15 @@ class Member extends BaseModelDataRow {
         return $confirmation->Send();
     }
 
+    public function Update(object|array $mutationData): QueryInfo|bool
+    {
+        foreach($mutationData as $key => $value) {
+            if(!in_array($key, ['token', 'email', 'phone', 'email_confirmed', 'phone_confirmed', 'role'])) {
+                $this->$key = $value;
+            }
+        }
+        return $this->Save();
+    }
 
     public function ConfirmProperty(string $property, string $code): bool
     {
@@ -251,5 +250,23 @@ class Member extends BaseModelDataRow {
         }
     }
 
+
+    public function ExportForUserInterface($exportFullData = false): array
+    {
+        $arr = $this->ToArray(true);
+        unset($arr['id']);
+        unset($arr['datecreated']);
+        unset($arr['datemodified']);
+        unset($arr['password']);
+        $arr['gender'] = $arr['gender']['value'] ?? $arr['gender'];
+        $arr['birthdate'] = $arr['birthdate'] ? $arr['birthdate']->format('yyyy-MM-dd hh:mm:ss') : null;
+        if($exportFullData) {
+            unset($arr['email_confirmed']);
+            unset($arr['phone_confirmed']);
+            $arr['fio'] = trim($arr['last_name'].' '.$arr['first_name'].' '.$arr['patronymic']);
+            $arr['gender'] = $arr['gender']['value'] ?? 'male';
+        }
+        return $arr;
+    }
 
 }
