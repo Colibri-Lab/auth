@@ -945,6 +945,10 @@ class MemberController extends WebController
             return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-role-incorrect;Невозможно изменить роль}', 'code' => 500]);
         }
 
+        $notice = Notices::LoadByName('administrator_intive');
+        $notice->Apply(['first_name' => $member->first_name]);
+        Notices::Send($member->email, $notice);
+
         return $this->Finish(
             200,
             'ok',
