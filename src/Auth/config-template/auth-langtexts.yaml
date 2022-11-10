@@ -817,4 +817,6 @@ auth-bool-data-false:
   ru: Нет
 auth-bool-data-true:
   ru: Да
+auth-errors-member-role-incorrect:
+  ru: Невозможно изменить роль
 ...

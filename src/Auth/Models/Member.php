@@ -3,6 +3,7 @@
 namespace App\Modules\Auth\Models;
 
 # region Uses:
+use App\Modules\Auth\Module;
 use Colibri\Data\SqlClient\QueryInfo;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\DateField;
@@ -229,6 +230,33 @@ class Member extends BaseModelDataRow {
         $this->password = $newPassword;
         return $this->Save();
     }
+
+    public function UpdateRole(string $newRole): bool
+    {
+        $currentRole = $this->role;
+        $roles = Module::$instance->application->params->roles;
+        $currentIndex = 0;
+        foreach($roles as $index => $role) {
+            if($role->name === $currentRole) {
+                $currentIndex = $index;
+            }
+        }
+
+        $newIndex = 0;
+        foreach($roles as $index => $role) {
+            if($role->name === $newRole) {
+                $newIndex = $index;
+            }
+        }
+
+        if($newIndex > $currentIndex) {
+            $this->role = $newRole;
+            return $this->Save() === true;
+        }
+        
+        return false;
+    }
+
 
     public function ResetPassword(string $code, string $newPassword): bool
     {

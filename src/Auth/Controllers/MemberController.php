@@ -914,4 +914,45 @@ class MemberController extends WebController
         );
 
     }
+
+    public function ChangeRole(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    {
+
+        $session = Sessions::LoadFromRequest();
+        if(!$session->member) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+        }
+
+        $member = Members::LoadByToken($session->member);
+        if(!$member) {
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+        }
+
+        if($member->role !== 'administrator') {
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+        }
+
+        $payloadArray = $payload->ToArray();
+        $memberEmail = $payloadArray['email'] ?? $post->email;
+        $memberRole = $payloadArray['role'] ?? $post->role;
+
+        $member = Members::LoadByEmail($memberEmail);
+        if(!$member) {
+            return $this->Finish(404, 'Not Found', ['message' => '#{auth-errors-member-not-found;Пользователь не найден}', 'code' => 404]);
+        }
+
+        if(!$member->UpdateRole($memberRole)) {
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-role-incorrect;Невозможно изменить роль}', 'code' => 500]);
+        }
+
+        return $this->Finish(
+            200,
+            'ok',
+            ['session' => $session->ExportForUserInterface(), 'member' => $member->ExportForUserInterface(true)],
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
+        );
+
+    }
 }
