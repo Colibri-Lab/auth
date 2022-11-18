@@ -328,6 +328,25 @@ applications:
                     mask: ""
                     generator: ""
           default: json_object()
+        keycloak:
+          desc: '#{auth-storages-applications-fields-params-keycloak-desc;Подключение
+            к KeyCloak}'
+          type: json
+          component: Colibri.UI.Forms.Object
+          class: ObjectField
+          attrs: []
+          params:
+            required: false
+            enabled: true
+            readonly: false
+            list: false
+            greed: ""
+            viewer: ~
+            vertical: false
+            visual: false
+            code: ""
+            mask: ""
+            generator: ""
       default: json_object()
   indices:
     applications_token_idx:

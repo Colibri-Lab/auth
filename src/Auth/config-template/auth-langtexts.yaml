@@ -819,4 +819,6 @@ auth-bool-data-true:
   ru: Да
 auth-errors-member-role-incorrect:
   ru: Невозможно изменить роль
+auth-storages-applications-fields-params-keycloak-desc:
+  ru: Подключение к KeyCloak
 ...
