@@ -17,6 +17,7 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this._registerButton.AddHandler('Clicked', (event, args) => this.__registerFormRegisterButtonClicked(event, args));
 
         this._form.AddHandler('Changed', (event, args) => {
+            this.Dispatch('ExternalValidation', args);
             this._registerButton.enabled = this._validator.Status();
         });
 
@@ -24,6 +25,7 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
 
     _registerEvents() {
         this.RegisterEvent('LoginButtonClicked', true, 'Когда нажата кнопка входа');
+        this.RegisterEvent('ExternalValidation', true, 'Когда требуется валидация');
     }
 
     set shown(value) {

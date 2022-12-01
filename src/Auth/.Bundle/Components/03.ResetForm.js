@@ -38,7 +38,6 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                 params: {
                     required: true,
                     readonly: false,
-                    mask: 'SSSSSSSSSSS',
                     validate: [
                         {
                             message: '#{auth-resetform-phone-validation1;Пожалуйста, введите телефон}',
