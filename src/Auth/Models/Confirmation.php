@@ -26,7 +26,32 @@ use App\Modules\Tools\Models\Notices;
  */
 class Confirmation extends BaseModelDataRow {
     
-    
+	public const JsonSchema = [
+        'type' => 'object',
+        'required' => [
+            'id',
+            'datecreated',
+            'datemodified',
+            # region SchemaRequired:
+			'member',
+			'property',
+			'code',
+			'verified',
+			# endregion SchemaRequired;
+        ],
+        'properties' => [
+            'id' => ['type' => 'integer'],
+            'datecreated' => ['type' => 'string', 'format' => 'date-time'],
+            'datemodified' => ['type' => 'string', 'format' => 'date-time'],
+            # region SchemaProperties:
+			'member' => ['type' => 'string', 'maxLength' => 32],
+			'property' => ['type' => 'string', 'enum' => ['email', 'phone', 'reset', 'login']],
+			'code' => ['type' => 'string', 'maxLength' => 10],
+			'verified' => ['type' => 'boolean', ],
+			# endregion SchemaProperties;
+        ]
+    ];
+
 	# region Consts:
 	/** #{auth-storages-confirmations-fields-property-values-email;Эл. адрес} */
 	public const PropertyEmail = 'email';
@@ -34,6 +59,8 @@ class Confirmation extends BaseModelDataRow {
 	public const PropertyPhone = 'phone';
 	/** #{auth-storages-confirmations-fields-property-values-reset;Восстановление пароля} */
 	public const PropertyReset = 'reset';
+	/** #{auth-storages-confirmations-fields-property-values-login;Вход/Двух-факторная авторизация} */
+	public const PropertyLogin = 'login';
 	# endregion Consts;
 
 	public function Send(?string $value = null): bool

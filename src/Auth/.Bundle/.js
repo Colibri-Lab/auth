@@ -98,12 +98,19 @@ App.Modules.Auth.Session = class extends Colibri.IO.RpcRequest  {
         });
     }
 
-    Login(login, password) {
+    Login(login, password, code) {
         return new Promise((resolve, reject) => {
-            this.Call('Session', 'Login', {login: login, password: password}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Session', 'Login', {login: login, password: password, code: code}, {'X-AppToken': Auth.appToken}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
-            }).catch(response => reject(response));
+            }).catch(response => {
+                if(response.status === 206) { // 2-х факторка
+                    resolve(null);
+                }
+                else {
+                    reject(response);
+                }
+            });
         });
     }
 
@@ -228,6 +235,15 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
     BlockAccount() {
         return new Promise((resolve, reject) => {
             this.Call('Member', 'BlockAccount', {}, {'X-AppToken': Auth.appToken}).then((response) => {
+                Auth.Store.Set('auth.session', response.result.session);
+                resolve(response.result.session);
+            }).catch(response => reject(response));
+        });
+    }
+
+    ToggleTwoFactorAuth() {
+        return new Promise((resolve, reject) => {
+            this.Call('Member', 'ToggleTwoFactorAuth', {}, {'X-AppToken': Auth.appToken}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));

@@ -43,6 +43,24 @@
                         attrs: {
                             width: 480
                         }
+                    },
+                    code: {
+                        component: 'Text',
+                        desc: '#{auth-loginform-code-desc;Введите код подтверждения}',
+                        params: {
+                            hidden: true,
+                            required: true,
+                            readonly: false,
+                            validate: [
+                                {
+                                    message: '#{auth-loginform-code-validation1;Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт}',
+                                    method: '(field, validator) => !!field.value &amp;&amp; field.value.length === 6'
+                                }
+                            ],
+                        },
+                        attrs: {
+                            width: 480
+                        }
                     }
                 }
             </fields>

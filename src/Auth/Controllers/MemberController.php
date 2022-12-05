@@ -634,6 +634,35 @@ class MemberController extends WebController
         );
        
     }
+    
+    /**
+     * Блокирует доступ пользователя
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function ToggleTwoFactorAuth(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    {
+        $session = Sessions::LoadFromRequest();
+        if(!$session->member) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+        }
+
+        $member = Members::LoadByToken($session->member);
+        $member->two_factor = !$member->two_factor;
+        $member->Save();
+
+        return $this->Finish(
+            200,
+            'ok',
+            ['session' => $session->ExportForUserInterface()],
+            'utf-8',
+            [], 
+            [ $session->GenerateCookie(true) ]
+        );
+       
+    }
 
     /**
      * Обновляет профиль

@@ -29,9 +29,37 @@ use Colibri\Utils\Cache\Mem;
  */
 class Session extends BaseModelDataRow {
     
+    public const JsonSchema = [
+        'type' => 'object',
+        'required' => [
+            'id',
+            'datecreated',
+            'datemodified',
+            # region SchemaRequired:
+			'member',
+			'key',
+			'token',
+			'expires',
+			'secret',
+			# endregion SchemaRequired;
+        ],
+        'properties' => [
+            'id' => ['type' => 'integer'],
+            'datecreated' => ['type' => 'string', 'format' => 'date-time'],
+            'datemodified' => ['type' => 'string', 'format' => 'date-time'],
+            # region SchemaProperties:
+			'member' => ['type' => 'string', 'maxLength' => 32],
+			'key' => ['type' => 'string', 'maxLength' => 32],
+			'token' => ['type' => 'string', 'maxLength' => 8192],
+			'expires' => ['type' => 'integer', ],
+			'secret' => ['type' => 'string', 'maxLength' => 32],
+			# endregion SchemaProperties;
+        ]
+    ];
+
     # region Consts:
-    
-    # endregion Consts;
+
+	# endregion Consts;
 
     private function _generateSecret()
     {

@@ -3,8 +3,6 @@
 namespace App\Modules\Auth\Models;
 
 # region Uses:
-use App\Modules\Auth\Module;
-use Colibri\Data\SqlClient\QueryInfo;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\DateField;
 use Colibri\Data\Storages\Fields\ValueField;
@@ -36,12 +34,55 @@ use Throwable;
  * @property string|null $role #{auth-storages-members-fields-role-desc;Роль}
  * @property bool|null $email_confirmed #{auth-storages-members-fields-email_confirmed-desc;Почта подтверждена}
  * @property bool|null $phone_confirmed #{auth-storages-members-fields-phone_confirmed-desc;Телефон подтвержден}
+ * @property bool|null $blocked #{auth-storages-members-fields-blocked-desc;Заблокирован (удален)}
+ * @property bool|null $two_factor #{auth-storages-members-fields-two_factor-desc;Двухфакторная аутентификация}
  * endregion Properties;
  */
 class Member extends BaseModelDataRow {
 
     const PasswordKey = 'AAAAB3NzaC1yc2EAAAADAQABAAABgQDIhRKlVdp8GPQzi9Yeje8B81qk5fFW3iC4xCu0HvuxvrnDHT5368odWBo3DPqQzRPhaGmZiDKYNRZnODGXiyNJwYEieZtAIt/pnLB1e5xUJJculhcgpicOPSBGGpAUUmroYaT0+K19aO5FIfOtmb5hY+Bkq9po0XSODhcnHZXntPBFOWyLdqkB2LB4jJPNUavhQDXOUqCwL/QFWPblPSbNILUSdImgWr41gSO5ISdvPMrfoAy3zUPuLKkge5l/KEu1Ga4IXMVI1YcKt7+ho1JHaDBTAmlfhJ8T1L+RgRElKPRCQ0zfV6SZoVK2X/uovNu0P+oB5WVfEkVQOQs/yPVPLJD9Ink54WwNLpZKz152DhdeHW+TA3UPwunQkciubJai85sV0Ask5q4vfUtqHAgsTuoNIYuZ6PotH4fU4JzyexhKA9UZOdG8qDWwueYrjmFINLrmMIQcHnf/yQdEprVpeThfZlU2PKp29/MdVx/5T4fhNd82xy1nLCqLbvg4T9U=';
     
+    public const JsonSchema = [
+        'type' => 'object',
+        'required' => [
+            'id',
+            'datecreated',
+            'datemodified',
+            # region SchemaRequired:
+			'token',
+			'email',
+			'phone',
+			'password',
+			'first_name',
+			'last_name',
+			'email_confirmed',
+			'phone_confirmed',
+			'blocked',
+			'two_factor',
+			# endregion SchemaRequired;
+        ],
+        'properties' => [
+            'id' => ['type' => 'integer'],
+            'datecreated' => ['type' => 'string', 'format' => 'date-time'],
+            'datemodified' => ['type' => 'string', 'format' => 'date-time'],
+            # region SchemaProperties:
+			'token' => ['type' => 'string', 'maxLength' => 32],
+			'email' => ['type' => 'string', 'maxLength' => 255],
+			'phone' => ['type' => 'string', 'maxLength' => 50],
+			'password' => ['type' => 'string', 'maxLength' => 128],
+			'first_name' => ['type' => 'string', 'maxLength' => 255],
+			'last_name' => ['type' => 'string', 'maxLength' => 255],
+			'patronymic' => ['type' => ['string', 'null'], 'maxLength' => 255],
+			'birthdate' => ['type' => 'string', 'format' => 'date'],
+			'gender' => ['type' => 'string', 'enum' => ['male', 'female']],
+			'role' => ['type' => ['string', 'null'], 'maxLength' => 20],
+			'email_confirmed' => ['type' => 'boolean', ],
+			'phone_confirmed' => ['type' => 'boolean', ],
+			'blocked' => ['type' => 'boolean', ],
+			'two_factor' => ['type' => 'boolean', ],
+			# endregion SchemaProperties;
+        ]
+    ];
     
 	# region Consts:
 	/** #{auth-storages-members-fields-gender-values-male;Мужской} */
@@ -139,6 +180,22 @@ class Member extends BaseModelDataRow {
         if(!$confirmation) {
             $confirmation = Confirmations::LoadEmpty();
             $confirmation->property = Confirmation::PropertyReset;
+            $confirmation->member = $this->token;
+        }
+
+        $confirmation->code = RandomizationHelper::Numeric(6);
+        $confirmation->Save();
+
+        return $confirmation->Send();
+    }
+
+    public function SendTwoFactorAuthorizationMessage(): bool 
+    {
+
+        $confirmation = Confirmations::LoadByMember(Confirmation::PropertyLogin, $this->token);
+        if(!$confirmation) {
+            $confirmation = Confirmations::LoadEmpty();
+            $confirmation->property = Confirmation::PropertyLogin;
             $confirmation->member = $this->token;
         }
 
@@ -270,12 +327,28 @@ class Member extends BaseModelDataRow {
         }
 
         try {
+            
+            $confirmation->Delete();
+
             $this->password = $newPassword;
             return $this->Save();
         }
         catch(Throwable $e) {
             throw new InvalidArgumentException('Invalid password', 405);
         }
+    }
+
+    public function ConfirmLogin(string $code): bool
+    {
+        $confirmation = Confirmations::LoadByMember(Confirmation::PropertyLogin, $this->token);
+        if(!$confirmation) {
+            return false;
+        }
+
+        $confirmation->Delete();
+
+        return $confirmation->code === $code;
+
     }
 
 

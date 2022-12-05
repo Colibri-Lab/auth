@@ -32,19 +32,19 @@ class SessionController extends WebController
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
      */
-    public function Start(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    public function Start(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
 
         $session = Sessions::LoadFromRequest();
-        
+
         // финишируем контроллер
         return $this->Finish(
             200,
             'ok',
             ['session' => $session->ExportForUserInterface()],
             'utf-8',
-            [], 
-            [ $session->GenerateCookie(true) ]
+            [],
+            [$session->GenerateCookie(true)]
         );
     }
 
@@ -55,35 +55,51 @@ class SessionController extends WebController
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
      */
-    public function Login(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    public function Login(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
 
         $session = Sessions::LoadFromRequest();
-        if($session->member) {
+        if ($session->member) {
             return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-session-allreadylogged;Пользователь уже залогинен}', 'code' => 403]);
         }
 
-        
+
         $payloadArray = $payload->ToArray();
         $login = $payloadArray['login'] ?? $post->login;
         $password = $payloadArray['password'] ?? $post->password;
+        $code = $payloadArray['password'] ?? $post->code;
 
-        if(!$login || !$password) {
+        if (!$login || !$password) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-session-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
         }
 
         $member = Members::LoadByEmail($login);
-        if(!$member) {
+        if (!$member) {
             $member = Members::LoadByPhone($login);
         }
 
-        if(!$member || $member->blocked) {
+        if (!$member || $member->blocked) {
             return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-account-not-exists;Учетная запись не найдена}', 'code' => 403]);
         }
 
 
-        if(!$member->Authorize($password)) {
+        if (!$member->Authorize($password)) {
             return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-invalid-creds;Некорректные учетные данные}', 'code' => 403]);
+        }
+        
+        if ($member->two_factor) {
+            if($code) {
+                if(!$member->ConfirmLogin($code)) {
+                    return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-property-tho-factor-error;Ошибка входа}', 'code' => 403]);
+                }
+            } else {
+                if(!$member->SendTwoFactorAuthorizationMessage()) {
+                    return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-property-send-error;Ошибка отправки сообщения}', 'code' => 400]);
+                }
+                else {
+                    return $this->Finish(206, 'Tho factor authentification', ['message' => '#{auth-errors-member-property-two-factor-needed;Требуется 2-х факторная авторизация}', 'code' => 206]);
+                }
+            }
         }
 
         $session->member = $member->token;
@@ -95,8 +111,8 @@ class SessionController extends WebController
             'ok',
             ['session' => $session->ExportForUserInterface()],
             'utf-8',
-            [], 
-            [ $session->GenerateCookie(true) ]
+            [],
+            [$session->GenerateCookie(true)]
         );
     }
 
@@ -107,9 +123,9 @@ class SessionController extends WebController
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
      */
-    public function Logout(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    public function Logout(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
-        
+
         $session = Sessions::LoadFromRequest();
         $session->member = null;
         $session->Save();
@@ -120,8 +136,8 @@ class SessionController extends WebController
             'ok',
             ['session' => $session->ExportForUserInterface()],
             'utf-8',
-            [], 
-            [ $session->GenerateCookie(true) ]
+            [],
+            [$session->GenerateCookie(true)]
         );
     }
 
@@ -132,16 +148,16 @@ class SessionController extends WebController
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
      */
-    public function LogoutFromAll(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    public function LogoutFromAll(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
-        
+
         $session = Sessions::LoadFromRequest();
-        if(!$session->member) {
+        if (!$session->member) {
             return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-session-notlogged;Пользователь не залогинен}', 'code' => 403]);
         }
 
         $sessions = Sessions::LoadByMember($session->member);
-        foreach($sessions as $s) {
+        foreach ($sessions as $s) {
             $s->member = null;
             $s->Save();
         }
@@ -154,8 +170,8 @@ class SessionController extends WebController
             'ok',
             ['session' => $session->ExportForUserInterface()],
             'utf-8',
-            [], 
-            [ $session->GenerateCookie(true) ]
+            [],
+            [$session->GenerateCookie(true)]
         );
     }
 
@@ -166,7 +182,7 @@ class SessionController extends WebController
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
      */
-    public function Decode(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    public function Decode(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
         $session = Sessions::LoadFromRequest();
 
@@ -176,8 +192,8 @@ class SessionController extends WebController
             'ok',
             ['session' => $session->ExportForUserInterface()],
             'utf-8',
-            [], 
-            [ $session->GenerateCookie(true) ]
+            [],
+            [$session->GenerateCookie(true)]
         );
     }
 

@@ -64,14 +64,25 @@ applications:
         required: false
         enabled: true
         readonly: false
-        list: true
+        list: false
+        multiple: false
         greed: ""
         viewer: Colibri.UI.ObjectViewer
         vertical: true
         visual: false
         code: ""
         mask: ""
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink: ""
+        maxadd: ""
+        title: ""
+        allow: ""
+        size: ""
+        validate: []
       fields:
         livetime:
           desc: '#{auth-storages-applications-fields-params-livetime-desc;Время жизни}'
@@ -246,6 +257,37 @@ applications:
             code: ""
             mask: ""
             generator: ""
+        enable_two_factor_authentication:
+          desc: '#{auth-storages-applications-fields-params-enable_two_factor_authentication-desc;Включить
+            двухфакторную аутентификацию}'
+          type: bool
+          component: Colibri.UI.Forms.Checkbox
+          class: bool
+          default: "true"
+          attrs: []
+          params:
+            required: false
+            enabled: true
+            readonly: false
+            list: true
+            multiple: false
+            greed: ""
+            viewer: ~
+            vertical: false
+            visual: false
+            code: ""
+            mask: ""
+            fieldgenerator: ""
+            generator: ""
+            noteClass: ""
+            simplearraywidth: ""
+            simplearrayheight: ""
+            addlink: ""
+            maxadd: ""
+            title: ""
+            allow: ""
+            size: ""
+            validate: []
         design:
           desc: '#{auth-storages-applications-fields-params-design-desc;Макет}'
           type: json
@@ -256,14 +298,25 @@ applications:
             required: false
             enabled: true
             readonly: false
-            list: true
+            list: false
+            multiple: false
             greed: ""
             viewer: Colibri.UI.ObjectViewer
             vertical: true
             visual: false
             code: ""
             mask: ""
+            fieldgenerator: ""
             generator: ""
+            noteClass: ""
+            simplearraywidth: ""
+            simplearrayheight: ""
+            addlink: ""
+            maxadd: ""
+            title: ""
+            allow: ""
+            size: ""
+            validate: []
           fields:
             images:
               desc: '#{auth-storages-applications-fields-params-design-images-desc;Изображения}'
@@ -328,25 +381,6 @@ applications:
                     mask: ""
                     generator: ""
           default: json_object()
-        keycloak:
-          desc: '#{auth-storages-applications-fields-params-keycloak-desc;Подключение
-            к KeyCloak}'
-          type: json
-          component: Colibri.UI.Forms.Object
-          class: ObjectField
-          attrs: []
-          params:
-            required: false
-            enabled: true
-            readonly: false
-            list: false
-            greed: ""
-            viewer: ~
-            vertical: false
-            visual: false
-            code: ""
-            mask: ""
-            generator: ""
       default: json_object()
   indices:
     applications_token_idx:
@@ -772,6 +806,37 @@ members:
         code: ""
         mask: ""
         generator: ""
+    two_factor:
+      group: window
+      desc: '#{auth-storages-members-fields-two_factor-desc;Двухфакторная аутентификация}'
+      type: bool
+      component: Colibri.UI.Forms.Checkbox
+      class: bool
+      default: "true"
+      attrs: []
+      params:
+        required: true
+        enabled: true
+        readonly: false
+        list: true
+        multiple: false
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: ""
+        mask: ""
+        fieldgenerator: ""
+        generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink: ""
+        maxadd: ""
+        title: ""
+        allow: ""
+        size: ""
+        validate: []
   indices:
     members_token_idx:
       fields:
@@ -835,13 +900,24 @@ confirmations:
         enabled: true
         readonly: true
         list: true
+        multiple: false
         greed: ""
         viewer: Colibri.UI.SelectViewer
         vertical: false
         visual: false
         code: ""
         mask: ""
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink: ""
+        maxadd: ""
+        title: ""
+        allow: ""
+        size: ""
+        validate: []
       values:
       - value: email
         title: '#{auth-storages-confirmations-fields-property-values-email;Эл. адрес}'
@@ -850,6 +926,9 @@ confirmations:
       - value: reset
         title: '#{auth-storages-confirmations-fields-property-values-reset;Восстановление
           пароля}'
+      - value: login
+        title: '#{auth-storages-confirmations-fields-property-values-login;Вход/Двух-факторная
+          авторизация}'
     code:
       group: window
       desc: '#{auth-storages-confirmations-fields-code-desc;Код}'

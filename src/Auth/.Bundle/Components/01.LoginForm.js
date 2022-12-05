@@ -40,7 +40,18 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
             return;
         }
 
-        Auth.Session.Login(this._form.value.login, this._form.value.password).then((session) => {
+        const value = Object.cloneRecursive(this._form.value);
+        Auth.Session.Login(value.login, value.password, value.code ?? null).then((session) => {
+
+            if(!session) { // 2-х факторка
+                const fields = Object.cloneRecursive(this._form.fields);
+                fields.login.params.readonly = true;
+                fields.password.params.readonly = true;
+                fields.code.params.hidden = false;
+                this._form.fields = fields;
+                this._form.value = value;
+                this._form.Children('code').Focus();
+            } 
 
         }).catch(response => {
             response.result = JSON.parse(response.result);

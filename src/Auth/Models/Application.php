@@ -22,10 +22,34 @@ use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
  * @property ObjectField|null $params #{auth-storages-applications-fields-params-desc;Параметры}
  * endregion Properties;
  */
-class Application extends BaseModelDataRow {
-    
-    
-	# region Consts:
+class Application extends BaseModelDataRow
+{
+
+    public const JsonSchema = [
+        'type' => 'object',
+        'required' => [
+            'id',
+            'datecreated',
+            'datemodified',
+            # region SchemaRequired:
+
+			# endregion SchemaRequired;
+
+        ],
+        'properties' => [
+            'id' => ['type' => 'integer'],
+            'datecreated' => ['type' => 'string', 'format' => 'date-time'],
+            'datemodified' => ['type' => 'string', 'format' => 'date-time'],
+            # region SchemaProperties:
+			'key' => ['type' => ['string', 'null'], 'maxLength' => 255],
+			'token' => ['type' => ['string', 'null'], 'maxLength' => 32],
+			'params' => ['type' => 'object', 'required' => ['defaultrole',], 'properties' => ['livetime' => ['type' => ['integer', 'null'], ],'domains' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['pattern' => ['type' => ['string', 'null'], 'maxLength' => 255],]]],'allowrenew' => ['type' => ['boolean', 'null'], ],'roles' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['name' => ['type' => ['string', 'null'], 'maxLength' => 255],'desc' => ['type' => ['string', 'null'], 'maxLength' => 255],]]],'defaultrole' => ['type' => 'string', 'maxLength' => 255],'enable_two_factor_authentication' => ['type' => ['boolean', 'null'], ],'design' => ['type' => 'object', 'required' => [], 'properties' => ['images' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['key' => ['type' => ['string', 'null'], 'maxLength' => 50],'image' => ['type' => ['string', 'null'], ],]]],]],]],
+			# endregion SchemaProperties;
+
+        ]
+    ];
+
+    # region Consts:
 
 	# endregion Consts;
 
@@ -40,11 +64,12 @@ class Application extends BaseModelDataRow {
         return $arr;
     }
 
-    public function CheckRole(string $role) {
-        foreach($this->params->roles as $r) { 
-            if($r->name === $role) {
+    public function CheckRole(string $role)
+    {
+        foreach ($this->params->roles as $r) {
+            if ($r->name === $role) {
                 return true;
-            } 
+            }
         }
         return false;
     }
