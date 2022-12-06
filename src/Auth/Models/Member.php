@@ -345,9 +345,12 @@ class Member extends BaseModelDataRow {
             return false;
         }
 
-        $confirmation->Delete();
+        if($confirmation->code === $code) {
+            $confirmation->Delete();
+            return true;
+        }
 
-        return $confirmation->code === $code;
+        return false;
 
     }
 
