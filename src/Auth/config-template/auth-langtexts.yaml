@@ -397,4 +397,6 @@ auth-login-requestagain:
   ru: Получить новый код
 auth-login-reset:
   ru: Забыли пароль?
+auth-registerform-birthdate-validation2:
+  ru: Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние
 ...

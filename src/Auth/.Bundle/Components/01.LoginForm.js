@@ -18,6 +18,7 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
             this._loginButton.enabled = this._validator.Status();
         });
 
+        this._timerContainer = this.Children('timer-container');
         this._timer = this.Children('timer-container/timer');
         this._timerTemplate = this._timer.value;
         this._requestCode = this.Children('timer-container/request-code-again');
@@ -58,6 +59,7 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
     }
 
     _startTimer() {
+        this._timerContainer.shown = true;
         this._timer.shown = true;
         this._requestCode.shown = false;
         this._timeLeft = 60;

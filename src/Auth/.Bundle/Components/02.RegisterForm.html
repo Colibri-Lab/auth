@@ -67,8 +67,12 @@
                             readonly: true,
                             validate: [
                                 {
-                                    message: '#{auth-registerform-birthdate-validation1;Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние}',
-                                    method: '(field, validator) => !field.value || field.value.toDate().Diff(new Date()) > 18 * 365 * 86400'
+                                    message: '#{auth-registerform-birthdate-validation1;Пожалуйста, введите дату рождения}',
+                                    method: '(field, validator) => !!field.value'
+                                },
+                                {
+                                    message: '#{auth-registerform-birthdate-validation2;Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние}',
+                                    method: '(field, validator) => field.value &amp;&amp; field.value.toDate().Diff(new Date()) > 18 * 365 * 86400'
                                 }
                             ]  
                         },
