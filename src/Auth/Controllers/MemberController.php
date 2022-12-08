@@ -134,6 +134,13 @@ class MemberController extends WebController
             $member->birthdate = $birthdate ? new DateTimeField($birthdate) : null;
             $member->gender = $gender;
             $member->role = $role;
+            $member->email_confirmed = false;
+            $member->phone_confirmed = false;
+            $member->blocked = false;
+            $member->two_factor = true;
+
+            $member->Validate(true);
+
             $member->Save();
         } catch (InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
@@ -633,8 +640,15 @@ class MemberController extends WebController
         }
 
         $member = Members::LoadByToken($session->member);
-        $member->two_factor = !$member->two_factor;
-        $member->Save();
+        try {
+            $member->two_factor = !$member->two_factor;
+            $member->Validate(true);
+            $member->Save();
+        } catch (InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        }
 
         return $this->Finish(
             200,
@@ -677,10 +691,16 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
         }
 
-        if (!$member->UpdateProfile($firstName, $lastName, $patronymic, $gender, $birthdate)) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-error-profile;Не смогли сохранить профиль}', 'code' => 400]);
+        try {
+            if (!$member->UpdateProfile($firstName, $lastName, $patronymic, $gender, $birthdate)) {
+                throw new InvalidArgumentException('#{auth-errors-member-error-profile;Не смогли сохранить профиль}', 400);
+            }
+        } catch (InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
-
+        
         return $this->Finish(
             200,
             'ok',
@@ -720,10 +740,16 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
         }
 
-        if (!$member->UpdatePassword($currentPassword, $newPassword)) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-error-password;Не смогли обновить пароль}', 'code' => 400]);
+        try {
+            if (!$member->UpdatePassword($currentPassword, $newPassword)) {
+                throw new InvalidArgumentException('#{auth-errors-member-error-password;Не смогли обновить пароль}', 400);
+            }
+        } catch (InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
-
+        
         return $this->Finish(
             200,
             'ok',
@@ -889,31 +915,39 @@ class MemberController extends WebController
         $mutation = $payloadArray['mutation'] ?? $post->mutation;
 
         $member = Members::LoadByToken($memberToken);
-        if ($member->Update($mutation) === true) {
+        
+        try {
+            
+            if ($member->Update($mutation) === true) {
 
-            $data = [];
-            foreach ($mutation as $key => $value) {
-                $field = $member->Storage()->fields->$key;
-                if ($field->type === 'bool') {
-                    $data[] = $field->desc . ': ' . ($value ? '#{auth-bool-data-true;Да}' : '#{auth-bool-data-false;Нет}');
-                } else {
-                    $data[] = $field->desc . ': ' . $value;
+                $data = [];
+                foreach ($mutation as $key => $value) {
+                    $field = $member->Storage()->fields->$key;
+                    if ($field->type === 'bool') {
+                        $data[] = $field->desc . ': ' . ($value ? '#{auth-bool-data-true;Да}' : '#{auth-bool-data-false;Нет}');
+                    } else {
+                        $data[] = $field->desc . ': ' . $value;
+                    }
                 }
+    
+                $dataAsString = implode('<br />', $data);
+                if (App::$moduleManager->lang) {
+                    /** @var \App\Modules\Lang\Module */
+                    $langModule = App::$moduleManager->lang;
+                    $dataAsString = $langModule->ParseString($dataAsString);
+                }
+    
+                $notice = Notices::LoadByName('administrator_reset');
+                $notice->Apply(['data' => $dataAsString, 'first_name' => $member->first_name]);
+                Notices::Send($member->email, $notice);
+    
             }
 
-            $dataAsString = implode('<br />', $data);
-            if (App::$moduleManager->lang) {
-                /** @var \App\Modules\Lang\Module */
-                $langModule = App::$moduleManager->lang;
-                $dataAsString = $langModule->ParseString($dataAsString);
-            }
-
-            $notice = Notices::LoadByName('administrator_reset');
-            $notice->Apply(['data' => $dataAsString, 'first_name' => $member->first_name]);
-            Notices::Send($member->email, $notice);
-
+        } catch (InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
-
 
         return $this->Finish(
             200,
@@ -952,8 +986,14 @@ class MemberController extends WebController
             return $this->Finish(404, 'Not Found', ['message' => '#{auth-errors-member-not-found;Пользователь не найден}', 'code' => 404]);
         }
 
-        if (!$member->UpdateRole($memberRole)) {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-role-incorrect;Невозможно изменить роль}', 'code' => 500]);
+        try {
+            if (!$member->UpdateRole($memberRole)) {
+                return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-role-incorrect;Невозможно изменить роль}', 'code' => 500]);
+            }            
+        } catch (InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
 
         $notice = Notices::LoadByName('administrator_invite');

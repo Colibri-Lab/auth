@@ -3,6 +3,7 @@
 namespace App\Modules\Auth\Models;
 
 # region Uses:
+use App\Modules\Auth\Module;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\DateField;
 use Colibri\Data\Storages\Fields\ValueField;
@@ -215,6 +216,7 @@ class Member extends BaseModelDataRow
                 $this->$key = $value;
             }
         }
+        $this->Validate(true);
         return $this->Save();
     }
 
@@ -259,6 +261,7 @@ class Member extends BaseModelDataRow
         $this->patronymic = $patronymic;
         $this->gender = $gender;
         $this->birthdate = $birthdate;
+        $this->Validate(true);
         return $this->Save();
 
     }
@@ -288,6 +291,7 @@ class Member extends BaseModelDataRow
             return false;
         }
         $this->password = $newPassword;
+        $this->Validate(true);
         return $this->Save();
     }
 
@@ -311,6 +315,7 @@ class Member extends BaseModelDataRow
 
         if ($newIndex > $currentIndex) {
             $this->role = $newRole;
+            $this->Validate(true);
             return $this->Save() === true;
         }
 

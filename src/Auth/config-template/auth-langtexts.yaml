@@ -399,4 +399,6 @@ auth-login-reset:
   ru: Забыли пароль?
 auth-registerform-birthdate-validation2:
   ru: Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние
+auth-errors-member-confirmation-code-error:
+  ru: Неверный код подтверждения
 ...
