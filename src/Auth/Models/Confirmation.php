@@ -24,33 +24,37 @@ use App\Modules\Tools\Models\Notices;
  * @property bool|null $verified #{auth-storages-confirmations-fields-verified-desc;Верифицирован}
  * endregion Properties;
  */
-class Confirmation extends BaseModelDataRow {
-    
+class Confirmation extends BaseModelDataRow
+{
+
 	public const JsonSchema = [
-        'type' => 'object',
-        'required' => [
-            'id',
-            'datecreated',
-            'datemodified',
-            # region SchemaRequired:
+		'type' => 'object',
+		'required' => [
+			'id',
+			'datecreated',
+			'datemodified',
+			# region SchemaRequired:
 			'member',
 			'property',
 			'code',
 			'verified',
 			# endregion SchemaRequired;
-        ],
-        'properties' => [
-            'id' => ['type' => 'integer'],
-            'datecreated' => ['type' => 'string', 'format' => 'date-time'],
-            'datemodified' => ['type' => 'string', 'format' => 'date-time'],
-            # region SchemaProperties:
+
+		],
+		'properties' => [
+			'id' => ['type' => 'integer'],
+			'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
+			'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
+			# region SchemaProperties:
 			'member' => ['type' => 'string', 'maxLength' => 32],
 			'property' => ['type' => 'string', 'enum' => ['email', 'phone', 'reset', 'login']],
 			'code' => ['type' => 'string', 'maxLength' => 10],
-			'verified' => ['type' => 'boolean', ],
+			'verified' => ['type' => 'boolean',
+			],
 			# endregion SchemaProperties;
-        ]
-    ];
+
+		]
+	];
 
 	# region Consts:
 	/** #{auth-storages-confirmations-fields-property-values-email;Эл. адрес} */
@@ -66,19 +70,18 @@ class Confirmation extends BaseModelDataRow {
 	public function Send(?string $value = null): bool
 	{
 		$member = Members::LoadByToken($this->member);
-		if(!$member) {
+		if (!$member) {
 			return false;
 		}
 		$memberData = $member->ExportForUserInterface();
 		$memberData['code'] = $this->code;
 
-		$noticeName = 'confirmation_'.$this->property;
+		$noticeName = 'confirmation_' . $this->property;
 		$notice = Notices::LoadByName($noticeName);
 		$notice->Apply($memberData);
-		if( (string)$this->property === 'email' ) {
-			return Notices::Send($value ? $value: $member->email, $notice);
-		}
-		else {
+		if ((string) $this->property === 'email') {
+			return Notices::Send($value ? $value : $member->email, $notice);
+		} else {
 			return Notices::Send($member->email, $notice);
 			// надо отправить SMS
 			// return false;

@@ -853,6 +853,11 @@ members:
       - phone
       type: UNIQUE
       method: BTREE
+    members_role_idx:
+      fields:
+      - role
+      type: NORMAL
+      method: BTREE
 confirmations:
   desc: '#{auth-storages-confirmations-desc;Коды верификации}'
   access-point: auth

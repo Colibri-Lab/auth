@@ -1,11 +1,7 @@
 <?php
 
-
-
 namespace App\Modules\Auth\Controllers;
 
-
-use Colibri\App;
 use Colibri\Web\RequestCollection;
 use Colibri\Web\Controller as WebController;
 use Colibri\Web\PayloadCopy;
@@ -22,7 +18,7 @@ class AppController extends WebController
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
      */
-    public function Settings(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
+    public function Settings(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
 
         $app = Module::$instance->application;
@@ -41,7 +37,7 @@ class AppController extends WebController
         $memberForm['fields']['email']['note'] = '';
         $memberForm['fields']['phone']['note'] = '';
         $memberForm['fields']['password']['note'] = '';
-        
+
         $settings['forms']['register'] = $memberForm;
 
         // финишируем контроллер
@@ -54,3 +50,4 @@ class AppController extends WebController
     }
 
 }
+

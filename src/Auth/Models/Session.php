@@ -27,8 +27,9 @@ use Colibri\Utils\Cache\Mem;
  * @property string|null $secret #{auth-storages-sessions-fields-secret-desc;Секретный ключ}
  * endregion Properties;
  */
-class Session extends BaseModelDataRow {
-    
+class Session extends BaseModelDataRow
+{
+
     public const JsonSchema = [
         'type' => 'object',
         'required' => [
@@ -36,30 +37,32 @@ class Session extends BaseModelDataRow {
             'datecreated',
             'datemodified',
             # region SchemaRequired:
-			'member',
-			'key',
-			'token',
-			'expires',
-			'secret',
-			# endregion SchemaRequired;
+            'member',
+            'key',
+            'token',
+            'expires',
+            'secret',
+            # endregion SchemaRequired;
+
         ],
         'properties' => [
             'id' => ['type' => 'integer'],
-            'datecreated' => ['type' => 'string', 'format' => 'date-time'],
-            'datemodified' => ['type' => 'string', 'format' => 'date-time'],
+            'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
+            'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
-			'member' => ['type' => 'string', 'maxLength' => 32],
-			'key' => ['type' => 'string', 'maxLength' => 32],
-			'token' => ['type' => 'string', 'maxLength' => 8192],
-			'expires' => ['type' => 'integer', ],
-			'secret' => ['type' => 'string', 'maxLength' => 32],
-			# endregion SchemaProperties;
+            'member' => ['type' => 'string', 'maxLength' => 32],
+            'key' => ['type' => 'string', 'maxLength' => 32],
+            'token' => ['type' => 'string', 'maxLength' => 8192],
+            'expires' => ['type' => 'integer',],
+            'secret' => ['type' => 'string', 'maxLength' => 32],
+            # endregion SchemaProperties;
+
         ]
     ];
 
     # region Consts:
 
-	# endregion Consts;
+    # endregion Consts;
 
     private function _generateSecret()
     {
@@ -69,23 +72,23 @@ class Session extends BaseModelDataRow {
     private function _generateToken(bool $force = false)
     {
 
-        if(($this->_data['sessions_token'] ?? null) && !$force) {
+        if (($this->_data['sessions_token'] ?? null) && !$force) {
             return;
         }
 
         $arr = $this->ToArray(true);
-        if(!($this->_data['sessions_secret'] ?? null)) {
+        if (!($this->_data['sessions_secret'] ?? null)) {
             $this->_generateSecret();
         }
-        
+
         unset($arr['token']);
         unset($arr['key']);
         unset($arr['secret']);
 
         $this->_data['sessions_token'] = JWT::encode($arr, $this->_data['sessions_secret'], 'HS256');
 
-        if(($this->_data['sessions_key'] ?? null)) {
-            Mem::Delete('sess'.$this->_data['sessions_key']);
+        if (($this->_data['sessions_key'] ?? null)) {
+            Mem::Delete('sess' . $this->_data['sessions_key']);
         }
         $this->_data['sessions_key'] = md5($this->_data['sessions_token']);
 
@@ -94,7 +97,7 @@ class Session extends BaseModelDataRow {
     public function _typeExchange(string $mode, string $property, $value = false): mixed
     {
         $ret = parent::_typeExchange($mode, $property, $value);
-        if($mode === 'set' && in_array($property, ['sessions_member', 'sessions_secret', 'sessions_key'])) {
+        if ($mode === 'set' && in_array($property, ['sessions_member', 'sessions_secret', 'sessions_key'])) {
             $this->_generateToken(true);
         }
         return $ret;
@@ -103,14 +106,13 @@ class Session extends BaseModelDataRow {
     public function Save(): bool
     {
         $this->_generateToken();
-        if(!$this->member) {
-            if($this->id) {
+        if (!$this->member) {
+            if ($this->id) {
                 Sessions::DeleteAllByIds([$this->id]);
             }
-            Mem::Write('sess'.$this->key, $this->ExportForMemcached(), $this->expires ?: 3600);
+            Mem::Write('sess' . $this->key, $this->ExportForMemcached(), $this->expires ?: 3600);
             return true;
-        }
-        else {
+        } else {
             return parent::Save();
         }
     }
@@ -121,10 +123,10 @@ class Session extends BaseModelDataRow {
         unset($arr['id']);
         unset($arr['datemodified']);
         unset($arr['secret']);
-        if($arr['member'] ?? null) {
+        if ($arr['member'] ?? null) {
             $member = Members::LoadByToken($arr['member']);
             $arr['member'] = $member->ExportForUserInterface();
-        }        
+        }
         return $arr;
     }
 
@@ -137,9 +139,9 @@ class Session extends BaseModelDataRow {
     }
 
     public function GenerateCookie(bool $secure = true): object
-    { 
+    {
         // $this->expires
-        return (object)['name' => 'cc-jwt', 'value' => $this->token, 'expire' => time() + 365 * 86400, 'domain' => App::$request->host, 'path' => '/', 'secure' => $secure];
+        return (object) ['name' => 'cc-jwt', 'value' => $this->token, 'expire' => time() + 365 * 86400, 'domain' => App::$request->host, 'path' => '/', 'secure' => $secure];
     }
 
 }

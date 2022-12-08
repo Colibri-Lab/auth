@@ -33,25 +33,25 @@ class Application extends BaseModelDataRow
             'datemodified',
             # region SchemaRequired:
 
-			# endregion SchemaRequired;
+            # endregion SchemaRequired;
 
         ],
         'properties' => [
             'id' => ['type' => 'integer'],
-            'datecreated' => ['type' => 'string', 'format' => 'date-time'],
-            'datemodified' => ['type' => 'string', 'format' => 'date-time'],
+            'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
+            'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
-			'key' => ['type' => ['string', 'null'], 'maxLength' => 255],
-			'token' => ['type' => ['string', 'null'], 'maxLength' => 32],
-			'params' => ['type' => 'object', 'required' => ['defaultrole',], 'properties' => ['livetime' => ['type' => ['integer', 'null'], ],'domains' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['pattern' => ['type' => ['string', 'null'], 'maxLength' => 255],]]],'allowrenew' => ['type' => ['boolean', 'null'], ],'roles' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['name' => ['type' => ['string', 'null'], 'maxLength' => 255],'desc' => ['type' => ['string', 'null'], 'maxLength' => 255],]]],'defaultrole' => ['type' => 'string', 'maxLength' => 255],'enable_two_factor_authentication' => ['type' => ['boolean', 'null'], ],'design' => ['type' => 'object', 'required' => [], 'properties' => ['images' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['key' => ['type' => ['string', 'null'], 'maxLength' => 50],'image' => ['type' => ['string', 'null'], ],]]],]],]],
-			# endregion SchemaProperties;
+            'key' => ['type' => ['string', 'null'], 'maxLength' => 255],
+            'token' => ['type' => ['string', 'null'], 'maxLength' => 32],
+            'params' => ['type' => 'object', 'required' => ['defaultrole',], 'properties' => ['livetime' => ['type' => ['integer', 'null'],], 'domains' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['pattern' => ['type' => ['string', 'null'], 'maxLength' => 255],]]], 'allowrenew' => ['type' => ['boolean', 'null'],], 'roles' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['name' => ['type' => ['string', 'null'], 'maxLength' => 255], 'desc' => ['type' => ['string', 'null'], 'maxLength' => 255],]]], 'defaultrole' => ['type' => 'string', 'maxLength' => 255], 'enable_two_factor_authentication' => ['type' => ['boolean', 'null'],], 'design' => ['type' => 'object', 'required' => [], 'properties' => ['images' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['key' => ['type' => ['string', 'null'], 'maxLength' => 50], 'image' => ['type' => ['string', 'null'],],]]],]],]],
+            # endregion SchemaProperties;
 
         ]
     ];
 
     # region Consts:
 
-	# endregion Consts;
+    # endregion Consts;
 
     public function ExportForUserInterface(): array
     {

@@ -1,22 +1,9 @@
 <?php
 
-
-
 namespace App\Modules\Auth\Controllers;
 
-
-use Colibri\App;
-use Colibri\Events\EventsContainer;
-use Colibri\IO\FileSystem\File;
-use Colibri\Utils\Cache\Bundle;
-use Colibri\Utils\Debug;
-use Colibri\Utils\ExtendedObject;
 use Colibri\Web\RequestCollection;
 use Colibri\Web\Controller as WebController;
-use Colibri\Web\Templates\PhpTemplate;
-use Colibri\Web\View;
-use ScssPhp\ScssPhp\Compiler;
-use ScssPhp\ScssPhp\OutputStyle;
 use Colibri\Web\PayloadCopy;
 use App\Modules\Auth\Models\Sessions;
 use App\Modules\Auth\Models\Members;
@@ -86,17 +73,16 @@ class SessionController extends WebController
         if (!$member->Authorize($password)) {
             return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-invalid-creds;Некорректные учетные данные}', 'code' => 403]);
         }
-        
+
         if ($member->two_factor) {
-            if($code) {
-                if(!$member->ConfirmLogin($code)) {
+            if ($code) {
+                if (!$member->ConfirmLogin($code)) {
                     return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-property-tho-factor-error;Ошибка входа}', 'code' => 403]);
                 }
             } else {
-                if(!$member->SendTwoFactorAuthorizationMessage()) {
+                if (!$member->SendTwoFactorAuthorizationMessage()) {
                     return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-property-send-error;Ошибка отправки сообщения}', 'code' => 400]);
-                }
-                else {
+                } else {
                     return $this->Finish(206, 'Tho factor authentification', ['message' => '#{auth-errors-member-property-two-factor-needed;Требуется 2-х факторная авторизация}', 'code' => 206]);
                 }
             }

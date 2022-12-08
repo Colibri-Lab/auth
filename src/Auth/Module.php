@@ -16,16 +16,9 @@ use Colibri\Modules\Module as BaseModule;
 use Colibri\Utils\Menu\Item;
 use Colibri\Events\EventsContainer;
 use Colibri\App;
-use App\Modules\Auth\Models\LogTable;
-use App\Modules\Auth\Models\Customer;
-use App\Modules\Auth\Models\Customers;
 use Colibri\Utils\Logs\Logger;
-use App\Modules\Auth\Models\Histories;
-use App\Modules\Auth\Models\Lotteries;
-use App\Modules\Auth\Models\Sources;
 use App\Modules\Auth\Models\Applications;
 use App\Modules\Auth\Models\Application;
-use Colibri\Utils\Debug;
 use App\Modules\Auth\Controllers\SessionController;
 use App\Modules\Auth\Controllers\MemberController;
 use App\Modules\Auth\Controllers\AppController;
@@ -48,11 +41,11 @@ class Module extends BaseModule
      *
      * @var Module
      */
-    public static ?Module $instance = null;
+    public static ? Module $instance = null;
 
-    private static ?Session $session = null;
+    private static ? Session $session = null;
 
-    private ?Application $_app = null;
+    private ? Application $_app = null;
 
     const NeedAuthorization = [
         SessionController::class,
@@ -69,17 +62,17 @@ class Module extends BaseModule
         self::$instance = $this;
 
 
-        App::$instance->HandleEvent(EventsContainer::RpcGotRequest, function($event, $args) {
-            if(isset($args->class) && in_array(trim($args->class, '\\'), self::NeedAuthorization)) {
-                if(App::$request->server->request_method === 'OPTIONS') {
+        App::$instance->HandleEvent(EventsContainer::RpcGotRequest, function ($event, $args) {
+            if (isset($args->class) && in_array(trim($args->class, '\\'), self::NeedAuthorization)) {
+                if (App::$request->server->request_method === 'OPTIONS') {
                     App::$response->Origin();
                     App::$response->Close(200, 'ok');
                     exit;
                 }
 
-                if(!Module::$instance->LoadApplication()) { 
+                if (!Module::$instance->LoadApplication()) {
                     $args->cancel = true;
-                    $args->result = (object)[
+                    $args->result = (object) [
                         'code' => 403,
                         'message' => 'Unauthorized',
                         'result' => []
@@ -107,12 +100,12 @@ class Module extends BaseModule
 
     }
 
-    public function GetSession(): Session 
+    public function GetSession(): Session
     {
-        if(!self::$session) {
+        if (!self::$session) {
             self::$session = Sessions::LoadFromRequest();
         }
-        return self::$session;   
+        return self::$session;
     }
 
     /**
@@ -121,7 +114,6 @@ class Module extends BaseModule
     public function GetTopmostMenu(bool $hideExecuteCommand = true): Item|array
     {
         return [
-           
         ];
 
     }
@@ -133,9 +125,10 @@ class Module extends BaseModule
         return $permissions;
     }
 
-    public function Backup(Logger $logger, string $path) {
+    public function Backup(Logger $logger, string $path)
+    {
         // Do nothing   
-        
+
         $modulePath = $path . 'modules/Auth/';
 
         // $logger->debug('Exporting Sources...');
@@ -144,7 +137,7 @@ class Module extends BaseModule
 
 
     }
-    
+
 
     /**
      * Загрижает текущее приложение из запроса
@@ -152,7 +145,7 @@ class Module extends BaseModule
     public function LoadApplication(): bool
     {
         $this->_app = Applications::LoadFromRequest();
-        if(!$this->_app) {
+        if (!$this->_app) {
             return false;
         }
         return true;
@@ -160,11 +153,10 @@ class Module extends BaseModule
 
     public function __get(string $prop): mixed
     {
-        if(strtolower($prop) == 'application') {
+        if (strtolower($prop) == 'application') {
             return $this->_app;
-        }
-        else {
-            return parent::__get($prop); 
+        } else {
+            return parent::__get($prop);
         }
     }
 
