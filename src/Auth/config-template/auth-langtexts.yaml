@@ -53,8 +53,6 @@ auth-registerform-email-validation1:
   ru: Пожалуйста, введите эл. адрес
 auth-registerform-email-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
-auth-registerform-phone-desc:
-  ru: Телефон
 auth-registerform-phone-validation1:
   ru: Пожалуйста, введите телефон
 auth-registerform-pass-desc:
@@ -391,4 +389,6 @@ auth-storages-confirmations-fields-verified-desc:
   ru: Верифицирован
 auth-storages-confirmations-fields-verified-note:
   ru: Отметка об успешной верификации
+auth-registerform-phone-desc:
+  ru: Телефон (+44XXXXXXXXXX)
 ...
