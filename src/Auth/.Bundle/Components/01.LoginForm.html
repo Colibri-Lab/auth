@@ -66,8 +66,12 @@
             </fields>
         </Forms.Form>
     </Pane>
+    <Pane name="timer-container" shown="true">
+        <TextSpan name="timer" shown="false" value="#{auth-login-timer-value;Вы сможете снова запросить код через %s секунд.}" />
+        <Link name="request-code-again" shown="false" value="#{auth-login-requestagain;Получить новый код}" />
+    </Pane>
     <FlexBox name="links-container" shown="true">
-        <Link name="reset" shown="true">Забыли пароль?</Link>
+        <Link name="reset" shown="true">#{auth-login-reset;Забыли пароль?}</Link>
     </FlexBox>
     <FlexBox name="button-container" shown="true">            
         <SuccessButton name="login" shown="true" enabled="false" tabIndex="true">#{auth-login-button;Войти}</SuccessButton>

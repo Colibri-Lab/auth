@@ -391,4 +391,10 @@ auth-storages-confirmations-fields-verified-note:
   ru: Отметка об успешной верификации
 auth-registerform-phone-desc:
   ru: Телефон (+44XXXXXXXXXX)
+auth-login-timer-value:
+  ru: Вы сможете снова запросить код через %s секунд.
+auth-login-requestagain:
+  ru: Получить новый код
+auth-login-reset:
+  ru: Забыли пароль?
 ...

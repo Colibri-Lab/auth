@@ -17,12 +17,25 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         this._form.AddHandler('Changed', (event, args) => {
             this._loginButton.enabled = this._validator.Status();
         });
+
+        this._timer = this.Children('timer-container/timer');
+        this._timerTemplate = this._timer.value;
+        this._requestCode = this.Children('timer-container/request-code-again');
+
+        this._timeLeft = 60;
+        this._timer.value = this._timerTemplate.replaceAll('%s', this._timeLeft);
         
         this._registerButton.AddHandler('Clicked', (event, args) => this.Dispatch('RegisterButtonClicked', args));
         this._resetButton.AddHandler('Clicked', (event, args) => this.Dispatch('ResetButtonClicked', args));
         this._loginButton.AddHandler('Clicked', (event, args) => this.__loginFormLoginButtonClicked(event, args));
+        this._requestCode.AddHandler('Clicked', (event, args) => this.__requestCodeAgainClicked(event, args));
 
     } 
+
+    __requestCodeAgainClicked(event, args) {
+        this._form.enabled = false;
+        this.Login(true);
+    }
 
     _registerEvents() {
         this.RegisterEvent('RegisterButtonClicked', true, 'Когда нажата кнопка регистрации');
@@ -40,8 +53,33 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
             return;
         }
 
+        this.Login();
+
+    }
+
+    _startTimer() {
+        this._timer.shown = true;
+        this._requestCode.shown = false;
+        this._timeLeft = 60;
+        this._timer.value = this._timerTemplate.replaceAll('%s', this._timeLeft);
+        Colibri.Common.StartTimer('request-code-timer', 1000, () => {
+            if(this._timeLeft <= 2) {
+                Colibri.Common.StopTimer('request-code-timer');
+                this._timer.shown = false;
+                this._requestCode.shown = true;
+                return;
+            }
+            this._timeLeft --;
+            this._timer.shown = true;
+            this._requestCode.shown = false;
+            this._timer.value = this._timerTemplate.replaceAll('%s', this._timeLeft);
+        });
+    }
+
+    Login(rerequestCode = false) {
         const value = Object.cloneRecursive(this._form.value);
-        Auth.Session.Login(value.login, value.password, value.code ?? null).then((session) => {
+        this._form.enabled = false;
+        Auth.Session.Login(value.login, value.password, !rerequestCode ? (value.code ?? null) : null).then((session) => {
 
             if(!session) { // 2-х факторка
                 const fields = Object.cloneRecursive(this._form.fields);
@@ -51,6 +89,10 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
                 this._form.fields = fields;
                 this._form.value = value;
                 this._form.Children('code').Focus();
+
+                this._form.enabled = true;
+                this._confirming = false;
+                this._startTimer();
             } 
 
         }).catch(response => {
@@ -58,7 +100,6 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
             this._validator.Invalidate('form', response.result.message);
             this._form.Focus();
         });
-
     }
 
 }
