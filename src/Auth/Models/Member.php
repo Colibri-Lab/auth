@@ -4,6 +4,7 @@ namespace App\Modules\Auth\Models;
 
 # region Uses:
 use App\Modules\Auth\Module;
+use Colibri\Data\SqlClient\QueryInfo;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\DateField;
 use Colibri\Data\Storages\Fields\ValueField;
@@ -172,7 +173,9 @@ class Member extends BaseModelDataRow
         }
 
         $confirmation->code = RandomizationHelper::Numeric(6);
-        $confirmation->Save();
+        if( ($res = $confirmation->Save(true)) !== true ) {
+            throw new InvalidArgumentException($res->error, 500);
+        }
 
         return $confirmation->Send($value);
     }
@@ -188,7 +191,9 @@ class Member extends BaseModelDataRow
         }
 
         $confirmation->code = RandomizationHelper::Numeric(6);
-        $confirmation->Save();
+        if( ($res = $confirmation->Save(true)) !== true) {
+            throw new InvalidArgumentException($res->error, 500);
+        }
 
         return $confirmation->Send();
     }
@@ -204,7 +209,9 @@ class Member extends BaseModelDataRow
         }
 
         $confirmation->code = RandomizationHelper::Numeric(6);
-        $confirmation->Save();
+        if( ($res = $confirmation->Save(true)) !== true) {
+            throw new InvalidArgumentException($res->error, 500);
+        }
 
         return $confirmation->Send();
     }
@@ -216,8 +223,12 @@ class Member extends BaseModelDataRow
                 $this->$key = $value;
             }
         }
-        $this->Validate(true);
-        return $this->Save();
+        
+        if( ($res = $this->Save(true)) !== true) {
+            throw new InvalidArgumentException($res->error, 500);
+        }
+
+        return true;
     }
 
     public function ConfirmProperty(string $property, string $code): bool
@@ -225,10 +236,20 @@ class Member extends BaseModelDataRow
         $confirmation = Confirmations::LoadByMember($property, $this->token);
         if ($confirmation && $confirmation->code === $code) {
             $this->{$property . '_confirmed'} = true;
-            $this->Save();
-            $confirmation->Delete();
+            
+            if( ($res = $this->Save(true)) !== true) {
+                throw new \InvalidArgumentException($res->error, 400);
+            }
+
+            $res = $confirmation->Delete();
+            if( $res->error ) {
+                throw new \InvalidArgumentException($res->error, 400);
+            }
+
             return true;
+
         }
+
         throw new \InvalidArgumentException('Invalid code', 400);
     }
 
@@ -238,8 +259,16 @@ class Member extends BaseModelDataRow
         if ($confirmation && $confirmation->code === $code) {
             $this->{$property . '_confirmed'} = true;
             $this->$property = $value;
-            $this->Save();
-            $confirmation->Delete();
+            
+            if( ($res = $this->Save(true)) !== true) {
+                throw new \InvalidArgumentException($res->error, 400);
+            }
+
+            $res = $confirmation->Delete();
+            if( $res->error ) {
+                throw new \InvalidArgumentException($res->error, 400);
+            }
+
             return true;
         }
         return false;
@@ -261,8 +290,11 @@ class Member extends BaseModelDataRow
         $this->patronymic = $patronymic;
         $this->gender = $gender;
         $this->birthdate = $birthdate;
-        $this->Validate(true);
-        return $this->Save();
+        
+        if( ($res = $this->Save(true)) !== true) {
+            throw new \InvalidArgumentException($res->error, 400);
+        }
+        return true;
 
     }
 
@@ -281,7 +313,10 @@ class Member extends BaseModelDataRow
             $this->SendConfirmationMessage('phone');
         }
 
-        return $this->Save();
+        if( ($res = $this->Save(true)) !== true) {
+            throw new \InvalidArgumentException($res->error, 400);
+        }
+        return true;
 
     }
 
@@ -291,8 +326,11 @@ class Member extends BaseModelDataRow
             return false;
         }
         $this->password = $newPassword;
-        $this->Validate(true);
-        return $this->Save();
+        
+        if( ($res = $this->Save(true)) !== true) {
+            throw new \InvalidArgumentException($res->error, 400);
+        }
+        return true;
     }
 
     public function UpdateRole(string $newRole): bool
@@ -315,8 +353,13 @@ class Member extends BaseModelDataRow
 
         if ($newIndex > $currentIndex) {
             $this->role = $newRole;
-            $this->Validate(true);
-            return $this->Save() === true;
+            
+            if( ($res = $this->Save(true)) !== true) {
+                throw new \InvalidArgumentException($res->error, 400);
+            }
+            
+            return true;
+
         }
 
         return false;
@@ -336,13 +379,23 @@ class Member extends BaseModelDataRow
 
         try {
 
-            $confirmation->Delete();
+            $res = $confirmation->Delete();
+            if( $res->error ) {
+                throw new \InvalidArgumentException($res->error, 400);
+            }
+            
 
             $this->password = $newPassword;
-            return $this->Save();
+
+            if( ($res = $this->Save(true)) !== true) {
+                throw new \InvalidArgumentException($res->error, 400);
+            }
+
         } catch (Throwable $e) {
-            throw new InvalidArgumentException('Invalid password', 405);
+            throw new InvalidArgumentException($e->getMessage(), 405);
         }
+
+        return true;
     }
 
     public function ConfirmLogin(string $code): bool

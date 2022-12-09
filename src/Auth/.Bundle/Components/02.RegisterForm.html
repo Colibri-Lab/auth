@@ -85,7 +85,13 @@
                         desc: '#{auth-registerform-gender-desc;Пол}',
                         params: {
                             required: false,
-                            readonly: true
+                            readonly: true,
+                            validate: [
+                                {
+                                    message: '#{auth-registerform-gender-validation1;Пожалуйста, выберите пол}',
+                                    method: '(field, validator) => !!field.value'
+                                }
+                            ]  
                         },
                         selector: {
                             title: 'title',

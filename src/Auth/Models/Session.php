@@ -103,7 +103,7 @@ class Session extends BaseModelDataRow
         return $ret;
     }
 
-    public function Save(): bool
+    public function Save(bool $performValidationBeforeSave = false): bool
     {
         $this->_generateToken();
         if (!$this->member) {
@@ -113,7 +113,7 @@ class Session extends BaseModelDataRow
             Mem::Write('sess' . $this->key, $this->ExportForMemcached(), $this->expires ?: 3600);
             return true;
         } else {
-            return parent::Save();
+            return parent::Save($performValidationBeforeSave);
         }
     }
 

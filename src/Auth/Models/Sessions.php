@@ -137,7 +137,7 @@ class Sessions extends BaseModelDataTable {
         $session->expires = 3600;
         $session->member = null;
         $session->datecreated = new DateTimeField('now');
-        $session->Save();
+        $session->Save(true);
         return $session;
     }
 

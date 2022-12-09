@@ -7,6 +7,8 @@ namespace App\Modules\Auth\Controllers;
 
 use App\Modules\Tools\Models\Notices;
 use Colibri\App;
+use Colibri\Exceptions\ValidationException;
+use Colibri\Utils\Debug;
 use Colibri\Web\RequestCollection;
 use Colibri\Web\Controller as WebController;
 use Colibri\Web\PayloadCopy;
@@ -139,17 +141,24 @@ class MemberController extends WebController
             $member->blocked = false;
             $member->two_factor = true;
 
-            $member->Validate(true);
+            if(($res = $member->Save(true)) !== true) {
+                /** @var \Colibri\Data\SqlClient\QueryInfo $res */
+                throw new InvalidArgumentException($res->error, 400);
+            }
 
-            $member->Save();
+            $session->member = $member->token;
+            if (($res = $session->Save(true)) !== true) {
+                /** @var \Colibri\Data\SqlClient\QueryInfo $res */
+                throw new InvalidArgumentException($res->error, 400);
+            }
+    
         } catch (InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => Debug::Rout($e->getExceptionData())]);
         } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
-
-        $session->member = $member->token;
-        $session->Save();
 
         // финишируем контроллер
         return $this->Finish(
@@ -379,6 +388,8 @@ class MemberController extends WebController
                     'code' => '#{auth-errors-member-confirmation-code-error;Неверный код подтверждения}'
                 ]
             ]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => Debug::Rout($e->getExceptionData())]);
         } catch (Throwable $e) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-confirmation-error;Неизвестная ошибка}', 'code' => 400]);
         }
@@ -462,6 +473,8 @@ class MemberController extends WebController
                     ]
                 ]);
             }
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => Debug::Rout($e->getExceptionData())]);
         } catch (Throwable $e) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-reset-error;Невозможно сохранить этот пароль}', 'code' => 400]);
         }
@@ -516,12 +529,26 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-phone-exists;Пользователь с таким телефоном существует}', 'code' => 400]);
         }
 
-        if (!$member->UpdateIdentify($property, $code, $value)) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-update-error;Невозможно обновить свойство}', 'code' => 400]);
-        }
+        try {
 
-        $session->member = $member->token;
-        $session->Save();
+            if (!$member->UpdateIdentify($property, $code, $value)) {
+                throw new InvalidArgumentException('#{auth-errors-member-update-error;Невозможно обновить свойство}', 400);
+            }
+    
+            $session->member = $member->token;
+            if (($res = $session->Save(true)) !== true) {
+                /** @var \Colibri\Data\SqlClient\QueryInfo $res */
+                throw new InvalidArgumentException($res->error, 400);
+            }
+
+        } catch (InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => Debug::Rout($e->getExceptionData())]);
+        } catch (Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        }
+        
 
         return $this->Finish(
             200,
@@ -579,8 +606,21 @@ class MemberController extends WebController
             ]);
         }
 
-        $member->password = $password;
-        $member->Save();
+        try {
+
+            $member->password = $password;
+            if (($res = $member->Save(true)) !== true) {
+                /** @var \Colibri\Data\SqlClient\QueryInfo $res */
+                throw new InvalidArgumentException($res->error, 400);
+            }
+
+        } catch (InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => Debug::Rout($e->getExceptionData())]);
+        } catch (Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        }
 
         return $this->Finish(
             200,
@@ -607,13 +647,29 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
         }
 
-        $member = Members::LoadByToken($session->member);
-        $member->blocked = 1;
-        $member->Save();
+        try {
 
-        $session->member = null;
-        $session->Save();
-
+            $member = Members::LoadByToken($session->member);
+            $member->blocked = 1;
+            if(($res = $member->Save(true)) !== true) {
+                /** @var \Colibri\Data\SqlClient\QueryInfo $res */
+                throw new InvalidArgumentException($res->error, 400);
+            }
+    
+            $session->member = null;
+            if (($res = $session->Save(true)) !== true) {
+                /** @var \Colibri\Data\SqlClient\QueryInfo $res */
+                throw new InvalidArgumentException($res->error, 400);
+            }
+    
+        } catch (InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => Debug::Rout($e->getExceptionData())]);
+        } catch (Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        }
+        
         return $this->Finish(
             200,
             'ok',
@@ -642,10 +698,14 @@ class MemberController extends WebController
         $member = Members::LoadByToken($session->member);
         try {
             $member->two_factor = !$member->two_factor;
-            $member->Validate(true);
-            $member->Save();
+            if (($res = $member->Save(true)) !== true) {
+                /** @var \Colibri\Data\SqlClient\QueryInfo $res */
+                throw new InvalidArgumentException($res->error, 400);
+            }
         } catch (InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => Debug::Rout($e->getExceptionData())]);
         } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
@@ -697,6 +757,8 @@ class MemberController extends WebController
             }
         } catch (InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => Debug::Rout($e->getExceptionData())]);
         } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
@@ -746,6 +808,8 @@ class MemberController extends WebController
             }
         } catch (InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => Debug::Rout($e->getExceptionData())]);
         } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
@@ -918,33 +982,33 @@ class MemberController extends WebController
         
         try {
             
-            if ($member->Update($mutation) === true) {
+            $member->Update($mutation);
 
-                $data = [];
-                foreach ($mutation as $key => $value) {
-                    $field = $member->Storage()->fields->$key;
-                    if ($field->type === 'bool') {
-                        $data[] = $field->desc . ': ' . ($value ? '#{auth-bool-data-true;Да}' : '#{auth-bool-data-false;Нет}');
-                    } else {
-                        $data[] = $field->desc . ': ' . $value;
-                    }
+            $data = [];
+            foreach ($mutation as $key => $value) {
+                $field = $member->Storage()->fields->$key;
+                if ($field->type === 'bool') {
+                    $data[] = $field->desc . ': ' . ($value ? '#{auth-bool-data-true;Да}' : '#{auth-bool-data-false;Нет}');
+                } else {
+                    $data[] = $field->desc . ': ' . $value;
                 }
-    
-                $dataAsString = implode('<br />', $data);
-                if (App::$moduleManager->lang) {
-                    /** @var \App\Modules\Lang\Module */
-                    $langModule = App::$moduleManager->lang;
-                    $dataAsString = $langModule->ParseString($dataAsString);
-                }
-    
-                $notice = Notices::LoadByName('administrator_reset');
-                $notice->Apply(['data' => $dataAsString, 'first_name' => $member->first_name]);
-                Notices::Send($member->email, $notice);
-    
             }
+
+            $dataAsString = implode('<br />', $data);
+            if (App::$moduleManager->lang) {
+                /** @var \App\Modules\Lang\Module */
+                $langModule = App::$moduleManager->lang;
+                $dataAsString = $langModule->ParseString($dataAsString);
+            }
+
+            $notice = Notices::LoadByName('administrator_reset');
+            $notice->Apply(['data' => $dataAsString, 'first_name' => $member->first_name]);
+            Notices::Send($member->email, $notice);
 
         } catch (InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => Debug::Rout($e->getExceptionData())]);
         } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
@@ -992,6 +1056,8 @@ class MemberController extends WebController
             }            
         } catch (InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => Debug::Rout($e->getExceptionData())]);
         } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }

@@ -2,6 +2,8 @@
 
 namespace App\Modules\Auth\Controllers;
 
+use Colibri\Exceptions\ValidationException;
+use Colibri\Utils\Debug;
 use Colibri\Web\RequestCollection;
 use Colibri\Web\Controller as WebController;
 use Colibri\Web\PayloadCopy;
@@ -21,8 +23,15 @@ class SessionController extends WebController
      */
     public function Start(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
-
-        $session = Sessions::LoadFromRequest();
+        try {
+            $session = Sessions::LoadFromRequest();
+        } catch (\InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+        } catch (\Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        }
 
         // финишируем контроллер
         return $this->Finish(
@@ -60,6 +69,7 @@ class SessionController extends WebController
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-session-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
         }
 
+        
         $member = Members::LoadByEmail($login);
         if (!$member) {
             $member = Members::LoadByPhone($login);
@@ -74,22 +84,33 @@ class SessionController extends WebController
             return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-invalid-creds;Некорректные учетные данные}', 'code' => 403]);
         }
 
-        if ($member->two_factor) {
-            if ($code) {
-                if (!$member->ConfirmLogin($code)) {
-                    return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-property-tho-factor-error;Ошибка входа}', 'code' => 403]);
-                }
-            } else {
-                if (!$member->SendTwoFactorAuthorizationMessage()) {
-                    return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-property-send-error;Ошибка отправки сообщения}', 'code' => 400]);
+        try {
+            
+            if ($member->two_factor) {
+                if ($code) {
+                    if (!$member->ConfirmLogin($code)) {
+                        return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-property-tho-factor-error;Ошибка входа}', 'code' => 403]);
+                    }
                 } else {
-                    return $this->Finish(206, 'Tho factor authentification', ['message' => '#{auth-errors-member-property-two-factor-needed;Требуется 2-х факторная авторизация}', 'code' => 206]);
+                    if (!$member->SendTwoFactorAuthorizationMessage()) {
+                        return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-property-send-error;Ошибка отправки сообщения}', 'code' => 400]);
+                    } else {
+                        return $this->Finish(206, 'Tho factor authentification', ['message' => '#{auth-errors-member-property-two-factor-needed;Требуется 2-х факторная авторизация}', 'code' => 206]);
+                    }
                 }
             }
-        }
+    
+            $session->member = $member->token;
+            $session->Save(true);
 
-        $session->member = $member->token;
-        $session->Save();
+
+        } catch (\InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+        } catch (\Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        }
 
         // финишируем контроллер
         return $this->Finish(
@@ -112,9 +133,17 @@ class SessionController extends WebController
     public function Logout(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
 
-        $session = Sessions::LoadFromRequest();
-        $session->member = null;
-        $session->Save();
+        try {
+            $session = Sessions::LoadFromRequest();            
+            $session->member = null;
+            $session->Save(true);
+        } catch (\InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+        } catch (\Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        }
 
         // финишируем контроллер
         return $this->Finish(
@@ -137,16 +166,27 @@ class SessionController extends WebController
     public function LogoutFromAll(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
 
-        $session = Sessions::LoadFromRequest();
-        if (!$session->member) {
-            return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-session-notlogged;Пользователь не залогинен}', 'code' => 403]);
-        }
+        try {
+            
+            $session = Sessions::LoadFromRequest();
+            if (!$session->member) {
+                return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-session-notlogged;Пользователь не залогинен}', 'code' => 403]);
+            }
 
-        $sessions = Sessions::LoadByMember($session->member);
-        foreach ($sessions as $s) {
-            $s->member = null;
-            $s->Save();
+            $sessions = Sessions::LoadByMember($session->member);
+            foreach ($sessions as $s) {
+                $s->member = null;
+                $s->Save(true);
+            }
+
+        } catch (\InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+        } catch (\Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
+        
 
         $session->member = null;
 
@@ -170,8 +210,17 @@ class SessionController extends WebController
      */
     public function Decode(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
-        $session = Sessions::LoadFromRequest();
 
+        try {
+            $session = Sessions::LoadFromRequest();
+        } catch (\InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+        } catch (\Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        }
+        
         // финишируем контроллер
         return $this->Finish(
             200,
