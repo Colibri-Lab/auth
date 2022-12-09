@@ -110,11 +110,7 @@ class Confirmation extends BaseModelDataRow
 
 
 		} else {
-			if ($property) {
-				return Notices::Send(($value ? $value : $member->email), $notice);
-			} else {
-				return Notices::Send(($value ? $value : $member->email), $notice);
-			}
+			return Notices::Send(($value ? $value : $member->email), $notice);
 		}
 
 
