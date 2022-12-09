@@ -381,6 +381,99 @@ applications:
                     mask: ""
                     generator: ""
           default: json_object()
+        proxies:
+          desc: '#{auth-storages-applications-fields-params-proxies-desc;Прокси для
+            коммуникаций}'
+          type: json
+          component: Colibri.UI.Forms.Object
+          class: ObjectField
+          attrs: []
+          params:
+            required: false
+            enabled: true
+            readonly: false
+            list: false
+            multiple: false
+            greed: ""
+            viewer: ~
+            vertical: false
+            visual: false
+            code: ""
+            mask: ""
+            fieldgenerator: ""
+            generator: ""
+            noteClass: ""
+            simplearraywidth: ""
+            simplearrayheight: ""
+            addlink: ""
+            maxadd: ""
+            title: ""
+            allow: ""
+            size: ""
+            validate: []
+          fields:
+            email:
+              desc: '#{auth-storages-applications-fields-params-proxies-email-desc;Эл.
+                почта}'
+              type: varchar
+              length: "1024"
+              component: Colibri.UI.Forms.Text
+              class: string
+              attrs: []
+              params:
+                required: false
+                enabled: true
+                readonly: false
+                list: false
+                multiple: false
+                greed: ""
+                viewer: ~
+                vertical: false
+                visual: false
+                code: ""
+                mask: ""
+                fieldgenerator: ""
+                generator: ""
+                noteClass: ""
+                simplearraywidth: ""
+                simplearrayheight: ""
+                addlink: ""
+                maxadd: ""
+                title: ""
+                allow: ""
+                size: ""
+                validate: []
+            sms:
+              desc: '#{auth-storages-applications-fields-params-proxies-sms-desc;Отправка
+                СМС}'
+              type: varchar
+              length: "1024"
+              component: Colibri.UI.Forms.Text
+              class: string
+              attrs: []
+              params:
+                required: false
+                enabled: true
+                readonly: false
+                list: false
+                multiple: false
+                greed: ""
+                viewer: ~
+                vertical: false
+                visual: false
+                code: ""
+                mask: ""
+                fieldgenerator: ""
+                generator: ""
+                noteClass: ""
+                simplearraywidth: ""
+                simplearrayheight: ""
+                addlink: ""
+                maxadd: ""
+                title: ""
+                allow: ""
+                size: ""
+                validate: []
       default: json_object()
   indices:
     applications_token_idx:

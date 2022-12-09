@@ -413,4 +413,10 @@ auth-errors-member-with-phone-exists:
   ru: Пользователь с таким телефоном существует
 auth-registerform-gender-validation1:
   ru: Пожалуйста, выберите пол
+auth-storages-applications-fields-params-proxies-desc:
+  ru: Прокси для коммуникаций
+auth-storages-applications-fields-params-proxies-email-desc:
+  ru: Эл. почта
+auth-storages-applications-fields-params-proxies-sms-desc:
+  ru: Отправка СМС
 ...
