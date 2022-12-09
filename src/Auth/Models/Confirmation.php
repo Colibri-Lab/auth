@@ -3,11 +3,15 @@
 namespace App\Modules\Auth\Models;
 
 # region Uses:
+use Colibri\App;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\ValueField;
 # endregion Uses;
 use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
 use App\Modules\Tools\Models\Notices;
+use Colibri\IO\Request\Encryption;
+use Colibri\IO\Request\Request;
+use Colibri\IO\Request\Type;
 
 /**
  * Представление строки в таблице в хранилище #{auth-storages-confirmations-desc;Коды верификации}
@@ -67,7 +71,7 @@ class Confirmation extends BaseModelDataRow
 	public const PropertyLogin = 'login';
 	# endregion Consts;
 
-	public function Send(?string $value = null): bool
+	public function Send(?string $value = null, mixed $proxies = null): bool
 	{
 		$member = Members::LoadByToken($this->member);
 		if (!$member) {
@@ -79,13 +83,40 @@ class Confirmation extends BaseModelDataRow
 		$noticeName = 'confirmation_' . $this->property;
 		$notice = Notices::LoadByName($noticeName);
 		$notice->Apply($memberData);
-		if ((string) $this->property === 'email') {
-			return Notices::Send($value ? $value : $member->email, $notice);
-		} else {
-			return Notices::Send($member->email, $notice);
-			// надо отправить SMS
-			// return false;
+
+		$property = (string) $this->property;
+		if ($property === Confirmation::PropertyLogin) {
+			$property = Confirmation::PropertyPhone;
 		}
+
+		if (!is_null($proxies) && isset($proxies->$property)) {
+			
+			$url = $proxies->$property;
+			$request = new Request($url, Type::Post, Encryption::JsonEncoded);
+			$request->timeout = 10;
+			$request->sslVerify = false;
+			$response = $request->Execute(json_encode([
+				'recipient' => ($value ? $value : $member->email),
+				'subject' => $notice->subject,
+				'body' => $notice->body,
+				'attachments' => []
+			]));
+
+			if ($response->status !== 200) {
+				return false;
+			}
+
+			return true;
+
+
+		} else {
+			if ($property) {
+				return Notices::Send(($value ? $value : $member->email), $notice);
+			} else {
+				return Notices::Send(($value ? $value : $member->email), $notice);
+			}
+		}
+
 
 	}
 

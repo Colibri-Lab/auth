@@ -419,4 +419,6 @@ auth-storages-applications-fields-params-proxies-email-desc:
   ru: Эл. почта
 auth-storages-applications-fields-params-proxies-sms-desc:
   ru: Отправка СМС
+auth-errors-member-property-send-error:
+  ru: Ошибка отправки сообщения
 ...

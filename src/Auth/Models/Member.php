@@ -165,6 +165,12 @@ class Member extends BaseModelDataRow
             return false;
         }
 
+        /** @var Application|null $app */
+        $app = Module::$instance->application;
+        if (!$app) {
+            throw new InvalidArgumentException('Application not found', 404);
+        }
+
         $confirmation = Confirmations::LoadByMember($property, $this->token);
         if (!$confirmation) {
             $confirmation = Confirmations::LoadEmpty();
@@ -177,11 +183,18 @@ class Member extends BaseModelDataRow
             throw new InvalidArgumentException($res->error, 500);
         }
 
-        return $confirmation->Send($value);
+        return $confirmation->Send($value, $app->params->proxies);
+        
     }
 
     public function SendResetMessage(): bool
     {
+
+        /** @var Application|null $app */
+        $app = Module::$instance->application;
+        if (!$app) {
+            throw new InvalidArgumentException('Application not found', 404);
+        }
 
         $confirmation = Confirmations::LoadByMember(Confirmation::PropertyReset, $this->token);
         if (!$confirmation) {
@@ -195,11 +208,16 @@ class Member extends BaseModelDataRow
             throw new InvalidArgumentException($res->error, 500);
         }
 
-        return $confirmation->Send();
+        return $confirmation->Send(null, $app->params->proxies);
     }
 
     public function SendTwoFactorAuthorizationMessage(): bool
     {
+        /** @var Application|null $app */
+        $app = Module::$instance->application;
+        if (!$app) {
+            throw new InvalidArgumentException('Application not found', 404);
+        }
 
         $confirmation = Confirmations::LoadByMember(Confirmation::PropertyLogin, $this->token);
         if (!$confirmation) {
@@ -213,7 +231,7 @@ class Member extends BaseModelDataRow
             throw new InvalidArgumentException($res->error, 500);
         }
 
-        return $confirmation->Send();
+        return $confirmation->Send(null, $app->params->proxies);
     }
 
     public function Update(object|array $mutationData): QueryInfo|bool
