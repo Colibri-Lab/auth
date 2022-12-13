@@ -22,7 +22,7 @@ App.Modules.Auth = class extends Colibri.Modules.Module {
 
         this._app_token = appToken;
         this.useAuthorizationCookie = useCookie;
-        this.authorizationCookieName = cookieName;
+        this.authorizationCookieName = cookieName; 
         if(remoteDomain) {
             this.remoteDomain = remoteDomain;
         }
