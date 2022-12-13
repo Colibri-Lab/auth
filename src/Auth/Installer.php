@@ -163,7 +163,7 @@ class Installer
 
     }
 
-    private static function _injectCometSettings($file): void
+    private static function _injectCometSettings($file, $mode): void
     {
 
         $settings = self::_loadConfig($file);
@@ -174,6 +174,21 @@ class Installer
         self::_saveConfig($file, $settings);
 
     }
+
+    private static function _injectMinifierSettings($file, $mode): void
+    {
+
+        $settings = self::_loadConfig($file);
+
+        if($mode !== 'local' && $mode !== 'dev') {
+            $settings['type'] = 'uglify';
+            $settings['command'] = '/usr/local/bin/uglifyjs --rename %s -o %s --compress --mangle --v8';
+        }
+
+        self::_saveConfig($file, $settings);
+
+    }
+
 
  
     /**
@@ -218,6 +233,7 @@ class Installer
         self::_injrectIntoDomains($configDir.'hosts.yaml', $mode);
         self::_injectDefaultSettings($configDir.'settings.yaml', $mode);
         self::_injectCometSettings($configDir.'comet.yaml', $mode);
+        self::_injectMinifierSettings($configDir.'minifier.yaml', $mode);
 
         if($mode !== 'local') {
             print_r('Обновляем доступы к базе данных'."\n");
