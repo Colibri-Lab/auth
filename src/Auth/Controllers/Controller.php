@@ -15,6 +15,7 @@ use Colibri\Web\View;
 use ScssPhp\ScssPhp\Compiler;
 use ScssPhp\ScssPhp\OutputStyle;
 use Colibri\Web\PayloadCopy;
+use Colibri\Utils\Minifiers\Javascript as Minifier;
 
 class Controller extends WebController
 {
@@ -86,6 +87,13 @@ class Controller extends WebController
                     $scss->setOutputStyle(OutputStyle::EXPANDED);
                     $args->content = $scss->compileString($args->content)->getCss();
                 } catch (\Exception $e) {
+                    Debug::Out($e->getMessage());
+                }
+            } elseif (in_array('js', $args->exts) ) { // && !App::$isDev
+                try {
+                    $args->content = Minifier::Minify($args->content);
+                }
+                catch(\Throwable $e) {
                     Debug::Out($e->getMessage());
                 }
             }
