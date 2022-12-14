@@ -182,6 +182,7 @@ class Installer
 
         if($mode !== 'local' && $mode !== 'dev') {
             $settings['type'] = 'uglify';
+            $settings['convert'] = true;
             $settings['command'] = '/usr/local/bin/uglifyjs --rename %s -o %s --compress --mangle --v8';
         }
 
