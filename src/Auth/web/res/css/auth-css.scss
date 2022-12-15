@@ -10,7 +10,6 @@
         border-radius: $auth-form-radius;
     }
 
-    padding: 55px 60px;
     @if variable-exists($name: auth-form-padding) {
         padding: $auth-form-padding;
     }
@@ -23,26 +22,52 @@
     &.app-component-shown {
         display: flex;
     }
-
     align-items: center;
     justify-content: center;
-
     flex-direction: column;
-    gap: 20px;
+
+    [data-object-name="timer-container"], [data-object-name="links-container"], [data-object-name="button-container2"] {
+        margin-top: 16px;
+    }
+
+    [data-object-name="button-container2"] {
+        &.app-component-shown {
+            display: flex;
+        }
+        align-items: center;
+        [data-object-name="register"], [data-object-name="login"] {
+            margin-left: 10px;
+        }
+    }
 
     [data-object-name="form-container"] {
         width: 100%;
         .app-form-component { 
             width: 100%;
-                    
         }
+        .app-auth-form-component-title {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 32px;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            color:  #0B1F35;
+            margin-bottom: 36px;
+            text-align: center;
+            &.app-component-shown {
+                display: block;
+            }
+        } 
     }
 
-    [data-object-name="button-container"], [data-object-name="button-container2"] {
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
+    [data-object-name="button-container"] {
+        &.app-component-shown {
+            display: flex;
+        }
+        gap: 16px;
     }
+
 
 }
 
