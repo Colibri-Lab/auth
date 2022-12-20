@@ -1,426 +1,774 @@
 ---
 auth-logincontainer-login-title:
   ru: Вход в систему
+  en: Login
+  hy: ""
 auth-loginform-email-desc:
   ru: Электронная почта
+  en: Email
+  hy: ""
 auth-loginform-login-validation1:
   ru: Пожалуйста, введите эл. адрес
+  en: Please, enter the email
+  hy: ""
 auth-loginform-login-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
+  en: You are entering an invalid email. Please try again!
+  hy: ""
 auth-loginform-password-desc:
   ru: Пароль
+  en: Password
+  hy: ""
 auth-loginform-password-validation1:
   ru: Пожалуйста, введите пароль
+  en: Please, enter the password
+  hy: ""
 auth-loginform-code-desc:
   ru: Введите код подтверждения
+  en: Enter the confirmation code
+  hy: ""
 auth-loginform-code-validation1:
   ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
+  en: Please enter the 6 digit code we have sent to your contact
+  hy: ""
 auth-login-button:
   ru: Войти
+  en: Login
+  hy: ""
 auth-register-login-text:
   ru: У вас нет аккаунта?
+  en: Don't have an account?
+  hy: ""
 auth-register-button:
   ru: Зарегистрироваться
+  en: Register
+  hy: ""
 auth-logincontainer-register-title:
   ru: Регистрация
+  en: Registration
+  hy: ""
 auth-registerform-fio-desc:
   ru: Личные данные
+  en: 'Personal data '
+  hy: ""
 auth-registerform-fio-last_name-placeholder:
   ru: Фамилия
+  en: Surname
+  hy: ""
 auth-registerform-fio-validation1:
   ru: Пожалуйста, введите ваше имя
+  en: Please, enter your name
+  hy: ""
 auth-registerform-fio-first_name-placeholder:
   ru: Имя
+  en: First name
+  hy: ""
 auth-registerform-fio-validation2:
   ru: Пожалуйста, введите фамилию
+  en: Please, enter your surname
+  hy: ""
 auth-registerform-fio-patronymic-placeholder:
   ru: Отчество
+  en: Patronymic
+  hy: ""
 auth-registerform-birtdate-desc:
   ru: Дата рождения
+  en: Birth date
+  hy: ""
 auth-registerform-birthdate-validation1:
   ru: Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние
+  en: You are too young, only adults can use our project
+  hy: ""
 auth-registerform-gender-desc:
   ru: Пол
+  en: Sex
+  hy: ""
 auth-registerform-gender-values-male:
   ru: Мужской
+  en: Male
+  hy: ""
 auth-registerform-gender-values-female:
   ru: Женский
+  en: Female
+  hy: ""
 auth-registerform-label-desc:
   ru: Учетные данные
+  en: Credentials
+  hy: ""
 auth-registerform-email-desc:
   ru: Электронная почта
+  en: Email
+  hy: ""
 auth-registerform-email-validation1:
   ru: Пожалуйста, введите эл. адрес
+  en: Please, enter your email
+  hy: ""
 auth-registerform-email-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
+  en: You are entering an invalid email. Please try again!
+  hy: ""
 auth-registerform-phone-validation1:
   ru: Пожалуйста, введите телефон
+  en: Please, enter your phone number
+  hy: ""
 auth-registerform-pass-desc:
   ru: Пароль
+  en: Password
+  hy: ""
 auth-registerform-password-placeholder:
   ru: Придумайте пароль
+  en: Pick a password
+  hy: ""
 auth-registerform-password-desc:
   ru: Пароль
+  en: Password
+  hy: ""
 auth-registerform-password-tip-text:
   ru: Придумайте пароль, который сложно подобрать
+  en: Create a password that is hard to guess
+  hy: ""
 auth-registerform-password-tip-success:
-  ru: Пароль соотвествует требованиям
+  ru: Пароль соответствует требованиям
+  en: Password meets requirements
+  hy: ""
 auth-registerform-password-tip-error:
   ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+  hy: ""
 auth-registerform-password-tip-generate:
   ru: Сгенерировать пароль
+  en: Generate password
+  hy: ""
 auth-registerform-password-tip-copied:
   ru: Пароль скопирован в буфер обмена
+  en: Password copied to clipboard
+  hy: ""
 auth-registerform-password-tip-digits-1:
   ru: символ
+  en: symbol
+  hy: ""
 auth-registerform-password-tip-digits-2:
   ru: символа
+  en: symbols
+  hy: ""
 auth-registerform-password-tip-digits-3:
   ru: символов
+  en: symbols
+  hy: ""
 auth-registerform-password-tip-additional-1:
   ru: цифры
+  en: digits
+  hy: ""
 auth-registerform-password-tip-additional-2:
   ru: символы (!, $, ^ и др.)
+  en: symbols (!, $, ^, etc.)
+  hy: ""
 auth-registerform-password-tip-additional-3:
   ru: заглавные латинские буквы
+  en: capital latin letters
+  hy: ""
 auth-registerform-password-tip-additional-4:
   ru: строчные латинские буквы
+  en: lowercase latin letters
+  hy: ""
 auth-registerform-password-validation1:
   ru: Пожалуйста, введите пароль
+  en: Please enter a password
+  hy: ""
 auth-registerform-password-validation3:
   ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+  hy: ""
 auth-registerform-confirmation-placeholder:
   ru: Повторите пароль
+  en: Confirm password
+  hy: ""
 auth-registerform-confirmation-desc:
   ru: Повторите пароль
+  en: Confirm password
+  hy: ""
 auth-registerform-password-validation2:
   ru: Пожалуйста, повторите пароль
+  en: Please, confirm a password
+  hy: ""
 auth-registerform-confirmation-validation4:
   ru: Пароли должны совпадать
+  en: Passwords must match
+  hy: ""
 auth-registerform-aggreenment-placeholder:
   ru: Я соглашаюсь с условиями и даю согласие на обработку персональных данных
+  en: I agree to the terms and consent to the processing of personal data
+  hy: ""
 auth-registerform-aggreenment-validation1:
-  ru: Вам необходимо подтвердить соглашение на обработку персональных данных и согласие
+  ru: Вам необходимо подтвердить согласие на обработку персональных данных и согласие
     на условия
+  en: You need to confirm your consent to the processing of personal data and consent
+    to the terms
+  hy: ""
 auth-login-register-text:
   ru: Уже есть аккаунт?
+  en: Already have an account?
+  hy: ""
 auth-logincontainer-reset-title:
   ru: Восстановление пароля
+  en: Password recovery
+  hy: ""
 auth-back-button:
   ru: Назад
+  en: Back
+  hy: ""
 auth-reset-button:
   ru: Восстановить
+  en: Reset
+  hy: ""
 auth-resetform-email-desc:
   ru: Электронная почта
+  en: Email
+  hy: ""
 auth-resetform-email-validation1:
   ru: Пожалуйста, введите эл. адрес
+  en: Please, enter your email
+  hy: ""
 auth-resetform-email-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
+  en: You are entering an invalid email. Please try again!
+  hy: ""
 auth-resetform-phone-desc:
   ru: Телефон
+  en: Phone number
+  hy: ""
 auth-resetform-phone-validation1:
   ru: Пожалуйста, введите телефон
+  en: Please, enter your phone number
+  hy: ""
 auth-resetform-code-desc:
   ru: Код восстановления
+  en: Confirmation code
+  hy: ""
 auth-confirmationform-code-validation1:
   ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
+  en: Please enter the 6 digit code we have sent to your contact
+  hy: ""
 auth-resetform-pass-desc:
   ru: Пароль
+  en: Password
+  hy: ""
 auth-resetform-password-placeholder:
   ru: Придумайте пароль
+  en: Pick a password
+  hy: ""
 auth-resetform-password-desc:
   ru: Пароль
+  en: Password
+  hy: ""
 auth-resetform-password-tip-text:
   ru: Придумайте пароль, который сложно подобрать
+  en: Create a password that is hard to guess
+  hy: ""
 auth-resetform-password-tip-success:
   ru: Пароль соотвествует требованиям
+  en: Password meets requirements
+  hy: ""
 auth-resetform-password-tip-error:
   ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+  hy: ""
 auth-resetform-password-tip-generate:
   ru: Сгенерировать пароль
+  en: Generate password
+  hy: ""
 auth-resetform-password-tip-copied:
   ru: Пароль скопирован в буфер обмена
+  en: Password copied to clipboard
+  hy: ""
 auth-resetform-password-tip-digits-1:
   ru: символ
+  en: symbol
+  hy: ""
 auth-resetform-password-tip-digits-2:
   ru: символа
+  en: symbols
+  hy: ""
 auth-resetform-password-tip-digits-3:
   ru: символов
+  en: symbols
+  hy: ""
 auth-resetform-password-tip-additional-1:
   ru: цифры
+  en: digits
+  hy: ""
 auth-resetform-password-tip-additional-2:
   ru: символы (!, $, ^ и др.)
+  en: symbols (!, $, ^, etc.)
+  hy: ""
 auth-resetform-password-tip-additional-3:
   ru: заглавные латинские буквы
+  en: capital latin letters
+  hy: ""
 auth-resetform-password-tip-additional-4:
   ru: строчные латинские буквы
+  en: lowercase latin letters
+  hy: ""
 auth-resetform-password-validation1:
   ru: Пожалуйста, введите пароль
+  en: Please enter a password
+  hy: ""
 auth-resetform-password-validation3:
   ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+  hy: ""
 auth-resetform-confirmation-placeholder:
   ru: Повторите пароль
+  en: Confirm password
+  hy: ""
 auth-resetform-password-validation2:
   ru: Пожалуйста, повторите пароль
+  en: Please, confirm password
+  hy: ""
 auth-resetform-confirmation-validation4:
   ru: Пароли должны совпадать
+  en: Passwords must match
+  hy: ""
 auth-confirmationform-code-desc:
   ru: Введите код подтверждения
+  en: Enter the confirmation code
+  hy: ""
 auth-confirmation-timer-value:
   ru: Вы сможете снова запросить код через %s секунд.
+  en: You will be able to request the code again in %s seconds.
+  hy: ""
 auth-confirmation-requestagain:
   ru: Получить новый код
+  en: Get a new code
+  hy: ""
 auth-profileform-last_name-desc:
   ru: Фамилия
+  en: Surname
+  hy: ""
 auth-profileform-last_name-validation1:
   ru: Пожалуйста, введите вашу фамилию
+  en: Please, enter your surname
+  hy: ""
 auth-profileform-first_name-desc:
   ru: Имя
+  en: First name
+  hy: ""
 auth-profileform-first_name-placeholder:
   ru: 'Например: Иван'
+  en: 'For example: John'
+  hy: ""
 auth-profileform-first_name-validation1:
   ru: Пожалуйста, введите ваше имя
+  en: Please, enter your first name
+  hy: ""
 auth-profileform-partonymic-desc:
   ru: Отчество
+  en: Patronymic
+  hy: ""
 auth-profileform-birtdate-desc:
   ru: Дата рождения
+  en: Birth date
+  hy: ""
 auth-profileform-birthdate-validation1:
   ru: Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние
+  en: You are too young, only adults can use our project
+  hy: ""
 auth-profileform-gender-desc:
   ru: Пол
+  en: Sex
+  hy: ""
 auth-profileform-gender-values-male:
   ru: Мужской
+  en: Male
+  hy: ""
 auth-profileform-gender-values-female:
   ru: Женский
+  en: Female
+  hy: ""
 auth-profile-button:
   ru: Сохранить
+  en: Save
+  hy: ""
 auth-changepassform-original-desc:
   ru: Текущий пароль
+  en: Current password
+  hy: ""
 auth-changepassform-password-desc:
   ru: Новый пароль
+  en: New password
+  hy: ""
 auth-changepassform-password-tip-text:
   ru: Придумайте пароль, который сложно подобрать
+  en: Create a password that is hard to guess
+  hy: ""
 auth-changepassform-password-tip-success:
-  ru: Пароль соотвествует требованиям
+  ru: Пароль соответствует требованиям
+  en: Password meets requirements
+  hy: ""
 auth-changepassform-password-tip-error:
   ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+  hy: ""
 auth-changepassform-password-tip-generate:
   ru: Сгенерировать пароль
+  en: Generate password
+  hy: ""
 auth-changepassform-password-tip-copied:
   ru: Пароль скопирован в буфер обмена
+  en: Password copied to clipboard
+  hy: ""
 auth-changepassform-password-tip-digits-1:
   ru: символ
+  en: symbol
+  hy: ""
 auth-changepassform-password-tip-digits-2:
   ru: символа
+  en: symbols
+  hy: ""
 auth-changepassform-password-tip-digits-3:
   ru: символов
+  en: symbols
+  hy: ""
 auth-changepassform-password-tip-additional-1:
   ru: цифры
+  en: digits
+  hy: ""
 auth-changepassform-password-tip-additional-2:
   ru: символы (!, $, ^ и др.)
+  en: symbols (!, $, ^, etc.)
+  hy: ""
 auth-changepassform-password-tip-additional-3:
   ru: заглавные латинские буквы
+  en: capital latin letters
+  hy: ""
 auth-changepassform-password-tip-additional-4:
   ru: строчные латинские буквы
+  en: lowercase latin letters
+  hy: ""
 auth-changepassform-password-validation1:
   ru: Пожалуйста, введите пароль
+  en: Please enter a password
+  hy: ""
 auth-changepassform-password-validation2:
   ru: Пожалуйста, повторите пароль
+  en: Please repeat password
+  hy: ""
 auth-changepassform-password-validation3:
   ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+  hy: ""
 auth-changepassform-confirmation-validation4:
   ru: Пароли должны совпадать
+  en: Passwords must match
+  hy: ""
 auth-changepassform-confirmation-desc:
   ru: Повторите новый пароль
+  en: Repeat new password
+  hy: ""
 auth-changepass-button:
   ru: Обновить пароль
+  en: Update password
+  hy: ""
 auth-changeform-property-validation1:
   ru: Это поле обязательно для заполнения
+  en: This field is required
+  hy: ""
 auth-changeidentity-button:
   ru: Отправить
+  en: Send
+  hy: ""
 auth-errors-member-property-two-factor-needed:
   ru: Требуется 2-х факторная авторизация
+  en: 2-factor authentication required
+  hy: ""
 auth-storages-applications-desc:
   ru: Приложения
+  en: Applications
+  hy: ""
 auth-storages-sessions-desc:
   ru: Сессии
+  en: Sessions
+  hy: ""
 auth-storages-members-desc:
   ru: Пользователи
+  en: Users
+  hy: ""
 auth-storages-confirmations-desc:
   ru: Коды верификации
+  en: Verification codes
+  hy: ""
 auth-storages-applications-fields-key-desc:
   ru: Ключ приложения  (наименование)
+  en: Application key (name)
+  hy: ""
 auth-storages-applications-fields-token-desc:
   ru: Токен приложения (постоянный)
+  en: Application token (permanent)
+  hy: ""
 auth-storages-applications-fields-token-note:
   ru: Токен приложения, генерируется автоматически
+  en: Application token, generated automatically
+  hy: ""
 auth-storages-applications-fields-params-desc:
   ru: Параметры
+  en: Parameters
 auth-storages-applications-fields-params-note:
   ru: Параметры приложения
+  en: Application Parameters
 auth-storages-applications-fields-params-livetime-desc:
   ru: Время жизни
+  en: Lifetime
 auth-storages-applications-fields-params-livetime-note:
   ru: Время жизни токена
+  en: Token lifetime
 auth-storages-applications-fields-params-domains-desc:
   ru: Домены
+  en: Domains
 auth-storages-applications-fields-params-domains-note:
   ru: Паттерны доменов, с которых разрешен доступ к приложению
+  en: Patterns of domains from which access to the application is allowed
 auth-storages-applications-fields-params-domains-pattern-desc:
   ru: Паттерн домена
+  en: Domain Pattern
 auth-storages-applications-fields-params-domains-pattern-note:
   ru: Используйте *-у для указания любого количества символов и цифр и ? для указания
     одного символа и цифры
+  en: Use *-y to specify any number of characters and numbers and ? to specify a single
+    character and a number
 auth-storages-applications-fields-params-allowrenew-desc:
   ru: Разрешить восстановление по короткому токену
+  en: Allow recovery by short token
 auth-storages-applications-fields-params-allowrenew-note:
   ru: Дает возможность получить текущий сессионный токен по короткому постоянному
     токену пользователя (НЕ БЕЗОПАСНО)
+  en: Makes it possible to get the current session token using a short permanent user
+    token (NOT SECURE)
 auth-storages-applications-fields-params-roles-desc:
   ru: Роли
+  en: Roles
 auth-storages-applications-fields-params-roles-note:
   ru: Роли, которые могут исполнять пользователи. Реальная обработка ролей происходит
     на клиенте
+  en: Roles that users can perform. The actual role processing takes place on the
+    client
 auth-storages-applications-fields-params-roles-name-desc:
   ru: Наименование роли
+  en: Name of the role
 auth-storages-applications-fields-params-roles-desc-desc:
   ru: Описание роли
+  en: Description of the role
 auth-storages-applications-fields-params-defaultrole-desc:
   ru: Роль по умолчанию
+  en: Default role
 auth-storages-applications-fields-params-defaultrole-note:
   ru: Роль, которая выставляется по умолчанию
+  en: The role that is set by default
 auth-storages-applications-fields-params-enable_two_factor_authentication-desc:
   ru: Включить двухфакторную аутентификацию
+  en: Enable two-factor authentication
 auth-storages-applications-fields-params-design-desc:
   ru: Макет
+  en: Layout
 auth-storages-applications-fields-params-design-images-desc:
   ru: Изображения
+  en: Images
 auth-storages-applications-fields-params-design-images-note:
   ru: Логотип и другие изображения
+  en: Logo and other images
 auth-storages-applications-fields-params-design-images-key-desc:
   ru: Ключ изображения
+  en: Image Key
 auth-storages-applications-fields-params-design-images-file-desc:
   ru: Изображение (SVG)
+  en: Image (SVG)
 auth-storages-sessions-fields-member-desc:
   ru: Токен пользователя
+  en: User Token
 auth-storages-sessions-fields-member-note:
   ru: Постоянный токен пользователя
+  en: User's permanent token
 auth-storages-sessions-fields-key-desc:
   ru: Ключ сессии
+  en: Session Key
 auth-storages-sessions-fields-key-note:
   ru: Генерируется автоматически из токена сессии (нужен для поиска)
+  en: Generated automatically from the session token (needed for search)
 auth-storages-sessions-fields-token-desc:
   ru: Токен сессии (JWT)
+  en: Session Token (JWT)
 auth-storages-sessions-fields-token-note:
   ru: JWT токен
+  en: JWT token
 auth-storages-sessions-fields-expires-desc:
   ru: Время жизни
+  en: Lifetime
 auth-storages-sessions-fields-expires-note:
   ru: Количество секунд жизни токена, после того, как это время пройдет с момента
     создания, сессия будет заморожена, и ее нужно будет восстановить
+  en: The number of seconds of the token's life, after this time has passed since
+    its creation, the session will be frozen and it will need to be restored
 auth-storages-sessions-fields-secret-desc:
   ru: Секретный ключ
+  en: Secret key
 auth-storages-sessions-fields-secret-note:
   ru: Ключ для декодирования сессии
+  en: The key for decoding the session
 auth-storages-members-fields-token-desc:
   ru: Токен пользователя
+  en: User Token
 auth-storages-members-fields-token-note:
   ru: Постоянный токен пользователя
+  en: User's permanent token
 auth-storages-members-fields-email-desc:
   ru: Эл. адрес пользователя
+  en: User's email address
 auth-storages-members-fields-email-note:
   ru: Электронный адрес указанный при регистрации
+  en: The email address specified during registration
 auth-storages-members-fields-phone-desc:
   ru: Телефон
+  en: Telephone
 auth-storages-members-fields-phone-note:
   ru: Телефон в формате «код страны»«код внутри страны»«номер» без знаков, только
     цифры
+  en: Phone in the "country code" format"country code""number" without signs, only
+    numbers
 auth-storages-members-fields-password-desc:
   ru: Пароль
+  en: Password
 auth-storages-members-fields-password-note:
   ru: Пароль, закодирован, нет обратной кодировки
+  en: Password, encoded, no reverse encoding
 auth-storages-members-fields-first_name-desc:
   ru: Имя
+  en: Name
 auth-storages-members-fields-last_name-desc:
   ru: Фамилия
+  en: Surname
 auth-storages-members-fields-patronymic-desc:
   ru: Отчество
+  en: Middle name
 auth-storages-members-fields-birthdate-desc:
   ru: Дата рождения
+  en: Date of birth
 auth-storages-members-fields-gender-desc:
   ru: Пол
+  en: Paul
 auth-storages-members-fields-gender-values-male:
   ru: Мужской
+  en: Male
 auth-storages-members-fields-gender-values-female:
   ru: Женский
+  en: Female
 auth-storages-members-fields-role-desc:
   ru: Роль
+  en: Role
 auth-storages-members-fields-role-note:
   ru: Роль выбранная из списка ролей приложения
+  en: The role selected from the list of application roles
 auth-storages-members-fields-email_confirmed-desc:
   ru: Почта подтверждена
+  en: Email confirmed
 auth-storages-members-fields-phone_confirmed-desc:
   ru: Телефон подтвержден
+  en: Phone confirmed
 auth-storages-members-fields-blocked-desc:
   ru: Заблокирован (удален)
+  en: Blocked (deleted)
 auth-storages-members-fields-two_factor-desc:
   ru: Двухфакторная аутентификация
+  en: Two-factor authentication
 auth-storages-confirmations-fields-member-desc:
   ru: Пользователь
+  en: User
 auth-storages-confirmations-fields-member-note:
   ru: Пользователь, который верифицирует
+  en: The user who verifies
 auth-storages-confirmations-fields-property-desc:
   ru: Свойство
+  en: Property
 auth-storages-confirmations-fields-property-note:
   ru: Свойство, которое нужно верифицировать
+  en: The property to be verified
 auth-storages-confirmations-fields-property-values-email:
   ru: Эл. адрес
+  en: Email address
 auth-storages-confirmations-fields-property-values-phone:
   ru: Телефон
+  en: Telephone
 auth-storages-confirmations-fields-property-values-reset:
   ru: Восстановление пароля
+  en: Password Recovery
 auth-storages-confirmations-fields-property-values-login:
   ru: Вход/Двух-факторная авторизация
+  en: Login/Two-factor authorization
 auth-storages-confirmations-fields-code-desc:
   ru: Код
+  en: Code
 auth-storages-confirmations-fields-code-note:
   ru: Сгенерированный код верификации
+  en: Generated verification code
 auth-storages-confirmations-fields-verified-desc:
   ru: Верифицирован
+  en: Verified
 auth-storages-confirmations-fields-verified-note:
   ru: Отметка об успешной верификации
+  en: A mark of successful verification
 auth-registerform-phone-desc:
   ru: Телефон (+44XXXXXXXXXX)
+  en: Phone (+44XXXXXXXXXX)
 auth-login-timer-value:
   ru: Вы сможете снова запросить код через %s секунд.
+  en: You will be able to request the code again in %s seconds.
 auth-login-requestagain:
   ru: Получить новый код
+  en: Get a new code
 auth-login-reset:
   ru: Забыли пароль?
+  en: Forgot your password?
 auth-registerform-birthdate-validation2:
   ru: Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние
+  en: You are too young, our project can only be used by adults
 auth-errors-member-confirmation-code-error:
   ru: Неверный код подтверждения
+  en: Invalid confirmation code
 auth-errors-member-property-tho-factor-error:
   ru: Ошибка входа
+  en: Login error
 auth-errors-member-password-error:
   ru: Неверный текущий пароль
+  en: Invalid current password
 auth-errors-member-account-not-exists:
   ru: Учетная запись не найдена
+  en: Account not found
 auth-errors-member-with-email-exists:
   ru: Пользователь с таким email-ом существует
+  en: A user with such an email exists
 auth-errors-member-with-phone-exists:
   ru: Пользователь с таким телефоном существует
+  en: A user with such a phone exists
 auth-registerform-gender-validation1:
   ru: Пожалуйста, выберите пол
+  en: Please choose a gender
 auth-storages-applications-fields-params-proxies-desc:
   ru: Прокси для коммуникаций
+  en: Proxy for communications
 auth-storages-applications-fields-params-proxies-email-desc:
   ru: Эл. почта
+  en: Email
 auth-storages-applications-fields-params-proxies-sms-desc:
   ru: Отправка СМС
+  en: Sending SMS
 auth-errors-member-property-send-error:
   ru: Ошибка отправки сообщения
+  en: Error sending the message
 auth-errors-member-invalid-creds:
   ru: Некорректные учетные данные
+  en: Invalid credentials
+auth-bool-data-true:
+  ru: Да
+  en: "Yes"
+auth-bool-data-false:
+  ru: Нет
+  en: "No"
 ...

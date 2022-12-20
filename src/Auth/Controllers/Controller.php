@@ -79,6 +79,15 @@ class Controller extends WebController
      */
     public function Bundle(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload): object
     {
+        
+        $langModule = App::$moduleManager->lang;
+        $themeFile = null;
+        $themeKey = '';
+
+        if(App::$moduleManager->tools) {
+            $themeFile = App::$moduleManager->tools->Theme(App::$domainKey);
+            $themeKey = md5($themeFile);
+        }
 
         App::$instance->HandleEvent(EventsContainer::BundleComplete, function ($event, $args) {
             if (in_array('scss', $args->exts)) {
@@ -117,12 +126,13 @@ class Controller extends WebController
 
         });
 
-        $jsBundle = Bundle::Automate(App::$domainKey, 'assets.bundle.js', 'js', [
+        $jsBundle = Bundle::Automate(App::$domainKey, ($langModule ? $langModule->current : '').($themeKey ? '.'.$themeKey : '').'.assets.bundle.js', 'js', [
             ['path' => App::$moduleManager->auth->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
         ]);
-        $cssBundle = Bundle::Automate(App::$domainKey, 'assets.bundle.css', 'scss', array(
+        $cssBundle = Bundle::Automate(App::$domainKey, ($langModule ? $langModule->current : '').($themeKey ? '.'.$themeKey : '').'assets.bundle.css', 'scss', array(
             ['path' => App::$moduleManager->auth->modulePath . 'web/res/css/'],
             ['path' => App::$moduleManager->auth->modulePath . '.Bundle/'],
+            ['path' => $themeFile], 
         ), 'https://' . App::$request->host);
 
         return $this->Finish(
