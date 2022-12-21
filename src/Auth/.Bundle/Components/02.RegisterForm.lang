@@ -1,0 +1,94 @@
+auth-logincontainer-register-title:
+  ru: Регистрация
+auth-registerform-fio-desc:
+  ru: Личные данные
+auth-registerform-fio-last_name-placeholder:
+  ru: Фамилия
+auth-registerform-fio-validation1:
+  ru: Пожалуйста, введите фамилию
+auth-registerform-fio-first_name-placeholder:
+  ru: Имя
+auth-registerform-fio-validation2:
+  ru: Пожалуйста, введите ваше имя
+auth-registerform-fio-patronymic-placeholder:
+  ru: Отчество
+auth-registerform-birtdate-desc:
+  ru: Дата рождения
+auth-registerform-birthdate-validation1:
+  ru: Пожалуйста, введите дату рождения
+auth-registerform-birthdate-validation2:
+  ru: Вам слишком мало лет, нашим проектом могут пользоваться только
+    совершеннолетние
+auth-registerform-gender-desc:
+  ru: Пол
+auth-registerform-gender-validation1:
+  ru: Пожалуйста, выберите пол
+auth-registerform-gender-values-male:
+  ru: Мужской
+auth-registerform-gender-values-female:
+  ru: Женский
+auth-registerform-label-desc:
+  ru: Учетные данные
+auth-registerform-email-desc:
+  ru: Электронная почта
+auth-registerform-email-validation1:
+  ru: Пожалуйста, введите эл. адрес
+auth-registerform-email-validation2:
+  ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
+auth-registerform-phone-desc:
+  ru: Телефон (+44XXXXXXXXXX)
+auth-registerform-phone-validation1:
+  ru: Пожалуйста, введите телефон
+auth-registerform-pass-desc:
+  ru: Пароль
+auth-registerform-password-placeholder:
+  ru: Придумайте пароль
+auth-registerform-password-desc:
+  ru: Пароль
+auth-registerform-password-tip-text:
+  ru: Придумайте пароль, который сложно подобрать
+auth-registerform-password-tip-success:
+  ru: Пароль соотвествует требованиям
+auth-registerform-password-tip-error:
+  ru: Пароль не соответствует требованиям
+auth-registerform-password-tip-generate:
+  ru: Сгенерировать пароль
+auth-registerform-password-tip-copied:
+  ru: Пароль скопирован в буфер обмена
+auth-registerform-password-tip-digits-1:
+  ru: символ
+auth-registerform-password-tip-digits-2:
+  ru: символа
+auth-registerform-password-tip-digits-3:
+  ru: символов
+auth-registerform-password-tip-additional-1:
+  ru: цифры
+auth-registerform-password-tip-additional-2:
+  ru: символы (!, $, ^ и др.)
+auth-registerform-password-tip-additional-3:
+  ru: заглавные латинские буквы
+auth-registerform-password-tip-additional-4:
+  ru: строчные латинские буквы
+auth-registerform-password-validation1:
+  ru: Пожалуйста, введите пароль
+auth-registerform-password-validation3:
+  ru: Пароль не соответствует требованиям
+auth-registerform-confirmation-placeholder:
+  ru: Повторите пароль
+auth-registerform-confirmation-desc:
+  ru: Повторите пароль
+auth-registerform-password-validation2:
+  ru: Пожалуйста, повторите пароль
+auth-registerform-confirmation-validation4:
+  ru: Пароли должны совпадать
+auth-registerform-aggreenment-placeholder:
+  ru: Я соглашаюсь с условиями и даю согласие на обработку персональных данных
+auth-registerform-aggreenment-validation1:
+  ru: Вам необходимо подтвердить соглашение на обработку персональных данных и
+    согласие на условия
+auth-register-button:
+  ru: Регистрация
+auth-login-register-text:
+  ru: Уже есть аккаунт?
+auth-login-button:
+  ru: Вход

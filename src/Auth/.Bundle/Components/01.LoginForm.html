@@ -6,9 +6,9 @@
             <fields>
                 {
                     login: {
-                        component: 'Text',
-                        desc: '#{auth-loginform-email-desc;Электронная почта}',
-                        params: {
+                        component: 'Text', 
+                        desc: '#{auth-loginform-email-desc;Электронный адрес}',
+                        params: {  
                             required: true,
                             readonly: false,
                             validate: [
@@ -21,7 +21,7 @@
                                     method: '(field, validator) => field.value.isEmail()'
                                 }
                             ]
-                        },
+                        }, 
                         attrs: {
                             width: 480
                         }
