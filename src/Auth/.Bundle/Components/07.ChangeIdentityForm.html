@@ -14,7 +14,7 @@
                             readonly: false,
                             validate: [
                                 {
-                                    message: '#{auth-changeform-property-validation1;Это поле обязательно для заполнения}',
+                                    message: '#{auth-changeform-property-validation1}',
                                     method: '(field, validator) => !!field.value'
                                 }
                             ],
@@ -34,13 +34,13 @@
                     },
                     code: {
                         component: 'Text',
-                        placeholder: '#{auth-confirmationform-code-desc;Введите код восстановления}',
+                        placeholder: '#{auth-confirmationform-code-desc}',
                         params: {
                             required: true,
                             readonly: false,
                             validate: [
                                 {
-                                    message: '#{auth-confirmationform-code-validation1;Пожалуйста, введите эл. адрес}',
+                                    message: '#{auth-confirmationform-code-validation1}',
                                     method: '(field, validator) => !!field.value &amp;&amp; field.value.length === 6'
                                 }
                             ],
@@ -54,9 +54,9 @@
         </Forms.Form>
     </Pane>
     <Pane name="timer-container" shown="true">
-        <SuccessButton name="send" shown="true" enabled="false" tabIndex="true">#{auth-changeidentity-button;Отправить}</SuccessButton>
-        <TextSpan name="timer" shown="false" value="#{auth-confirmation-timer-value;Вы сможете снова запросить код через %s секунд.}" />
-        <Link name="request-code-again" shown="false" value="#{auth-confirmation-requestagain;Получить новый код}" />
+        <SuccessButton name="send" shown="true" enabled="false" tabIndex="true">#{auth-changeidentity-button}</SuccessButton>
+        <TextSpan name="timer" shown="false" value="#{auth-confirmation-timer-value}" />
+        <Link name="request-code-again" shown="false" value="#{auth-confirmation-requestagain}" />
     </Pane>
 
 </div>

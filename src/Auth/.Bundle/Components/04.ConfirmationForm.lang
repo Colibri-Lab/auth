@@ -1,0 +1,12 @@
+auth-confirmationform-code-desc:
+  ru: Введите код подтверждения
+  en: Enter confirmation code
+auth-confirmationform-code-validation1:
+  ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
+  en: Please enter the 6 digit code we have sent to your contact
+auth-confirmation-timer-value:
+  ru: Вы сможете снова запросить код через %s секунд.
+  en: You will be able to request the code again in %s seconds.
+auth-confirmation-requestagain:
+  ru: Получить новый код
+  en: Get a new code

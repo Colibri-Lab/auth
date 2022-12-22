@@ -9,13 +9,13 @@
                     },
                     code: {
                         component: 'Text',
-                        desc: '#{auth-confirmationform-code-desc;Введите код подтверждения}',
+                        desc: '#{auth-confirmationform-code-desc}',
                         params: {
                             required: true,
                             readonly: false,
                             validate: [
                                 {
-                                    message: '#{auth-confirmationform-code-validation1;Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт}',
+                                    message: '#{auth-confirmationform-code-validation1}',
                                     method: '(field, validator) => !!field.value &amp;&amp; field.value.length === 6'
                                 }
                             ],
@@ -29,8 +29,8 @@
         </Forms.Form>
     </Pane>
     <Pane name="timer-container" shown="true">
-        <TextSpan name="timer" shown="true" value="#{auth-confirmation-timer-value;Вы сможете снова запросить код через %s секунд.}" />
-        <Link name="request-code-again" shown="false" value="#{auth-confirmation-requestagain;Получить новый код}" />
+        <TextSpan name="timer" shown="true" value="#{auth-confirmation-timer-value}" />
+        <Link name="request-code-again" shown="false" value="#{auth-confirmation-requestagain}" />
     </Pane>
 
 </div>

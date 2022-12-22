@@ -6,25 +6,37 @@ auth-loginform-login-validation1:
   en: Please enter your email
 auth-logincontainer-login-title:
   ru: Вход в систему
+  en: Login
 auth-loginform-login-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
+  en: You are entering an invalid email address. mail. Please try again!
 auth-loginform-password-desc:
   ru: Пароль
+  en: Password
 auth-loginform-password-validation1:
   ru: Пожалуйста, введите пароль
+  en: Please enter password
 auth-loginform-code-desc:
   ru: Введите код подтверждения
+  en: Enter confirmation code
 auth-loginform-code-validation1:
   ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
+  en: Please enter the 6 digit code we have sent to your contact
 auth-login-timer-value:
   ru: Вы сможете снова запросить код через %s секунд.
+  en: You will be able to request the code again in %s seconds.
 auth-login-requestagain:
   ru: Получить новый код
+  en: Get a new code
 auth-login-reset:
   ru: Забыли пароль?
+  en: Forgot your password?
 auth-login-button:
   ru: Войти
+  en: Login
 auth-register-login-text:
   ru: У вас нет аккаунта?
+  en: Don't have an account?
 auth-register-button:
   ru: Зарегистрироваться
+  en: Register

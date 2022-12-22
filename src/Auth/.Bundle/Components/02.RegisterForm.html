@@ -1,26 +1,26 @@
 <div ComponentName="App.Modules.Auth.Components.RegisterForm">
 
     <Pane name="form-container" shown="true">    
-        <TextSpan shown="true" name="form-register-title" className="app-auth-form-component-title">#{auth-logincontainer-register-title;Регистрация}</TextSpan>
+        <TextSpan shown="true" name="form-register-title" className="app-auth-form-component-title">#{auth-logincontainer-register-title}</TextSpan>
         <Forms.Form name="form" shown="true" shuffleFieldNames="true">
             <fields>
                 {
                     fio: {
                         component: 'Object',
-                        desc: '#{auth-registerform-fio-desc;Личные данные}',
+                        desc: '#{auth-registerform-fio-desc}',
                         params: {
                             vertical: true
                         },  
                         fields: {
                             last_name: {
                                 component: 'Text',
-                                desc: '#{auth-registerform-fio-last_name-placeholder;Фамилия}',
+                                desc: '#{auth-registerform-fio-last_name-placeholder}',
                                 params: {
                                     required: true,
                                     readonly: false,
                                     validate: [
                                         {
-                                            message: '#{auth-registerform-fio-validation1;Пожалуйста, введите фамилию}',
+                                            message: '#{auth-registerform-fio-validation1}',
                                             method: '(field, validator) => !!field.value'
                                         }
                                     ]                    
@@ -31,13 +31,13 @@
                             },
                             first_name: {
                                 component: 'Text',
-                                desc: '#{auth-registerform-fio-first_name-placeholder;Имя}',
+                                desc: '#{auth-registerform-fio-first_name-placeholder}',
                                 params: {
                                     required: true,
                                     readonly: false,
                                     validate: [
                                         {
-                                            message: '#{auth-registerform-fio-validation2;Пожалуйста, введите ваше имя}',
+                                            message: '#{auth-registerform-fio-validation2}',
                                             method: '(field, validator) => !!field.value'
                                         }
                                     ]               
@@ -48,7 +48,7 @@
                             },
                             patronymic: {
                                 component: 'Text',
-                                desc: '#{auth-registerform-fio-patronymic-placeholder;Отчество}',
+                                desc: '#{auth-registerform-fio-patronymic-placeholder}',
                                 params: {
                                     required: true,
                                     readonly: false           
@@ -61,17 +61,17 @@
                     },
                     birthdate: {
                         component: 'Date',
-                        desc: '#{auth-registerform-birtdate-desc;Дата рождения}',
+                        desc: '#{auth-registerform-birtdate-desc}',
                         params: {
                             required: false,
                             readonly: true,
                             validate: [
                                 {
-                                    message: '#{auth-registerform-birthdate-validation1;Пожалуйста, введите дату рождения}',
+                                    message: '#{auth-registerform-birthdate-validation1}',
                                     method: '(field, validator) => !!field.value'
                                 },
                                 {
-                                    message: '#{auth-registerform-birthdate-validation2;Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние}',
+                                    message: '#{auth-registerform-birthdate-validation2}',
                                     method: '(field, validator) => field.value &amp;&amp; field.value.toDate().Diff(new Date()) > 18 * 365 * 86400'
                                 }
                             ]  
@@ -82,13 +82,13 @@
                     },
                     gender: {
                         component: 'Select',
-                        desc: '#{auth-registerform-gender-desc;Пол}',
+                        desc: '#{auth-registerform-gender-desc}',
                         params: {
                             required: false,
                             readonly: true,
                             validate: [
                                 {
-                                    message: '#{auth-registerform-gender-validation1;Пожалуйста, выберите пол}',
+                                    message: '#{auth-registerform-gender-validation1}',
                                     method: '(field, validator) => !!field.value'
                                 }
                             ]  
@@ -98,8 +98,8 @@
                             value: 'value'
                         },
                         values: [
-                            {value: 'male', title: '#{auth-registerform-gender-values-male;Мужской}'},
-                            {value: 'female', title: '#{auth-registerform-gender-values-female;Женский}'},
+                            {value: 'male', title: '#{auth-registerform-gender-values-male}'},
+                            {value: 'female', title: '#{auth-registerform-gender-values-female}'},
                         ],
                         attrs: {
                             width: 480
@@ -111,21 +111,21 @@
                     },
                     label2: {
                         component: 'Label',
-                        desc: '#{auth-registerform-label-desc;Учетные данные}',
+                        desc: '#{auth-registerform-label-desc}',
                     },
                     email: {
-                        component: 'Text',
-                        desc: '#{auth-registerform-email-desc;Электронная почта}',
+                        component: 'Text4',
+                        desc: '#{auth-registerform-email-desc}',
                         params: {
                             required: true,
                             readonly: false,
                             validate: [
                                 {
-                                    message: '#{auth-registerform-email-validation1;Пожалуйста, введите эл. адрес}',
+                                    message: '#{auth-registerform-email-validation1}',
                                     method: '(field, validator) => !!field.value'
                                 },
                                 {
-                                    message: '#{auth-registerform-email-validation2;Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!}',
+                                    message: '#{auth-registerform-email-validation2}',
                                     method: '(field, validator) => field.value.isEmail()'
                                 }
                             ]
@@ -136,13 +136,13 @@
                     },
                     phone: {
                         component: 'Text',
-                        desc: '#{auth-registerform-phone-desc;Телефон (+44XXXXXXXXXX)}',
+                        desc: '#{auth-registerform-phone-desc}',
                         params: {
                             required: true,
                             readonly: false,
                             validate: [
                                 {
-                                    message: '#{auth-registerform-phone-validation1;Пожалуйста, введите телефон}',
+                                    message: '#{auth-registerform-phone-validation1}',
                                     method: '(field, validator) => !!field.value'
                                 }
                             ]
@@ -153,32 +153,32 @@
                     },
                     pass: {
                         component: 'Object',
-                        desc: '#{auth-registerform-pass-desc;Пароль}',
+                        desc: '#{auth-registerform-pass-desc}',
                         params: {
                             vertical: true,
                         },
                         fields: {
                             password: {
                                 component: 'Password',
-                                desc: '#{auth-registerform-password-placeholder;Придумайте пароль}',
-                                /* desc: '#{auth-registerform-password-desc;Пароль}', */
+                                desc: '#{auth-registerform-password-placeholder}',
+                                /* desc: '#{auth-registerform-password-desc}', */
                                 params: {
                                     required: true,
                                     readonly: false,
                                     eyeicon: true,
                                     tip: {
                                         orientation: [Colibri.UI.ToolTip.LT, Colibri.UI.ToolTip.LB],
-                                        text: '#{auth-registerform-password-tip-text;Придумайте пароль, который сложно подобрать}',
-                                        success: '#{auth-registerform-password-tip-success;Пароль соотвествует требованиям}',
-                                        error: '#{auth-registerform-password-tip-error;Пароль не соответствует требованиям}',
-                                        generate: '#{auth-registerform-password-tip-generate;Сгенерировать пароль}',
-                                        copied: '#{auth-registerform-password-tip-copied;Пароль скопирован в буфер обмена}',
-                                        digits: ['#{auth-registerform-password-tip-digits-1;символ}','#{auth-registerform-password-tip-digits-2;символа}','#{auth-registerform-password-tip-digits-3;символов}'],
+                                        text: '#{auth-registerform-password-tip-text}',
+                                        success: '#{auth-registerform-password-tip-success}',
+                                        error: '#{auth-registerform-password-tip-error}',
+                                        generate: '#{auth-registerform-password-tip-generate}',
+                                        copied: '#{auth-registerform-password-tip-copied}',
+                                        digits: ['#{auth-registerform-password-tip-digits-1}','#{auth-registerform-password-tip-digits-2}','#{auth-registerform-password-tip-digits-3}'],
                                         additional: [
-                                            '#{auth-registerform-password-tip-additional-1;цифры}', 
-                                            '#{auth-registerform-password-tip-additional-2;символы (!, $, ^ и др.)}',
-                                            '#{auth-registerform-password-tip-additional-3;заглавные латинские буквы}', 
-                                            '#{auth-registerform-password-tip-additional-4;строчные латинские буквы}'
+                                            '#{auth-registerform-password-tip-additional-1}', 
+                                            '#{auth-registerform-password-tip-additional-2}',
+                                            '#{auth-registerform-password-tip-additional-3}', 
+                                            '#{auth-registerform-password-tip-additional-4}'
                                         ]
                                     },
                                     requirements: {
@@ -187,11 +187,11 @@
                                     },
                                     validate: [
                                         {
-                                            message: '#{auth-registerform-password-validation1;Пожалуйста, введите пароль}',
+                                            message: '#{auth-registerform-password-validation1}',
                                             method: '(field, validator) => !!field.value'
                                         },
                                         {
-                                            message: '#{auth-registerform-password-validation3;Пароль не соответствует требованиям}',
+                                            message: '#{auth-registerform-password-validation3}',
                                             method: '(field, validator) => validator.form.FindField("pass/password").CalcPasswordStrength() > 60'
                                         }
                                     ]
@@ -202,19 +202,19 @@
                             },
                             confirmation: {
                                 component: 'Password',
-                                desc: '#{auth-registerform-confirmation-placeholder;Повторите пароль}',
-                                /* desc: '#{auth-registerform-confirmation-desc;Повторите пароль}', */
+                                desc: '#{auth-registerform-confirmation-placeholder}',
+                                /* desc: '#{auth-registerform-confirmation-desc}', */
                                 params: {
                                     required: true,
                                     readonly: false,
                                     eyeicon: true,
                                     validate: [
                                         {
-                                            message: '#{auth-registerform-password-validation2;Пожалуйста, повторите пароль}',
+                                            message: '#{auth-registerform-password-validation2}',
                                             method: '(field, validator) => !!field.value'
                                         },
                                         {
-                                            message: '#{auth-registerform-confirmation-validation4;Пароли должны совпадать}',
+                                            message: '#{auth-registerform-confirmation-validation4}',
                                             method: '(field, validator) => field.value == validator.form.value.pass.password'
                                         }
                                     ]                  
@@ -227,13 +227,13 @@
                     },
                     aggreenment: {
                         component: 'Checkbox',
-                        placeholder: '#{auth-registerform-aggreenment-placeholder;Я соглашаюсь с условиями и даю согласие на обработку персональных данных}',
+                        placeholder: '#{auth-registerform-aggreenment-placeholder}',
                         params: {
                             required: true,
                             readonly: false,
                             validate: [
                                 {
-                                    message: '#{auth-registerform-aggreenment-validation1;Вам необходимо подтвердить соглашение на обработку персональных данных и согласие на условия}',
+                                    message: '#{auth-registerform-aggreenment-validation1}',
                                     method: '(field, validator) => !!field.value'
                                 }
                             ]              
@@ -247,11 +247,11 @@
         </Forms.Form>
     </Pane>
     <FlexBox name="button-container" shown="true">            
-        <SuccessButton name="register" shown="true" enabled="true" tabIndex="true">#{auth-register-button;Регистрация}</SuccessButton>
+        <SuccessButton name="register" shown="true" enabled="true" tabIndex="true">#{auth-register-button}</SuccessButton>
     </FlexBox>
     <FlexBox shown="true" name="button-container2">
-        <TextSpan shown="true">#{auth-login-register-text;Уже есть аккаунт?}</TextSpan>
-        <Link name="login" shown="true" enabled="true" tabIndex="true">#{auth-login-button;Вход}</Link>
+        <TextSpan shown="true">#{auth-login-register-text}</TextSpan>
+        <Link name="login" shown="true" enabled="true" tabIndex="true">#{auth-login-button}</Link>
     </FlexBox>
 
 </div>

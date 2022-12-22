@@ -6,7 +6,7 @@
                 {
                     original: {
                         component: 'Password',
-                        desc: '#{auth-changepassform-original-desc;Текущий пароль}',
+                        desc: '#{auth-changepassform-original-desc}',
                         params: {
                             required: true,
                             readonly: false,
@@ -17,38 +17,38 @@
                     },
                     password: {
                         component: 'Password',
-                        desc: '#{auth-changepassform-password-desc;Новый пароль}',
+                        desc: '#{auth-changepassform-password-desc}',
                         params: {
                             required: true,
                             readonly: false,
                             tip: {
-                                text: '#{auth-changepassform-password-tip-text;Придумайте пароль, который сложно подобрать}',
-                                success: '#{auth-changepassform-password-tip-success;Пароль соотвествует требованиям}',
-                                error: '#{auth-changepassform-password-tip-error;Пароль не соответствует требованиям}',
-                                generate: '#{auth-changepassform-password-tip-generate;Сгенерировать пароль}',
-                            copied: '#{auth-changepassform-password-tip-copied;Пароль скопирован в буфер обмена}',
-                                digits: ['#{auth-changepassform-password-tip-digits-1;символ}','#{auth-changepassform-password-tip-digits-2;символа}','#{auth-changepassform-password-tip-digits-3;символов}'],
+                                text: '#{auth-changepassform-password-tip-text}',
+                                success: '#{auth-changepassform-password-tip-success}',
+                                error: '#{auth-changepassform-password-tip-error}',
+                                generate: '#{auth-changepassform-password-tip-generate}',
+                                copied: '#{auth-changepassform-password-tip-copied}',
+                                digits: ['#{auth-changepassform-password-tip-digits-1}','#{auth-changepassform-password-tip-digits-2}','#{auth-changepassform-password-tip-digits-3}'],
                                 additional: [
-                                    '#{auth-changepassform-password-tip-additional-1;цифры}', 
-                                    '#{auth-changepassform-password-tip-additional-2;символы (!, $, ^ и др.)}',
-                                    '#{auth-changepassform-password-tip-additional-3;заглавные латинские буквы}', 
-                                    '#{auth-changepassform-password-tip-additional-4;строчные латинские буквы}'
+                                    '#{auth-changepassform-password-tip-additional-1}', 
+                                    '#{auth-changepassform-password-tip-additional-2}',
+                                    '#{auth-changepassform-password-tip-additional-3}', 
+                                    '#{auth-changepassform-password-tip-additional-4}'
                                 ],
                                 validate: [
                                     {
-                                        message: '#{auth-changepassform-password-validation1;Пожалуйста, введите пароль}',
+                                        message: '#{auth-changepassform-password-validation1}',
                                         method: '(field, validator) => !!field.value'
                                     },
                                     {
-                                        message: '#{auth-changepassform-password-validation2;Пожалуйста, повторите пароль}',
+                                        message: '#{auth-changepassform-password-validation2}',
                                         method: '(field, validator) => !!field.value'
                                     },
                                     {
-                                        message: '#{auth-changepassform-password-validation3;Пароль не соответствует требованиям}',
+                                        message: '#{auth-changepassform-password-validation3}',
                                         method: '(field, validator) => validator.form.FindField("password").CalcPasswordStrength() > 60'
                                     },
                                     {
-                                        message: '#{auth-changepassform-confirmation-validation4;Пароли должны совпадать}',
+                                        message: '#{auth-changepassform-confirmation-validation4}',
                                         method: '(field, validator) => field.value == validator.form.value.confirmation'
                                     }
                                 ]
@@ -64,7 +64,7 @@
                     },
                     confirmation: {
                         component: 'Password',
-                        desc: '#{auth-changepassform-confirmation-desc;Повторите новый пароль}',
+                        desc: '#{auth-changepassform-confirmation-desc}',
                         params: {
                             required: true,
                             readonly: false
@@ -78,7 +78,7 @@
         </Forms.Form>
     </Pane>
     <FlexBox name="button-container" shown="true">            
-        <SuccessButton name="save" shown="true" enabled="false" tabIndex="true">#{auth-changepass-button;Обновить пароль}</SuccessButton>
+        <SuccessButton name="save" shown="true" enabled="false" tabIndex="true">#{auth-changepass-button}</SuccessButton>
     </FlexBox>
 
 </div>

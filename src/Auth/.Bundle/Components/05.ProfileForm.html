@@ -6,13 +6,14 @@
                 {
                     last_name: {
                         component: 'Text',
-                        desc: '#{auth-profileform-last_name-desc;Фамилия}',
+                        desc: '#{auth-profileform-last_name-desc}',
+                        placeholder: '#{auth-profileform-last_name-placeholder}',
                         params: {
                             required: true,
                             readonly: false,
                             validate: [
                                 {
-                                    message: '#{auth-profileform-last_name-validation1;Пожалуйста, введите вашу фамилию}',
+                                    message: '#{auth-profileform-last_name-validation1}',
                                     method: '(field, validator) => !!field.value'
                                 }
                             ]               
@@ -23,14 +24,14 @@
                     },
                     first_name: {
                         component: 'Text',
-                        desc: '#{auth-profileform-first_name-desc;Имя}',
-                        placeholder: '#{auth-profileform-first_name-placeholder;Например: Иван}',
+                        desc: '#{auth-profileform-first_name-desc}',
+                        placeholder: '#{auth-profileform-first_name-placeholder}',
                         params: {
                             required: true,
                             readonly: false,
                             validate: [
                                 {
-                                    message: '#{auth-profileform-first_name-validation1;Пожалуйста, введите ваше имя}',
+                                    message: '#{auth-profileform-first_name-validation1}',
                                     method: '(field, validator) => !!field.value'
                                 }
                             ]                  
@@ -41,7 +42,7 @@
                     },
                     patronymic: {
                         component: 'Text',
-                        desc: '#{auth-profileform-partonymic-desc;Отчество}',
+                        desc: '#{auth-profileform-partonymic-desc}',
                         params: {
                             required: true,
                             readonly: false                        
@@ -52,13 +53,13 @@
                     },
                     birthdate: {
                         component: 'Date',
-                        desc: '#{auth-profileform-birtdate-desc;Дата рождения}',
+                        desc: '#{auth-profileform-birtdate-desc}',
                         params: {
                             required: false,
                             readonly: true,
                             validate: [
                                 {
-                                    message: '#{auth-profileform-birthdate-validation1;Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние}',
+                                    message: '#{auth-profileform-birthdate-validation1}',
                                     method: '(field, validator) => !field.value || field.value.toDate().Diff(new Date()) > 18 * 365 * 86400'
                                 }
                             ]  
@@ -69,7 +70,7 @@
                     },
                     gender: {
                         component: 'Select',
-                        desc: '#{auth-profileform-gender-desc;Пол}',
+                        desc: '#{auth-profileform-gender-desc}',
                         params: {
                             required: false,
                             readonly: true
@@ -79,8 +80,8 @@
                             value: 'value'
                         },
                         values: [
-                            {value: 'male', title: '#{auth-profileform-gender-values-male;Мужской}'},
-                            {value: 'female', title: '#{auth-profileform-gender-values-female;Женский}'},
+                            {value: 'male', title: '#{auth-profileform-gender-values-male}'},
+                            {value: 'female', title: '#{auth-profileform-gender-values-female}'},
                         ],
                         attrs: {
                             width: 480
@@ -91,7 +92,7 @@
         </Forms.Form>
     </Pane>
     <FlexBox name="button-container" shown="true">            
-        <SuccessButton name="save" shown="true" enabled="false" tabIndex="true">#{auth-profile-button;Сохранить}</SuccessButton>
+        <SuccessButton name="save" shown="true" enabled="false" tabIndex="true">#{auth-profile-button}</SuccessButton>
     </FlexBox>
 
 </div>

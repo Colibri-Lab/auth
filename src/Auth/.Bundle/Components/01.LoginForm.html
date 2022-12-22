@@ -1,23 +1,23 @@
 <div ComponentName="App.Modules.Auth.Components.LoginForm">
 
     <Pane name="form-container" shown="true">    
-        <TextSpan shown="true" name="form-login-title" className="app-auth-form-component-title">#{auth-logincontainer-login-title;Вход в систему}</TextSpan>
+        <TextSpan shown="true" name="form-login-title" className="app-auth-form-component-title">#{auth-logincontainer-login-title}</TextSpan>
         <Forms.Form name="form" shown="true">
             <fields>
                 {
                     login: {
                         component: 'Text', 
-                        desc: '#{auth-loginform-email-desc;Электронный адрес}',
+                        desc: '#{auth-loginform-email-desc}',
                         params: {  
                             required: true,
                             readonly: false,
                             validate: [
                                 { 
-                                    message: '#{auth-loginform-login-validation1;Пожалуйста, введите эл. адрес}',
+                                    message: '#{auth-loginform-login-validation1}',
                                     method: '(field, validator) => !!field.value'
                                 },
                                 {
-                                    message: '#{auth-loginform-login-validation2;Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!}',
+                                    message: '#{auth-loginform-login-validation2}',
                                     method: '(field, validator) => field.value.isEmail()'
                                 }
                             ]
@@ -28,13 +28,13 @@
                     },
                     password: {
                         component: 'Password',
-                        desc: '#{auth-loginform-password-desc;Пароль}',
+                        desc: '#{auth-loginform-password-desc}',
                         params: {
                             required: true,
                             readonly: false,
                             validate: [
                                 {
-                                    message: '#{auth-loginform-password-validation1;Пожалуйста, введите пароль}',
+                                    message: '#{auth-loginform-password-validation1}',
                                     method: '(field, validator) => !!field.value'
                                 }
                             ],
@@ -46,14 +46,14 @@
                     },
                     code: {
                         component: 'Text',
-                        desc: '#{auth-loginform-code-desc;Введите код подтверждения}',
+                        desc: '#{auth-loginform-code-desc}',
                         params: {
                             hidden: true,
                             required: true,
                             readonly: false,
                             validate: [
                                 {
-                                    message: '#{auth-loginform-code-validation1;Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт}',
+                                    message: '#{auth-loginform-code-validation1}',
                                     method: '(field, validator) => !!field.value &amp;&amp; field.value.length === 6'
                                 }
                             ],
@@ -67,18 +67,18 @@
         </Forms.Form>
     </Pane>
     <Pane name="timer-container" shown="false">
-        <TextSpan name="timer" shown="false" value="#{auth-login-timer-value;Вы сможете снова запросить код через %s секунд.}" />
-        <Link name="request-code-again" shown="false" value="#{auth-login-requestagain;Получить новый код}" />
+        <TextSpan name="timer" shown="false" value="#{auth-login-timer-value}" />
+        <Link name="request-code-again" shown="false" value="#{auth-login-requestagain}" />
     </Pane>
     <FlexBox name="links-container" shown="true">
-        <Link name="reset" shown="true">#{auth-login-reset;Забыли пароль?}</Link>
+        <Link name="reset" shown="true">#{auth-login-reset}</Link>
     </FlexBox>
     <FlexBox name="button-container" shown="true">            
-        <SuccessButton name="login" shown="true" enabled="false" tabIndex="true">#{auth-login-button;Войти}</SuccessButton>
+        <SuccessButton name="login" shown="true" enabled="false" tabIndex="true">#{auth-login-button}</SuccessButton>
     </FlexBox>
     <FlexBox shown="true" name="button-container2">
-        <TextSpan shown="true">#{auth-register-login-text;У вас нет аккаунта?}</TextSpan>
-        <Link name="register" shown="true" enabled="true" tabIndex="true">#{auth-register-button;Зарегистрироваться}</Link>
+        <TextSpan shown="true">#{auth-register-login-text}</TextSpan>
+        <Link name="register" shown="true" enabled="true" tabIndex="true">#{auth-register-button}</Link>
     </FlexBox>
 
 </div>
