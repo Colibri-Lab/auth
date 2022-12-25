@@ -3,8 +3,6 @@
 namespace App\Modules\Auth\Models;
 
 # region Uses:
-use App\Modules\Auth\Module;
-use Colibri\Data\SqlClient\QueryInfo;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\DateField;
 use Colibri\Data\Storages\Fields\ValueField;
@@ -16,7 +14,7 @@ use Colibri\Common\RandomizationHelper;
 use Throwable;
 
 /**
- * Представление строки в таблице в хранилище #{auth-storages-members-desc;Пользователи}
+ * Представление строки в таблице в хранилище Пользователи
  * @author <author name and email>
  * @package App\Modules\Auth\Models
  * 
@@ -24,20 +22,20 @@ use Throwable;
  * @property-read int $id ID строки
  * @property-read DateTimeField $datecreated Дата создания строки
  * @property-read DateTimeField $datemodified Дата последнего обновления строки
- * @property string|null $token #{auth-storages-members-fields-token-desc;Токен пользователя}
- * @property string|null $email #{auth-storages-members-fields-email-desc;Эл. адрес пользователя}
- * @property string|null $phone #{auth-storages-members-fields-phone-desc;Телефон}
- * @property string|null $password #{auth-storages-members-fields-password-desc;Пароль}
- * @property string|null $first_name #{auth-storages-members-fields-first_name-desc;Имя}
- * @property string|null $last_name #{auth-storages-members-fields-last_name-desc;Фамилия}
- * @property string|null $patronymic #{auth-storages-members-fields-patronymic-desc;Отчество}
- * @property DateField|null $birthdate #{auth-storages-members-fields-birthdate-desc;Дата рождения}
- * @property ValueField|null $gender #{auth-storages-members-fields-gender-desc;Пол}
- * @property string|null $role #{auth-storages-members-fields-role-desc;Роль}
- * @property bool|null $email_confirmed #{auth-storages-members-fields-email_confirmed-desc;Почта подтверждена}
- * @property bool|null $phone_confirmed #{auth-storages-members-fields-phone_confirmed-desc;Телефон подтвержден}
- * @property bool|null $blocked #{auth-storages-members-fields-blocked-desc;Заблокирован (удален)}
- * @property bool|null $two_factor #{auth-storages-members-fields-two_factor-desc;Двухфакторная аутентификация}
+ * @property string $token Токен пользователя
+ * @property string $email Эл. адрес пользователя
+ * @property string $phone Телефон
+ * @property string $password Пароль
+ * @property string $first_name Имя
+ * @property string $last_name Фамилия
+ * @property string|null $patronymic Отчество
+ * @property DateField|null $birthdate Дата рождения
+ * @property ValueField|null $gender Пол
+ * @property string|null $role Роль
+ * @property bool $email_confirmed Почта подтверждена
+ * @property bool $phone_confirmed Телефон подтвержден
+ * @property bool $blocked Заблокирован (удален)
+ * @property bool $two_factor Двухфакторная аутентификация
  * endregion Properties;
  */
 class Member extends BaseModelDataRow
@@ -70,29 +68,29 @@ class Member extends BaseModelDataRow
             'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
-			'token' => ['type' => 'string', 'maxLength' => 32],
-			'email' => ['type' => 'string', 'maxLength' => 255],
-			'phone' => ['type' => 'string', 'maxLength' => 50],
-			'password' => ['type' => 'string', 'maxLength' => 128],
-			'first_name' => ['type' => 'string', 'maxLength' => 255],
-			'last_name' => ['type' => 'string', 'maxLength' => 255],
-			'patronymic' => ['type' => ['string', 'null'], 'maxLength' => 255],
-			'birthdate' => ['type' => 'string', 'format' => 'date'],
-			'gender' => ['type' => 'string', 'enum' => ['male', 'female']],
-			'role' => ['type' => ['string', 'null'], 'maxLength' => 20],
-			'email_confirmed' => ['type' => 'boolean', ],
-			'phone_confirmed' => ['type' => 'boolean', ],
-			'blocked' => ['type' => 'boolean', ],
-			'two_factor' => ['type' => 'boolean', ],
+			'token' => ['type' => 'string', 'maxLength' => 32, ],
+			'email' => ['type' => 'string', 'maxLength' => 255, ],
+			'phone' => ['type' => 'string', 'maxLength' => 50, ],
+			'password' => ['type' => 'string', 'maxLength' => 128, ],
+			'first_name' => ['type' => 'string', 'maxLength' => 255, ],
+			'last_name' => ['type' => 'string', 'maxLength' => 255, ],
+			'patronymic' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
+			'birthdate' => [ 'anyOf' => [ ['type' => ['string', 'null'], 'format' => 'date'], ['type' => ['string', 'null'], 'maxLength' => 0] ] ],
+			'gender' => [  'oneOf' => [ [ 'type' => 'null' ], ['type' => 'string', 'enum' => ['male', 'female']] ] ],
+			'role' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 20, ] ] ],
+			'email_confirmed' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
+			'phone_confirmed' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
+			'blocked' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
+			'two_factor' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
 			# endregion SchemaProperties;
 
         ]
     ];
 
     # region Consts:
-	/** #{auth-storages-members-fields-gender-values-male;Мужской} */
+	/** Мужской */
 	public const GenderMale = 'male';
-	/** #{auth-storages-members-fields-gender-values-female;Женский} */
+	/** Женский */
 	public const GenderFemale = 'female';
 	# endregion Consts;
 
@@ -106,7 +104,7 @@ class Member extends BaseModelDataRow
     public function setPropertyPassword(string $value): void
     {
         if (($strength = self::CheckPasswordStrength($this->email, $value)) < 40) {
-            throw new InvalidArgumentException('#{auth-errors-member-password-strength-not-match;Пароль должен быть не менее 40% сложности, у вас }' . $strength . '%');
+            throw new InvalidArgumentException(sprintf('#{auth-errors-member-password-strength-not-match}', $strength));
         }
         $this->_data['members_password'] = md5(Crypt::Encrypt(self::PasswordKey, $value));
     }

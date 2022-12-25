@@ -12,7 +12,7 @@ use App\Modules\Auth\Models\Application;
 use Colibri\App;
 
 /**
- * Таблица, представление данных в хранилище #{auth-storages-applications-desc;Приложения}
+ * Таблица, представление данных в хранилище Приложения
  * @author <author name and email>
  * @package App\Modules\Auth\Models
  * 

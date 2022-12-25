@@ -12,7 +12,7 @@ use Colibri\App;
 use Colibri\Utils\Cache\Mem;
 
 /**
- * Представление строки в таблице в хранилище #{auth-storages-sessions-desc;Сессии}
+ * Представление строки в таблице в хранилище Сессии
  * @author <author name and email>
  * @package App\Modules\Auth\Models
  * 
@@ -20,11 +20,11 @@ use Colibri\Utils\Cache\Mem;
  * @property-read int $id ID строки
  * @property-read DateTimeField $datecreated Дата создания строки
  * @property-read DateTimeField $datemodified Дата последнего обновления строки
- * @property string|null $member #{auth-storages-sessions-fields-member-desc;Токен пользователя}
- * @property string|null $key #{auth-storages-sessions-fields-key-desc;Ключ сессии}
- * @property string|null $token #{auth-storages-sessions-fields-token-desc;Токен сессии (JWT)}
- * @property int|null $expires #{auth-storages-sessions-fields-expires-desc;Время жизни}
- * @property string|null $secret #{auth-storages-sessions-fields-secret-desc;Секретный ключ}
+ * @property string $member Токен пользователя
+ * @property string $key Ключ сессии
+ * @property string $token Токен сессии (JWT)
+ * @property int $expires Время жизни
+ * @property string $secret Секретный ключ
  * endregion Properties;
  */
 class Session extends BaseModelDataRow
@@ -37,12 +37,12 @@ class Session extends BaseModelDataRow
             'datecreated',
             'datemodified',
             # region SchemaRequired:
-            'member',
-            'key',
-            'token',
-            'expires',
-            'secret',
-            # endregion SchemaRequired;
+			'member',
+			'key',
+			'token',
+			'expires',
+			'secret',
+			# endregion SchemaRequired;
 
         ],
         'properties' => [
@@ -50,19 +50,19 @@ class Session extends BaseModelDataRow
             'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
-            'member' => ['type' => 'string', 'maxLength' => 32],
-            'key' => ['type' => 'string', 'maxLength' => 32],
-            'token' => ['type' => 'string', 'maxLength' => 8192],
-            'expires' => ['type' => 'integer',],
-            'secret' => ['type' => 'string', 'maxLength' => 32],
-            # endregion SchemaProperties;
+			'member' => ['type' => 'string', 'maxLength' => 32, ],
+			'key' => ['type' => 'string', 'maxLength' => 32, ],
+			'token' => ['type' => 'string', 'maxLength' => 8192, ],
+			'expires' => ['type' => 'integer', ],
+			'secret' => ['type' => 'string', 'maxLength' => 32, ],
+			# endregion SchemaProperties;
 
         ]
     ];
 
     # region Consts:
 
-    # endregion Consts;
+	# endregion Consts;
 
     private function _generateSecret()
     {

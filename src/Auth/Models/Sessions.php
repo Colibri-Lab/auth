@@ -14,7 +14,7 @@ use Colibri\Utils\Cache\Mem;
 use Colibri\Data\Storages\Fields\DateTimeField;
 
 /**
- * Таблица, представление данных в хранилище #{auth-storages-sessions-desc;Сессии}
+ * Таблица, представление данных в хранилище Сессии
  * @author <author name and email>
  * @package App\Modules\Auth\Models
  * 

@@ -14,7 +14,7 @@
                             readonly: false,
                             validate: [
                                 {
-                                    message: '#{auth-changeform-property-validation1}',
+                                    message: '#{auth-changeform-property-validation1}', 
                                     method: '(field, validator) => !!field.value'
                                 }
                             ],
@@ -34,13 +34,13 @@
                     },
                     code: {
                         component: 'Text',
-                        placeholder: '#{auth-confirmationform-code-desc}',
-                        params: {
+                        placeholder: '#{auth-changeform-code-desc}',
+                        params: { 
                             required: true,
                             readonly: false,
                             validate: [
                                 {
-                                    message: '#{auth-confirmationform-code-validation1}',
+                                    message: '#{auth-changeform-code-validation1}',
                                     method: '(field, validator) => !!field.value &amp;&amp; field.value.length === 6'
                                 }
                             ],
@@ -55,8 +55,8 @@
     </Pane>
     <Pane name="timer-container" shown="true">
         <SuccessButton name="send" shown="true" enabled="false" tabIndex="true">#{auth-changeidentity-button}</SuccessButton>
-        <TextSpan name="timer" shown="false" value="#{auth-confirmation-timer-value}" />
-        <Link name="request-code-again" shown="false" value="#{auth-confirmation-requestagain}" />
+        <TextSpan name="timer" shown="false" value="#{auth-changeidentity-timer-value}" />
+        <Link name="request-code-again" shown="false" value="#{auth-changeidentity-requestagain}" />
     </Pane>
 
 </div>

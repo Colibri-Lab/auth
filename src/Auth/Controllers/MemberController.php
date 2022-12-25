@@ -263,7 +263,7 @@ class MemberController extends WebController
 
         if ($member->phone != $phone) {
             return $this->Finish(400, 'Bad Request', [
-                'message' => '#{auth-errors-phone-incorrect;Неверный номер телефона}',
+                'message' => '#{auth-errors-phone-incorrect}',
                 'code' => 400,
                 'validation' => [
                     'phone' => '#{auth-errors-member-with-phone-not-exists}'

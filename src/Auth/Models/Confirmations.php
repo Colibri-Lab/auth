@@ -11,7 +11,7 @@ use Colibri\Data\Storages\Models\DataTable as BaseModelDataTable;
 use App\Modules\Auth\Models\Confirmation;
 
 /**
- * Таблица, представление данных в хранилище #{auth-storages-confirmations-desc;Коды верификации}
+ * Таблица, представление данных в хранилище Коды верификации
  * @author <author name and email>
  * @package App\Modules\Auth\Models
  * 

@@ -11,7 +11,7 @@ use Colibri\Data\Storages\Models\DataTable as BaseModelDataTable;
 use App\Modules\Auth\Models\Member;
 
 /**
- * Таблица, представление данных в хранилище #{auth-storages-members-desc;Пользователи}
+ * Таблица, представление данных в хранилище Пользователи
  * @author <author name and email>
  * @package App\Modules\Auth\Models
  * 

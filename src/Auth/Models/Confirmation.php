@@ -3,7 +3,6 @@
 namespace App\Modules\Auth\Models;
 
 # region Uses:
-use Colibri\App;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\ValueField;
 # endregion Uses;
@@ -14,7 +13,7 @@ use Colibri\IO\Request\Request;
 use Colibri\IO\Request\Type;
 
 /**
- * Представление строки в таблице в хранилище #{auth-storages-confirmations-desc;Коды верификации}
+ * Представление строки в таблице в хранилище Коды верификации
  * @author <author name and email>
  * @package App\Modules\Auth\Models
  * 
@@ -22,10 +21,10 @@ use Colibri\IO\Request\Type;
  * @property-read int $id ID строки
  * @property-read DateTimeField $datecreated Дата создания строки
  * @property-read DateTimeField $datemodified Дата последнего обновления строки
- * @property string|null $member #{auth-storages-confirmations-fields-member-desc;Пользователь}
- * @property ValueField|null $property #{auth-storages-confirmations-fields-property-desc;Свойство}
- * @property string|null $code #{auth-storages-confirmations-fields-code-desc;Код}
- * @property bool|null $verified #{auth-storages-confirmations-fields-verified-desc;Верифицирован}
+ * @property string $member Пользователь
+ * @property ValueField $property Свойство
+ * @property string $code Код
+ * @property bool $verified Верифицирован
  * endregion Properties;
  */
 class Confirmation extends BaseModelDataRow
@@ -50,24 +49,23 @@ class Confirmation extends BaseModelDataRow
 			'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
 			'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
 			# region SchemaProperties:
-			'member' => ['type' => 'string', 'maxLength' => 32],
+			'member' => ['type' => 'string', 'maxLength' => 32, ],
 			'property' => ['type' => 'string', 'enum' => ['email', 'phone', 'reset', 'login']],
-			'code' => ['type' => 'string', 'maxLength' => 10],
-			'verified' => ['type' => 'boolean',
-			],
+			'code' => ['type' => 'string', 'maxLength' => 10, ],
+			'verified' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
 			# endregion SchemaProperties;
 
 		]
 	];
 
 	# region Consts:
-	/** #{auth-storages-confirmations-fields-property-values-email;Эл. адрес} */
+	/** Эл. адрес */
 	public const PropertyEmail = 'email';
-	/** #{auth-storages-confirmations-fields-property-values-phone;Телефон} */
+	/** Телефон */
 	public const PropertyPhone = 'phone';
-	/** #{auth-storages-confirmations-fields-property-values-reset;Восстановление пароля} */
+	/** Восстановление пароля */
 	public const PropertyReset = 'reset';
-	/** #{auth-storages-confirmations-fields-property-values-login;Вход/Двух-факторная авторизация} */
+	/** Вход/Двух-факторная авторизация */
 	public const PropertyLogin = 'login';
 	# endregion Consts;
 
