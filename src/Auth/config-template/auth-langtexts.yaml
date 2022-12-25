@@ -1,4 +1,3 @@
----
 auth-logincontainer-login-title:
   ru: Вход в систему
   en: Login
@@ -49,7 +48,7 @@ auth-logincontainer-register-title:
   hy: ""
 auth-registerform-fio-desc:
   ru: Личные данные
-  en: 'Personal data '
+  en: "Personal data "
   hy: ""
 auth-registerform-fio-last_name-placeholder:
   ru: Фамилия
@@ -76,7 +75,8 @@ auth-registerform-birtdate-desc:
   en: Birth date
   hy: ""
 auth-registerform-birthdate-validation1:
-  ru: Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние
+  ru: Вам слишком мало лет, нашим проектом могут пользоваться только
+    совершеннолетние
   en: You are too young, only adults can use our project
   hy: ""
 auth-registerform-gender-desc:
@@ -200,10 +200,10 @@ auth-registerform-aggreenment-placeholder:
   en: I agree to the terms and consent to the processing of personal data
   hy: ""
 auth-registerform-aggreenment-validation1:
-  ru: Вам необходимо подтвердить согласие на обработку персональных данных и согласие
-    на условия
-  en: You need to confirm your consent to the processing of personal data and consent
-    to the terms
+  ru: Вам необходимо подтвердить согласие на обработку персональных данных и
+    согласие на условия
+  en: You need to confirm your consent to the processing of personal data and
+    consent to the terms
   hy: ""
 auth-login-register-text:
   ru: Уже есть аккаунт?
@@ -354,8 +354,8 @@ auth-profileform-first_name-desc:
   en: First name
   hy: ""
 auth-profileform-first_name-placeholder:
-  ru: 'Например: Иван'
-  en: 'For example: John'
+  ru: "Например: Иван"
+  en: "For example: John"
   hy: ""
 auth-profileform-first_name-validation1:
   ru: Пожалуйста, введите ваше имя
@@ -370,7 +370,8 @@ auth-profileform-birtdate-desc:
   en: Birth date
   hy: ""
 auth-profileform-birthdate-validation1:
-  ru: Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние
+  ru: Вам слишком мало лет, нашим проектом могут пользоваться только
+    совершеннолетние
   en: You are too young, only adults can use our project
   hy: ""
 auth-profileform-gender-desc:
@@ -531,24 +532,24 @@ auth-storages-applications-fields-params-domains-pattern-desc:
   ru: Паттерн домена
   en: Domain Pattern
 auth-storages-applications-fields-params-domains-pattern-note:
-  ru: Используйте *-у для указания любого количества символов и цифр и ? для указания
-    одного символа и цифры
-  en: Use *-y to specify any number of characters and numbers and ? to specify a single
-    character and a number
+  ru: Используйте *-у для указания любого количества символов и цифр и ? для
+    указания одного символа и цифры
+  en: Use *-y to specify any number of characters and numbers and ? to specify a
+    single character and a number
 auth-storages-applications-fields-params-allowrenew-desc:
   ru: Разрешить восстановление по короткому токену
   en: Allow recovery by short token
 auth-storages-applications-fields-params-allowrenew-note:
   ru: Дает возможность получить текущий сессионный токен по короткому постоянному
     токену пользователя (НЕ БЕЗОПАСНО)
-  en: Makes it possible to get the current session token using a short permanent user
-    token (NOT SECURE)
+  en: Makes it possible to get the current session token using a short permanent
+    user token (NOT SECURE)
 auth-storages-applications-fields-params-roles-desc:
   ru: Роли
   en: Roles
 auth-storages-applications-fields-params-roles-note:
-  ru: Роли, которые могут исполнять пользователи. Реальная обработка ролей происходит
-    на клиенте
+  ru: Роли, которые могут исполнять пользователи. Реальная обработка ролей
+    происходит на клиенте
   en: Roles that users can perform. The actual role processing takes place on the
     client
 auth-storages-applications-fields-params-roles-name-desc:
@@ -727,7 +728,8 @@ auth-login-reset:
   ru: Забыли пароль?
   en: Forgot your password?
 auth-registerform-birthdate-validation2:
-  ru: Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние
+  ru: Вам слишком мало лет, нашим проектом могут пользоваться только
+    совершеннолетние
   en: You are too young, our project can only be used by adults
 auth-errors-member-confirmation-code-error:
   ru: Неверный код подтверждения
@@ -737,7 +739,7 @@ auth-errors-member-property-tho-factor-error:
   en: Login error
 auth-errors-member-password-error:
   ru: Неверный текущий пароль
-  en: Invalid current password
+  en: Wrong current password
 auth-errors-member-account-not-exists:
   ru: Учетная запись не найдена
   en: Account not found
@@ -767,8 +769,76 @@ auth-errors-member-invalid-creds:
   en: Invalid credentials
 auth-bool-data-true:
   ru: Да
-  en: "Yes"
+  en: Yes
 auth-bool-data-false:
   ru: Нет
-  en: "No"
-...
+  en: No
+auth-errors-member-password-not-confirmed:
+  ru: Пароль не подтвержден
+  en: Password is not confirmed
+auth-errors-member-role-not-exists:
+  ru: Не найдена роль в приложении
+  en: Application role not found
+auth-errors-member-password-strength-not-match:
+  ru: Пароль должен быть не менее 40% сложности, у вас %s
+  en: Password must be at least 40% complexity, you have %s
+auth-errors-member-not-logged:
+  ru: Пользователь не залогинен
+  en: User not logged in
+auth-errors-member-data-consistency:
+  ru: Ошибка консистентности данных
+  en: Data consistency error
+auth-errors-member-data-incorrect:
+  ru: Неверные данные в запросе
+  en: Invalid data in the request
+auth-errors-member-property-confirmed:
+  ru: Уже подтверждено
+  en: Already confirmed
+auth-errors-member-logged:
+  ru: Пользователь залогинен
+  en: User is logged in
+auth-errors-member-field-required:
+  ru: Это поле обязательно для заполнения
+  en: This field is required
+auth-errors-member-not-found:
+  ru: Пользователь не найден
+  en: User is not found
+auth-errors-member-with-email-not-exists:
+  ru: Пользователь с таким email-ом не существует
+  en: User with this email does not exist
+auth-errors-phone-incorrect:
+  ru: Неверный номер телефона
+  en: Wrong phone number
+auth-errors-member-with-phone-not-exists:
+  ru: Пользователь с таким телефоном не существует
+  en: User with this phone does not exist
+auth-errors-member-confirmation-error:
+  ru: Неизвестная ошибка
+  en: Unknown error
+auth-errors-member-reset-code-error:
+  ru: Неверный код подтверждения
+  en: Invalid confirmation code
+auth-errors-member-reset-error:
+  ru: Невозможно сохранить этот пароль
+  en: This password cannot be saved
+auth-errors-member-update-error:
+  ru: Невозможно обновить свойство
+  en: Unable to update property
+auth-errors-member-error-profile:
+  ru: Не смогли сохранить профиль
+  en: Failed to save profile
+auth-errors-member-error-password:
+  ru: Не смогли обновить пароль
+  en: Failed to update password
+auth-errors-member-role-incorrect:
+  ru: Невозможно изменить роль
+  en: Can't change role
+auth-errors-session-allreadylogged:
+  ru: Пользователь уже залогинен
+  en: The user is already logged in
+auth-errors-session-data-incorrect:
+  ru: Неверные данные в запросе
+  en: Invalid data in the request
+auth-errors-session-notlogged:
+  ru: Пользователь не залогинен
+  en: User not logged in

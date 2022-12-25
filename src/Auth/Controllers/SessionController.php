@@ -56,7 +56,7 @@ class SessionController extends WebController
 
         $session = Sessions::LoadFromRequest();
         if ($session->member) {
-            return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-session-allreadylogged;Пользователь уже залогинен}', 'code' => 403]);
+            return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-session-allreadylogged}', 'code' => 403]);
         }
 
 
@@ -66,7 +66,7 @@ class SessionController extends WebController
         $code = $payloadArray['password'] ?? $post->code;
 
         if (!$login || !$password) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-session-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-session-data-incorrect}', 'code' => 400]);
         }
 
         
@@ -76,12 +76,12 @@ class SessionController extends WebController
         }
 
         if (!$member || $member->blocked) {
-            return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-account-not-exists;Учетная запись не найдена}', 'code' => 403]);
+            return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-account-not-exists}', 'code' => 403]);
         }
 
 
         if (!$member->Authorize($password)) {
-            return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-invalid-creds;Некорректные учетные данные}', 'code' => 403]);
+            return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-invalid-creds}', 'code' => 403]);
         }
 
         try {
@@ -89,13 +89,13 @@ class SessionController extends WebController
             if ($member->two_factor) {
                 if ($code) {
                     if (!$member->ConfirmLogin($code)) {
-                        return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-property-tho-factor-error;Ошибка входа}', 'code' => 403]);
+                        return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-property-tho-factor-error}', 'code' => 403]);
                     }
                 } else {
                     if (!$member->SendTwoFactorAuthorizationMessage()) {
-                        return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-property-send-error;Ошибка отправки сообщения}', 'code' => 400]);
+                        return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-property-send-error}', 'code' => 400]);
                     } else {
-                        return $this->Finish(206, 'Tho factor authentification', ['message' => '#{auth-errors-member-property-two-factor-needed;Требуется 2-х факторная авторизация}', 'code' => 206]);
+                        return $this->Finish(206, 'Tho factor authentification', ['message' => '#{auth-errors-member-property-two-factor-needed}', 'code' => 206]);
                     }
                 }
             }
@@ -170,7 +170,7 @@ class SessionController extends WebController
             
             $session = Sessions::LoadFromRequest();
             if (!$session->member) {
-                return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-session-notlogged;Пользователь не залогинен}', 'code' => 403]);
+                return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-session-notlogged}', 'code' => 403]);
             }
 
             $sessions = Sessions::LoadByMember($session->member);

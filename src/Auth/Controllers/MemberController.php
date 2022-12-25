@@ -83,29 +83,29 @@ class MemberController extends WebController
 
         if (Members::LoadByEmail($email) !== null) {
             return $this->Finish(400, 'Bad Request', [
-                'message' => '#{auth-errors-member-with-email-exists;Пользователь с таким email-ом существует}',
+                'message' => '#{auth-errors-member-with-email-exists}', 
                 'code' => 400,
                 'validation' => [
-                    'email' => '#{auth-errors-member-with-email-exists;Пользователь с таким email-ом существует}'
+                    'email' => '#{auth-errors-member-with-email-exists}'
                 ]
             ]);
-        }
+        } 
         if (Members::LoadByPhone($phone) !== null) {
             return $this->Finish(400, 'Bad Request', [
-                'message' => '#{auth-errors-member-with-phone-exists;Пользователь с таким телефоном существует}',
+                'message' => '#{auth-errors-member-with-phone-exists}',
                 'code' => 400,
                 'validation' => [
-                    'phone' => '#{auth-errors-member-with-phone-exists;Пользователь с таким телефоном существует}'
+                    'phone' => '#{auth-errors-member-with-phone-exists}'
                 ]
             ]);
         }
 
         if ($password != $confirmation) {
             return $this->Finish(400, 'Bad Request', [
-                'message' => '#{auth-errors-member-password-not-confirmed;Пароль не подтвержден}',
+                'message' => '#{auth-errors-member-password-not-confirmed}',
                 'code' => 400,
                 'validation' => [
-                    'confirmation' => '#{auth-errors-member-password-not-confirmed;Пароль не подтвержден}'
+                    'confirmation' => '#{auth-errors-member-password-not-confirmed}'
                 ]
             ]);
         }
@@ -115,15 +115,15 @@ class MemberController extends WebController
         }
 
         if (!Module::$instance->application->CheckRole($role)) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-role-not-exists;Не найдена роль в приложении}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-role-not-exists}', 'code' => 400]);
         }
 
         if (($strength = Member::CheckPasswordStrength($email, $password)) < 40) {
             return $this->Finish(400, 'Bad request', [
-                'message' => '#{auth-errors-member-password-strength-not-match;Пароль должен быть не менее 40% сложности, у вас }' . $strength . '%',
+                'message' => sprintf('#{auth-errors-member-password-strength-not-match}', $strength),
                 'code' => 400,
                 'validation' => [
-                    'password' => '#{auth-errors-member-password-strength-not-match;Пароль должен быть не менее 40% сложности, у вас }' . $strength . '%'
+                    'password' => sprintf('#{auth-errors-member-password-strength-not-match}', $strength)
                 ]
             ]);
         }
@@ -183,27 +183,27 @@ class MemberController extends WebController
     {
         $session = Sessions::LoadFromRequest();
         if (!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
         }
 
         $member = Members::LoadByToken($session->member);
         if (!$member) {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
         $payloadArray = $payload->ToArray();
         $property = $payloadArray['property'] ?? $post->property;
         if (!$property) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
         }
 
         $confirmed = $member->{$property . '_confirmed'};
         if ($confirmed) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-property-confirmed;Уже подтверждено}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-property-confirmed}', 'code' => 400]);
         }
 
         if (!$member->SendConfirmationMessage($property)) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-property-send-error;Ошибка отправки сообщения}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-property-send-error}', 'code' => 400]);
         }
 
         return $this->Finish(
@@ -228,7 +228,7 @@ class MemberController extends WebController
     {
         $session = Sessions::LoadFromRequest();
         if ($session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-logged;Пользователь залогинен}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-logged}', 'code' => 400]);
         }
 
         $payloadArray = $payload->ToArray();
@@ -238,13 +238,13 @@ class MemberController extends WebController
         if (!$email || !$phone) {
             $validation = [];
             if (!$email) {
-                $validation['email'] = '#{auth-errors-member-field-required;Это поле обязательно для заполнения}';
+                $validation['email'] = '#{auth-errors-member-field-required}';
             }
             if (!$phone) {
-                $validation['phone'] = '#{auth-errors-member-field-required;Это поле обязательно для заполнения}';
+                $validation['phone'] = '#{auth-errors-member-field-required}';
             }
             return $this->Finish(400, 'Bad Request', [
-                'message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}',
+                'message' => '#{auth-errors-member-data-incorrect}',
                 'code' => 400,
                 'validation' => $validation
             ]);
@@ -253,10 +253,10 @@ class MemberController extends WebController
         $member = Members::LoadByEmail($email);
         if (!$member) {
             return $this->Finish(400, 'Bad Request', [
-                'message' => '#{auth-errors-member-not-found;Пользователь не найден}',
+                'message' => '#{auth-errors-member-not-found}',
                 'code' => 400,
                 'validation' => [
-                    'email' => '#{auth-errors-member-with-email-not-exists;Пользователь с таким email-ом не существует}'
+                    'email' => '#{auth-errors-member-with-email-not-exists}'
                 ]
             ]);
         }
@@ -266,17 +266,17 @@ class MemberController extends WebController
                 'message' => '#{auth-errors-phone-incorrect;Неверный номер телефона}',
                 'code' => 400,
                 'validation' => [
-                    'phone' => '#{auth-errors-member-with-phone-not-exists;Пользователь с таким телефоном не существует}='
+                    'phone' => '#{auth-errors-member-with-phone-not-exists}'
                 ]
             ]);
         }
 
         if (!$member->SendResetMessage()) {
             return $this->Finish(400, 'Bad Request', [
-                'message' => '#{auth-errors-member-property-send-error;Ошибка отправки сообщения}',
+                'message' => '#{auth-errors-member-property-send-error}',
                 'code' => 400,
                 'validation' => [
-                    'email' => '#{auth-errors-member-property-send-error;Ошибка отправки сообщения}'
+                    'email' => '#{auth-errors-member-property-send-error}'
                 ]
             ]);
         }
@@ -304,12 +304,12 @@ class MemberController extends WebController
     {
         $session = Sessions::LoadFromRequest();
         if (!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
         }
 
         $member = Members::LoadByToken($session->member);
         if (!$member) {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
         $payloadArray = $payload->ToArray();
@@ -317,25 +317,25 @@ class MemberController extends WebController
         $value = $payloadArray['value'] ?? $post->value;
 
         if (!$property || !$value) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
         }
 
         if (($property === 'email' && $member->email === $value) || ($property === 'phone' && $member->phone === $value)) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
         }
 
         if ($property === 'email' && Members::LoadByEmail($value)) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-email-exists;Пользователь с таким email-ом существует}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-email-exists}', 'code' => 400]);
         } else if ($property === 'phone' && Members::LoadByPhone($value)) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-phone-exists;Пользователь с таким телефоном существует}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-phone-exists}', 'code' => 400]);
         }
 
         if (!$member->SendConfirmationMessage($property, $value)) {
             return $this->Finish(400, 'Bad Request', [
-                'message' => '#{auth-errors-member-property-send-error;Ошибка отправки сообщения}',
+                'message' => '#{auth-errors-member-property-send-error}',
                 'code' => 400,
                 'validation' => [
-                    'property' => '#{auth-errors-member-property-send-error;Ошибка отправки сообщения}'
+                    'property' => '#{auth-errors-member-property-send-error}'
                 ]
             ]);
         }
@@ -362,12 +362,12 @@ class MemberController extends WebController
     {
         $session = Sessions::LoadFromRequest();
         if (!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
         }
 
         $member = Members::LoadByToken($session->member);
         if (!$member) {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
         $payloadArray = $payload->ToArray();
@@ -375,23 +375,23 @@ class MemberController extends WebController
         $code = $payloadArray['code'] ?? $post->code;
 
         if (!$property || !$code) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
         }
 
         try {
             $member->ConfirmProperty($property, $code);
         } catch (\InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad Request', [
-                'message' => '#{auth-errors-member-confirmation-code-error;Неверный код подтверждения}',
+                'message' => '#{auth-errors-member-confirmation-code-error}',
                 'code' => 400,
                 'validation' => [
-                    'code' => '#{auth-errors-member-confirmation-code-error;Неверный код подтверждения}'
+                    'code' => '#{auth-errors-member-confirmation-code-error}'
                 ]
             ]);
         } catch (ValidationException $e) {
             return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => Debug::Rout($e->getExceptionData())]);
         } catch (Throwable $e) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-confirmation-error;Неизвестная ошибка}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-confirmation-error}', 'code' => 400]);
         }
 
         return $this->Finish(
@@ -416,7 +416,7 @@ class MemberController extends WebController
     {
         $session = Sessions::LoadFromRequest();
         if ($session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-logged;Пользователь залогинен}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-logged}', 'code' => 400]);
         }
 
         $payloadArray = $payload->ToArray();
@@ -427,36 +427,36 @@ class MemberController extends WebController
         $confirmation = $payloadArray['confirmation'] ?? $post->confirmation;
 
         if (!$email || !$phone || !$code || !$password) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
         }
 
         $member = Members::LoadByEmail($email);
         if (!$member) {
             return $this->Finish(400, 'Bad Request', [
-                'message' => '#{auth-errors-member-not-found;Пользователь не найден}',
+                'message' => '#{auth-errors-member-not-found}',
                 'code' => 400,
                 'validation' => [
-                    'email' => '#{auth-errors-member-with-email-not-exists;Пользователь с таким email-ом не существует}'
+                    'email' => '#{auth-errors-member-with-email-not-exists}'
                 ]
             ]);
         }
 
         if ($member->phone != $phone) {
             return $this->Finish(400, 'Bad Request', [
-                'message' => '#{auth-errors-phone-incorrect;Неверный номер телефона}',
+                'message' => '#{auth-errors-phone-incorrect}',
                 'code' => 400,
                 'validation' => [
-                    'phone' => '#{auth-errors-member-with-phone-not-exists;Пользователь с таким телефоном не существует}='
+                    'phone' => '#{auth-errors-member-with-phone-not-exists}'
                 ]
             ]);
         }
 
         if ($password != $confirmation) {
             return $this->Finish(400, 'Bad Request', [
-                'message' => '#{auth-errors-member-password-not-confirmed;Пароль не подтвержден}',
+                'message' => '#{auth-errors-member-password-not-confirmed}',
                 'code' => 400,
                 'validation' => [
-                    'confirmation' => '#{auth-errors-member-password-not-confirmed;Пароль не подтвержден}'
+                    'confirmation' => '#{auth-errors-member-password-not-confirmed}'
                 ]
             ]);
         }
@@ -466,17 +466,17 @@ class MemberController extends WebController
         } catch (\InvalidArgumentException $e) {
             if ($e->getCode() == 400) {
                 return $this->Finish(400, 'Bad Request', [
-                    'message' => '#{auth-errors-member-reset-code-error;Неверный код подтверждения}',
+                    'message' => '#{auth-errors-member-reset-code-error}',
                     'code' => 400,
                     'validation' => [
-                        'code' => '#{auth-errors-member-reset-code-error;Неверный код подтверждения}'
+                        'code' => '#{auth-errors-member-reset-code-error}'
                     ]
                 ]);
             }
         } catch (ValidationException $e) {
             return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => Debug::Rout($e->getExceptionData())]);
         } catch (Throwable $e) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-reset-error;Невозможно сохранить этот пароль}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-reset-error}', 'code' => 400]);
         }
 
         return $this->Finish(
@@ -502,12 +502,12 @@ class MemberController extends WebController
     {
         $session = Sessions::LoadFromRequest();
         if (!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
         }
 
         $member = Members::LoadByToken($session->member);
         if (!$member) {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
         $payloadArray = $payload->ToArray();
@@ -516,23 +516,23 @@ class MemberController extends WebController
         $value = $payloadArray['value'] ?? $post->value;
 
         if (!$property || !$code || !$value) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
         }
 
         if (($property === 'email' && $member->email === $value) || ($property === 'phone' && $member->phone === $value)) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
         }
 
         if ($property === 'email' && Members::LoadByEmail($value)) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-email-exists;Пользователь с таким email-ом существует}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-email-exists}', 'code' => 400]);
         } else if ($property === 'phone' && Members::LoadByPhone($value)) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-phone-exists;Пользователь с таким телефоном существует}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-phone-exists}', 'code' => 400]);
         }
 
         try {
 
             if (!$member->UpdateIdentify($property, $code, $value)) {
-                throw new InvalidArgumentException('#{auth-errors-member-update-error;Невозможно обновить свойство}', 400);
+                throw new InvalidArgumentException('#{auth-errors-member-update-error}', 400);
             }
     
             $session->member = $member->token;
@@ -572,7 +572,7 @@ class MemberController extends WebController
     {
         $session = Sessions::LoadFromRequest();
         if (!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
         }
 
         $member = Members::LoadByToken($session->member);
@@ -583,25 +583,25 @@ class MemberController extends WebController
         $confirmation = $payloadArray['confirmation'] ?? $post->confirmation;
 
         if (!$original || !$password || !$confirmation) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
         }
 
         if (!$member->Authorize($original)) {
             return $this->Finish(400, 'Bad Request', [
-                'message' => '#{auth-errors-member-password-error;Неверный текущий пароль}',
+                'message' => '#{auth-errors-member-password-error}',
                 'code' => 400,
                 'validation' => [
-                    'original' => '#{auth-errors-member-password-error;Неверный пароль}'
+                    'original' => '#{auth-errors-member-password-error}'
                 ]
             ]);
         }
 
         if ($password != $confirmation) {
             return $this->Finish(400, 'Bad Request', [
-                'message' => '#{auth-errors-member-password-not-confirmed;Пароль не подтвержден}',
+                'message' => '#{auth-errors-member-password-not-confirmed}',
                 'code' => 400,
                 'validation' => [
-                    'confirmation' => '#{auth-errors-member-password-not-confirmed;Пароль не подтвержден}'
+                    'confirmation' => '#{auth-errors-member-password-not-confirmed}'
                 ]
             ]);
         }
@@ -644,7 +644,7 @@ class MemberController extends WebController
     {
         $session = Sessions::LoadFromRequest();
         if (!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
         }
 
         try {
@@ -692,7 +692,7 @@ class MemberController extends WebController
     {
         $session = Sessions::LoadFromRequest();
         if (!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
         }
 
         $member = Members::LoadByToken($session->member);
@@ -732,12 +732,12 @@ class MemberController extends WebController
     {
         $session = Sessions::LoadFromRequest();
         if (!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
         }
 
         $member = Members::LoadByToken($session->member);
         if (!$member) {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
         $payloadArray = $payload->ToArray();
@@ -748,12 +748,12 @@ class MemberController extends WebController
         $birthdate = $payloadArray['birthdate'] ?? $post->birthdate;
 
         if (!$firstName || !$lastName) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
         }
 
         try {
             if (!$member->UpdateProfile($firstName, $lastName, $patronymic, $gender, $birthdate)) {
-                throw new InvalidArgumentException('#{auth-errors-member-error-profile;Не смогли сохранить профиль}', 400);
+                throw new InvalidArgumentException('#{auth-errors-member-error-profile}', 400);
             }
         } catch (InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
@@ -786,12 +786,12 @@ class MemberController extends WebController
     {
         $session = Sessions::LoadFromRequest();
         if (!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
         }
 
         $member = Members::LoadByToken($session->member);
         if (!$member) {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
         $payloadArray = $payload->ToArray();
@@ -799,12 +799,12 @@ class MemberController extends WebController
         $newPassword = $payloadArray['new'] ?? $post->new;
 
         if (!$currentPassword || !$newPassword) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect;Неверные данные в запросе}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
         }
 
         try {
             if (!$member->UpdatePassword($currentPassword, $newPassword)) {
-                throw new InvalidArgumentException('#{auth-errors-member-error-password;Не смогли обновить пароль}', 400);
+                throw new InvalidArgumentException('#{auth-errors-member-error-password}', 400);
             }
         } catch (InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
@@ -837,16 +837,16 @@ class MemberController extends WebController
 
         $session = Sessions::LoadFromRequest();
         if (!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
         }
 
         $member = Members::LoadByToken($session->member);
         if (!$member) {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
         if ($member->role === 'user') {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
         $payloadArray = $payload->ToArray();
@@ -881,18 +881,18 @@ class MemberController extends WebController
 
         $session = Sessions::LoadFromRequest();
         if (!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
         }
 
         $member = Members::LoadByToken($session->member);
         if (!$member) {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
         $payloadArray = $payload->ToArray();
         $role = $payloadArray['role'] ?? $post->role;
         if (!$role) {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
         $ret = [];
@@ -924,16 +924,16 @@ class MemberController extends WebController
 
         $session = Sessions::LoadFromRequest();
         if (!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
         }
 
         $member = Members::LoadByToken($session->member);
         if (!$member) {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
         if ($member->role === 'user') {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
         $payloadArray = $payload->ToArray();
@@ -962,16 +962,16 @@ class MemberController extends WebController
 
         $session = Sessions::LoadFromRequest();
         if (!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
         }
 
         $member = Members::LoadByToken($session->member);
         if (!$member) {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
         if ($member->role !== 'administrator') {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
         $payloadArray = $payload->ToArray();
@@ -988,7 +988,7 @@ class MemberController extends WebController
             foreach ($mutation as $key => $value) {
                 $field = $member->Storage()->fields->$key;
                 if ($field->type === 'bool') {
-                    $data[] = $field->desc . ': ' . ($value ? '#{auth-bool-data-true;Да}' : '#{auth-bool-data-false;Нет}');
+                    $data[] = $field->desc . ': ' . ($value ? '#{auth-bool-data-true}' : '#{auth-bool-data-false}');
                 } else {
                     $data[] = $field->desc . ': ' . $value;
                 }
@@ -1029,16 +1029,16 @@ class MemberController extends WebController
 
         $session = Sessions::LoadFromRequest();
         if (!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged;Пользователь не залогинен}', 'code' => 400]);
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
         }
 
         $member = Members::LoadByToken($session->member);
         if (!$member) {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
         if ($member->role !== 'administrator') {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency;Ошибка консистентности данных}', 'code' => 500]);
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
         $payloadArray = $payload->ToArray();
@@ -1047,12 +1047,12 @@ class MemberController extends WebController
 
         $member = Members::LoadByEmail($memberEmail);
         if (!$member) {
-            return $this->Finish(404, 'Not Found', ['message' => '#{auth-errors-member-not-found;Пользователь не найден}', 'code' => 404]);
+            return $this->Finish(404, 'Not Found', ['message' => '#{auth-errors-member-not-found}', 'code' => 404]);
         }
 
         try {
             if (!$member->UpdateRole($memberRole)) {
-                return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-role-incorrect;Невозможно изменить роль}', 'code' => 500]);
+                return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-role-incorrect}', 'code' => 500]);
             }            
         } catch (InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
