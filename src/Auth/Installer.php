@@ -140,7 +140,15 @@ class Installer
         foreach($storagesConfigs as $config) {
             $configData = self::_loadConfig($configDir.$config);
             foreach($configData as $storageName => $storageData) {
-                $configData[$storageName]['access-point'] = 'main';
+                if(is_string($configData[$storageName])) {
+                    $loadedConfig = self::_loadConfig($configDir.$configData[$storageName]);
+                    $loadedConfig['access-point'] = 'main';
+                    self::_saveConfig($configDir.$configData[$storageName], $loadedConfig);
+                }
+                else {
+                    $configData[$storageName]['access-point'] = 'main';
+                }
+
             }
             self::_saveConfig($configDir.$config, $configData);
         }
