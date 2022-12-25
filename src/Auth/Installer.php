@@ -141,7 +141,7 @@ class Installer
             $configData = self::_loadConfig($configDir.$config);
             foreach($configData as $storageName => $storageData) {
                 if(is_string($configData[$storageName])) {
-                    $sconfig = str_replace(')', '', str_replace('include(', '', $configDir . $configData[$storageName]));
+                    $sconfig = $configDir . str_replace(')', '', str_replace('include(', '', $configData[$storageName]));
                     $loadedConfig = self::_loadConfig($sconfig);
                     $loadedConfig['access-point'] = 'main';
                     self::_saveConfig($sconfig, $loadedConfig);
