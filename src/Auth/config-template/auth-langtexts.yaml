@@ -96,10 +96,10 @@ auth-errors-session-notlogged:
   en: User not logged in
 auth-bool-data-true:
   ru: Да
-  en: Yes
+  en: "Yes"
 auth-bool-data-false:
   ru: Нет
-  en: No
+  en: "No"
 auth-permissions:
   ru: Доступ к модулю Auth
   en: Access to Auth module
