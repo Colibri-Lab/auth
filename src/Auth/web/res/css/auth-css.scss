@@ -30,14 +30,8 @@
         margin-top: 16px;
     }
 
-    [data-object-name="button-container2"] {
-        &.app-component-shown {
-            display: flex;
-        }
-        align-items: center;
-        [data-object-name="register"], [data-object-name="login"] {
-            margin-left: 10px;
-        }
+    [data-object-name="register"], [data-object-name="login"], [data-object-name="reset"] {
+        font-weight: bold;
     }
 
     [data-object-name="form-container"] {
@@ -61,11 +55,10 @@
         } 
     }
 
-    [data-object-name="button-container"] {
-        &.app-component-shown {
-            display: flex;
+    .buttons-pane {
+        .app-component-textspan {
+            color: #707070;
         }
-        gap: 16px;
     }
 
 

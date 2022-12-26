@@ -28,7 +28,7 @@ auth-profileform-gender-desc:
   en: Gender
 auth-profileform-gender-values-male:
   ru: Мужской
-  en: Make
+  en: Male
 auth-profileform-gender-values-female:
   ru: Женский
   en: Female

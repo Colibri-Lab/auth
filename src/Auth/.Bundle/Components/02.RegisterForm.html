@@ -114,7 +114,7 @@
                         desc: '#{auth-registerform-label-desc}',
                     },
                     email: {
-                        component: 'Text4',
+                        component: 'Text',
                         desc: '#{auth-registerform-email-desc}',
                         params: {
                             required: true,
@@ -246,10 +246,10 @@
             </fields>
         </Forms.Form>
     </Pane>
-    <FlexBox name="button-container" shown="true">            
+    <FlexBox name="button-container" shown="true" className="buttons-pane">            
         <SuccessButton name="register" shown="true" enabled="true" tabIndex="true">#{auth-register-button}</SuccessButton>
     </FlexBox>
-    <FlexBox shown="true" name="button-container2">
+    <FlexBox shown="true" name="button-container2" className="buttons-pane -gap10">
         <TextSpan shown="true">#{auth-login-register-text}</TextSpan>
         <Link name="login" shown="true" enabled="true" tabIndex="true">#{auth-login-button}</Link>
     </FlexBox>
