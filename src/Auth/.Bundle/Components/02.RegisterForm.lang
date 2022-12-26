@@ -139,4 +139,3 @@ auth-login-register-text:
 auth-login-button:
   ru: Вход
   en: Login
-auth-registerform-fio-patronymic-placeholder\: {}
