@@ -121,7 +121,7 @@ class Module extends BaseModule
     public function GetPermissions(): array
     {
         $permissions = parent::GetPermissions();
-        $permissions['auth'] = 'Доступ к модулю Auth';
+        $permissions['auth'] = '#{auth-permissions}';
         return $permissions;
     }
 

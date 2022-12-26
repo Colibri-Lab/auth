@@ -94,5 +94,12 @@ auth-errors-session-data-incorrect:
 auth-errors-session-notlogged:
   ru: Пользователь не залогинен
   en: User not logged in
-auth-bool-data-true: {}
-auth-bool-data-false: {}
+auth-bool-data-true:
+  ru: Да
+  en: Yes
+auth-bool-data-false:
+  ru: Нет
+  en: No
+auth-permissions:
+  ru: Доступ к модулю Auth
+  en: Access to Auth module
