@@ -98,7 +98,7 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
             } 
 
         }).catch(response => {
-            response.result = JSON.parse(response.result);
+            response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
             this._validator.Invalidate('form', response.result.message);
             this._form.enabled = true;
             this._form.Focus();

@@ -45,7 +45,7 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         ).then((session) => {
 
         }).catch(response => {
-            response.result = JSON.parse(response.result);
+            response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
             if(response.result.validation && Object.keys(response.result.validation).length > 0) {
                 Object.forEach(response.result.validation, (field, message, index) => {
                     this._validator.Invalidate(field, message);

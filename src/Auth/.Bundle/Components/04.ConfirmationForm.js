@@ -73,7 +73,7 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
                 this.Dispatch('PropertyConfirmed', {property: this._property});
                 this._confirming = false;
             }).catch(response => {
-                response.result = JSON.parse(response.result);
+                response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
                 if(response.result.validation && Object.keys(response.result.validation).length > 0) {
                     Object.forEach(response.result.validation, (field, message, index) => {
                         this._validator.Invalidate(field, message);
@@ -128,7 +128,7 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
             this._confirming = false;
             this._startTimer();
         }).catch(response => {
-            response.result = JSON.parse(response.result);
+            response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
             if(response.result.validation && Object.keys(response.result.validation).length > 0) {
                 Object.forEach(response.result.validation, (field, message, index) => {
                     this._validator.Invalidate(field, message);

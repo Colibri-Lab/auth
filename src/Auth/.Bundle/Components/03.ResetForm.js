@@ -214,7 +214,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
             Auth.Members.ResetPassword(this._form.value.email, this._form.value.phone, this._form.value.code, this._form.value.pass.password, this._form.value.pass.confirmation).then((session) => {
                 this._loginButton.Dispatch('Clicked');
             }).catch(response => {
-                response.result = JSON.parse(response.result);
+                response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
                 if(response.result.validation && Object.keys(response.result.validation).length > 0) {
                     Object.forEach(response.result.validation, (field, message, index) => {
                         this._validator.Invalidate(field, message);
@@ -235,7 +235,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
             Auth.Members.BeginPasswordResetProcess(this._form.value.email, this._form.value.phone).then((session) => {
                 this._showCodeAndPasswordFields();
             }).catch(response => {
-                response.result = JSON.parse(response.result);
+                response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
                 if(response.result.validation && Object.keys(response.result.validation).length > 0) {
                     Object.forEach(response.result.validation, (field, message, index) => {
                         this._validator.Invalidate(field, message);

@@ -41,7 +41,7 @@ App.Modules.Auth.Components.ProfileForm = class extends Colibri.UI.Component  {
         Auth.Members.SaveProfile(this._form.value.last_name, this._form.value.first_name, this._form.value.patronymic, this._form.value.birthdate, this._form.value.gender).then((session) => {
             this.Hide();
         }).catch(response => {
-            response.result = JSON.parse(response.result);
+            response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
             if(response.result.validation && Object.keys(response.result.validation).length > 0) {
                 Object.forEach(response.result.validation, (field, message, index) => {
                     if(['password', 'confirmation'].indexOf(field) !== -1) {

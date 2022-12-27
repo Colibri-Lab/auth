@@ -108,7 +108,7 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
                 this.Dispatch('PropertyChanged', {property: this._property});
                 this._changing = false;
             }).catch(response => {
-                response.result = JSON.parse(response.result);
+                response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
                 if(response.result.validation && Object.keys(response.result.validation).length > 0) {
                     Object.forEach(response.result.validation, (field, message, index) => {
                         this._validator2.Invalidate(field, message);
@@ -178,7 +178,7 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
             this._form2.value = {message: this._message2.replaceAll('%s', '<b>' + this._form1.value.property + '</b>')};
             this._startTimer();
         }).catch(response => {
-            response.result = JSON.parse(response.result);
+            response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
             if(response.result.validation && Object.keys(response.result.validation).length > 0) {
                 Object.forEach(response.result.validation, (field, message, index) => {
                     this._validator1.Invalidate(field, message);
