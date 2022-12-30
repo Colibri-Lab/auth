@@ -232,5 +232,41 @@ class SessionController extends WebController
         );
     }
 
+    public function CheckProperty(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
+    {
+
+        try {
+            $session = Sessions::LoadFromRequest();
+        } catch (\InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+        } catch (\Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        }
+
+        $payloadArray = $payload->ToArray();
+        $property = $payloadArray['property'] ?? $post->property;
+        $value = $payloadArray['value'] ?? $post->value;
+        
+        if($property === 'email') {
+            $members = Members::LoadByEmail($value);
+        } elseif ($property === 'phone') {
+            $members = Members::LoadByPhone($value);
+        }
+
+        $exists = $members && $members->Count() > 0;
+
+        // финишируем контроллер
+        return $this->Finish(
+            200,
+            'ok',
+            ['exists' => $exists],
+            'utf-8',
+            [],
+            [$session->GenerateCookie(true)]
+        );
+    }
+
 
 }
