@@ -11,9 +11,9 @@ App.Modules.Auth.Components.ProfileForm = class extends Colibri.UI.Component  {
         this._validator = new Colibri.UI.SimpleFormValidator(this._form);
 
         this._saveButton = this.Children('button-container/save');
-        this._form.AddHandler('Changed', (event, args) => {
-            this._saveButton.enabled = this._validator.Status();
-        });
+        // this._form.AddHandler('Changed', (event, args) => {
+        //     this._saveButton.enabled = this._validator.Status();
+        // });
         
         this._saveButton.AddHandler('Clicked', (event, args) => this.__profileFormSaveButtonClicked(event, args));
 
@@ -35,6 +35,12 @@ App.Modules.Auth.Components.ProfileForm = class extends Colibri.UI.Component  {
     __profileFormSaveButtonClicked(event, args) {
         
         if(!this._validator.ValidateAll()) {
+
+            const component = this._form.container.querySelector('.app-validate-error').tag('component');
+            if(component) {
+                component.Focus();
+            }
+
             return;
         }
 

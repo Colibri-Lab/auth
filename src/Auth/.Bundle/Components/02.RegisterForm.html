@@ -137,9 +137,11 @@
                     phone: {
                         component: 'Text',
                         desc: '#{auth-registerform-phone-desc}',
+                        placeholder: '+44 (0) 111 222 333',
                         params: {
                             required: true,
                             readonly: false,
+                            mask: '+44 (9) 999 999 999',
                             validate: [
                                 {
                                     message: '#{auth-registerform-phone-validation1}',
@@ -168,7 +170,7 @@
                                     eyeicon: true,
                                     tip: {
                                         orientation: [Colibri.UI.ToolTip.LT, Colibri.UI.ToolTip.LB],
-                                        text: '#{auth-registerform-password-tip-text}',
+                                        text: ['#{auth-registerform-password-tip-text}', '#{auth-registerform-password-tip-text2}'],
                                         success: '#{auth-registerform-password-tip-success}',
                                         error: '#{auth-registerform-password-tip-error}',
                                         generate: '#{auth-registerform-password-tip-generate}',

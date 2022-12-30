@@ -8,7 +8,7 @@
                     login: {
                         component: 'Text', 
                         desc: '#{auth-loginform-email-desc}',
-                        params: {  
+                        params: {   
                             required: true,
                             readonly: false,
                             validate: [
@@ -74,7 +74,7 @@
         <Link name="reset" shown="true">#{auth-login-reset}</Link>
     </FlexBox>
     <FlexBox name="button-container" shown="true" className="buttons-pane">            
-        <SuccessButton name="login" shown="true" enabled="false" tabIndex="true">#{auth-login-button}</SuccessButton>
+        <SuccessButton name="login" shown="true" enabled="true" tabIndex="true">#{auth-login-button}</SuccessButton>
     </FlexBox>
     <FlexBox shown="true" name="button-container2" className="buttons-pane -gap10">
         <TextSpan shown="true">#{auth-register-login-text}</TextSpan>

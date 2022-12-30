@@ -18,7 +18,7 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
 
         this._form.AddHandler('Changed', (event, args) => {
             this.Dispatch('ExternalValidation', args);
-            this._registerButton.enabled = this._validator.Status();
+            // this._registerButton.enabled = this._validator.Status();
         });
 
     } 
@@ -36,12 +36,18 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
     __registerFormRegisterButtonClicked(event, args) {
 
         if(!this._validator.ValidateAll()) {
+
+            const component = this._form.container.querySelector('.app-validate-error').tag('component');
+            if(component) {
+                component.Focus();
+            }
+
             return;
         }
  
         const formData = this._form.value;
         Auth.Members.Register(
-            formData.email, formData.phone, formData.pass.password, formData.pass.confirmation, formData.fio.first_name, formData.fio.last_name, formData.fio.patronymic, formData.gender, formData.birthdate
+            formData.email, formData.phone.replaceAll(/[^[0-9+]/, ''), formData.pass.password, formData.pass.confirmation, formData.fio.first_name, formData.fio.last_name, formData.fio.patronymic, formData.gender, formData.birthdate
         ).then((session) => {
 
         }).catch(response => {

@@ -58,3 +58,6 @@ auth-changepassform-confirmation-desc:
 auth-changepass-button:
   ru: Обновить пароль
   en: Update password
+auth-changepassform-password-tip-text2:
+  ru: "Пароль должен содержать:"
+  en: "Password must contains:"

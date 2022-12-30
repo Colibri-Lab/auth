@@ -14,9 +14,9 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         this._registerButton = this.Children('button-container2/register');
         this._resetButton = this.Children('links-container/reset');
 
-        this._form.AddHandler('Changed', (event, args) => {
-            this._loginButton.enabled = this._validator.Status();
-        });
+        // this._form.AddHandler('Changed', (event, args) => {
+        //     this._loginButton.enabled = this._validator.Status();
+        // });
 
         this._timerContainer = this.Children('timer-container');
         this._timer = this.Children('timer-container/timer');
@@ -51,6 +51,12 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
     __loginFormLoginButtonClicked(event, args) {
 
         if(!this._validator.ValidateAll()) {
+
+            const component = this._form.container.querySelector('.app-validate-error').tag('component');
+            if(component) {
+                component.Focus();
+            }
+
             return;
         }
 

@@ -98,7 +98,7 @@ class Controller extends WebController
                 } catch (\Exception $e) {
                     Debug::Out($e->getMessage());
                 }
-            } elseif (in_array('js', $args->exts) ) { // && !App::$isDev
+            } elseif (in_array('js', $args->exts) && !App::$isDev) { 
                 try {
                     $args->content = Minifier::Minify($args->content);
                 }

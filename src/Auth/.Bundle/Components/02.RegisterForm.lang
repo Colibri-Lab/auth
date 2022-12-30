@@ -54,8 +54,8 @@ auth-registerform-email-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
   en: You are entering an invalid email address. Please try again!
 auth-registerform-phone-desc:
-  ru: Телефон (+44XXXXXXXXXX)
-  en: Phone number (+44XXXXXXXXXX)
+  ru: Телефон
+  en: Phone number
 auth-registerform-phone-validation1:
   ru: Пожалуйста, введите телефон
   en: Please enter the phone number
@@ -139,3 +139,6 @@ auth-login-register-text:
 auth-login-button:
   ru: Вход
   en: Login
+auth-registerform-password-tip-text2:
+  ru: "Пароль должен содержать: "
+  en: "Password must contains:"
