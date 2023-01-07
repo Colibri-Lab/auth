@@ -3,6 +3,8 @@
 namespace App\Modules\Auth\Models;
 
 # region Uses:
+use App\Modules\Auth\Module;
+use Colibri\Data\SqlClient\QueryInfo;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\DateField;
 use Colibri\Data\Storages\Fields\ValueField;
@@ -50,17 +52,17 @@ class Member extends BaseModelDataRow
             'datecreated',
             'datemodified',
             # region SchemaRequired:
-			'token',
-			'email',
-			'phone',
-			'password',
-			'first_name',
-			'last_name',
-			'email_confirmed',
-			'phone_confirmed',
-			'blocked',
-			'two_factor',
-			# endregion SchemaRequired;
+            'token',
+            'email',
+            'phone',
+            'password',
+            'first_name',
+            'last_name',
+            'email_confirmed',
+            'phone_confirmed',
+            'blocked',
+            'two_factor',
+            # endregion SchemaRequired;
 
         ],
         'properties' => [
@@ -68,31 +70,41 @@ class Member extends BaseModelDataRow
             'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
-			'token' => ['type' => 'string', 'maxLength' => 32, ],
-			'email' => ['type' => 'string', 'maxLength' => 255, ],
-			'phone' => ['type' => 'string', 'maxLength' => 50, ],
-			'password' => ['type' => 'string', 'maxLength' => 128, ],
-			'first_name' => ['type' => 'string', 'maxLength' => 255, ],
-			'last_name' => ['type' => 'string', 'maxLength' => 255, ],
-			'patronymic' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
-			'birthdate' => [ 'anyOf' => [ ['type' => ['string', 'null'], 'format' => 'date'], ['type' => ['string', 'null'], 'maxLength' => 0] ] ],
-			'gender' => [  'oneOf' => [ [ 'type' => 'null' ], ['type' => 'string', 'enum' => ['male', 'female']] ] ],
-			'role' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 20, ] ] ],
-			'email_confirmed' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
-			'phone_confirmed' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
-			'blocked' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
-			'two_factor' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
-			# endregion SchemaProperties;
+            'token' => ['type' => 'string', 'maxLength' => 32,
+            ],
+            'email' => ['type' => 'string', 'maxLength' => 255,
+            ],
+            'phone' => ['type' => 'string', 'maxLength' => 50,
+            ],
+            'password' => ['type' => 'string', 'maxLength' => 128,
+            ],
+            'first_name' => ['type' => 'string', 'maxLength' => 255,
+            ],
+            'last_name' => ['type' => 'string', 'maxLength' => 255,
+            ],
+            'patronymic' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]],
+            'birthdate' => ['anyOf' => [['type' => ['string', 'null'], 'format' => 'date'], ['type' => ['string', 'null'], 'maxLength' => 0]]],
+            'gender' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'enum' => ['male', 'female']]]],
+            'role' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 20,]]],
+            'email_confirmed' => ['type' => ['boolean', 'number'], 'enum' => [true, false, 0, 1],
+            ],
+            'phone_confirmed' => ['type' => ['boolean', 'number'], 'enum' => [true, false, 0, 1],
+            ],
+            'blocked' => ['type' => ['boolean', 'number'], 'enum' => [true, false, 0, 1],
+            ],
+            'two_factor' => ['type' => ['boolean', 'number'], 'enum' => [true, false, 0, 1],
+            ],
+            # endregion SchemaProperties;
 
         ]
     ];
 
     # region Consts:
-	/** Мужской */
-	public const GenderMale = 'male';
-	/** Женский */
-	public const GenderFemale = 'female';
-	# endregion Consts;
+    /** Мужской */
+    public const GenderMale = 'male';
+    /** Женский */
+    public const GenderFemale = 'female';
+    # endregion Consts;
 
 
     public function setPropertyEmail(string $value): void
@@ -177,12 +189,12 @@ class Member extends BaseModelDataRow
         }
 
         $confirmation->code = RandomizationHelper::Numeric(6);
-        if( ($res = $confirmation->Save(true)) !== true ) {
+        if (($res = $confirmation->Save(true)) !== true) {
             throw new InvalidArgumentException($res->error, 500);
         }
 
         return $confirmation->Send($value, $app->params->proxies);
-        
+
     }
 
     public function SendResetMessage(): bool
@@ -202,7 +214,7 @@ class Member extends BaseModelDataRow
         }
 
         $confirmation->code = RandomizationHelper::Numeric(6);
-        if( ($res = $confirmation->Save(true)) !== true) {
+        if (($res = $confirmation->Save(true)) !== true) {
             throw new InvalidArgumentException($res->error, 500);
         }
 
@@ -225,7 +237,7 @@ class Member extends BaseModelDataRow
         }
 
         $confirmation->code = RandomizationHelper::Numeric(6);
-        if( ($res = $confirmation->Save(true)) !== true) {
+        if (($res = $confirmation->Save(true)) !== true) {
             throw new InvalidArgumentException($res->error, 500);
         }
 
@@ -239,8 +251,8 @@ class Member extends BaseModelDataRow
                 $this->$key = $value;
             }
         }
-        
-        if( ($res = $this->Save(true)) !== true) {
+
+        if (($res = $this->Save(true)) !== true) {
             throw new InvalidArgumentException($res->error, 500);
         }
 
@@ -252,13 +264,13 @@ class Member extends BaseModelDataRow
         $confirmation = Confirmations::LoadByMember($property, $this->token);
         if ($confirmation && $confirmation->code === $code) {
             $this->{$property . '_confirmed'} = true;
-            
-            if( ($res = $this->Save(true)) !== true) {
+
+            if (($res = $this->Save(true)) !== true) {
                 throw new \InvalidArgumentException($res->error, 400);
             }
 
             $res = $confirmation->Delete();
-            if( $res->error ) {
+            if ($res->error) {
                 throw new \InvalidArgumentException($res->error, 400);
             }
 
@@ -275,13 +287,13 @@ class Member extends BaseModelDataRow
         if ($confirmation && $confirmation->code === $code) {
             $this->{$property . '_confirmed'} = true;
             $this->$property = $value;
-            
-            if( ($res = $this->Save(true)) !== true) {
+
+            if (($res = $this->Save(true)) !== true) {
                 throw new \InvalidArgumentException($res->error, 400);
             }
 
             $res = $confirmation->Delete();
-            if( $res->error ) {
+            if ($res->error) {
                 throw new \InvalidArgumentException($res->error, 400);
             }
 
@@ -306,8 +318,8 @@ class Member extends BaseModelDataRow
         $this->patronymic = $patronymic;
         $this->gender = $gender;
         $this->birthdate = $birthdate;
-        
-        if( ($res = $this->Save(true)) !== true) {
+
+        if (($res = $this->Save(true)) !== true) {
             throw new \InvalidArgumentException($res->error, 400);
         }
         return true;
@@ -329,7 +341,7 @@ class Member extends BaseModelDataRow
             $this->SendConfirmationMessage('phone');
         }
 
-        if( ($res = $this->Save(true)) !== true) {
+        if (($res = $this->Save(true)) !== true) {
             throw new \InvalidArgumentException($res->error, 400);
         }
         return true;
@@ -342,8 +354,8 @@ class Member extends BaseModelDataRow
             return false;
         }
         $this->password = $newPassword;
-        
-        if( ($res = $this->Save(true)) !== true) {
+
+        if (($res = $this->Save(true)) !== true) {
             throw new \InvalidArgumentException($res->error, 400);
         }
         return true;
@@ -369,11 +381,11 @@ class Member extends BaseModelDataRow
 
         if ($newIndex > $currentIndex) {
             $this->role = $newRole;
-            
-            if( ($res = $this->Save(true)) !== true) {
+
+            if (($res = $this->Save(true)) !== true) {
                 throw new \InvalidArgumentException($res->error, 400);
             }
-            
+
             return true;
 
         }
@@ -396,14 +408,14 @@ class Member extends BaseModelDataRow
         try {
 
             $res = $confirmation->Delete();
-            if( $res->error ) {
+            if ($res->error) {
                 throw new \InvalidArgumentException($res->error, 400);
             }
-            
+
 
             $this->password = $newPassword;
 
-            if( ($res = $this->Save(true)) !== true) {
+            if (($res = $this->Save(true)) !== true) {
                 throw new \InvalidArgumentException($res->error, 400);
             }
 

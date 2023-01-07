@@ -83,13 +83,13 @@ class MemberController extends WebController
 
         if (Members::LoadByEmail($email) !== null) {
             return $this->Finish(400, 'Bad Request', [
-                'message' => '#{auth-errors-member-with-email-exists}', 
+                'message' => '#{auth-errors-member-with-email-exists}',
                 'code' => 400,
                 'validation' => [
                     'email' => '#{auth-errors-member-with-email-exists}'
                 ]
             ]);
-        } 
+        }
         if (Members::LoadByPhone($phone) !== null) {
             return $this->Finish(400, 'Bad Request', [
                 'message' => '#{auth-errors-member-with-phone-exists}',
@@ -141,7 +141,7 @@ class MemberController extends WebController
             $member->blocked = false;
             $member->two_factor = true;
 
-            if(($res = $member->Save(true)) !== true) {
+            if (($res = $member->Save(true)) !== true) {
                 /** @var \Colibri\Data\SqlClient\QueryInfo $res */
                 throw new InvalidArgumentException($res->error, 400);
             }
@@ -151,7 +151,7 @@ class MemberController extends WebController
                 /** @var \Colibri\Data\SqlClient\QueryInfo $res */
                 throw new InvalidArgumentException($res->error, 400);
             }
-    
+
         } catch (InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
         } catch (ValidationException $e) {
@@ -326,7 +326,7 @@ class MemberController extends WebController
 
         if ($property === 'email' && Members::LoadByEmail($value)) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-email-exists}', 'code' => 400]);
-        } else if ($property === 'phone' && Members::LoadByPhone($value)) {
+        } elseif ($property === 'phone' && Members::LoadByPhone($value)) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-phone-exists}', 'code' => 400]);
         }
 
@@ -525,7 +525,7 @@ class MemberController extends WebController
 
         if ($property === 'email' && Members::LoadByEmail($value)) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-email-exists}', 'code' => 400]);
-        } else if ($property === 'phone' && Members::LoadByPhone($value)) {
+        } elseif ($property === 'phone' && Members::LoadByPhone($value)) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-phone-exists}', 'code' => 400]);
         }
 
@@ -534,7 +534,7 @@ class MemberController extends WebController
             if (!$member->UpdateIdentify($property, $code, $value)) {
                 throw new InvalidArgumentException('#{auth-errors-member-update-error}', 400);
             }
-    
+
             $session->member = $member->token;
             if (($res = $session->Save(true)) !== true) {
                 /** @var \Colibri\Data\SqlClient\QueryInfo $res */
@@ -548,7 +548,7 @@ class MemberController extends WebController
         } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
-        
+
 
         return $this->Finish(
             200,
@@ -651,17 +651,17 @@ class MemberController extends WebController
 
             $member = Members::LoadByToken($session->member);
             $member->blocked = 1;
-            if(($res = $member->Save(true)) !== true) {
+            if (($res = $member->Save(true)) !== true) {
                 /** @var \Colibri\Data\SqlClient\QueryInfo $res */
                 throw new InvalidArgumentException($res->error, 400);
             }
-    
+
             $session->member = null;
             if (($res = $session->Save(true)) !== true) {
                 /** @var \Colibri\Data\SqlClient\QueryInfo $res */
                 throw new InvalidArgumentException($res->error, 400);
             }
-    
+
         } catch (InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
         } catch (ValidationException $e) {
@@ -669,7 +669,7 @@ class MemberController extends WebController
         } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
-        
+
         return $this->Finish(
             200,
             'ok',
@@ -762,7 +762,7 @@ class MemberController extends WebController
         } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
-        
+
         return $this->Finish(
             200,
             'ok',
@@ -813,7 +813,7 @@ class MemberController extends WebController
         } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
-        
+
         return $this->Finish(
             200,
             'ok',
@@ -855,7 +855,7 @@ class MemberController extends WebController
         $ret = [];
         $members = Members::LoadByTokens((array) $tokens);
         foreach ($members as $member) {
-            $ret[$member->token] = $member->ExportForUserInterface(true);
+            $ret[$member->token] = $member->ExportForUserInterface();
         }
 
         return $this->Finish(
@@ -898,6 +898,7 @@ class MemberController extends WebController
         $ret = [];
         $members = Members::LoadByRole($role);
         foreach ($members as $member) {
+            /** @var Member $member */
             $ret[$member->token] = $member->ExportForUserInterface(true);
         }
 
@@ -942,7 +943,7 @@ class MemberController extends WebController
         $ret = [];
         $members = Members::LoadByFilter(-1, 20, 'concat({last_name}, \' \', {first_name}, \' \', {patronymic}, \' \', {phone}, \' \', {email}) like \'%' . $term . '%\'');
         foreach ($members as $member) {
-            /** @var Member */
+            /** @var Member $member */
             $ret[$member->token] = $member->ExportForUserInterface(true);
         }
 
@@ -979,9 +980,9 @@ class MemberController extends WebController
         $mutation = $payloadArray['mutation'] ?? $post->mutation;
 
         $member = Members::LoadByToken($memberToken);
-        
+
         try {
-            
+
             $member->Update($mutation);
 
             $data = [];
@@ -1053,7 +1054,7 @@ class MemberController extends WebController
         try {
             if (!$member->UpdateRole($memberRole)) {
                 return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-role-incorrect}', 'code' => 500]);
-            }            
+            }
         } catch (InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
         } catch (ValidationException $e) {
@@ -1076,5 +1077,5 @@ class MemberController extends WebController
         );
 
     }
-    
+
 }

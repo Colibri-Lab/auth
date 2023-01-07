@@ -33,7 +33,7 @@ class Application extends BaseModelDataRow
             'datemodified',
             # region SchemaRequired:
 
-			# endregion SchemaRequired;
+            # endregion SchemaRequired;
 
         ],
         'properties' => [
@@ -41,17 +41,17 @@ class Application extends BaseModelDataRow
             'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
-			'key' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
-			'token' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 32, ] ] ],
-			'params' => ['type' => 'object', 'required' => ['defaultrole',], 'properties' => ['livetime' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'integer', ] ] ],'domains' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['pattern' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],]]],'allowrenew' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],'roles' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['name' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'desc' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],]]],'defaultrole' => ['type' => 'string', 'maxLength' => 255, ],'enable_two_factor_authentication' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],'design' => ['type' => 'object', 'required' => [], 'properties' => ['images' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['key' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 50, ] ] ],'image' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', ] ] ],]]],]],'proxies' => ['type' => 'object', 'required' => [], 'properties' => ['email' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 1024, ] ] ],'sms' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 1024, ] ] ],]],]],
-			# endregion SchemaProperties;
+            'key' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]],
+            'token' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 32,]]],
+            'params' => ['type' => 'object', 'required' => ['defaultrole',], 'properties' => ['livetime' => ['oneOf' => [['type' => 'null'], ['type' => 'integer',]]], 'domains' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['pattern' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]],]]], 'allowrenew' => ['oneOf' => [['type' => 'null'], ['type' => ['boolean', 'number'], 'enum' => [true, false, 0, 1],]]], 'roles' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['name' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]], 'desc' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]],]]], 'defaultrole' => ['type' => 'string', 'maxLength' => 255,], 'enable_two_factor_authentication' => ['oneOf' => [['type' => 'null'], ['type' => ['boolean', 'number'], 'enum' => [true, false, 0, 1],]]], 'design' => ['type' => 'object', 'required' => [], 'properties' => ['images' => ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['key' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 50,]]], 'image' => ['oneOf' => [['type' => 'null'], ['type' => 'string',]]],]]],]], 'proxies' => ['type' => 'object', 'required' => [], 'properties' => ['email' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 1024,]]], 'sms' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 1024,]]],]],]],
+            # endregion SchemaProperties;
 
         ]
     ];
 
     # region Consts:
 
-	# endregion Consts;
+    # endregion Consts;
 
     public function ExportForUserInterface(): array
     {

@@ -1,8 +1,8 @@
 <?php
- 
- 
+
+
 namespace App\Modules\Auth;
- 
+
 class Installer
 {
 
@@ -26,26 +26,27 @@ class Installer
     {
 
         $modules = self::_loadConfig($file);
-        if(is_array($modules['entries'])) {
-            foreach($modules['entries'] as $entry) {
-                if($entry['name'] === 'Auth') {
+        if (is_array($modules['entries'])) {
+            foreach ($modules['entries'] as $entry) {
+                if ($entry['name'] === 'Auth') {
                     return;
                 }
             }
-        }
-        else {
+        } else {
             $modules['entries'] = [];
         }
 
-        $modules['entries'] = array_merge($modules['entries'], [[
-            'name' => 'Auth',
-            'entry' => '\Auth\Module',
-            'desc' => 'Система авторизации Colibri',
-            'enabled' => true,
-            'visible' => true,
-            'for' => ['manage', 'auth'],
-            'config' => 'include(/config/auth.yaml)'
-        ]]);
+        $modules['entries'] = array_merge($modules['entries'], [
+            [
+                'name' => 'Auth',
+                'entry' => '\Auth\Module',
+                'desc' => 'Система авторизации Colibri',
+                'enabled' => true,
+                'visible' => true,
+                'for' => ['manage', 'auth'],
+                'config' => 'include(/config/auth.yaml)'
+            ]
+        ]);
 
         self::_saveConfig($file, $modules);
 
@@ -54,50 +55,47 @@ class Installer
     private static function _injrectIntoDomains($file, $mode): void
     {
         $hosts = self::_loadConfig($file);
-        if(isset($hosts['domains']['auth'])) {
+        if (isset($hosts['domains']['auth'])) {
             return;
         }
 
-        if($mode === 'local') {
+        if ($mode === 'local') {
             $hosts['domains']['auth'] = ['*_auth-v5.local.bsft.loc'];
-        }
-        else if($mode === 'test') {
+        } elseif ($mode === 'test') {
             $hosts['domains']['manage'] = array_merge($hosts['domains']['manage'], ['backend_auth.test.colibrilab.pro']);
             $hosts['domains']['auth'] = ['*_auth.test.colibrilab.pro'];
-        }
-        else if($mode === 'prod') {
+        } elseif ($mode === 'prod') {
             // захватываем управление админкой
             // управляющий модуль должен быть один
             $hosts['domains']['manage'] = array_merge($hosts['domains']['manage'], ['backend.auth.ecolo-place.com']);
             $hosts['domains']['auth'] = ['*.auth.ecolo-place.com'];
         }
         self::_saveConfig($file, $hosts);
-        
+
     }
 
-    private static function _copyOrSymlink($mode, $pathFrom, $pathTo, $fileFrom, $fileTo): void 
+    private static function _copyOrSymlink($mode, $pathFrom, $pathTo, $fileFrom, $fileTo): void
     {
-        print_r('Копируем '.$mode.' '.$pathFrom.' '.$pathTo.' '.$fileFrom.' '.$fileTo."\n");
-        if(!file_exists($pathFrom.$fileFrom)) {
-            print_r('Файл '.$pathFrom.$fileFrom.' не существует'."\n");
+        print_r('Копируем ' . $mode . ' ' . $pathFrom . ' ' . $pathTo . ' ' . $fileFrom . ' ' . $fileTo . "\n");
+        if (!file_exists($pathFrom . $fileFrom)) {
+            print_r('Файл ' . $pathFrom . $fileFrom . ' не существует' . "\n");
             return;
         }
 
-        if(file_exists($pathTo.$fileTo)) {
-            print_r('Файл '.$pathTo.$fileTo.' существует'."\n");
+        if (file_exists($pathTo . $fileTo)) {
+            print_r('Файл ' . $pathTo . $fileTo . ' существует' . "\n");
             return;
         }
 
-        if($mode === 'local') {
-            shell_exec('ln -s '.realpath($pathFrom.$fileFrom).' '.$pathTo.($fileTo != $fileFrom ? $fileTo : ''));
-        }
-        else {
-            shell_exec('cp -R '.realpath($pathFrom.$fileFrom).' '.$pathTo.$fileTo);
+        if ($mode === 'local') {
+            shell_exec('ln -s ' . realpath($pathFrom . $fileFrom) . ' ' . $pathTo . ($fileTo != $fileFrom ? $fileTo : ''));
+        } else {
+            shell_exec('cp -R ' . realpath($pathFrom . $fileFrom) . ' ' . $pathTo . $fileTo);
         }
 
         // если это исполняемый скрипт
-        if(strstr($pathTo.$fileTo, '/bin/') !== false) {
-            chmod($pathTo.$fileTo, 0777);
+        if (strstr($pathTo . $fileTo, '/bin/') !== false) {
+            chmod($pathTo . $fileTo, 0777);
         }
     }
 
@@ -105,11 +103,11 @@ class Installer
     {
         $storagesConfigs = [];
         $files = scandir($configDir);
-        foreach($files as $file) {
-            if(!in_array($file, ['databases.yaml', '.', '..'])) {
+        foreach ($files as $file) {
+            if (!in_array($file, ['databases.yaml', '.', '..'])) {
                 // Ищем databases.storages
-                $config = self::_loadConfig($configDir.$file);
-                if(isset($config['databases']['storages'])) {
+                $config = self::_loadConfig($configDir . $file);
+                if (isset($config['databases']['storages'])) {
                     $storagesConfigs[] = str_replace(')', '', str_replace('include(', '', $config['databases']['storages']));
                 }
             }
@@ -120,38 +118,35 @@ class Installer
     private static function _updateDatabaseConnection(string $configDir, string $mode): void
     {
 
-        $databases = self::_loadConfig($configDir.'databases.yaml');
+        $databases = self::_loadConfig($configDir . 'databases.yaml');
         // обновляем данные основного подключения
         $databases['access-points']['connections']['default_connection']['host'] = 'localhost';
         $databases['access-points']['connections']['default_connection']['user'] = 'auth';
-        if($mode === 'prod') {
+        if ($mode === 'prod') {
             $databases['access-points']['connections']['default_connection']['password'] = 'vault(vault.repeatme.online:ef97938ae449337d2644daf48c01e336:auth_db_password)';
-        }
-        else if($mode === 'test') {
+        } elseif ($mode === 'test') {
             $databases['access-points']['connections']['default_connection']['password'] = 'vault(vault.repeatme.online:ef97938ae449337d2644daf48c01e336:auth_db_password)';
-        }
-        else {
+        } else {
             $databases['access-points']['connections']['default_connection']['password'] = '123456';
         }
         $databases['access-points']['points']['main']['database'] = 'auth';
-        
-        self::_saveConfig($configDir.'databases.yaml', $databases);
+
+        self::_saveConfig($configDir . 'databases.yaml', $databases);
         $storagesConfigs = self::_findStoragesConfigFiles($configDir);
-        foreach($storagesConfigs as $config) {
-            $configData = self::_loadConfig($configDir.$config);
-            foreach($configData as $storageName => $storageData) {
-                if(is_string($configData[$storageName])) {
+        foreach ($storagesConfigs as $config) {
+            $configData = self::_loadConfig($configDir . $config);
+            foreach ($configData as $storageName => $storageData) {
+                if (is_string($configData[$storageName])) {
                     $sconfig = $configDir . str_replace(')', '', str_replace('include(', '', $configData[$storageName]));
                     $loadedConfig = self::_loadConfig($sconfig);
                     $loadedConfig['access-point'] = 'main';
                     self::_saveConfig($sconfig, $loadedConfig);
-                }
-                else {
+                } else {
                     $configData[$storageName]['access-point'] = 'main';
                 }
 
             }
-            self::_saveConfig($configDir.$config, $configData);
+            self::_saveConfig($configDir . $config, $configData);
         }
 
     }
@@ -162,10 +157,10 @@ class Installer
         $settings = self::_loadConfig($file);
 
         // следить за темой системы
-        if(!isset($settings['screen']['theme'])) {
+        if (!isset($settings['screen']['theme'])) {
             $settings['screen'] = ['theme' => 'follow-device'];
         }
-        if(!isset($settings['errors']['404'])) {
+        if (!isset($settings['errors']['404'])) {
             $settings['errors'] = ['404' => '/e404/', '500' => '/e500/', '0' => '/e404'];
         }
         self::_saveConfig($file, $settings);
@@ -189,7 +184,7 @@ class Installer
 
         $settings = self::_loadConfig($file);
 
-        if($mode !== 'local' && $mode !== 'dev') {
+        if ($mode !== 'local' && $mode !== 'dev') {
             $settings['type'] = 'uglify';
             $settings['convert'] = true;
             $settings['command'] = '/usr/local/bin/uglifyjs --rename %s -o %s --compress --mangle --v8';
@@ -200,64 +195,64 @@ class Installer
     }
 
 
- 
+
     /**
      *
-     * @param PackageEvent $event
+     * @param \Composer\Installer\PackageEvent $event
      * @return void
      */
     public static function PostPackageInstall($event)
     {
- 
-        print_r('Установка и настройка модуля Colibri Auth'."\n");
- 
-        $vendorDir = $event->getComposer()->getConfig()->get('vendor-dir').'/';
+
+        print_r('Установка и настройка модуля Colibri Auth' . "\n");
+
+        $vendorDir = $event->getComposer()->getConfig()->get('vendor-dir') . '/';
         $operation = $event->getOperation();
         $installedPackage = $operation->getPackage();
         $targetDir = $installedPackage->getName();
-        $path = $vendorDir.$targetDir;
+        $path = $vendorDir . $targetDir;
 
-        $configPath = $path.'/src/Auth/config-template/';
+        $configPath = $path . '/src/Auth/config-template/';
         $configDir = './config/';
- 
-        if(!file_exists($configDir.'app.yaml')) {
-            print_r('Не найден файл конфигурации app.yaml'."\n");
+
+        if (!file_exists($configDir . 'app.yaml')) {
+            print_r('Не найден файл конфигурации app.yaml' . "\n");
             return;
         }
 
         // берем точку входа
         $webRoot = \getenv('COLIBRI_WEBROOT');
-        if(!$webRoot) {
-            $webRoot = 'web'; 
+        if (!$webRoot) {
+            $webRoot = 'web';
         }
-        $mode = self::_getMode($configDir.'app.yaml'); 
- 
+        $mode = self::_getMode($configDir . 'app.yaml');
+
         // копируем конфиг
-        print_r('Копируем файлы конфигурации'."\n");
-        self::_copyOrSymlink($mode, $configPath, $configDir, 'module-'.$mode.'.yaml', 'auth.yaml');
+        print_r('Копируем файлы конфигурации' . "\n");
+        self::_copyOrSymlink($mode, $configPath, $configDir, 'module-' . $mode . '.yaml', 'auth.yaml');
         self::_copyOrSymlink($mode, $configPath, $configDir, 'auth-storages.yaml', 'auth-storages.yaml');
         self::_copyOrSymlink($mode, $configPath, $configDir, 'auth-langtexts.yaml', 'auth-langtexts.yaml');
-        
-        print_r('Встраиваем модуль'."\n");
-        self::_injectIntoModuleConfig($configDir.'modules.yaml');
-        self::_injrectIntoDomains($configDir.'hosts.yaml', $mode);
-        self::_injectDefaultSettings($configDir.'settings.yaml', $mode);
-        self::_injectCometSettings($configDir.'comet.yaml', $mode);
-        self::_injectMinifierSettings($configDir.'minifier.yaml', $mode);
 
-        if($mode !== 'local') {
-            print_r('Обновляем доступы к базе данных'."\n");
+        print_r('Встраиваем модуль' . "\n");
+        self::_injectIntoModuleConfig($configDir . 'modules.yaml');
+        self::_injrectIntoDomains($configDir . 'hosts.yaml', $mode);
+        self::_injectDefaultSettings($configDir . 'settings.yaml', $mode);
+        self::_injectCometSettings($configDir . 'comet.yaml', $mode);
+        self::_injectMinifierSettings($configDir . 'minifier.yaml', $mode);
+
+        if ($mode !== 'local') {
+            print_r('Обновляем доступы к базе данных' . "\n");
             self::_updateDatabaseConnection($configDir, $mode);
         }
 
-        print_r('Установка скриптов'."\n");
-        self::_copyOrSymlink($mode, $path.'/src/Auth/bin/', './bin/', 'auth-migrate.sh', 'auth-migrate.sh');
-        self::_copyOrSymlink($mode, $path.'/src/Auth/bin/', './bin/', 'auth-models-generate.sh', 'auth-models-generate.sh');
+        print_r('Установка скриптов' . "\n");
+        self::_copyOrSymlink($mode, $path . '/src/Auth/bin/', './bin/', 'auth-migrate.sh', 'auth-migrate.sh');
+        self::_copyOrSymlink($mode, $path . '/src/Auth/bin/', './bin/', 'auth-models-generate.sh', 'auth-models-generate.sh');
 
-        print_r('Установка стилей'."\n");
-        self::_copyOrSymlink($mode, $path.'/src/Auth/web/res/css/', './'.$webRoot.'/res/css/', 'auth-styles.scss', 'auth-styles.scss');
+        print_r('Установка стилей' . "\n");
+        self::_copyOrSymlink($mode, $path . '/src/Auth/web/res/css/', './' . $webRoot . '/res/css/', 'auth-styles.scss', 'auth-styles.scss');
 
-        print_r('Установка завершена'."\n");
- 
+        print_r('Установка завершена' . "\n");
+
     }
 }

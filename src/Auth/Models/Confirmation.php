@@ -22,7 +22,7 @@ use Colibri\IO\Request\Type;
  * @property-read DateTimeField $datecreated Дата создания строки
  * @property-read DateTimeField $datemodified Дата последнего обновления строки
  * @property string $member Пользователь
- * @property ValueField $property Свойство
+ * @property ValueField|string $property Свойство
  * @property string $code Код
  * @property bool $verified Верифицирован
  * endregion Properties;
@@ -49,10 +49,13 @@ class Confirmation extends BaseModelDataRow
 			'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
 			'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
 			# region SchemaProperties:
-			'member' => ['type' => 'string', 'maxLength' => 32, ],
+			'member' => ['type' => 'string', 'maxLength' => 32,
+			],
 			'property' => ['type' => 'string', 'enum' => ['email', 'phone', 'reset', 'login']],
-			'code' => ['type' => 'string', 'maxLength' => 10, ],
-			'verified' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
+			'code' => ['type' => 'string', 'maxLength' => 10,
+			],
+			'verified' => ['type' => ['boolean', 'number'], 'enum' => [true, false, 0, 1],
+			],
 			# endregion SchemaProperties;
 
 		]
@@ -88,7 +91,7 @@ class Confirmation extends BaseModelDataRow
 		}
 
 		if (!is_null($proxies) && isset($proxies->$property)) {
-			
+
 			$url = $proxies->$property;
 			$request = new Request($url, Type::Post, Encryption::JsonEncoded);
 			$request->timeout = 10;

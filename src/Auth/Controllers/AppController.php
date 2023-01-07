@@ -50,4 +50,3 @@ class AppController extends WebController
     }
 
 }
-

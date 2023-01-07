@@ -37,12 +37,12 @@ class Session extends BaseModelDataRow
             'datecreated',
             'datemodified',
             # region SchemaRequired:
-			'member',
-			'key',
-			'token',
-			'expires',
-			'secret',
-			# endregion SchemaRequired;
+            'member',
+            'key',
+            'token',
+            'expires',
+            'secret',
+            # endregion SchemaRequired;
 
         ],
         'properties' => [
@@ -50,19 +50,24 @@ class Session extends BaseModelDataRow
             'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
-			'member' => ['type' => 'string', 'maxLength' => 32, ],
-			'key' => ['type' => 'string', 'maxLength' => 32, ],
-			'token' => ['type' => 'string', 'maxLength' => 8192, ],
-			'expires' => ['type' => 'integer', ],
-			'secret' => ['type' => 'string', 'maxLength' => 32, ],
-			# endregion SchemaProperties;
+            'member' => ['type' => 'string', 'maxLength' => 32,
+            ],
+            'key' => ['type' => 'string', 'maxLength' => 32,
+            ],
+            'token' => ['type' => 'string', 'maxLength' => 8192,
+            ],
+            'expires' => ['type' => 'integer',
+            ],
+            'secret' => ['type' => 'string', 'maxLength' => 32,
+            ],
+            # endregion SchemaProperties;
 
         ]
     ];
 
     # region Consts:
 
-	# endregion Consts;
+    # endregion Consts;
 
     private function _generateSecret()
     {
