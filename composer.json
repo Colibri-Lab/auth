@@ -17,13 +17,13 @@
         }
     },
     "repositories": {
-        "gitlab.repeatme.online/22": {
+        "gitlab.colibrilab.pro/22": {
             "type": "composer",
-            "url": "https://gitlab.repeatme.online/api/v4/group/22/-/packages/composer/packages.json"
+            "url": "https://gitlab.colibrilab.pro/api/v4/group/22/-/packages/composer/packages.json"
         },
-        "gitlab.repeatme.online/7": {
+        "gitlab.colibrilab.pro/7": {
             "type": "composer",
-            "url": "https://gitlab.repeatme.online/api/v4/group/7/-/packages/composer/packages.json"
+            "url": "https://gitlab.colibrilab.pro/api/v4/group/7/-/packages/composer/packages.json"
         }
     }
 }
