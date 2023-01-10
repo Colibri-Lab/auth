@@ -83,15 +83,6 @@ auth-registerform-password-tip-generate:
 auth-registerform-password-tip-copied:
   ru: Пароль скопирован в буфер обмена
   en: Password copied to clipboard
-auth-registerform-password-tip-digits-1:
-  ru: символ
-  en: symbol
-auth-registerform-password-tip-digits-2:
-  ru: символа
-  en: symbols
-auth-registerform-password-tip-digits-3:
-  ru: символов
-  en: symbols
 auth-registerform-password-tip-additional-1:
   ru: цифры
   en: digits
@@ -142,3 +133,6 @@ auth-login-button:
 auth-registerform-password-tip-text2:
   ru: "Пароль должен содержать: "
   en: "Password must contains:"
+auth-registerform-password-tip-digits:
+  ru: более %s символов
+  en: at least %s symbols

@@ -153,7 +153,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                                 error: '#{auth-resetform-password-tip-error}',
                                 generate: '#{auth-resetform-password-tip-generate}',
                                 copied: '#{auth-resetform-password-tip-copied}',
-                                digits: ['#{auth-resetform-password-tip-digits-1}','#{auth-resetform-password-tip-digits-2}','#{auth-resetform-password-tip-digits-3}'],
+                                digits: '#{auth-resetform-password-tip-digits}',
                                 additional: [
                                     '#{auth-resetform-password-tip-additional-1}', 
                                     '#{auth-resetform-password-tip-additional-2}',

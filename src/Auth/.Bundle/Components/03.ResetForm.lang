@@ -52,15 +52,6 @@ auth-resetform-password-tip-generate:
 auth-resetform-password-tip-copied:
   ru: Пароль скопирован в буфер обмена
   en: Password copied to clipboard
-auth-resetform-password-tip-digits-1:
-  ru: символ
-  en: symbol
-auth-resetform-password-tip-digits-2:
-  ru: символа
-  en: symbols
-auth-resetform-password-tip-digits-3:
-  ru: символов
-  en: symbols
 auth-resetform-password-tip-additional-1:
   ru: цифры
   en: digits
@@ -88,3 +79,6 @@ auth-resetform-password-validation2:
 auth-resetform-confirmation-validation4:
   ru: Пароли должны совпадать
   en: Passwords must match
+auth-resetform-password-tip-digits:
+  ru: более %s символов
+  en: at least %s symbols

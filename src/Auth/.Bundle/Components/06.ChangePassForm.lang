@@ -19,15 +19,6 @@ auth-changepassform-password-tip-generate:
 auth-changepassform-password-tip-copied:
   ru: ","
   en: Password copied to clipboard
-auth-changepassform-password-tip-digits-1:
-  ru: символ
-  en: symbol
-auth-changepassform-password-tip-digits-2:
-  ru: символа
-  en: symbols
-auth-changepassform-password-tip-digits-3:
-  ru: символов
-  en: symbols
 auth-changepassform-password-tip-additional-1:
   ru: цифры
   en: digits
@@ -61,3 +52,6 @@ auth-changepass-button:
 auth-changepassform-password-tip-text2:
   ru: "Пароль должен содержать:"
   en: "Password must contains:"
+auth-changepassform-password-tip-digits:
+  ru: более %s символов
+  en: at least %s symbols
