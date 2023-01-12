@@ -855,7 +855,8 @@ class MemberController extends WebController
         $ret = [];
         $members = Members::LoadByTokens((array) $tokens);
         foreach ($members as $member) {
-            $ret[$member->token] = $member->ExportForUserInterface();
+            /** @var Member $member */
+            $ret[$member->token] = $member->ExportForUserInterface(true);
         }
 
         return $this->Finish(

@@ -448,8 +448,6 @@ class Member extends BaseModelDataRow
         $arr['gender'] = $arr['gender']['value'] ?? $arr['gender'];
         $arr['birthdate'] = $arr['birthdate'] ? $arr['birthdate']->format('yyyy-MM-dd hh:mm:ss') : null;
         if ($exportFullData) {
-            unset($arr['email_confirmed']);
-            unset($arr['phone_confirmed']);
             $arr['fio'] = trim($arr['last_name'] . ' ' . $arr['first_name'] . ' ' . $arr['patronymic']);
             $arr['gender'] = $arr['gender']['value'] ?? 'male';
         }
