@@ -117,8 +117,8 @@ App.Modules.Auth.Session = class extends Colibri.IO.RpcRequest  {
     Logout() {
         return new Promise((resolve, reject) => {
             this.Call('Session', 'Logout', {}, {'X-AppToken': Auth.appToken}).then((response) => {
-                Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
+                Auth.Store.Set('auth.session', response.result.session);
             }).catch(response => reject(response));
         });
     }

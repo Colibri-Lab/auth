@@ -87,8 +87,10 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
     Login(rerequestCode = false) {
         const value = Object.cloneRecursive(this._form.value);
         this._form.enabled = false;
+        this._loginButton.enabled = false;
         Auth.Session.Login(value.login, value.password, !rerequestCode ? (value.code ?? null) : null).then((session) => {
             this._form.enabled = true;
+            this._loginButton.enabled = true;
 
             if(!session) { // 2-х факторка
                 const fields = Object.cloneRecursive(this._form.fields);
@@ -107,6 +109,7 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
             response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
             this._validator.Invalidate('form', response.result.message);
             this._form.enabled = true;
+            this._loginButton.enabled = true;
             this._form.Focus();
         });
     }

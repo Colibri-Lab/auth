@@ -46,11 +46,16 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         }
  
         const formData = this._form.value;
+        this._form.enabled = false;
+        this._registerButton.enabled = false;
         Auth.Members.Register(
             formData.credentials.email, formData.credentials.phone.replaceAll(/[^[0-9+]/, ''), formData.credentials.pass.password, formData.credentials.pass.confirmation, formData.fio.first_name, formData.fio.last_name, formData.fio.patronymic, formData.gender, formData.birthdate
         ).then((session) => {
-
+            this._form.enabled = false;
+            this._registerButton.enabled = false;
         }).catch(response => {
+            this._form.enabled = false;
+            this._registerButton.enabled = false;
             response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
             if(response.result.validation && Object.keys(response.result.validation).length > 0) {
                 Object.forEach(response.result.validation, (field, message, index) => {
