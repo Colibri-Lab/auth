@@ -3,7 +3,7 @@
 
 
 /**
- * Search
+ * Authorization module package
  *
  * @author Author Name <author.name@action-media.ru>
  * @copyright 2019 Colibri
@@ -27,7 +27,7 @@ use App\Modules\Auth\Models\Session;
 
 
 /**
- * Описание модуля
+ * Authorization module
  * @package App\Modules\Auth
  *
  * @property-read Application $application
@@ -54,7 +54,7 @@ class Module extends BaseModule
     ];
 
     /**
-     * Инициализация модуля
+     * Initializes a module
      * @return void
      */
     public function InitializeModule(): void
@@ -100,6 +100,10 @@ class Module extends BaseModule
 
     }
 
+    /**
+     * Gets a current session
+     * @return Session
+     */
     public function GetSession(): Session
     {
         if (!self::$session) {
@@ -109,7 +113,7 @@ class Module extends BaseModule
     }
 
     /**
-     * Вызывается для получения Меню болванкой
+     * Returns a topmost menu for backend
      */
     public function GetTopmostMenu(bool $hideExecuteCommand = true): Item|array
     {
@@ -118,6 +122,10 @@ class Module extends BaseModule
 
     }
 
+    /**
+     * Returns a permissions for module
+     * @return array
+     */
     public function GetPermissions(): array
     {
         $permissions = parent::GetPermissions();
@@ -125,6 +133,12 @@ class Module extends BaseModule
         return $permissions;
     }
 
+    /**
+     * Backups a module data
+     * @param Logger $logger
+     * @param string $path
+     * @return void
+     */
     public function Backup(Logger $logger, string $path)
     {
         // Do nothing   
@@ -135,12 +149,11 @@ class Module extends BaseModule
         // $table = Sources::LoadAll();
         // $table->ExportJson($modulePath . 'sources.json');
 
-
     }
 
 
     /**
-     * Загрижает текущее приложение из запроса
+     * Loads an application from request
      */
     public function LoadApplication(): bool
     {
@@ -151,6 +164,11 @@ class Module extends BaseModule
         return true;
     }
 
+    /**
+     * Provides an access to properties
+     * @param string $prop
+     * @return mixed
+     */
     public function __get(string $prop): mixed
     {
         if (strtolower($prop) == 'application') {

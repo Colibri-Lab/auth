@@ -1,36 +1,35 @@
 <?php
 
-
-
 namespace App\Modules\Auth\Controllers;
 
-
+use App\Modules\Auth\Models\Member;
+use App\Modules\Auth\Models\Members;
+use App\Modules\Auth\Models\Sessions;
+use App\Modules\Auth\Module;
 use App\Modules\Tools\Models\Notices;
 use Colibri\App;
+use Colibri\Common\StringHelper;
+use Colibri\Common\VariableHelper;
+use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Exceptions\ValidationException;
 use Colibri\Utils\Debug;
-use Colibri\Web\RequestCollection;
 use Colibri\Web\Controller as WebController;
 use Colibri\Web\PayloadCopy;
-use App\Modules\Auth\Models\Sessions;
-use App\Modules\Auth\Models\Members;
-use Colibri\Data\Storages\Fields\DateTimeField;
+use Colibri\Web\RequestCollection;
 use Psr\Log\InvalidArgumentException;
 use Throwable;
-use App\Modules\Auth\Module;
-use Colibri\Common\VariableHelper;
-use Colibri\Common\StringHelper;
-use App\Modules\Auth\Models\Member;
 
-
+/**
+ * Members controller
+ */
 class MemberController extends WebController
 {
 
     /**
-     * Создание сессии
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Registers a member
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function Register(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -173,10 +172,10 @@ class MemberController extends WebController
     }
 
     /**
-     * Начинает процесс подтверждения
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Begins a confirmation process
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function BeginConfirmationProcess(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -218,10 +217,10 @@ class MemberController extends WebController
     }
 
     /**
-     * Начинает процесс подтверждения
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Begins a password reset process
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function BeginPasswordResetProcess(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -294,10 +293,10 @@ class MemberController extends WebController
 
 
     /**
-     * Обновляет идентификационные данные
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Begins an identity update process
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function BeginIdentityUpdateProcess(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -352,10 +351,10 @@ class MemberController extends WebController
     }
 
     /**
-     * Подтверждает свойство
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Confirms a property
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function ConfirmProperty(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -406,10 +405,10 @@ class MemberController extends WebController
     }
 
     /**
-     * Подтверждает свойство
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Resets a password
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function ResetPassword(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -492,10 +491,10 @@ class MemberController extends WebController
 
 
     /**
-     * Подтверждает свойство
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Changes an identity
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function ChangeIdentity(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -562,10 +561,10 @@ class MemberController extends WebController
     }
 
     /**
-     * Изменяет пароль
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Changes a password
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function ChangePassword(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -634,10 +633,10 @@ class MemberController extends WebController
     }
 
     /**
-     * Блокирует доступ пользователя
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Blocks a member account
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function BlockAccount(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -682,10 +681,10 @@ class MemberController extends WebController
     }
 
     /**
-     * Блокирует доступ пользователя
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Toggles a two-factor authorization on or off
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function ToggleTwoFactorAuth(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -722,10 +721,10 @@ class MemberController extends WebController
     }
 
     /**
-     * Обновляет профиль
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Updates a member profile
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function UpdateProfile(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -776,10 +775,10 @@ class MemberController extends WebController
 
 
     /**
-     * Обновляет пароль
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Updates a password
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function UpdatePassword(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -826,10 +825,10 @@ class MemberController extends WebController
     }
 
     /**
-     * Список пользователей
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Returns a list of members for moderators and administrators
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function List(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -871,10 +870,10 @@ class MemberController extends WebController
     }
 
     /**
-     * Список пользователей
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Returns a list of roles
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function ListByRole(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -915,10 +914,10 @@ class MemberController extends WebController
     }
 
     /**
-     * Список пользователей
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Searches for members
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function Search(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -959,6 +958,13 @@ class MemberController extends WebController
 
     }
 
+    /**
+     * Performs a mutation fo member data
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param PayloadCopy|null $payload
+     * @return object
+     */
     public function PerformMutation(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
 
@@ -1026,6 +1032,13 @@ class MemberController extends WebController
 
     }
 
+    /**
+     * Changes a member role
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param PayloadCopy|null $payload
+     * @return object
+     */
     public function ChangeRole(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
 

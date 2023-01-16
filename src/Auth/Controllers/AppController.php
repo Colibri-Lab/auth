@@ -2,20 +2,23 @@
 
 namespace App\Modules\Auth\Controllers;
 
-use Colibri\Web\RequestCollection;
-use Colibri\Web\Controller as WebController;
-use Colibri\Web\PayloadCopy;
 use App\Modules\Auth\Module;
 use Colibri\Data\Storages\Storages;
+use Colibri\Web\Controller as WebController;
+use Colibri\Web\PayloadCopy;
+use Colibri\Web\RequestCollection;
 
+/**
+ * Application controller
+ */
 class AppController extends WebController
 {
 
     /**
-     * Получение настроек приложения
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Returns an application settings
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function Settings(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object

@@ -8,23 +8,26 @@ use Colibri\IO\FileSystem\File;
 use Colibri\Utils\Cache\Bundle;
 use Colibri\Utils\Debug;
 use Colibri\Utils\ExtendedObject;
-use Colibri\Web\RequestCollection;
+use Colibri\Utils\Minifiers\Javascript as Minifier;
 use Colibri\Web\Controller as WebController;
+use Colibri\Web\PayloadCopy;
+use Colibri\Web\RequestCollection;
 use Colibri\Web\Templates\PhpTemplate;
 use Colibri\Web\View;
 use ScssPhp\ScssPhp\Compiler;
 use ScssPhp\ScssPhp\OutputStyle;
-use Colibri\Web\PayloadCopy;
-use Colibri\Utils\Minifiers\Javascript as Minifier;
 
+/**
+ * Default controller
+ */
 class Controller extends WebController
 {
 
     /**
-     * Экшен по умолчанию
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Default action
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function Index(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -70,7 +73,7 @@ class Controller extends WebController
     }
 
     /**
-     * Возвращает бандл для работы внутренних js моделей
+     * Returns a bundle for integrate to other colibri sites
      *
      * @param RequestCollection $get
      * @param RequestCollection $post

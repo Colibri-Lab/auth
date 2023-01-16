@@ -2,23 +2,24 @@
 
 namespace App\Modules\Auth\Controllers;
 
+use App\Modules\Auth\Models\Members;
+use App\Modules\Auth\Models\Sessions;
 use Colibri\Exceptions\ValidationException;
-use Colibri\Utils\Debug;
-use Colibri\Web\RequestCollection;
 use Colibri\Web\Controller as WebController;
 use Colibri\Web\PayloadCopy;
-use App\Modules\Auth\Models\Sessions;
-use App\Modules\Auth\Models\Members;
+use Colibri\Web\RequestCollection;
 
-
+/**
+ * Session controller
+ */
 class SessionController extends WebController
 {
 
     /**
-     * Создание сессии
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Starts a session
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function Start(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -45,10 +46,10 @@ class SessionController extends WebController
     }
 
     /**
-     * Создание сессии
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Logins member into session
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function Login(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -124,10 +125,10 @@ class SessionController extends WebController
     }
 
     /**
-     * Создание сессии
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Logouts member from session
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function Logout(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -157,10 +158,10 @@ class SessionController extends WebController
     }
 
     /**
-     * Создание сессии
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Logouts member from all sessions
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function LogoutFromAll(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -202,10 +203,10 @@ class SessionController extends WebController
     }
 
     /**
-     * Создание сессии
-     * @param RequestCollection $get данные GET
-     * @param RequestCollection $post данные POST
-     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * Decodes a session data
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
      * @return object
      */
     public function Decode(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
@@ -232,6 +233,13 @@ class SessionController extends WebController
         );
     }
 
+    /**
+     * Checks if the member exists with given property data
+     * @param RequestCollection $get
+     * @param RequestCollection $post
+     * @param PayloadCopy|null $payload
+     * @return object
+     */
     public function CheckProperty(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
 
