@@ -134,11 +134,10 @@ class Controller extends WebController
         }
 
         if (!App::$request->server->commandline) {
-
-            $jsBundle = Bundle::Automate(App::$domainKey, ($langModule ? $langModule->current : '') . ($themeKey ? '.' . $themeKey : '') . '.assets.bundle.js', 'js', [
+            $jsBundle = Bundle::Automate(App::$domainKey, ($langModule ? $langModule->current . '.' : '') . 'assets.bundle.js', 'js', [
                 ['path' => App::$moduleManager->auth->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
             ]);
-            $cssBundle = Bundle::Automate(App::$domainKey, ($langModule ? $langModule->current : '') . ($themeKey ? '.' . $themeKey : '') . 'assets.bundle.css', 'scss', [
+            $cssBundle = Bundle::Automate(App::$domainKey, ($langModule ? $langModule->current . '.' : '') . ($themeKey ? $themeKey . '.' : '') . 'assets.bundle.css', 'scss', [
                 ['path' => App::$moduleManager->auth->modulePath . 'web/res/css/'],
                 ['path' => App::$moduleManager->auth->modulePath . '.Bundle/'],
                 ['path' => $themeFile],
@@ -153,19 +152,17 @@ class Controller extends WebController
                 ],
                 'utf-8'
             );
-        } else {
+        } else if ($langModule) {
 
             // bundle all languages
             $oldLangKey = $langModule->current;
             $langs = $langModule->Langs();
             foreach ($langs as $langKey => $langData) {
-
                 $langModule->InitCurrent($langKey);
-
-                $jsBundle = Bundle::Automate(App::$domainKey, $langKey . ($themeKey ? '.' . $themeKey : '') . '.assets.bundle.js', 'js', [
+                Bundle::Automate(App::$domainKey, ($langKey . '.') . 'assets.bundle.js', 'js', [
                     ['path' => App::$moduleManager->auth->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
                 ]);
-                $cssBundle = Bundle::Automate(App::$domainKey, $langKey . ($themeKey ? '.' . $themeKey : '') . 'assets.bundle.css', 'scss', [
+                Bundle::Automate(App::$domainKey, ($langKey . '.') . ($themeKey ? $themeKey . '.' : '') . 'assets.bundle.css', 'scss', [
                     ['path' => App::$moduleManager->auth->modulePath . 'web/res/css/'],
                     ['path' => App::$moduleManager->auth->modulePath . '.Bundle/'],
                     ['path' => $themeFile],
@@ -173,9 +170,18 @@ class Controller extends WebController
 
             }
             $langModule->InitCurrent($oldLangKey);
-
             exit;
-        }    
+        } else {
+            Bundle::Automate(App::$domainKey, 'assets.bundle.js', 'js', [
+                ['path' => App::$moduleManager->auth->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
+            ]);
+            Bundle::Automate(App::$domainKey, ($themeKey ? $themeKey . '.' : '') . 'assets.bundle.css', 'scss', [
+                ['path' => App::$moduleManager->auth->modulePath . 'web/res/css/'],
+                ['path' => App::$moduleManager->auth->modulePath . '.Bundle/'],
+                ['path' => $themeFile],
+            ], 'https://' . App::$request->host);
+            exit;
+        }
     }
 
 
