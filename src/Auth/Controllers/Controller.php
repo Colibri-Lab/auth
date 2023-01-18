@@ -23,6 +23,45 @@ use ScssPhp\ScssPhp\OutputStyle;
 class Controller extends WebController
 {
 
+    private function _initBundleEventHandlers()
+    {
+        App::$instance->HandleEvent(EventsContainer::BundleComplete, function ($event, $args) {
+            if (in_array('scss', $args->exts)) {
+                try {
+                    $scss = new Compiler();
+                    $scss->setOutputStyle(OutputStyle::EXPANDED);
+                    $args->content = $scss->compileString($args->content)->getCss();
+                } catch (\Exception $e) {
+                    Debug::Out($e->getMessage());
+                }
+            } elseif (in_array('js', $args->exts) && !App::$isDev) {
+                try {
+                    $args->content = Minifier::Minify($args->content);
+                } catch (\Throwable $e) {
+                    Debug::Out($e->getMessage());
+                }
+            }
+            return true;
+        });
+
+        App::$instance->HandleEvent(EventsContainer::BundleFile, function ($event, $args) {
+
+            $file = new File($args->file);
+            if ($file->extension == 'html') {
+                // компилируем html в javascript
+                $componentName = $file->filename;
+                $res = preg_match('/ComponentName="([^"]*)"/i', $args->content, $matches);
+                if ($res > 0) {
+                    $componentName = $matches[1];
+                }
+                $compiledContent = str_replace('\'', '\\\'', str_replace("\n", "", str_replace("\r", "", $args->content)));
+                $compiledContent = str_replace('ComponentName="' . $componentName . '"', 'namespace="' . $componentName . '"', $compiledContent);
+                $args->content = 'Colibri.UI.AddTemplate(\'' . $componentName . '\', \'' . $compiledContent . '\');' . "\n";
+            }
+
+        });
+    }
+
     /**
      * Default action
      * @param RequestCollection $get data from get request
@@ -83,6 +122,8 @@ class Controller extends WebController
     public function Bundle(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload): object
     {
 
+        $this->_initBundleEventHandlers();
+
         $langModule = App::$moduleManager->lang;
         $themeFile = null;
         $themeKey = '';
@@ -92,60 +133,49 @@ class Controller extends WebController
             $themeKey = md5($themeFile);
         }
 
-        App::$instance->HandleEvent(EventsContainer::BundleComplete, function ($event, $args) {
-            if (in_array('scss', $args->exts)) {
-                try {
-                    $scss = new Compiler();
-                    $scss->setOutputStyle(OutputStyle::EXPANDED);
-                    $args->content = $scss->compileString($args->content)->getCss();
-                } catch (\Exception $e) {
-                    Debug::Out($e->getMessage());
-                }
-            } elseif (in_array('js', $args->exts) && !App::$isDev) {
-                try {
-                    $args->content = Minifier::Minify($args->content);
-                } catch (\Throwable $e) {
-                    Debug::Out($e->getMessage());
-                }
+        if (!App::$request->server->commandline) {
+
+            $jsBundle = Bundle::Automate(App::$domainKey, ($langModule ? $langModule->current : '') . ($themeKey ? '.' . $themeKey : '') . '.assets.bundle.js', 'js', [
+                ['path' => App::$moduleManager->auth->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
+            ]);
+            $cssBundle = Bundle::Automate(App::$domainKey, ($langModule ? $langModule->current : '') . ($themeKey ? '.' . $themeKey : '') . 'assets.bundle.css', 'scss', [
+                ['path' => App::$moduleManager->auth->modulePath . 'web/res/css/'],
+                ['path' => App::$moduleManager->auth->modulePath . '.Bundle/'],
+                ['path' => $themeFile],
+            ], 'https://' . App::$request->host);
+
+            return $this->Finish(
+                200,
+                'Bundle created successfuly',
+                (object) [
+                    'js' => str_replace('http://', 'https://', App::$request->address) . $jsBundle,
+                    'css' => str_replace('http://', 'https://', App::$request->address) . $cssBundle
+                ],
+                'utf-8'
+            );
+        } else {
+
+            // bundle all languages
+            $oldLangKey = $langModule->current;
+            $langs = $langModule->Langs();
+            foreach ($langs as $langKey => $langData) {
+
+                $langModule->InitCurrent($langKey);
+
+                $jsBundle = Bundle::Automate(App::$domainKey, $langKey . ($themeKey ? '.' . $themeKey : '') . '.assets.bundle.js', 'js', [
+                    ['path' => App::$moduleManager->auth->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
+                ]);
+                $cssBundle = Bundle::Automate(App::$domainKey, $langKey . ($themeKey ? '.' . $themeKey : '') . 'assets.bundle.css', 'scss', [
+                    ['path' => App::$moduleManager->auth->modulePath . 'web/res/css/'],
+                    ['path' => App::$moduleManager->auth->modulePath . '.Bundle/'],
+                    ['path' => $themeFile],
+                ], 'https://' . App::$request->host);
+
             }
-            return true;
-        });
+            $langModule->InitCurrent($oldLangKey);
 
-        App::$instance->HandleEvent(EventsContainer::BundleFile, function ($event, $args) {
-
-            $file = new File($args->file);
-            if ($file->extension == 'html') {
-                // компилируем html в javascript
-                $componentName = $file->filename;
-                $res = preg_match('/ComponentName="([^"]*)"/i', $args->content, $matches);
-                if ($res > 0) {
-                    $componentName = $matches[1];
-                }
-                $compiledContent = str_replace('\'', '\\\'', str_replace("\n", "", str_replace("\r", "", $args->content)));
-                $compiledContent = str_replace('ComponentName="' . $componentName . '"', 'namespace="' . $componentName . '"', $compiledContent);
-                $args->content = 'Colibri.UI.AddTemplate(\'' . $componentName . '\', \'' . $compiledContent . '\');' . "\n";
-            }
-
-        });
-
-        $jsBundle = Bundle::Automate(App::$domainKey, ($langModule ? $langModule->current : '') . ($themeKey ? '.' . $themeKey : '') . '.assets.bundle.js', 'js', [
-            ['path' => App::$moduleManager->auth->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
-        ]);
-        $cssBundle = Bundle::Automate(App::$domainKey, ($langModule ? $langModule->current : '') . ($themeKey ? '.' . $themeKey : '') . 'assets.bundle.css', 'scss', array(
-            ['path' => App::$moduleManager->auth->modulePath . 'web/res/css/'],
-            ['path' => App::$moduleManager->auth->modulePath . '.Bundle/'],
-            ['path' => $themeFile],
-        ), 'https://' . App::$request->host);
-
-        return $this->Finish(
-            200,
-            'Bundle created successfuly',
-            (object) [
-                'js' => str_replace('http://', 'https://', App::$request->address) . $jsBundle,
-                'css' => str_replace('http://', 'https://', App::$request->address) . $cssBundle
-            ],
-            'utf-8'
-        );
+            exit;
+        }    
     }
 
 

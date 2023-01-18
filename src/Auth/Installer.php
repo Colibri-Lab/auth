@@ -247,6 +247,7 @@ class Installer
 
         print_r('Установка скриптов' . "\n");
         self::_copyOrSymlink($mode, $path . '/src/Auth/bin/', './bin/', 'auth-migrate.sh', 'auth-migrate.sh');
+        self::_copyOrSymlink($mode, $path . '/src/Auth/bin/', './bin/', 'auth-bundle.sh', 'auth-bundle.sh');
         self::_copyOrSymlink($mode, $path . '/src/Auth/bin/', './bin/', 'auth-models-generate.sh', 'auth-models-generate.sh');
 
         print_r('Установка стилей' . "\n");
