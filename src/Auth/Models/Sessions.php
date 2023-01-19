@@ -108,27 +108,35 @@ class Sessions extends BaseModelDataTable
 
     static function LoadFromRequest(): ? Session
     {
-
+        App::$monitoring->StartTimer('load-from-request');
         $jwt = App::$request->cookie->{'cc-jwt'} ?? App::$request->headers->authorization;
         if (!$jwt) {
-            return self::CreateGuestSession();
+            $return = self::CreateGuestSession();
         }
+        else {
 
-        $key = md5($jwt);
+            $key = md5($jwt);
+    
+            if ($session = self::LoadGuestSession($key)) {
+                $return = $session;
+            }
+            else {
+                
+                // на всякий удаляем из памяти, чтобы не было переполнения
+                Mem::Delete('sess' . $key);
 
-        if ($session = self::LoadGuestSession($key)) {
-            return $session;
+                $session = self::LoadByKey($key);
+                if (!$session) {
+                    $session = self::CreateGuestSession();
+                }
+        
+                $return = $session;
+            }
+    
         }
+        App::$monitoring->EndTimer('load-from-request');
+        return $return;
 
-        // на всякий удаляем из памяти, чтобы не было переполнения
-        Mem::Delete('sess' . $key);
-
-        $session = self::LoadByKey($key);
-        if (!$session) {
-            $session = self::CreateGuestSession();
-        }
-
-        return $session;
 
     }
 
