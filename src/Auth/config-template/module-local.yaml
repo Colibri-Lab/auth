@@ -29,7 +29,7 @@ databases:
       auth: 
         connection: auth
         database: auth
-        logqueries: true
+        logqueries: false
 
   storages: include(auth-storages.yaml)
       
