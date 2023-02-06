@@ -28,6 +28,10 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this.RegisterEvent('ExternalValidation', true, 'Когда требуется валидация');
     }
 
+    /**
+     * Shows the component
+     * @type {boolean}
+     */
     set shown(value) {
         super.shown = value;
         this._form.Focus();

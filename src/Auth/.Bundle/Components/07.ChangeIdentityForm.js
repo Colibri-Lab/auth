@@ -46,6 +46,10 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
         this.RegisterEvent('PropertyChanged', true, 'Сойвство изменено');
     }
 
+    /**
+     * Sets the identity property
+     * @type {string}
+     */
     set property(value) {
         this._property = value;
     }
@@ -54,6 +58,10 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
         return this._property;
     }
 
+    /**
+     * Sets the form 1 message
+     * @type {string}
+     */
     set message1(value) {
         this._form1.value = {message: value};
     }
@@ -62,6 +70,10 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
         return this._form1.value.message;
     }
 
+    /**
+     * Sets the form 2 message
+     * @type {string}
+     */
     set message2(value) {
         this._message2 = value;
     }
@@ -73,15 +85,27 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
     get desc() {
         return this._form1.Children('property').title;
     }
+    /**
+     * Sets description
+     * @type {string}
+     */
     set desc(value) {
         this._form1.Children('property').title = value;
     }
 
+    /**
+     * Shows the component
+     * @type {boolean}
+     */
     set shown(value) {
         super.shown = value;
         this._form1.Children('property').Focus();
     }
 
+    /**
+     * Value object
+     * @type {Object}
+     */
     set value(value) {
         this._form1.value = Object.assign(this._form1.value, value);
     }

@@ -19,11 +19,19 @@ App.Modules.Auth.Components.ChangePassForm = class extends Colibri.UI.Component 
 
     } 
 
+    /**
+     * Shows the component
+     * @type {boolean}
+     */
     set shown(value) {
         super.shown = value;
         this._form.Focus();
     }
     
+    /**
+     * Value object
+     * @type {object}
+     */
     set value(value) {
         this._form.value = value;
     }

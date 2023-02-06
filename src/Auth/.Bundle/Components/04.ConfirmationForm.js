@@ -39,6 +39,10 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         this.RegisterEvent('PropertyConfirmed', true, 'Сойвство подтверждено');
     }
 
+    /**
+     * Sets the confirming property
+     * @type {string}
+     */
     set property(value) {
         this._property = value;
     }
@@ -47,11 +51,19 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         return this._property;
     }
 
+    /**
+     * Shows the component
+     * @type {boolean}
+     */
     set shown(value) {
         super.shown = value;
         this._form.Children('code').Focus();
     }
 
+    /**
+     * Value object
+     * @type {Object}
+     */
     set value(value) {
         this._form.value = value;
     }

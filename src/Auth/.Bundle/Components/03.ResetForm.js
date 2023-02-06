@@ -68,6 +68,10 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
         this.RegisterEvent('LoginButtonClicked', true, 'Когда нажата кнопка входа');
     }
 
+    /**
+     * Shows the component
+     * @type {boolean}
+     */
     set shown(value) {
         super.shown = value;
         this._form.Focus();
