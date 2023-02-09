@@ -521,6 +521,61 @@ applications:
                 allow: ""
                 size: ""
                 validate: []
+        allowed_ip:
+          desc:
+            ru: IP с которого разрешено восстановление по короткому токену
+            en: IP from wich allowed restoring with short token
+            hy: ""
+            it: ""
+          placeholder:
+            ru: ""
+            en: ""
+            hy: ""
+            it: ""
+          note:
+            ru: ""
+            en: ""
+            hy: ""
+            it: ""
+          type: varchar
+          length: "256"
+          component: Colibri.UI.Forms.Text
+          class: string
+          attrs: []
+          params:
+            required: false
+            enabled: true
+            canbeempty: true
+            readonly: false
+            searchable: false
+            list: false
+            multiple: false
+            greed: ""
+            viewer: ~
+            vertical: false
+            visual: false
+            code: ""
+            mask: ""
+            fieldgenerator: ""
+            generator: ""
+            noteClass: ""
+            simplearraywidth: ""
+            simplearrayheight: ""
+            addlink:
+              ru: ""
+              en: ""
+              hy: ""
+              it: ""
+            removelink: true
+            updownlink: true
+            initempty: true
+            maxadd: ""
+            title: ""
+            removedesc: true
+            allow: ""
+            size: ""
+            validate: []
+          group: window
       default: json_object()
   indices:
     applications_token_idx:
