@@ -124,7 +124,7 @@ class Controller extends WebController
 
         $this->_initBundleEventHandlers();
 
-        $langModule = App::$moduleManager->lang;
+        $langModule = App::$moduleManager->Get('lang');
         $themeFile = null;
         $themeKey = '';
 

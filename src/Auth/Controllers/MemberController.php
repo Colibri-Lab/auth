@@ -1027,9 +1027,9 @@ class MemberController extends WebController
             }
 
             $dataAsString = implode('<br />', $data);
-            if (App::$moduleManager->lang) {
+            if (App::$moduleManager->Get('lang')) {
                 /** @var \App\Modules\Lang\Module */
-                $langModule = App::$moduleManager->lang;
+                $langModule = App::$moduleManager->Get('lang');
                 $dataAsString = $langModule->ParseString($dataAsString);
             }
 
