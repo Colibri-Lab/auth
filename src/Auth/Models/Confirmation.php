@@ -83,6 +83,7 @@ class Confirmation extends BaseModelDataRow
 
 			$confirmationData = $member->ExportForUserInterface();
 			$value = $value ?: $member->email;
+			$property = 'email';
 
 		} else {
 			$confirmationData = [
