@@ -95,6 +95,18 @@ class Confirmations extends BaseModelDataTable
     }
 
     /**
+     * Возвращает модель по значению
+     * @param string $property что подтверждаем
+     * @param string $member пользователь
+     * @return Confirmation|null
+     */
+    static function LoadByValue(string $property, string $value): Confirmation|null
+    {
+        $table = self::LoadByFilter(1, 1, '{property}=[[property:string]] and {value}=[[value:string]]', null, ['property' => $property, 'value' => $value], false);
+        return $table && $table->Count() > 0 ? $table->First() : null;
+    }
+
+    /**
      * Создание модели по названию хранилища
      * @return Confirmation
      */

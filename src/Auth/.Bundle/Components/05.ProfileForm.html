@@ -4,20 +4,21 @@
         <Forms.Form name="form" shown="true">
             <fields>
                 {
-                    last_name: {
-                        component: 'Text',
-                        desc: '#{auth-profileform-last_name-desc}',
-                        placeholder: '#{auth-profileform-last_name-placeholder}',
+                    gender: {
+                        component: 'Select',
+                        desc: '#{auth-profileform-gender-desc}',
                         params: {
-                            required: true,
-                            readonly: false,
-                            validate: [
-                                {
-                                    message: '#{auth-profileform-last_name-validation1}',
-                                    method: '(field, validator) => !!field.value'
-                                }
-                            ]               
+                            required: false,
+                            readonly: true
                         },
+                        selector: {
+                            title: 'title',
+                            value: 'value'
+                        },
+                        values: [
+                            {value: 'male', title: '#{auth-profileform-gender-values-male}'},
+                            {value: 'female', title: '#{auth-profileform-gender-values-female}'},
+                        ],
                         attrs: {
                             width: 480
                         }
@@ -51,6 +52,24 @@
                             width: 480
                         }
                     },
+                    last_name: {
+                        component: 'Text',
+                        desc: '#{auth-profileform-last_name-desc}',
+                        placeholder: '#{auth-profileform-last_name-placeholder}',
+                        params: {
+                            required: true,
+                            readonly: false,
+                            validate: [
+                                {
+                                    message: '#{auth-profileform-last_name-validation1}',
+                                    method: '(field, validator) => !!field.value'
+                                }
+                            ]               
+                        },
+                        attrs: {
+                            width: 480
+                        }
+                    },
                     birthdate: {
                         component: 'Date',
                         desc: '#{auth-profileform-birtdate-desc}',
@@ -67,26 +86,8 @@
                         attrs: {
                             width: 480
                         }
-                    },
-                    gender: {
-                        component: 'Select',
-                        desc: '#{auth-profileform-gender-desc}',
-                        params: {
-                            required: false,
-                            readonly: true
-                        },
-                        selector: {
-                            title: 'title',
-                            value: 'value'
-                        },
-                        values: [
-                            {value: 'male', title: '#{auth-profileform-gender-values-male}'},
-                            {value: 'female', title: '#{auth-profileform-gender-values-female}'},
-                        ],
-                        attrs: {
-                            width: 480
-                        }
                     }
+                    
                 }
             </fields>
         </Forms.Form>

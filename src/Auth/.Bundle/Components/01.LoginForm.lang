@@ -40,3 +40,6 @@ auth-register-login-text:
 auth-register-button:
   ru: Зарегистрироваться
   en: Register
+auth-login-register-button:
+  ru: Зарегистрироваться
+  en: Register

@@ -489,10 +489,12 @@ applications:
                 allow: ""
                 size: ""
                 validate: []
-            sms:
+            phone:
               desc:
                 ru: Отправка СМС
                 en: Sending SMS
+                hy: ""
+                it: ""
               type: varchar
               length: "1024"
               component: Colibri.UI.Forms.Text
@@ -501,7 +503,9 @@ applications:
               params:
                 required: false
                 enabled: true
+                canbeempty: true
                 readonly: false
+                searchable: false
                 list: false
                 multiple: false
                 greed: ""
@@ -515,12 +519,31 @@ applications:
                 noteClass: ""
                 simplearraywidth: ""
                 simplearrayheight: ""
-                addlink: ""
+                addlink:
+                  ru: ""
+                  en: ""
+                  hy: ""
+                  it: ""
+                removelink: true
+                updownlink: true
+                initempty: true
                 maxadd: ""
                 title: ""
+                removedesc: true
                 allow: ""
                 size: ""
                 validate: []
+              placeholder:
+                ru: ""
+                en: ""
+                hy: ""
+                it: ""
+              note:
+                ru: ""
+                en: ""
+                hy: ""
+                it: ""
+              group: window
         allowed_ip:
           desc:
             ru: IP с которого разрешено восстановление по короткому токену
@@ -1145,31 +1168,6 @@ confirmations:
     maybepublished: false
   module: Auth
   fields:
-    member:
-      group: window
-      desc:
-        ru: Пользователь
-        en: User
-      note:
-        ru: Пользователь, который верифицирует
-        en: The user who verifies
-      type: varchar
-      length: "32"
-      component: Colibri.UI.Forms.Text
-      class: string
-      attrs: []
-      params:
-        required: true
-        enabled: true
-        readonly: true
-        list: true
-        greed: ""
-        viewer: ~
-        vertical: false
-        visual: false
-        code: ""
-        mask: ""
-        generator: ""
     property:
       group: window
       desc:
@@ -1226,6 +1224,116 @@ confirmations:
           ru: Вход/Двух-факторная авторизация
           en: Login/Two-factor authorization
         type: text
+    value:
+      desc:
+        ru: Значение свойства
+        en: Property value
+        hy: ""
+        it: ""
+      placeholder:
+        ru: ""
+        en: ""
+        hy: ""
+        it: ""
+      note:
+        ru: ""
+        en: ""
+        hy: ""
+        it: ""
+      type: varchar
+      length: "255"
+      component: Colibri.UI.Forms.Text
+      class: string
+      attrs: []
+      params:
+        required: false
+        enabled: true
+        canbeempty: true
+        readonly: false
+        searchable: false
+        list: false
+        multiple: false
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: ""
+        mask: ""
+        fieldgenerator: ""
+        generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          hy: ""
+          it: ""
+        removelink: true
+        updownlink: true
+        initempty: true
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate: []
+      group: window
+    member:
+      desc:
+        ru: Пользователь
+        en: Member
+        hy: ""
+        it: ""
+      placeholder:
+        ru: ""
+        en: ""
+        hy: ""
+        it: ""
+      note:
+        ru: ""
+        en: ""
+        hy: ""
+        it: ""
+      type: varchar
+      length: "36"
+      component: Colibri.UI.Forms.Text
+      class: string
+      attrs: []
+      params:
+        required: false
+        enabled: true
+        canbeempty: true
+        readonly: false
+        searchable: false
+        list: false
+        multiple: false
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: ""
+        mask: ""
+        fieldgenerator: ""
+        generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          hy: ""
+          it: ""
+        removelink: true
+        updownlink: true
+        initempty: true
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate: []
+      group: window
     code:
       group: window
       desc:
@@ -1277,4 +1385,20 @@ confirmations:
         mask: ""
         generator: ""
   group: ~
+  indices:
+    confirmations_code_idx:
+      fields:
+      - code
+      type: NORMAL
+      method: BTREE
+    confirmations_value_idx:
+      fields:
+      - value
+      type: NORMAL
+      method: BTREE
+    confirmations_property_idx:
+      fields:
+      - property
+      type: NORMAL
+      method: BTREE
 ...

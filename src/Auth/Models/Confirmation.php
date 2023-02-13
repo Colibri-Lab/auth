@@ -21,8 +21,9 @@ use Colibri\IO\Request\Type;
  * @property-read int $id ID строки
  * @property-read DateTimeField $datecreated Дата создания строки
  * @property-read DateTimeField $datemodified Дата последнего обновления строки
- * @property string $member Пользователь
  * @property ValueField $property Свойство
+ * @property string|null $value Значение свойства
+ * @property string|null $member Пользователь
  * @property string $code Код
  * @property bool $verified Верифицирован
  * endregion Properties;
@@ -37,7 +38,6 @@ class Confirmation extends BaseModelDataRow
 			'datecreated',
 			'datemodified',
 			# region SchemaRequired:
-			'member',
 			'property',
 			'code',
 			'verified',
@@ -49,8 +49,9 @@ class Confirmation extends BaseModelDataRow
 			'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
 			'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
 			# region SchemaProperties:
-			'member' => ['type' => 'string', 'maxLength' => 32, ],
 			'property' => ['type' => 'string', 'enum' => ['email', 'phone', 'reset', 'login']],
+			'value' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
+			'member' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 36, ] ] ],
 			'code' => ['type' => 'string', 'maxLength' => 10, ],
 			'verified' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
 			# endregion SchemaProperties;
@@ -71,21 +72,31 @@ class Confirmation extends BaseModelDataRow
 
 	public function Send(?string $value = null, mixed $proxies = null): bool
 	{
-		$member = Members::LoadByToken($this->member);
-		if (!$member) {
-			return false;
-		}
-		$memberData = $member->ExportForUserInterface();
-		$memberData['code'] = $this->code;
-
-		$noticeName = 'confirmation_' . $this->property;
-		$notice = Notices::LoadByName($noticeName);
-		$notice->Apply($memberData);
 
 		$property = (string) $this->property;
 		if ($property === Confirmation::PropertyLogin) {
-			$property = Confirmation::PropertyPhone;
+
+			$member = Members::LoadByToken($this->member);
+			if (!$member) {
+				return false;
+			}
+
+			$confirmationData = $member->ExportForUserInterface();
+			$value = $value ?: $member->email;
+
+		} else {
+			$confirmationData = [
+				$property => $this->value
+			];
+			$value = $value ?: $this->value;
 		}
+
+		$confirmationData['code'] = $this->code;
+
+		$noticeName = 'confirmation_' . $this->property;
+		$notice = Notices::LoadByName($noticeName);
+		$notice->Apply($confirmationData);
+
 
 		if (!is_null($proxies) && isset($proxies->$property)) {
 
@@ -94,7 +105,7 @@ class Confirmation extends BaseModelDataRow
 			$request->timeout = 10;
 			$request->sslVerify = false;
 			$response = $request->Execute(json_encode([
-				'recipient' => ($value ? $value : $member->email),
+				'recipient' => $value,
 				'subject' => $notice->subject,
 				'body' => $notice->body,
 				'attachments' => []

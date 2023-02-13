@@ -8,9 +8,13 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         this.AddClass('app-auth-confirmation-form-component'); 
         this._property = 'none';
 
-        this._form = this.Children('form-container/form');
-        this._validator = new Colibri.UI.SimpleFormValidator(this._form);
+        this._form1 = this.Children('form-container/form1');
+        this._form2 = this.Children('form-container/form2');
+        this._validator1 = new Colibri.UI.SimpleFormValidator(this._form1);
+        this._validator2 = new Colibri.UI.SimpleFormValidator(this._form2);
+        this._send = this.Children('button-container/send');
 
+        this._timerContainer = this.Children('timer-container');
         this._timer = this.Children('timer-container/timer');
         this._timerTemplate = this._timer.value;
         this._requestCode = this.Children('timer-container/request-code-again');
@@ -18,8 +22,10 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         this._timeLeft = 60;
         this._timer.value = this._timerTemplate.replaceAll('%s', this._timeLeft);
 
-        this._form.AddHandler('Changed', (event, args) => {
-            if(this._validator.ValidateAll()) {
+        this._send.AddHandler('Clicked', (event, args) => this.__sendClicked(event, args));
+
+        this._form2.AddHandler('Changed', (event, args) => {
+            if(this._validator2.ValidateAll()) {
 
                 if(this._confirming) {
                     return;
@@ -32,12 +38,33 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         });
 
         this._requestCode.AddHandler('Clicked', (event, args) => this.__requestCodeAgainClicked(event, args));
+        this._form1.AddHandler('Changed', (event, args) => this.Dispatch('ExternalValidation', Object.assign(args, {validator: this._validator1, property: this._property})));
 
     } 
 
-    _registerEvents() {
-        this.RegisterEvent('PropertyConfirmed', true, 'Сойвство подтверждено');
+    __sendClicked(event, args) {
+        this.RequestCode();
     }
+
+    _registerEvents() {
+        super._registerEvents();
+        this.RegisterEvent('PropertyConfirmed', true, 'Сойвство подтверждено');
+        this.RegisterEvent('ExternalValidation', true, 'Когда требуется валидация');
+    }
+
+    /**
+     * Do nothing
+     * @type {Value object}
+     */
+    get value() {
+    }
+    /**
+     * Do nothing
+     * @type {Value object}
+     */
+    set value(value) {
+    }
+
 
     /**
      * Sets the confirming property
@@ -57,46 +84,66 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
      */
     set shown(value) {
         super.shown = value;
-        this._form.Children('code').Focus();
+        this._form1.Children('property').Focus();
+
+        this._setFields();
+
     }
 
-    /**
-     * Value object
-     * @type {Object}
-     */
-    set value(value) {
-        this._form.value = value;
-    }
+    _setFields() {
+        if(this._property === 'email') {
+            const fields = this._form1.fields;
+            console.log(fields);
+            fields.message.desc = this._message1;
+            fields.property.desc = '#{auth-confirmationform-property-email-desc}';
+            fields.property.params.validate = [
+                {
+                    message: '#{auth-confirmationform-property-email-validation1}',
+                    method: '(field, validator) => !!field.value && field.value.isEmail()'
+                }
+            ];
+            this._form1.fields = fields;
 
-    get value() {
-        return this._form.value;
+        } else if(this._property === 'phone') {
+            const fields = this._form1.fields;
+            fields.message.desc = this._message1;
+            fields.property.desc = '#{auth-confirmationform-property-phone-desc}';
+            fields.property.params.validate = [
+                {
+                    message: '#{auth-confirmationform-property-phone-validation1}',
+                    method: '(field, validator) => !!field.value'
+                }
+            ];
+            // fields.property.params.mask = '+44 (9) 999 999 999',
+            this._form1.fields = fields;
+        }
     }
 
     __requestCodeAgainClicked(event, args) {
-        this._form.enabled = false;
+        this._form2.enabled = false;
         this.RequestCode();
     }
 
     __confirmationFormConfirmationButtonClicked(event, args) {
 
-        if(this._form.value.code) {
+        if(this._form2.value.code) {
 
-            Auth.Members.ConfirmProperty(this._form.value.code, this._property).then((session) => {
-                this.Dispatch('PropertyConfirmed', {property: this._property});
+            Auth.Members.ConfirmProperty(this._form2.value.code, this._property, this._form1.value.property).then((session) => {
+                this.Dispatch('PropertyConfirmed', {property: this._property, value: this._form1.value.property});
                 this._confirming = false;
             }).catch(response => {
                 response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
                 if(response.result.validation && Object.keys(response.result.validation).length > 0) {
                     Object.forEach(response.result.validation, (field, message, index) => {
-                        this._validator.Invalidate(field, message);
+                        this._validator2.Invalidate(field, message);
                         if(index === 0) {
-                            this._form.FindField(field).Focus();
+                            this._form2.FindField(field).Focus();
                         }
                     });
                 }
                 else {
-                    this._validator.Invalidate('form', response.result.message);
-                    this._form.Focus();
+                    this._validator2.Invalidate('form', response.result.message);
+                    this._form2.Focus();
                 }
                 this._confirming = false;
             });    
@@ -106,6 +153,8 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
     }
 
     _startTimer() {
+        this._send.shown = false;
+        this._timerContainer.shown = true;
         this._timer.shown = true;
         this._requestCode.shown = false;
         this._timeLeft = 60;
@@ -113,12 +162,14 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         Colibri.Common.StartTimer('request-code-timer', 1000, () => {
             if(this._timeLeft <= 2) {
                 Colibri.Common.StopTimer('request-code-timer');
+                this._timerContainer.shown = true;
                 this._timer.shown = false;
                 this._requestCode.shown = true;
                 return;
             }
             this._timeLeft --;
             this._timer.shown = true;
+            this._timerContainer.shown = true;
             this._requestCode.shown = false;
             this._timer.value = this._timerTemplate.replaceAll('%s', this._timeLeft);
         });
@@ -129,32 +180,74 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
             this._property = property;
         }
         super.Show();
-        this.RequestCode();
 
     }
 
     RequestCode() {
-        this._form.enabled = false;
-        Auth.Members.BeginConfirmationProcess(this._property).then((session) => {
-            this._form.enabled = true;
+
+        if(!this._validator1.ValidateAll()) {
+            return;
+        }
+
+        this._form1.shown = false;
+        this._form2.shown = true;
+        this._form2.enabled = false;
+        Auth.Members.BeginConfirmationProcess(this._property, this._form1.value.property).then((session) => {
+            this._form2.enabled = true;
             this._confirming = false;
             this._startTimer();
         }).catch(response => {
             response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
             if(response.result.validation && Object.keys(response.result.validation).length > 0) {
                 Object.forEach(response.result.validation, (field, message, index) => {
-                    this._validator.Invalidate(field, message);
+                    this._validator1.Invalidate(field, message);
                     if(index === 0) {
-                        this._form.FindField(field).Focus();
+                        this._form1.FindField(field).Focus();
                     }
                 });
             }
             else {
-                this._validator.Invalidate('form', response.result.message);
-                this._form.Focus();
+                this._validator1.Invalidate('form', response.result.message);
+                this._form1.Focus();
             }
             this._confirming = false;
         }); 
+    }
+
+    /**
+     * Message text
+     * @type {string}
+     */
+    get message1() {
+        return this._form1.value.message;
+    }
+    /**
+     * Message text
+     * @type {string}
+     */
+    set message1(value) {
+        this._message1 = value;
+        this.value = {
+            message: this._message1
+        };
+    }
+
+    /**
+     * Message text
+     * @type {string}
+     */
+    get message2() {
+        return this._form2.value.message;
+    }
+    /**
+     * Message text
+     * @type {string}
+     */
+    set message2(value) {
+        this._message2 = value;
+        this.value = {
+            message: this._message2
+        };
     }
 
 }

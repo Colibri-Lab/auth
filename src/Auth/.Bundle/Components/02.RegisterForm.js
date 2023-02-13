@@ -7,21 +7,57 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this.AddClass('app-auth-form-component'); 
         this.AddClass('app-auth-register-form-component'); 
 
-        this._form = this.Children('form-container/form');
+        this._step1 = this.Children('form-container/step1');
+        this._step2 = this.Children('form-container/step2');
+        this._step3 = this.Children('form-container/step3');
+
+        this._currentStep = 1;
+
+        this._showStep();
+
+        this._form = this.Children('form-container/step3/form');
         this._validator = new Colibri.UI.SimpleFormValidator(this._form);
 
         this._loginButton = this.Children('button-container2/login');
-        this._registerButton = this.Children('button-container/register');
+        this._registerButton = this.Children('form-container/step3/button-container/register');
 
         this._loginButton.AddHandler('Clicked', (event, args) => this.Dispatch('LoginButtonClicked', args));
         this._registerButton.AddHandler('Clicked', (event, args) => this.__registerFormRegisterButtonClicked(event, args));
 
-        this._form.AddHandler('Changed', (event, args) => {
-            this.Dispatch('ExternalValidation', Object.assign(args, {validator: this._validator}));
-            // this._registerButton.enabled = this._validator.Status();
-        });
+        this._step1.AddHandler('Changed', (event, args) => this.Dispatch('ExternalValidation', args));
+        this._step2.AddHandler('Changed', (event, args) => this.Dispatch('ExternalValidation', args));
+
+        this._step1.AddHandler('PropertyConfirmed', (event, args) => this.__step1PropertyConfirmed(event, args));
+        this._step2.AddHandler('PropertyConfirmed', (event, args) => this.__step2PropertyConfirmed(event, args));
+
+        this._registrationData = {
+            phone: null,
+            phone_confirmed: false,
+            email: null,
+            email_confirmed: false,
+        };
 
     } 
+
+    __step1PropertyConfirmed(event, args) {
+        this._registrationData.phone = args.value;
+        this._registrationData.phone_confirmed = true;
+        this._currentStep = 2;
+        this._showStep();
+    }
+
+    __step2PropertyConfirmed(event, args) {
+        this._registrationData.email = args.value;
+        this._registrationData.email_confirmed = true;
+        this._currentStep = 3;
+        this._step3.Children('form').value = this._registrationData;
+        this._showStep();
+    }
+
+    _showStep() {
+        this._step1.shown = this._step2.shown = this._step3.shown = false;
+        this['_step' + this._currentStep].shown = true;
+    }
 
     _registerEvents() {
         this.RegisterEvent('LoginButtonClicked', true, 'Когда нажата кнопка входа');
@@ -34,7 +70,7 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
      */
     set shown(value) {
         super.shown = value;
-        this._form.Focus();
+        this._showStep();
     }
 
     __registerFormRegisterButtonClicked(event, args) {
@@ -53,7 +89,7 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this._form.enabled = false;
         this._registerButton.enabled = false;
         Auth.Members.Register(
-            formData.credentials.email, formData.credentials.phone.replaceAll(/[^[0-9+]/, ''), formData.credentials.pass.password, formData.credentials.pass.confirmation, formData.fio.first_name, formData.fio.last_name, formData.fio.patronymic, formData.gender, formData.birthdate
+            formData.email, formData.email_confirmed, formData.phone.replaceAll(/[^[0-9+]/, ''), formData.phone_confirmed, formData.pass.password, formData.pass.confirmation
         ).then((session) => {
             this._form.enabled = false;
             this._registerButton.enabled = false;

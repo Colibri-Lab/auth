@@ -27,11 +27,11 @@ auth-profileform-gender-desc:
   ru: Пол
   en: Gender
 auth-profileform-gender-values-male:
-  ru: Мужской
-  en: Male
+  ru: Господин
+  en: Mr.
 auth-profileform-gender-values-female:
-  ru: Женский
-  en: Female
+  ru: Госпожа
+  en: Mrs.
 auth-profile-button:
   ru: Сохранить
   en: Save

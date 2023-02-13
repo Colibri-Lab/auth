@@ -19,6 +19,11 @@
         box-shadow: $auth-form-box-shadow;
     }
 
+    .app-ui-component.app-auth-form-component  {
+        padding: 0px;
+        box-shadow: none;
+    }
+
     &.app-component-shown {
         display: flex;
     }

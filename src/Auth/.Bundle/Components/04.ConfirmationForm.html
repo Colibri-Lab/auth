@@ -1,11 +1,33 @@
 <div ComponentName="App.Modules.Auth.Components.ConfirmationForm">
 
     <Pane name="form-container" shown="true">    
-        <Forms.Form name="form" shown="true" shuffleFieldNames="true">
+
+        <Forms.Form name="form1" shown="true" shuffleFieldNames="true">
             <fields>
                 {
                     message: {
                         component: 'Label',
+                        default: this._message1
+                    },
+                    property: {
+                        component: 'Text',
+                        params: {
+                            required: true,
+                            readonly: false
+                        },
+                        attrs: {
+                            width: 480
+                        }
+                    }
+                }
+            </fields>
+        </Forms.Form>
+        <Forms.Form name="form2" shown="false" shuffleFieldNames="true">
+            <fields>
+                {
+                    message: {
+                        component: 'Label',
+                        default: this._message2
                     },
                     code: {
                         component: 'Text',
@@ -28,9 +50,13 @@
             </fields>
         </Forms.Form>
     </Pane>
-    <Pane name="timer-container" shown="true">
+    <Pane name="timer-container" shown="false">
         <TextSpan name="timer" shown="true" value="#{auth-confirmation-timer-value}" />
         <Link name="request-code-again" shown="false" value="#{auth-confirmation-requestagain}" />
     </Pane>
+
+    <FlexBox name="button-container" shown="true" className="buttons-pane">            
+        <SuccessButton name="send" shown="true" enabled="true" tabIndex="true">#{auth-confirmationform-code-button}</SuccessButton>
+    </FlexBox>
 
 </div>

@@ -140,11 +140,13 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
         super('Auth', Auth.requestType, Auth.remoteDomain);
     }
 
-    Register(email, phone, password, confirmation, first_name, last_name, patronymic = '', gender = 'male', birthdate = null) {
+    Register(email, email_confirmed, phone, phone_confirmed, password, confirmation, first_name = '', last_name = '', patronymic = '', gender = 'male', birthdate = null) {
         return new Promise((resolve, reject) => {
             this.Call('Member', 'Register', {
                 email: email,
+                email_confirmed: email_confirmed,
                 phone: phone,
+                phone_confirmed: phone_confirmed,
                 password: password,
                 confirmation: confirmation,
                 first_name: first_name,
@@ -160,18 +162,18 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
         });
     }
 
-    BeginConfirmationProcess(property = 'email') {
+    BeginConfirmationProcess(property = 'email', value = '') {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'BeginConfirmationProcess', {property: property}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'BeginConfirmationProcess', {property: property, value: value}, {'X-AppToken': Auth.appToken}).then((response) => {
                 // Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
         });
     }
 
-    ConfirmProperty(code, property = 'email') {
+    ConfirmProperty(code, property = 'email', value = '') {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'ConfirmProperty', {property: property, code: code}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'ConfirmProperty', {property: property, code: code, value: value}, {'X-AppToken': Auth.appToken}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));

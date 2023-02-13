@@ -2,12 +2,15 @@
 
 namespace App\Modules\Auth\Controllers;
 
+use App\Modules\Auth\Models\Confirmation;
+use App\Modules\Auth\Models\Confirmations;
 use App\Modules\Auth\Models\Member;
 use App\Modules\Auth\Models\Members;
 use App\Modules\Auth\Models\Sessions;
 use App\Modules\Auth\Module;
 use App\Modules\Tools\Models\Notices;
 use Colibri\App;
+use Colibri\Common\RandomizationHelper;
 use Colibri\Common\StringHelper;
 use Colibri\Common\VariableHelper;
 use Colibri\Data\Storages\Fields\DateTimeField;
@@ -39,7 +42,9 @@ class MemberController extends WebController
 
         $payloadArray = $payload->ToArray();
         $email = $payloadArray['email'] ?? $post->email;
+        $email_confirmed = $payloadArray['email_confirmed'] ?? $post->email_confirmed;
         $phone = $payloadArray['phone'] ?? $post->phone;
+        $phone_confirmed = $payloadArray['phone_confirmed'] ?? $post->phone_confirmed;
         $firstName = $payloadArray['first_name'] ?? $post->first_name;
         $lastName = $payloadArray['last_name'] ?? $post->last_name;
         $patronymic = $payloadArray['patronymic'] ?? $post->patronymic;
@@ -49,7 +54,7 @@ class MemberController extends WebController
         $confirmation = $payloadArray['confirmation'] ?? $post->confirmation;
         $role = $payloadArray['role'] ?? $post->role;
 
-        if (!$email || !$phone || !$password || !$confirmation || !$firstName || !$lastName) {
+        if (!$email || !$phone || !$password || !$confirmation) {
             $validation = [];
             if (!$email) {
                 $validation['email'] = 'Field «email» is required';
@@ -62,12 +67,6 @@ class MemberController extends WebController
             }
             if (!$confirmation) {
                 $validation['confirmation'] = 'Field «confirmation» is required';
-            }
-            if (!$firstName) {
-                $validation['firstName'] = 'Field «firstName» is required';
-            }
-            if (!$lastName) {
-                $validation['lastName'] = 'Field «lastName» is required';
             }
             return $this->Finish(400, 'Bad Request', [
                 'message' => 'Invalid data in request',
@@ -135,8 +134,8 @@ class MemberController extends WebController
             $member->birthdate = $birthdate ? new DateTimeField($birthdate) : null;
             $member->gender = $gender;
             $member->role = $role;
-            $member->email_confirmed = false;
-            $member->phone_confirmed = false;
+            $member->email_confirmed = $email_confirmed ?: false;
+            $member->phone_confirmed = $phone_confirmed ?: false;
             $member->blocked = false;
             $member->two_factor = true;
 
@@ -180,28 +179,46 @@ class MemberController extends WebController
      */
     public function BeginConfirmationProcess(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
-        $session = Sessions::LoadFromRequest();
-        if (!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
-        }
 
-        $member = Members::LoadByToken($session->member);
-        if (!$member) {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
+        $session = Sessions::LoadFromRequest();
+
+        /** @var \App\Modules\Auth\Models\Application|null $app */
+        $app = Module::$instance->application;
+        if (!$app) {
+            throw new InvalidArgumentException('Application not found', 404);
         }
 
         $payloadArray = $payload->ToArray();
         $property = $payloadArray['property'] ?? $post->property;
-        if (!$property) {
+        $value = $payloadArray['value'] ?? $post->value;
+        if (!$property || !$value) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
         }
 
-        $confirmed = $member->{$property . '_confirmed'};
-        if ($confirmed) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-property-confirmed}', 'code' => 400]);
+        // проверяем нет ли пользователя с такими свойством и значением этого свойства
+        if($property === Confirmation::PropertyEmail) {
+            $member = Members::LoadByEmail($value);
+        } else if($property === Confirmation::PropertyPhone) {
+            $member = Members::LoadByPhone($value);
         }
 
-        if (!$member->SendConfirmationMessage($property)) {
+        if($member && $member->{$property.'_verified'}) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
+        }
+
+        $confirmation = Confirmations::LoadByValue($property, $value);
+        if(!$confirmation) {
+            $confirmation = Confirmations::LoadEmpty();
+            $confirmation->property = $property;
+            $confirmation->value = $value;
+        }
+
+        $confirmation->code = RandomizationHelper::Numeric(6);
+        $confirmation->verified = false;
+        $confirmation->Save();
+
+        $res = $confirmation->Send($value, $app->params->proxies);
+        if (!$res) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-property-send-error}', 'code' => 400]);
         }
 
@@ -360,25 +377,32 @@ class MemberController extends WebController
     public function ConfirmProperty(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
         $session = Sessions::LoadFromRequest();
-        if (!$session->member) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
-        }
-
-        $member = Members::LoadByToken($session->member);
-        if (!$member) {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
-        }
 
         $payloadArray = $payload->ToArray();
         $property = $payloadArray['property'] ?? $post->property;
+        $value = $payloadArray['value'] ?? $post->value;
         $code = $payloadArray['code'] ?? $post->code;
 
-        if (!$property || !$code) {
+        if (!$property || !$code || !$value) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
+        }
+
+        $confirmation = Confirmations::LoadByValue($property, $value);
+        if(!$confirmation || $confirmation->verified) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
         }
 
         try {
-            $member->ConfirmProperty($property, $code);
+            
+            if($confirmation->code !== $code) {
+                throw new InvalidArgumentException('Invalid code', 403);
+            }
+
+            $confirmation->verified = true;
+            if( ($res = $confirmation->Save()) !== true) {
+                throw new InvalidArgumentException($res->error, 500);
+            }
+
         } catch (\InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad Request', [
                 'message' => '#{auth-errors-member-confirmation-code-error}',

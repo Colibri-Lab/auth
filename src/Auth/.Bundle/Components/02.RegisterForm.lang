@@ -136,3 +136,25 @@ auth-registerform-password-tip-text2:
 auth-registerform-password-tip-digits:
   ru: более %s символов
   en: at least %s symbols
+auth-logincontainer-confirmation-phone-title: {}
+auth-logincontainer-confirmation-phone-message:
+  ru: Подтвердите номер телефона, чтобы мы могли оперативно связаться с вами и
+    уточнить детали по заявке
+  en: Confirm your phone number so that we can quickly contact you and clarify the
+    details of the application
+auth-logincontainer-confirmatiopn: {}
+auth-logincontainer-confirmation-phone-message2:
+  ru: "Мы отправили код SMS-сообщением на номер: %s"
+  en: "We sent the code via SMS to the number: %s"
+auth-logincontainer-confirmation-email-message:
+  ru: Подтвердите Email. Мы будем присылать только важные письма. Например, об
+    изменении статуса вашей заявки или напоминания заплатить по кредиту
+  en: Confirm Email. We will only send important emails. For example, a change in
+    the status of your application or a reminder to pay a loan
+auth-logincontainer-confirmation-email-message2:
+  ru: "Мы отправили код подтверждения на email: %s"
+  en: "We have sent a confirmation code to email: %s"
+auth-registerform-button: {}
+auth-registerform-complete-button:
+  ru: Зарегистрироваться
+  en: Register

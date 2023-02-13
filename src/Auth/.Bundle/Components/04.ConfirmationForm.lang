@@ -10,3 +10,22 @@ auth-confirmation-timer-value:
 auth-confirmation-requestagain:
   ru: Получить новый код
   en: Get a new code
+auth-register-button: {}
+auth-confirmationform-code-button:
+  ru: Выслать код
+  en: Send a code
+auth-confirmationform-poroperty-desc: {}
+auth-confirmationform-property-desc: {}
+auth-changeform-property-validation1: {}
+auth-: {}
+auth-confirmationform-property-email-desc:
+  ru: Эл. адрес
+  en: Email
+auth-confirmationform-property-email-validation1:
+  ru: Пожалуйста, введите корректный электроннный адрес
+  en: Please enter the correct email address
+auth-confirmationform-property-phone-desc:
+  ru: Номер телефона
+  en: Phone number
+auth-confirmationform-property-phone-validation1: {}
+auth-registerform-phone-validation1: {}
