@@ -176,6 +176,7 @@ class SessionController extends WebController
 
             $sessions = Sessions::LoadByMember($session->member);
             foreach ($sessions as $s) {
+                /** @var \App\Modules\Auth\Models\Session $s */
                 $s->member = null;
                 $s->Save(true);
             }

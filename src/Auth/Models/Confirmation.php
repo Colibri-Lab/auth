@@ -21,7 +21,7 @@ use Colibri\IO\Request\Type;
  * @property-read int $id ID строки
  * @property-read DateTimeField $datecreated Дата создания строки
  * @property-read DateTimeField $datemodified Дата последнего обновления строки
- * @property ValueField $property Свойство
+ * @property ValueField|string $property Свойство
  * @property string|null $value Значение свойства
  * @property string|null $member Пользователь
  * @property string $code Код
