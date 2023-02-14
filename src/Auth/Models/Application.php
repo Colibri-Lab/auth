@@ -3,6 +3,7 @@
 namespace App\Modules\Auth\Models;
 
 # region Uses:
+use App\Modules\Auth\Models\Fields\Applications\ParamsObjectField;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\ObjectField;
 # endregion Uses;
@@ -19,7 +20,7 @@ use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
  * @property-read DateTimeField $datemodified Дата последнего обновления строки
  * @property string|null $key Ключ приложения  (наименование)
  * @property string|null $token Токен приложения (постоянный)
- * @property ObjectField|null $params Параметры
+ * @property ParamsObjectField|null $params Параметры
  * endregion Properties;
  */
 class Application extends BaseModelDataRow
@@ -43,7 +44,7 @@ class Application extends BaseModelDataRow
             # region SchemaProperties:
 			'key' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
 			'token' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 32, ] ] ],
-			'params' => [  'oneOf' => [ [ 'type' => 'null' ], ['type' => 'object', 'required' => ['defaultrole',], 'properties' => ['livetime' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'integer', ] ] ],'domains' => [  'oneOf' => [ [ 'type' => 'null' ], ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['pattern' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],]]]]],'allowrenew' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],'roles' => [  'oneOf' => [ [ 'type' => 'null' ], ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['name' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],'desc' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],]]]]],'defaultrole' => ['type' => 'string', 'maxLength' => 255, ],'enable_two_factor_authentication' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],'design' => [  'oneOf' => [ [ 'type' => 'null' ], ['type' => 'object', 'required' => [], 'properties' => ['images' => [  'oneOf' => [ [ 'type' => 'null' ], ['type' => 'array', 'items' => ['type' => 'object', 'required' => [], 'properties' => ['key' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 50, ] ] ],'image' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', ] ] ],]]]]],]]]],'proxies' => [  'oneOf' => [ [ 'type' => 'null' ], ['type' => 'object', 'required' => [], 'properties' => ['email' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 1024, ] ] ],'sms' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 1024, ] ] ],]]]],'allowed_ip' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 256, ] ] ],]]]],
+			'params' => [  'oneOf' => [ ParamsObjectField::JsonSchema, [ 'type' => 'null'] ] ],
 			# endregion SchemaProperties;
 
         ]

@@ -3,10 +3,8 @@
 namespace App\Modules\Auth\Models;
 
 # region Uses:
-use App\Modules\Auth\Module;
-use Colibri\Data\SqlClient\QueryInfo;
-use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\DateField;
+use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\ValueField;
 # endregion Uses;
 use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
@@ -32,7 +30,7 @@ use Throwable;
  * @property string $last_name Фамилия
  * @property string|null $patronymic Отчество
  * @property DateField|null $birthdate Дата рождения
- * @property ValueField|null $gender Пол
+ * @property ValueField|string|null $gender Пол
  * @property string|null $role Роль
  * @property bool $email_confirmed Почта подтверждена
  * @property bool $phone_confirmed Телефон подтвержден
@@ -52,17 +50,17 @@ class Member extends BaseModelDataRow
             'datecreated',
             'datemodified',
             # region SchemaRequired:
-            'token',
-            'email',
-            'phone',
-            'password',
-            'first_name',
-            'last_name',
-            'email_confirmed',
-            'phone_confirmed',
-            'blocked',
-            'two_factor',
-            # endregion SchemaRequired;
+			'token',
+			'email',
+			'phone',
+			'password',
+			'first_name',
+			'last_name',
+			'email_confirmed',
+			'phone_confirmed',
+			'blocked',
+			'two_factor',
+			# endregion SchemaRequired;
 
         ],
         'properties' => [
@@ -70,41 +68,31 @@ class Member extends BaseModelDataRow
             'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
-            'token' => ['type' => 'string', 'maxLength' => 32,
-            ],
-            'email' => ['type' => 'string', 'maxLength' => 255,
-            ],
-            'phone' => ['type' => 'string', 'maxLength' => 50,
-            ],
-            'password' => ['type' => 'string', 'maxLength' => 128,
-            ],
-            'first_name' => ['type' => 'string', 'maxLength' => 255,
-            ],
-            'last_name' => ['type' => 'string', 'maxLength' => 255,
-            ],
-            'patronymic' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 255,]]],
-            'birthdate' => ['anyOf' => [['type' => ['string', 'null'], 'format' => 'date'], ['type' => ['string', 'null'], 'maxLength' => 0]]],
-            'gender' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'enum' => ['male', 'female']]]],
-            'role' => ['oneOf' => [['type' => 'null'], ['type' => 'string', 'maxLength' => 20,]]],
-            'email_confirmed' => ['type' => ['boolean', 'number'], 'enum' => [true, false, 0, 1],
-            ],
-            'phone_confirmed' => ['type' => ['boolean', 'number'], 'enum' => [true, false, 0, 1],
-            ],
-            'blocked' => ['type' => ['boolean', 'number'], 'enum' => [true, false, 0, 1],
-            ],
-            'two_factor' => ['type' => ['boolean', 'number'], 'enum' => [true, false, 0, 1],
-            ],
-            # endregion SchemaProperties;
+			'token' => ['type' => 'string', 'maxLength' => 32, ],
+			'email' => ['type' => 'string', 'maxLength' => 255, ],
+			'phone' => ['type' => 'string', 'maxLength' => 50, ],
+			'password' => ['type' => 'string', 'maxLength' => 128, ],
+			'first_name' => ['type' => 'string', 'maxLength' => 255, ],
+			'last_name' => ['type' => 'string', 'maxLength' => 255, ],
+			'patronymic' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
+			'birthdate' => [ 'anyOf' => [ ['type' => ['string', 'null'], 'format' => 'date'], ['type' => ['string', 'null'], 'maxLength' => 0] ] ],
+			'gender' => [  'oneOf' => [ [ 'type' => 'null' ], ['type' => 'string', 'enum' => ['male', 'female']] ] ],
+			'role' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 20, ] ] ],
+			'email_confirmed' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
+			'phone_confirmed' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
+			'blocked' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
+			'two_factor' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
+			# endregion SchemaProperties;
 
         ]
     ];
 
     # region Consts:
-    /** Мужской */
-    public const GenderMale = 'male';
-    /** Женский */
-    public const GenderFemale = 'female';
-    # endregion Consts;
+	/** Мужской */
+	public const GenderMale = 'male';
+	/** Женский */
+	public const GenderFemale = 'female';
+	# endregion Consts;
 
 
     public function setPropertyEmail(string $value): void
