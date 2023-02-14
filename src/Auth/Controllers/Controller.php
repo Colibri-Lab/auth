@@ -72,7 +72,7 @@ class Controller extends WebController
     public function Index(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
 
-        $module = App::$moduleManager->carriergate;
+        $module = App::$moduleManager->Get('auth');
 
         // создаем обьект View
         $view = View::Create();
@@ -128,18 +128,18 @@ class Controller extends WebController
         $themeFile = null;
         $themeKey = '';
 
-        if (App::$moduleManager->tools) {
-            $themeFile = App::$moduleManager->tools->Theme(App::$domainKey);
+        if (App::$moduleManager->Get('tools')) {
+            $themeFile = App::$moduleManager->Get('tools')->Theme(App::$domainKey);
             $themeKey = md5($themeFile);
         }
 
         if (!App::$request->server->commandline) {
             $jsBundle = Bundle::Automate(App::$domainKey, ($langModule ? $langModule->current . '.' : '') . 'assets.bundle.js', 'js', [
-                ['path' => App::$moduleManager->auth->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
+                ['path' => App::$moduleManager->Get('auth')->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
             ]);
             $cssBundle = Bundle::Automate(App::$domainKey, ($langModule ? $langModule->current . '.' : '') . ($themeKey ? $themeKey . '.' : '') . 'assets.bundle.css', 'scss', [
-                ['path' => App::$moduleManager->auth->modulePath . 'web/res/css/'],
-                ['path' => App::$moduleManager->auth->modulePath . '.Bundle/'],
+                ['path' => App::$moduleManager->Get('auth')->modulePath . 'web/res/css/'],
+                ['path' => App::$moduleManager->Get('auth')->modulePath . '.Bundle/'],
                 ['path' => $themeFile],
             ], 'https://' . App::$request->host);
 
@@ -160,11 +160,11 @@ class Controller extends WebController
             foreach ($langs as $langKey => $langData) {
                 $langModule->InitCurrent($langKey);
                 Bundle::Automate(App::$domainKey, ($langKey . '.') . 'assets.bundle.js', 'js', [
-                    ['path' => App::$moduleManager->auth->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
+                    ['path' => App::$moduleManager->Get('auth')->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
                 ]);
                 Bundle::Automate(App::$domainKey, ($langKey . '.') . ($themeKey ? $themeKey . '.' : '') . 'assets.bundle.css', 'scss', [
-                    ['path' => App::$moduleManager->auth->modulePath . 'web/res/css/'],
-                    ['path' => App::$moduleManager->auth->modulePath . '.Bundle/'],
+                    ['path' => App::$moduleManager->Get('auth')->modulePath . 'web/res/css/'],
+                    ['path' => App::$moduleManager->Get('auth')->modulePath . '.Bundle/'],
                     ['path' => $themeFile],
                 ], 'https://' . App::$request->host);
 
@@ -173,11 +173,11 @@ class Controller extends WebController
             exit;
         } else {
             Bundle::Automate(App::$domainKey, 'assets.bundle.js', 'js', [
-                ['path' => App::$moduleManager->auth->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
+                ['path' => App::$moduleManager->Get('auth')->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
             ]);
             Bundle::Automate(App::$domainKey, ($themeKey ? $themeKey . '.' : '') . 'assets.bundle.css', 'scss', [
-                ['path' => App::$moduleManager->auth->modulePath . 'web/res/css/'],
-                ['path' => App::$moduleManager->auth->modulePath . '.Bundle/'],
+                ['path' => App::$moduleManager->Get('auth')->modulePath . 'web/res/css/'],
+                ['path' => App::$moduleManager->Get('auth')->modulePath . '.Bundle/'],
                 ['path' => $themeFile],
             ], 'https://' . App::$request->host);
             exit;
