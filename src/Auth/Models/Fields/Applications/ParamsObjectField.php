@@ -36,7 +36,7 @@ class ParamsObjectField extends ObjectField
         'required' => [
             # region SchemaRequired:
 			'defaultrole',
-            # endregion SchemaRequired;
+			# endregion SchemaRequired;
         ],
         'properties' => [
             # region SchemaProperties:
@@ -49,7 +49,7 @@ class ParamsObjectField extends ObjectField
 			'design' => [  'oneOf' => [ ParamsDesignObjectField::JsonSchema, [ 'type' => 'null'] ] ],
 			'proxies' => [  'oneOf' => [ ParamsProxiesObjectField::JsonSchema, [ 'type' => 'null'] ] ],
 			'allowed_ip' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 256, ] ] ],
-            # endregion SchemaProperties;
+			# endregion SchemaProperties;
         ]
     ];
 }

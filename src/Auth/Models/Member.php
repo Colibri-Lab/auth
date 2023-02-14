@@ -12,6 +12,8 @@ use Colibri\Encryption\Crypt;
 use Psr\Log\InvalidArgumentException;
 use Colibri\Common\RandomizationHelper;
 use Throwable;
+use App\Modules\Auth\Module;
+use Colibri\Data\SqlClient\QueryInfo;
 
 /**
  * Представление строки в таблице в хранилище Пользователи
@@ -19,9 +21,9 @@ use Throwable;
  * @package App\Modules\Auth\Models
  * 
  * region Properties:
- * @property-read int $id ID строки
- * @property-read DateTimeField $datecreated Дата создания строки
- * @property-read DateTimeField $datemodified Дата последнего обновления строки
+ * @property int $id ID строки
+ * @property DateTimeField $datecreated Дата создания строки
+ * @property DateTimeField $datemodified Дата последнего обновления строки
  * @property string $token Токен пользователя
  * @property string $email Эл. адрес пользователя
  * @property string $phone Телефон

@@ -15,9 +15,9 @@ use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
  * @package App\Modules\Auth\Models
  * 
  * region Properties:
- * @property-read int $id ID строки
- * @property-read DateTimeField $datecreated Дата создания строки
- * @property-read DateTimeField $datemodified Дата последнего обновления строки
+ * @property int $id ID строки
+ * @property DateTimeField $datecreated Дата создания строки
+ * @property DateTimeField $datemodified Дата последнего обновления строки
  * @property string|null $key Ключ приложения  (наименование)
  * @property string|null $token Токен приложения (постоянный)
  * @property ParamsObjectField|null $params Параметры

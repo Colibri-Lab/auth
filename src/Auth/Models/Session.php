@@ -17,9 +17,9 @@ use Colibri\Utils\Cache\Mem;
  * @package App\Modules\Auth\Models
  * 
  * region Properties:
- * @property-read int $id ID строки
- * @property-read DateTimeField $datecreated Дата создания строки
- * @property-read DateTimeField $datemodified Дата последнего обновления строки
+ * @property int $id ID строки
+ * @property DateTimeField $datecreated Дата создания строки
+ * @property DateTimeField $datemodified Дата последнего обновления строки
  * @property string $member Токен пользователя
  * @property string $key Ключ сессии
  * @property string $token Токен сессии (JWT)

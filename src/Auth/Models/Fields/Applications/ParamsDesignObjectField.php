@@ -25,12 +25,12 @@ class ParamsDesignObjectField extends ObjectField
         'required' => [
             # region SchemaRequired:
 
-            # endregion SchemaRequired;
+			# endregion SchemaRequired;
         ],
         'properties' => [
             # region SchemaProperties:
 			'images' => [  'oneOf' => [ ParamsDesignImagesArrayField::JsonSchema, [ 'type' => 'null'] ] ],
-            # endregion SchemaProperties;
+			# endregion SchemaProperties;
         ]
     ];
 }
