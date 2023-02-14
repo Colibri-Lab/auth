@@ -32,7 +32,7 @@ use Colibri\Data\SqlClient\QueryInfo;
  * @property string $last_name Фамилия
  * @property string|null $patronymic Отчество
  * @property DateField|null $birthdate Дата рождения
- * @property ValueField|string|null $gender Пол
+ * @property ValueField|string|ValueField|null $gender Пол
  * @property string|null $role Роль
  * @property bool $email_confirmed Почта подтверждена
  * @property bool $phone_confirmed Телефон подтвержден
