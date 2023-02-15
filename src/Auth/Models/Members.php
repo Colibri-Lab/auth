@@ -18,6 +18,7 @@ use App\Modules\Auth\Models\Member;
  * @method Member[] getIterator()
  * @method Member _createDataRowObject()
  * @method Member _read()
+ * @method Member offsetGet(mixed $offset)
  * 
  */
 class Members extends BaseModelDataTable
