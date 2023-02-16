@@ -12,7 +12,7 @@ publish:
     - insecure=$([ "$CI_SERVER_PROTOCOL" = "http" ] && echo "--insecure" || echo "")
     - response=$(curl -s -w "\n%{http_code}" $insecure --data $version $URL)
     - code=$(echo "$response" | tail -n 1)
-    - body=$(echo "$response" | head -n 1)
+    - body=$(echo "$response" | head -n 1) 
     # Output state information
     - if [ $code -eq 201 ]; then
         echo "Package created - Code $code - $body";
