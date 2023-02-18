@@ -9,7 +9,7 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
 
         this._form = this.Children('form-container/form');
         this._validator = new Colibri.UI.SimpleFormValidator(this._form); 
-
+   
         this._loginButton = this.Children('button-container/login');
         this._registerButton = this.Children('button-container2/register');
         this._resetButton = this.Children('links-container/reset');
