@@ -81,7 +81,7 @@ class AppController extends WebController
             }
 
             $payloadArray = $payload->ToArray();
-            $token = $payloadArray['token'] ?? $post->token;
+            $token = $payloadArray['token'] ?? $post->{'token'};
             if(!$token) {
                 throw new AppException('Bad request', 400);
             }

@@ -109,7 +109,7 @@ class Sessions extends BaseModelDataTable
     static function LoadFromRequest(): ? Session
     {
         App::$monitoring->StartTimer('load-from-request');
-        $jwt = App::$request->cookie->{'cc-jwt'} ?? App::$request->headers->authorization;
+        $jwt = App::$request->cookie->{'cc-jwt'} ?? App::$request->headers->{'authorization'};
         if (!$jwt) {
             $return = self::CreateGuestSession();
         }

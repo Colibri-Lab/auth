@@ -133,7 +133,7 @@ class Controller extends WebController
             $themeKey = md5($themeFile);
         }
 
-        if (!App::$request->server->commandline) {
+        if (!App::$request->server->{'commandline'}) {
             $jsBundle = Bundle::Automate(App::$domainKey, ($langModule ? $langModule->current . '.' : '') . 'assets.bundle.js', 'js', [
                 ['path' => App::$moduleManager->Get('auth')->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
             ]);

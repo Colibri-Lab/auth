@@ -62,9 +62,9 @@ class SessionController extends WebController
 
 
         $payloadArray = $payload->ToArray();
-        $login = $payloadArray['login'] ?? $post->login;
-        $password = $payloadArray['password'] ?? $post->password;
-        $code = $payloadArray['password'] ?? $post->code;
+        $login = $payloadArray['login'] ?? $post->{'login'};
+        $password = $payloadArray['password'] ?? $post->{'password'};
+        $code = $payloadArray['password'] ?? $post->{'code'};
 
         if (!$login || !$password) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-session-data-incorrect}', 'code' => 400]);
@@ -255,8 +255,8 @@ class SessionController extends WebController
         }
 
         $payloadArray = $payload->ToArray();
-        $property = $payloadArray['property'] ?? $post->property;
-        $value = $payloadArray['value'] ?? $post->value;
+        $property = $payloadArray['property'] ?? $post->{'property'};
+        $value = $payloadArray['value'] ?? $post->{'value'};
         
         if($property === 'email') {
             $members = Members::LoadByEmail($value);

@@ -41,18 +41,18 @@ class MemberController extends WebController
         $session = Sessions::LoadFromRequest();
 
         $payloadArray = $payload->ToArray();
-        $email = $payloadArray['email'] ?? $post->email;
-        $email_confirmed = $payloadArray['email_confirmed'] ?? $post->email_confirmed;
-        $phone = $payloadArray['phone'] ?? $post->phone;
-        $phone_confirmed = $payloadArray['phone_confirmed'] ?? $post->phone_confirmed;
-        $firstName = $payloadArray['first_name'] ?? $post->first_name;
-        $lastName = $payloadArray['last_name'] ?? $post->last_name;
-        $patronymic = $payloadArray['patronymic'] ?? $post->patronymic;
-        $gender = $payloadArray['gender'] ?? $post->gender;
-        $birthdate = $payloadArray['birthdate'] ?? $post->birthdate;
-        $password = $payloadArray['password'] ?? $post->password;
-        $confirmation = $payloadArray['confirmation'] ?? $post->confirmation;
-        $role = $payloadArray['role'] ?? $post->role;
+        $email = $payloadArray['email'] ?? $post->{'email'};
+        $email_confirmed = $payloadArray['email_confirmed'] ?? $post->{'email_confirmed'};
+        $phone = $payloadArray['phone'] ?? $post->{'phone'};
+        $phone_confirmed = $payloadArray['phone_confirmed'] ?? $post->{'phone_confirmed'};
+        $firstName = $payloadArray['first_name'] ?? $post->{'first_name'};
+        $lastName = $payloadArray['last_name'] ?? $post->{'last_name'};
+        $patronymic = $payloadArray['patronymic'] ?? $post->{'patronymic'};
+        $gender = $payloadArray['gender'] ?? $post->{'gender'};
+        $birthdate = $payloadArray['birthdate'] ?? $post->{'birthdate'};
+        $password = $payloadArray['password'] ?? $post->{'password'};
+        $confirmation = $payloadArray['confirmation'] ?? $post->{'confirmation'};
+        $role = $payloadArray['role'] ?? $post->{'role'};
 
         if (!$email || !$phone || !$password || !$confirmation) {
             $validation = [];
@@ -189,8 +189,8 @@ class MemberController extends WebController
         }
 
         $payloadArray = $payload->ToArray();
-        $property = $payloadArray['property'] ?? $post->property;
-        $value = $payloadArray['value'] ?? $post->value;
+        $property = $payloadArray['property'] ?? $post->{'property'};
+        $value = $payloadArray['value'] ?? $post->{'value'};
         if (!$property || !$value) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
         }
@@ -248,8 +248,8 @@ class MemberController extends WebController
         }
 
         $payloadArray = $payload->ToArray();
-        $email = $payloadArray['email'] ?? $post->email;
-        $phone = $payloadArray['phone'] ?? $post->phone;
+        $email = $payloadArray['email'] ?? $post->{'email'};
+        $phone = $payloadArray['phone'] ?? $post->{'phone'};
 
         if (!$email || !$phone) {
             $validation = [];
@@ -329,8 +329,8 @@ class MemberController extends WebController
         }
 
         $payloadArray = $payload->ToArray();
-        $property = $payloadArray['property'] ?? $post->property;
-        $value = $payloadArray['value'] ?? $post->value;
+        $property = $payloadArray['property'] ?? $post->{'property'};
+        $value = $payloadArray['value'] ?? $post->{'value'};
 
         if (!$property || !$value) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
@@ -379,9 +379,9 @@ class MemberController extends WebController
         $session = Sessions::LoadFromRequest();
 
         $payloadArray = $payload->ToArray();
-        $property = $payloadArray['property'] ?? $post->property;
-        $value = $payloadArray['value'] ?? $post->value;
-        $code = $payloadArray['code'] ?? $post->code;
+        $property = $payloadArray['property'] ?? $post->{'property'};
+        $value = $payloadArray['value'] ?? $post->{'value'};
+        $code = $payloadArray['code'] ?? $post->{'code'};
 
         if (!$property || !$code || !$value) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
@@ -443,11 +443,11 @@ class MemberController extends WebController
         }
 
         $payloadArray = $payload->ToArray();
-        $email = $payloadArray['email'] ?? $post->email;
-        $phone = $payloadArray['phone'] ?? $post->phone;
-        $code = $payloadArray['code'] ?? $post->code;
-        $password = $payloadArray['password'] ?? $post->password;
-        $confirmation = $payloadArray['confirmation'] ?? $post->confirmation;
+        $email = $payloadArray['email'] ?? $post->{'email'};
+        $phone = $payloadArray['phone'] ?? $post->{'phone'};
+        $code = $payloadArray['code'] ?? $post->{'code'};
+        $password = $payloadArray['password'] ?? $post->{'password'};
+        $confirmation = $payloadArray['confirmation'] ?? $post->{'confirmation'};
 
         if (!$email || !$phone || !$code || !$password) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
@@ -534,9 +534,9 @@ class MemberController extends WebController
         }
 
         $payloadArray = $payload->ToArray();
-        $property = $payloadArray['property'] ?? $post->property;
-        $code = $payloadArray['code'] ?? $post->code;
-        $value = $payloadArray['value'] ?? $post->value;
+        $property = $payloadArray['property'] ?? $post->{'property'};
+        $code = $payloadArray['code'] ?? $post->{'code'};
+        $value = $payloadArray['value'] ?? $post->{'value'};
 
         if (!$property || !$code || !$value) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
@@ -601,9 +601,9 @@ class MemberController extends WebController
         $member = Members::LoadByToken($session->member);
 
         $payloadArray = $payload->ToArray();
-        $original = $payloadArray['original'] ?? $post->original;
-        $password = $payloadArray['password'] ?? $post->password;
-        $confirmation = $payloadArray['confirmation'] ?? $post->confirmation;
+        $original = $payloadArray['original'] ?? $post->{'original'};
+        $password = $payloadArray['password'] ?? $post->{'password'};
+        $confirmation = $payloadArray['confirmation'] ?? $post->{'confirmation'};
 
         if (!$original || !$password || !$confirmation) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
@@ -764,11 +764,11 @@ class MemberController extends WebController
         }
 
         $payloadArray = $payload->ToArray();
-        $firstName = $payloadArray['first_name'] ?? $post->first_name;
-        $lastName = $payloadArray['last_name'] ?? $post->last_name;
-        $patronymic = $payloadArray['patronymic'] ?? $post->patronymic;
-        $gender = $payloadArray['gender'] ?? $post->gender;
-        $birthdate = $payloadArray['birthdate'] ?? $post->birthdate;
+        $firstName = $payloadArray['first_name'] ?? $post->{'first_name'};
+        $lastName = $payloadArray['last_name'] ?? $post->{'last_name'};
+        $patronymic = $payloadArray['patronymic'] ?? $post->{'patronymic'};
+        $gender = $payloadArray['gender'] ?? $post->{'gender'};
+        $birthdate = $payloadArray['birthdate'] ?? $post->{'birthdate'};
 
         if (!$firstName || !$lastName) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
@@ -818,8 +818,8 @@ class MemberController extends WebController
         }
 
         $payloadArray = $payload->ToArray();
-        $currentPassword = $payloadArray['current'] ?? $post->current;
-        $newPassword = $payloadArray['new'] ?? $post->new;
+        $currentPassword = $payloadArray['current'] ?? $post->{'current'};
+        $newPassword = $payloadArray['new'] ?? $post->{'new'};
 
         if (!$currentPassword || !$newPassword) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
@@ -873,7 +873,7 @@ class MemberController extends WebController
         }
 
         $payloadArray = $payload->ToArray();
-        $tokens = $payloadArray['tokens'] ?? $post->tokens;
+        $tokens = $payloadArray['tokens'] ?? $post->{'tokens'};
 
         $ret = [];
         $members = Members::LoadByTokens((array) $tokens);
@@ -914,7 +914,7 @@ class MemberController extends WebController
         }
 
         $payloadArray = $payload->ToArray();
-        $role = $payloadArray['role'] ?? $post->role;
+        $role = $payloadArray['role'] ?? $post->{'role'};
         if (!$role) {
             return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
@@ -962,7 +962,7 @@ class MemberController extends WebController
         }
 
         $payloadArray = $payload->ToArray();
-        $term = $payloadArray['term'] ?? $post->term;
+        $term = $payloadArray['term'] ?? $post->{'term'};
 
         $ret = [];
         $members = Members::LoadByFilter(-1, 20, 'concat({last_name}, \' \', {first_name}, \' \', {patronymic}, \' \', {phone}, \' \', {email}) like \'%' . $term . '%\'');
@@ -1007,8 +1007,8 @@ class MemberController extends WebController
         }
 
         $payloadArray = $payload->ToArray();
-        $memberToken = $payloadArray['member'] ?? $post->member;
-        $mutation = $payloadArray['mutation'] ?? $post->mutation;
+        $memberToken = $payloadArray['member'] ?? $post->{'member'};
+        $mutation = $payloadArray['mutation'] ?? $post->{'mutation'};
 
         $member = Members::LoadByToken($memberToken);
 
@@ -1081,8 +1081,8 @@ class MemberController extends WebController
         }
 
         $payloadArray = $payload->ToArray();
-        $memberEmail = $payloadArray['email'] ?? $post->email;
-        $memberRole = $payloadArray['role'] ?? $post->role;
+        $memberEmail = $payloadArray['email'] ?? $post->{'email'};
+        $memberRole = $payloadArray['role'] ?? $post->{'role'};
 
         $member = Members::LoadByEmail($memberEmail);
         if (!$member) {
