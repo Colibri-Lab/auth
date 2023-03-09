@@ -202,9 +202,9 @@ class MemberController extends WebController
             $member = Members::LoadByPhone($value);
         }
 
-        if($member && $member->{$property.'_verified'}) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
-        }
+        // if($member && $member->{$property.'_verified'}) {
+        //     return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
+        // }
 
         $confirmation = Confirmations::LoadByValue($property, $value);
         if(!$confirmation) {
@@ -358,6 +358,36 @@ class MemberController extends WebController
         } elseif ($property === 'phone' && Members::LoadByPhone($value)) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-phone-exists}', 'code' => 400]);
         }
+
+        // ! временно
+        if(App::$isDev) {
+
+            /** @var \App\Modules\Auth\Models\Application|null $app */
+            $app = Module::$instance->application;
+
+            $confirmation = Confirmations::LoadByMember($property, $member->token);
+            if (!$confirmation) {
+                $confirmation = Confirmations::LoadEmpty();
+                $confirmation->property = $property;
+                $confirmation->member = $member->token;
+            }
+
+            $confirmation->code = RandomizationHelper::Numeric(6);
+            if (($res = $confirmation->Save(true)) !== true) {
+                throw new InvalidArgumentException($res->error, 500);
+            }
+
+            return $this->Finish(
+                200,
+                'ok',
+                ['session' => $session->ExportForUserInterface(), 'code' => $confirmation->code],
+                'utf-8',
+                [],
+                [$session->GenerateCookie(true)]
+            );
+    
+        }
+
 
         if (!$member->SendConfirmationMessage($property, $value)) {
             return $this->Finish(400, 'Bad Request', [

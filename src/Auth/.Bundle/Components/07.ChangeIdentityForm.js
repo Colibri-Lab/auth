@@ -9,6 +9,7 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
         this._property = 'none';
         this._changing = false;
 
+        this._step = 'current';
         this._form1 = this.Children('form-container/form1');
         this._validator1 = new Colibri.UI.SimpleFormValidator(this._form1);
 
@@ -82,6 +83,25 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
         return this._message2;
     }
 
+    /**
+     * Sets the form 2 message
+     * @type {string}
+     */
+    set message3(value) {
+        this._message3 = value;
+    }
+
+    get message3() {
+        return this._message3;
+    }
+
+    get current() {
+        return this._current;
+    }
+    set current(value) {
+        this._current = value;
+    }
+
     get desc() {
         return this._form1.Children('property').title;
     }
@@ -114,39 +134,65 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
         return this._form1.value;
     }
 
-    __requestCodeAgainClicked(event, args) {
-        
-        if(!this._validator1.ValidateAll()) {
-            return;
-        }
-        
-        this._form1.enabled = false;
-        this.RequestCode();
-    }
 
     __changeFormChangeButtonClicked(event, args) {
 
         if(this._form2.value.code) {
 
-            Auth.Members.ChangeIdentity(this._form2.value.code, this._form1.value.property, this._property).then((session) => {
-                this.Dispatch('PropertyChanged', {property: this._property});
-                this._changing = false;
-            }).catch(response => {
-                response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
-                if(response.result.validation && Object.keys(response.result.validation).length > 0) {
-                    Object.forEach(response.result.validation, (field, message, index) => {
-                        this._validator2.Invalidate(field, message);
-                        if(index === 0) {
-                            this._form2.FindField(field).Focus();
-                        }
-                    });
-                }
-                else {
-                    this._validator2.Invalidate('form', response.result.message);
-                    this._form2.Focus();
-                }
-                this._changing = false;
-            });    
+            if(this._step === 'current') {
+
+                Auth.Members.ConfirmProperty(this._form2.value.code, this._property, this._current).then((session) => {
+                    
+                    this._step = 'identity';
+                    this._form1.shown = true;
+                    this._form1.enabled = true;
+                    this._send.shown = true;
+                    this._send.enabled = true;
+                
+                    this._form2.shown = false;
+                    this._stopTimer();
+                    this._requestCode.shown = false;
+
+                }).catch(response => {
+                    response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
+                    if(response.result.validation && Object.keys(response.result.validation).length > 0) {
+                        Object.forEach(response.result.validation, (field, message, index) => {
+                            this._validator2.Invalidate(field, message);
+                            if(index === 0) {
+                                this._form2.FindField(field).Focus();
+                            }
+                        });
+                    }
+                    else {
+                        this._validator2.Invalidate('form', response.result.message);
+                        this._form2.Focus();
+                    }
+                    this._confirming = false;
+                }); 
+
+            } else {
+                Auth.Members.ChangeIdentity(this._form2.value.code, this._form1.value.property, this._property).then((session) => {
+                    this.Dispatch('PropertyChanged', {property: this._property});
+                    this._changing = false;
+                }).catch(response => {
+                    response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
+                    if(response.result.validation && Object.keys(response.result.validation).length > 0) {
+                        Object.forEach(response.result.validation, (field, message, index) => {
+                            this._validator2.Invalidate(field, message);
+                            if(index === 0) {
+                                this._form2.FindField(field).Focus();
+                            }
+                        });
+                    }
+                    else {
+                        this._validator2.Invalidate('form', response.result.message);
+                        this._form2.Focus();
+                    }
+                    this._changing = false;
+                });    
+            }
+
+
 
         }
 
@@ -182,44 +228,91 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
         }
 
         super.Show();
-        this._form1.shown = true;
-        
+
+        this.RequestCode('current');
 
     }
+
 
     __sendButtonClicked(event, args) {
-        this.RequestCode();
+        this.RequestCode('identity');
     }
 
-    RequestCode() {
+    RequestCode(step) {
+        this._step = step;
+
         this._changing = false;
         this._form1.enabled = false;
         this._send.enabled = false;
-        Auth.Members.BeginIdentityUpdateProcess(this._form1.value.property, this._property).then((session) => {
-            this._form1.shown = false;
-            this._send.shown = false;
+        if(this._step === 'current') {
             this._form2.shown = true;
-            this._form2.value = {message: this._message2.replaceAll('%s', '<b>' + this._form1.value.property + '</b>')};
-            this._startTimer();
-        }).catch(response => {
-            response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
-            if(response.result.validation && Object.keys(response.result.validation).length > 0) {
-                Object.forEach(response.result.validation, (field, message, index) => {
-                    this._validator1.Invalidate(field, message);
-                    if(index === 0) {
-                        this._form1.FindField(field).Focus();
-                    }
-                });
-            }
-            else {
-                this._validator1.Invalidate('property', response.result.message);
-                this._form1.Children('property').Focus();
-            }
-            this._form1.enabled = true;
-            this._send.enabled = true;
-            this._form2.shown = false;
-            this._stopTimer();
-        }); 
+            this._form2.value = {message: this._message3.replaceAll('%s', '<b>' + this._current + '</b>')};
+            this._send.shown = false;
+            Auth.Members.BeginConfirmationProcess(this._property, this._current).then((session) => {
+                this._startTimer();
+            }).catch(response => {
+                response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
+                if(response.result.validation && Object.keys(response.result.validation).length > 0) {
+                    Object.forEach(response.result.validation, (field, message, index) => {
+                        this._validator1.Invalidate(field, message);
+                        if(index === 0) {
+                            this._form1.FindField(field).Focus();
+                        }
+                    });
+                }
+                else {
+                    this._validator1.Invalidate('form', response.result.message);
+                    this._form1.Focus();
+                }
+                this._confirming = false;
+            });
+        } else {
+            Auth.Members.BeginIdentityUpdateProcess(this._form1.value.property, this._property).then((session) => {
+                this._form1.shown = false;
+                this._send.shown = false;
+                this._form2.shown = true;
+                this._form2.value = {message: this._message2.replaceAll('%s', '<b>' + this._form1.value.property + '</b>')};
+                this._startTimer();
+            }).catch(response => {
+                response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
+                if(response.result.validation && Object.keys(response.result.validation).length > 0) {
+                    Object.forEach(response.result.validation, (field, message, index) => {
+                        this._validator1.Invalidate(field, message);
+                        if(index === 0) {
+                            this._form1.FindField(field).Focus();
+                        }
+                    });
+                }
+                else {
+                    this._validator1.Invalidate('property', response.result.message);
+                    this._form1.Children('property').Focus();
+                }
+                this._form1.enabled = true;
+                this._send.enabled = true;
+                this._form2.shown = false;
+                this._stopTimer();
+            }); 
+        }
+
+    }
+
+    
+    __requestCodeAgainClicked(event, args) {
+        
+        if(!this._validator1.ValidateAll()) {
+            return;
+        }
+        
+        if(this._step === 'current') {
+
+        } else {
+
+            this._form1.enabled = false;
+            this.RequestCode();
+    
+        }
+
+        
     }
 
 }
