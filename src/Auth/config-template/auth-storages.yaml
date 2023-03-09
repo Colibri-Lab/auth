@@ -975,16 +975,15 @@ members:
       group: window
       desc:
         ru: Пол
-        en: Paul
+        en: Sex
       type: enum
       component: Colibri.UI.Forms.Select
       class: ValueField
-      default: male
       attrs: []
       params:
         required: false
         enabled: true
-        readonly: true
+        readonly: false
         list: true
         greed: ""
         viewer: Colibri.UI.SelectViewer

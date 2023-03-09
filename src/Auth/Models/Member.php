@@ -292,10 +292,10 @@ class Member extends BaseModelDataRow
         return false;
     }
 
-    public function UpdateProfile(string $firstName, string $lastName, string $patronymic, string $gender = null, DateTimeField|string|null $birthdate = null): bool
+    public function UpdateProfile(string $firstName, string $lastName, ?string $patronymic = null, ?string $gender = null, DateTimeField|string|null $birthdate = null): bool
     {
 
-        if ($gender && !in_array($gender, [self::GenderMale, self::GenderFemale])) {
+        if ($gender && !in_array($gender, [self::GenderMale, self::GenderFemale, null])) {
             return false;
         }
 

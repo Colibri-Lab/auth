@@ -51,7 +51,6 @@ App.Modules.Auth.Components.ProfileForm = class extends Colibri.UI.Component  {
 
             return;
         }
-
         Auth.Members.SaveProfile(this._form.value.last_name, this._form.value.first_name, this._form.value.patronymic, this._form.value.birthdate, this._form.value.gender).then((session) => {
             this.Hide();
         }).catch(response => {
@@ -73,6 +72,31 @@ App.Modules.Auth.Components.ProfileForm = class extends Colibri.UI.Component  {
             }
         });
 
+    }
+
+    /**
+     * Simple form, without estended fields
+     * @type {boolean}
+     */
+    get simple() {
+        return this._simple;
+    }
+    /**
+     * Simple form, without estended fields
+     * @type {boolean}
+     */
+    set simple(value) {
+        this._simple = value;
+        this._showSimple();
+    }
+    _showSimple() {
+        if(this._simple) {
+            const fields = Object.cloneRecursive(this._form.fields);
+            fields.gender.params.hidden = true;
+            fields.patronymic.params.hidden = true;
+            fields.birthdate.params.hidden = true;
+            this._form.fields = fields;
+        }
     }
 
 }
