@@ -217,6 +217,19 @@ class MemberController extends WebController
         $confirmation->verified = false;
         $confirmation->Save();
 
+        if(App::$isDev) {
+
+            return $this->Finish(
+                200,
+                'ok',
+                ['session' => $session->ExportForUserInterface(), 'code' => $confirmation->code],
+                'utf-8',
+                [],
+                [$session->GenerateCookie(true)]
+            );
+    
+        }
+
         $res = $confirmation->Send($value, $app->params->proxies);
         if (!$res) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-property-send-error}', 'code' => 400]);
