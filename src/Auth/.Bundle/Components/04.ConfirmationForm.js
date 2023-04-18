@@ -93,7 +93,6 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
     _setFields() {
         if(this._property === 'email') {
             const fields = this._form1.fields;
-            console.log(fields);
             fields.message.desc = this._message1;
             fields.property.desc = '#{auth-confirmationform-property-email-desc}';
             fields.property.params.validate = [

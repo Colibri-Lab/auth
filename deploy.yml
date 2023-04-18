@@ -21,7 +21,7 @@
     - name: Create blank project mode="{{ mode }}" 
       community.general.composer:
         command: create-project
-        arguments: colibri/blank-project:dev-master "{{ awd }}/{{ folder }}" --no-dev --stability=dev --remove-vcs --repository="{\"url\":\"https://gitlab.repeatme.online/api/v4/group/7/-/packages/composer/packages.json\",\"type\":\"composer\"}"
+        arguments: colibri/blank-project:dev-master "{{ awd }}/{{ folder }}" --no-dev --stability=dev --remove-vcs --repository="{\"url\":\"https://gitlab.colibrilab.pro/api/v4/group/7/-/packages/composer/packages.json\",\"type\":\"composer\"}"
         working_dir: "{{ awd }}/{{ folder }}"
         composer_executable: "/usr/bin/composer{{ composer | default('') }}" 
         executable: "/usr/bin/php{{ php | default('') }}" 
