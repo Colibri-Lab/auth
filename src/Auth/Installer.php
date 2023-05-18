@@ -126,9 +126,9 @@ class Installer
         $databases['access-points']['connections']['default_connection']['host'] = 'localhost';
         $databases['access-points']['connections']['default_connection']['user'] = 'auth';
         if ($mode === 'prod') {
-            $databases['access-points']['connections']['default_connection']['password'] = 'vault(vault.repeatme.online:ef97938ae449337d2644daf48c01e336:auth_db_password)';
+            $databases['access-points']['connections']['default_connection']['password'] = 'vault(vault.colibrilab.pro:ef97938ae449337d2644daf48c01e336:auth_db_password)';
         } elseif ($mode === 'test') {
-            $databases['access-points']['connections']['default_connection']['password'] = 'vault(vault.repeatme.online:ef97938ae449337d2644daf48c01e336:auth_db_password)';
+            $databases['access-points']['connections']['default_connection']['password'] = 'vault(vault.colibrilab.pro:ef97938ae449337d2644daf48c01e336:auth_db_password)';
         } else {
             $databases['access-points']['connections']['default_connection']['password'] = '123456';
         }
