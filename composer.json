@@ -1,6 +1,6 @@
 {
 
-    "name": "colibri/auth",
+    "name": "colibri/auth", 
     "description": "Auth System",
     "type": "project",
     "license": "proprietary",
