@@ -54,7 +54,7 @@ class Applications extends BaseModelDataTable
         $additionalParams['type'] = $calculateAffected ? DataAccessPoint::QueryTypeReader : DataAccessPoint::QueryTypeBigData;
         return self::LoadByQuery(
             $storage,
-            'select * from ' . $storage->name .
+            'select * from ' . $storage->table .
             ($filter ? ' where ' . $filter : '') .
             ($order ? ' order by ' . $order : ''),
             $additionalParams
@@ -122,7 +122,9 @@ class Applications extends BaseModelDataTable
      */
     static function DeleteAllByFilter(string $filter): bool
     {
-        return self::DeleteByFilter('applications', $filter);
+        $storage = Storages::Create()->Load('applications');
+        return self::DeleteByFilter($storage->table, $filter);
+
     }
 
     static function DataMigrate(? Logger $logger = null): bool

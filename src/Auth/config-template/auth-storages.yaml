@@ -772,8 +772,9 @@ sessions:
 members:
   desc:
     ru: Пользователи
-    en: Users
+    en: ""
     hy: ""
+    it: ""
   access-point: auth
   models:
     table: Models\Members
@@ -781,6 +782,12 @@ members:
   params:
     visible: true
     maybepublished: false
+    template_args:
+      rows: ""
+      columns: ""
+      orientation: ~
+      flow: ~
+      gap: ""
   module: Auth
   fields:
     token:

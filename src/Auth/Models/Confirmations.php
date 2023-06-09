@@ -53,7 +53,7 @@ class Confirmations extends BaseModelDataTable
         $additionalParams['type'] = $calculateAffected ? DataAccessPoint::QueryTypeReader : DataAccessPoint::QueryTypeBigData;
         return self::LoadByQuery(
             $storage,
-            'select * from ' . $storage->name .
+            'select * from ' . $storage->table .
             ($filter ? ' where ' . $filter : '') .
             ($order ? ' order by ' . $order : ''),
             $additionalParams
@@ -133,7 +133,9 @@ class Confirmations extends BaseModelDataTable
      */
     static function DeleteAllByFilter(string $filter): bool
     {
-        return self::DeleteByFilter('confirmations', $filter);
+        $storage = Storages::Create()->Load('confirmations');
+        return self::DeleteByFilter($storage->table, $filter);
+
     }
 
     static function DataMigrate(? Logger $logger = null): bool

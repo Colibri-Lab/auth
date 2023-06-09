@@ -54,7 +54,7 @@ class Members extends BaseModelDataTable
         $additionalParams['type'] = $calculateAffected ? DataAccessPoint::QueryTypeReader : DataAccessPoint::QueryTypeBigData;
         return self::LoadByQuery(
             $storage,
-            'select * from ' . $storage->name .
+            'select * from ' . $storage->table .
             ($filter ? ' where ' . $filter : '') .
             ($order ? ' order by ' . $order : ''),
             $additionalParams
@@ -182,7 +182,9 @@ class Members extends BaseModelDataTable
      */
     static function DeleteAllByFilter(string $filter): bool
     {
-        return self::DeleteByFilter('members', $filter);
+        $storage = Storages::Create()->Load('members');
+        return self::DeleteByFilter($storage->table, $filter);
+
     }
 
     static function DataMigrate(? Logger $logger = null): bool
