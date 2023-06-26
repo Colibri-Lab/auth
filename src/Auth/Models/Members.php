@@ -183,7 +183,7 @@ class Members extends BaseModelDataTable
     static function DeleteAllByFilter(string $filter): bool
     {
         $storage = Storages::Create()->Load('members');
-        return self::DeleteByFilter($storage->table, $filter);
+        return self::DeleteByFilter($storage, $filter);
 
     }
 

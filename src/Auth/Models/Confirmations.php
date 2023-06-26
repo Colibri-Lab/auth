@@ -134,7 +134,7 @@ class Confirmations extends BaseModelDataTable
     static function DeleteAllByFilter(string $filter): bool
     {
         $storage = Storages::Create()->Load('confirmations');
-        return self::DeleteByFilter($storage->table, $filter);
+        return self::DeleteByFilter($storage, $filter);
 
     }
 

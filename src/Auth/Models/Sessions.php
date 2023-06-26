@@ -186,7 +186,7 @@ class Sessions extends BaseModelDataTable
     static function DeleteAllByFilter(string $filter): bool
     {
         $storage = Storages::Create()->Load('sessions');
-        return self::DeleteByFilter($storage->table, $filter);
+        return self::DeleteByFilter($storage, $filter);
 
     }
 
