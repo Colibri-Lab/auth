@@ -174,7 +174,7 @@ class Installer
 
  
     /**
-     *
+     * @suppress PHP0413
      * @param PackageEvent $event
      * @return void
      */
@@ -214,16 +214,12 @@ class Installer
         self::_injectIntoModuleConfig($configDir.'modules.yaml');
         self::_injrectIntoDomains($configDir.'hosts.yaml', $mode);
         self::_injectDefaultSettings($configDir.'settings.yaml', $mode);
-        self::_injectCometSettings($configDir.'comet.yaml', $mode);
+        self::_injectCometSettings($configDir.'comet.yaml'); // , $mode
 
         if($mode !== 'local') {
             print_r('Обновляем доступы к базе данных'."\n");
             self::_updateDatabaseConnection($configDir, $mode);
         }
-
-        print_r('Установка скриптов'."\n");
-        self::_copyOrSymlink($mode, $path.'/src/Auth/bin/', './bin/', 'auth-migrate.sh', 'auth-migrate.sh');
-        self::_copyOrSymlink($mode, $path.'/src/Auth/bin/', './bin/', 'auth-models-generate.sh', 'auth-models-generate.sh');
 
         print_r('Установка завершена'."\n");
  

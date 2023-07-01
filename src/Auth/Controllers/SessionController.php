@@ -65,8 +65,8 @@ class SessionController extends WebController
 
         
         $payloadArray = $payload->ToArray();
-        $login = $payloadArray['login'] ?? $post->login;
-        $password = $payloadArray['password'] ?? $post->password;
+        $login = $payloadArray['login'] ?? $post->{'login'};
+        $password = $payloadArray['password'] ?? $post->{'password'};
 
         if(!$login || !$password) {
             return $this->Finish(400, 'Bad Request');

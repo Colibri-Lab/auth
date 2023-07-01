@@ -42,16 +42,16 @@ class MemberController extends WebController
         $session = Sessions::LoadFromRequest();
         
         $payloadArray = $payload->ToArray();
-        $email = $payloadArray['email'] ?? $post->email;
-        $phone = $payloadArray['phone'] ?? $post->phone;
-        $firstName = $payloadArray['firstName'] ?? $post->firstName;
-        $lastName = $payloadArray['lastName'] ?? $post->lastName;
-        $patronymic = $payloadArray['patronymic'] ?? $post->patronymic;
-        $gender = $payloadArray['gender'] ?? $post->gender;
-        $birthdate = $payloadArray['birthdate'] ?? $post->birthdate;
-        $password = $payloadArray['password'] ?? $post->password;
-        $confirmation = $payloadArray['confirmation'] ?? $post->confirmation;
-        $role = $payloadArray['role'] ?? $post->role;
+        $email = $payloadArray['email'] ?? $post->{'email'};
+        $phone = $payloadArray['phone'] ?? $post->{'phone'};
+        $firstName = $payloadArray['firstName'] ?? $post->{'firstName'};
+        $lastName = $payloadArray['lastName'] ?? $post->{'lastName'};
+        $patronymic = $payloadArray['patronymic'] ?? $post->{'patronymic'};
+        $gender = $payloadArray['gender'] ?? $post->{'gender'};
+        $birthdate = $payloadArray['birthdate'] ?? $post->{'birthdate'};
+        $password = $payloadArray['password'] ?? $post->{'password'};
+        $confirmation = $payloadArray['confirmation'] ?? $post->{'confirmation'};
+        $role = $payloadArray['role'] ?? $post->{'role'};
 
         if(!$email || !$phone || !$password || !$confirmation || !$firstName || !$lastName) {
             return $this->Finish(400, 'Bad Request');
@@ -125,7 +125,7 @@ class MemberController extends WebController
         }
         
         $payloadArray = $payload->ToArray();
-        $property = $payloadArray['property'] ?? $post->property;
+        $property = $payloadArray['property'] ?? $post->{'property'};
         if(!$property) {
             return $this->Finish(400, 'Bad request');
         }
@@ -170,8 +170,8 @@ class MemberController extends WebController
         }
         
         $payloadArray = $payload->ToArray();
-        $property = $payloadArray['property'] ?? $post->property;
-        $code = $payloadArray['code'] ?? $post->code;
+        $property = $payloadArray['property'] ?? $post->{'property'};
+        $code = $payloadArray['code'] ?? $post->{'code'};
         
         if(!$property || !$code) {
             return $this->Finish(400, 'Bad request');
