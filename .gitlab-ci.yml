@@ -43,7 +43,7 @@ production:
       -e project_dir="auth.com"
       -e folder="ecolo-place_dist"
       -e "modules=['colibri/security:dev-master','colibri/mainframe:dev-master','colibri/manage:dev-master','colibri/lang:dev-master','colibri/sites:dev-master','colibri/tools:dev-master','colibri/auth:$CI_COMMIT_REF_NAME']"
-      -e "bin_scripts=['migrate']"
+      -e "bin_scripts=['migrate','auth-bundle.sh <prod backend domain>','auth-bundle.sh <prod domain> bundle']"
       -e php=8.0
       -e composer=2
  

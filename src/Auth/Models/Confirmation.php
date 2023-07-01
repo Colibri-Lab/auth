@@ -21,6 +21,7 @@ use Colibri\IO\Request\Type;
  * @property int $id ID строки
  * @property DateTimeField $datecreated Дата создания строки
  * @property DateTimeField $datemodified Дата последнего обновления строки
+ * @property DateTimeField $datedeleted Дата удаления строки (если включно мягкое удаление)
  * @property ValueField|string|ValueField $property Свойство
  * @property string|null $value Значение свойства
  * @property string|null $member Пользователь
@@ -73,18 +74,16 @@ class Confirmation extends BaseModelDataRow
 	public function Send(?string $value = null, mixed $proxies = null): bool
 	{
 
+		$member = Members::LoadByToken($this->member);
+		if (!$member) {
+			return false;
+		}
+
 		$property = (string) $this->property;
 		if ($property === Confirmation::PropertyLogin) {
-
-			$member = Members::LoadByToken($this->member);
-			if (!$member) {
-				return false;
-			}
-
 			$confirmationData = $member->ExportForUserInterface();
 			$value = $value ?: $member->email;
 			$property = 'email';
-
 		} else {
 			$confirmationData = [
 				$property => $this->value

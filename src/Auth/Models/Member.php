@@ -3,7 +3,6 @@
 namespace App\Modules\Auth\Models;
 
 # region Uses:
-use Colibri\App;
 use Colibri\Data\Storages\Fields\DateField;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\ValueField;
@@ -25,6 +24,7 @@ use Colibri\Data\SqlClient\QueryInfo;
  * @property int $id ID строки
  * @property DateTimeField $datecreated Дата создания строки
  * @property DateTimeField $datemodified Дата последнего обновления строки
+ * @property DateTimeField $datedeleted Дата удаления строки (если включно мягкое удаление)
  * @property string $token Токен пользователя
  * @property string $email Эл. адрес пользователя
  * @property string $phone Телефон

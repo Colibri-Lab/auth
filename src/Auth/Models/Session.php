@@ -20,6 +20,7 @@ use Colibri\Utils\Cache\Mem;
  * @property int $id ID строки
  * @property DateTimeField $datecreated Дата создания строки
  * @property DateTimeField $datemodified Дата последнего обновления строки
+ * @property DateTimeField $datedeleted Дата удаления строки (если включно мягкое удаление)
  * @property string $member Токен пользователя
  * @property string $key Ключ сессии
  * @property string $token Токен сессии (JWT)

@@ -18,6 +18,7 @@ use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
  * @property int $id ID строки
  * @property DateTimeField $datecreated Дата создания строки
  * @property DateTimeField $datemodified Дата последнего обновления строки
+ * @property DateTimeField $datedeleted Дата удаления строки (если включно мягкое удаление)
  * @property string|null $key Ключ приложения  (наименование)
  * @property string|null $token Токен приложения (постоянный)
  * @property ParamsObjectField|null $params Параметры
