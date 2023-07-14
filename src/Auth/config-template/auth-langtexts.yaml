@@ -1,176 +1,105 @@
-auth-storages-apps-desc:
-  ru: Приложения
-auth-storages-apps-fields-key-desc:
-  ru: Ключ приложения  (наименование)
-auth-storages-apps-fields-token-desc:
-  ru: Токен приложения (постоянный)
-auth-storages-apps-fields-token-note:
-  ru: Токен приложения, генерируется автоматически
-auth-storages-apps-fields-params-desc:
-  ru: Параметры
-auth-storages-apps-fields-params-note:
-  ru: Параметры приложения
-auth-storages-apps-fields-params-livetime-desc:
-  ru: Время жизни
-auth-storages-apps-fields-params-livetime-note:
-  ru: Время жизни токена
-auth-storages-apps-fields-params-domains-desc:
-  ru: Домены
-auth-storages-apps-fields-params-domains-note:
-  ru: Паттерны доменов, с которых разрешен доступ к приложению
-auth-storages-apps-fields-params-domains-pattern-desc:
-  ru: Паттерн домена
-auth-storages-apps-fields-params-domains-pattern-note:
-  ru: Используйте *-у для указания любого количества символов и цифр и ? для
-    указания одного символа и цифры
-auth-storages-apps-fields-params-allowrenew-desc:
-  ru: Разрешить восстановление по короткому токену
-auth-storages-apps-fields-params-allowrenew-note:
-  ru: Дает возможность получить текущий сессионный токен по короткому постоянному
-    токену пользователя (НЕ БЕЗОПАСНО)
-auth-storages-sessions-desc:
-  ru: Сессии
-auth-storages-sessions-fields-member-desc:
-  ru: Токен пользователя
-auth-storages-sessions-fields-member-note:
-  ru: Постоянный токен пользователя
-auth-storages-sessions-fields-key-desc:
-  ru: Ключ сессии
-auth-storages-sessions-fields-key-note:
-  ru: Генерируется автоматически из токена сессии (нужен для поиска)
-auth-storages-sessions-fields-token-desc:
-  ru: Токен сессии (JWT)
-auth-storages-sessions-fields-token-note:
-  ru: JWT токен
-auth-storages-sessions-fields-expires-desc:
-  ru: Время жизни
-auth-storages-sessions-fields-expires-note:
-  ru: Количество секунд жизни токена, после того, как это время пройдет с момента
-    создания, сессия будет заморожена, и ее нужно будет восстановить
-auth-storages-sessions-fields-secret-desc:
-  ru: Секретный ключ
-auth-storages-sessions-fields-secret-note:
-  ru: Ключ для декодирования сессии
-auth-storages-apps-fields-params-roles-desc:
-  ru: Роли
-auth-storages-apps-fields-params-roles-note:
-  ru: Роли, которые могут исполнять пользователи. Реальная обработка ролей
-    происходит на клиенте
-auth-storages-apps-fields-params-roles-name-desc:
-  ru: Наименование роли
-auth-storages-apps-fields-params-roles-desc-desc:
-  ru: Описание роли
-auth-storages-apps-fields-params-defaultrole-desc:
-  ru: Роль по умолчанию
-auth-storages-apps-fields-params-defaultrole-note:
-  ru: Роль, которая выставляется по умолчанию
-auth-storages-members-desc:
-  ru: Пользователи
-auth-storages-members-fields-token-desc:
-  ru: Токен пользователя
-auth-storages-members-fields-token-note:
-  ru: Постоянный токен пользователя
-auth-storages-members-fields-email-desc:
-  ru: Эл. адрес пользователя
-auth-storages-members-fields-email-note:
-  ru: Электронный адрес указанный при регистрации
-auth-storages-members-fields-phone-desc:
-  ru: Телефон
-auth-storages-members-fields-phone-note:
-  ru: Телефон в формате «код страны»«код внутри страны»«номер» без знаков, только
-    цифры
-auth-storages-members-fields-password-desc:
-  ru: Пароль
-auth-storages-members-fields-password-note:
-  ru: Пароль, закодирован, нет обратной кодировки
-auth-storages-members-fields-firstName-desc:
-  ru: Имя
-auth-storages-members-fields-lastName-desc:
-  ru: Фамилия
-auth-storages-members-fields-patronymic-desc:
-  ru: Отчество
-auth-storages-members-fields-birthdate-desc:
-  ru: Дата рождения
-auth-storages-members-fields-gender-desc:
-  ru: Пол
-auth-storages-members-fields-gender-values-male:
-  ru: Мужской
-auth-storages-members-fields-gender-values-female:
-  ru: Женский
-auth-storages-applications-desc:
-  ru: Приложения
-auth-storages-applications-fields-key-desc:
-  ru: Ключ приложения  (наименование)
-auth-storages-applications-fields-token-desc:
-  ru: Токен приложения (постоянный)
-auth-storages-applications-fields-token-note:
-  ru: Токен приложения, генерируется автоматически
-auth-storages-applications-fields-params-desc:
-  ru: Параметры
-auth-storages-applications-fields-params-note:
-  ru: Параметры приложения
-auth-storages-applications-fields-params-livetime-desc:
-  ru: Время жизни
-auth-storages-applications-fields-params-livetime-note:
-  ru: Время жизни токена
-auth-storages-applications-fields-params-domains-desc:
-  ru: Домены
-auth-storages-applications-fields-params-domains-note:
-  ru: Паттерны доменов, с которых разрешен доступ к приложению
-auth-storages-applications-fields-params-domains-pattern-desc:
-  ru: Паттерн домена
-auth-storages-applications-fields-params-domains-pattern-note:
-  ru: Используйте *-у для указания любого количества символов и цифр и ? для
-    указания одного символа и цифры
-auth-storages-applications-fields-params-allowrenew-desc:
-  ru: Разрешить восстановление по короткому токену
-auth-storages-applications-fields-params-allowrenew-note:
-  ru: Дает возможность получить текущий сессионный токен по короткому постоянному
-    токену пользователя (НЕ БЕЗОПАСНО)
-auth-storages-applications-fields-params-roles-desc:
-  ru: Роли
-auth-storages-applications-fields-params-roles-note:
-  ru: Роли, которые могут исполнять пользователи. Реальная обработка ролей
-    происходит на клиенте
-auth-storages-applications-fields-params-roles-name-desc:
-  ru: Наименование роли
-auth-storages-applications-fields-params-roles-desc-desc:
-  ru: Описание роли
-auth-storages-applications-fields-params-defaultrole-desc:
-  ru: Роль по умолчанию
-auth-storages-applications-fields-params-defaultrole-note:
-  ru: Роль, которая выставляется по умолчанию
-auth-storages-confirmations-desc:
-  ru: Коды верификации
-auth-storages-confirmations-fields-property-desc:
-  ru: Свойство
-auth-storages-confirmations-fields-property-note:
-  ru: Свойство, которое нужно верифицировать
-auth-storages-confirmations-fields-property-values-email:
-  ru: Эл. адрес
-auth-storages-confirmations-fields-property-values-phone:
-  ru: Телефон
-auth-storages-confirmations-fields-code-desc:
-  ru: Код
-auth-storages-confirmations-fields-code-note:
-  ru: Сгенерированный код верификации
-auth-storages-confirmations-fields-member-desc:
-  ru: Пользователь
-auth-storages-confirmations-fields-member-note:
-  ru: Пользователь, который верифицирует
-auth-storages-confirmations-fields-verified-desc:
-  ru: Верифицирован
-auth-storages-confirmations-fields-verified-note:
-  ru: Отметка об успешной верификации
-auth-storages-members-fields-email_confirmed-desc:
-  ru: Почта подтверждена
-auth-storages-members-fields-phone_confirmed-desc:
-  ru: Телефон подтвержден
-auth-storages-members-fields-last_name-desc:
-  ru: Фамилия
-auth-storages-members-fields-first_name-desc:
-  ru: Имя
-auth-storages-members-fields-role-desc:
-  ru: Роль
-auth-storages-members-fields-role-note:
-  ru: Роль выбранная из списка ролей приложения
+auth-errors-member-property-two-factor-needed:
+  ru: Требуется 2-х факторная авторизация
+  en: 2-factor authentication required
+auth-errors-member-confirmation-code-error:
+  ru: Неверный код подтверждения
+  en: Invalid confirmation code
+auth-errors-member-property-tho-factor-error:
+  ru: Ошибка входа
+  en: Login error
+auth-errors-member-password-error:
+  ru: Неверный текущий пароль
+  en: Wrong current password
+auth-errors-member-account-not-exists:
+  ru: Учетная запись не найдена
+  en: Account not found
+auth-errors-member-with-email-exists:
+  ru: Пользователь с таким email-ом существует
+  en: A user with such an email exists
+auth-errors-member-with-phone-exists:
+  ru: Пользователь с таким телефоном существует
+  en: A user with such a phone exists
+auth-errors-member-property-send-error:
+  ru: Ошибка отправки сообщения
+  en: Error sending the message
+auth-errors-member-invalid-creds:
+  ru: Некорректные учетные данные
+  en: Invalid credentials
+auth-errors-member-password-not-confirmed:
+  ru: Пароль не подтвержден
+  en: Password is not confirmed
+auth-errors-member-role-not-exists:
+  ru: Не найдена роль в приложении
+  en: Application role not found
+auth-errors-member-password-strength-not-match:
+  ru: "Пароль должен быть не менее 40% сложности, у вас "
+  en: Password must be at least 40% complexity, you have %s
+auth-errors-member-not-logged:
+  ru: Пользователь не залогинен
+  en: User not logged in
+auth-errors-member-data-consistency:
+  ru: Ошибка консистентности данных
+  en: Data consistency error
+auth-errors-member-data-incorrect:
+  ru: Неверные данные в запросе
+  en: Invalid data in the request
+auth-errors-member-property-confirmed:
+  ru: Уже подтверждено
+  en: Already confirmed
+auth-errors-member-logged:
+  ru: Пользователь залогинен
+  en: User is logged in
+auth-errors-member-field-required:
+  ru: Это поле обязательно для заполнения
+  en: This field is required
+auth-errors-member-not-found:
+  ru: Пользователь не найден
+  en: User is not found
+auth-errors-member-with-email-not-exists:
+  ru: Пользователь с таким email-ом не существует
+  en: User with this email does not exist
+auth-errors-phone-incorrect:
+  ru: Неверный номер телефона
+  en: Wrong phone number
+auth-errors-member-with-phone-not-exists:
+  ru: Пользователь с таким телефоном не существует
+  en: User with this phone does not exist
+auth-errors-member-confirmation-error:
+  ru: Неизвестная ошибка
+  en: Unknown error
+auth-errors-member-reset-code-error:
+  ru: Неверный код подтверждения
+  en: Invalid confirmation code
+auth-errors-member-reset-error:
+  ru: Невозможно сохранить этот пароль
+  en: This password cannot be saved
+auth-errors-member-update-error:
+  ru: Невозможно обновить свойство
+  en: Unable to update property
+auth-errors-member-error-profile:
+  ru: Не смогли сохранить профиль
+  en: Failed to save profile
+auth-errors-member-error-password:
+  ru: Не смогли обновить пароль
+  en: Failed to update password
+auth-errors-member-role-incorrect:
+  ru: Невозможно изменить роль
+  en: Can't change role
+auth-errors-session-allreadylogged:
+  ru: Пользователь уже залогинен
+  en: The user is already logged in
+auth-errors-session-data-incorrect:
+  ru: Неверные данные в запросе
+  en: Invalid data in the request
+auth-errors-session-notlogged:
+  ru: Пользователь не залогинен
+  en: User not logged in
+auth-bool-data-true:
+  ru: Да
+  en: Yes
+auth-bool-data-false:
+  ru: Нет
+  en: No
+auth-permissions:
+  ru: Доступ к модулю Auth
+  en: Access to Auth module

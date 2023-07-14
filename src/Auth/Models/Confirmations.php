@@ -11,7 +11,7 @@ use Colibri\Data\Storages\Models\DataTable as BaseModelDataTable;
 use App\Modules\Auth\Models\Confirmation;
 
 /**
- * Таблица, представление данных в хранилище #{auth-storages-confirmations-desc;Коды верификации}
+ * Таблица, представление данных в хранилище Коды верификации
  * @author <author name and email>
  * @package App\Modules\Auth\Models
  * 
@@ -20,7 +20,8 @@ use App\Modules\Auth\Models\Confirmation;
  * @method Confirmation _read()
  * 
  */
-class Confirmations extends BaseModelDataTable {
+class Confirmations extends BaseModelDataTable
+{
 
     /**
      * Конструктор
@@ -35,7 +36,7 @@ class Confirmations extends BaseModelDataTable {
         parent::__construct($point, $reader, $returnAs, $storage);
     }
 
-    
+
     /**
      * Создание модели по названию хранилища
      * @param int $page страница
@@ -45,16 +46,16 @@ class Confirmations extends BaseModelDataTable {
      * @param array $params параметры к запросу
      * @return Confirmations
      */
-    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true) : ?Confirmations
+    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true): ? Confirmations
     {
         $storage = Storages::Create()->Load('confirmations');
         $additionalParams = ['page' => $page, 'pagesize' => $pagesize, 'params' => $params];
         $additionalParams['type'] = $calculateAffected ? DataAccessPoint::QueryTypeReader : DataAccessPoint::QueryTypeBigData;
         return self::LoadByQuery(
             $storage,
-            'select * from ' . $storage->name . 
-                ($filter ? ' where ' . $filter : '') . 
-                ($order ? ' order by ' . $order : ''), 
+            'select * from ' . $storage->table .
+            ($filter ? ' where ' . $filter : '') .
+            ($order ? ' order by ' . $order : ''),
             $additionalParams
         );
     }
@@ -65,7 +66,7 @@ class Confirmations extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Confirmations 
      */
-    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : ?Confirmations
+    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false): ? Confirmations
     {
         return self::LoadByFilter($page, $pagesize, null, null, [], $calculateAffected);
     }
@@ -75,7 +76,7 @@ class Confirmations extends BaseModelDataTable {
      * @param int $id ID строки
      * @return Confirmation|null
      */
-    static function LoadById(int $id) : Confirmation|null 
+    static function LoadById(int $id): Confirmation|null
     {
         $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', null, ['id' => $id], false);
         return $table && $table->Count() > 0 ? $table->First() : null;
@@ -87,9 +88,21 @@ class Confirmations extends BaseModelDataTable {
      * @param string $member пользователь
      * @return Confirmation|null
      */
-    static function LoadByMember(string $property, string $member) : Confirmation|null 
+    static function LoadByMember(string $property, string $member): Confirmation|null
     {
         $table = self::LoadByFilter(1, 1, '{property}=[[property:string]] and {member}=[[member:string]]', null, ['property' => $property, 'member' => $member], false);
+        return $table && $table->Count() > 0 ? $table->First() : null;
+    }
+
+    /**
+     * Возвращает модель по значению
+     * @param string $property что подтверждаем
+     * @param string $member пользователь
+     * @return Confirmation|null
+     */
+    static function LoadByValue(string $property, string $value): Confirmation|null
+    {
+        $table = self::LoadByFilter(1, 1, '{property}=[[property:string]] and {value}=[[value:string]]', null, ['property' => $property, 'value' => $value], false);
         return $table && $table->Count() > 0 ? $table->First() : null;
     }
 
@@ -97,7 +110,7 @@ class Confirmations extends BaseModelDataTable {
      * Создание модели по названию хранилища
      * @return Confirmation
      */
-    static function LoadEmpty() : Confirmation
+    static function LoadEmpty(): Confirmation
     {
         $table = self::LoadByFilter(-1, 20, 'false', null, [], false);
         return $table->CreateEmptyRow();
@@ -110,7 +123,7 @@ class Confirmations extends BaseModelDataTable {
      */
     static function DeleteAllByIds(array $ids): bool
     {
-        return self::DeleteAllByFilter('{id} in ('.implode(',', $ids).')');
+        return self::DeleteAllByFilter('{id} in (' . implode(',', $ids) . ')');
     }
 
     /**
@@ -120,10 +133,12 @@ class Confirmations extends BaseModelDataTable {
      */
     static function DeleteAllByFilter(string $filter): bool
     {
-        return self::DeleteByFilter('confirmations', $filter);
+        $storage = Storages::Create()->Load('confirmations');
+        return self::DeleteByFilter($storage, $filter);
+
     }
 
-    static function DataMigrate(?Logger $logger = null): bool
+    static function DataMigrate(? Logger $logger = null): bool
     {
         // миграция данных
         return true;

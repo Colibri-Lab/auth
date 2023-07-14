@@ -1,0 +1,40 @@
+auth-profileform-last_name-desc:
+  ru: Фамилия
+  en: Surname
+auth-profileform-last_name-validation1:
+  ru: Пожалуйста, введите вашу фамилию
+  en: Please enter your surname
+auth-profileform-first_name-desc:
+  ru: Имя
+  en: First name
+auth-profileform-first_name-placeholder:
+  ru: "Например: Иван"
+  en: "For example: John"
+auth-profileform-first_name-validation1:
+  ru: Пожалуйста, введите ваше имя
+  en: Please enter your name
+auth-profileform-partonymic-desc:
+  ru: Отчество
+  en: Patronymic
+auth-profileform-birtdate-desc:
+  ru: Дата рождения
+  en: Date of birth
+auth-profileform-birthdate-validation1:
+  ru: Вам слишком мало лет, нашим проектом могут пользоваться только
+    совершеннолетние
+  en: You are too young, only adults can use our project.
+auth-profileform-gender-desc:
+  ru: Пол
+  en: Gender
+auth-profileform-gender-values-male:
+  ru: Господин
+  en: Mr.
+auth-profileform-gender-values-female:
+  ru: Госпожа
+  en: Mrs.
+auth-profile-button:
+  ru: Сохранить
+  en: Save
+auth-profileform-last_name-placeholder:
+  ru: "Например: Иванов"
+  en: "For example: Doe"

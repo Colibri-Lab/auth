@@ -1,0 +1,160 @@
+auth-logincontainer-register-title:
+  ru: Регистрация
+  en: Registration
+auth-registerform-fio-desc:
+  ru: Личные данные
+  en: Personal data
+auth-registerform-fio-last_name-placeholder:
+  ru: Фамилия
+  en: Surname
+auth-registerform-fio-validation1:
+  ru: Пожалуйста, введите фамилию
+  en: Please enter your surname
+auth-registerform-fio-first_name-placeholder:
+  ru: Имя
+  en: First name
+auth-registerform-fio-validation2:
+  ru: Пожалуйста, введите ваше имя
+  en: Please enter your first name
+auth-registerform-fio-patronymic-placeholder:
+  ru: Отчество
+  en: Patronymic
+auth-registerform-birtdate-desc:
+  ru: Дата рождения
+  en: Date of birth
+auth-registerform-birthdate-validation1:
+  ru: Пожалуйста, введите дату рождения
+  en: Please enter the date of birth
+auth-registerform-birthdate-validation2:
+  ru: Вам слишком мало лет, нашим проектом могут пользоваться только
+    совершеннолетние
+  en: You are too young, only adults can use our project
+auth-registerform-gender-desc:
+  ru: Пол
+  en: Gender
+auth-registerform-gender-validation1:
+  ru: Пожалуйста, выберите пол
+  en: Please select a gender
+auth-registerform-gender-values-male:
+  ru: Мужской
+  en: Male
+auth-registerform-gender-values-female:
+  ru: Женский
+  en: Female
+auth-registerform-label-desc:
+  ru: Учетные данные
+  en: Credentials
+auth-registerform-email-desc:
+  ru: Электронная почта
+  en: Email
+auth-registerform-email-validation1:
+  ru: Пожалуйста, введите эл. адрес
+  en: Please enter the email
+auth-registerform-email-validation2:
+  ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
+  en: You are entering an invalid email address. Please try again!
+auth-registerform-phone-desc:
+  ru: Телефон
+  en: Phone number
+auth-registerform-phone-validation1:
+  ru: Пожалуйста, введите телефон
+  en: Please enter the phone number
+auth-registerform-pass-desc:
+  ru: Пароль
+  en: Password
+auth-registerform-password-placeholder:
+  ru: Придумайте пароль
+  en: Pick a password
+auth-registerform-password-desc:
+  ru: Пароль
+  en: Password
+auth-registerform-password-tip-text:
+  ru: Придумайте пароль, который сложно подобрать
+  en: Create a password that is hard to guess
+auth-registerform-password-tip-success:
+  ru: Пароль соотвествует требованиям
+  en: Password meets requirements
+auth-registerform-password-tip-error:
+  ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+auth-registerform-password-tip-generate:
+  ru: Сгенерировать пароль
+  en: Generate password
+auth-registerform-password-tip-copied:
+  ru: Пароль скопирован в буфер обмена
+  en: Password copied to clipboard
+auth-registerform-password-tip-additional-1:
+  ru: цифры
+  en: digits
+auth-registerform-password-tip-additional-2:
+  ru: символы (!, $, ^ и др.)
+  en: symbols (!, $, ^, etc.)
+auth-registerform-password-tip-additional-3:
+  ru: заглавные латинские буквы
+  en: capital latin letters
+auth-registerform-password-tip-additional-4:
+  ru: строчные латинские буквы
+  en: lowercase latin letters
+auth-registerform-password-validation1:
+  ru: Пожалуйста, введите пароль
+  en: Please enter a password
+auth-registerform-password-validation3:
+  ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+auth-registerform-confirmation-placeholder:
+  ru: Повторите пароль
+  en: Confirm password
+auth-registerform-confirmation-desc:
+  ru: Повторите пароль
+  en: Confirm password
+auth-registerform-password-validation2:
+  ru: Пожалуйста, повторите пароль
+  en: Please repeat password
+auth-registerform-confirmation-validation4:
+  ru: Пароли должны совпадать
+  en: Passwords must match
+auth-registerform-aggreenment-placeholder:
+  ru: Я соглашаюсь с условиями и даю согласие на обработку персональных данных
+  en: I agree to the terms and consent to the processing of personal data
+auth-registerform-aggreenment-validation1:
+  ru: Вам необходимо подтвердить соглашение на обработку персональных данных и
+    согласие на условия
+  en: You need to confirm the agreement on the processing of personal data and
+    consent to the terms
+auth-register-button:
+  ru: Регистрация
+  en: Registration
+auth-login-register-text:
+  ru: Уже есть аккаунт?
+  en: Already have an account?
+auth-login-button:
+  ru: Вход
+  en: Login
+auth-registerform-password-tip-text2:
+  ru: "Пароль должен содержать: "
+  en: "Password must contains:"
+auth-registerform-password-tip-digits:
+  ru: более %s символов
+  en: at least %s symbols
+auth-logincontainer-confirmation-phone-title: {}
+auth-logincontainer-confirmation-phone-message:
+  ru: Подтвердите номер телефона, чтобы мы могли оперативно связаться с вами и
+    уточнить детали по заявке
+  en: Confirm your phone number so that we can quickly contact you and clarify the
+    details of the application
+auth-logincontainer-confirmatiopn: {}
+auth-logincontainer-confirmation-phone-message2:
+  ru: "Мы отправили код SMS-сообщением на номер: %s"
+  en: "We sent the code via SMS to the number: %s"
+auth-logincontainer-confirmation-email-message:
+  ru: Подтвердите Email. Мы будем присылать только важные письма. Например, об
+    изменении статуса вашей заявки или напоминания заплатить по кредиту
+  en: Confirm Email. We will only send important emails. For example, a change in
+    the status of your application or a reminder to pay a loan
+auth-logincontainer-confirmation-email-message2:
+  ru: "Мы отправили код подтверждения на email: %s"
+  en: "We have sent a confirmation code to email: %s"
+auth-registerform-button: {}
+auth-registerform-complete-button:
+  ru: Зарегистрироваться
+  en: Register

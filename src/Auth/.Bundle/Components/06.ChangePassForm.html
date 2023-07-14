@@ -1,0 +1,86 @@
+<div ComponentName="App.Modules.Auth.Components.ChangePassForm">
+
+    <Pane name="form-container" shown="true">    
+        <Forms.Form name="form" shown="true">
+            <fields>
+                {
+                    original: {
+                        component: 'Password',
+                        desc: '#{auth-changepassform-original-desc}',
+                        params: {
+                            required: true,
+                            readonly: false,
+                        },
+                        attrs: {
+                            width: 480
+                        }
+                    },
+                    password: {
+                        component: 'Password',
+                        desc: '#{auth-changepassform-password-desc}',
+                        params: {
+                            required: true,
+                            readonly: false,
+                            eyeicon: true,
+                            tip: {
+                                text: ['#{auth-changepassform-password-tip-text}', '#{auth-changepassform-password-tip-text2}'],
+                                success: '#{auth-changepassform-password-tip-success}',
+                                error: '#{auth-changepassform-password-tip-error}',
+                                generate: '#{auth-changepassform-password-tip-generate}',
+                                copied: '#{auth-changepassform-password-tip-copied}',
+                                digits: '#{auth-changepassform-password-tip-digits}',
+                                additional: [
+                                    '#{auth-changepassform-password-tip-additional-1}', 
+                                    '#{auth-changepassform-password-tip-additional-2}',
+                                    '#{auth-changepassform-password-tip-additional-3}', 
+                                    '#{auth-changepassform-password-tip-additional-4}'
+                                ],
+                                validate: [
+                                    {
+                                        message: '#{auth-changepassform-password-validation1}',
+                                        method: '(field, validator) => !!field.value'
+                                    },
+                                    {
+                                        message: '#{auth-changepassform-password-validation2}',
+                                        method: '(field, validator) => !!field.value'
+                                    },
+                                    {
+                                        message: '#{auth-changepassform-password-validation3}',
+                                        method: '(field, validator) => validator.form.FindField("password").CalcPasswordStrength() > 60'
+                                    },
+                                    {
+                                        message: '#{auth-changepassform-confirmation-validation4}',
+                                        method: '(field, validator) => field.value == validator.form.value.confirmation'
+                                    }
+                                ]
+                            },
+                            requirements: {
+                                digits: 8,
+                                strength: 60
+                            }
+                        },
+                        attrs: {
+                            width: 480
+                        }
+                    },
+                    confirmation: {
+                        component: 'Password',
+                        desc: '#{auth-changepassform-confirmation-desc}',
+                        params: {
+                            required: true,
+                            readonly: false,
+                            eyeicon: true,
+                        },
+                        attrs: {
+                            width: 480
+                        }
+                    } 
+                }
+            </fields>
+        </Forms.Form>
+    </Pane>
+    <FlexBox name="button-container" shown="true" className="buttons-pane">            
+        <SuccessButton name="save" shown="true" enabled="false" tabIndex="true">#{auth-changepass-button}</SuccessButton>
+    </FlexBox>
+
+</div>

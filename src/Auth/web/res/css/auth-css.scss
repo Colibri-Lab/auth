@@ -1,0 +1,101 @@
+.app-ui-component.app-auth-form-component {
+
+    background: #ffffff;
+    @if variable-exists($name: auth-form-background-color) {
+        background: $auth-form-background-color;
+    }    
+
+    border-radius: 20px;
+    @if variable-exists($name: auth-form-radius) {
+        border-radius: $auth-form-radius;
+    }
+
+    @if variable-exists($name: auth-form-padding) {
+        padding: $auth-form-padding;
+    }
+
+    box-shadow: 0px 0px 20px rgba(196, 196, 196, 0.3);
+    @if variable-exists($name: auth-form-box-shadow) {
+        box-shadow: $auth-form-box-shadow;
+    }
+
+    .app-ui-component.app-auth-form-component  {
+        padding: 0px;
+        box-shadow: none;
+    }
+
+    &.app-component-shown {
+        display: flex;
+    }
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    [data-object-name="timer-container"], [data-object-name="links-container"], [data-object-name="button-container2"] {
+        margin-top: 16px;
+    }
+
+    [data-object-name="register"], [data-object-name="login"], [data-object-name="reset"] {
+        font-weight: bold;
+    }
+
+    [data-object-name="form-container"] {
+        width: 100%;
+        .app-form-component { 
+            width: 100%;
+        }
+        .app-auth-form-component-title {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 32px;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            color:  #0B1F35;
+            margin-bottom: 36px;
+            text-align: center;
+            &.app-component-shown {
+                display: block;
+            }
+        } 
+    }
+
+    .buttons-pane {
+        .app-component-textspan {
+            color: #707070;
+        }
+    }
+
+
+}
+
+.app-component-window-content {
+    .app-ui-component.app-auth-form-component {
+        border: 0px;
+        box-shadow: none;
+    }
+}
+
+.password-progress {
+    width: 100%;
+    background: #F3F2F2;
+    border-radius: 2px;
+    height: 4px;
+    span {
+        display: block;
+        height: 4px;
+        border-radius: 2px;
+        background: #FD3434;
+        min-width: 1%;
+        max-width: 100%;
+    }
+    &.weak span {
+        background: #ff7b00;
+    }
+    &.good span {
+        background: #49c7a8;
+    }
+    &.strong span {
+        background: #2b792b;
+    }
+}

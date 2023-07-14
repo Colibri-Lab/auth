@@ -1,0 +1,57 @@
+auth-changepassform-original-desc:
+  ru: Текущий пароль
+  en: Current password
+auth-changepassform-password-desc:
+  ru: Новый пароль
+  en: New password
+auth-changepassform-password-tip-text:
+  ru: Придумайте пароль, который сложно подобрать
+  en: Create a password that is hard to guess
+auth-changepassform-password-tip-success:
+  ru: Пароль соответствует требованиям
+  en: Password meets requirements
+auth-changepassform-password-tip-error:
+  ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+auth-changepassform-password-tip-generate:
+  ru: Сгенерировать пароль
+  en: Generate password
+auth-changepassform-password-tip-copied:
+  ru: ","
+  en: Password copied to clipboard
+auth-changepassform-password-tip-additional-1:
+  ru: цифры
+  en: digits
+auth-changepassform-password-tip-additional-2:
+  ru: символы (!, $, ^ и др.)
+  en: symbols (!, $, ^, etc.)
+auth-changepassform-password-tip-additional-3:
+  ru: заглавные латинские буквы
+  en: capital latin letters
+auth-changepassform-password-tip-additional-4:
+  ru: строчные латинские буквы
+  en: lowercase latin letters
+auth-changepassform-password-validation1:
+  ru: Пожалуйста, введите пароль
+  en: Please enter a password
+auth-changepassform-password-validation2:
+  ru: Пожалуйста, повторите пароль
+  en: Please repeat password
+auth-changepassform-password-validation3:
+  ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+auth-changepassform-confirmation-validation4:
+  ru: Пароли должны совпадать
+  en: Passwords must match
+auth-changepassform-confirmation-desc:
+  ru: Повторите новый пароль
+  en: Repeat new password
+auth-changepass-button:
+  ru: Обновить пароль
+  en: Update password
+auth-changepassform-password-tip-text2:
+  ru: "Пароль должен содержать:"
+  en: "Password must contains:"
+auth-changepassform-password-tip-digits:
+  ru: более %s символов
+  en: at least %s symbols

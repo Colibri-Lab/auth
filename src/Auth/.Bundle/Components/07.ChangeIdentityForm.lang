@@ -1,0 +1,18 @@
+auth-changeform-property-validation1:
+  ru: Это поле обязательно для заполнения
+  en: This field is required
+auth-changeidentity-button:
+  ru: Отправить
+  en: Send
+auth-changeform-code-desc:
+  ru: Введите код восстановления
+  en: Enter recovery code
+auth-changeform-code-validation1:
+  ru: Пожалуйста, введите эл. адрес
+  en: Please enter an email address
+auth-changeidentity-timer-value:
+  ru: Вы сможете снова запросить код через %s секунд.
+  en: You will be able to request the code again in %s seconds.
+auth-changeidentity-requestagain:
+  ru: Получить новый код
+  en: Get a new code

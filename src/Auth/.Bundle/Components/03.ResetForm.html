@@ -1,0 +1,12 @@
+<div ComponentName="App.Modules.Auth.Components.ResetForm">
+
+    <Pane name="form-container" shown="true">    
+        <TextSpan shown="true" name="form-reset-title" className="app-auth-form-component-title">#{auth-logincontainer-reset-title}</TextSpan>
+        <Forms.Form name="form" shown="true" shuffleFieldNames="true" />
+    </Pane>
+    <FlexBox name="button-container" shown="true" className="buttons-pane">            
+        <SimpleButton name="login" shown="true" enabled="true"  tabIndex="true">#{auth-back-button}</SimpleButton>
+        <SuccessButton name="reset" shown="true" enabled="false" tabIndex="true">#{auth-reset-button}</SuccessButton>
+    </FlexBox>
+
+</div>

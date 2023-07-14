@@ -3,7 +3,7 @@
 
 
 /**
- * Search
+ * Authorization module package
  *
  * @author Author Name <author.name@action-media.ru>
  * @copyright 2019 Colibri
@@ -16,23 +16,18 @@ use Colibri\Modules\Module as BaseModule;
 use Colibri\Utils\Menu\Item;
 use Colibri\Events\EventsContainer;
 use Colibri\App;
-use App\Modules\Auth\Models\LogTable;
-use App\Modules\Auth\Models\Customer;
-use App\Modules\Auth\Models\Customers;
 use Colibri\Utils\Logs\Logger;
-use App\Modules\Auth\Models\Histories;
-use App\Modules\Auth\Models\Lotteries;
-use App\Modules\Auth\Models\Sources;
 use App\Modules\Auth\Models\Applications;
 use App\Modules\Auth\Models\Application;
-use Colibri\Utils\Debug;
 use App\Modules\Auth\Controllers\SessionController;
 use App\Modules\Auth\Controllers\MemberController;
 use App\Modules\Auth\Controllers\AppController;
+use App\Modules\Auth\Models\Sessions;
+use App\Modules\Auth\Models\Session;
 
 
 /**
- * Описание модуля
+ * Authorization module
  * @package App\Modules\Auth
  *
  * @property-read Application $application
@@ -46,9 +41,11 @@ class Module extends BaseModule
      *
      * @var Module
      */
-    public static ?Module $instance = null;
+    public static ? Module $instance = null;
 
-    private ?Application $_app;
+    private static ? Session $session = null;
+
+    private ? Application $_app = null;
 
     const NeedAuthorization = [
         SessionController::class,
@@ -57,18 +54,25 @@ class Module extends BaseModule
     ];
 
     /**
-     * Инициализация модуля
+     * Initializes a module
      * @return void
      */
     public function InitializeModule(): void
     {
         self::$instance = $this;
 
-        App::$instance->HandleEvent(EventsContainer::RpcGotRequest, function($event, $args) {
-            if(isset($args->class) && in_array($args->class, self::NeedAuthorization)) {
-                if(!Module::$instance->LoadApplication()) {
+
+        App::$instance->HandleEvent(EventsContainer::RpcGotRequest, function ($event, $args) {
+            if (isset($args->class) && in_array(trim($args->class, '\\'), self::NeedAuthorization)) {
+                if (App::$request->server->{'request_method'} === 'OPTIONS') {
+                    App::$response->Origin();
+                    App::$response->Close(200, 'ok');
+                    exit;
+                }
+
+                if (!Module::$instance->LoadApplication()) {
                     $args->cancel = true;
-                    $args->result = (object)[
+                    $args->result = (object) [
                         'code' => 403,
                         'message' => 'Unauthorized',
                         'result' => []
@@ -97,55 +101,80 @@ class Module extends BaseModule
     }
 
     /**
-     * Вызывается для получения Меню болванкой
+     * Gets a current session
+     * @return Session
+     */
+    public function GetSession(): Session
+    {
+        if (!self::$session) {
+            self::$session = Sessions::LoadFromRequest();
+        }
+        return self::$session;
+    }
+
+    /**
+     * Returns a topmost menu for backend
      */
     public function GetTopmostMenu(bool $hideExecuteCommand = true): Item|array
     {
         return [
-           
         ];
 
     }
 
+    /**
+     * Returns a permissions for module
+     * @return array
+     */
     public function GetPermissions(): array
     {
         $permissions = parent::GetPermissions();
-        $permissions['auth'] = 'Доступ к модулю Auth';
+        $permissions['auth'] = '#{auth-permissions}';
         return $permissions;
     }
 
-    public function Backup(Logger $logger, string $path) {
+    /**
+     * Backups a module data
+     * @param Logger $logger
+     * @param string $path
+     * @return void
+     */
+    public function Backup(Logger $logger, string $path)
+    {
         // Do nothing   
-        
+
         $modulePath = $path . 'modules/Auth/';
 
         // $logger->debug('Exporting Sources...');
         // $table = Sources::LoadAll();
         // $table->ExportJson($modulePath . 'sources.json');
 
-
     }
-    
+
 
     /**
-     * Загрижает текущее приложение из запроса
+     * Loads an application from request
      */
     public function LoadApplication(): bool
     {
         $this->_app = Applications::LoadFromRequest();
-        if(!$this->_app) {
+        if (!$this->_app) {
             return false;
         }
         return true;
     }
 
+    /**
+     * Provides an access to properties
+     * @param string $prop
+     * @return mixed
+     */
     public function __get(string $prop): mixed
     {
-        if(strtolower($prop) == 'application') {
+        if (strtolower($prop) == 'application') {
             return $this->_app;
-        }
-        else {
-            return parent::__get($prop); 
+        } else {
+            return parent::__get($prop);
         }
     }
 
