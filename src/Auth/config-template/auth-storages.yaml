@@ -991,6 +991,7 @@ members:
         required: false
         enabled: true
         readonly: false
+        searchable: false
         list: true
         greed: ""
         viewer: Colibri.UI.SelectViewer
@@ -1189,7 +1190,8 @@ confirmations:
       params:
         required: true
         enabled: true
-        readonly: true
+        readonly: false
+        searchable: false
         list: true
         multiple: false
         greed: ""
