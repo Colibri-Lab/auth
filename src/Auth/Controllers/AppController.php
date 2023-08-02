@@ -69,45 +69,36 @@ class AppController extends WebController
         $code = 200;
         $result = [];
         $message = 'Result message';
-        try {
-            
-            $app = Module::$instance->application;
-            if(!$app->params->allowed_ip) {
-                throw new AppException('Not allowed', 403);
-            }
-
-            if($app->params->allowed_ip !== App::$request->remoteip) {
-                throw new AppException('Not allowed', 403);
-            }
-
-            $payloadArray = $payload->ToArray();
-            $token = $payloadArray['token'] ?? $post->{'token'};
-            if(!$token) {
-                throw new AppException('Bad request', 400);
-            }
-
-            $member = Members::LoadByToken($token);
-            if(!$member) {
-                throw new AppException('Member not found', 404);
-            }
-
-            $sessions = Sessions::LoadByMember($member);
-            if(!$sessions || $sessions->Count() == 0) {
-                throw new AppException('Session not found', 404);
-            }
-
-            /** @var \App\Modules\Auth\Models\Session */
-            $session = $sessions->First();
-            $result = $session->ExportForUserInterface();
-
-        } catch (\Throwable $e) {
-            // если что то не так то выводим ошибку
-            $message = $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine();
-            $code = $e->getCode();
-            App::$log->debug($message);
+        
+        $app = Module::$instance->application;
+        if(!$app->params->allowed_ip) {
+            throw new AppException('Not allowed', 403);
         }
 
-        // финишируем контроллер
+        if($app->params->allowed_ip !== App::$request->remoteip) {
+            throw new AppException('Not allowed', 403);
+        }
+
+        $payloadArray = $payload->ToArray();
+        $token = $payloadArray['token'] ?? $post->{'token'};
+        if(!$token) {
+            throw new AppException('Bad request', 400);
+        }
+
+        $member = Members::LoadByToken($token);
+        if(!$member) {
+            throw new AppException('Member not found', 404);
+        }
+
+        $sessions = Sessions::LoadByMember($member);
+        if(!$sessions || $sessions->Count() == 0) {
+            throw new AppException('Session not found', 404);
+        }
+
+        /** @var \App\Modules\Auth\Models\Session */
+        $session = $sessions->First();
+        $result = $session->ExportForUserInterface();
+
         return $this->Finish(
             $code,
             $message,
