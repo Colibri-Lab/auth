@@ -33,6 +33,12 @@ App.Modules.Auth = class extends Colibri.Modules.Module {
 
         this._ready = true;
         
+        this.AddHandler('CallError', (event, args) => {
+            if(args.status === 403) {
+                location.reload();
+            }
+        });
+
     }
 
     Render() {
