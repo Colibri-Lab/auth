@@ -16,7 +16,7 @@ App.Modules.Auth = class extends Colibri.Modules.Module {
         super.InitializeModule();
         console.log('Initializing module Auth');
         
-        this._store = App.Store.AddChild('app.auth', {});
+        this._store = App.Store.AddChild('app.auth', {}, this);
         this._store.AddPathLoader('auth.settings', () => this.Settings());
 
 
@@ -33,6 +33,11 @@ App.Modules.Auth = class extends Colibri.Modules.Module {
 
         this._ready = true;
         
+        this._store.AddHandler('StoreLoaderCrushed', (event, args) => {
+            if(args.status === 403) {
+                location.reload();
+            }
+        });
         this.AddHandler('CallError', (event, args) => {
             if(args.status === 403) {
                 location.reload();
