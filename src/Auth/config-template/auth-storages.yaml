@@ -183,7 +183,7 @@ applications:
               токену пользователя (НЕ БЕЗОПАСНО)
             en: Makes it possible to get the current session token using a short permanent
               user token (NOT SECURE)
-          type: boolean
+          type: bool
           component: Colibri.UI.Forms.Checkbox
           class: bool
           default: "0"
@@ -297,7 +297,7 @@ applications:
           desc:
             ru: Включить двухфакторную аутентификацию
             en: Enable two-factor authentication
-          type: boolean
+          type: bool
           component: Colibri.UI.Forms.Checkbox
           class: bool
           default: "true"
@@ -1041,7 +1041,7 @@ members:
       desc:
         ru: Почта подтверждена
         en: Email confirmed
-      type: boolean
+      type: bool
       component: Colibri.UI.Forms.Checkbox
       class: bool
       default: "0"
@@ -1063,7 +1063,7 @@ members:
       desc:
         ru: Телефон подтвержден
         en: Phone confirmed
-      type: boolean
+      type: bool
       component: Colibri.UI.Forms.Checkbox
       class: bool
       default: "0"
@@ -1085,7 +1085,7 @@ members:
       desc:
         ru: Заблокирован (удален)
         en: Blocked (deleted)
-      type: boolean
+      type: bool
       component: Colibri.UI.Forms.Checkbox
       class: bool
       default: "0"
@@ -1107,7 +1107,7 @@ members:
       desc:
         ru: Двухфакторная аутентификация
         en: Two-factor authentication
-      type: boolean
+      type: bool
       component: Colibri.UI.Forms.Checkbox
       class: bool
       default: "true"
@@ -1375,7 +1375,7 @@ confirmations:
       note:
         ru: Отметка об успешной верификации
         en: A mark of successful verification
-      type: boolean
+      type: bool
       component: Colibri.UI.Forms.Checkbox
       class: bool
       default: "0"
