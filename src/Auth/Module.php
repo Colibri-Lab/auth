@@ -16,7 +16,7 @@ use Colibri\Modules\Module as BaseModule;
 use Colibri\Utils\Menu\Item;
 use Colibri\Events\EventsContainer;
 use Colibri\App;
-use Colibri\Utils\Logs\Logger;
+use Colibri\Utils\Logs\Logger; 
 use App\Modules\Auth\Models\Applications;
 use App\Modules\Auth\Models\Application;
 use App\Modules\Auth\Controllers\SessionController;
