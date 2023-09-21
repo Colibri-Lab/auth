@@ -55,7 +55,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
         this._loginButton = this.Children('button-container/login');
 
         this._form.AddHandler('Changed', (event, args) => {
-            this._resetButton.enabled = this._validator.Status();
+            this._resetButton.enabled = this._validator.ValidateAll();
         });
 
         
@@ -151,7 +151,6 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                             required: true,
                             readonly: false,
                             tip: {
-                                orientation: [Colibri.UI.ToolTip.LT, Colibri.UI.ToolTip.LB],
                                 text: '#{auth-resetform-password-tip-text}',
                                 success: '#{auth-resetform-password-tip-success}',
                                 error: '#{auth-resetform-password-tip-error}',
@@ -209,6 +208,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
             },
         };
         this._form.value = value;
+        this._resetButton.enabled = false;
     }
 
     __resetFormResetButtonClicked(event, args) {

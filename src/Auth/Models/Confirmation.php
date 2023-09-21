@@ -80,7 +80,7 @@ class Confirmation extends BaseModelDataRow
 		}
 
 		$property = (string) $this->property;
-		if ($property === Confirmation::PropertyLogin) {
+		if ($property === Confirmation::PropertyLogin || $property === Confirmation::PropertyReset) {
 			$confirmationData = $member->ExportForUserInterface();
 			$value = $value ?: $member->email;
 			$property = 'email';
