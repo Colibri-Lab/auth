@@ -40,6 +40,11 @@ App.Modules.Auth.Components.ProfileForm = class extends Colibri.UI.Component  {
         return this._form.value;
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __profileFormSaveButtonClicked(event, args) {
         
         if(!this._validator.ValidateAll()) {

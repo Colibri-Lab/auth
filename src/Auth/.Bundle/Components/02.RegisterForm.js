@@ -39,6 +39,11 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
 
     } 
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __step1PropertyConfirmed(event, args) {
         this._registrationData.phone = args.value;
         this._registrationData.phone_confirmed = true;
@@ -46,6 +51,11 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this._showStep();
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __step2PropertyConfirmed(event, args) {
         this._registrationData.email = args.value;
         this._registrationData.email_confirmed = true;
@@ -59,6 +69,7 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this['_step' + this._currentStep].shown = true;
     }
 
+    /** @protected */
     _registerEvents() {
         this.RegisterEvent('LoginButtonClicked', true, 'Когда нажата кнопка входа');
         this.RegisterEvent('ExternalValidation', true, 'Когда требуется валидация');
@@ -73,6 +84,11 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this._showStep();
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __registerFormRegisterButtonClicked(event, args) {
 
         if(!this._validator.ValidateAll()) {

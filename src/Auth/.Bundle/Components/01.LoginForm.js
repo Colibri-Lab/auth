@@ -33,11 +33,17 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
 
     } 
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __requestCodeAgainClicked(event, args) {
         this._form.enabled = false;
         this.Login(true);
     }
 
+    /** @protected */
     _registerEvents() {
         this.RegisterEvent('RegisterButtonClicked', true, 'Когда нажата кнопка регистрации');
         this.RegisterEvent('ResetButtonClicked', true, 'Когда нажата кнопка восстановления пароля');
@@ -52,6 +58,11 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         this._form.Focus();
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __loginFormLoginButtonClicked(event, args) {
 
         if(!this._validator.ValidateAll()) {

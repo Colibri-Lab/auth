@@ -42,10 +42,16 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
 
     } 
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __sendClicked(event, args) {
         this.RequestCode();
     }
 
+    /** @protected */
     _registerEvents() {
         super._registerEvents();
         this.RegisterEvent('PropertyConfirmed', true, 'Сойвство подтверждено');
@@ -118,11 +124,21 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         }
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __requestCodeAgainClicked(event, args) {
         this._form2.enabled = false;
         this.RequestCode();
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __confirmationFormConfirmationButtonClicked(event, args) {
 
         if(this._form2.value.code) {

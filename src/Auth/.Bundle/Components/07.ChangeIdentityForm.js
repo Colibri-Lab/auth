@@ -43,6 +43,7 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
 
     } 
 
+    /** @protected */
     _registerEvents() {
         this.RegisterEvent('PropertyChanged', true, 'Сойвство изменено');
     }
@@ -135,6 +136,11 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
     }
 
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __changeFormChangeButtonClicked(event, args) {
 
         if(this._form2.value.code) {
@@ -234,6 +240,11 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
     }
 
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __sendButtonClicked(event, args) {
         this.RequestCode('identity');
     }
@@ -297,6 +308,11 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
     }
 
     
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __requestCodeAgainClicked(event, args) {
         
         if(!this._validator1.ValidateAll()) {

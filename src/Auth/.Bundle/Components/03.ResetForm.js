@@ -64,6 +64,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
 
     } 
 
+    /** @protected */
     _registerEvents() {
         this.RegisterEvent('LoginButtonClicked', true, 'Когда нажата кнопка входа');
     }
@@ -211,6 +212,11 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
         this._resetButton.enabled = false;
     }
 
+    /**
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */ 
     __resetFormResetButtonClicked(event, args) {
         
         if(this._form.value.code) {
