@@ -1,40 +1,66 @@
 auth-profileform-last_name-desc:
   ru: Фамилия
   en: Surname
+  it: Cognome
+  hy: Ազգանուն
 auth-profileform-last_name-validation1:
   ru: Пожалуйста, введите вашу фамилию
   en: Please enter your surname
+  it: Per favore inserisci il tuo cognome
+  hy: Խնդրում ենք մուտքագրել ձեր ազգանունը
 auth-profileform-first_name-desc:
   ru: Имя
   en: First name
+  it: Nome
+  hy: Անուն
 auth-profileform-first_name-placeholder:
   ru: "Например: Иван"
   en: "For example: John"
+  it: "Ad esempio: Ivan"
+  hy: Օրինակ՝ Իվան
 auth-profileform-first_name-validation1:
   ru: Пожалуйста, введите ваше имя
   en: Please enter your name
+  it: per favore inserisci il tuo nome
+  hy: Խնդրում ենք մուտքագրել ձեր անունը
 auth-profileform-partonymic-desc:
   ru: Отчество
   en: Patronymic
+  it: Cognome
+  hy: Ազգանունը
 auth-profileform-birtdate-desc:
   ru: Дата рождения
   en: Date of birth
+  it: Data di nascita
+  hy: Ծննդյան ամսաթիվ
 auth-profileform-birthdate-validation1:
   ru: Вам слишком мало лет, нашим проектом могут пользоваться только
     совершеннолетние
   en: You are too young, only adults can use our project.
+  it: Sei troppo giovane, solo gli adulti possono utilizzare il nostro progetto
+  hy: Դուք չափազանց երիտասարդ եք, միայն մեծահասակները կարող են օգտվել մեր նախագծից
 auth-profileform-gender-desc:
   ru: Пол
   en: Gender
+  it: Pol
+  hy: Սեռ
 auth-profileform-gender-values-male:
   ru: Господин
   en: Mr.
+  it: Signore
+  hy: Պարոն
 auth-profileform-gender-values-female:
   ru: Госпожа
   en: Mrs.
+  hy: Տիկին
+  it: Signora
 auth-profile-button:
   ru: Сохранить
   en: Save
+  it: Salva
+  hy: Պահպանել
 auth-profileform-last_name-placeholder:
   ru: "Например: Иванов"
   en: "For example: Doe"
+  it: "Ad esempio: Ivanov"
+  hy: Օրինակ՝ Իվանով

@@ -1,23 +1,28 @@
 auth-confirmationform-code-desc:
   ru: Введите код подтверждения
   en: Enter confirmation code
+  it: Inserire il codice di conferma
+  hy: Մուտքագրեք հաստատման կոդը
 auth-confirmationform-code-validation1:
   ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
   en: Please enter the 6 digit code we have sent to your contact
+  it: Inserisci il codice di 6 cifre che abbiamo inviato al tuo contatto
+  hy: Խնդրում ենք մուտքագրել 6 նիշանոց կոդը, որը մենք ուղարկել ենք ձեր կոնտակտին
 auth-confirmation-timer-value:
   ru: Вы сможете снова запросить код через %s секунд.
   en: You will be able to request the code again in %s seconds.
+  it: Potrai richiedere nuovamente il codice tra %s secondi.
+  hy: "Դուք կկարողանաք կրկին պահանջել կոդը %s վայրկյանից:"
 auth-confirmation-requestagain:
   ru: Получить новый код
   en: Get a new code
-auth-register-button: {}
+  it: Ottieni un nuovo codice
+  hy: Ստացեք նոր կոդ
 auth-confirmationform-code-button:
   ru: Выслать код
   en: Send a code
-auth-confirmationform-poroperty-desc: {}
-auth-confirmationform-property-desc: {}
-auth-changeform-property-validation1: {}
-auth-: {}
+  hy: Ուղարկեք կոդը
+  it: Manda il codice
 auth-confirmationform-property-email-desc:
   ru: Эл. адрес
   en: Email
@@ -27,5 +32,3 @@ auth-confirmationform-property-email-validation1:
 auth-confirmationform-property-phone-desc:
   ru: Номер телефона
   en: Phone number
-auth-confirmationform-property-phone-validation1: {}
-auth-registerform-phone-validation1: {}

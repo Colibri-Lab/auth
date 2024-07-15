@@ -1,45 +1,72 @@
 auth-loginform-email-desc:
   ru: Электронный адрес
   en: Email
+  it: Indirizzo e-mail
+  hy: Էլեկտրոնային հասցե
 auth-loginform-login-validation1:
   ru: Пожалуйста, введите эл. адрес
   en: Please enter your email
+  it: Inserisci l'e-mail. indirizzo
+  hy: Խնդրում ենք մուտքագրել էլ. հասցեն
 auth-logincontainer-login-title:
   ru: Вход в систему
   en: Login
+  it: Login
+  hy: Մուտք գործել
 auth-loginform-login-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
   en: You are entering an invalid email address. mail. Please try again!
+  it: Stai inserendo un indirizzo email errato. posta. Per favore riprova!
+  hy: "Դուք սխալ էլփոստի հասցե եք մուտքագրում: փոստ. Խնդրում եմ կրկին փորձեք!"
 auth-loginform-password-desc:
   ru: Пароль
   en: Password
+  it: Parola d'ordine
+  hy: Գաղտնաբառ
 auth-loginform-password-validation1:
   ru: Пожалуйста, введите пароль
   en: Please enter password
+  it: per favore inserisci LA TUA password
+  hy: Խնդրում ենք մուտքագրել ձեր գաղտնաբառը
 auth-loginform-code-desc:
   ru: Введите код подтверждения
   en: Enter confirmation code
+  it: Inserire il codice di conferma
+  hy: Մուտքագրեք հաստատման կոդը
 auth-loginform-code-validation1:
   ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
   en: Please enter the 6 digit code we have sent to your contact
+  it: Inserisci il codice di 6 cifre che abbiamo inviato al tuo contatto
+  hy: Խնդրում ենք մուտքագրել 6 նիշանոց կոդը, որը մենք ուղարկել ենք ձեր կոնտակտին
 auth-login-timer-value:
   ru: Вы сможете снова запросить код через %s секунд.
   en: You will be able to request the code again in %s seconds.
+  it: Potrai richiedere nuovamente il codice tra %s secondi.
+  hy: "Դուք կկարողանաք կրկին պահանջել կոդը %s վայրկյանից:"
 auth-login-requestagain:
   ru: Получить новый код
   en: Get a new code
+  it: Ottieni un nuovo codice
+  hy: Ստացեք նոր կոդ
 auth-login-reset:
   ru: Забыли пароль?
   en: Forgot your password?
+  it: Hai dimenticato la password?
+  hy: Մոռացել եք Ձեր գաղտնաբառը?
 auth-login-button:
   ru: Войти
   en: Login
+  it: Entrare
 auth-register-login-text:
   ru: У вас нет аккаунта?
   en: Don't have an account?
+  it: Non hai un account?
+  hy: "Չունե՞ք հաշիվ:"
 auth-register-button:
   ru: Зарегистрироваться
   en: Register
 auth-login-register-button:
   ru: Зарегистрироваться
   en: Register
+  it: Registrati
+  hy: Գրանցվել

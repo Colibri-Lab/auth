@@ -1,12 +1,17 @@
 auth-logincontainer-reset-title:
   ru: Восстановление пароля
   en: Reset password
+  hy: Գաղտնաբառի վերականգնում
 auth-back-button:
   ru: Назад
   en: Back
+  hy: Ետ
+  it: Indietro
 auth-reset-button:
   ru: Восстановить
   en: Reset
+  hy: Վերականգնել
+  it: Ristabilire
 auth-resetform-email-desc:
   ru: Электронная почта
   en: Email

@@ -1,18 +1,30 @@
 auth-changeform-property-validation1:
   ru: Это поле обязательно для заполнения
   en: This field is required
+  it: Questo campo è obbligatorio
+  hy: Այս դաշտը պարտադիր է
 auth-changeidentity-button:
   ru: Отправить
   en: Send
+  it: Inviare
+  hy: Ուղարկել
 auth-changeform-code-desc:
   ru: Введите код восстановления
   en: Enter recovery code
+  it: Inserisci il tuo codice di ripristino
+  hy: Մուտքագրեք ձեր վերականգնման կոդը
 auth-changeform-code-validation1:
   ru: Пожалуйста, введите эл. адрес
   en: Please enter an email address
+  it: Inserisci l'e-mail. indirizzo
+  hy: Խնդրում ենք մուտքագրել էլ. հասցեն
 auth-changeidentity-timer-value:
   ru: Вы сможете снова запросить код через %s секунд.
   en: You will be able to request the code again in %s seconds.
+  it: Potrai richiedere nuovamente il codice tra %s secondi.
+  hy: "Դուք կկարողանաք կրկին պահանջել կոդը %s վայրկյանից:"
 auth-changeidentity-requestagain:
   ru: Получить новый код
   en: Get a new code
+  it: Ottieni un nuovo codice
+  hy: Ստացեք նոր կոդ

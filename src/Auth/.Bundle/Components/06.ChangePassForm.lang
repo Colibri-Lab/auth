@@ -1,57 +1,95 @@
 auth-changepassform-original-desc:
   ru: Текущий пароль
   en: Current password
+  it: password attuale
+  hy: Ընթացիկ գաղտնաբառը
 auth-changepassform-password-desc:
   ru: Новый пароль
   en: New password
+  it: nuova password
+  hy: նոր ծածկագիր
 auth-changepassform-password-tip-text:
   ru: Придумайте пароль, который сложно подобрать
   en: Create a password that is hard to guess
+  it: Crea una password difficile da indovinare
+  hy: Ստեղծեք գաղտնաբառ, որը դժվար է կռահել
 auth-changepassform-password-tip-success:
   ru: Пароль соответствует требованиям
   en: Password meets requirements
+  it: La password soddisfa i requisiti
+  hy: Գաղտնաբառը համապատասխանում է պահանջներին
 auth-changepassform-password-tip-error:
   ru: Пароль не соответствует требованиям
   en: Password does not meet requirements
+  it: La password non soddisfa i requisiti
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
 auth-changepassform-password-tip-generate:
   ru: Сгенерировать пароль
   en: Generate password
+  it: Genera password
+  hy: Ստեղծեք գաղտնաբառ
 auth-changepassform-password-tip-copied:
-  ru: ","
+  ru: Пароль скопирован в буфер обмена
   en: Password copied to clipboard
+  it: Password copiata negli appunti
+  hy: Գաղտնաբառը պատճենվեց clipboard-ում
 auth-changepassform-password-tip-additional-1:
   ru: цифры
   en: digits
+  it: numeri
+  hy: թվեր
 auth-changepassform-password-tip-additional-2:
   ru: символы (!, $, ^ и др.)
   en: symbols (!, $, ^, etc.)
+  it: simboli (!, $, ^, ecc.)
+  hy: նշաններ (!, $, ^ և այլն)
 auth-changepassform-password-tip-additional-3:
   ru: заглавные латинские буквы
   en: capital latin letters
+  it: lettere latine maiuscole
+  hy: մեծատառ լատինատառ
 auth-changepassform-password-tip-additional-4:
   ru: строчные латинские буквы
   en: lowercase latin letters
+  it: lettere latine minuscole
+  hy: փոքրատառ լատինատառ
 auth-changepassform-password-validation1:
   ru: Пожалуйста, введите пароль
   en: Please enter a password
+  it: per favore inserisci LA TUA password
+  hy: Խնդրում ենք մուտքագրել ձեր գաղտնաբառը
 auth-changepassform-password-validation2:
   ru: Пожалуйста, повторите пароль
   en: Please repeat password
+  it: Per favore ripeti la tua password
+  hy: Խնդրում ենք կրկնել ձեր գաղտնաբառը
 auth-changepassform-password-validation3:
   ru: Пароль не соответствует требованиям
   en: Password does not meet requirements
+  it: La password non soddisfa i requisiti
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
 auth-changepassform-confirmation-validation4:
   ru: Пароли должны совпадать
   en: Passwords must match
+  it: Le password devono essere identiche
+  hy: Գաղտնաբառերը պետք է համընկնեն
 auth-changepassform-confirmation-desc:
   ru: Повторите новый пароль
   en: Repeat new password
+  it: ripetere la nuova password
+  hy: կրկնել նոր գաղտնաբառը
 auth-changepass-button:
   ru: Обновить пароль
   en: Update password
+  it: Aggiorna password
+  hy: Թարմացրեք գաղտնաբառը
 auth-changepassform-password-tip-text2:
   ru: "Пароль должен содержать:"
   en: "Password must contains:"
+  it: "La password deve contenere:"
+  hy: Գաղտնաբառը պետք է պարունակի.
 auth-changepassform-password-tip-digits:
   ru: более %s символов
   en: at least %s symbols
+  it: più di %s caratteri
+  hy: ավելի քան %s նիշ
