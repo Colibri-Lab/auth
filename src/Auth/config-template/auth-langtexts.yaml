@@ -1,105 +1,171 @@
 auth-errors-member-property-two-factor-needed:
   ru: Требуется 2-х факторная авторизация
   en: 2-factor authentication required
+  it: Richiede l'autenticazione a 2 fattori
+  hy: Պահանջվում է 2 գործոնով նույնականացում
 auth-errors-member-confirmation-code-error:
   ru: Неверный код подтверждения
   en: Invalid confirmation code
+  it: Codice di conferma non valido
+  hy: Սխալ վավերացման կոդ
 auth-errors-member-property-tho-factor-error:
   ru: Ошибка входа
   en: Login error
+  it: Accesso non riuscito
+  hy: Մուտքը ձախողվեց
 auth-errors-member-password-error:
   ru: Неверный текущий пароль
   en: Wrong current password
+  it: Password corrente non è corretta
+  hy: Ընթացիկ գաղտնաբառը սխալ է
 auth-errors-member-account-not-exists:
   ru: Учетная запись не найдена
   en: Account not found
+  it: account non trovato
+  hy: Հաշիվը չի գտնվել
 auth-errors-member-with-email-exists:
   ru: Пользователь с таким email-ом существует
   en: A user with such an email exists
+  it: Esiste un utente con questa email
+  hy: Այս էլփոստով օգտվող կա
 auth-errors-member-with-phone-exists:
   ru: Пользователь с таким телефоном существует
   en: A user with such a phone exists
+  it: Esiste un utente con questo numero di telefono
+  hy: Այս հեռախոսահամարով օգտատեր կա
 auth-errors-member-property-send-error:
   ru: Ошибка отправки сообщения
   en: Error sending the message
+  it: Errore durante l'invio del messaggio
+  hy: Սխալ՝ հաղորդագրություն ուղարկելիս
 auth-errors-member-invalid-creds:
   ru: Некорректные учетные данные
   en: Invalid credentials
+  it: Credenziali errate
+  hy: Սխալ հավատարմագրեր
 auth-errors-member-password-not-confirmed:
   ru: Пароль не подтвержден
   en: Password is not confirmed
+  it: Password non confermata
+  hy: Գաղտնաբառը հաստատված չէ
 auth-errors-member-role-not-exists:
   ru: Не найдена роль в приложении
   en: Application role not found
+  it: Ruolo dell'applicazione non trovato
+  hy: Հավելվածի դերը չի գտնվել
 auth-errors-member-password-strength-not-match:
   ru: "Пароль должен быть не менее 40% сложности, у вас "
   en: Password must be at least 40% complexity, you have %s
+  it: "La password deve avere una complessità pari ad almeno il 40%. "
+  hy: "Գաղտնաբառը պետք է լինի առնվազն 40% բարդություն, դուք "
 auth-errors-member-not-logged:
   ru: Пользователь не залогинен
   en: User not logged in
+  it: L'utente non ha effettuato l'accesso
+  hy: Օգտագործողը մուտք չի գործել
 auth-errors-member-data-consistency:
   ru: Ошибка консистентности данных
   en: Data consistency error
+  it: Errore di coerenza dei dati
+  hy: Տվյալների հետևողականության սխալ
 auth-errors-member-data-incorrect:
   ru: Неверные данные в запросе
   en: Invalid data in the request
+  it: Dati non validi nella richiesta
+  hy: Հարցման մեջ անվավեր տվյալներ
 auth-errors-member-property-confirmed:
   ru: Уже подтверждено
   en: Already confirmed
 auth-errors-member-logged:
   ru: Пользователь залогинен
   en: User is logged in
+  it: L'utente ha effettuato l'accesso
+  hy: Օգտագործողը մուտք է գործել
 auth-errors-member-field-required:
   ru: Это поле обязательно для заполнения
   en: This field is required
+  it: Questo campo è obbligatorio
+  hy: Այս դաշտը պարտադիր է
 auth-errors-member-not-found:
   ru: Пользователь не найден
   en: User is not found
+  it: L'utente non è stato trovato
+  hy: Օգտագործողը չի գտնվել
 auth-errors-member-with-email-not-exists:
   ru: Пользователь с таким email-ом не существует
   en: User with this email does not exist
+  it: L'utente con questa email non esiste
+  hy: Այս էլփոստով օգտվողը գոյություն չունի
 auth-errors-phone-incorrect:
   ru: Неверный номер телефона
   en: Wrong phone number
+  it: numero di telefono sbagliato
+  hy: սխալ հեռախոսահամար
 auth-errors-member-with-phone-not-exists:
   ru: Пользователь с таким телефоном не существует
   en: User with this phone does not exist
+  it: Non esiste nessun utente con questo numero di telefono
+  hy: Այս հեռախոսահամարով օգտվող չկա
 auth-errors-member-confirmation-error:
   ru: Неизвестная ошибка
   en: Unknown error
+  it: Errore sconosciuto
+  hy: Անհայտ սխալ
 auth-errors-member-reset-code-error:
   ru: Неверный код подтверждения
   en: Invalid confirmation code
+  it: Codice di conferma non valido
+  hy: Սխալ վավերացման կոդ
 auth-errors-member-reset-error:
   ru: Невозможно сохранить этот пароль
   en: This password cannot be saved
+  it: Questa password non può essere salvata
+  hy: Այս գաղտնաբառը չի կարող պահպանվել
 auth-errors-member-update-error:
   ru: Невозможно обновить свойство
   en: Unable to update property
+  it: Impossibile aggiornare la proprietà
+  hy: Հնարավոր չէ թարմացնել գույքը
 auth-errors-member-error-profile:
   ru: Не смогли сохранить профиль
   en: Failed to save profile
+  it: Impossibile salvare il profilo
+  hy: Չհաջողվեց պահպանել պրոֆիլը
 auth-errors-member-error-password:
   ru: Не смогли обновить пароль
   en: Failed to update password
+  it: Impossibile aggiornare la password
+  hy: Չհաջողվեց թարմացնել գաղտնաբառը
 auth-errors-member-role-incorrect:
   ru: Невозможно изменить роль
   en: Can't change role
+  it: Impossibile cambiare ruolo
+  hy: Հնարավոր չէ փոխել դերը
 auth-errors-session-allreadylogged:
   ru: Пользователь уже залогинен
   en: The user is already logged in
+  it: L'utente è già loggato
+  hy: Օգտագործողը արդեն մուտք է գործել
 auth-errors-session-data-incorrect:
   ru: Неверные данные в запросе
   en: Invalid data in the request
+  it: Dati non validi nella richiesta
+  hy: Հարցման մեջ անվավեր տվյալներ
 auth-errors-session-notlogged:
   ru: Пользователь не залогинен
   en: User not logged in
+  it: L'utente non ha effettuato l'accesso
+  hy: Օգտագործողը մուտք չի գործել
 auth-bool-data-true:
   ru: Да
   en: Yes
+  it: SÌ
+  hy: Այո՛
 auth-bool-data-false:
   ru: Нет
   en: No
+  it: NO
+  hy: Ոչ
 auth-permissions:
   ru: Доступ к модулю Auth
   en: Access to Auth module

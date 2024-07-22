@@ -32,3 +32,4 @@ auth-confirmationform-property-email-validation1:
 auth-confirmationform-property-phone-desc:
   ru: Номер телефона
   en: Phone number
+auth-confirmationform-property-phone-validation1: {}
