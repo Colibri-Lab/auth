@@ -17,7 +17,8 @@ applications:
       desc:
         ru: Ключ приложения  (наименование)
         en: Application key (name)
-        hy: ""
+        it: Chiave dell&#39;applicazione (nome)
+        hy: Դիմումի բանալի (անուն)
       type: varchar
       length: "255"
       component: Colibri.UI.Forms.Text
@@ -26,26 +27,71 @@ applications:
       params:
         required: false
         enabled: true
+        canbeempty: true
         readonly: false
+        searchable: false
         list: true
+        template: false
+        multiple: false
         greed: ""
         viewer: ~
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
       group: window
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      note:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
     token:
       group: window
       desc:
         ru: Токен приложения (постоянный)
-        en: Application token (permanent)
-        hy: ""
+        en: Application token (persistent)
+        it: Token dell&#39;applicazione (persistente)
+        hy: Դիմումի նշան (մշտական)
       note:
         ru: Токен приложения, генерируется автоматически
         en: Application token, generated automatically
-        hy: ""
+        it: Token dell&#39;applicazione, generato automaticamente
+        hy: Դիմումի նշան, որը ստեղծվում է ավտոմատ կերպով
       type: varchar
       length: "32"
       component: Colibri.UI.Forms.Text
@@ -54,23 +100,65 @@ applications:
       params:
         required: false
         enabled: true
+        canbeempty: true
         readonly: false
+        searchable: false
         list: true
+        template: false
+        multiple: false
         greed: ""
         viewer: ~
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+        fieldgenerator: ""
         generator: (value) => { return String.MD5((new Date().getTime()) + ''); }
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
     params:
       group: window
       desc:
         ru: Параметры
-        en: Parameters
+        en: Options
+        it: Opzioni
+        hy: Ընտրանքներ
       note:
         ru: Параметры приложения
-        en: Application Parameters
+        en: Application settings
+        it: Impostazioni dell&#39;applicazione
+        hy: Հավելվածի կարգավորումներ
       type: json
       component: Colibri.UI.Forms.Object
       class: ObjectField
@@ -78,34 +166,53 @@ applications:
       params:
         required: false
         enabled: true
+        canbeempty: true
         readonly: false
+        searchable: false
         list: false
+        template: false
         multiple: false
         greed: ""
         viewer: Colibri.UI.ObjectViewer
         vertical: true
         visual: false
-        code: ""
+        code: 0
         mask: ""
         fieldgenerator: ""
         generator: ""
         noteClass: ""
         simplearraywidth: ""
         simplearrayheight: ""
-        addlink: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
         maxadd: ""
         title: ""
+        removedesc: true
         allow: ""
         size: ""
         validate: []
+        valuegenerator: ""
+        onchangehandler: ""
       fields:
         livetime:
           desc:
             ru: Время жизни
             en: Lifetime
+            it: Tutta la vita
+            hy: Կյանքի ընթացքում
           note:
             ru: Время жизни токена
             en: Token lifetime
+            it: Durata del token
+            hy: Տոկենի կյանքի տևողությունը
           type: int
           component: Colibri.UI.Forms.Number
           class: int
@@ -113,23 +220,66 @@ applications:
           params:
             required: false
             enabled: true
+            canbeempty: true
             readonly: false
+            searchable: false
             list: false
+            template: false
+            multiple: false
             greed: ""
             viewer: ~
             vertical: false
             visual: false
-            code: ""
+            code: 0
             mask: ""
+            fieldgenerator: ""
             generator: ""
+            noteClass: ""
+            simplearraywidth: ""
+            simplearrayheight: ""
+            addlink:
+              ru: ""
+              en: ""
+              it: ""
+              hy: ""
+            removelink: true
+            updownlink: true
+            hasscroll: true
+            initempty: true
+            displayed_columns: ""
+            maxadd: ""
+            title: ""
+            removedesc: true
+            allow: ""
+            size: ""
+            validate:
+            - message:
+                ru: ""
+                en: ""
+                it: ""
+                hy: ""
+              method: (field, validator) => { return true; /* false */ }
+            valuegenerator: ""
+            onchangehandler: ""
           default: "3600"
+          placeholder:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          tag: []
+          group: window
         domains:
           desc:
             ru: Домены
             en: Domains
+            it: Domini
+            hy: Դոմեններ
           note:
             ru: Паттерны доменов, с которых разрешен доступ к приложению
             en: Patterns of domains from which access to the application is allowed
+            it: Modelli di domini da cui è consentito l&#39;accesso all&#39;applicazione
+            hy: Դոմեյնների նախշեր, որոնցից թույլատրվում է մուտք գործել հավելված
           type: json
           component: Colibri.UI.Forms.Array
           class: ArrayField
@@ -137,25 +287,63 @@ applications:
           params:
             required: false
             enabled: true
+            canbeempty: true
             readonly: false
+            searchable: false
             list: true
+            template: false
+            multiple: false
             greed: ""
             viewer: Colibri.UI.ArrayViewer
             vertical: false
             visual: false
-            code: ""
+            code: 0
             mask: ""
+            fieldgenerator: ""
             generator: ""
+            noteClass: ""
+            simplearraywidth: ""
+            simplearrayheight: ""
+            addlink:
+              ru: ""
+              en: ""
+              it: ""
+              hy: ""
+            removelink: true
+            updownlink: true
+            hasscroll: true
+            initempty: true
+            displayed_columns: ""
+            maxadd: ""
+            title: ""
+            removedesc: true
+            allow: ""
+            size: ""
+            validate:
+            - message:
+                ru: ""
+                en: ""
+                it: ""
+                hy: ""
+              method: (field, validator) => { return true; /* false */ }
+            valuegenerator: ""
+            onchangehandler: ""
           fields:
             pattern:
               desc:
                 ru: Паттерн домена
-                en: Domain Pattern
+                en: Domain pattern
+                it: Modello di dominio
+                hy: Դոմենի օրինակ
               note:
                 ru: Используйте *-у для указания любого количества символов и цифр
                   и ? для указания одного символа и цифры
-                en: Use *-y to specify any number of characters and numbers and ?
-                  to specify a single character and a number
+                en: Use * to specify any number of characters and numbers and ? to
+                  specify one character and number
+                it: Utilizzare * per specificare un numero qualsiasi di caratteri
+                  e numeri e ? per specificare un carattere e un numero
+                hy: Օգտագործեք *՝ նշելու ցանկացած թվով նիշ և թվեր և ? մեկ նիշ և թիվ
+                  նշելու համար
               type: varchar
               length: "255"
               component: Colibri.UI.Forms.Text
@@ -164,25 +352,77 @@ applications:
               params:
                 required: false
                 enabled: true
+                canbeempty: true
                 readonly: false
+                searchable: false
                 list: false
+                template: false
+                multiple: false
                 greed: ""
                 viewer: ~
                 vertical: false
                 visual: false
-                code: ""
+                code: 0
                 mask: ""
+                fieldgenerator: ""
                 generator: ""
+                noteClass: ""
+                simplearraywidth: ""
+                simplearrayheight: ""
+                addlink:
+                  ru: ""
+                  en: ""
+                  it: ""
+                  hy: ""
+                removelink: true
+                updownlink: true
+                hasscroll: true
+                initempty: true
+                displayed_columns: ""
+                maxadd: ""
+                title: ""
+                removedesc: true
+                allow: ""
+                size: ""
+                validate:
+                - message:
+                    ru: ""
+                    en: ""
+                    it: ""
+                    hy: ""
+                  method: (field, validator) => { return true; /* false */ }
+                valuegenerator: ""
+                onchangehandler: ""
+              placeholder:
+                ru: ""
+                en: ""
+                it: ""
+                hy: ""
+              tag: []
+              group: window
           default: json_array()
+          placeholder:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          tag: []
+          group: window
         allowrenew:
           desc:
             ru: Разрешить восстановление по короткому токену
             en: Allow recovery by short token
+            it: Consenti il ripristino tramite token breve
+            hy: Թույլատրել վերականգնումը կարճ նշանով
           note:
             ru: Дает возможность получить текущий сессионный токен по короткому постоянному
               токену пользователя (НЕ БЕЗОПАСНО)
-            en: Makes it possible to get the current session token using a short permanent
+            en: Allows you to get the current session token using a short permanent
               user token (NOT SECURE)
+            it: Ti permette di ottenere il token della sessione corrente utilizzando
+              un token utente permanente breve (NON SICURO)
+            hy: Թույլ է տալիս ստանալ ընթացիկ նստաշրջանի նշանը, օգտագործելով կարճ մշտական
+              օգտագործողի նշան (ԱՆՎՏԱՆԳ ՉԻ)
           type: bool
           component: Colibri.UI.Forms.Checkbox
           class: bool
@@ -191,24 +431,69 @@ applications:
           params:
             required: false
             enabled: true
+            canbeempty: true
             readonly: false
+            searchable: false
             list: false
+            template: false
+            multiple: false
             greed: ""
             viewer: ~
             vertical: false
             visual: false
-            code: ""
+            code: 0
             mask: ""
+            fieldgenerator: ""
             generator: ""
+            noteClass: ""
+            simplearraywidth: ""
+            simplearrayheight: ""
+            addlink:
+              ru: ""
+              en: ""
+              it: ""
+              hy: ""
+            removelink: true
+            updownlink: true
+            hasscroll: true
+            initempty: true
+            displayed_columns: ""
+            maxadd: ""
+            title: ""
+            removedesc: true
+            allow: ""
+            size: ""
+            validate:
+            - message:
+                ru: ""
+                en: ""
+                it: ""
+                hy: ""
+              method: (field, validator) => { return true; /* false */ }
+            valuegenerator: ""
+            onchangehandler: ""
+          placeholder:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          tag: []
+          group: window
         roles:
           desc:
             ru: Роли
             en: Roles
+            it: Ruoli
+            hy: Դերեր
           note:
             ru: Роли, которые могут исполнять пользователи. Реальная обработка ролей
               происходит на клиенте
-            en: Roles that users can perform. The actual role processing takes place
-              on the client
+            en: Roles that users can perform. The actual role processing happens on
+              the client
+            it: Ruoli che gli utenti possono eseguire. L&#39;effettiva elaborazione
+              del ruolo avviene sul client
+            hy: 'Դերեր, որոնք օգտվողները կարող են կատարել: Իրական դերերի մշակումը
+              կատարվում է հաճախորդի վրա'
           type: json
           component: Colibri.UI.Forms.Array
           class: ArrayField
@@ -217,20 +502,54 @@ applications:
           params:
             required: false
             enabled: true
+            canbeempty: true
             readonly: false
+            searchable: false
             list: true
+            template: false
+            multiple: false
             greed: ""
             viewer: Colibri.UI.ArrayViewer
             vertical: false
             visual: false
-            code: ""
+            code: 0
             mask: ""
+            fieldgenerator: ""
             generator: ""
+            noteClass: ""
+            simplearraywidth: ""
+            simplearrayheight: ""
+            addlink:
+              ru: ""
+              en: ""
+              it: ""
+              hy: ""
+            removelink: true
+            updownlink: true
+            hasscroll: true
+            initempty: true
+            displayed_columns: ""
+            maxadd: ""
+            title: ""
+            removedesc: true
+            allow: ""
+            size: ""
+            validate:
+            - message:
+                ru: ""
+                en: ""
+                it: ""
+                hy: ""
+              method: (field, validator) => { return true; /* false */ }
+            valuegenerator: ""
+            onchangehandler: ""
           fields:
             name:
               desc:
                 ru: Наименование роли
-                en: Name of the role
+                en: Role name
+                it: Nome del ruolo
+                hy: Դերի անվանումը
               type: varchar
               length: "255"
               component: Colibri.UI.Forms.Text
@@ -239,19 +558,65 @@ applications:
               params:
                 required: false
                 enabled: true
+                canbeempty: true
                 readonly: false
+                searchable: false
                 list: false
+                template: false
+                multiple: false
                 greed: ""
                 viewer: ~
                 vertical: false
                 visual: false
-                code: ""
+                code: 0
                 mask: ""
+                fieldgenerator: ""
                 generator: ""
+                noteClass: ""
+                simplearraywidth: ""
+                simplearrayheight: ""
+                addlink:
+                  ru: ""
+                  en: ""
+                  it: ""
+                  hy: ""
+                removelink: true
+                updownlink: true
+                hasscroll: true
+                initempty: true
+                displayed_columns: ""
+                maxadd: ""
+                title: ""
+                removedesc: true
+                allow: ""
+                size: ""
+                validate:
+                - message:
+                    ru: ""
+                    en: ""
+                    it: ""
+                    hy: ""
+                  method: (field, validator) => { return true; /* false */ }
+                valuegenerator: ""
+                onchangehandler: ""
+              placeholder:
+                ru: ""
+                en: ""
+                it: ""
+                hy: ""
+              note:
+                ru: ""
+                en: ""
+                it: ""
+                hy: ""
+              tag: []
+              group: window
             desc:
               desc:
                 ru: Описание роли
-                en: Description of the role
+                en: Role Description
+                it: Descrizione del ruolo
+                hy: Դերի նկարագրություն
               type: varchar
               length: "255"
               component: Colibri.UI.Forms.Text
@@ -260,22 +625,77 @@ applications:
               params:
                 required: false
                 enabled: true
+                canbeempty: true
                 readonly: false
+                searchable: false
                 list: false
+                template: false
+                multiple: false
                 greed: ""
                 viewer: ~
                 vertical: false
                 visual: false
-                code: ""
+                code: 0
                 mask: ""
+                fieldgenerator: ""
                 generator: ""
+                noteClass: ""
+                simplearraywidth: ""
+                simplearrayheight: ""
+                addlink:
+                  ru: ""
+                  en: ""
+                  it: ""
+                  hy: ""
+                removelink: true
+                updownlink: true
+                hasscroll: true
+                initempty: true
+                displayed_columns: ""
+                maxadd: ""
+                title: ""
+                removedesc: true
+                allow: ""
+                size: ""
+                validate:
+                - message:
+                    ru: ""
+                    en: ""
+                    it: ""
+                    hy: ""
+                  method: (field, validator) => { return true; /* false */ }
+                valuegenerator: ""
+                onchangehandler: ""
+              placeholder:
+                ru: ""
+                en: ""
+                it: ""
+                hy: ""
+              note:
+                ru: ""
+                en: ""
+                it: ""
+                hy: ""
+              tag: []
+              group: window
+          placeholder:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          tag: []
+          group: window
         defaultrole:
           desc:
             ru: Роль по умолчанию
             en: Default role
+            it: Ruolo predefinito
+            hy: Կանխադրված դերը
           note:
             ru: Роль, которая выставляется по умолчанию
-            en: The role that is set by default
+            en: Default role
+            it: Ruolo predefinito
+            hy: Կանխադրված դերը
           type: varchar
           length: "255"
           component: Colibri.UI.Forms.Text
@@ -284,19 +704,60 @@ applications:
           params:
             required: true
             enabled: true
+            canbeempty: true
             readonly: false
+            searchable: false
             list: false
+            template: false
+            multiple: false
             greed: ""
             viewer: ~
             vertical: false
             visual: false
-            code: ""
+            code: 0
             mask: ""
+            fieldgenerator: ""
             generator: ""
+            noteClass: ""
+            simplearraywidth: ""
+            simplearrayheight: ""
+            addlink:
+              ru: ""
+              en: ""
+              it: ""
+              hy: ""
+            removelink: true
+            updownlink: true
+            hasscroll: true
+            initempty: true
+            displayed_columns: ""
+            maxadd: ""
+            title: ""
+            removedesc: true
+            allow: ""
+            size: ""
+            validate:
+            - message:
+                ru: ""
+                en: ""
+                it: ""
+                hy: ""
+              method: (field, validator) => { return true; /* false */ }
+            valuegenerator: ""
+            onchangehandler: ""
+          placeholder:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          tag: []
+          group: window
         enable_two_factor_authentication:
           desc:
             ru: Включить двухфакторную аутентификацию
             en: Enable two-factor authentication
+            it: Abilita l&#39;autenticazione a due fattori
+            hy: Միացնել երկու գործոնով նույնականացումը
           type: bool
           component: Colibri.UI.Forms.Checkbox
           class: bool
@@ -305,30 +766,59 @@ applications:
           params:
             required: false
             enabled: true
+            canbeempty: true
             readonly: false
+            searchable: false
             list: true
+            template: false
             multiple: false
             greed: ""
             viewer: ~
             vertical: false
             visual: false
-            code: ""
+            code: 0
             mask: ""
             fieldgenerator: ""
             generator: ""
             noteClass: ""
             simplearraywidth: ""
             simplearrayheight: ""
-            addlink: ""
+            addlink:
+              ru: ""
+              en: ""
+              it: ""
+              hy: ""
+            removelink: true
+            updownlink: true
+            hasscroll: true
+            initempty: true
+            displayed_columns: ""
             maxadd: ""
             title: ""
+            removedesc: true
             allow: ""
             size: ""
             validate: []
+            valuegenerator: ""
+            onchangehandler: ""
+          placeholder:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          note:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          tag: []
+          group: window
         design:
           desc:
             ru: Макет
             en: Layout
+            it: Disposizione
+            hy: Դասավորություն
           type: json
           component: Colibri.UI.Forms.Object
           class: ObjectField
@@ -336,34 +826,53 @@ applications:
           params:
             required: false
             enabled: true
+            canbeempty: true
             readonly: false
+            searchable: false
             list: false
+            template: false
             multiple: false
             greed: ""
             viewer: Colibri.UI.ObjectViewer
             vertical: true
             visual: false
-            code: ""
+            code: 0
             mask: ""
             fieldgenerator: ""
             generator: ""
             noteClass: ""
             simplearraywidth: ""
             simplearrayheight: ""
-            addlink: ""
+            addlink:
+              ru: ""
+              en: ""
+              it: ""
+              hy: ""
+            removelink: true
+            updownlink: true
+            hasscroll: true
+            initempty: true
+            displayed_columns: ""
             maxadd: ""
             title: ""
+            removedesc: true
             allow: ""
             size: ""
             validate: []
+            valuegenerator: ""
+            onchangehandler: ""
           fields:
             images:
               desc:
                 ru: Изображения
                 en: Images
+                it: immagini
+                hy: Պատկերներ
               note:
                 ru: Логотип и другие изображения
                 en: Logo and other images
+                it: Logo e altre immagini
+                hy: Լոգո և այլ պատկերներ
               type: json
               component: Colibri.UI.Forms.Array
               class: ArrayField
@@ -372,20 +881,54 @@ applications:
               params:
                 required: false
                 enabled: true
+                canbeempty: true
                 readonly: false
+                searchable: false
                 list: true
+                template: false
+                multiple: false
                 greed: ""
                 viewer: Colibri.UI.ArrayViewer
                 vertical: true
                 visual: false
-                code: ""
+                code: 0
                 mask: ""
+                fieldgenerator: ""
                 generator: ""
+                noteClass: ""
+                simplearraywidth: ""
+                simplearrayheight: ""
+                addlink:
+                  ru: ""
+                  en: ""
+                  it: ""
+                  hy: ""
+                removelink: true
+                updownlink: true
+                hasscroll: true
+                initempty: true
+                displayed_columns: ""
+                maxadd: ""
+                title: ""
+                removedesc: true
+                allow: ""
+                size: ""
+                validate:
+                - message:
+                    ru: ""
+                    en: ""
+                    it: ""
+                    hy: ""
+                  method: (field, validator) => { return true; /* false */ }
+                valuegenerator: ""
+                onchangehandler: ""
               fields:
                 key:
                   desc:
                     ru: Ключ изображения
                     en: Image Key
+                    it: Chiave immagine
+                    hy: Պատկերի բանալի
                   type: varchar
                   length: "50"
                   component: Colibri.UI.Forms.Text
@@ -394,19 +937,65 @@ applications:
                   params:
                     required: false
                     enabled: true
+                    canbeempty: true
                     readonly: false
+                    searchable: false
                     list: false
+                    template: false
+                    multiple: false
                     greed: ""
                     viewer: ~
                     vertical: false
                     visual: false
-                    code: ""
+                    code: 0
                     mask: ""
+                    fieldgenerator: ""
                     generator: ""
+                    noteClass: ""
+                    simplearraywidth: ""
+                    simplearrayheight: ""
+                    addlink:
+                      ru: ""
+                      en: ""
+                      it: ""
+                      hy: ""
+                    removelink: true
+                    updownlink: true
+                    hasscroll: true
+                    initempty: true
+                    displayed_columns: ""
+                    maxadd: ""
+                    title: ""
+                    removedesc: true
+                    allow: ""
+                    size: ""
+                    validate:
+                    - message:
+                        ru: ""
+                        en: ""
+                        it: ""
+                        hy: ""
+                      method: (field, validator) => { return true; /* false */ }
+                    valuegenerator: ""
+                    onchangehandler: ""
+                  placeholder:
+                    ru: ""
+                    en: ""
+                    it: ""
+                    hy: ""
+                  note:
+                    ru: ""
+                    en: ""
+                    it: ""
+                    hy: ""
+                  tag: []
+                  group: window
                 image:
                   desc:
                     ru: Изображение (SVG)
                     en: Image (SVG)
+                    it: Immagine (SVG)
+                    hy: Պատկեր (SVG)
                   type: longtext
                   component: Colibri.UI.Forms.TextArea
                   class: string
@@ -415,20 +1004,85 @@ applications:
                   params:
                     required: false
                     enabled: true
+                    canbeempty: true
                     readonly: false
+                    searchable: false
                     list: false
+                    template: false
+                    multiple: false
                     greed: ""
                     viewer: ~
                     vertical: false
                     visual: false
-                    code: ""
+                    code: 0
                     mask: ""
+                    fieldgenerator: ""
                     generator: ""
+                    noteClass: ""
+                    simplearraywidth: ""
+                    simplearrayheight: ""
+                    addlink:
+                      ru: ""
+                      en: ""
+                      it: ""
+                      hy: ""
+                    removelink: true
+                    updownlink: true
+                    hasscroll: true
+                    initempty: true
+                    displayed_columns: ""
+                    maxadd: ""
+                    title: ""
+                    removedesc: true
+                    allow: ""
+                    size: ""
+                    validate:
+                    - message:
+                        ru: ""
+                        en: ""
+                        it: ""
+                        hy: ""
+                      method: (field, validator) => { return true; /* false */ }
+                    valuegenerator: ""
+                    onchangehandler: ""
+                  placeholder:
+                    ru: ""
+                    en: ""
+                    it: ""
+                    hy: ""
+                  note:
+                    ru: ""
+                    en: ""
+                    it: ""
+                    hy: ""
+                  tag: []
+                  group: window
+              placeholder:
+                ru: ""
+                en: ""
+                it: ""
+                hy: ""
+              tag: []
+              group: window
           default: json_object()
+          placeholder:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          note:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          tag: []
+          group: window
         proxies:
           desc:
             ru: Прокси для коммуникаций
             en: Proxy for communications
+            it: Delega per le comunicazioni
+            hy: Հաղորդակցության համար վստահված անձ
           type: json
           component: Colibri.UI.Forms.Object
           class: ObjectField
@@ -436,65 +1090,48 @@ applications:
           params:
             required: false
             enabled: true
+            canbeempty: true
             readonly: false
+            searchable: false
             list: false
+            template: false
             multiple: false
             greed: ""
             viewer: ~
             vertical: false
             visual: false
-            code: ""
+            code: 0
             mask: ""
             fieldgenerator: ""
             generator: ""
             noteClass: ""
             simplearraywidth: ""
             simplearrayheight: ""
-            addlink: ""
+            addlink:
+              ru: ""
+              en: ""
+              it: ""
+              hy: ""
+            removelink: true
+            updownlink: true
+            hasscroll: true
+            initempty: true
+            displayed_columns: ""
             maxadd: ""
             title: ""
+            removedesc: true
             allow: ""
             size: ""
             validate: []
+            valuegenerator: ""
+            onchangehandler: ""
           fields:
             email:
               desc:
                 ru: Эл. почта
-                en: Email
-              type: varchar
-              length: "1024"
-              component: Colibri.UI.Forms.Text
-              class: string
-              attrs: []
-              params:
-                required: false
-                enabled: true
-                readonly: false
-                list: false
-                multiple: false
-                greed: ""
-                viewer: ~
-                vertical: false
-                visual: false
-                code: ""
-                mask: ""
-                fieldgenerator: ""
-                generator: ""
-                noteClass: ""
-                simplearraywidth: ""
-                simplearrayheight: ""
-                addlink: ""
-                maxadd: ""
-                title: ""
-                allow: ""
-                size: ""
-                validate: []
-            phone:
-              desc:
-                ru: Отправка СМС
-                en: Sending SMS
-                hy: ""
-                it: ""
+                en: Email mail
+                it: E-mail posta
+                hy: Էլ փոստ
               type: varchar
               length: "1024"
               component: Colibri.UI.Forms.Text
@@ -507,12 +1144,13 @@ applications:
                 readonly: false
                 searchable: false
                 list: false
+                template: false
                 multiple: false
                 greed: ""
                 viewer: ~
                 vertical: false
                 visual: false
-                code: ""
+                code: 0
                 mask: ""
                 fieldgenerator: ""
                 generator: ""
@@ -522,44 +1160,122 @@ applications:
                 addlink:
                   ru: ""
                   en: ""
-                  hy: ""
                   it: ""
+                  hy: ""
                 removelink: true
                 updownlink: true
+                hasscroll: true
                 initempty: true
+                displayed_columns: ""
                 maxadd: ""
                 title: ""
                 removedesc: true
                 allow: ""
                 size: ""
                 validate: []
+                valuegenerator: ""
+                onchangehandler: ""
               placeholder:
                 ru: ""
                 en: ""
-                hy: ""
                 it: ""
+                hy: ""
               note:
                 ru: ""
                 en: ""
-                hy: ""
                 it: ""
+                hy: ""
+              tag: []
               group: window
-        allowed_ip:
-          desc:
-            ru: IP с которого разрешено восстановление по короткому токену
-            en: IP from wich allowed restoring with short token
-            hy: ""
-            it: ""
+            phone:
+              desc:
+                ru: Отправка СМС
+                en: Sending SMS
+                it: Invio di SMS
+                hy: Ուղարկելով SMS
+              type: varchar
+              length: "1024"
+              component: Colibri.UI.Forms.Text
+              class: string
+              attrs: []
+              params:
+                required: false
+                enabled: true
+                canbeempty: true
+                readonly: false
+                searchable: false
+                list: false
+                template: false
+                multiple: false
+                greed: ""
+                viewer: ~
+                vertical: false
+                visual: false
+                code: 0
+                mask: ""
+                fieldgenerator: ""
+                generator: ""
+                noteClass: ""
+                simplearraywidth: ""
+                simplearrayheight: ""
+                addlink:
+                  ru: ""
+                  en: ""
+                  it: ""
+                  hy: ""
+                removelink: true
+                updownlink: true
+                hasscroll: true
+                initempty: true
+                displayed_columns: ""
+                maxadd: ""
+                title: ""
+                removedesc: true
+                allow: ""
+                size: ""
+                validate: []
+                valuegenerator: ""
+                onchangehandler: ""
+              placeholder:
+                ru: ""
+                en: ""
+                it: ""
+                hy: ""
+              note:
+                ru: ""
+                en: ""
+                it: ""
+                hy: ""
+              group: window
+              tag: []
           placeholder:
             ru: ""
             en: ""
-            hy: ""
             it: ""
+            hy: ""
           note:
             ru: ""
             en: ""
-            hy: ""
             it: ""
+            hy: ""
+          tag: []
+          group: window
+        allowed_ip:
+          desc:
+            ru: IP с которого разрешено восстановление по короткому токену
+            en: IP from which recovery using a short token is allowed
+            it: IP da cui è consentito il ripristino tramite token breve
+            hy: IP, որից վերականգնումը թույլատրվում է կարճ նշանի միջոցով
+          placeholder:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          note:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
           type: varchar
           length: "256"
           component: Colibri.UI.Forms.Text
@@ -572,12 +1288,13 @@ applications:
             readonly: false
             searchable: false
             list: false
+            template: false
             multiple: false
             greed: ""
             viewer: ~
             vertical: false
             visual: false
-            code: ""
+            code: 0
             mask: ""
             fieldgenerator: ""
             generator: ""
@@ -587,19 +1304,30 @@ applications:
             addlink:
               ru: ""
               en: ""
-              hy: ""
               it: ""
+              hy: ""
             removelink: true
             updownlink: true
+            hasscroll: true
             initempty: true
+            displayed_columns: ""
             maxadd: ""
             title: ""
             removedesc: true
             allow: ""
             size: ""
             validate: []
+            valuegenerator: ""
+            onchangehandler: ""
           group: window
+          tag: []
       default: json_object()
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
   indices:
     applications_token_idx:
       fields:
@@ -793,10 +1521,14 @@ members:
     token:
       desc:
         ru: Токен пользователя
-        en: User Token
+        en: User token
+        it: Token utente
+        hy: Օգտագործողի նշան
       note:
         ru: Постоянный токен пользователя
         en: User's permanent token
+        it: ""
+        hy: ""
       type: varchar
       length: "32"
       component: Colibri.UI.Forms.Text
@@ -805,23 +1537,66 @@ members:
       params:
         required: true
         enabled: true
+        canbeempty: true
         readonly: false
+        searchable: false
         list: true
+        template: false
+        multiple: false
         greed: ""
         viewer: ~
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
+        fieldgenerator: ""
         generator: (value) => { return String.MD5((new Date().getTime()) + ''); }
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
+      group: window
     email:
       group: window
       desc:
         ru: Эл. адрес пользователя
-        en: User's email address
+        en: Email user address
+        it: E-mail indirizzo utente
+        hy: Էլ հասցեն
       note:
         ru: Электронный адрес указанный при регистрации
         en: The email address specified during registration
+        it: ""
+        hy: ""
       type: varchar
       length: "255"
       component: Colibri.UI.Forms.Email
@@ -830,25 +1605,67 @@ members:
       params:
         required: true
         enabled: true
+        canbeempty: true
         readonly: false
+        searchable: false
         list: true
+        template: false
+        multiple: false
         greed: ""
         viewer: ~
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
     phone:
       group: window
       desc:
         ru: Телефон
         en: Telephone
+        it: Telefono
+        hy: Հեռախոս
       note:
         ru: Телефон в формате «код страны»«код внутри страны»«номер» без знаков, только
           цифры
         en: Phone in the "country code" format"country code""number" without signs,
           only numbers
+        it: ""
+        hy: ""
       type: varchar
       length: "50"
       component: Colibri.UI.Forms.Text
@@ -857,23 +1674,65 @@ members:
       params:
         required: true
         enabled: true
+        canbeempty: true
         readonly: false
+        searchable: false
         list: true
+        template: false
+        multiple: false
         greed: ""
         viewer: ~
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: "99999999999"
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
     password:
       group: window
       desc:
         ru: Пароль
         en: Password
+        it: Parola d&#39;ordine
+        hy: Գաղտնաբառ
       note:
         ru: Пароль, закодирован, нет обратной кодировки
         en: Password, encoded, no reverse encoding
+        it: ""
+        hy: ""
       type: varchar
       length: "128"
       component: Colibri.UI.Forms.Password
@@ -882,20 +1741,60 @@ members:
       params:
         required: true
         enabled: true
+        canbeempty: true
         readonly: false
+        searchable: false
         list: false
+        template: false
+        multiple: false
         greed: ""
         viewer: ~
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
     first_name:
       group: window
       desc:
         ru: Имя
         en: Name
+        it: Nome
+        hy: Անուն
       type: varchar
       length: "255"
       component: Colibri.UI.Forms.Text
@@ -904,20 +1803,65 @@ members:
       params:
         required: true
         enabled: true
+        canbeempty: true
         readonly: false
+        searchable: false
         list: true
+        template: false
+        multiple: false
         greed: ""
         viewer: ~
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      note:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
     last_name:
       group: window
       desc:
         ru: Фамилия
         en: Surname
+        it: Cognome
+        hy: Ազգանուն
       type: varchar
       length: "255"
       component: Colibri.UI.Forms.Text
@@ -926,20 +1870,65 @@ members:
       params:
         required: true
         enabled: true
+        canbeempty: true
         readonly: false
+        searchable: false
         list: true
+        template: false
+        multiple: false
         greed: ""
         viewer: ~
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      note:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
     patronymic:
       group: window
       desc:
         ru: Отчество
-        en: Middle name
+        en: Surname
+        it: Cognome
+        hy: Ազգանուն
       type: varchar
       length: "255"
       component: Colibri.UI.Forms.Text
@@ -948,20 +1937,65 @@ members:
       params:
         required: false
         enabled: true
+        canbeempty: true
         readonly: false
+        searchable: false
         list: true
+        template: false
+        multiple: false
         greed: ""
         viewer: ~
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      note:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
     birthdate:
       group: window
       desc:
         ru: Дата рождения
-        en: Date of birth
+        en: Date of Birth
+        it: Data di nascita
+        hy: Ծննդյան թիվ
       type: date
       component: Colibri.UI.Forms.Date
       class: DateField
@@ -969,20 +2003,65 @@ members:
       params:
         required: false
         enabled: true
+        canbeempty: true
         readonly: false
+        searchable: false
         list: true
+        template: false
+        multiple: false
         greed: ""
         viewer: ~
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      note:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
     gender:
       group: window
       desc:
         ru: Пол
         en: Sex
+        it: ""
+        hy: ""
       type: enum
       component: Colibri.UI.Forms.Select
       class: ValueField
@@ -990,35 +2069,85 @@ members:
       params:
         required: false
         enabled: true
+        canbeempty: true
         readonly: false
         searchable: false
         list: true
+        template: false
+        multiple: false
         greed: ""
         viewer: Colibri.UI.SelectViewer
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
       values:
-      - value: male
-        title:
+      - title:
           ru: Мужской
           en: Male
+          it: Maschio
+          hy: Արական
         type: text
-      - value: female
-        title:
+        value: male
+      - title:
           ru: Женский
           en: Female
+          it: Femmina
+          hy: իգական
         type: text
+        value: female
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      note:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
     role:
       group: window
       desc:
         ru: Роль
         en: Role
+        it: Ruolo
+        hy: Դեր
       note:
         ru: Роль выбранная из списка ролей приложения
-        en: The role selected from the list of application roles
+        en: Role selected from the list of application roles
+        it: Ruolo selezionato dall&#39;elenco dei ruoli dell&#39;applicazione
+        hy: Դիմումի դերերի ցանկից ընտրված դերը
       type: varchar
       length: "20"
       component: Colibri.UI.Forms.Text
@@ -1027,20 +2156,60 @@ members:
       params:
         required: false
         enabled: true
+        canbeempty: true
         readonly: false
+        searchable: false
         list: true
+        template: false
+        multiple: false
         greed: ""
         viewer: ~
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
     email_confirmed:
       group: window
       desc:
         ru: Почта подтверждена
         en: Email confirmed
+        it: E-mail confermata
+        hy: Էլփոստը հաստատված է
       type: bool
       component: Colibri.UI.Forms.Checkbox
       class: bool
@@ -1049,20 +2218,65 @@ members:
       params:
         required: true
         enabled: true
+        canbeempty: true
         readonly: false
+        searchable: false
         list: true
+        template: false
+        multiple: false
         greed: ""
         viewer: Colibri.UI.CheckboxViewer
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      note:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
     phone_confirmed:
       group: window
       desc:
         ru: Телефон подтвержден
         en: Phone confirmed
+        it: Telefono confermato
+        hy: Հեռախոսը հաստատված է
       type: bool
       component: Colibri.UI.Forms.Checkbox
       class: bool
@@ -1071,20 +2285,65 @@ members:
       params:
         required: true
         enabled: true
+        canbeempty: true
         readonly: false
+        searchable: false
         list: true
+        template: false
+        multiple: false
         greed: ""
         viewer: Colibri.UI.CheckboxViewer
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      note:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
     blocked:
       group: window
       desc:
         ru: Заблокирован (удален)
         en: Blocked (deleted)
+        it: Bloccato (eliminato)
+        hy: Արգելափակված (ջնջված)
       type: bool
       component: Colibri.UI.Forms.Checkbox
       class: bool
@@ -1093,20 +2352,65 @@ members:
       params:
         required: true
         enabled: true
+        canbeempty: true
         readonly: false
+        searchable: false
         list: true
+        template: false
+        multiple: false
         greed: ""
         viewer: Colibri.UI.CheckboxViewer
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      note:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
     two_factor:
       group: window
       desc:
         ru: Двухфакторная аутентификация
         en: Two-factor authentication
+        it: Autenticazione a due fattori
+        hy: Երկու գործոնով նույնականացում
       type: bool
       component: Colibri.UI.Forms.Checkbox
       class: bool
@@ -1115,26 +2419,52 @@ members:
       params:
         required: true
         enabled: true
+        canbeempty: true
         readonly: false
+        searchable: false
         list: true
+        template: false
         multiple: false
         greed: ""
         viewer: ~
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
         fieldgenerator: ""
         generator: ""
         noteClass: ""
         simplearraywidth: ""
         simplearrayheight: ""
-        addlink: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
         maxadd: ""
         title: ""
+        removedesc: true
         allow: ""
         size: ""
         validate: []
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      note:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
   indices:
     members_token_idx:
       fields:
@@ -1180,9 +2510,13 @@ confirmations:
       desc:
         ru: Свойство
         en: Property
+        it: Proprietà
+        hy: Սեփականություն
       note:
         ru: Свойство, которое нужно верифицировать
-        en: The property to be verified
+        en: Property to be verified
+        it: Immobile da verificare
+        hy: Ստուգման ենթակա գույք
       type: enum
       component: Colibri.UI.Forms.Select
       class: ValueField
@@ -1190,64 +2524,92 @@ confirmations:
       params:
         required: true
         enabled: true
+        canbeempty: true
         readonly: false
         searchable: false
         list: true
+        template: false
         multiple: false
         greed: ""
         viewer: Colibri.UI.SelectViewer
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
         fieldgenerator: ""
         generator: ""
         noteClass: ""
         simplearraywidth: ""
         simplearrayheight: ""
-        addlink: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
         maxadd: ""
         title: ""
+        removedesc: true
         allow: ""
         size: ""
         validate: []
+        valuegenerator: ""
+        onchangehandler: ""
       values:
-      - value: email
-        title:
+      - title:
           ru: Эл. адрес
           en: Email address
+          it: ""
+          hy: ""
         type: text
-      - value: phone
-        title:
+        value: email
+      - title:
           ru: Телефон
           en: Telephone
+          it: ""
+          hy: ""
         type: text
-      - value: reset
-        title:
+        value: phone
+      - title:
           ru: Восстановление пароля
           en: Password Recovery
+          it: ""
+          hy: ""
         type: text
-      - value: login
-        title:
+        value: reset
+      - title:
           ru: Вход/Двух-факторная авторизация
           en: Login/Two-factor authorization
+          it: ""
+          hy: ""
         type: text
+        value: login
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
     value:
       desc:
         ru: Значение свойства
         en: Property value
-        hy: ""
-        it: ""
+        it: Costo dell&#39;immobile
+        hy: Գույքի արժեքը
       placeholder:
         ru: ""
         en: ""
-        hy: ""
         it: ""
+        hy: ""
       note:
         ru: ""
         en: ""
-        hy: ""
         it: ""
+        hy: ""
       type: varchar
       length: "255"
       component: Colibri.UI.Forms.Text
@@ -1260,12 +2622,13 @@ confirmations:
         readonly: false
         searchable: false
         list: false
+        template: false
         multiple: false
         greed: ""
         viewer: ~
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
         fieldgenerator: ""
         generator: ""
@@ -1275,34 +2638,39 @@ confirmations:
         addlink:
           ru: ""
           en: ""
-          hy: ""
           it: ""
+          hy: ""
         removelink: true
         updownlink: true
+        hasscroll: true
         initempty: true
+        displayed_columns: ""
         maxadd: ""
         title: ""
         removedesc: true
         allow: ""
         size: ""
         validate: []
+        valuegenerator: ""
+        onchangehandler: ""
       group: window
+      tag: []
     member:
       desc:
         ru: Пользователь
-        en: Member
-        hy: ""
-        it: ""
+        en: User
+        it: Utente
+        hy: Օգտատեր
       placeholder:
         ru: ""
         en: ""
-        hy: ""
         it: ""
+        hy: ""
       note:
         ru: ""
         en: ""
-        hy: ""
         it: ""
+        hy: ""
       type: varchar
       length: "36"
       component: Colibri.UI.Forms.Text
@@ -1315,12 +2683,13 @@ confirmations:
         readonly: false
         searchable: false
         list: false
+        template: false
         multiple: false
         greed: ""
         viewer: ~
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
         fieldgenerator: ""
         generator: ""
@@ -1330,26 +2699,35 @@ confirmations:
         addlink:
           ru: ""
           en: ""
-          hy: ""
           it: ""
+          hy: ""
         removelink: true
         updownlink: true
+        hasscroll: true
         initempty: true
+        displayed_columns: ""
         maxadd: ""
         title: ""
         removedesc: true
         allow: ""
         size: ""
         validate: []
+        valuegenerator: ""
+        onchangehandler: ""
       group: window
+      tag: []
     code:
       group: window
       desc:
         ru: Код
         en: Code
+        it: Codice
+        hy: Կոդ
       note:
         ru: Сгенерированный код верификации
         en: Generated verification code
+        it: Codice di verifica generato
+        hy: Ստեղծված հաստատման կոդը
       type: varchar
       length: "10"
       component: Colibri.UI.Forms.Text
@@ -1358,23 +2736,65 @@ confirmations:
       params:
         required: true
         enabled: true
+        canbeempty: true
         readonly: true
+        searchable: false
         list: true
+        template: false
+        multiple: false
         greed: ""
         viewer: ~
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
     verified:
       group: window
       desc:
         ru: Верифицирован
         en: Verified
+        it: Verificato
+        hy: Ստուգված է
       note:
         ru: Отметка об успешной верификации
-        en: A mark of successful verification
+        en: Successful verification mark
+        it: Marchio di verifica riuscita
+        hy: Հաջող ստուգման նշան
       type: bool
       component: Colibri.UI.Forms.Checkbox
       class: bool
@@ -1383,15 +2803,53 @@ confirmations:
       params:
         required: true
         enabled: true
+        canbeempty: true
         readonly: true
+        searchable: false
         list: true
+        template: false
+        multiple: false
         greed: ""
         viewer: ~
         vertical: false
         visual: false
-        code: ""
+        code: 0
         mask: ""
+        fieldgenerator: ""
         generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
   group: ~
   indices:
     confirmations_code_idx:
