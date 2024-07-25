@@ -129,4 +129,31 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
 
     }
 
+    /**
+     * Messages for register form
+     * @type {Object}
+     */
+    get messages() {
+        return {
+            phone: {
+                message1: this._step1.message1,
+                message2: this._step1.message2,
+            },
+            email: {
+                message1: this._step2.message1,
+                message2: this._step2.message2,
+            }
+        }
+    }
+    /**
+     * Messages for register form
+     * @type {Object}
+     */
+    set messages(value) {
+        this._step1.message1 = value.phone.message1;
+        this._step1.message2 = value.phone.message2;
+        this._step2.message1 = value.email.message1;
+        this._step2.message2 = value.email.message2;
+    }
+
 }

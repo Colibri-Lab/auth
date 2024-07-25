@@ -4,9 +4,9 @@
         <TextSpan shown="true" name="form-register-title" className="app-auth-form-component-title">#{auth-logincontainer-register-title}</TextSpan>
 
         <ConfirmationForm shown="true" name="step1" property="phone" width="480" message1="#{auth-logincontainer-confirmation-phone-message}" message2="#{auth-logincontainer-confirmation-phone-message2}" />
-        <ConfirmationForm shown="true" name="step2" property="email" width="480" message1="#{auth-logincontainer-confirmation-email-message}" message2="#{auth-logincontainer-confirmation-email-message2}" />  
+        <ConfirmationForm shown="false" name="step2" property="email" width="480" message1="#{auth-logincontainer-confirmation-email-message}" message2="#{auth-logincontainer-confirmation-email-message2}" />  
         
-        <Pane shown="true" name="step3">
+        <Pane shown="false" name="step3">
             <Forms.Form shown="true" name="form">
                 <fields>
                     {
@@ -62,7 +62,7 @@
                                         readonly: false,
                                         eyeicon: true,
                                         tip: {
-                                            orientation: [Colibri.UI.ToolTip.RT, Colibri.UI.ToolTip.RB],
+                                            orientation: [Colibri.UI.ToolTip.RT, Colibri.UI.ToolTip.LT],
                                             className: 'app-password-tip-component',
                                             text: ['#{auth-registerform-password-tip-text}', '#{auth-registerform-password-tip-text2}'],
                                             success: '#{auth-registerform-password-tip-success}',

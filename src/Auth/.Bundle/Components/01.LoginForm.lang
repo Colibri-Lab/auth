@@ -52,7 +52,7 @@ auth-login-reset:
   ru: Забыли пароль?
   en: Forgot your password?
   it: Hai dimenticato la password?
-  hy: Մոռացել եք Ձեր գաղտնաբառը?
+  hy: Մոռացե՞լ եք Ձեր գաղտնաբառը
 auth-login-button:
   ru: Войти
   en: Login
@@ -61,7 +61,7 @@ auth-register-login-text:
   ru: У вас нет аккаунта?
   en: Don't have an account?
   it: Non hai un account?
-  hy: "Չունե՞ք հաշիվ:"
+  hy: Դեռ գրանցվա՞ձ չեք։
 auth-register-button:
   ru: Зарегистрироваться
   en: Register

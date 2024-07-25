@@ -30,7 +30,6 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
                 if(this._confirming) {
                     return;
                 }
-    
                 this._confirming = true;
                 this.__confirmationFormConfirmationButtonClicked(event, args);
                 
@@ -38,7 +37,9 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         });
 
         this._requestCode.AddHandler('Clicked', (event, args) => this.__requestCodeAgainClicked(event, args));
-        this._form1.AddHandler('Changed', (event, args) => this.Dispatch('ExternalValidation', Object.assign(args, {validator: this._validator1, property: this._property})));
+        this._form1.AddHandler('Changed', (event, args) => {
+            this.Dispatch('ExternalValidation', Object.assign(args, {validator: this._validator1, property: this._property, form: this._form1, submit: this._send}))
+        });
 
     } 
 
@@ -199,7 +200,6 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
     }
 
     RequestCode() {
-
         if(!this._validator1.ValidateAll()) {
             return;
         }

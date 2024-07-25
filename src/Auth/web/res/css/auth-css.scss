@@ -31,8 +31,12 @@
     justify-content: center;
     flex-direction: column;
 
-    [data-object-name="timer-container"], [data-object-name="links-container"], [data-object-name="button-container2"] {
+    [data-object-name="timer-container"], [data-object-name="links-container"], [data-object-name="button-container"], [data-object-name="button-container2"] {
         margin-top: 16px;
+    }
+
+    [data-object-name="button-container2"] {
+        gap: 5px;
     }
 
     [data-object-name="register"], [data-object-name="login"], [data-object-name="reset"] {
