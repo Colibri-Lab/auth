@@ -2,10 +2,11 @@ auth-logincontainer-reset-title:
   ru: Восстановление пароля
   en: Reset password
   hy: Գաղտնաբառի վերականգնում
+  it: Recupero della password
 auth-back-button:
   ru: Назад
   en: Back
-  hy: Ետ
+  hy: Վերադառնալ
   it: Indietro
 auth-reset-button:
   ru: Восстановить
@@ -15,75 +16,125 @@ auth-reset-button:
 auth-resetform-email-desc:
   ru: Электронная почта
   en: Email
+  it: E-mail
+  hy: Էլ
 auth-resetform-email-validation1:
   ru: Пожалуйста, введите эл. адрес
   en: Please enter email
+  it: Inserisci l'e-mail. indirizzo
+  hy: Խնդրում ենք մուտքագրել էլ. հասցեն
 auth-resetform-email-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
   en: You are entering an invalid email address. Please try again!
+  it: Stai inserendo un indirizzo email errato. posta. Per favore riprova!
+  hy: "Դուք սխալ էլփոստի հասցե եք մուտքագրում: փոստ. Խնդրում եմ կրկին փորձեք!"
 auth-resetform-phone-desc:
   ru: Телефон
   en: Phone number
+  it: Telefono
+  hy: Հեռախոս
 auth-resetform-phone-validation1:
   ru: Пожалуйста, введите телефон
   en: Please enter phone number
+  it: Inserisci il numero di telefono
+  hy: Խնդրում ենք մուտքագրել հեռախոսահամարը
 auth-resetform-code-desc:
   ru: Код восстановления
   en: Confirmation code
+  it: Codice di ripristino
+  hy: Վերականգնման կոդը
 auth-confirmationform-code-validation1:
   ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
   en: Please enter the 6 digit code we have sent to your contact
+  it: Inserisci il codice di 6 cifre che abbiamo inviato al tuo contatto
+  hy: Խնդրում ենք մուտքագրել 6 նիշանոց կոդը, որը մենք ուղարկել ենք ձեր կոնտակտին
 auth-resetform-pass-desc:
   ru: Пароль
   en: Password
+  it: Parola d'ordine
+  hy: Գաղտնաբառ
 auth-resetform-password-placeholder:
   ru: Придумайте пароль
   en: Pick a password
+  it: Crea una password
+  hy: ստեղծել Գաղտնաբառ
 auth-resetform-password-desc:
   ru: Пароль
   en: Password
+  it: Parola d'ordine
+  hy: Գաղտնաբառ
 auth-resetform-password-tip-text:
   ru: Придумайте пароль, который сложно подобрать
   en: Create a password that is hard to guess
+  it: Crea una password difficile da indovinare
+  hy: Ստեղծեք գաղտնաբառ, որը դժվար է կռահել
 auth-resetform-password-tip-success:
   ru: Пароль соответствует требованиям
   en: Password meets requirements
+  it: La password soddisfa i requisiti
+  hy: Գաղտնաբառը համապատասխանում է պահանջներին
 auth-resetform-password-tip-error:
   ru: Пароль не соответствует требованиям
   en: Password does not meet requirements
+  it: La password non soddisfa i requisiti
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
 auth-resetform-password-tip-generate:
   ru: Сгенерировать пароль
   en: Generate password
+  it: Genera password
+  hy: Ստեղծեք գաղտնաբառ
 auth-resetform-password-tip-copied:
   ru: Пароль скопирован в буфер обмена
   en: Password copied to clipboard
+  it: La password è stata copiata negli appunti
+  hy: Գաղտնաբառը պատճենվել է clipboard-ում
 auth-resetform-password-tip-additional-1:
   ru: цифры
   en: digits
+  it: numeri
+  hy: թվեր
 auth-resetform-password-tip-additional-2:
   ru: символы (!, $, ^ и др.)
   en: symbols (!, $, ^, etc.)
+  it: simboli (!, $, ^, ecc.)
+  hy: նշաններ (!, $, ^ և այլն)
 auth-resetform-password-tip-additional-3:
   ru: заглавные латинские буквы
   en: capital latin letters
+  it: lettere latine maiuscole
+  hy: մեծատառ լատինատառ
 auth-resetform-password-tip-additional-4:
   ru: строчные латинские буквы
   en: lowercase latin letters
+  it: lettere latine minuscole
+  hy: փոքրատառ լատինատառ
 auth-resetform-password-validation1:
   ru: Пожалуйста, введите пароль
   en: Please enter a password
+  it: per favore inserisci LA TUA password
+  hy: Խնդրում ենք մուտքագրել ձեր գաղտնաբառը
 auth-resetform-password-validation3:
   ru: Пароль не соответствует требованиям
   en: Password does not meet requirements
+  it: La password non soddisfa i requisiti
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
 auth-resetform-confirmation-placeholder:
   ru: Повторите пароль
   en: Confirm password
+  it: Ripeti la password
+  hy: Կրկնեք գաղտնաբառը
 auth-resetform-password-validation2:
   ru: Пожалуйста, повторите пароль
   en: Please repeat password
+  it: Per favore ripeti la tua password
+  hy: Խնդրում ենք կրկնել ձեր գաղտնաբառը
 auth-resetform-confirmation-validation4:
   ru: Пароли должны совпадать
   en: Passwords must match
+  it: Le password devono essere identiche
+  hy: Գաղտնաբառերը պետք է համընկնեն
 auth-resetform-password-tip-digits:
   ru: более %s символов
   en: at least %s symbols
+  it: più di %s caratteri
+  hy: ավելի քան %s նիշ
