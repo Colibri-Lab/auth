@@ -41,7 +41,7 @@ production:
       -e ui_version="master" 
       -e module_name="auth"
       -e project_dir="auth.com"
-      -e folder="ecolo-place_dist"
+      -e folder="auth_dist"
       -e "modules=['colibri/security:dev-master','colibri/mainframe:dev-master','colibri/manage:dev-master','colibri/lang:dev-master','colibri/sites:dev-master','colibri/tools:dev-master','colibri/auth:$CI_COMMIT_REF_NAME']"
       -e "bin_scripts=['migrate','auth-bundle.sh <prod backend domain>','auth-bundle.sh <prod domain> bundle']"
       -e php=8.2
@@ -71,7 +71,7 @@ test:
       -e ui_version="master" 
       -e module_name="auth"
       -e project_dir="auth.test.colibrilab.pro"
-      -e folder="ecolo-place_dist"
+      -e folder="auth_dist"
       -e "modules=['colibri/security:dev-master','colibri/mainframe:dev-master','colibri/manage:dev-master','colibri/lang:dev-master','colibri/sites:dev-master','colibri/tools:dev-master','colibri/auth:dev-$CI_COMMIT_REF_NAME']"
       -e "bin_scripts=['migrate','auth-bundle.sh backend_auth.test.colibrilab.pro','auth-bundle.sh ecolo-place_auth.test.colibrilab.pro bundle']"
       -e php=8.2
