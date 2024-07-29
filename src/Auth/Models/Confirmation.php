@@ -74,13 +74,14 @@ class Confirmation extends BaseModelDataRow
 	public function Send(?string $value = null, mixed $proxies = null): bool
 	{
 
-		$member = Members::LoadByToken($this->member);
-		if (!$member) {
-			return false;
-		}
-
+		
 		$property = (string) $this->property;
 		if ($property === Confirmation::PropertyLogin || $property === Confirmation::PropertyReset) {
+			$member = Members::LoadByToken($this->member);
+			if (!$member) {
+				return false;
+			}
+
 			$confirmationData = $member->ExportForUserInterface();
 			$value = $value ?: $member->email;
 			$property = 'email';
