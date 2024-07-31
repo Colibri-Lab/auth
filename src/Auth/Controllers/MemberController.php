@@ -217,18 +217,18 @@ class MemberController extends WebController
         $confirmation->verified = false;
         $confirmation->Save();
 
-        if(App::$isDev) {
+        // if(App::$isDev) {
 
-            return $this->Finish(
-                200,
-                'ok',
-                ['session' => $session->ExportForUserInterface(), 'code' => $confirmation->code],
-                'utf-8',
-                [],
-                [$session->GenerateCookie(true)]
-            );
+        //     return $this->Finish(
+        //         200,
+        //         'ok',
+        //         ['session' => $session->ExportForUserInterface(), 'code' => $confirmation->code],
+        //         'utf-8',
+        //         [],
+        //         [$session->GenerateCookie(true)]
+        //     );
     
-        }
+        // }
 
         $res = $confirmation->Send($value, $app->params->proxies);
         if (!$res) {
@@ -1076,7 +1076,8 @@ class MemberController extends WebController
                 $dataAsString = $langModule->ParseString($dataAsString);
             }
 
-            $notice = Notices::LoadByName('administrator_reset');
+            $langModule = App::$moduleManager->{'lang'};
+            $notice = Notices::LoadByName('administrator_reset' . ($langModule ? '_' . App::$moduleManager->{'lang'}->current : ''));
             $notice->Apply(['data' => $dataAsString, 'first_name' => $member->first_name]);
             Notices::Send($member->email, $notice);
 
@@ -1144,7 +1145,8 @@ class MemberController extends WebController
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
 
-        $notice = Notices::LoadByName('administrator_invite');
+        $langModule = App::$moduleManager->{'lang'};
+        $notice = Notices::LoadByName('administrator_invite' . ($langModule ? '_' . App::$moduleManager->{'lang'}->current : ''));
         $notice->Apply(['first_name' => $member->first_name]);
         Notices::Send($member->email, $notice);
 

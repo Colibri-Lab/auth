@@ -3,6 +3,7 @@
 namespace App\Modules\Auth\Models;
 
 # region Uses:
+use Colibri\App;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\ValueField;
 # endregion Uses;
@@ -74,7 +75,7 @@ class Confirmation extends BaseModelDataRow
 	public function Send(?string $value = null, mixed $proxies = null): bool
 	{
 
-		
+		$langModule = App::$moduleManager->{'lang'};
 		$property = (string) $this->property;
 		if ($property === Confirmation::PropertyLogin || $property === Confirmation::PropertyReset) {
 			$member = Members::LoadByToken($this->member);
@@ -94,7 +95,7 @@ class Confirmation extends BaseModelDataRow
 
 		$confirmationData['code'] = $this->code;
 
-		$noticeName = 'confirmation_' . $this->property;
+		$noticeName = 'confirmation_' . $this->property . ($langModule ? '_' . $langModule->current : '');
 		$notice = Notices::LoadByName($noticeName);
 		$notice->Apply($confirmationData);
 
