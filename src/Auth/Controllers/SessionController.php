@@ -13,7 +13,7 @@ use Colibri\Web\RequestCollection;
  * Session controller
  */
 class SessionController extends WebController
-{
+{ 
 
     /**
      * Starts a session
