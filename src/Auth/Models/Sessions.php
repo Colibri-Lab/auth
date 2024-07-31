@@ -16,7 +16,7 @@ use Colibri\Data\Storages\Fields\DateTimeField;
 /**
  * Таблица, представление данных в хранилище Сессии
  * @author <author name and email>
- * @package App\Modules\Auth\Models
+ * @package App\Modules\Auth\Models 
  * 
  * @method Session[] getIterator()
  * @method Session _createDataRowObject()
