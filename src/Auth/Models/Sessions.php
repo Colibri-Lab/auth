@@ -51,8 +51,31 @@ class Sessions extends BaseModelDataTable
      */
     static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true): ? Sessions
     {
-        $storage = Storages::Create()->Load('sessions');
+        $storage = Storages::Create()->Load('sessions', 'auth');
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params, $calculateAffected);
+    }
+
+    /**
+     * Create table by any filters
+     * @param int $page page
+     * @param int $pagesize page size
+     * @param ?array $filtersArray filters array|object
+     * @param string $sortField sort field
+     * @param string $sortOrder sort order, default asc
+     * @return ?Sessions
+     */
+    public static function LoadBy(
+        int $page = -1, 
+        int $pagesize = 20, 
+        ?string $searchTerm = null,
+        ?array $filtersArray = null,
+        ?string $sortField = null,
+        string $sortOrder = 'asc'
+    ) : ?Sessions
+    {
+        $storage = Storages::Create()->Load('sessions', 'auth');
+        [$filter, $order, $params] = $storage->accessPoint->ProcessFilters($storage, $searchTerm, $filtersArray, $sortField, $sortOrder);
+        return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params);
     }
 
     /**

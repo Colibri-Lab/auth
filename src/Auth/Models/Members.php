@@ -58,7 +58,7 @@ class Members extends BaseModelDataTable
         array $params = [],
         bool $calculateAffected = true
     ): ?Members {
-        $storage = Storages::Create()->Load('members');
+        $storage = Storages::Create()->Load('members', 'auth');
         return parent::_loadByFilter(
             $storage,
             $page,
@@ -68,6 +68,29 @@ class Members extends BaseModelDataTable
             $params,
             $calculateAffected
         );
+    }
+
+    /**
+     * Create table by any filters
+     * @param int $page page
+     * @param int $pagesize page size
+     * @param ?array $filtersArray filters array|object
+     * @param string $sortField sort field
+     * @param string $sortOrder sort order, default asc
+     * @return ?Members
+     */
+    public static function LoadBy(
+        int $page = -1, 
+        int $pagesize = 20, 
+        ?string $searchTerm = null,
+        ?array $filtersArray = null,
+        ?string $sortField = null,
+        string $sortOrder = 'asc'
+    ) : ?Members
+    {
+        $storage = Storages::Create()->Load('members', 'auth');
+        [$filter, $order, $params] = $storage->accessPoint->ProcessFilters($storage, $searchTerm, $filtersArray, $sortField, $sortOrder);
+        return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params);
     }
 
     /**
