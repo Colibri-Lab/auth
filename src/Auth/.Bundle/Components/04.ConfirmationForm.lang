@@ -25,11 +25,21 @@ auth-confirmationform-code-button:
   it: Manda il codice
 auth-confirmationform-property-email-desc:
   ru: Эл. адрес
-  en: Email
+  en: E-mail
+  it: E-mail
+  hy: Էլեկտրոնային հասցե
 auth-confirmationform-property-email-validation1:
   ru: Пожалуйста, введите корректный электроннный адрес
   en: Please enter the correct email address
+  it: Inserisci l'indirizzo email corretto
+  hy: Խնդրում ենք մուտքագրել ճիշտ էլեկտրոնային հասցե
 auth-confirmationform-property-phone-desc:
   ru: Номер телефона
   en: Phone number
-auth-confirmationform-property-phone-validation1: {}
+  it: Numero di telefono
+  hy: Հեռախոսահամար
+auth-confirmationform-property-phone-validation1:
+  ru: Пожалуйста, введите корректный номер телефона
+  en: Please enter a valid phone number.
+  it: Inserisci un numero di telefono valido
+  hy: Խնդրում ենք մուտքագրել վավեր հեռախոսահամար

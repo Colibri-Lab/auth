@@ -17,14 +17,14 @@ auth-changeform-code-validation1:
   ru: Пожалуйста, введите эл. адрес
   en: Please enter an email address
   it: Inserisci l'e-mail. indirizzo
-  hy: Խնդրում ենք մուտքագրել էլ. հասցեն
+  hy: Խնդրում ենք մուտքագրել էլեկտրոնային հասցե
 auth-changeidentity-timer-value:
   ru: Вы сможете снова запросить код через %s секунд.
   en: You will be able to request the code again in %s seconds.
   it: Potrai richiedere nuovamente il codice tra %s secondi.
-  hy: "Դուք կկարողանաք կրկին պահանջել կոդը %s վայրկյանից:"
+  hy: "Դուք կկարողանաք կրկին ուղարկել կոդը %s վայրկյանից:"
 auth-changeidentity-requestagain:
   ru: Получить новый код
   en: Get a new code
   it: Ottieni un nuovo codice
-  hy: Ստացեք նոր կոդ
+  hy: Ուղարկել նոր կոդ

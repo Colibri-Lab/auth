@@ -143,7 +143,7 @@
             </Forms.Form>
         
             <FlexBox name="button-container" shown="true" className="buttons-pane">            
-                <SuccessButton name="register" shown="true" enabled="true" tabIndex="true">#{auth-registerform-complete-button}</SuccessButton>
+                <SuccessButton name="register" shown="true" enabled="true" tabIndex="true" value="#{auth-registerform-complete-button}"></SuccessButton>
             </FlexBox>
         
         </Pane>
@@ -151,8 +151,8 @@
     </Pane>
     
     <FlexBox shown="true" name="button-container2" className="buttons-pane -gap10">
-        <TextSpan shown="true">#{auth-login-register-text}</TextSpan>
-        <Link name="login" shown="true" enabled="true" tabIndex="true">#{auth-login-button}</Link>
+        <TextSpan shown="true" value="#{auth-login-register-text}"></TextSpan>
+        <Link name="login" shown="true" enabled="true" tabIndex="true" value="#{auth-login-button}"></Link>
     </FlexBox>
 
 </div>

@@ -13,7 +13,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
         this._form.fields = {
             email: {
                 component: 'Text',
-                desc: '#{auth-resetform-email-desc}',
+                desc: '#{auth-resetform-email-desc}', 
                 params: {
                     required: true,
                     readonly: false,

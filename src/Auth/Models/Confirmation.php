@@ -98,8 +98,7 @@ class Confirmation extends BaseModelDataRow
 		$noticeName = 'confirmation_' . $this->property . ($langModule ? '_' . $langModule->current : '');
 		$notice = Notices::LoadByName($noticeName);
 		$notice->Apply($confirmationData);
-
-
+		
 		if (!is_null($proxies) && isset($proxies->$property)) {
 
 			$url = $proxies->$property;

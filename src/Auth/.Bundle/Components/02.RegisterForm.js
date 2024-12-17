@@ -31,7 +31,7 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this._step2.AddHandler('PropertyConfirmed', (event, args) => this.__step2PropertyConfirmed(event, args));
 
         this._registrationData = {
-            phone: null,
+            phone: null, 
             phone_confirmed: false,
             email: null,
             email_confirmed: false,

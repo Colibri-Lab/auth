@@ -6,51 +6,79 @@ auth-logincontainer-register-title:
 auth-registerform-fio-desc:
   ru: Личные данные
   en: Personal data
+  it: Informazioni personali
+  hy: Անձնական տվյալներ
 auth-registerform-fio-last_name-placeholder:
   ru: Фамилия
   en: Surname
+  it: Cognome
+  hy: Ազգանունը
 auth-registerform-fio-validation1:
   ru: Пожалуйста, введите фамилию
   en: Please enter your surname
+  it: Per favore inserisci il tuo cognome
+  hy: Խնդրում ենք մուտքագրել ձեր ազգանունը
 auth-registerform-fio-first_name-placeholder:
   ru: Имя
   en: First name
+  it: Nome di battesimo
+  hy: Անուն
 auth-registerform-fio-validation2:
   ru: Пожалуйста, введите ваше имя
   en: Please enter your first name
+  it: Per favore inserisci il tuo nome
+  hy: Խնդրում ենք մուտքագրել ձեր անունը
 auth-registerform-fio-patronymic-placeholder:
   ru: Отчество
   en: Patronymic
+  it: Patronimico
+  hy: Հայրանուն
 auth-registerform-birtdate-desc:
   ru: Дата рождения
   en: Date of birth
+  it: Data di nascita
+  hy: Ծննդյան ամսաթիվ
 auth-registerform-birthdate-validation1:
   ru: Пожалуйста, введите дату рождения
   en: Please enter the date of birth
+  it: Inserisci la data di nascita
+  hy: Խնդրում ենք մուտքագրել ծննդյան ամսաթիվը
 auth-registerform-birthdate-validation2:
   ru: Вам слишком мало лет, нашим проектом могут пользоваться только
     совершеннолетние
   en: You are too young, only adults can use our project
+  it: Sei troppo giovane, solo gli adulti possono utilizzare il nostro progetto
+  hy: Դուք չափազանց երիտասարդ եք, միայն մեծահասակները կարող են օգտվել մեր նախագծից
 auth-registerform-gender-desc:
   ru: Пол
   en: Gender
+  it: Genere
+  hy: Սեռ
 auth-registerform-gender-validation1:
   ru: Пожалуйста, выберите пол
   en: Please select a gender
+  it: Seleziona il sesso
+  hy: Խնդրում ենք ընտրել սեռը
 auth-registerform-gender-values-female:
   ru: Женский
   en: Female
+  it: Femmina
+  hy: Իգական
 auth-registerform-email-desc:
   ru: Электронная почта
   en: Email
   it: E-mail
-  hy: Էլ հասցե
+  hy: Էլեկտրոնային հասցե
 auth-registerform-email-validation1:
   ru: Пожалуйста, введите эл. адрес
   en: Please enter the email
+  it: Inserisci l'email
+  hy: Խնդրում ենք մուտքագրել էլ․ հասցեն
 auth-registerform-email-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
   en: You are entering an invalid email address. Please try again!
+  it: Stai inserendo un indirizzo email non valido. Riprova!
+  hy: "Դուք մուտքագրում եք անվավեր էլփոստի հասցե: Խնդրում ենք կրկին փորձել:"
 auth-registerform-phone-desc:
   ru: Телефон
   en: Phone number
@@ -59,6 +87,8 @@ auth-registerform-phone-desc:
 auth-registerform-phone-validation1:
   ru: Пожалуйста, введите телефон
   en: Please enter the phone number
+  it: Inserisci il numero di telefono
+  hy: Խնդրում ենք մուտքագրել հեռախոսահամարը
 auth-registerform-pass-desc:
   ru: Пароль
   en: Password
@@ -167,11 +197,13 @@ auth-registerform-aggreenment-validation1:
 auth-register-button:
   ru: Регистрация
   en: Registration
+  it: Registrazione
+  hy: Գրանցում
 auth-login-register-text:
   ru: Уже есть аккаунт?
   en: Already have an account?
   it: Hai già un account?
-  hy: Արդեն ունեք հաշիվ?
+  hy: Արդեն գրանցվաձ՝ էք
 auth-login-button:
   ru: Вход
   en: Login
@@ -187,7 +219,6 @@ auth-registerform-password-tip-digits:
   en: at least %s symbols
   hy: ավելի քան %s նիշ
   it: più di %s caratteri
-auth-logincontainer-confirmation-phone-title: {}
 auth-logincontainer-confirmation-phone-message:
   ru: Подтвердите номер телефона, чтобы мы могли оперативно связаться с вами и
     уточнить детали по заявке
@@ -197,12 +228,11 @@ auth-logincontainer-confirmation-phone-message:
     rapidamente e chiarire i dettagli della tua richiesta
   hy: Հաստատեք ձեր հեռախոսահամարը, որպեսզի մենք կարողանանք արագ կապվել ձեզ հետ և
     ճշտել ձեր դիմումի մանրամասները
-auth-logincontainer-confirmatiopn: {}
 auth-logincontainer-confirmation-phone-message2:
   ru: "Мы отправили код SMS-сообщением на номер: %s"
   en: "We sent the code via SMS to the number: %s"
   it: "Abbiamo inviato il codice via SMS al numero: %s"
-  hy: Մենք SMS-ի միջոցով ուղարկել ենք կոդը՝ %s համարին
+  hy: Մենք SMS-ի միջոցով ուղարկել ենք կոդը՝ %s հեռախոսահամարին
 auth-logincontainer-confirmation-email-message:
   ru: Подтвердите Email. Мы будем присылать только важные письма. Например, об
     изменении статуса вашей заявки или напоминания заплатить по кредиту
@@ -214,9 +244,8 @@ auth-logincontainer-confirmation-email-message:
 auth-logincontainer-confirmation-email-message2:
   ru: "Мы отправили код подтверждения на email: %s"
   en: "We have sent a confirmation code to email: %s"
-  hy: Մենք ուղարկել ենք հաստատման կոդը՝ %s էլ
+  hy: Մենք ուղարկել ենք հաստատման կոդը՝ %s էլեկտրոնային հասցեին
   it: "Abbiamo inviato un codice di conferma all'e-mail: %s"
-auth-registerform-button: {}
 auth-registerform-complete-button:
   ru: Зарегистрироваться
   en: Register

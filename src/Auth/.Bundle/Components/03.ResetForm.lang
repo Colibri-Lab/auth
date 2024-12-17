@@ -17,7 +17,7 @@ auth-resetform-email-desc:
   ru: Электронная почта
   en: Email
   it: E-mail
-  hy: Էլ
+  hy: Էլ՝ հասցե
 auth-resetform-email-validation1:
   ru: Пожалуйста, введите эл. адрес
   en: Please enter email
@@ -57,7 +57,7 @@ auth-resetform-password-placeholder:
   ru: Придумайте пароль
   en: Pick a password
   it: Crea una password
-  hy: ստեղծել Գաղտնաբառ
+  hy: Ստեղծել գաղտնաբառ
 auth-resetform-password-desc:
   ru: Пароль
   en: Password

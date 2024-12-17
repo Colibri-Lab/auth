@@ -71,14 +71,14 @@
         <Link name="request-code-again" shown="false" value="#{auth-login-requestagain}" />
     </Pane>
     <FlexBox name="links-container" shown="true">
-        <Link name="reset" shown="true">#{auth-login-reset}</Link>
+        <Link name="reset" shown="true" value="#{auth-login-reset}"></Link>
     </FlexBox>
     <FlexBox name="button-container" shown="true" className="buttons-pane">            
-        <SuccessButton name="login" shown="true" enabled="true" tabIndex="true">#{auth-login-button}</SuccessButton>
+        <SuccessButton name="login" shown="true" enabled="true" tabIndex="true" value="#{auth-login-button}"></SuccessButton>
     </FlexBox>
     <FlexBox shown="true" name="button-container2" className="buttons-pane -gap10">
-        <TextSpan shown="true">#{auth-register-login-text}</TextSpan>
-        <Link name="register" shown="true" enabled="true" tabIndex="true">#{auth-login-register-button}</Link>
+        <TextSpan shown="true" value="#{auth-register-login-text}"></TextSpan>
+        <Link name="register" shown="true" enabled="true" tabIndex="true" value="#{auth-login-register-button}"></Link>
     </FlexBox>
 
 </div>

@@ -65,6 +65,8 @@ auth-register-login-text:
 auth-register-button:
   ru: Зарегистрироваться
   en: Register
+  it: Registrati
+  hy: Գրանցվել
 auth-login-register-button:
   ru: Зарегистрироваться
   en: Register
