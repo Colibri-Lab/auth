@@ -164,8 +164,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
                 last_name: last_name,
                 patronymic: patronymic,
                 gender: gender,
-                birthdate: birthdate,
-                role: 'user'
+                birthdate: birthdate
             }, {'X-AppToken': Auth.appToken}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);

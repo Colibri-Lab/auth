@@ -217,18 +217,18 @@ class MemberController extends WebController
         $confirmation->verified = false;
         $confirmation->Save();
 
-        // if(App::$isDev) {
+        if(App::$isDev) {
 
-        //     return $this->Finish(
-        //         200,
-        //         'ok',
-        //         ['session' => $session->ExportForUserInterface(), 'code' => $confirmation->code],
-        //         'utf-8',
-        //         [],
-        //         [$session->GenerateCookie(true)]
-        //     );
+            return $this->Finish(
+                200,
+                'ok',
+                ['session' => $session->ExportForUserInterface(), 'code' => $confirmation->code],
+                'utf-8',
+                [],
+                [$session->GenerateCookie(true)]
+            );
     
-        // }
+        }
 
         $res = $confirmation->Send($value, $app->params->proxies);
         if (!$res) {
@@ -300,6 +300,34 @@ class MemberController extends WebController
             ]);
         }
 
+        if(App::$isDev) {
+
+            /** @var \App\Modules\Auth\Models\Application|null $app */
+            $app = Module::$instance->application;
+
+            $confirmation = Confirmations::LoadByMember(Confirmation::PropertyReset, $member->token);
+            if (!$confirmation) {
+                $confirmation = Confirmations::LoadEmpty();
+                $confirmation->property = Confirmation::PropertyReset;
+                $confirmation->member = $member->token;
+            }
+
+            $confirmation->code = RandomizationHelper::Numeric(6);
+            if (($res = $confirmation->Save(true)) !== true) {
+                throw new InvalidArgumentException($res->error, 500);
+            }
+
+            return $this->Finish(
+                200,
+                'ok',
+                ['session' => $session->ExportForUserInterface(), 'code' => $confirmation->code],
+                'utf-8',
+                [],
+                [$session->GenerateCookie(true)]
+            );
+    
+        }
+
         if (!$member->SendResetMessage()) {
             return $this->Finish(400, 'Bad Request', [
                 'message' => '#{auth-errors-member-property-send-error}',
@@ -359,7 +387,6 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-with-phone-exists}', 'code' => 400]);
         }
 
-        // ! временно
         if(App::$isDev) {
 
             /** @var \App\Modules\Auth\Models\Application|null $app */

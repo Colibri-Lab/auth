@@ -16,7 +16,8 @@
                         component: 'Text',
                         params: {
                             required: true,
-                            readonly: false
+                            readonly: false,
+                            changeOnKeyPress: true
                         },
                         attrs: {
                             width: 480
@@ -38,6 +39,7 @@
                         params: {
                             required: true,
                             readonly: false,
+                            changeOnKeyPress: true,
                             validate: [
                                 {
                                     message: '#{auth-confirmationform-code-validation1}',
