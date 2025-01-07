@@ -130,7 +130,7 @@ class Controller extends WebController
 
         if (App::$moduleManager->Get('tools')) {
             $themeFile = App::$moduleManager->Get('tools')->Theme(App::$domainKey);
-            $themeKey = md5($themeFile);
+            $themeKey = md5($themeFile ?: '');
         }
 
         if (!App::$request->server->{'commandline'}) {
