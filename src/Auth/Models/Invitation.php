@@ -124,4 +124,13 @@ class Invitation extends BaseModelDataRow
 
 	}
 
+	public function ExportForUserInterface(): array
+	{
+		$arr = $this->ToArray(true);
+        unset($arr['datecreated']);
+        unset($arr['datemodified']);
+        unset($arr['datedeleted']);
+        return $arr;
+	}
+
 }

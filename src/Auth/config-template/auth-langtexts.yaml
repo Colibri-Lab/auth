@@ -175,3 +175,4 @@ auth-errors-invitation-send-error:
   it: Errore durante l'invio del messaggio
   hy: Սխալ՝ հաղորդագրություն ուղարկելիս
 auth-errors-invitation-memberfound: {}
+auth-errors-member-notlogged: {}

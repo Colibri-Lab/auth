@@ -35,6 +35,9 @@ class InvitesController extends WebController
         $code = 200;
 
         $session = Sessions::LoadFromRequest();
+        if(!$session || !$session->member) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
+        }
 
         /** @var \App\Modules\Auth\Models\Application|null $app */
         $app = Module::$instance->application;
@@ -55,11 +58,10 @@ class InvitesController extends WebController
 
         $member = $email ? Members::LoadByEmail($email) : Members::LoadByPhone($phone);
         if($member) {
-            // финишируем контроллер
             return $this->Finish(
                 200,
                 'ok',
-                ['member' => $member->ExportForUserInterface(true)],
+                ['member' => $member->ExportForUserInterface(true), 'params' => $params],
                 'utf-8'
             );
         }
@@ -73,6 +75,9 @@ class InvitesController extends WebController
         if (!$res) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-invitation-send-error}', 'code' => 400]);
         }
+
+        $result['invitation'] = $invitation->ExportForUserInterface();
+        $result['params'] = $params;
 
         return $this->Finish(
             $code,
