@@ -66,6 +66,7 @@ class MemberController extends WebController
 
             $email = $invitation->email;
             $phone = $invitation->phone ?: $phone;
+            $role = $invitation->params?->role ?: $role;
 
             $invitation->accepted = new DateTimeField('now');
             $invitation->Save(true);

@@ -151,7 +151,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
         super('Auth', Auth.requestType, Auth.remoteDomain);
     }
 
-    Register(email, email_confirmed, phone, phone_confirmed, password, confirmation, first_name = '', last_name = '', patronymic = '', gender = 'male', birthdate = null) {
+    Register(email, email_confirmed, phone, phone_confirmed, password, confirmation, first_name = '', last_name = '', patronymic = '', gender = 'male', birthdate = null, invitation = null) {
         return new Promise((resolve, reject) => {
             this.Call('Member', 'Register', {
                 email: email,
@@ -164,10 +164,23 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
                 last_name: last_name,
                 patronymic: patronymic,
                 gender: gender,
-                birthdate: birthdate
+                birthdate: birthdate,
+                invitation: invitation
             }, {'X-AppToken': Auth.appToken}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
+            }).catch(response => reject(response));
+        });
+    }
+
+    Invite(email, phone, params) {
+        return new Promise((resolve, reject) => {
+            this.Call('Invites', 'Create', {
+                email: email,
+                phone: phone,
+                params: params
+            }, {'X-AppToken': Auth.appToken}).then((response) => {
+                resolve(response.result);
             }).catch(response => reject(response));
         });
     }

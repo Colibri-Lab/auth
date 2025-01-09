@@ -27,6 +27,7 @@ use Colibri\Utils\Debug;
  * @property string|null $application Приложение
  * @property string|null $email Эл. почта
  * @property string $phone Телефон
+ * @property string|null $fio ФИО
  * @property string $code Код
  * @property DateTimeField|null $date Дата отправки
  * @property DateTimeField|null $accepted Приглашение принято
@@ -56,6 +57,7 @@ class Invitation extends BaseModelDataRow
 			'application' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 256, ] ] ],
 			'email' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 256, ] ] ],
 			'phone' => ['type' => 'string', 'maxLength' => 50, ],
+			'fio' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 256, ] ] ],
 			'code' => ['type' => 'string', 'maxLength' => 10, ],
 			'date' => [ 'anyOf' => [ ['type' => ['string', 'null'], 'format' => 'db-date-time'], ['type' => ['string', 'null'], 'maxLength' => 0] ] ],
 			'accepted' => [ 'anyOf' => [ ['type' => ['string', 'null'], 'format' => 'db-date-time'], ['type' => ['string', 'null'], 'maxLength' => 0] ] ],

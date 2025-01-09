@@ -54,8 +54,8 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
     /** @protected */
     _registerEvents() {
         super._registerEvents();
-        this.RegisterEvent('PropertyConfirmed', true, 'Сойвство подтверждено');
-        this.RegisterEvent('ExternalValidation', true, 'Когда требуется валидация');
+        this.RegisterEvent('PropertyConfirmed', true, 'When property is confirmed');
+        this.RegisterEvent('ExternalValidation', true, 'When external validation is needed');
     }
 
     /**

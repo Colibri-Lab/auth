@@ -66,7 +66,8 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
 
     /** @protected */
     _registerEvents() {
-        this.RegisterEvent('LoginButtonClicked', true, 'Когда нажата кнопка входа');
+        this.RegisterEvent('LoginButtonClicked', true, 'When login button is clicked');
+        this.RegisterEvent('Completed', true, 'When reset is completed');
     }
 
     /**
@@ -223,6 +224,8 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
 
             Auth.Members.ResetPassword(this._form.value.email, this._form.value.phone, this._form.value.code, this._form.value.pass.password, this._form.value.pass.confirmation).then((session) => {
                 this._loginButton.Dispatch('Clicked');
+            }).then(session => {
+                this.Dispatch('Completed', session);
             }).catch(response => {
                 response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
                 if(response.result.validation && Object.keys(response.result.validation).length > 0) {

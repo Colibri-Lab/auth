@@ -71,8 +71,9 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
 
     /** @protected */
     _registerEvents() {
-        this.RegisterEvent('LoginButtonClicked', true, 'Когда нажата кнопка входа');
-        this.RegisterEvent('ExternalValidation', true, 'Когда требуется валидация');
+        this.RegisterEvent('LoginButtonClicked', true, 'When login button is clicked');
+        this.RegisterEvent('ExternalValidation', true, 'When external validation is needed');
+        this.RegisterEvent('Completed', true, 'When registration is completed');
     }
 
     /**
@@ -105,10 +106,18 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this._form.enabled = false;
         this._registerButton.enabled = false;
         Auth.Members.Register(
-            formData.email, formData.email_confirmed, formData.phone.replaceAll(/[^[0-9+]/, ''), formData.phone_confirmed, formData.pass.password, formData.pass.confirmation
+            formData.email, 
+            formData.email_confirmed, 
+            formData.phone.replaceAll(/[^[0-9+]/, ''), 
+            formData.phone_confirmed, 
+            formData.pass.password, 
+            formData.pass.confirmation,
+            null, null, null, null, null,
+            App.Router.options?.invitation ?? null
         ).then((session) => {
             this._form.enabled = false;
             this._registerButton.enabled = false;
+            this.Dispatch('Completed', session);
         }).catch(response => {
             this._form.enabled = false;
             this._registerButton.enabled = false;

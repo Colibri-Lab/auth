@@ -19,6 +19,12 @@ App.Modules.Auth.Components.ProfileForm = class extends Colibri.UI.Component  {
 
     } 
 
+    /** @protected */
+    _registerEvents() {
+        super._registerEvents();
+        this.RegisterEvent('Completed', true, 'When profile is saved');
+    }
+
     /**
      * Shows the component
      * @type {boolean}
@@ -56,7 +62,8 @@ App.Modules.Auth.Components.ProfileForm = class extends Colibri.UI.Component  {
 
             return;
         }
-        Auth.Members.SaveProfile(this._form.value.last_name, this._form.value.first_name, this._form.value.patronymic, this._form.value.birthdate, this._form.value.gender).then((session) => {
+        Auth.Members.SaveProfile(this._form.value.last_name, this._form.value.first_name, this._form.value.patronymic, this._form.value.birthdate, this._form.value.gender).then(session => {
+            this.Dispatch('Completed', session);
             this.Hide();
         }).catch(response => {
             response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);

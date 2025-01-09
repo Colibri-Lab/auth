@@ -45,7 +45,7 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
 
     /** @protected */
     _registerEvents() {
-        this.RegisterEvent('PropertyChanged', true, 'Сойвство изменено');
+        this.RegisterEvent('PropertyChanged', true, 'When property is changed');
     }
 
     /**

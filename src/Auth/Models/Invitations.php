@@ -208,7 +208,7 @@ class Invitations extends BaseModelDataTable
         return true;
     }
 
-    public static function CreateInvitation(?string $email, ?string $phone, ?array $params): Invitation
+    public static function CreateInvitation(?string $email, ?string $phone, ?string $fio, ?array $params): Invitation
     {
         $invitation = self::LoadByEmailAndOrPhone($email, $phone);
         if(!$invitation) {
@@ -218,6 +218,7 @@ class Invitations extends BaseModelDataTable
             $invitation->phone = $phone;
         }
 
+        $invitation->fio = $fio;
         $invitation->code = md5($invitation->email);
         $invitation->date = new DateTimeField('now');
         $invitation->params = $params ?? [];

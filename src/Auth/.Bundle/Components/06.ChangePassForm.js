@@ -19,6 +19,13 @@ App.Modules.Auth.Components.ChangePassForm = class extends Colibri.UI.Component 
 
     } 
 
+    /** @protected */
+    _registerEvents() {
+        super._registerEvents();
+        this.RegisterEvent('Completed', true, 'When password is changed');
+    }
+
+
     /**
      * Shows the component
      * @type {boolean}
@@ -53,6 +60,8 @@ App.Modules.Auth.Components.ChangePassForm = class extends Colibri.UI.Component 
         
         Auth.Members.ChangePassword(this._form.value.original, this._form.value.password, this._form.value.confirmation).then((session) => {
             this.Hide();
+        }).then(session => {
+            this.Dispatch('Completed', session);
         }).catch(response => {
             response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result); 
             if(response.result.validation && Object.keys(response.result.validation).length > 0) {

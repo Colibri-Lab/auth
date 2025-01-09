@@ -1,0 +1,27 @@
+auth-inviteform-email:
+  ru: Эл. адрес
+  en: Email
+  it: E-mail
+  hy: Էլ․ հասցէ
+auth-inviteform-email-validation1:
+  ru: Пожалуйста, введите корректный эл. адрес
+  en: Please, enter the correct email
+  hy: Խնդրում ենք մուտքագրել ճիշտ էլ
+  it: Inserisci l'email corretta
+auth-inviteform-phone:
+  ru: Телефон
+  en: Phone
+  it: Telefono
+  hy: Հեռախոս
+auth-inviteform-fio:
+  ru: ФИО
+  en: Full name
+  it: Nome e cognome
+  hy: Անուն և ազգանուն
+auth-profile-button: {}
+auth-invite-button:
+  ru: Отправить
+  en: Send
+  hy: Ուղարկել
+  it: Inviare
+auth-invite4-button: {}

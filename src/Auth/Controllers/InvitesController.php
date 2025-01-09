@@ -42,11 +42,12 @@ class InvitesController extends WebController
         /** @var \App\Modules\Auth\Models\Application|null $app */
         $app = Module::$instance->application;
         if (!$app) {
-            throw new InvalidArgumentException('Application not found', 404);
+            return $this->Finish(400, 'Bad Request', ['message' => 'Application not found', 'code' => 400]);
         }
 
         $email = $post->email;
         $phone = $post->phone;
+        $fio = $post->fio;
         $params = $post->params ?? [];
 
         if(!$email && !$phone) {
@@ -66,7 +67,7 @@ class InvitesController extends WebController
             );
         }
         
-        $invitation = Invitations::CreateInvitation($email, $phone, $params);
+        $invitation = Invitations::CreateInvitation($email, $phone, $fio, $params);
         if(!$invitation) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-invitation-send-error}', 'code' => 400]);
         }
