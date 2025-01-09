@@ -26,7 +26,6 @@ use Colibri\Utils\Debug;
  * @property DateTimeField $datedeleted Дата удаления строки (если включно мягкое удаление)
  * @property string|null $application Приложение
  * @property string|null $email Эл. почта
- * @property string $phone Телефон
  * @property string|null $fio ФИО
  * @property string $code Код
  * @property DateTimeField|null $date Дата отправки
@@ -44,7 +43,6 @@ class Invitation extends BaseModelDataRow
             'datecreated',
             'datemodified',
             # region SchemaRequired:
-			'phone',
 			'code',
 			# endregion SchemaRequired;
         ],
@@ -56,9 +54,8 @@ class Invitation extends BaseModelDataRow
             # region SchemaProperties:
 			'application' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 256, ] ] ],
 			'email' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 256, ] ] ],
-			'phone' => ['type' => 'string', 'maxLength' => 50, ],
 			'fio' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 256, ] ] ],
-			'code' => ['type' => 'string', 'maxLength' => 10, ],
+			'code' => ['type' => 'string', 'maxLength' => 32, ],
 			'date' => [ 'anyOf' => [ ['type' => ['string', 'null'], 'format' => 'db-date-time'], ['type' => ['string', 'null'], 'maxLength' => 0] ] ],
 			'accepted' => [ 'anyOf' => [ ['type' => ['string', 'null'], 'format' => 'db-date-time'], ['type' => ['string', 'null'], 'maxLength' => 0] ] ],
 			'params' => [  'oneOf' => [ ObjectField::JsonSchema, [ 'type' => 'null'] ] ],
@@ -91,11 +88,10 @@ class Invitation extends BaseModelDataRow
 		
         $invitationData = [];
 		$invitationData['email'] = $this->email;
-		$invitationData['phone'] = $this->phone;
 		$invitationData['code'] = $this->code;
 		$invitationData = array_merge($invitationData, (array)$this->params->ToArray(true));
 
-		$noticeName = 'invitation_' . ($langModule ? '_' . $langModule->current : '');
+		$noticeName = 'invitation' . ($langModule ? '_' . $langModule->current : '');
 		$notice = Notices::LoadByName($noticeName);
 		$notice->Apply($invitationData);
 		

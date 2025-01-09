@@ -18,10 +18,8 @@ auth-inviteform-fio:
   en: Full name
   it: Nome e cognome
   hy: Անուն և ազգանուն
-auth-profile-button: {}
 auth-invite-button:
   ru: Отправить
   en: Send
   hy: Ուղարկել
   it: Inviare
-auth-invite4-button: {}

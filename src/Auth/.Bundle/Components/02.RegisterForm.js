@@ -47,13 +47,19 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
     __step1PropertyConfirmed(event, args) {
         this._registrationData.phone = args.value;
         this._registrationData.phone_confirmed = true;
-        this._currentStep = 2;
+        if(this._invitation) {
+            this._currentStep = 3;
+            this._registrationData.email = this._invitation.email;
+            this._registrationData.email_confirmed = true;
+        } else {
+            this._currentStep = 2;
+        }
         this._showStep();
     }
 
     /**
      * @private
-     * @param {Colibri.Events.Event} event event object
+     * @param {Colibri.Events.Event} event event object 
      * @param {*} args event arguments
      */ 
     __step2PropertyConfirmed(event, args) {
@@ -67,6 +73,9 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
     _showStep() {
         this._step1.shown = this._step2.shown = this._step3.shown = false;
         this['_step' + this._currentStep].shown = true;
+        if(this._currentStep === 3) {
+            this._form.value = this._registrationData;
+        }
     }
 
     /** @protected */
@@ -74,6 +83,18 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this.RegisterEvent('LoginButtonClicked', true, 'When login button is clicked');
         this.RegisterEvent('ExternalValidation', true, 'When external validation is needed');
         this.RegisterEvent('Completed', true, 'When registration is completed');
+    }
+
+    Show(invitation = null) {
+        if(invitation) {
+            Auth.Members.GetInvite(invitation).then(invite => {
+                this._invitation = invite;
+            }).finally(() => {
+                super.shown = true;
+            });
+        } else {
+            super.shown = true;
+        }
     }
 
     /**
@@ -119,8 +140,8 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
             this._registerButton.enabled = false;
             this.Dispatch('Completed', session);
         }).catch(response => {
-            this._form.enabled = false;
-            this._registerButton.enabled = false;
+            this._form.enabled = true;
+            this._registerButton.enabled = true;
             response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
             if(response.result.validation && Object.keys(response.result.validation).length > 0) {
                 Object.forEach(response.result.validation, (field, message, index) => {

@@ -37,7 +37,7 @@ App.Modules.Auth.Components.InviteMember = class extends Colibri.UI.Component {
             return;
         }
 
-        Auth.Members.Invite(this._form.value.email, this._form.value.phone, this._form.value.params).then(result => {
+        Auth.Members.Invite(this._form.value.email, this._form.value.fio, this._form.value.params).then(result => {
             this.Dispatch('Completed', result);
             this.Hide();
         }).catch(response => {

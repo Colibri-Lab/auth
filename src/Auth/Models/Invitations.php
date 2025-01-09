@@ -136,9 +136,9 @@ class Invitations extends BaseModelDataTable
      * @param ?string $phone phone
      * @return Invitation|null
      */
-    public static function LoadByEmailAndOrPhone(?string $email, ?string $phone) : Invitation|null 
+    public static function LoadByEmail(?string $email) : Invitation|null 
     {
-        if(!$email && !$phone) {
+        if(!$email) {
             return null;
         }
 
@@ -148,10 +148,7 @@ class Invitations extends BaseModelDataTable
             $filter[] = '{email}=[[email:string]]';
             $params['email'] = $email;
         }   
-        if($phone) {
-            $filter[] = '{phone}=[[phone:string]]';
-            $params['phone'] = $phone;
-        }
+        
 
         $table = self::LoadByFilter(1, 1, implode(' and ', $filter), null, $params, false);
         return $table && $table->Count() > 0 ? $table->First() : null;
@@ -208,14 +205,13 @@ class Invitations extends BaseModelDataTable
         return true;
     }
 
-    public static function CreateInvitation(?string $email, ?string $phone, ?string $fio, ?array $params): Invitation
+    public static function CreateInvitation(?string $email, ?string $fio, ?array $params): Invitation
     {
-        $invitation = self::LoadByEmailAndOrPhone($email, $phone);
+        $invitation = self::LoadByEmail($email);
         if(!$invitation) {
             $invitation = self::LoadEmpty();
             $invitation->application = Module::$instance->application->key;
             $invitation->email = $email;
-            $invitation->phone = $phone;
         }
 
         $invitation->fio = $fio;

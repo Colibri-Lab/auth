@@ -173,11 +173,19 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
         });
     }
 
-    Invite(email, phone, params) {
+    GetInvite(code) {
+        return new Promise((resolve, reject) => {
+            this.Call('Invites', 'Get', {code: code}, {'X-AppToken': Auth.appToken}).then((response) => {
+                resolve(response.result);
+            }).catch(response => reject(response));
+        });
+    }
+
+    Invite(email, fio, params) {
         return new Promise((resolve, reject) => {
             this.Call('Invites', 'Create', {
                 email: email,
-                phone: phone,
+                fio: fio,
                 params: params
             }, {'X-AppToken': Auth.appToken}).then((response) => {
                 resolve(response.result);

@@ -3,6 +3,7 @@
 namespace App\Modules\Auth\Models;
 
 # region Uses:
+use App\Modules\Auth\Models\Fields\Members\GenderEnum;
 use Colibri\Data\Storages\Fields\DateField;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\ValueField;
@@ -29,11 +30,11 @@ use Colibri\Data\SqlClient\QueryInfo;
  * @property string $email Эл. адрес пользователя
  * @property string $phone Телефон
  * @property string $password Пароль
- * @property string $first_name Имя
- * @property string $last_name Фамилия
+ * @property string|null $first_name Имя
+ * @property string|null $last_name Фамилия
  * @property string|null $patronymic Отчество
  * @property DateField|null $birthdate Дата рождения
- * @property ValueField|string|ValueField|null $gender Пол
+ * @property GenderEnum|ValueField|ValueField|null $gender Пол
  * @property string|null $role Роль
  * @property bool $email_confirmed Почта подтверждена
  * @property bool $phone_confirmed Телефон подтвержден
@@ -57,8 +58,6 @@ class Member extends BaseModelDataRow
 			'email',
 			'phone',
 			'password',
-			'first_name',
-			'last_name',
 			'email_confirmed',
 			'phone_confirmed',
 			'blocked',
@@ -75,11 +74,11 @@ class Member extends BaseModelDataRow
 			'email' => ['type' => 'string', 'maxLength' => 255, ],
 			'phone' => ['type' => 'string', 'maxLength' => 50, ],
 			'password' => ['type' => 'string', 'maxLength' => 128, ],
-			'first_name' => ['type' => 'string', 'maxLength' => 255, ],
-			'last_name' => ['type' => 'string', 'maxLength' => 255, ],
+			'first_name' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
+			'last_name' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
 			'patronymic' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
 			'birthdate' => [ 'anyOf' => [ ['type' => ['string', 'null'], 'format' => 'date'], ['type' => ['string', 'null'], 'maxLength' => 0] ] ],
-			'gender' => [  'oneOf' => [ [ 'type' => 'null' ], ['type' => 'string', 'enum' => ['male', 'female']] ] ],
+			'gender' => [ 'oneOf' => [ [ 'type' => 'null' ], GenderEnum::JsonSchema ] ], 
 			'role' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 20, ] ] ],
 			'email_confirmed' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
 			'phone_confirmed' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],

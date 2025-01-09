@@ -46,18 +46,17 @@ class InvitesController extends WebController
         }
 
         $email = $post->email;
-        $phone = $post->phone;
         $fio = $post->fio;
         $params = $post->params ?? [];
 
-        if(!$email && !$phone) {
+        if(!$email) {
             return $this->Finish(400, 'Bad Request', [
                 'message' => 'Email or phone are required',
                 'code' => 400
             ]);
         }
 
-        $member = $email ? Members::LoadByEmail($email) : Members::LoadByPhone($phone);
+        $member = Members::LoadByEmail($email);
         if($member) {
             return $this->Finish(
                 200,
@@ -67,7 +66,7 @@ class InvitesController extends WebController
             );
         }
         
-        $invitation = Invitations::CreateInvitation($email, $phone, $fio, $params);
+        $invitation = Invitations::CreateInvitation($email, $fio, $params);
         if(!$invitation) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-invitation-send-error}', 'code' => 400]);
         }
@@ -90,4 +89,39 @@ class InvitesController extends WebController
     }
 
 
+    /**
+     * Gets the invitation by code
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function Get(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
+    {
+
+        $result = [];
+        $message = 'Result message';
+        $code = 200;
+
+        $code2 = $post->{'code'};
+        if(!$code2) {
+            return $this->Finish(400, 'Bad Request', ['message' => 'Code is required', 'code' => 400]);
+        }
+
+        $invitation = Invitations::LoadByCode($code2);
+        if(!$invitation) {
+            return $this->Finish(404, 'Not Found', ['message' => 'Invitation not found', 'code' => 404]);
+        }    
+
+        return $this->Finish(
+            $code,
+            $message,
+            $invitation->ExportForUserInterface(),
+            'utf-8'
+        );
+
+    }
+
+
+    
 }
