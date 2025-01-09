@@ -4,6 +4,7 @@ namespace App\Modules\Auth\Controllers;
 
 use App\Modules\Auth\Models\Confirmation;
 use App\Modules\Auth\Models\Confirmations;
+use App\Modules\Auth\Models\Invitations;
 use App\Modules\Auth\Models\Member;
 use App\Modules\Auth\Models\Members;
 use App\Modules\Auth\Models\Sessions;
@@ -53,6 +54,22 @@ class MemberController extends WebController
         $password = $payloadArray['password'] ?? $post->{'password'};
         $confirmation = $payloadArray['confirmation'] ?? $post->{'confirmation'};
         $role = $payloadArray['role'] ?? $post->{'role'};
+        $invitationCode = $payloadArray['invitation'] ?? $post->{'invitation'};
+        if($invitationCode) {
+            $invitation = Invitations::LoadByCode($invitationCode);
+            if(!$invitation || $invitation->accepted) { 
+                return $this->Finish(400, 'Bad Request', [
+                    'message' => 'Invalid data in request',
+                    'code' => 400
+                ]);
+            }
+
+            $email = $invitation->email;
+            $phone = $invitation->phone ?: $phone;
+
+            $invitation->accepted = new DateTimeField('now');
+            $invitation->Save(true);
+        }
 
         if (!$email || !$phone || !$password || !$confirmation) {
             $validation = [];

@@ -3,7 +3,8 @@ applications:
   desc:
     ru: Приложения
     en: Applications
-    hy: ""
+    it: Applicazioni
+    hy: Հավելվաձներ
   access-point: auth
   models:
     table: Models\Applications
@@ -11,6 +12,14 @@ applications:
   params:
     visible: true
     maybepublished: false
+    softdeletes: false
+    deletedautoshow: false
+    template_args:
+      rows: ""
+      columns: ""
+      orientation: ~
+      flow: ~
+      gap: ""
   module: Auth
   fields:
     key:
@@ -1342,6 +1351,83 @@ applications:
       method: BTREE
       name: applications_key_idx
   group: ~
+  dbms: relational
+  allowedTypes:
+    bool:
+      length: false
+      generic: bool
+      component: Colibri.UI.Forms.Checkbox
+    int:
+      length: true
+      generic: int
+      component: Colibri.UI.Forms.Number
+    bigint:
+      length: false
+      generic: int
+      component: Colibri.UI.Forms.Number
+    float:
+      length: true
+      generic: float
+      component: Colibri.UI.Forms.Number
+    double:
+      length: true
+      generic: float
+      component: Colibri.UI.Forms.Number
+    date:
+      length: false
+      generic: DateField
+      component: Colibri.UI.Forms.Date
+    datetime:
+      length: false
+      generic: DateTimeField
+      component: Colibri.UI.Forms.DateTime
+    timestamp:
+      length: false
+      generic: DateTimeField
+      component: Colibri.UI.Forms.DateTime
+    varchar:
+      length: true
+      generic: string
+      component: Colibri.UI.Forms.Text
+    text:
+      length: false
+      generic: string
+      component: Colibri.UI.Forms.TextArea
+    longtext:
+      length: false
+      generic: string
+      component: Colibri.UI.Forms.TextArea
+    mediumtext:
+      length: false
+      generic: string
+      component: Colibri.UI.Forms.TextArea
+    tinytext:
+      length: true
+      generic: string
+      component: Colibri.UI.Forms.TextArea
+    enum:
+      length: false
+      generic: ValueField
+      component: Colibri.UI.Forms.Select
+    json:
+      length: false
+      generic:
+        Colibri.UI.Forms.Object: ObjectField
+        Colibri.UI.Forms.Array: ArrayField
+      component: Colibri.UI.Forms.Object
+  hasIndexes: true
+  hasVirtual: true
+  hasMultiFieldIndexes: true
+  fieldsHasPrefix: true
+  indexTypes:
+  - NORMAL
+  - SPATIAL
+  - UNIQUE
+  - FULLTEXT
+  indexMethods:
+  - BTREE
+  - HASH
+  jsonIndexes: false
 sessions:
   desc:
     ru: Сессии
@@ -2010,7 +2096,7 @@ members:
         template: false
         multiple: false
         greed: ""
-        viewer: ~
+        viewer: Colibri.UI.DateViewer
         vertical: false
         visual: false
         code: 0
@@ -2865,6 +2951,517 @@ confirmations:
     confirmations_property_idx:
       fields:
       - property
+      type: NORMAL
+      method: BTREE
+invites:
+  desc:
+    ru: Приглашения
+    en: Invitations
+    it: Inviti
+    hy: Հրավերներ
+  access-point: auth
+  models:
+    table: Models\Invitations
+    row: Models\Invitation
+  params:
+    visible: true
+    maybepublished: false
+    softdeletes: false
+    deletedautoshow: false
+    template_args:
+      rows: ""
+      columns: ""
+      orientation: ~
+      flow: ~
+      gap: ""
+  group: ~
+  module: Auth
+  fields:
+    application:
+      desc:
+        ru: Приложение
+        en: Application
+        it: Applicazione
+        hy: Հավելվաձ
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      note:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      type: varchar
+      length: "256"
+      component: Colibri.UI.Forms.Text
+      class: string
+      attrs: []
+      params:
+        required: false
+        enabled: true
+        canbeempty: true
+        readonly: false
+        searchable: false
+        list: false
+        template: false
+        multiple: false
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: 0
+        mask: ""
+        fieldgenerator: ""
+        generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      tag: []
+      group: window
+    email:
+      desc:
+        ru: Эл. почта
+        en: Email
+        it: E-mail
+        hy: Էլ հասցե
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      note:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      type: varchar
+      length: "256"
+      component: Colibri.UI.Forms.Text
+      class: string
+      attrs: []
+      params:
+        required: false
+        enabled: true
+        canbeempty: true
+        readonly: false
+        searchable: false
+        list: true
+        template: false
+        multiple: false
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: 0
+        mask: ""
+        fieldgenerator: ""
+        generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      tag: []
+      group: window
+    phone:
+      desc:
+        ru: Телефон
+        en: Phone
+        it: Telefono
+        hy: Հեռախոս
+      note:
+        ru: Телефон в формате «код страны»«код внутри страны»«номер» без знаков, только
+          цифры
+        en: Phone in the "country code" format"country code", "number" without signs,
+          only numbers
+        it: Telefono nel formato "codice paese" "codice paese", "numero" senza segni,
+          solo numeri
+        hy: Հեռախոս «երկրի կոդը» ձևաչափով «երկրի կոդ», «համար» առանց նշանների, միայն
+          թվեր
+      type: varchar
+      length: "50"
+      component: Colibri.UI.Forms.Text
+      class: string
+      attrs: []
+      params:
+        required: true
+        enabled: true
+        canbeempty: true
+        readonly: false
+        searchable: false
+        list: true
+        template: false
+        multiple: false
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: 0
+        mask: "99999999999"
+        fieldgenerator: ""
+        generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
+      group: window
+    code:
+      desc:
+        ru: Код
+        en: Code
+        it: Codice
+        hy: Կոդ
+      note:
+        ru: Сгенерированный код верификации
+        en: Generated verification code
+        it: Codice di verifica generato
+        hy: Ստեղծված հաստատման կոդը
+      type: varchar
+      length: "10"
+      component: Colibri.UI.Forms.Text
+      class: string
+      attrs: []
+      params:
+        required: true
+        enabled: true
+        canbeempty: true
+        readonly: true
+        searchable: false
+        list: true
+        template: false
+        multiple: false
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: 0
+        mask: ""
+        fieldgenerator: ""
+        generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      tag: []
+      group: window
+    date:
+      desc:
+        ru: Дата отправки
+        en: Send date
+        it: Data di invio
+        hy: Ուղարկելու ամսաթիվը
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      note:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      type: datetime
+      component: Colibri.UI.Forms.DateTime
+      class: DateTimeField
+      attrs: []
+      params:
+        required: false
+        enabled: true
+        canbeempty: true
+        readonly: false
+        searchable: false
+        list: true
+        template: false
+        multiple: false
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: 0
+        mask: ""
+        fieldgenerator: ""
+        generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      tag: []
+      group: window
+    accepted:
+      desc:
+        ru: Приглашение принято
+        en: Invitation accepted
+        it: Invito accettato
+        hy: Հրավերն ընդունված է
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      note:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      type: datetime
+      component: Colibri.UI.Forms.DateTime
+      class: DateTimeField
+      attrs: []
+      params:
+        required: false
+        enabled: true
+        canbeempty: true
+        readonly: false
+        searchable: false
+        list: true
+        template: false
+        multiple: false
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: 0
+        mask: ""
+        fieldgenerator: ""
+        generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      tag: []
+      group: window
+    params:
+      desc:
+        ru: Параметры
+        en: Params
+        it: Parametri
+        hy: Պարամներ
+      placeholder:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      note:
+        ru: ""
+        en: ""
+        it: ""
+        hy: ""
+      type: json
+      component: Colibri.UI.Forms.Object
+      class: ObjectField
+      attrs: []
+      params:
+        required: false
+        enabled: true
+        canbeempty: true
+        readonly: false
+        searchable: false
+        list: false
+        template: false
+        multiple: false
+        greed: ""
+        viewer: ~
+        vertical: false
+        visual: false
+        code: 0
+        mask: ""
+        fieldgenerator: ""
+        generator: ""
+        noteClass: ""
+        simplearraywidth: ""
+        simplearrayheight: ""
+        addlink:
+          ru: ""
+          en: ""
+          it: ""
+          hy: ""
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        displayed_columns: ""
+        maxadd: ""
+        title: ""
+        removedesc: true
+        allow: ""
+        size: ""
+        validate:
+        - message:
+            ru: ""
+            en: ""
+            it: ""
+            hy: ""
+          method: (field, validator) => { return true; /* false */ }
+        valuegenerator: ""
+        onchangehandler: ""
+      tag: []
+      group: window
+  indices:
+    invites_email_phone_idx:
+      fields:
+      - email
+      - phone
+      type: NORMAL
+      method: BTREE
+    invites_email_idx:
+      fields:
+      - email
+      type: NORMAL
+      method: BTREE
+    invites_phone_idx:
+      fields:
+      - phone
       type: NORMAL
       method: BTREE
 ...
