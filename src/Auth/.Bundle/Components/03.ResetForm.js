@@ -168,7 +168,10 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                             },
                             requirements: {
                                 digits: 8,
-                                strength: 60
+                                strength: 60,
+                                minForStrong: 90,
+                                minForGood: 70,
+                                minForWeak: 50
                             },
                             validate: [
                                 {
