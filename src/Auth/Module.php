@@ -22,10 +22,11 @@ use App\Modules\Auth\Models\Application;
 use App\Modules\Auth\Controllers\SessionController;
 use App\Modules\Auth\Controllers\MemberController;
 use App\Modules\Auth\Controllers\AppController;
+use App\Modules\Auth\Controllers\AutologinController;
 use App\Modules\Auth\Controllers\InvitesController;
 use App\Modules\Auth\Models\Sessions;
 use App\Modules\Auth\Models\Session;
-
+use Composer\Autoload\AutoloadGenerator;
 
 /**
  * Authorization module

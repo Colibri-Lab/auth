@@ -21,6 +21,7 @@ use Colibri\Data\Storages\Fields\ArrayField;
  * @property int|null $livetime Время жизни
  * @property ParamsDomainsArrayField|null $domains Домены
  * @property bool|null $allowrenew Разрешить восстановление по короткому токену
+ * @property bool|null $autologin Разрешить автологин
  * @property ParamsRolesArrayField|null $roles Роли
  * @property string $defaultrole Роль по умолчанию
  * @property bool|null $enable_two_factor_authentication Включить двухфакторную аутентификацию
@@ -43,6 +44,7 @@ class ParamsObjectField extends ObjectField
 			'livetime' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'integer', ] ] ],
 			'domains' => [  'oneOf' => [ ParamsDomainsArrayField::JsonSchema, [ 'type' => 'null'] ] ],
 			'allowrenew' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
+			'autologin' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
 			'roles' => [  'oneOf' => [ ParamsRolesArrayField::JsonSchema, [ 'type' => 'null'] ] ],
 			'defaultrole' => ['type' => 'string', 'maxLength' => 255, ],
 			'enable_two_factor_authentication' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],

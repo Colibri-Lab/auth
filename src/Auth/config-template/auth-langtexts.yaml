@@ -174,5 +174,13 @@ auth-errors-invitation-send-error:
   en: Error sending the message
   it: Errore durante l'invio del messaggio
   hy: Սխալ՝ հաղորդագրություն ուղարկելիս
-auth-errors-invitation-memberfound: {}
-auth-errors-member-notlogged: {}
+auth-errors-autologin:
+  ru: Приложение не позволяет получить доступ к другим пользователям
+  en: An application does not allow autologin
+  it: L'applicazione non consente l'autologin
+  hy: Ծրագրը չի թույլատրում այլ օգտագործողներին մուտք գործել
+auth-errors-member-provide-token:
+  ru: Пожалуйста, отправьте токен пользователя
+  en: Please provide user token
+  it: Si prega di fornire il token dell'utente
+  hy: Խնդրում ենք ուղարկել օգտագործողի թոքենը

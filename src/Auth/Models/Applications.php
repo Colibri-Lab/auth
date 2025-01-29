@@ -99,6 +99,17 @@ class Applications extends BaseModelDataTable
     }
 
     /**
+     * Возвращает модель по ключу
+     * @param string $key Ключ приложения
+     * @return Application|null
+     */
+    static function LoadByKey(string $key): Application|null
+    {
+        $table = self::LoadByFilter(1, 1, '{key}=[[key:string]]', null, ['key' => $key], false);
+        return $table && $table->Count() > 0 ? $table->First() : null;
+    }
+
+    /**
      * Берем приложение из заголовков запроса
      */
     static function LoadFromRequest(): ? Application

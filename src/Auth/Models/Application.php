@@ -4,6 +4,7 @@ namespace App\Modules\Auth\Models;
 
 # region Uses:
 use App\Modules\Auth\Models\Fields\Applications\ParamsObjectField;
+use Colibri\App;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\ObjectField;
 # endregion Uses;
@@ -74,6 +75,14 @@ class Application extends BaseModelDataRow
             }
         }
         return false;
+    }
+
+    public function GetLink(): string
+    {
+        $hosts = App::$config->Query('hosts.domains.auth')->AsArray();
+        $host = $hosts[0];
+        $host = str_replace('*', $this->key, $host);
+        return 'https://' . $host;
     }
 
 }

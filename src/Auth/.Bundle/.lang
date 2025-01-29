@@ -1,0 +1,10 @@
+auth-autologin-title:
+  ru: Автовход
+  en: Autologin
+  it: Autologin
+  hy: Ավտոմատ մուտք
+auth-autologin-message:
+  ru: Нажмите или скопируйте ссылку для перехода
+  en: Click or copy the link to go
+  it: Fare clic o copiare il link per andare
+  hy: Սեղմեք կամ պատճենեք հղումը գնալու

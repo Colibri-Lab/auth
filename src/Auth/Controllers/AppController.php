@@ -2,6 +2,7 @@
 
 namespace App\Modules\Auth\Controllers;
 
+use App\Modules\Auth\Models\AutoLogins;
 use App\Modules\Auth\Models\Members;
 use App\Modules\Auth\Models\Sessions;
 use App\Modules\Auth\Module;
@@ -107,6 +108,8 @@ class AppController extends WebController
         );
 
     }
+
+
 
 
     
