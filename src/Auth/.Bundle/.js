@@ -287,7 +287,11 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
         return new Promise((resolve, reject) => {
             this.Call('Member', 'RequestAutologin', {token: memberToken, return: returnTo}, {'X-AppToken': Auth.appToken}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
-                App.Alert.Show('#{auth-autologin-title}', '#{auth-autologin-message} <a style="display: block; width: 100%;word-wrap: break-word; padding: 10px; margin-top: 10px; border: 1px solid #c0c0c0; text-align: center" href="' + response.result.link + '" target="_blank">' + response.result.link + '</a>');
+                const w = new App.Modules.Auth.Components.AutologinRequest('autologin-window', document.body);
+                w.Show(response.result.link);
+                w.AddHandler('WindowClosed', (event, args) => {
+                    w.Dispose();
+                });
                 resolve(response.result.session);
             }).catch(response => reject(response));
         });
