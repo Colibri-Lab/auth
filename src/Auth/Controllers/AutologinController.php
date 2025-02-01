@@ -37,13 +37,13 @@ class AutologinController extends WebController
 
         $appName = App::$request->headers->{'X-AppName'};
         $app = Applications::LoadByKey($appName);
-        if(!$app->params->allowed_ip) {
-            throw new AppException('Not allowed', 403);
-        }
+        // if(!$app->params->allowed_ip) {
+        //     throw new AppException('Not allowed', 403);
+        // }
 
-        if($app->params->allowed_ip !== App::$request->remoteip) {
-            throw new AppException('Not allowed', 403);
-        }
+        // if($app->params->allowed_ip !== App::$request->remoteip) {
+        //     throw new AppException('Not allowed', 403);
+        // }
 
         $code = $get->{'code'};
         if(!$code) {
