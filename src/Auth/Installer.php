@@ -124,12 +124,14 @@ class Installer
         $databases = self::_loadConfig($configDir . 'databases.yaml');
         // обновляем данные основного подключения
         $databases['access-points']['connections']['default_connection']['host'] = 'localhost';
-        $databases['access-points']['connections']['default_connection']['user'] = 'auth';
         if ($mode === 'prod') {
+            $databases['access-points']['connections']['default_connection']['user'] = 'auth';
             $databases['access-points']['connections']['default_connection']['password'] = 'vault(vault.colibrilab.pro:ef97938ae449337d2644daf48c01e336:auth_db_password)';
         } elseif ($mode === 'test') {
-            $databases['access-points']['connections']['default_connection']['password'] = 'vault(vault.colibrilab.pro:ef97938ae449337d2644daf48c01e336:auth_db_password)';
+            $databases['access-points']['connections']['default_connection']['user'] = 'mrecolo';
+            $databases['access-points']['connections']['default_connection']['password'] = '123456';
         } else {
+            $databases['access-points']['connections']['default_connection']['user'] = 'auth';
             $databases['access-points']['connections']['default_connection']['password'] = '123456';
         }
         $databases['access-points']['points']['main']['database'] = 'auth';
