@@ -11,7 +11,7 @@
  */
 namespace App\Modules\Auth;
 
-
+ 
 use Colibri\Modules\Module as BaseModule;
 use Colibri\Utils\Menu\Item;
 use Colibri\Events\EventsContainer;
