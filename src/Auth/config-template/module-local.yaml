@@ -1,6 +1,8 @@
 
 texts: include(auth-langtexts.yaml)
 
+lang-cookie-domain: local.bsft.loc
+
 databases:
 
   access-points: 

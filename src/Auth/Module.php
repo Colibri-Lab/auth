@@ -64,6 +64,12 @@ class Module extends BaseModule
     {
         self::$instance = $this;
 
+        if(App::$domainKey === 'auth') {
+            if(App::$moduleManager->{'lang'}) {
+                App::$moduleManager->{'lang'}->SetCookieDomain($this->Config('lang-cookie-domain', App::$request->host)->GetValue());
+            }
+        }
+
 
         App::$instance->HandleEvent(EventsContainer::RpcGotRequest, function ($event, $args) {
             if (isset($args->class) && in_array(trim($args->class, '\\'), self::NeedAuthorization)) {
