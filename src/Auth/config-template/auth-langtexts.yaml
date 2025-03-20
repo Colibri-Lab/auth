@@ -1,186 +1,304 @@
 auth-errors-member-property-two-factor-needed:
   ru: Требуется 2-х факторная авторизация
-  en: 2-factor authentication required
-  it: Richiede l'autenticazione a 2 fattori
-  hy: Պահանջվում է 2 գործոնով նույնականացում
+  en: 2-factor authorization is required
+  it: È necessaria l'autorizzazione a 2 fattori
+  hy: Պահանջվում է 2-ական վավերացում
+  es: Se requiere autorización de 2 factores
+  kk: 2-факторлы авторландыру қажет
+  uz: 2-faktorli tasdiqlash talab qilinadi
 auth-errors-member-confirmation-code-error:
   ru: Неверный код подтверждения
   en: Invalid confirmation code
   it: Codice di conferma non valido
   hy: Սխալ վավերացման կոդ
+  es: Código de confirmación no válido
+  kk: Растау коды дұрыс емес
+  uz: Tasdiqlash kodi noto'g'ri
 auth-errors-member-property-tho-factor-error:
   ru: Ошибка входа
   en: Login error
-  it: Accesso non riuscito
-  hy: Մուտքը ձախողվեց
+  it: Errore di accesso
+  hy: Մուտքի սխալ
+  es: Error de inicio de sesión
+  kk: Кірудің қатесі
+  uz: Kirishda xatolik
 auth-errors-member-password-error:
   ru: Неверный текущий пароль
-  en: Wrong current password
-  it: Password corrente non è corretta
-  hy: Ընթացիկ գաղտնաբառը սխալ է
+  en: Invalid current password
+  it: Password attuale non valido
+  hy: Այս գաղտնաբառը սխալ է
+  es: Contraseña actual no válida
+  kk: Ағымдағы құпия сөз дұрыс емес
+  uz: Joriy parol noto'g'ri
 auth-errors-member-account-not-exists:
   ru: Учетная запись не найдена
   en: Account not found
-  it: account non trovato
+  it: Account non trovato
   hy: Հաշիվը չի գտնվել
+  es: Cuenta no encontrada
+  kk: Есептік жазба табылмады
+  uz: Hisob topilmadi
 auth-errors-member-with-email-exists:
   ru: Пользователь с таким email-ом существует
   en: A user with such an email exists
   it: Esiste un utente con questa email
-  hy: Այս էլփոստով օգտվող կա
+  hy: Այս էլփոստով օգտատեր կա
+  es: Existe un usuario con ese correo electrónico
+  kk: Бұл электрондық поштасы бар пайдаланушы
+  uz: Bu elektron pochta bilan foydalanuvchi mavjud
 auth-errors-member-with-phone-exists:
   ru: Пользователь с таким телефоном существует
   en: A user with such a phone exists
   it: Esiste un utente con questo numero di telefono
   hy: Այս հեռախոսահամարով օգտատեր կա
+  es: Existe un usuario con ese número de teléfono
+  kk: Бұл телефон нөмірі бар пайдаланушы
+  uz: Bu telefon raqami bilan foydalanuvchi mavjud
 auth-errors-member-property-send-error:
   ru: Ошибка отправки сообщения
   en: Error sending the message
   it: Errore durante l'invio del messaggio
   hy: Սխալ՝ հաղորդագրություն ուղարկելիս
+  es: Error al enviar el mensaje
+  kk: Хабарлама жіберу кезінде қате
+  uz: Xabar yuborishda xatolik
 auth-errors-member-invalid-creds:
   ru: Некорректные учетные данные
   en: Invalid credentials
   it: Credenziali errate
   hy: Սխալ հավատարմագրեր
+  es: Credenciales no válidas
+  kk: Дұрыс емес тіркелгі деректері
+  uz: Noto'g'ri ma'lumotlar
 auth-errors-member-password-not-confirmed:
   ru: Пароль не подтвержден
   en: Password is not confirmed
   it: Password non confermata
   hy: Գաղտնաբառը հաստատված չէ
+  es: Contraseña no confirmada
+  kk: Құпия сөз расталмаған
+  uz: Parol tasdiqlanmagan
 auth-errors-member-role-not-exists:
   ru: Не найдена роль в приложении
   en: Application role not found
   it: Ruolo dell'applicazione non trovato
   hy: Հավելվածի դերը չի գտնվել
+  es: Rol de la aplicación no encontrado
+  kk: Қолданба рөлі табылмады
+  uz: Ilova roli topilmadi
 auth-errors-member-password-strength-not-match:
   ru: "Пароль должен быть не менее 40% сложности, у вас "
   en: Password must be at least 40% complexity, you have %s
   it: "La password deve avere una complessità pari ad almeno il 40%. "
   hy: "Գաղտնաբառը պետք է լինի առնվազն 40% բարդություն, դուք "
+  es: "La contraseña debe tener al menos un 40% de complejidad, tienes "
+  kk: "Құпия сөз кем дегенде 40% күрделілікке ие болуы керек, сізде "
+  uz: "Parol kamida 40% murakkablikka ega bo'lishi kerak, sizda "
 auth-errors-member-not-logged:
   ru: Пользователь не залогинен
   en: User not logged in
   it: L'utente non ha effettuato l'accesso
   hy: Օգտագործողը մուտք չի գործել
+  es: Usuario no ha iniciado sesión
+  kk: Пайдаланушы жүйеге кірмеген
+  uz: Foydalanuvchi tizimga kirmagan
 auth-errors-member-data-consistency:
   ru: Ошибка консистентности данных
   en: Data consistency error
   it: Errore di coerenza dei dati
   hy: Տվյալների հետևողականության սխալ
+  es: Error de consistencia de datos
+  kk: Деректердің сәйкестік қатесі
+  uz: Ma'lumotlar mosligi xatosi
 auth-errors-member-data-incorrect:
   ru: Неверные данные в запросе
   en: Invalid data in the request
   it: Dati non validi nella richiesta
   hy: Հարցման մեջ անվավեր տվյալներ
+  es: Datos no válidos en la solicitud
+  kk: Сұраудағы дұрыс емес деректер
+  uz: So'rovdagi noto'g'ri ma'lumotlar
 auth-errors-member-property-confirmed:
   ru: Уже подтверждено
   en: Already confirmed
+  it: Già confermato
+  hy: Արդեն հաստատված է
+  es: Ya confirmado
+  kk: Қазірдің өзінде расталған
+  uz: Allaqachon tasdiqlangan
 auth-errors-member-logged:
   ru: Пользователь залогинен
   en: User is logged in
   it: L'utente ha effettuato l'accesso
   hy: Օգտագործողը մուտք է գործել
+  es: Usuario ha iniciado sesión
+  kk: Пайдаланушы жүйеге кірді
+  uz: Foydalanuvchi tizimga kirdi
 auth-errors-member-field-required:
   ru: Это поле обязательно для заполнения
   en: This field is required
   it: Questo campo è obbligatorio
   hy: Այս դաշտը պարտադիր է
+  es: Este campo es obligatorio
+  kk: Бұл өріс міндетті
+  uz: Ushbu maydon majburiy
 auth-errors-member-not-found:
   ru: Пользователь не найден
   en: User is not found
   it: L'utente non è stato trovato
   hy: Օգտագործողը չի գտնվել
+  es: Usuario no encontrado
+  kk: Пайдаланушы табылмады
+  uz: Foydalanuvchi topilmadi
 auth-errors-member-with-email-not-exists:
   ru: Пользователь с таким email-ом не существует
   en: User with this email does not exist
   it: L'utente con questa email non esiste
   hy: Այս էլփոստով օգտվողը գոյություն չունի
+  es: Usuario con este correo electrónico no existe
+  kk: Бұл электрондық поштасы бар пайдаланушы жоқ
+  uz: Ushbu elektron pochta bilan foydalanuvchi mavjud emas
 auth-errors-phone-incorrect:
   ru: Неверный номер телефона
   en: Wrong phone number
   it: numero di telefono sbagliato
   hy: սխալ հեռախոսահամար
+  es: Número de teléfono incorrecto
+  kk: Қате телефон нөмірі
+  uz: Noto'g'ri telefon raqami
 auth-errors-member-with-phone-not-exists:
   ru: Пользователь с таким телефоном не существует
   en: User with this phone does not exist
   it: Non esiste nessun utente con questo numero di telefono
   hy: Այս հեռախոսահամարով օգտվող չկա
+  es: Usuario con este número de teléfono no existe
+  kk: Бұл телефон нөмірі бар пайдаланушы жоқ
+  uz: Ushbu telefon raqami bilan foydalanuvchi mavjud emas
 auth-errors-member-confirmation-error:
   ru: Неизвестная ошибка
   en: Unknown error
   it: Errore sconosciuto
   hy: Անհայտ սխալ
+  es: Error desconocido
+  kk: Белгісіз қате
+  uz: Noma'lum xato
 auth-errors-member-reset-code-error:
   ru: Неверный код подтверждения
   en: Invalid confirmation code
   it: Codice di conferma non valido
   hy: Սխալ վավերացման կոդ
+  es: Código de confirmación no válido
+  kk: Растау коды дұрыс емес
+  uz: Tasdiqlash kodi noto'g'ri
 auth-errors-member-reset-error:
   ru: Невозможно сохранить этот пароль
   en: This password cannot be saved
   it: Questa password non può essere salvata
   hy: Այս գաղտնաբառը չի կարող պահպանվել
+  es: Esta contraseña no se puede guardar
+  kk: Бұл құпия сөзді сақтауға болмайды
+  uz: Ushbu parolni saqlab bo'lmaydi
 auth-errors-member-update-error:
   ru: Невозможно обновить свойство
   en: Unable to update property
   it: Impossibile aggiornare la proprietà
   hy: Հնարավոր չէ թարմացնել գույքը
+  es: No se puede actualizar la propiedad
+  kk: Қасиетті жаңарту мүмкін емес
+  uz: Mulkni yangilab bo'lmaydi
 auth-errors-member-error-profile:
   ru: Не смогли сохранить профиль
   en: Failed to save profile
   it: Impossibile salvare il profilo
   hy: Չհաջողվեց պահպանել պրոֆիլը
+  es: No se pudo guardar el perfil
+  kk: Профильді сақтау мүмкін болмады
+  uz: Profilni saqlab bo'lmadi
 auth-errors-member-error-password:
   ru: Не смогли обновить пароль
   en: Failed to update password
   it: Impossibile aggiornare la password
   hy: Չհաջողվեց թարմացնել գաղտնաբառը
+  es: No se pudo actualizar la contraseña
+  kk: Құпия сөзді жаңарту мүмкін болмады
+  uz: Parolni yangilab bo'lmadi
 auth-errors-member-role-incorrect:
   ru: Невозможно изменить роль
   en: Can't change role
   it: Impossibile cambiare ruolo
   hy: Հնարավոր չէ փոխել դերը
+  es: No se puede cambiar el rol
+  kk: Рөлді өзгерту мүмкін емес
+  uz: Rolni o'zgartirib bo'lmaydi
 auth-errors-session-allreadylogged:
   ru: Пользователь уже залогинен
   en: The user is already logged in
   it: L'utente è già loggato
   hy: Օգտագործողը արդեն մուտք է գործել
+  es: El usuario ya ha iniciado sesión
+  kk: Пайдаланушы қазірдің өзінде жүйеге кірген
+  uz: Foydalanuvchi allaqachon tizimga kirgan
 auth-errors-session-data-incorrect:
   ru: Неверные данные в запросе
   en: Invalid data in the request
   it: Dati non validi nella richiesta
   hy: Հարցման մեջ անվավեր տվյալներ
+  es: Datos no válidos en la solicitud
+  kk: Сұраудағы дұрыс емес деректер
+  uz: So'rovdagi noto'g'ri ma'lumotlar
 auth-errors-session-notlogged:
   ru: Пользователь не залогинен
   en: User not logged in
   it: L'utente non ha effettuato l'accesso
   hy: Օգտագործողը մուտք չի գործել
+  es: Usuario no ha iniciado sesión
+  kk: Пайдаланушы жүйеге кірмеген
+  uz: Foydalanuvchi tizimga kirmagan
 auth-bool-data-true:
   ru: Да
   en: Yes
   it: SÌ
   hy: Այո՛
+  es: Sí
+  kk: Иә
+  uz: Ha
 auth-bool-data-false:
   ru: Нет
   en: No
   it: NO
   hy: Ոչ
+  es: No
+  kk: Жоқ
+  uz: Yo'q
 auth-permissions:
   ru: Доступ к модулю Auth
   en: Access to Auth module
+  it: Accesso al modulo Auth
+  hy: Մուտք Auth մոդուլին
+  es: Acceso al módulo Auth
+  kk: Auth модуліне қол жеткізу
+  uz: Auth moduliga kirish
 auth-errors-invitation-send-error:
   ru: Ошибка отправки сообщения
   en: Error sending the message
   it: Errore durante l'invio del messaggio
   hy: Սխալ՝ հաղորդագրություն ուղարկելիս
+  es: Error al enviar el mensaje
+  kk: Хабарлама жіберу кезінде қате
+  uz: Xabar yuborishda xatolik
 auth-errors-autologin:
   ru: Приложение не позволяет получить доступ к другим пользователям
   en: An application does not allow autologin
   it: L'applicazione non consente l'autologin
   hy: Ծրագրը չի թույլատրում այլ օգտագործողներին մուտք գործել
+  es: La aplicación no permite el inicio de sesión automático
+  kk: Қолданба автоматты кіруге рұқсат бермейді
+  uz: Ilova avtomatik kirishga ruxsat bermaydi
 auth-errors-member-provide-token:
   ru: Пожалуйста, отправьте токен пользователя
   en: Please provide user token
   it: Si prega di fornire il token dell'utente
   hy: Խնդրում ենք ուղարկել օգտագործողի թոքենը
+  es: Por favor, proporcione el token del usuario
+  kk: Пайдаланушы токенін жіберіңіз
+  uz: Iltimos, foydalanuvchi tokenini taqdim eting

@@ -103,7 +103,7 @@ class Confirmation extends BaseModelDataRow
 
 			$url = $proxies->$property;
 			$request = new Request($url, Type::Post, Encryption::JsonEncoded);
-			$request->timeout = 10;
+			$request->timeout = 60;
 			$request->sslVerify = false;
 			$response = $request->Execute(json_encode([
 				'recipient' => $value,
