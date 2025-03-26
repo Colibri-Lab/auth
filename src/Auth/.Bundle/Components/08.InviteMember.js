@@ -54,7 +54,7 @@ App.Modules.Auth.Components.InviteMember = class extends Colibri.UI.Component {
         let promises = [];
         for(const o of rows) {
             promises.push(Auth.Members.Invite(o.email, o.fio, this._form.value.params));
-        }
+        } 
 
         Promise.all(promises).then(responses => {
             this.Dispatch('Completed', responses);
