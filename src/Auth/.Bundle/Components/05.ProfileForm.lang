@@ -3,64 +3,103 @@ auth-profileform-last_name-desc:
   en: Surname
   it: Cognome
   hy: Ազգանուն
+  es: Apellido
+  kk: Тегі
+  uz: Familiya
 auth-profileform-last_name-validation1:
   ru: Пожалуйста, введите вашу фамилию
   en: Please enter your surname
   it: Per favore inserisci il tuo cognome
   hy: Խնդրում ենք մուտքագրել ձեր ազգանունը
+  es: Por favor, introduzca su apellido
+  kk: Өтінеміз, тегіңізді енгізіңіз
+  uz: Iltimos, familiyangizni kiriting
 auth-profileform-first_name-desc:
   ru: Имя
   en: First name
   it: Nome
   hy: Անուն
+  es: Nombre
+  kk: Аты
+  uz: Ism
 auth-profileform-first_name-placeholder:
   ru: "Например: Иван"
   en: "For example: John"
   it: "Ad esempio: Ivan"
   hy: Օրինակ՝ Իվան
+  es: "Por ejemplo: Juan"
+  kk: "Мысалы: Иван"
+  uz: "Masalan: Ivan"
 auth-profileform-first_name-validation1:
   ru: Пожалуйста, введите ваше имя
   en: Please enter your name
   it: per favore inserisci il tuo nome
   hy: Խնդրում ենք մուտքագրել ձեր անունը
+  es: Por favor, introduzca su nombre
+  kk: Өтінеміз, атыңызды енгізіңіз
+  uz: Iltimos, ismingizni kiriting
 auth-profileform-partonymic-desc:
   ru: Отчество
   en: Patronymic
   it: Cognome
   hy: Ազգանունը
+  es: Segundo nombre
+  kk: Әкесінің аты
+  uz: Otasining ismi
 auth-profileform-birtdate-desc:
   ru: Дата рождения
   en: Date of birth
   it: Data di nascita
   hy: Ծննդյան ամսաթիվ
+  es: Fecha de nacimiento
+  kk: Туған күні
+  uz: Tug‘ilgan sana
 auth-profileform-birthdate-validation1:
   ru: Вам слишком мало лет, нашим проектом могут пользоваться только
     совершеннолетние
   en: You are too young, only adults can use our project.
   it: Sei troppo giovane, solo gli adulti possono utilizzare il nostro progetto
   hy: Դուք չափազանց երիտասարդ եք, միայն մեծահասակները կարող են օգտվել մեր նախագծից
+  es: Eres demasiado joven, solo los adultos pueden usar nuestro proyecto.
+  kk: Сіз тым жассыз, біздің жобаны тек ересектер пайдалана алады.
+  uz: Siz juda yoshsiz, loyihamizdan faqat kattalar foydalanishi mumkin.
 auth-profileform-gender-desc:
   ru: Пол
   en: Gender
   it: Pol
   hy: Սեռ
+  es: Género
+  kk: Жынысы
+  uz: Jinsi
 auth-profileform-gender-values-male:
   ru: Господин
   en: Mr.
   it: Signore
   hy: Պարոն
+  es: Señor
+  kk: Мырза
+  uz: Janob
 auth-profileform-gender-values-female:
   ru: Госпожа
   en: Mrs.
-  hy: Տիկին
   it: Signora
+  hy: Տիկին
+  es: Señora
+  kk: Ханым
+  uz: Xonim
 auth-profile-button:
   ru: Сохранить
   en: Save
   it: Salva
   hy: Պահպանել
+  es: Guardar
+  kk: Сақтау
+  uz: Saqlash
 auth-profileform-last_name-placeholder:
   ru: "Например: Иванов"
   en: "For example: Doe"
   it: "Ad esempio: Ivanov"
   hy: Օրինակ՝ Իվանով
+  es: "Por ejemplo: Pérez"
+  kk: "Мысалы: Иванов"
+  uz: "Masalan: Ivanov"

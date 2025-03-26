@@ -3,72 +3,118 @@ auth-loginform-email-desc:
   en: Email
   it: Indirizzo e-mail
   hy: Էլեկտրոնային հասցե
+  es: Correo electrónico
+  kk: Электрондық пошта
+  uz: Elektron pochta
 auth-loginform-login-validation1:
   ru: Пожалуйста, введите эл. адрес
   en: Please enter your email
   it: Inserisci l'e-mail. indirizzo
   hy: Խնդրում ենք մուտքագրել էլ. հասցեն
+  es: Por favor, introduce tu correo electrónico
+  kk: Электрондық поштаңызды енгізіңіз
+  uz: Iltimos, elektron pochtangizni kiriting
 auth-logincontainer-login-title:
   ru: Вход в систему
   en: Login
   it: Login
   hy: Մուտք գործել
+  es: Iniciar sesión
+  kk: Жүйеге кіру
+  uz: Tizimga kirish
 auth-loginform-login-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
   en: You are entering an invalid email address. mail. Please try again!
   it: Stai inserendo un indirizzo email errato. posta. Per favore riprova!
   hy: "Դուք սխալ էլփոստի հասցե եք մուտքագրում: փոստ. Խնդրում եմ կրկին փորձեք!"
+  es: Estás introduciendo una dirección de correo electrónico no válida. ¡Por favor, inténtalo de nuevo!
+  kk: Сіз жарамсыз электрондық пошта мекенжайын енгізіп жатырсыз. Қайтадан көріңіз!
+  uz: Siz noto`g`ri elektron pochta manzilini kiritmoqdasiz. Iltimos, qayta urinib ko`ring!
 auth-loginform-password-desc:
   ru: Пароль
   en: Password
   it: Parola d'ordine
   hy: Գաղտնաբառ
+  es: Contraseña
+  kk: Құпия сөз
+  uz: Parol
 auth-loginform-password-validation1:
   ru: Пожалуйста, введите пароль
   en: Please enter password
   it: per favore inserisci LA TUA password
   hy: Խնդրում ենք մուտքագրել ձեր գաղտնաբառը
+  es: Por favor, introduce tu contraseña
+  kk: Құпия сөзіңізді енгізіңіз
+  uz: Iltimos, parolingizni kiriting
 auth-loginform-code-desc:
   ru: Введите код подтверждения
   en: Enter confirmation code
   it: Inserire il codice di conferma
   hy: Մուտքագրեք հաստատման կոդը
+  es: Introduce el código de confirmación
+  kk: Растау кодын енгізіңіз
+  uz: Tasdiqlash kodini kiriting
 auth-loginform-code-validation1:
   ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
   en: Please enter the 6 digit code we have sent to your contact
   it: Inserisci il codice di 6 cifre che abbiamo inviato al tuo contatto
   hy: Խնդրում ենք մուտքագրել 6 նիշանոց կոդը, որը մենք ուղարկել ենք ձեր կոնտակտին
+  es: Por favor, introduce el código de 6 dígitos que hemos enviado a tu contacto
+  kk: Біз сіздің байланысыңызға жіберген 6 таңбалы кодты енгізіңіз
+  uz: Biz sizning kontaktlaringizga yuborgan 6 xonali kodni kiriting
 auth-login-timer-value:
   ru: Вы сможете снова запросить код через %s секунд.
   en: You will be able to request the code again in %s seconds.
   it: Potrai richiedere nuovamente il codice tra %s secondi.
   hy: "Դուք կկարողանաք կրկին պահանջել կոդը %s վայրկյանից:"
+  es: Podrás solicitar el código nuevamente en %s segundos.
+  kk: Сіз %s секундтан кейін кодты қайта сұрай аласыз.
+  uz: Siz %s soniyadan keyin kodni qayta so`rashingiz mumkin.
 auth-login-requestagain:
   ru: Получить новый код
   en: Get a new code
   it: Ottieni un nuovo codice
   hy: Ստացեք նոր կոդ
+  es: Obtener un nuevo código
+  kk: Жаңа код алу
+  uz: Yangi kodni olish
 auth-login-reset:
   ru: Забыли пароль?
   en: Forgot your password?
   it: Hai dimenticato la password?
   hy: Մոռացե՞լ եք Ձեր գաղտնաբառը
+  es: ¿Olvidaste tu contraseña?
+  kk: Құпия сөзіңізді ұмыттыңыз ба?
+  uz: Parolingizni unutdingizmi?
 auth-login-button:
   ru: Войти
   en: Login
   it: Entrare
+  hy: Մուտք գործել
+  es: Iniciar sesión
+  kk: Кіру
+  uz: Kirish
 auth-register-login-text:
   ru: У вас нет аккаунта?
   en: Don't have an account?
   it: Non hai un account?
   hy: Դեռ գրանցվա՞ձ չեք։
+  es: ¿No tienes una cuenta?
+  kk: Сізде тіркелгі жоқ па?
+  uz: Hisobingiz yo`qmi?
 auth-register-button:
   ru: Зарегистрироваться
   en: Register
   it: Registrati
   hy: Գրանցվել
+  es: Registrarse
+  kk: Тіркелу
+  uz: Ro`yxatdan o`tish
 auth-login-register-button:
   ru: Зарегистрироваться
   en: Register
   it: Registrati
   hy: Գրանցվել
+  es: Registrarse
+  kk: Тіркелу
+  uz: Ro`yxatdan o`tish

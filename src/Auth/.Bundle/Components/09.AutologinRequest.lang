@@ -3,18 +3,30 @@ auth-autologin-title:
   en: Autologin
   it: Autologin
   hy: Ավտոմատ մուտք
+  es: Inicio de sesión automático
+  kk: Автоматты кіру
+  uz: Avtologin
 auth-autologin-message:
   ru: Нажмите или скопируйте ссылку для перехода
   en: Click or copy the link to go
   it: Fare clic o copiare il link per andare
   hy: Սեղմեք կամ պատճենեք հղումը գնալու
+  es: Haga clic o copie el enlace para ir
+  kk: Өту үшін сілтемені басыңыз немесе көшіріңіз
+  uz: O‘tish uchun havolani bosing yoki nusxa oling
 auth-autologin-copy:
   ru: Копировать ссылку
   en: Copy link
   it: Copia il link
   hy: Պատճենեք հղումը
+  es: Copiar enlace
+  kk: Сілтемені көшіру
+  uz: Havolani nusxalash
 auth-autologin-copied:
   ru: Ссылка скопирована в буфер обмена
   en: Link copied to clipboard
   it: Link copiato negli appunti
   hy: Հղումը պատճենվեց
+  es: Enlace copiado al portapapeles
+  kk: Сілтеме алмасу буферіне көшірілді
+  uz: Havola buferga nusxalandi

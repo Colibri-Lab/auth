@@ -3,34 +3,7 @@
     <!-- auth-components-invitemember -->
     <Pane name="form-container" shown="true">    
 
-        <Forms.Form name="form" shown="true" shuffleFieldNames="true">
-            <fields>
-                {
-                    email: {
-                        component: 'Email',
-                        desc: '#{auth-inviteform-email}',
-                        params: {
-                            validate: [
-                                {
-                                    message: '#{auth-inviteform-email-validation1}', 
-                                    method: '(field, validator) => !field.value || field.value.isEmail()'
-                                }
-                            ],
-                        },
-                        attrs: {
-                            width: '350'
-                        }
-                    },
-                    fio: {
-                        component: 'Text',
-                        desc: '#{auth-inviteform-fio}',
-                        attrs: {
-                            width: '250'
-                        }
-                    }
-                }
-            </fields>
-        </Forms.Form>
+        <Forms.Form name="form" shown="true" shuffleFieldNames="true" />
     </Pane>
 
     <FlexBox name="button-container" shown="true" className="buttons-pane">            

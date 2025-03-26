@@ -3,251 +3,127 @@ auth-logincontainer-register-title:
   en: Registration
   it: Registrazione
   hy: Գրանցում
+  es: Registro
+  kk: Тіркелу
+  uz: Ro'yxatdan o'tish
 auth-registerform-fio-desc:
   ru: Личные данные
   en: Personal data
   it: Informazioni personali
   hy: Անձնական տվյալներ
+  es: Datos personales
+  kk: Жеке деректер
+  uz: Shaxsiy ma'lumotlar
 auth-registerform-fio-last_name-placeholder:
   ru: Фамилия
   en: Surname
   it: Cognome
   hy: Ազգանունը
+  es: Apellido
+  kk: Тегі
+  uz: Familiya
 auth-registerform-fio-validation1:
   ru: Пожалуйста, введите фамилию
   en: Please enter your surname
   it: Per favore inserisci il tuo cognome
   hy: Խնդրում ենք մուտքագրել ձեր ազգանունը
+  es: Por favor, introduzca su apellido
+  kk: Өтінеміз, тегіңізді енгізіңіз
+  uz: Iltimos, familiyangizni kiriting
 auth-registerform-fio-first_name-placeholder:
   ru: Имя
   en: First name
   it: Nome di battesimo
   hy: Անուն
+  es: Nombre
+  kk: Аты
+  uz: Ism
 auth-registerform-fio-validation2:
   ru: Пожалуйста, введите ваше имя
   en: Please enter your first name
   it: Per favore inserisci il tuo nome
   hy: Խնդրում ենք մուտքագրել ձեր անունը
+  es: Por favor, introduzca su nombre
+  kk: Өтінеміз, атыңызды енгізіңіз
+  uz: Iltimos, ismingizni kiriting
 auth-registerform-fio-patronymic-placeholder:
   ru: Отчество
   en: Patronymic
   it: Patronimico
   hy: Հայրանուն
+  es: Segundo nombre
+  kk: Әкесінің аты
+  uz: Otasining ismi
 auth-registerform-birtdate-desc:
   ru: Дата рождения
   en: Date of birth
   it: Data di nascita
   hy: Ծննդյան ամսաթիվ
+  es: Fecha de nacimiento
+  kk: Туған күні
+  uz: Tug'ilgan sana
 auth-registerform-birthdate-validation1:
   ru: Пожалуйста, введите дату рождения
   en: Please enter the date of birth
   it: Inserisci la data di nascita
   hy: Խնդրում ենք մուտքագրել ծննդյան ամսաթիվը
+  es: Por favor, introduzca la fecha de nacimiento
+  kk: Өтінеміз, туған күніңізді енгізіңіз
+  uz: Iltimos, tug'ilgan sanani kiriting
 auth-registerform-birthdate-validation2:
   ru: Вам слишком мало лет, нашим проектом могут пользоваться только
     совершеннолетние
   en: You are too young, only adults can use our project
   it: Sei troppo giovane, solo gli adulti possono utilizzare il nostro progetto
   hy: Դուք չափազանց երիտասարդ եք, միայն մեծահասակները կարող են օգտվել մեր նախագծից
+  es: Eres demasiado joven, solo los adultos pueden usar nuestro proyecto
+  kk: Сіз тым жассыз, біздің жобаны тек ересектер пайдалана алады
+  uz: Siz juda yoshsiz, loyihamizdan faqat kattalar foydalanishi mumkin
 auth-registerform-gender-desc:
   ru: Пол
   en: Gender
   it: Genere
   hy: Սեռ
+  es: Género
+  kk: Жыныс
+  uz: Jins
 auth-registerform-gender-validation1:
   ru: Пожалуйста, выберите пол
   en: Please select a gender
   it: Seleziona il sesso
   hy: Խնդրում ենք ընտրել սեռը
+  es: Por favor, seleccione un género
+  kk: Өтінеміз, жынысыңызды таңдаңыз
+  uz: Iltimos, jinsni tanlang
 auth-registerform-gender-values-female:
   ru: Женский
   en: Female
   it: Femmina
   hy: Իգական
+  es: Femenino
+  kk: Әйел
+  uz: Ayol
 auth-registerform-email-desc:
   ru: Электронная почта
   en: Email
   it: E-mail
   hy: Էլեկտրոնային հասցե
+  es: Correo electrónico
+  kk: Электрондық пошта
+  uz: Elektron pochta
 auth-registerform-email-validation1:
   ru: Пожалуйста, введите эл. адрес
   en: Please enter the email
   it: Inserisci l'email
   hy: Խնդրում ենք մուտքագրել էլ․ հասցեն
+  es: Por favor, introduzca el correo electrónico
+  kk: Өтінеміз, электрондық поштаңызды енгізіңіз
+  uz: Iltimos, elektron pochtangizni kiriting
 auth-registerform-email-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
   en: You are entering an invalid email address. Please try again!
   it: Stai inserendo un indirizzo email non valido. Riprova!
   hy: "Դուք մուտքագրում եք անվավեր էլփոստի հասցե: Խնդրում ենք կրկին փորձել:"
-auth-registerform-phone-desc:
-  ru: Телефон
-  en: Phone number
-  hy: Հեռախոս
-  it: Telefono
-auth-registerform-phone-validation1:
-  ru: Пожалуйста, введите телефон
-  en: Please enter the phone number
-  it: Inserisci il numero di telefono
-  hy: Խնդրում ենք մուտքագրել հեռախոսահամարը
-auth-registerform-pass-desc:
-  ru: Пароль
-  en: Password
-  hy: Գախտնաբառ
-  it: Parola d'ordine
-auth-registerform-password-placeholder:
-  ru: Выберите пароль
-  en: Pick a password
-  it: Crea una password
-  hy: Ընտրեք գաղտնաբառը
-auth-registerform-password-desc:
-  ru: Пароль
-  en: Password
-  hy: Գախտնաբառ
-  it: Parola d'ordine
-auth-registerform-password-tip-text:
-  ru: Придумайте пароль, который сложно подобрать
-  en: Create a password that is hard to guess
-  it: Crea una password difficile da indovinare
-  hy: Ստեղծեք գաղտնաբառ, որը դժվար է կռահել
-auth-registerform-password-tip-success:
-  ru: Пароль соотвествует требованиям
-  en: Password meets requirements
-  it: La password soddisfa i requisiti
-  hy: Գաղտնաբառը համապատասխանում է պահանջներին
-auth-registerform-password-tip-error:
-  ru: Пароль не соответствует требованиям
-  en: Password does not meet requirements
-  it: La password non soddisfa i requisiti
-  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
-auth-registerform-password-tip-generate:
-  ru: Сгенерировать пароль
-  en: Generate password
-  it: Genera password
-  hy: Ստեղծեք գաղտնաբառ
-auth-registerform-password-tip-copied:
-  ru: Пароль скопирован в буфер обмена
-  en: Password copied to clipboard
-  it: La password è stata copiata negli appunti
-  hy: Գաղտնաբառը պատճենվել է clipboard-ում
-auth-registerform-password-tip-additional-1:
-  ru: цифры
-  en: digits
-  it: numeri
-  hy: թվեր
-auth-registerform-password-tip-additional-2:
-  ru: символы (!, $, ^ и др.)
-  en: symbols (!, $, ^, etc.)
-  it: simboli (!, $, ^, ecc.)
-  hy: նշաններ (!, $, ^ և այլն)
-auth-registerform-password-tip-additional-3:
-  ru: заглавные латинские буквы
-  en: capital latin letters
-  it: lettere latine maiuscole
-  hy: մեծատառ լատինատառ
-auth-registerform-password-tip-additional-4:
-  ru: строчные латинские буквы
-  en: lowercase latin letters
-  it: lettere latine minuscole
-  hy: փոքրատառ լատինատառ
-auth-registerform-password-validation1:
-  ru: Пожалуйста, введите пароль
-  en: Please enter a password
-  it: per favore inserisci LA TUA password
-  hy: Խնդրում ենք մուտքագրել ձեր գաղտնաբառը
-auth-registerform-password-validation3:
-  ru: Пароль не соответствует требованиям
-  en: Password does not meet requirements
-  it: La password non soddisfa i requisiti
-  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
-auth-registerform-confirmation-placeholder:
-  ru: Повторите пароль
-  en: Confirm password
-  it: Ripeti la password
-  hy: Կրկնեք գաղտնաբառը
-auth-registerform-confirmation-desc:
-  ru: Повторите пароль
-  en: Confirm password
-  it: Ripeti la password
-  hy: Կրկնեք գաղտնաբառը
-auth-registerform-password-validation2:
-  ru: Пожалуйста, повторите пароль
-  en: Please repeat password
-  it: Per favore ripeti la tua password
-  hy: Խնդրում ենք կրկնել ձեր գաղտնաբառը
-auth-registerform-confirmation-validation4:
-  ru: Пароли должны совпадать
-  en: Passwords must match
-  it: Le password devono essere identiche
-  hy: Գաղտնաբառերը պետք է համընկնեն
-auth-registerform-aggreenment-placeholder:
-  ru: Я соглашаюсь с условиями и даю согласие на обработку персональных данных
-  en: I agree to the terms and consent to the processing of personal data
-  it: Accetto i termini e le condizioni e acconsento al trattamento dei dati
-    personali
-  hy: Ես համաձայն եմ պայմաններին և համաձայն եմ անձնական տվյալների մշակմանը
-auth-registerform-aggreenment-validation1:
-  ru: Вам необходимо подтвердить соглашение на обработку персональных данных и
-    согласие на условия
-  en: You need to confirm the agreement on the processing of personal data and
-    consent to the terms
-  it: È necessario confermare l'accordo per il trattamento dei dati personali e
-    accettare i termini
-  hy: Դուք պետք է հաստատեք անձնական տվյալների մշակման համաձայնագիրը և պայմանների
-    համաձայնությունը
-auth-register-button:
-  ru: Регистрация
-  en: Registration
-  it: Registrazione
-  hy: Գրանցում
-auth-login-register-text:
-  ru: Уже есть аккаунт?
-  en: Already have an account?
-  it: Hai già un account?
-  hy: Արդեն գրանցվաձ՝ էք
-auth-login-button:
-  ru: Вход
-  en: Login
-  it: Login
-  hy: Մուտք
-auth-registerform-password-tip-text2:
-  ru: "Пароль должен содержать: "
-  en: "Password must contains:"
-  it: "La password deve contenere: "
-  hy: "Գաղտնաբառը պետք է պարունակի. "
-auth-registerform-password-tip-digits:
-  ru: более %s символов
-  en: at least %s symbols
-  hy: ավելի քան %s նիշ
-  it: più di %s caratteri
-auth-logincontainer-confirmation-phone-message:
-  ru: Подтвердите номер телефона, чтобы мы могли оперативно связаться с вами и
-    уточнить детали по заявке
-  en: Confirm your phone number so that we can quickly contact you and clarify the
-    details of the application
-  it: Conferma il tuo numero di telefono in modo che possiamo contattarti
-    rapidamente e chiarire i dettagli della tua richiesta
-  hy: Հաստատեք ձեր հեռախոսահամարը, որպեսզի մենք կարողանանք արագ կապվել ձեզ հետ և
-    ճշտել ձեր դիմումի մանրամասները
-auth-logincontainer-confirmation-phone-message2:
-  ru: "Мы отправили код SMS-сообщением на номер: %s"
-  en: "We sent the code via SMS to the number: %s"
-  it: "Abbiamo inviato il codice via SMS al numero: %s"
-  hy: Մենք SMS-ի միջոցով ուղարկել ենք կոդը՝ %s հեռախոսահամարին
-auth-logincontainer-confirmation-email-message:
-  ru: Подтвердите Email. Мы будем присылать только важные письма. Например, об
-    изменении статуса вашей заявки или напоминания заплатить по кредиту
-  en: Confirm Email. We will only send important emails. For example, a change in
-    the status of your application or a reminder to pay a loan
-  it: Conferma email. Invieremo solo email importanti. Ad esempio, su un
-    cambiamento nello stato della tua domanda o su un promemoria per pagare un
-    prestito
-auth-logincontainer-confirmation-email-message2:
-  ru: "Мы отправили код подтверждения на email: %s"
-  en: "We have sent a confirmation code to email: %s"
-  hy: Մենք ուղարկել ենք հաստատման կոդը՝ %s էլեկտրոնային հասցեին
-  it: "Abbiamo inviato un codice di conferma all'e-mail: %s"
-auth-registerform-complete-button:
-  ru: Зарегистрироваться
-  en: Register
-  it: Registrati
-  hy: Գրանցվել
+  es: Está ingresando una dirección de correo electrónico no válida. ¡Inténtalo de nuevo!
+  kk: Сіз жарамсыз электрондық пошта мекенжайын енгізіп жатырсыз. Қайтадан көріңіз!
+  uz: Siz noto'g'ri elektron pochta manzilini kiritmoqdasiz. Iltimos, qayta urinib ko'ring!

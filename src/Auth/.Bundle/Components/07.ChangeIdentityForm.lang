@@ -3,28 +3,46 @@ auth-changeform-property-validation1:
   en: This field is required
   it: Questo campo è obbligatorio
   hy: Այս դաշտը պարտադիր է
+  es: Este campo es obligatorio
+  kk: Бұл өріс толтырылуы міндетті
+  uz: Bu maydonni to'ldirish majburiy
 auth-changeidentity-button:
   ru: Отправить
   en: Send
   it: Inviare
   hy: Ուղարկել
+  es: Enviar
+  kk: Жіберу
+  uz: Yuborish
 auth-changeform-code-desc:
   ru: Введите код восстановления
   en: Enter recovery code
   it: Inserisci il tuo codice di ripristino
   hy: Մուտքագրեք ձեր վերականգնման կոդը
+  es: Introduzca el código de recuperación
+  kk: Қалпына келтіру кодын енгізіңіз
+  uz: Tiklash kodini kiriting
 auth-changeform-code-validation1:
   ru: Пожалуйста, введите эл. адрес
   en: Please enter an email address
   it: Inserisci l'e-mail. indirizzo
   hy: Խնդրում ենք մուտքագրել էլեկտրոնային հասցե
+  es: Por favor, introduzca una dirección de correo electrónico
+  kk: Электрондық пошта мекенжайын енгізіңіз
+  uz: Iltimos, elektron pochta manzilini kiriting
 auth-changeidentity-timer-value:
   ru: Вы сможете снова запросить код через %s секунд.
   en: You will be able to request the code again in %s seconds.
   it: Potrai richiedere nuovamente il codice tra %s secondi.
   hy: "Դուք կկարողանաք կրկին ուղարկել կոդը %s վայրկյանից:"
+  es: Podrá solicitar el código nuevamente en %s segundos.
+  kk: Сіз кодты қайта сұрай аласыз %s секундтан кейін.
+  uz: Siz kodni %s soniyadan keyin qayta so'rashingiz mumkin.
 auth-changeidentity-requestagain:
   ru: Получить новый код
   en: Get a new code
   it: Ottieni un nuovo codice
   hy: Ուղարկել նոր կոդ
+  es: Obtener un nuevo código
+  kk: Жаңа код алу
+  uz: Yangi kodni olish

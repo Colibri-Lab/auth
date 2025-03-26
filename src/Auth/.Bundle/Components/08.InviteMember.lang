@@ -3,23 +3,73 @@ auth-inviteform-email:
   en: Email
   it: E-mail
   hy: Էլ․ հասցէ
+  es: Correo electrónico
+  kk: Электрондық пошта
+  uz: Elektron pochta
 auth-inviteform-email-validation1:
   ru: Пожалуйста, введите корректный эл. адрес
   en: Please, enter the correct email
   hy: Խնդրում ենք մուտքագրել ճիշտ էլ
   it: Inserisci l'email corretta
+  es: Por favor, introduce un correo electrónico válido
+  kk: Дұрыс электрондық поштаны енгізіңіз
+  uz: Iltimos, to'g'ri elektron pochtani kiriting
 auth-inviteform-phone:
   ru: Телефон
   en: Phone
   it: Telefono
   hy: Հեռախոս
+  es: Teléfono
+  kk: Телефон
+  uz: Telefon
 auth-inviteform-fio:
   ru: ФИО
   en: Full name
   it: Nome e cognome
   hy: Անուն և ազգանուն
+  es: Nombre completo
+  kk: Толық аты-жөні
+  uz: To'liq ism
 auth-invite-button:
   ru: Отправить
   en: Send
   hy: Ուղարկել
   it: Inviare
+  es: Enviar
+  kk: Жіберу
+  uz: Yuborish
+auth-inviteform-multiple:
+  ru: Список приглашений
+  en: List of invitations
+  it: Elenco degli inviti
+  hy: Հրավիրությունների ցանկ
+  es: Lista de invitaciones
+  kk: Шақырулар тізімі
+  uz: Takliflar ro'yxati
+auth-inviteform-multiple-note:
+  ru: 'Пожалуйста, введите список приглашений в формате: "email" "name", строки
+    разделите переводом строки. Вы можете выделить нужную область в эксель и
+    скопировать в поле, формат будет соотвествовать '
+  en: 'Please, enter the list of invitations in the format: "email" "name",
+    separate lines with a new line. You can select the desired area in Excel and
+    copy it to the field, the format will be correct '
+  it: "Inserisci l'elenco degli inviti nel formato: \"email\" \"nome\", separa le
+    righe con un ritorno a capo. Puoi selezionare l'area desiderata in Excel e
+    copiarla nel campo, il formato sarà corretto "
+  hy: 'Ներմուծեք հրավիրությունների ցանկը հետևյալ ֆորմատով: "էլ․ հասցե" "անուն",
+    առաջացրեք տողերը նոր տողով: Դուք կարող եք ընտրել կարգավիճակը Excel-ում և
+    պատճենել այն դաշտում, որտեղ կլինի այս տեսքը '
+  es: 'Por favor, introduce la lista de invitaciones en el formato: "correo
+    electrónico" "nombre", separa las líneas con un salto de línea. Puedes
+    seleccionar el área deseada en Excel y copiarla en el campo, el formato será
+    correcto '
+  kk: 'Шақырулар тізімін келесі форматта енгізіңіз: "электрондық пошта" "аты",
+    жолдарды жаңа жолмен бөліңіз. Excel-де қажетті аймақты таңдап, оны өріске
+    көшіруге болады, формат дұрыс болады '
+  uz: "Takliflar ro'yxatini quyidagi formatda kiriting: \"elektron pochta\"
+    \"ism\", qatorlarni yangi qator bilan ajrating. Excel-da kerakli hududni
+    tanlab, maydonga nusxalashingiz mumkin, format to'g'ri bo'ladi "
+auth-inviteform-rows-validation1:
+  ru: Пожалуйста, введите список строк для приглашения
+auth-inviteform-rows-validation2:
+  ru: Пожалуста, введите строки которые содержат в первой части электронный адрес
