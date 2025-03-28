@@ -56,6 +56,7 @@ App.Modules.Auth.Components.InviteMember = class extends Colibri.UI.Component {
             promises.push(Auth.Members.Invite(o.email, o.fio, this._form.value.params));
         } 
 
+        App.Loading.Show();
         Promise.all(promises).then(responses => {
             this.Dispatch('Completed', responses);
             this.Hide();
@@ -76,6 +77,8 @@ App.Modules.Auth.Components.InviteMember = class extends Colibri.UI.Component {
                 this._validator.Invalidate('form', response.result.message);
                 this._form.Focus();
             }
+        }).finally(() => {
+            App.Loading.Hide();
         });
 
     }
