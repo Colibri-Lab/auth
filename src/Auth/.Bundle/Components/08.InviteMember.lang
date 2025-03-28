@@ -71,5 +71,17 @@ auth-inviteform-multiple-note:
     tanlab, maydonga nusxalashingiz mumkin, format to'g'ri bo'ladi "
 auth-inviteform-rows-validation1:
   ru: Пожалуйста, введите список строк для приглашения
+  en: Please, enter the list of rows for the invitation
+  it: Per favore, inserisci l'elenco delle righe per l'invito
+  hy: Խնդրում ենք մուտքագրել հրավերի համար նախատեսված տողերի ցանկը
+  es: Por favor, introduce la lista de filas para la invitación
+  kk: Шақыру үшін жолдар тізімін енгізіңіз
+  uz: Iltimos, taklif uchun qatorlar ro'yxatini kiriting
 auth-inviteform-rows-validation2:
   ru: Пожалуста, введите строки которые содержат в первой части электронный адрес
+  en: Please, enter the rows that contain an email address in the first part
+  it: Per favore, inserisci le righe che contengono un indirizzo email nella prima parte
+  hy: Խնդրում ենք մուտքագրել այն տողերը, որոնք առաջին մասում պարունակում են էլ․ հասցե
+  es: Por favor, introduce las filas que contengan una dirección de correo electrónico en la primera parte
+  kk: Бірінші бөлігінде электрондық пошта мекенжайы бар жолдарды енгізіңіз
+  uz: Iltimos, birinchi qismida elektron pochta manzili bo'lgan qatorlarni kiriting
