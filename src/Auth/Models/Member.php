@@ -14,7 +14,9 @@ use Psr\Log\InvalidArgumentException;
 use Colibri\Common\RandomizationHelper;
 use Throwable;
 use App\Modules\Auth\Module;
+use Colibri\App;
 use Colibri\Data\SqlClient\QueryInfo;
+use Colibri\IO\FileSystem\File;
 
 /**
  * Представление строки в таблице в хранилище Пользователи
@@ -383,7 +385,6 @@ class Member extends BaseModelDataRow
         return false;
     }
 
-
     public function ResetPassword(string $code, string $newPassword): bool
     {
         $confirmation = Confirmations::LoadByMember(Confirmation::PropertyReset, $this->token);
@@ -442,7 +443,33 @@ class Member extends BaseModelDataRow
             $arr['fio'] = trim($arr['last_name'] . ' ' . $arr['first_name'] . ' ' . $arr['patronymic']);
             $arr['gender'] = $arr['gender']['value'] ?? 'male';
         }
+        $this->_generateOpenSSLKey();
         return $arr;
+    }
+
+    private function _generateOpenSSLKey(): void
+    {
+        $runtime = App::$appRoot . App::$config->Query('runtime')->GetValue() . 'ssl/';
+        $pathPriv = $runtime . substr($this->token, 0, 4) . '/' . substr($this->token, -4) . '/' . $this->token;
+        $pathPub = $runtime . substr($this->token, 0, 4) . '/' . substr($this->token, -4) . '/' . $this->token . '.pub';
+        if(File::Exists($pathPub) && File::Exists($pathPriv)) {
+            return;
+        }
+
+        $config = [
+            "digest_alg" => "sha512",
+            "private_key_bits" => 4096,
+            "private_key_type" => OPENSSL_KEYTYPE_RSA,
+        ];
+        $res = openssl_pkey_new($config);
+        openssl_pkey_export($res, $privKey);
+        $pubKey = openssl_pkey_get_details($res);
+        $pubKey = $pubKey["key"];
+
+        
+        File::Write($pathPriv, $privKey, true);
+        File::Write($pathPub, $pubKey, true);
+
     }
 
 }
