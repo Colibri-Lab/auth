@@ -319,6 +319,14 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
         });
     }
 
+    Search(term) {
+        return new Promise((resolve, reject) => {
+            this.Call('Member', 'Search', {term: term}, {'X-AppToken': Auth.appToken}).then((response) => {
+                resolve(response.result);
+            }).catch(response => reject(response));
+        });
+    }
+
 }
 
 App.Modules.Auth.Application = class extends Colibri.IO.RpcRequest  {
