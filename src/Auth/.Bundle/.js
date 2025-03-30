@@ -297,6 +297,28 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
         });
     }
 
+    Encrypt(message) {
+        return new Promise((resolve, reject) => {
+            const session = Auth.Store.Query('auth.session');
+            const encodedMessage = new TextEncoder().encode(message);
+            window.crypto.subtle.encrypt(
+                { name: "RSA-OAEP" },
+                session.member.public,
+                encodedMessage
+            ).then(encrypted => {
+                resolve(btoa(String.fromCharCode(...new Uint8Array(encrypted))));
+            }).catch(error => reject(error));
+        });
+    }
+
+    Decrypt(message) {
+        return new Promise((resolve, reject) => {
+            this.Call('Member', 'DecryptMessage', {message: message}, {'X-AppToken': Auth.appToken}).then((response) => {
+                resolve(response.result.decrypted);
+            }).catch(response => reject(response));
+        });
+    }
+
 }
 
 App.Modules.Auth.Application = class extends Colibri.IO.RpcRequest  {

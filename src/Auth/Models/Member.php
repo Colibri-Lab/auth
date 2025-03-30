@@ -431,28 +431,50 @@ class Member extends BaseModelDataRow
 
     public function ExportForUserInterface($exportFullData = false): array
     {
+        $this->_generateOpenSSLKey();
         $arr = $this->ToArray(true);
         unset($arr['id']);
         unset($arr['datecreated']);
         unset($arr['datemodified']);
         unset($arr['datedeleted']);
         unset($arr['password']);
+        $arr['public'] = $this->_getPublicKey();
         $arr['gender'] = $arr['gender']['value'] ?? $arr['gender'];
         $arr['birthdate'] = $arr['birthdate'] ? $arr['birthdate']->format('yyyy-MM-dd hh:mm:ss') : null;
         if ($exportFullData) {
             $arr['fio'] = trim($arr['last_name'] . ' ' . $arr['first_name'] . ' ' . $arr['patronymic']);
             $arr['gender'] = $arr['gender']['value'] ?? 'male';
         }
-        $this->_generateOpenSSLKey();
         return $arr;
     }
 
-    private function _generateOpenSSLKey(): void
+    public function Decrypt(string $message): string
+    {
+        $privKey = $this->_getPrivateKey();
+        openssl_private_decrypt($message, $decrypted, $privKey);
+        return $decrypted;
+    }
+
+    private function _getPublicKey(): string
+    {
+        $runtime = App::$appRoot . App::$config->Query('runtime')->GetValue() . 'ssl/';
+        $pathPub = $runtime . substr($this->token, 0, 4) . '/' . substr($this->token, -4) . '/' . $this->token . '.pub';
+        return File::Read($pathPub);
+    }
+
+    private function _getPrivateKey(): string
+    {
+        $runtime = App::$appRoot . App::$config->Query('runtime')->GetValue() . 'ssl/';
+        $pathPriv = $runtime . substr($this->token, 0, 4) . '/' . substr($this->token, -4) . '/' . $this->token;
+        return File::Read($pathPriv);
+    }
+
+    private function _generateOpenSSLKey(bool $force = false): void
     {
         $runtime = App::$appRoot . App::$config->Query('runtime')->GetValue() . 'ssl/';
         $pathPriv = $runtime . substr($this->token, 0, 4) . '/' . substr($this->token, -4) . '/' . $this->token;
         $pathPub = $runtime . substr($this->token, 0, 4) . '/' . substr($this->token, -4) . '/' . $this->token . '.pub';
-        if(File::Exists($pathPub) && File::Exists($pathPriv)) {
+        if(!$force && File::Exists($pathPub) && File::Exists($pathPriv)) {
             return;
         }
 

@@ -1369,5 +1369,57 @@ class MemberController extends WebController
     }
 
 
+    /**
+     * Decrypts message encrypted by my public key
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function DecryptMessage(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
+    {
+
+        $result = [];
+        $message = 'Result message';
+        $code = 200;
+
+        try {
+            
+            $session = Sessions::LoadFromRequest();
+            if (!$session->member) {
+                return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
+            }
+
+            $app = Module::$instance->application;
+            if(!$app->params->autologin) {
+                return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-autologin}', 'code' => 400]);
+            }
+
+
+            $payloadArray = $payload->ToArray();
+            $message = $payloadArray['message'] ?? $post->{'message'};
+
+            $member = Members::LoadByToken($session->member);
+            $result['decrypted'] = $member->Decrypt($message);
+
+
+        } catch (\InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+        } catch (\Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        }
+            
+        return $this->Finish(
+            $code,
+            $message,
+            $result,
+            'utf-8'
+        );
+
+    }
+
+
     
 }
