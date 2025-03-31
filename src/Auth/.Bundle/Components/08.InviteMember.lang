@@ -80,8 +80,11 @@ auth-inviteform-rows-validation1:
 auth-inviteform-rows-validation2:
   ru: Пожалуста, введите строки которые содержат в первой части электронный адрес
   en: Please, enter the rows that contain an email address in the first part
-  it: Per favore, inserisci le righe che contengono un indirizzo email nella prima parte
-  hy: Խնդրում ենք մուտքագրել այն տողերը, որոնք առաջին մասում պարունակում են էլ․ հասցե
-  es: Por favor, introduce las filas que contengan una dirección de correo electrónico en la primera parte
+  it: Per favore, inserisci le righe che contengono un indirizzo email nella prima
+    parte
+  hy: Խնդրում ենք մուտքագրել այն տողերը, որոնք առաջին մասում պարունակում են էլ․
+    հասցե
+  es: Por favor, introduce las filas que contengan una dirección de correo
+    electrónico en la primera parte
   kk: Бірінші бөлігінде электрондық пошта мекенжайы бар жолдарды енгізіңіз
   uz: Iltimos, birinchi qismida elektron pochta manzili bo'lgan qatorlarni kiriting
