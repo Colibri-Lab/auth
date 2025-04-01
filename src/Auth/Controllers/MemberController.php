@@ -1054,12 +1054,18 @@ class MemberController extends WebController
         $term = $payloadArray['term'] ?? $post->{'term'};
 
         $ret = [];
-        $members = Members::LoadByFilter(-1, 20, 'concat({last_name}, \' \', {first_name}, \' \', {patronymic}, \' \', {phone}, \' \', {email}) like \'%' . $term . '%\'');
-        foreach ($members as $member) {
-            /** @var Member $member */
-            $ret[$member->token] = $member->ExportForUserInterface(true);
+        
+        $found = Members::LoadByToken($term);
+        if($found) {
+            $ret[$found->token] = $found->ExportForUserInterface(true);
+        } else {
+            $members = Members::LoadByFilter(-1, 20, 'concat({last_name}, \' \', {first_name}, \' \', {patronymic}, \' \', {phone}, \' \', {email}) like \'%' . $term . '%\'');
+            foreach ($members as $member) {
+                /** @var Member $member */
+                $ret[$member->token] = $member->ExportForUserInterface(true);
+            }
         }
-
+    
         return $this->Finish(
             200,
             'ok',
