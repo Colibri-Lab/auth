@@ -1046,9 +1046,9 @@ class MemberController extends WebController
             return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
-        if ($member->role === 'user') {
-            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
-        }
+        // if ($member->role === 'user') {
+        //     return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
+        // }
 
         $payloadArray = $payload->ToArray();
         $term = $payloadArray['term'] ?? $post->{'term'};
