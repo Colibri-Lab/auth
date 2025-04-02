@@ -858,13 +858,14 @@ class MemberController extends WebController
         $patronymic = $payloadArray['patronymic'] ?? $post->{'patronymic'};
         $gender = $payloadArray['gender'] ?? $post->{'gender'};
         $birthdate = $payloadArray['birthdate'] ?? $post->{'birthdate'};
+        $avatar = $payloadArray['avatar'] ?? $post->{'avatar'};
 
         if (!$firstName || !$lastName) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
         }
 
         try {
-            if (!$member->UpdateProfile($firstName, $lastName, $patronymic, $gender, $birthdate)) {
+            if (!$member->UpdateProfile($firstName, $lastName, $patronymic, $gender, $birthdate, $avatar)) {
                 throw new InvalidArgumentException('#{auth-errors-member-error-profile}', 400);
             }
         } catch (InvalidArgumentException $e) {

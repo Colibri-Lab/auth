@@ -1662,12 +1662,6 @@ members:
   params:
     visible: true
     maybepublished: false
-    template_args:
-      rows: ""
-      columns: ""
-      orientation: ~
-      flow: ~
-      gap: ""
   module: Auth
   fields:
     token:
@@ -2288,6 +2282,43 @@ members:
         it: ""
         hy: ""
       tag: []
+    avatar:
+      desc:
+        ru: Аватар
+        en: ""
+        it: ""
+        hy: ""
+        es: ""
+        kk: ""
+        uz: ""
+      type: json
+      component: Colibri.UI.Forms.Object
+      class: ObjectField
+      attrs:
+        inputWidth: ""
+      params:
+        required: false
+        enabled: true
+        canbeempty: true
+        readonly: false
+        searchable: false
+        list: false
+        template: false
+        multiple: false
+        vertical: false
+        visual: false
+        code: 0
+        keyTitle: ""
+        valueTitle: ""
+        canEditKey: false
+        canAddNew: false
+        canRemoveRows: false
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        removedesc: true
+      group: window
     role:
       group: window
       desc:

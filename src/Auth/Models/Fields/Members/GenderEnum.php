@@ -16,15 +16,25 @@ enum GenderEnum:string
             # region Values:
 			"male",
 			"female"
-            # endregion Values;
+			 # endregion Values;
         ]
     ];
 
     # region Properties:
-	/** Мужской */
+	/** 
+	 * @ru: Мужской
+	 * @en: Male
+	 * @it: Maschio
+	 * @hy: Արական
+	 */
 	case Male = 'male';
-	/** Женский */
-	case Female = 'female';
-    # endregion Properties;
+	/** 
+	 * @ru: Женский
+	 * @en: Female
+	 * @it: Femmina
+	 * @hy: իգական
+	 */
+	case Female = 'female';	
+	# endregion Properties;
 
 }

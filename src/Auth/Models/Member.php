@@ -6,6 +6,7 @@ namespace App\Modules\Auth\Models;
 use App\Modules\Auth\Models\Fields\Members\GenderEnum;
 use Colibri\Data\Storages\Fields\DateField;
 use Colibri\Data\Storages\Fields\DateTimeField;
+use Colibri\Data\Storages\Fields\ObjectField;
 use Colibri\Data\Storages\Fields\ValueField;
 # endregion Uses;
 use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
@@ -37,6 +38,7 @@ use Colibri\IO\FileSystem\File;
  * @property string|null $patronymic Отчество
  * @property DateField|null $birthdate Дата рождения
  * @property GenderEnum|ValueField|ValueField|null $gender Пол
+ * @property ObjectField|null $avatar Аватар
  * @property string|null $role Роль
  * @property bool $email_confirmed Почта подтверждена
  * @property bool $phone_confirmed Телефон подтвержден
@@ -81,6 +83,7 @@ class Member extends BaseModelDataRow
 			'patronymic' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
 			'birthdate' => [ 'anyOf' => [ ['type' => ['string', 'null'], 'format' => 'date'], ['type' => ['string', 'null'], 'maxLength' => 0] ] ],
 			'gender' => [ 'oneOf' => [ [ 'type' => 'null' ], GenderEnum::JsonSchema ] ], 
+			'avatar' => [  'oneOf' => [ ObjectField::JsonSchema, [ 'type' => 'null'] ] ],
 			'role' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 20, ] ] ],
 			'email_confirmed' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
 			'phone_confirmed' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
@@ -294,7 +297,7 @@ class Member extends BaseModelDataRow
         return false;
     }
 
-    public function UpdateProfile(string $firstName, string $lastName, ?string $patronymic = null, ?string $gender = null, DateTimeField|string|null $birthdate = null): bool
+    public function UpdateProfile(string $firstName, string $lastName, ?string $patronymic = null, ?string $gender = null, DateTimeField|string|null $birthdate = null, array|object|null $avatar = null): bool
     {
 
         if ($gender && !in_array($gender, [self::GenderMale, self::GenderFemale, null])) {
@@ -310,6 +313,7 @@ class Member extends BaseModelDataRow
         $this->patronymic = $patronymic;
         $this->gender = $gender;
         $this->birthdate = $birthdate;
+        $this->avatar = $avatar;
 
         if (($res = $this->Save(true)) !== true) {
             throw new \InvalidArgumentException($res->error, 400);

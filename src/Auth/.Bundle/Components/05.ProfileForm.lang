@@ -103,3 +103,11 @@ auth-profileform-last_name-placeholder:
   es: "Por ejemplo: Pérez"
   kk: "Мысалы: Иванов"
   uz: "Masalan: Ivanov"
+auth-profileform-avatar-desc:
+  ru: Выберите аватар
+  en: Choose an avatar
+  it: Scegli un avatar
+  hy: Ընտրեք ավատար
+  es: Elige un avatar
+  kk: Аватарды таңдаңыз
+  uz: Avatarni tanlang
