@@ -448,10 +448,22 @@ class Member extends BaseModelDataRow
         return $arr;
     }
 
+    public function Encrypt(string $message): string
+    {
+        $pubKey = $this->_getPublicKey();
+        if(!openssl_public_encrypt($message, $encrypted_data, $pubKey, OPENSSL_PKCS1_OAEP_PADDING)) {
+            throw new InvalidArgumentException(openssl_error_string(), 500);
+        }
+        return base64_encode($encrypted_data);
+    }
+
     public function Decrypt(string $message): string
     {
         $privKey = $this->_getPrivateKey();
-        openssl_private_decrypt($message, $decrypted, $privKey);
+        $message = base64_decode($message);
+        if(!openssl_private_decrypt($message, $decrypted, $privKey, OPENSSL_PKCS1_OAEP_PADDING)) {
+            throw new InvalidArgumentException(openssl_error_string(), 500);
+        }
         return $decrypted;
     }
 

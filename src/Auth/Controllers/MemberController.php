@@ -1396,12 +1396,6 @@ class MemberController extends WebController
                 return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
             }
 
-            $app = Module::$instance->application;
-            if(!$app->params->autologin) {
-                return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-autologin}', 'code' => 400]);
-            }
-
-
             $payloadArray = $payload->ToArray();
             $message = $payloadArray['message'] ?? $post->{'message'};
 
@@ -1425,5 +1419,58 @@ class MemberController extends WebController
         );
 
     }
+    
+    /**
+     * Encrypts a message
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function EncryptMessage(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
+    {
+
+        $result = [];
+        $message = 'Result message';
+        $code = 200;
+
+        try {
+            
+            $session = Sessions::LoadFromRequest();
+            if (!$session->member) {
+                return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
+            }
+
+            $payloadArray = $payload->ToArray();
+            $message = $payloadArray['message'] ?? $post->{'message'};
+            $formember = $payloadArray['for'] ?? $post->{'for'};
+
+            $member = Members::LoadByToken($session->member);
+            if(!$member) {
+                return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-autologin}', 'code' => 400]);
+            }
+
+            $formember = Members::LoadByToken($formember);
+            $result['encrypted'] = $formember->Encrypt($message);
+
+
+        } catch (\InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+        } catch (\Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        }
+            
+        return $this->Finish(
+            $code,
+            $message,
+            $result,
+            'utf-8'
+        );
+
+    }
+
+
     
 }
