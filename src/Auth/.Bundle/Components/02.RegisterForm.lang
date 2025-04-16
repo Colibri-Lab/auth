@@ -124,6 +124,277 @@ auth-registerform-email-validation2:
   en: You are entering an invalid email address. Please try again!
   it: Stai inserendo un indirizzo email non valido. Riprova!
   hy: "Դուք մուտքագրում եք անվավեր էլփոստի հասցե: Խնդրում ենք կրկին փորձել:"
-  es: Está ingresando una dirección de correo electrónico no válida. ¡Inténtalo de nuevo!
+  es: Está ingresando una dirección de correo electrónico no válida. ¡Inténtalo de
+    nuevo!
   kk: Сіз жарамсыз электрондық пошта мекенжайын енгізіп жатырсыз. Қайтадан көріңіз!
-  uz: Siz noto'g'ri elektron pochta manzilini kiritmoqdasiz. Iltimos, qayta urinib ko'ring!
+  uz: Siz noto'g'ri elektron pochta manzilini kiritmoqdasiz. Iltimos, qayta urinib
+    ko'ring!
+auth-registerform-phone-desc:
+  ru: Телефон
+  en: Phone number
+  hy: Հեռախոս
+  it: Telefono
+  es: Teléfono
+  kk: Телефон
+  uz: Telefon
+auth-registerform-phone-validation1:
+  ru: Пожалуйста, введите телефон
+  en: Please enter the phone number
+  it: Inserisci il numero di telefono
+  hy: Խնդրում ենք մուտքագրել հեռախոսահամարը
+  es: Por favor, introduzca el número de teléfono
+  kk: Өтінеміз, телефон нөміріңізді енгізіңіз
+  uz: Iltimos, telefon raqamingizni kiriting
+auth-registerform-pass-desc:
+  ru: Пароль
+  en: Password
+  hy: Գախտնաբառ
+  it: Parola d'ordine
+  es: Contraseña
+  kk: Құпия сөз
+  uz: Parol
+auth-registerform-password-placeholder:
+  ru: Выберите пароль
+  en: Pick a password
+  it: Crea una password
+  hy: Ընտրեք գաղտնաբառը
+  es: Elija una contraseña
+  kk: Құпия сөз таңдаңыз
+  uz: Parol tanlang
+auth-registerform-password-desc:
+  ru: Пароль
+  en: Password
+  hy: Գախտնաբառ
+  it: Parola d'ordine
+  es: Contraseña
+  kk: Құпия сөз
+  uz: Parol
+auth-registerform-password-tip-text:
+  ru: Придумайте пароль, который сложно подобрать
+  en: Create a password that is hard to guess
+  it: Crea una password difficile da indovinare
+  hy: Ստեղծեք գաղտնաբառ, որը դժվար է կռահել
+  es: Cree una contraseña difícil de adivinar
+  kk: Болжау қиын құпия сөз жасаңыз
+  uz: Taxmin qilish qiyin bo'lgan parol yarating
+auth-registerform-password-tip-success:
+  ru: Пароль соотвествует требованиям
+  en: Password meets requirements
+  it: La password soddisfa i requisiti
+  hy: Գաղտնաբառը համապատասխանում է պահանջներին
+  es: La contraseña cumple con los requisitos
+  kk: Құпия сөз талаптарға сәйкес келеді
+  uz: Parol talablariga javob beradi
+auth-registerform-password-tip-error:
+  ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+  it: La password non soddisfa i requisiti
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
+  es: La contraseña no cumple con los requisitos
+  kk: Құпия сөз талаптарға сәйкес келмейді
+  uz: Parol talablariga javob bermaydi
+auth-registerform-password-tip-generate:
+  ru: Сгенерировать пароль
+  en: Generate password
+  it: Genera password
+  hy: Ստեղծեք գաղտնաբառ
+  es: Generar contraseña
+  kk: Құпия сөзді жасау
+  uz: Parol yaratish
+auth-registerform-password-tip-copied:
+  ru: Пароль скопирован в буфер обмена
+  en: Password copied to clipboard
+  it: La password è stata copiata negli appunti
+  hy: Գաղտնաբառը պատճենվել է clipboard-ում
+  es: Contraseña copiada al portapapeles
+  kk: Құпия сөз алмасу буферіне көшірілді
+  uz: Parol clipboardga nusxalandi
+auth-registerform-password-tip-additional-1:
+  ru: цифры
+  en: digits
+  it: numeri
+  hy: թվեր
+  es: dígitos
+  kk: сандар
+  uz: raqamlar
+auth-registerform-password-tip-additional-2:
+  ru: символы (!, $, ^ и др.)
+  en: symbols (!, $, ^, etc.)
+  it: simboli (!, $, ^, ecc.)
+  hy: նշաններ (!, $, ^ և այլն)
+  es: símbolos (!, $, ^, etc.)
+  kk: таңбалар (!, $, ^ және т.б.)
+  uz: belgilar (!, $, ^ va boshqalar)
+auth-registerform-password-tip-additional-3:
+  ru: заглавные латинские буквы
+  en: capital latin letters
+  it: lettere latine maiuscole
+  hy: մեծատառ լատինատառ
+  es: letras latinas mayúsculas
+  kk: бас әріптер латын әріптері
+  uz: katta lotin harflari
+auth-registerform-password-tip-additional-4:
+  ru: строчные латинские буквы
+  en: lowercase latin letters
+  it: lettere latine minuscole
+  hy: փոքրատառ լատինատառ
+  es: letras latinas minúsculas
+  kk: кіші әріптер латын әріптері
+  uz: kichik lotin harflari
+auth-registerform-password-validation1:
+  ru: Пожалуйста, введите пароль
+  en: Please enter a password
+  it: per favore inserisci LA TUA password
+  hy: Խնդրում ենք մուտքագրել ձեր գաղտնաբառը
+  es: Por favor, introduzca una contraseña
+  kk: Құпия сөзді енгізіңіз
+  uz: Iltimos, parolni kiriting
+auth-registerform-password-validation3:
+  ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+  it: La password non soddisfa i requisiti
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
+  es: La contraseña no cumple con los requisitos
+  kk: Құпия сөз талаптарға сәйкес келмейді
+  uz: Parol talablariga javob bermaydi
+auth-registerform-confirmation-placeholder:
+  ru: Повторите пароль
+  en: Confirm password
+  it: Ripeti la password
+  hy: Կրկնեք գաղտնաբառը
+  es: Confirme la contraseña
+  kk: Құпия сөзді растаңыз
+  uz: Parolni tasdiqlang
+auth-registerform-confirmation-desc:
+  ru: Повторите пароль
+  en: Confirm password
+  it: Ripeti la password
+  hy: Կրկնեք գաղտնաբառը
+  es: Confirme la contraseña
+  kk: Құпия сөзді растаңыз
+  uz: Parolni tasdiqlang
+auth-registerform-password-validation2:
+  ru: Пожалуйста, повторите пароль
+  en: Please repeat password
+  it: Per favore ripeti la tua password
+  hy: Խնդրում ենք կրկնել ձեր գաղտնաբառը
+  es: Por favor, repita la contraseña
+  kk: Құпия сөзді қайталаңыз
+  uz: Iltimos, parolni takrorlang
+auth-registerform-confirmation-validation4:
+  ru: Пароли должны совпадать
+  en: Passwords must match
+  it: Le password devono essere identiche
+  hy: Գաղտնաբառերը պետք է համընկնեն
+  es: Las contraseñas deben coincidir
+  kk: Құпия сөздер сәйкес келуі керек
+  uz: Parollar mos kelishi kerak
+auth-registerform-aggreenment-placeholder:
+  ru: Я соглашаюсь с условиями и даю согласие на обработку персональных данных
+  en: I agree to the terms and consent to the processing of personal data
+  it: Accetto i termini e le condizioni e acconsento al trattamento dei dati
+    personali
+  hy: Ես համաձայն եմ պայմաններին և համաձայն եմ անձնական տվյալների մշակմանը
+  es: Acepto los términos y doy mi consentimiento para el procesamiento de datos personales
+  kk: Мен шарттармен келісемін және жеке деректерді өңдеуге келісімімді беремін
+  uz: Men shartlarga roziman va shaxsiy ma'lumotlarni qayta ishlashga rozilik beraman
+auth-registerform-aggreenment-validation1:
+  ru: Вам необходимо подтвердить соглашение на обработку персональных данных и
+    согласие на условия
+  en: You need to confirm the agreement on the processing of personal data and
+    consent to the terms
+  it: È necessario confermare l'accordo per il trattamento dei dati personali e
+    accettare i termini
+  hy: Դուք պետք է հաստատեք անձնական տվյալների մշակման համաձայնագիրը և պայմանների
+    համաձայնությունը
+  es: Debe confirmar el acuerdo sobre el procesamiento de datos personales y aceptar los términos
+  kk: Сіз жеке деректерді өңдеу туралы келісімді және шарттарды қабылдауды растауыңыз керек
+  uz: Siz shaxsiy ma'lumotlarni qayta ishlash bo'yicha kelishuvni va shartlarni qabul qilishingiz kerak
+auth-register-button:
+  ru: Регистрация
+  en: Registration
+  it: Registrazione
+  hy: Գրանցում
+  es: Registro
+  kk: Тіркелу
+  uz: Ro'yxatdan o'tish
+auth-login-register-text:
+  ru: Уже есть аккаунт?
+  en: Already have an account?
+  it: Hai già un account?
+  hy: Արդեն գրանցվաձ՝ էք
+  es: ¿Ya tienes una cuenta?
+  kk: Сізде тіркелгі бар ма?
+  uz: Sizda hisob bormi?
+auth-login-button:
+  ru: Вход
+  en: Login
+  it: Login
+  hy: Մուտք
+  es: Iniciar sesión
+  kk: Кіру
+  uz: Kirish
+auth-registerform-password-tip-text2:
+  ru: "Пароль должен содержать: "
+  en: "Password must contains:"
+  it: "La password deve contenere: "
+  hy: "Գաղտնաբառը պետք է պարունակի. "
+  es: "La contraseña debe contener: "
+  kk: "Құпия сөз мыналарды қамтуы керек: "
+  uz: "Parol quyidagilarni o'z ichiga olishi kerak: "
+auth-registerform-password-tip-digits:
+  ru: более %s символов
+  en: at least %s symbols
+  hy: ավելի քան %s նիշ
+  it: più di %s caratteri
+  es: al menos %s símbolos
+  kk: кемінде %s таңба
+  uz: kamida %s belgilar
+auth-logincontainer-confirmation-phone-message:
+  ru: Подтвердите номер телефона, чтобы мы могли оперативно связаться с вами и
+    уточнить детали по заявке
+  en: Confirm your phone number so that we can quickly contact you and clarify the
+    details of the application
+  it: Conferma il tuo numero di telefono in modo che possiamo contattarti
+    rapidamente e chiarire i dettagli della tua richiesta
+  hy: Հաստատեք ձեր հեռախոսահամարը, որպեսզի մենք կարողանանք արագ կապվել ձեզ հետ և
+    ճշտել ձեր դիմումի մանրամասները
+  es: Confirme su número de teléfono para que podamos contactarlo rápidamente y aclarar los detalles de la solicitud
+  kk: Біз сізбен тез байланысып, өтінімнің егжей-тегжейлерін нақтылау үшін телефон нөміріңізді растаңыз
+  uz: Siz bilan tezda bog'lanishimiz va ariza tafsilotlarini aniqlashtirishimiz uchun telefon raqamingizni tasdiqlang
+auth-logincontainer-confirmation-phone-message2:
+  ru: "Мы отправили код SMS-сообщением на номер: %s"
+  en: "We sent the code via SMS to the number: %s"
+  it: "Abbiamo inviato il codice via SMS al numero: %s"
+  hy: Մենք SMS-ի միջոցով ուղարկել ենք կոդը՝ %s հեռախոսահամարին
+  es: "Enviamos el código por SMS al número: %s"
+  kk: "Біз кодты SMS арқылы нөмірге жібердік: %s"
+  uz: "Biz kodni SMS orqali raqamga yubordik: %s"
+auth-logincontainer-confirmation-email-message:
+  ru: Подтвердите Email. Мы будем присылать только важные письма. Например, об
+    изменении статуса вашей заявки или напоминания заплатить по кредиту
+  en: Confirm Email. We will only send important emails. For example, a change in
+    the status of your application or a reminder to pay a loan
+  it: Conferma email. Invieremo solo email importanti. Ad esempio, su un
+    cambiamento nello stato della tua domanda o su un promemoria per pagare un
+    prestito
+  hy: Հաստատեք ձեր էլ․ հասցեն։ Մենք կուղարկենք միայն կարևոր նամակներ։ Օրինակ՝ ձեր դիմումի կարգավիճակի փոփոխության կամ վարկի վճարման հիշեցման մասին
+  es: Confirme su correo electrónico. Solo enviaremos correos importantes. Por ejemplo, un cambio en el estado de su solicitud o un recordatorio para pagar un préstamo
+  kk: Электрондық поштаны растаңыз. Біз тек маңызды хаттарды жібереміз. Мысалы, өтініміңіздің күйінің өзгеруі немесе несие төлеу туралы еске салу
+  uz: Elektron pochtangizni tasdiqlang. Biz faqat muhim elektron xabarlarni yuboramiz. Masalan, arizangiz holatidagi o'zgarish yoki kreditni to'lash eslatmasi
+auth-logincontainer-confirmation-email-message2:
+  ru: "Мы отправили код подтверждения на email: %s"
+  en: "We have sent a confirmation code to email: %s"
+  hy: Մենք ուղարկել ենք հաստատման կոդը՝ %s էլեկտրոնային հասցեին
+  it: "Abbiamo inviato un codice di conferma all'e-mail: %s"
+  es: "Hemos enviado un código de confirmación al correo electrónico: %s"
+  kk: "Біз растау кодын электрондық поштаға жібердік: %s"
+  uz: "Biz tasdiqlash kodini elektron pochta orqali yubordik: %s"
+auth-registerform-complete-button:
+  ru: Зарегистрироваться
+  en: Register
+  it: Registrati
+  hy: Գրանցվել
+  es: Registrarse
+  kk: Тіркелу
+  uz: Ro'yxatdan o'tish

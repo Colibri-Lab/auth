@@ -11,7 +11,8 @@ auth-confirmationform-code-validation1:
   en: Please enter the 6 digit code we have sent to your contact
   it: Inserisci il codice di 6 cifre che abbiamo inviato al tuo contatto
   hy: Խնդրում ենք մուտքագրել 6 նիշանոց կոդը, որը մենք ուղարկել ենք ձեր կոնտակտին
-  es: Por favor, introduzca el código de 6 dígitos que le hemos enviado a su contacto
+  es: Por favor, introduzca el código de 6 dígitos que le hemos enviado a su
+    contacto
   kk: Біз сіздің байланысыңызға жіберген 6 таңбалы кодты енгізіңіз
   uz: Biz sizning kontaktlaringizga yuborgan 6 xonali kodni kiriting
 auth-confirmation-timer-value:
