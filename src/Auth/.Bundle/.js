@@ -297,14 +297,50 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
         });
     }
 
-    _importPublicKey(publickey) {
-        return crypto.subtle.importKey(
-            "spki", 
-            publickey.spkiPem2spkiDer(), 
-            { name: "RSA-OAEP", hash: "SHA-256" }, 
-            true, 
-            ["encrypt"]
-        );
+    GenerateKeyPair() {
+        return new Promise((resolve, reject) => {
+            window.crypto.subtle.generateKey(
+                {
+                    name: "RSA-OAEP",
+                    modulusLength: 4096,
+                    publicExponent: new Uint8Array([1, 0, 1]),
+                    hash: "SHA-256",
+                },
+                true,
+                ["encrypt", "decrypt"],
+            ).then(keyPair => {
+                resolve(keyPair);
+            });
+        });
+    }
+
+    EncryptLocal(message, publicKey) {
+        return new Promise((resolve, reject) => {
+            let encoded = new TextEncoder().encode(message);
+            return window.crypto.subtle.encrypt(
+                {
+                    name: "RSA-OAEP",
+                },
+                publicKey,
+                encoded,
+            ).then(ciphertext => {
+                resolve(ciphertext);
+            });
+        });
+    }
+
+    DecodeLocal(ciphertext, privateKey) {
+        return new Promise((resolve, reject) => {
+            return window.crypto.subtle.decrypt(
+                {
+                    name: "RSA-OAEP",
+                },
+                privateKey,
+                ciphertext
+            ).then(decrypted => {
+                resolve(new TextDecoder().decode(decrypted));
+            });
+        });
     }
 
     Encrypt(message, member) {
