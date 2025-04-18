@@ -297,6 +297,18 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
         });
     }
 
+    _exportKeyAsPEM(key, type) {
+        return new Promise((resolve, reject) => {
+            window.crypto.subtle.exportKey(type === 'PUBLIC' ? 'spki' : 'pkcs8', type === 'PUBLIC' ? key.publicKey : key.privateKey).then(exportedKey => {
+                const exportedAsString = exportedKey.toString();
+                const pemString = `-----BEGIN ${type} KEY-----\n${exportedAsString}\n-----END ${type} KEY-----\n`;
+                resolve(pemString);
+            }).catch(error => {
+                reject('Key export error: ' . error);
+            });
+        })
+    }
+
     GenerateKeyPair() {
         return new Promise((resolve, reject) => {
             window.crypto.subtle.generateKey(
@@ -308,8 +320,15 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
                 },
                 true,
                 ["encrypt", "decrypt"],
-            ).then(keyPair => {
-                resolve(keyPair);
+            ).then((keyPair) => {
+                debugger;
+                Promise.all([
+                    this._exportKeyAsPEM(keyPair, 'PUBLIC'),
+                    this._exportKeyAsPEM(keyPair, 'PRIVATE')
+                ]).then(responses => {
+                    debugger;
+                    resolve({ public: responses[0], private: responses[1] });
+                });
             });
         });
     }
