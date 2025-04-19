@@ -300,13 +300,33 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
     _exportKeyAsPEM(key, type) {
         return new Promise((resolve, reject) => {
             window.crypto.subtle.exportKey(type === 'PUBLIC' ? 'spki' : 'pkcs8', type === 'PUBLIC' ? key.publicKey : key.privateKey).then(exportedKey => {
-                const exportedAsString = exportedKey.toString();
+                let exportedAsString = exportedKey.toString();
+                exportedAsString = window.btoa(exportedAsString);
                 const pemString = `-----BEGIN ${type} KEY-----\n${exportedAsString}\n-----END ${type} KEY-----\n`;
                 resolve(pemString);
             }).catch(error => {
                 reject('Key export error: ' . error);
             });
         })
+    }
+
+    _importKeyAsPEM(key, type) {
+        return new Promise((resolve, reject) => {
+            const pemString = key.replace(/-----BEGIN (.+?)-----/g, '').replace(/-----END (.+?)-----/g, '').replace(/\s/g, '');
+            const binaryDerString = window.atob(pemString);
+            const binaryDer = new Uint8Array(binaryDerString.length);
+            for (let i = 0; i < binaryDerString.length; i++) {
+                binaryDer[i] = binaryDerString.charCodeAt(i);
+            }
+            window.crypto.subtle.importKey(type === 'PUBLIC' ? 'spki' : 'pkcs8', binaryDer.buffer, { 
+                name: "RSA-OAEP",
+                hash: "SHA-256" 
+            }, true, type === 'PUBLIC' ? ['encrypt'] : ['decrypt']).then(key => {
+                resolve(key);
+            }).catch(error => {
+                reject('Key import error: ' + error);
+            });
+        });
     }
 
     GenerateKeyPair() {
@@ -335,29 +355,33 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
     EncryptLocal(message, publicKey) {
         return new Promise((resolve, reject) => {
-            let encoded = new TextEncoder().encode(message);
-            return window.crypto.subtle.encrypt(
-                {
-                    name: "RSA-OAEP",
-                },
-                publicKey,
-                encoded,
-            ).then(ciphertext => {
-                resolve(ciphertext);
+            this._importKeyAsPEM(publicKey, 'PUBLIC').then(publicKey => {
+                let encoded = new TextEncoder().encode(message);
+                return window.crypto.subtle.encrypt(
+                    {
+                        name: "RSA-OAEP",
+                    },
+                    publicKey,
+                    encoded,
+                ).then(ciphertext => {
+                    resolve(ciphertext.toString());
+                });
             });
         });
     }
 
     DecodeLocal(ciphertext, privateKey) {
         return new Promise((resolve, reject) => {
-            return window.crypto.subtle.decrypt(
-                {
-                    name: "RSA-OAEP",
-                },
-                privateKey,
-                ciphertext
-            ).then(decrypted => {
-                resolve(new TextDecoder().decode(decrypted));
+            this._importKeyAsPEM(privateKey, 'PRIVATE').then(privateKey => {
+                window.crypto.subtle.decrypt(
+                    {
+                        name: "RSA-OAEP",
+                    },
+                    privateKey,
+                    ciphertext.toArrayBuffer()
+                ).then(decrypted => {
+                    resolve(new TextDecoder().decode(decrypted));
+                });
             });
         });
     }
