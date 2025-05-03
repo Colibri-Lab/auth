@@ -27,9 +27,11 @@ auth-loginform-login-validation2:
   en: You are entering an invalid email address. mail. Please try again!
   it: Stai inserendo un indirizzo email errato. posta. Per favore riprova!
   hy: "Դուք սխալ էլփոստի հասցե եք մուտքագրում: փոստ. Խնդրում եմ կրկին փորձեք!"
-  es: Estás introduciendo una dirección de correo electrónico no válida. ¡Por favor, inténtalo de nuevo!
+  es: Estás introduciendo una dirección de correo electrónico no válida. ¡Por
+    favor, inténtalo de nuevo!
   kk: Сіз жарамсыз электрондық пошта мекенжайын енгізіп жатырсыз. Қайтадан көріңіз!
-  uz: Siz noto`g`ri elektron pochta manzilini kiritmoqdasiz. Iltimos, qayta urinib ko`ring!
+  uz: Siz noto`g`ri elektron pochta manzilini kiritmoqdasiz. Iltimos, qayta urinib
+    ko`ring!
 auth-loginform-password-desc:
   ru: Пароль
   en: Password
