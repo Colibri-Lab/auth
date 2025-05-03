@@ -7,16 +7,16 @@ App.Modules.Auth = class extends Colibri.Modules.Module {
     _app_token = null;
 
     /** @constructor */
-    constructor() {
+    constructor() { 
         super('Auth');
         
     }
 
     InitializeModule(useCookie = true, cookieName = 'ss-jwt', remoteDomain = null, appToken = null) {
         super.InitializeModule();
-        console.log('Initializing module Auth');
+        console.log('Initializing module Auth'); 
         
-        this._store = App.Store.AddChild('app.auth', {}, this);
+        this._store = App.Store.AddChild('app.auth', {}, this); 
         this._store.AddPathLoader('auth.settings', () => this.Settings());
 
 

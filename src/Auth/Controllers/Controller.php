@@ -184,5 +184,53 @@ class Controller extends WebController
         }
     }
 
+    /**
+     * Bundle all languages
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function BundleAll(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
+    {
+
+        $result = [];
+        $message = 'Result message';
+        $code = 200;
+
+        $this->_initBundleEventHandlers();
+        
+        $themeFile = App::$moduleManager->Get('tools')->Theme(App::$domainKey);
+        $themeKey = App::$moduleManager->Get('tools')->ThemeName(App::$domainKey);
+
+        $langModule = App::$moduleManager->{'lang'};
+        $oldLangKey = $langModule->current;
+        $langs = $langModule->Langs();
+        foreach($langs as $lang => $langData) {
+            $langModule->InitCurrent($lang);
+
+
+            Bundle::Automate(App::$domainKey, $lang . '.assets.bundle.js', 'js', [
+                ['path' => App::$moduleManager->Get('auth')->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
+            ]);
+            Bundle::Automate(App::$domainKey, $lang . '.assets.bundle.css', 'scss', [
+                ['path' => App::$moduleManager->Get('auth')->modulePath . 'web/res/css/'],
+                ['path' => App::$moduleManager->Get('auth')->modulePath . '.Bundle/'],
+                ['path' => $themeFile],
+            ], 'https://' . App::$request->host);
+    
+        }
+
+        $langModule->InitCurrent($oldLangKey);
+            
+        return $this->Finish(
+            $code,
+            $message,
+            $result,
+            'utf-8'
+        );
+
+    }
+
 
 }
