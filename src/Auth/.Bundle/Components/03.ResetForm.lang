@@ -43,9 +43,11 @@ auth-resetform-email-validation2:
   en: You are entering an invalid email address. Please try again!
   it: Stai inserendo un indirizzo email errato. posta. Per favore riprova!
   hy: "Դուք սխալ էլփոստի հասցե եք մուտքագրում: փոստ. Խնդրում եմ կրկին փորձեք!"
-  es: Está ingresando una dirección de correo electrónico no válida. ¡Inténtalo de nuevo!
+  es: Está ingresando una dirección de correo electrónico no válida. ¡Inténtalo de
+    nuevo!
   kk: Сіз жарамсыз электрондық пошта мекенжайын енгізіп жатырсыз. Қайта көріңіз!
-  uz: Siz noto‘g‘ri elektron pochta manzilini kiritdingiz. Iltimos, qayta urinib ko‘ring!
+  uz: Siz noto‘g‘ri elektron pochta manzilini kiritdingiz. Iltimos, qayta urinib
+    ko‘ring!
 auth-resetform-phone-desc:
   ru: Телефон
   en: Phone number
@@ -75,7 +77,8 @@ auth-confirmationform-code-validation1:
   en: Please enter the 6 digit code we have sent to your contact
   it: Inserisci il codice di 6 cifre che abbiamo inviato al tuo contatto
   hy: Խնդրում ենք մուտքագրել 6 նիշանոց կոդը, որը մենք ուղարկել ենք ձեր կոնտակտին
-  es: Por favor, introduzca el código de 6 dígitos que le hemos enviado a su contacto
+  es: Por favor, introduzca el código de 6 dígitos que le hemos enviado a su
+    contacto
   kk: Біз сіздің байланысыңызға жіберген 6 таңбалы кодты енгізіңіз
   uz: Biz sizning kontaktlaringizga yuborgan 6 xonali kodni kiriting
 auth-resetform-pass-desc:

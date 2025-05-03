@@ -295,9 +295,11 @@ auth-registerform-aggreenment-placeholder:
   it: Accetto i termini e le condizioni e acconsento al trattamento dei dati
     personali
   hy: Ես համաձայն եմ պայմաններին և համաձայն եմ անձնական տվյալների մշակմանը
-  es: Acepto los términos y doy mi consentimiento para el procesamiento de datos personales
+  es: Acepto los términos y doy mi consentimiento para el procesamiento de datos
+    personales
   kk: Мен шарттармен келісемін және жеке деректерді өңдеуге келісімімді беремін
-  uz: Men shartlarga roziman va shaxsiy ma'lumotlarni qayta ishlashga rozilik beraman
+  uz: Men shartlarga roziman va shaxsiy ma'lumotlarni qayta ishlashga rozilik
+    beraman
 auth-registerform-aggreenment-validation1:
   ru: Вам необходимо подтвердить соглашение на обработку персональных данных и
     согласие на условия
@@ -307,9 +309,12 @@ auth-registerform-aggreenment-validation1:
     accettare i termini
   hy: Դուք պետք է հաստատեք անձնական տվյալների մշակման համաձայնագիրը և պայմանների
     համաձայնությունը
-  es: Debe confirmar el acuerdo sobre el procesamiento de datos personales y aceptar los términos
-  kk: Сіз жеке деректерді өңдеу туралы келісімді және шарттарды қабылдауды растауыңыз керек
-  uz: Siz shaxsiy ma'lumotlarni qayta ishlash bo'yicha kelishuvni va shartlarni qabul qilishingiz kerak
+  es: Debe confirmar el acuerdo sobre el procesamiento de datos personales y
+    aceptar los términos
+  kk: Сіз жеке деректерді өңдеу туралы келісімді және шарттарды қабылдауды
+    растауыңыз керек
+  uz: Siz shaxsiy ma'lumotlarni qayta ishlash bo'yicha kelishuvni va shartlarni
+    qabul qilishingiz kerak
 auth-register-button:
   ru: Регистрация
   en: Registration
@@ -359,9 +364,12 @@ auth-logincontainer-confirmation-phone-message:
     rapidamente e chiarire i dettagli della tua richiesta
   hy: Հաստատեք ձեր հեռախոսահամարը, որպեսզի մենք կարողանանք արագ կապվել ձեզ հետ և
     ճշտել ձեր դիմումի մանրամասները
-  es: Confirme su número de teléfono para que podamos contactarlo rápidamente y aclarar los detalles de la solicitud
-  kk: Біз сізбен тез байланысып, өтінімнің егжей-тегжейлерін нақтылау үшін телефон нөміріңізді растаңыз
-  uz: Siz bilan tezda bog'lanishimiz va ariza tafsilotlarini aniqlashtirishimiz uchun telefon raqamingizni tasdiqlang
+  es: Confirme su número de teléfono para que podamos contactarlo rápidamente y
+    aclarar los detalles de la solicitud
+  kk: Біз сізбен тез байланысып, өтінімнің егжей-тегжейлерін нақтылау үшін телефон
+    нөміріңізді растаңыз
+  uz: Siz bilan tezda bog'lanishimiz va ariza tafsilotlarini aniqlashtirishimiz
+    uchun telefon raqamingizni tasdiqlang
 auth-logincontainer-confirmation-phone-message2:
   ru: "Мы отправили код SMS-сообщением на номер: %s"
   en: "We sent the code via SMS to the number: %s"
@@ -378,10 +386,16 @@ auth-logincontainer-confirmation-email-message:
   it: Conferma email. Invieremo solo email importanti. Ad esempio, su un
     cambiamento nello stato della tua domanda o su un promemoria per pagare un
     prestito
-  hy: Հաստատեք ձեր էլ․ հասցեն։ Մենք կուղարկենք միայն կարևոր նամակներ։ Օրինակ՝ ձեր դիմումի կարգավիճակի փոփոխության կամ վարկի վճարման հիշեցման մասին
-  es: Confirme su correo electrónico. Solo enviaremos correos importantes. Por ejemplo, un cambio en el estado de su solicitud o un recordatorio para pagar un préstamo
-  kk: Электрондық поштаны растаңыз. Біз тек маңызды хаттарды жібереміз. Мысалы, өтініміңіздің күйінің өзгеруі немесе несие төлеу туралы еске салу
-  uz: Elektron pochtangizni tasdiqlang. Biz faqat muhim elektron xabarlarni yuboramiz. Masalan, arizangiz holatidagi o'zgarish yoki kreditni to'lash eslatmasi
+  hy: Հաստատեք ձեր էլ․ հասցեն։ Մենք կուղարկենք միայն կարևոր նամակներ։ Օրինակ՝ ձեր
+    դիմումի կարգավիճակի փոփոխության կամ վարկի վճարման հիշեցման մասին
+  es: Confirme su correo electrónico. Solo enviaremos correos importantes. Por
+    ejemplo, un cambio en el estado de su solicitud o un recordatorio para pagar
+    un préstamo
+  kk: Электрондық поштаны растаңыз. Біз тек маңызды хаттарды жібереміз. Мысалы,
+    өтініміңіздің күйінің өзгеруі немесе несие төлеу туралы еске салу
+  uz: Elektron pochtangizni tasdiqlang. Biz faqat muhim elektron xabarlarni
+    yuboramiz. Masalan, arizangiz holatidagi o'zgarish yoki kreditni to'lash
+    eslatmasi
 auth-logincontainer-confirmation-email-message2:
   ru: "Мы отправили код подтверждения на email: %s"
   en: "We have sent a confirmation code to email: %s"

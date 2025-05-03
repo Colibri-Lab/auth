@@ -133,8 +133,8 @@ App.Modules.Auth.Components.InviteMember = class extends Colibri.UI.Component {
                 note: '#{auth-inviteform-multiple-note}',
                 attrs: {
                     inputHeight: 300,
-                    inputWidth: 550,
-                    width: 550,
+                    inputWidth: '100%',
+                    width: '100%',
                 },
                 params: {
                     validate: [
@@ -168,14 +168,14 @@ App.Modules.Auth.Components.InviteMember = class extends Colibri.UI.Component {
                     ],
                 },
                 attrs: {
-                    width: '350'
+                    width: '100%'
                 }
             },
             fio: {
                 component: 'Text',
                 desc: '#{auth-inviteform-fio}',
                 attrs: {
-                    width: '250'
+                    width: '100%'
                 }
             }
         };
