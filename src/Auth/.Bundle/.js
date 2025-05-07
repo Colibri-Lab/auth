@@ -89,7 +89,7 @@ App.Modules.Auth = class extends Colibri.Modules.Module {
         promise.then((settings) => {
             Auth.Store.Set('auth.settings', settings.result);
             resolve(settings.result);
-        }).catch(response => reject(response));
+        }).catch(response => reject(response)); 
     }
 
 }
