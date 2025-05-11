@@ -3,8 +3,8 @@
     <Pane name="form-container" shown="true">    
         <TextSpan shown="true" name="form-register-title" className="app-auth-form-component-title">#{auth-logincontainer-register-title}</TextSpan>
 
-        <ConfirmationForm shown="true" name="step1" property="phone" width="100%" message1="#{auth-logincontainer-confirmation-phone-message}" message2="#{auth-logincontainer-confirmation-phone-message2}" />
-        <ConfirmationForm shown="false" name="step2" property="email" width="100%" message1="#{auth-logincontainer-confirmation-email-message}" message2="#{auth-logincontainer-confirmation-email-message2}" />  
+        <ConfirmationForm shown="true" name="step1" property="phone" width="100%" message1="#{auth-logincontainer-confirmation-phone-message}" message2="#{auth-logincontainer-confirmation-phone-message2}" message3="#{auth-logincontainer-confirmation-phone-message3}" mode="phone" />
+        <ConfirmationForm shown="false" name="step2" property="email" width="100%" message1="#{auth-logincontainer-confirmation-email-message}" message2="#{auth-logincontainer-confirmation-email-message2}" message3="#{auth-logincontainer-confirmation-email-message3}" mode="email" />  
         
         <Pane shown="false" name="step3">
             <Forms.Form shown="true" name="form">
@@ -29,7 +29,7 @@
                                 className: '-icon-right -icon-green'
                             },
                             attrs: {
-                                width: 480
+                                width: '100%'
                             } 
                         },
                         phone: {

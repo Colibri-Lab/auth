@@ -412,3 +412,19 @@ auth-registerform-complete-button:
   es: Registrarse
   kk: Тіркелу
   uz: Ro'yxatdan o'tish
+auth-logincontainer-confirmation-phone-message3:
+  ru: Введите код подтверждения, который мы отправили сам в SMS
+  en: Enter the confirmation code that we sent you in SMS
+  it: Inserisci il codice di conferma che ti abbiamo inviato in SMS
+  hy: Մուտքագրեք հաստատման կոդը, որը մենք ուղարկել ենք SMS-ով
+  es: Ingrese el código de confirmación que le enviamos por SMS
+  kk: Біз жіберген растау кодын енгізіңіз SMS арқылы
+  uz: Biz yuborgan tasdiqlash kodini SMS orqali kiriting
+auth-logincontainer-confirmation-email-message3:
+  ru: Введите код подтверждения, который мы отправили на почту
+  en: Enter the confirmation code that we sent you by email
+  it: Inserisci il codice di conferma che ti abbiamo inviato via email
+  hy: Մուտքագրեք հաստատման կոդը, որը մենք ուղարկել ենք էլ․ հասցեով
+  es: Ingrese el código de confirmación que le enviamos por correo electrónico
+  kk: Біз жіберген растау кодын енгізіңіз электрондық пошта арқылы
+  uz: Biz yuborgan tasdiqlash kodini elektron pochta orqali kiriting

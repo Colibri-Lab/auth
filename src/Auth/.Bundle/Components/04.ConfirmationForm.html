@@ -40,6 +40,8 @@
                             required: true,
                             readonly: false,
                             changeOnKeyPress: true,
+                            pattern: '[0-9]{6}',
+                            inputmode: 'numeric',
                             validate: [
                                 {
                                     message: '#{auth-confirmationform-code-validation1}',

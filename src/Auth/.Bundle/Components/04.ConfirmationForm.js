@@ -203,10 +203,13 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
             return;
         }
 
+        App.Loading.Show();
         this._form1.shown = false;
         this._form2.shown = true;
         this._form2.enabled = false;
+        this._send.shown = false;
         Auth.Members.BeginConfirmationProcess(this._property, this._form1.value.property).then((session) => {
+            App.Loading.Hide();
             this._form2.enabled = true;
             this._confirming = false;
             this._startTimer();
@@ -262,6 +265,48 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         this.value = {
             message: this._message2
         };
+    }
+
+    /**
+     * Message text
+     * @type {String}
+     */
+    get message3() {
+        return this._message3;
+    }
+    /**
+     * Message text
+     * @type {String}
+     */
+    set message3(value) {
+        this._message3 = value;
+        this._form2.FindField('code').title = this._message3;   
+    }
+
+    /**
+     * Confirmation property
+     * @type {phone,email}
+     */
+    get mode() {
+        return this._mode;
+    }
+    /**
+     * Confirmation property
+     * @type {phone,email}
+     */
+    set mode(value) {
+        this._mode = value;
+        if(value === 'phone') {
+            const fields = this._form1.fields;
+            fields.property.params.pattern = '[0-9]*';
+            fields.property.params.inputmode = 'numeric';
+            this._form1.fields = fields;
+        } else {
+            const fields = this._form1.fields;
+            delete fields.property.params.pattern;
+            delete fields.property.params.inputmode;
+            this._form1.fields = fields;
+        }
     }
 
 }
