@@ -100,7 +100,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                     ]
                 },
                 attrs: {
-                    width: 480
+                    width: '100%'
                 }
             },
             phone: {
@@ -118,7 +118,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                     ]
                 },
                 attrs: {
-                    width: 480
+                    width: '100%'
                 }
             },
             code: {
@@ -135,7 +135,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                     ],
                 },
                 attrs: {
-                    width: 480
+                    width: '100%'
                 }
             },
             pass: {
@@ -185,7 +185,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                             ]
                         },
                         attrs: {
-                            width: 480
+                            width: '100%'
                         }
                     },
                     confirmation: {
@@ -206,7 +206,7 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
                             ]                  
                         },
                         attrs: {
-                            width: 480
+                            width: '100%'
                         }
                     } 
                 }
