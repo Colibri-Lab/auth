@@ -479,7 +479,7 @@ class Member extends BaseModelDataRow
         return File::Read($pathPub);
     }
 
-    private function _getLocalPublicKey(): string
+    private function _getLocalPublicKey(): ?string
     {
         $runtime = App::$appRoot . App::$config->Query('runtime')->GetValue() . 'ssl/';
         $pathPub = $runtime . substr($this->token, 0, 4) . '/' . substr($this->token, -4) . '/' . $this->token . '.local.pub';
