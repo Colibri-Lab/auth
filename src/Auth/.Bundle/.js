@@ -341,12 +341,10 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
                 true,
                 ["encrypt", "decrypt"],
             ).then((keyPair) => {
-                debugger;
                 Promise.all([
                     this._exportKeyAsPEM(keyPair, 'PUBLIC'),
                     this._exportKeyAsPEM(keyPair, 'PRIVATE')
                 ]).then(responses => {
-                    debugger;
                     resolve({ public: responses[0], private: responses[1] });
                 });
             });

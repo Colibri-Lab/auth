@@ -455,21 +455,25 @@ class Member extends BaseModelDataRow
 
     public function Encrypt(string $message): string
     {
+        
         $pubKey = $this->_getPublicKey();
-        if(!openssl_public_encrypt($message, $encrypted_data, $pubKey, OPENSSL_PKCS1_OAEP_PADDING)) {
-            throw new InvalidArgumentException(openssl_error_string(), 500);
-        }
-        return base64_encode($encrypted_data);
+        $aesKey = openssl_random_pseudo_bytes(32); // 256-bit AES key
+        $iv = openssl_random_pseudo_bytes(16);     // 16-byte IV
+        $encryptedData = openssl_encrypt($message, 'aes-256-cbc', $aesKey, OPENSSL_RAW_DATA, $iv);
+        openssl_public_encrypt($aesKey, $encryptedKey, $pubKey, OPENSSL_PKCS1_OAEP_PADDING);
+        return base64_encode($encryptedKey) . '::' . base64_encode($iv) . '::' . base64_encode($encryptedData);
+
     }
 
     public function Decrypt(string $message): string
     {
         $privKey = $this->_getPrivateKey();
-        $message = base64_decode($message);
-        if(!openssl_private_decrypt($message, $decrypted, $privKey, OPENSSL_PKCS1_OAEP_PADDING)) {
-            throw new InvalidArgumentException(openssl_error_string(), 500);
-        }
-        return $decrypted;
+        [$b64EncryptedKey, $b64Iv, $b64EncryptedData] = explode('::', $message);
+        $encryptedKey = base64_decode($b64EncryptedKey);
+        $iv = base64_decode($b64Iv);
+        $encryptedData = base64_decode($b64EncryptedData);
+        openssl_private_decrypt($encryptedKey, $aesKey, $privKey, OPENSSL_PKCS1_OAEP_PADDING);
+        return openssl_decrypt($encryptedData, 'aes-256-cbc', $aesKey, OPENSSL_RAW_DATA, $iv);
     }
 
     private function _getPublicKey(): string
