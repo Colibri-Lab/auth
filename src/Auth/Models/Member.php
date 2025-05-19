@@ -443,9 +443,10 @@ class Member extends BaseModelDataRow
         unset($arr['datedeleted']);
         unset($arr['password']);
         $arr['public'] = $this->_getPublicKey();
-        $arr['gender'] = $arr['gender']['value'] ?? $arr['gender'];
-        $arr['birthdate'] = $arr['birthdate'] ? $arr['birthdate']->format('yyyy-MM-dd hh:mm:ss') : null;
+        $arr['public_local'] = $this->_getLocalPublicKey();
         if ($exportFullData) {
+            $arr['gender'] = $arr['gender']['value'] ?? $arr['gender'];
+            $arr['birthdate'] = $arr['birthdate'] ? $arr['birthdate']->format('yyyy-MM-dd hh:mm:ss') : null;
             $arr['fio'] = trim($arr['last_name'] . ' ' . $arr['first_name'] . ' ' . $arr['patronymic']);
             $arr['gender'] = $arr['gender']['value'] ?? 'male';
         }
@@ -475,6 +476,13 @@ class Member extends BaseModelDataRow
     {
         $runtime = App::$appRoot . App::$config->Query('runtime')->GetValue() . 'ssl/';
         $pathPub = $runtime . substr($this->token, 0, 4) . '/' . substr($this->token, -4) . '/' . $this->token . '.pub';
+        return File::Read($pathPub);
+    }
+
+    private function _getLocalPublicKey(): string
+    {
+        $runtime = App::$appRoot . App::$config->Query('runtime')->GetValue() . 'ssl/';
+        $pathPub = $runtime . substr($this->token, 0, 4) . '/' . substr($this->token, -4) . '/' . $this->token . '.local.pub';
         return File::Read($pathPub);
     }
 
@@ -508,6 +516,13 @@ class Member extends BaseModelDataRow
         File::Write($pathPriv, $privKey, true);
         File::Write($pathPub, $pubKey, true);
 
+    }
+
+    public function SetLocalPublicKey(string $publicKe): void
+    {
+        $runtime = App::$appRoot . App::$config->Query('runtime')->GetValue() . 'ssl/';
+        $pathPub = $runtime . substr($this->token, 0, 4) . '/' . substr($this->token, -4) . '/' . $this->token . '.local.pub';
+        File::Write($pathPub, $publicKe, true);
     }
 
 }

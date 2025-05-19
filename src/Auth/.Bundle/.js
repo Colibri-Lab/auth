@@ -353,6 +353,14 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
         });
     }
 
+    SaveLocalPublicKey(publicKey) {
+        return new Promise((resolve, reject) => {
+            this.Call('Member', 'SaveLocalPublicKey', {public: publicKey}, {'X-AppToken': Auth.appToken}).then((response) => {
+                resolve(response.result);
+            }).catch(response => reject(response));
+        });
+    }
+
     EncryptLocal(message, publicKey) {
         return new Promise((resolve, reject) => {
             this._importKeyAsPEM(publicKey, 'PUBLIC').then(publicKey => {
