@@ -1055,15 +1055,24 @@ class MemberController extends WebController
         $term = $payloadArray['term'] ?? $post->{'term'};
 
         $ret = [];
-        
-        $found = Members::LoadByToken($term);
-        if($found) {
-            $ret[$found->token] = $found->ExportForUserInterface(true);
-        } else {
-            $members = Members::LoadByFilter(-1, 20, 'concat({last_name}, \' \', {first_name}, \' \', {patronymic}, \' \', {phone}, \' \', {email}) like \'%' . $term . '%\'');
-            foreach ($members as $member) {
-                /** @var Member $member */
-                $ret[$member->token] = $member->ExportForUserInterface(true);
+        if(is_string($term)) {
+            $found = Members::LoadByToken($term);
+            if($found) {
+                $ret[$found->token] = $found->ExportForUserInterface(true);
+            } else {
+                $members = Members::LoadByFilter(-1, 20, 'concat({last_name}, \' \', {first_name}, \' \', {patronymic}, \' \', {phone}, \' \', {email}) like \'%' . $term . '%\'');
+                foreach ($members as $member) {
+                    /** @var Member $member */
+                    $ret[$member->token] = $member->ExportForUserInterface(true);
+                }
+            }
+        } elseif (is_array($term)) {
+            // it is list of token
+            foreach($term as $t) {
+                $found = Members::LoadByToken($t);
+                if($found) {
+                    $ret[$found->token] = $found->ExportForUserInterface(true);
+                }
             }
         }
     
@@ -1501,7 +1510,7 @@ class MemberController extends WebController
                 return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-autologin}', 'code' => 400]);
             }
 
-            
+            $member->SetLocalPublicKey($public);
 
 
         } catch (\InvalidArgumentException $e) {
@@ -1521,6 +1530,6 @@ class MemberController extends WebController
 
     }
 
-
+    
     
 }
