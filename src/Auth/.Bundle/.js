@@ -363,7 +363,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
         return new Promise((resolve, reject) => {
             this._importKeyAsPEM(publicKey, 'PUBLIC').then(publicKey => {
                 let encoded = new TextEncoder().encode(message);
-                return window.crypto.subtle.encrypt(
+                window.crypto.subtle.encrypt(
                     {
                         name: "RSA-OAEP",
                     },
@@ -371,7 +371,11 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
                     encoded,
                 ).then(ciphertext => {
                     resolve(ciphertext.toString());
+                }).catch((er) => {
+                    reject(er)
                 });
+            }).catch((er) => {
+                reject(er)
             });
         });
     }
@@ -387,7 +391,11 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
                     ciphertext.toArrayBuffer()
                 ).then(decrypted => {
                     resolve(new TextDecoder().decode(decrypted));
-                });
+                }).catch((er) => {
+                    reject(er);
+                })
+            }).catch((er) => {
+                reject(er)
             });
         });
     }
