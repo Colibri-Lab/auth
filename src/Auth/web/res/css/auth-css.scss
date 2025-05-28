@@ -41,6 +41,11 @@
 
     [data-object-name="register"], [data-object-name="login"], [data-object-name="reset"] {
         font-weight: bold;
+        [data-object-name="fingerprint"] {
+            svg path {
+                color: black;
+            }
+        }
     }
 
     [data-object-name="form-container"] {
@@ -63,12 +68,11 @@
             }
         } 
     }
+    
 
-    // .buttons-pane {
-    //     .app-component-textspan {
-    //         color: #707070;
-    //     }
-    // }
+    .buttons-pane {
+        gap: 10px;
+    }
 
 
 }

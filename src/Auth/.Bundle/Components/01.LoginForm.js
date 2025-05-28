@@ -13,6 +13,8 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         this._loginButton = this.Children('button-container/login');
         this._registerButton = this.Children('button-container2/register');
         this._resetButton = this.Children('links-container/reset');
+        this._buttonContainerFingerprint = this.Children('button-container/fingerprint');
+        
 
         // this._form.AddHandler('Changed', (event, args) => {
         //     this._loginButton.enabled = this._validator.Status();
@@ -30,18 +32,24 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         this._resetButton.AddHandler('Clicked', (event, args) => this.Dispatch('ResetButtonClicked', args));
         this._loginButton.AddHandler('Clicked', (event, args) => this.__loginFormLoginButtonClicked(event, args));
         this._requestCode.AddHandler('Clicked', (event, args) => this.__requestCodeAgainClicked(event, args));
+        this._buttonContainerFingerprint.AddHandler('Clicked', (event, args) => this.__buttonContainerFingerprintClicked(event, args));
 
         Auth.App.Settings().then((settings) => {
+            this._buttonContainerFingerprint.shown = settings.params.enable_device_authentification;
             if(settings.params.enable_device_authentification) {
-                App.Device.Auth.IsAvailable().then(() => {
-                    App.Device.Auth.Authenticate().then((credentials) => {
-                        this.LoginByCreds(credentials);
-                    });
-                }).catch(() => {});
+                this.__buttonContainerFingerprintClicked(null, null);
             }
         });
 
     } 
+
+    __buttonContainerFingerprintClicked(event, args) {
+        App.Device.Auth.IsAvailable().then(() => {
+            App.Device.Auth.Authenticate().then((credentials) => {
+                this.LoginByCreds(credentials);
+            });
+        }).catch(() => {});
+    }
 
     /**
      * @private
