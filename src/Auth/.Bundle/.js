@@ -109,6 +109,17 @@ App.Modules.Auth.Session = class extends Colibri.IO.RpcRequest  {
         });
     }
 
+    LoginByCreds(creds) {
+        return new Promise((resolve, reject) => {
+            this.Call('Session', 'LoginByCreds', {credentials: creds}, {'X-AppToken': Auth.appToken}).then((response) => {
+                Auth.Store.Set('auth.session', response.result.session);
+                resolve(response.result.session);
+            }).catch(response => {
+                reject(response);
+            });
+        });
+    }
+
     Login(login, password, code) {
         return new Promise((resolve, reject) => {
             this.Call('Session', 'Login', {login: login, password: password, code: code}, {'X-AppToken': Auth.appToken}).then((response) => {
@@ -421,6 +432,19 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
             this.Call('Member', 'Search', {term: term}, {'X-AppToken': Auth.appToken}).then((response) => {
                 resolve(response.result);
             }).catch(response => reject(response));
+        });
+    }
+
+    CreateDeviceCredentials() {
+        return new Promise((resolve, reject) => {
+            const session = Auth.Store.Query('auth.session');
+            App.Device.Auth.IsAvailable().then(() => {
+                App.Device.Auth.Create(session.member.token, session.member.last_name + ' ' + session.member.first_name, session.member.email).then((credential) => {
+                    this.Call('Member', 'CreateDevice', {credentials: credential}, {'X-AppToken': Auth.appToken}).then((response) => {
+                        resolve(response.result);
+                    }).catch(response => reject(response));
+                });
+            })
         });
     }
 

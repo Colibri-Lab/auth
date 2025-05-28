@@ -14,12 +14,6 @@ applications:
     maybepublished: false
     softdeletes: false
     deletedautoshow: false
-    template_args:
-      rows: ""
-      columns: ""
-      orientation: ~
-      flow: ~
-      gap: ""
   module: Auth
   fields:
     key:
@@ -888,6 +882,43 @@ applications:
             hy: ""
           tag: []
           group: window
+        enable_device_authentification:
+          desc:
+            ru: Включить авторизацию через устройства
+            en: ""
+            it: ""
+            hy: ""
+            es: ""
+            kk: ""
+            uz: ""
+          type: bool
+          component: Colibri.UI.Forms.Checkbox
+          class: bool
+          attrs:
+            inputWidth: ""
+          params:
+            required: false
+            enabled: true
+            canbeempty: true
+            readonly: false
+            searchable: false
+            list: true
+            template: false
+            multiple: false
+            vertical: false
+            visual: false
+            code: 0
+            keyTitle: ""
+            valueTitle: ""
+            canEditKey: false
+            canAddNew: false
+            canRemoveRows: false
+            removelink: true
+            updownlink: true
+            hasscroll: true
+            initempty: true
+            removedesc: true
+          group: window
         design:
           desc:
             ru: Макет
@@ -1417,83 +1448,6 @@ applications:
       method: BTREE
       name: applications_key_idx
   group: ~
-  dbms: relational
-  allowedTypes:
-    bool:
-      length: false
-      generic: bool
-      component: Colibri.UI.Forms.Checkbox
-    int:
-      length: true
-      generic: int
-      component: Colibri.UI.Forms.Number
-    bigint:
-      length: false
-      generic: int
-      component: Colibri.UI.Forms.Number
-    float:
-      length: true
-      generic: float
-      component: Colibri.UI.Forms.Number
-    double:
-      length: true
-      generic: float
-      component: Colibri.UI.Forms.Number
-    date:
-      length: false
-      generic: DateField
-      component: Colibri.UI.Forms.Date
-    datetime:
-      length: false
-      generic: DateTimeField
-      component: Colibri.UI.Forms.DateTime
-    timestamp:
-      length: false
-      generic: DateTimeField
-      component: Colibri.UI.Forms.DateTime
-    varchar:
-      length: true
-      generic: string
-      component: Colibri.UI.Forms.Text
-    text:
-      length: false
-      generic: string
-      component: Colibri.UI.Forms.TextArea
-    longtext:
-      length: false
-      generic: string
-      component: Colibri.UI.Forms.TextArea
-    mediumtext:
-      length: false
-      generic: string
-      component: Colibri.UI.Forms.TextArea
-    tinytext:
-      length: true
-      generic: string
-      component: Colibri.UI.Forms.TextArea
-    enum:
-      length: false
-      generic: ValueField
-      component: Colibri.UI.Forms.Select
-    json:
-      length: false
-      generic:
-        Colibri.UI.Forms.Object: ObjectField
-        Colibri.UI.Forms.Array: ArrayField
-      component: Colibri.UI.Forms.Object
-  hasIndexes: true
-  hasVirtual: true
-  hasMultiFieldIndexes: true
-  fieldsHasPrefix: true
-  indexTypes:
-  - NORMAL
-  - SPATIAL
-  - UNIQUE
-  - FULLTEXT
-  indexMethods:
-  - BTREE
-  - HASH
-  jsonIndexes: false
 sessions:
   desc:
     ru: Сессии
@@ -3838,4 +3792,159 @@ autologin:
         onchangehandler: ""
       tag: []
       group: window
+devices:
+  desc:
+    ru: Аутентификация по биометрии
+    en: ""
+    it: ""
+    hy: ""
+    es: ""
+    kk: ""
+    uz: ""
+  access-point: auth
+  models:
+    table: Models\Devices
+    row: Models\Device
+  params:
+    visible: true
+    maybepublished: false
+    softdeletes: false
+    deletedautoshow: false
+  group: ~
+  module: Auth
+  fields:
+    token:
+      desc:
+        ru: Токен пользователя
+        en: User token
+        it: Token utente
+        hy: Օգտագործողի նշան
+        es: ""
+        kk: ""
+        uz: ""
+      note:
+        ru: Постоянный токен пользователя
+        en: User's permanent token
+        it: ""
+        hy: ""
+        es: ""
+        kk: ""
+        uz: ""
+      type: varchar
+      length: "32"
+      component: Colibri.UI.Forms.Text
+      class: string
+      params:
+        required: true
+        enabled: true
+        canbeempty: true
+        readonly: false
+        searchable: false
+        list: true
+        template: false
+        multiple: false
+        vertical: false
+        visual: false
+        code: 0
+        keyTitle: ""
+        valueTitle: ""
+        canEditKey: false
+        canAddNew: false
+        canRemoveRows: false
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        removedesc: true
+      group: window
+      attrs:
+        inputWidth: ""
+    device:
+      desc:
+        ru: Устройство
+        en: ""
+        it: ""
+        hy: ""
+        es: ""
+        kk: ""
+        uz: ""
+      type: varchar
+      length: "256"
+      component: Colibri.UI.Forms.Text
+      class: string
+      attrs:
+        inputWidth: ""
+      params:
+        required: true
+        enabled: true
+        canbeempty: true
+        readonly: false
+        searchable: false
+        list: true
+        template: false
+        multiple: false
+        vertical: false
+        visual: false
+        code: 0
+        keyTitle: ""
+        valueTitle: ""
+        canEditKey: false
+        canAddNew: false
+        canRemoveRows: false
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        removedesc: true
+      group: window
+    rawid:
+      desc:
+        ru: Секретный ключ для поиска
+        en: ""
+        it: ""
+        hy: ""
+        es: ""
+        kk: ""
+        uz: ""
+      type: varchar
+      length: "256"
+      component: Colibri.UI.Forms.Text
+      class: string
+      attrs:
+        inputWidth: ""
+      params:
+        required: true
+        enabled: true
+        canbeempty: true
+        readonly: false
+        searchable: false
+        list: true
+        template: false
+        multiple: false
+        vertical: false
+        visual: false
+        code: 0
+        keyTitle: ""
+        valueTitle: ""
+        canEditKey: false
+        canAddNew: false
+        canRemoveRows: false
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        removedesc: true
+      group: window
+  indices:
+    devices_device_rawid_idx:
+      fields:
+      - device
+      - rawid
+      type: NORMAL
+      method: BTREE
+    devices_rawid_idx:
+      fields:
+      - rawid
+      type: NORMAL
+      method: BTREE
 ...

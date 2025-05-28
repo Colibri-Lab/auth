@@ -2,6 +2,7 @@
 
 namespace App\Modules\Auth\Controllers;
 
+use App\Modules\Auth\Models\Devices;
 use App\Modules\Auth\Models\Members;
 use App\Modules\Auth\Models\Sessions;
 use Colibri\Exceptions\ValidationException;
@@ -278,4 +279,65 @@ class SessionController extends WebController
     }
 
 
+    /**
+     * Login by device credentials
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function LoginByCreds(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
+    {
+
+        $session = Sessions::LoadFromRequest();
+        if ($session->member) {
+            return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-session-allreadylogged}', 'code' => 403]);
+        }
+
+
+        $payloadArray = $payload->ToArray();
+        $credentials = $payloadArray['credentials'] ?? $post->{'credentials'};
+        $deviceId = $credentials['deviceId'];
+        $rawId = $credentials['rawId'];
+
+        $device = Devices::LoadByCreds($rawId); // , $deviceId
+        
+        $member = null;
+        if($device) {
+            $memberToken = $device->token;
+            $member = Members::LoadByToken($memberToken);
+        }
+
+        if (!$member) {
+            return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-invalid-creds}', 'code' => 403]);
+        }
+
+        try {
+            
+            $session->member = $member->token;
+            $session->Save(true);
+
+
+        } catch (\InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
+        } catch (\Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        }
+
+        // финишируем контроллер
+        return $this->Finish(
+            200,
+            'ok',
+            ['session' => $session->ExportForUserInterface()],
+            'utf-8',
+            [],
+            [$session->GenerateCookie(true)]
+        );
+
+    }
+
+
+    
 }

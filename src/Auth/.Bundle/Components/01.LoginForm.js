@@ -31,6 +31,16 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         this._loginButton.AddHandler('Clicked', (event, args) => this.__loginFormLoginButtonClicked(event, args));
         this._requestCode.AddHandler('Clicked', (event, args) => this.__requestCodeAgainClicked(event, args));
 
+        Auth.App.Settings().then((settings) => {
+            if(settings.params.enable_device_authentification) {
+                App.Device.Auth.IsAvailable().then(() => {
+                    App.Device.Auth.Authenticate().then((credentials) => {
+                        this.LoginByCreds(credentials);
+                    });
+                }).catch(() => {});
+            }
+        });
+
     } 
 
     /**
@@ -120,6 +130,22 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
                 this._startTimer();
             } 
 
+        }).catch(response => {
+            response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
+            this._validator.Invalidate('form', response.result.message);
+            this._form.enabled = true;
+            this._loginButton.enabled = true;
+            this._form.Focus();
+        });
+    }
+    
+    LoginByCreds(credentials) {
+        const value = Object.cloneRecursive(this._form.value);
+        this._form.enabled = false;
+        this._loginButton.enabled = false;
+        Auth.Session.LoginByCreds(credentials).then((session) => {
+            this._form.enabled = true;
+            this._loginButton.enabled = true;
         }).catch(response => {
             response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
             this._validator.Invalidate('form', response.result.message);

@@ -5,6 +5,7 @@ namespace App\Modules\Auth\Controllers;
 use App\Modules\Auth\Models\AutoLogins;
 use App\Modules\Auth\Models\Confirmation;
 use App\Modules\Auth\Models\Confirmations;
+use App\Modules\Auth\Models\Devices;
 use App\Modules\Auth\Models\Invitations;
 use App\Modules\Auth\Models\Member;
 use App\Modules\Auth\Models\Members;
@@ -1531,5 +1532,49 @@ class MemberController extends WebController
     }
 
     
+    
+    /**
+     * Create the device credentials
+     * @param RequestCollection $get данные GET
+     * @param RequestCollection $post данные POST
+     * @param mixed $payload данные payload обьекта переданного через POST/PUT
+     * @return object
+     */
+    public function CreateDevice(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
+    {
+
+        $result = [];
+        $message = 'Result message';
+        $code = 200;
+
+        $session = Sessions::LoadFromRequest();
+        if (!$session->member) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
+        }
+
+        $member = Members::LoadByToken($session->member);
+        if (!$member) {
+            return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
+        }
+
+        $payloadArray = $payload->ToArray();
+        $credentials = $payloadArray['credentials'] ?? $post->{'credentials'};
+
+        $device = Devices::LoadEmpty();
+        $device->token = $member->token;
+        $device->device = $credentials['deviceId'] ?? '';
+        $device->rawid = $credentials['rawId'] ?? '';
+        $device->Save(true);
+            
+        return $this->Finish(
+            $code,
+            $message,
+            $result,
+            'utf-8'
+        );
+
+    }
+
+
     
 }

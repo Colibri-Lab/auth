@@ -137,7 +137,7 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
             App.Router.options?.invitation ?? null
         ).then((session) => {
             this._form.enabled = false;
-            this._registerButton.enabled = false;
+            this._registerButton.enabled = false;        
             this.Dispatch('Completed', session);
         }).catch(response => {
             this._form.enabled = true;
