@@ -393,7 +393,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
                     resolve(new TextDecoder().decode(decrypted));
                 }).catch((er) => {
                     reject(er);
-                })
+                }) 
             }).catch((er) => {
                 reject(er)
             });
