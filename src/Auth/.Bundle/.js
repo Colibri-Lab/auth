@@ -452,7 +452,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
 App.Modules.Auth.Application = class extends Colibri.IO.RpcRequest  {
 
-    constructor() {
+    constructor() { 
         super('Auth', Auth.requestType, Auth.remoteDomain);
     }
 
