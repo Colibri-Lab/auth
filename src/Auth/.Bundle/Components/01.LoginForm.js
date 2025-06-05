@@ -48,7 +48,9 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
             App.Device.Auth.Authenticate().then((credentials) => {
                 this.LoginByCreds(credentials);
             });
-        }).catch(() => {});
+        }).catch(() => {
+            this._buttonContainerFingerprint.shown = false;
+        });
     }
 
     /**
