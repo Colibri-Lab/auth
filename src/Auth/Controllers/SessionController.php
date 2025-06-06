@@ -62,7 +62,7 @@ class SessionController extends WebController
             return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-session-allreadylogged}', 'code' => 403]);
         }
 
-
+ 
         $payloadArray = $payload->ToArray();
         $login = $payloadArray['login'] ?? $post->{'login'};
         $password = $payloadArray['password'] ?? $post->{'password'};
