@@ -123,11 +123,17 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         const value = Object.cloneRecursive(this._form.value);
         this._form.enabled = false;
         this._loginButton.enabled = false;
-        Auth.Session.Login(value.login, value.password, !rerequestCode ? (value.code ?? null) : null).then((session) => {
+        Auth.Session.Login(value.login, value.password, !rerequestCode ? (value.code ?? null) : null).then((sessionAndCode) => {
+            let session = sessionAndCode;
+            let code = 206;
+            if(sessionAndCode?.code) {
+                session = sessionAndCode.session;
+                code = sessionAndCode.code;
+            }
             this._form.enabled = true;
             this._loginButton.enabled = true;
 
-            if(!session) { // 2-х факторка
+            if(!session && code === 206) { // 2-х факторка
                 const fields = Object.cloneRecursive(this._form.fields);
                 fields.login.params.readonly = true;
                 fields.password.params.readonly = true;
@@ -138,7 +144,19 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
 
                 this._confirming = false;
                 this._startTimer();
-            } 
+            } else if(!session && code === 207) {
+                const fields = Object.cloneRecursive(this._form.fields);
+                fields.login.params.readonly = true;
+                fields.password.params.readonly = true;
+                fields.code.params.hidden = false;
+                fields.code.desc = '#{auth-loginform-appcode-desc}';
+                this._form.fields = fields;
+                this._form.value = value;
+                this._form.Children('code').Focus();
+
+                this._confirming = false;
+                this._startTimer();
+            }
 
         }).catch(response => {
             response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);

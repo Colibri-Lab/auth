@@ -5,6 +5,7 @@ namespace App\Modules\Auth\Controllers;
 use App\Modules\Auth\Models\Devices;
 use App\Modules\Auth\Models\Members;
 use App\Modules\Auth\Models\Sessions;
+use Colibri\Common\TwoFactorHelper;
 use Colibri\Exceptions\ValidationException;
 use Colibri\Web\Controller as WebController;
 use Colibri\Web\PayloadCopy;
@@ -99,6 +100,14 @@ class SessionController extends WebController
                     } else {
                         return $this->Finish(206, 'Tho factor authentification', ['message' => '#{auth-errors-member-property-two-factor-needed}', 'code' => 206]);
                     }
+                }
+            } else if($member->two_factor_application) {
+                if ($code) {
+                    if (!TwoFactorHelper::Verify($member->two_factor_application, $code)) {
+                        return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-property-tho-factor-error}', 'code' => 403]);
+                    }
+                } else {
+                    return $this->Finish(206, 'Tho factor authentification', ['message' => '#{auth-errors-member-property-two-factor-needed}', 'code' => 207]);
                 }
             }
     

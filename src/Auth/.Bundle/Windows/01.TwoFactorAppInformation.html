@@ -1,0 +1,20 @@
+<div ComponentName="App.Modules.Auth.Windows.TwoFactorAppInformation">
+    <!-- auth-windows-twofactorappinformation -->
+
+    <FlexBox shown="true" name="tfa-flex">
+        <H3 shown="true" name="ttl" value="#{auth-windows-twofactorappinformation-title}" />
+        <Img shown="true" name="tfa" />
+        <TextSpan shown="true" name="ttl2" value="#{auth-windows-twofactorappinformation-title2}" />
+        <Strong shown="true" name="code" copy="true" copyStyle="text" />
+    </FlexBox>
+
+    <FlexBox shown="true" name="check-flex">
+        <H3 shown="true" name="t" value="#{auth-windows-twofactorappinformation-code-placeholder}" />
+        <Input shown="true" name="input-code" hasIcon="false" hasClearIcon="false" />
+        <FlexBox shown="true" name="buttons-flex">
+            <SuccessButton shown="true" name="check" value="#{auth-windows-twofactorappinformation-code}" />
+            <ErrorButton shown="true" name="delete" value="#{auth-windows-twofactorappinformation-delete}" />
+        </FlexBox>
+    </FlexBox>
+
+</div>

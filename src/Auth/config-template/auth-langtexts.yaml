@@ -1,5 +1,5 @@
 auth-errors-member-property-two-factor-needed:
-  ru: Требуется 2-х факторная авторизация
+  ru: Требуется 2-х факторная авторизация в приложении
   en: 2-factor authorization is required
   it: È necessaria l'autorizzazione a 2 fattori
   hy: Պահանջվում է 2-ական վավերացում
@@ -302,3 +302,4 @@ auth-errors-member-provide-token:
   es: Por favor, proporcione el token del usuario
   kk: Пайдаланушы токенін жіберіңіз
   uz: Iltimos, foydalanuvchi tokenini taqdim eting
+auth-errors-member-property-two-factorapp-needed: {}

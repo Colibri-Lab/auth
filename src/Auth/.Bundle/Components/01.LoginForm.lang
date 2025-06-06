@@ -121,3 +121,11 @@ auth-login-register-button:
   kk: Тіркелу
   uz: Ro`yxatdan o`tish
 auth-fingerprint-button: {}
+auth-loginform-appcode-desc:
+  ru: Введите код подтверждения из приложения аутентификации
+  en: Enter the confirmation code from your authentication app
+  it: Inserisci il codice di conferma dalla tua app di autenticazione
+  hy: Մուտքագրեք հաստատման կոդը ձեր վավերացման հավելվածից
+  es: Introduce el código de confirmación de tu aplicación de autenticación
+  kk: Растау кодын енгізіңіз аутентификациялау қосымшаңыздан
+  uz: Autentifikatsiya ilovangizdan tasdiqlash kodini kiriting

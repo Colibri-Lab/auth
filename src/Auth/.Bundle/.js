@@ -124,7 +124,7 @@ App.Modules.Auth.Session = class extends Colibri.IO.RpcRequest  {
         return new Promise((resolve, reject) => {
             this.Call('Session', 'Login', {login: login, password: password, code: code}, {'X-AppToken': Auth.appToken}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
-                resolve(response.result.session);
+                resolve({session: response.result.session, code: response.result.code});
             }).catch(response => {
                 if(response.status === 206) { // 2-х факторка
                     resolve(null);
@@ -294,6 +294,31 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
         });
     }
 
+    ToggleTwoFactorAppAuth() {
+        return new Promise((resolve, reject) => {
+            this.Call('Member', 'ToggleTwoFactorAppAuth', {}, {'X-AppToken': Auth.appToken}).then((response) => {
+                Auth.Store.Set('auth.session', response.result.session);
+                if(response.result.code) {
+                    const wnd = new App.Modules.Auth.Windows.TwoFactorAppInformation('twofactorapp-information', document.body, 800);
+                    wnd.Show(response.result.session.member.email, Auth.appToken, response.result.code, response.result.qrcode).then((code) => {
+                        this.Call('Member', 'CheckTwoFactorAppAuth', {code: code}, {'X-AppToken': Auth.appToken}).then((response) => {
+                            if(response.result.checked) {
+                                wnd.Dispose();
+                                resolve(response.result.session);
+                            } else {
+                                wnd.Dispose();
+                                reject();
+                            }
+                        }).catch(response => reject(response));
+                    }).catch(() => {
+                        wnd.Dispose();
+                        this.ToggleTwoFactorAppAuth();
+                    });
+                }
+            }).catch(response => reject(response));
+        });
+    }
+    
     RequestAutoLogin(memberToken, returnTo) {
         return new Promise((resolve, reject) => {
             this.Call('Member', 'RequestAutologin', {token: memberToken, return: returnTo}, {'X-AppToken': Auth.appToken}).then((response) => {

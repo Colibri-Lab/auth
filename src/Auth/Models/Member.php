@@ -44,6 +44,7 @@ use Colibri\IO\FileSystem\File;
  * @property bool $phone_confirmed Телефон подтвержден
  * @property bool $blocked Заблокирован (удален)
  * @property bool $two_factor Двухфакторная аутентификация
+ * @property string|null $two_factor_application Приложение аутентификации (код для приложения)
  * endregion Properties;
  */
 class Member extends BaseModelDataRow
@@ -89,6 +90,7 @@ class Member extends BaseModelDataRow
 			'phone_confirmed' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
 			'blocked' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
 			'two_factor' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
+			'two_factor_application' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 256, ] ] ],
 			# endregion SchemaProperties;
 
         ]
@@ -442,6 +444,7 @@ class Member extends BaseModelDataRow
         unset($arr['datemodified']);
         unset($arr['datedeleted']);
         unset($arr['password']);
+        $arr['two_factor_application'] = !!$arr['two_factor_application'];
         $arr['public'] = $this->_getPublicKey();
         $arr['public_local'] = $this->_getLocalPublicKey();
         if ($exportFullData) {

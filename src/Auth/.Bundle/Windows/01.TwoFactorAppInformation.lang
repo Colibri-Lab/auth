@@ -1,0 +1,45 @@
+auth-windows-twofactorappinformation-code:
+  ru: Проверить и сохранить
+  en: Verify and save
+  it: Verifica e salva
+  es: Verificar y guardar
+  hy: Ստուգել և պահպանել
+  kk: Тексеріп, сақтау
+  uz: Tekshirish va saqlash
+auth-windows-twofactorappinformation-title:
+  ru: Сканируйте QR-код в приложение аутентификации, например Google Authenticator
+  en: Scan the QR code in your authentication app, such as Google Authenticator
+  it: Scansiona il codice QR nella tua app di autenticazione, come Google
+    Authenticator
+  es: Escanea el código QR en tu aplicación de autenticación, como Google
+    Authenticator
+  hy: Սքանավորեք QR կոդը ձեր վավերացման հավելվածում, օրինակ՝ Google
+    Authenticator-ում
+  kk: QR кодты аутентификациялау қосымшаңызда, мысалы, Google Authenticator-де
+    сканерлеңіз
+  uz: QR kodni autentifikatsiya ilovangizda, masalan, Google Authenticator-da
+    skanerlang
+auth-windows-twofactorappinformation-code-placeholder:
+  ru: Введите код из приложения аутентификации для проверки
+  en: Enter the code from your authentication app to verify
+  it: Inserisci il codice dalla tua app di autenticazione per verificare
+  es: Introduce el código de tu aplicación de autenticación para verificar
+  hy: Մուտքագրեք ձեր վավերացման հավելվածից կոդը ստուգման համար
+  kk: Тексеру үшін аутентификациялау қосымшаңыздан кодты енгізіңіз
+  uz: Tekshirish uchun autentifikatsiya ilovangizdan kodni kiriting
+auth-windows-twofactorappinformation-title2:
+  ru: Или введите код вручную
+  en: Or enter the code manually
+  it: Oppure inserisci il codice manualmente
+  es: O introduce el código manualmente
+  hy: Կամ մուտքագրեք կոդը ձեռքով
+  kk: Немесе кодты қолмен енгізіңіз
+  uz: Yoki kodni qo'lda kiriting
+auth-windows-twofactorappinformation-delete:
+  ru: Удалить код и не использовать приложение
+  en: Delete code and do not use the app
+  it: Elimina il codice e non utilizzare l'app
+  es: Eliminar código y no usar la aplicación
+  hy: Հեռացնել կոդը և չօգտագործել հավելվածը
+  kk: Кодты жою және қосымшаны пайдаланбау
+  uz: Kodni o'chirish va ilovadan foydalanmaslik

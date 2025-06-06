@@ -15,15 +15,24 @@ use App\Modules\Tools\Models\Notices;
 use Colibri\App;
 use Colibri\Common\RandomizationHelper;
 use Colibri\Common\StringHelper;
+use Colibri\Common\TwoFactorHelper;
 use Colibri\Common\VariableHelper;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Exceptions\ValidationException;
+use Colibri\Graphics\QRCode;
 use Colibri\Utils\Debug;
 use Colibri\Web\Controller as WebController;
 use Colibri\Web\PayloadCopy;
 use Colibri\Web\RequestCollection;
 use Psr\Log\InvalidArgumentException;
 use Throwable;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel;
+use Endroid\QrCode\Label\Font\OpenSans;
+use Endroid\QrCode\Label\LabelAlignment;
+use Endroid\QrCode\RoundBlockSizeMode;
+use Endroid\QrCode\Writer\PngWriter;
 
 /**
  * Members controller
@@ -827,6 +836,119 @@ class MemberController extends WebController
             200,
             'ok',
             ['session' => $session->ExportForUserInterface()],
+            'utf-8',
+            [],
+            [$session->GenerateCookie(true)]
+        );
+
+    }
+
+    /**
+     * Toggles a two-factor authorization on or off
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
+     * @return object
+     */
+    public function ToggleTwoFactorAppAuth(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
+    {
+        $session = Sessions::LoadFromRequest();
+        if (!$session->member) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
+        }
+
+        $member = Members::LoadByToken($session->member);
+        try {
+            if(!$member->two_factor_application) {
+                $member->two_factor_application = TwoFactorHelper::Generate();
+            } else {
+                $member->two_factor_application = null;
+            }
+            
+            if (($res = $member->Save(true)) !== true) {
+                /** @var \Colibri\Data\SqlClient\QueryInfo $res */
+                throw new InvalidArgumentException($res->error, 400);
+            }
+        } catch (InvalidArgumentException $e) {
+            return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
+        } catch (ValidationException $e) {
+            return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => Debug::Rout($e->getExceptionData())]);
+        } catch (Throwable $e) {
+            return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
+        }
+
+        if($member->two_factor_application) {
+
+            $totplink = 'otpauth://totp/'.Module::$instance->application->key.':'.rawurlencode($member->email).'?secret='.$member->two_factor_application.'&issuer='.Module::$instance->application->key.'&algorithm=SHA1&digits=6&period=30';
+            
+            $builder = new Builder(
+                writer: new PngWriter(),
+                writerOptions: [],
+                validateResult: false,
+                data: $totplink,
+                encoding: new Encoding('UTF-8'),
+                errorCorrectionLevel: ErrorCorrectionLevel::High,
+                size: 300,
+                margin: 10,
+            );
+    
+            $qrcode = $builder->build();
+
+            return $this->Finish(
+                200,
+                'ok',
+                [
+                    'session' => $session->ExportForUserInterface(), 
+                    'code' => $member->two_factor_application,
+                    'totp' => $totplink, 
+                    'qrcode' => 'data:image/png;base64,' . base64_encode($qrcode->getString())
+                ],
+                'utf-8',
+                [],
+                [$session->GenerateCookie(true)]
+            );
+            
+        } else {
+    
+            return $this->Finish(
+                200,
+                'ok',
+                [
+                    'session' => $session->ExportForUserInterface(), 
+                ],
+                'utf-8',
+                [],
+                [$session->GenerateCookie(true)]
+            );
+        }
+
+    }
+    /**
+     * Toggles a two-factor authorization on or off
+     * @param RequestCollection $get data from get request
+     * @param RequestCollection $post a request post data
+     * @param mixed $payload payload object in POST/PUT request
+     * @return object
+     */
+    public function CheckTwoFactorAppAuth(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
+    {
+        $session = Sessions::LoadFromRequest();
+        if (!$session->member) {
+            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
+        }
+
+        $member = Members::LoadByToken($session->member);
+
+        $payloadArray = $payload->ToArray();
+        $code = $payloadArray['code'] ?? $post->{'code'};
+
+        return $this->Finish(
+            200,
+            'ok',
+            [
+                'session' => $session->ExportForUserInterface(),
+                'checked' => TwoFactorHelper::Verify($member->two_factor_application, $code)
+            ],
             'utf-8',
             [],
             [$session->GenerateCookie(true)]

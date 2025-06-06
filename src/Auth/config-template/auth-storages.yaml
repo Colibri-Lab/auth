@@ -413,10 +413,13 @@ applications:
           group: window
         allowrenew:
           desc:
-            ru: Разрешить восстановление по короткому токену
+            ru: ""
             en: Allow recovery by short token
             it: Consenti il ripristino tramite token breve
             hy: Թույլատրել վերականգնումը կարճ նշանով
+            es: ""
+            kk: ""
+            uz: ""
           note:
             ru: Дает возможность получить текущий сессионный токен по короткому постоянному
               токену пользователя (НЕ БЕЗОПАСНО)
@@ -426,11 +429,15 @@ applications:
               un token utente permanente breve (NON SICURO)
             hy: Թույլ է տալիս ստանալ ընթացիկ նստաշրջանի նշանը, օգտագործելով կարճ մշտական
               օգտագործողի նշան (ԱՆՎՏԱՆԳ ՉԻ)
+            es: ""
+            kk: ""
+            uz: ""
           type: bool
           component: Colibri.UI.Forms.Checkbox
           class: bool
           default: "0"
-          attrs: []
+          attrs:
+            inputWidth: ""
           params:
             required: false
             enabled: true
@@ -440,68 +447,51 @@ applications:
             list: false
             template: false
             multiple: false
-            greed: ""
-            viewer: ~
             vertical: false
             visual: false
             code: 0
-            mask: ""
-            fieldgenerator: ""
-            generator: ""
-            noteClass: ""
-            simplearraywidth: ""
-            simplearrayheight: ""
-            addlink:
-              ru: ""
-              en: ""
-              it: ""
-              hy: ""
+            keyTitle: ""
+            valueTitle: ""
+            canEditKey: false
+            canAddNew: false
+            canRemoveRows: false
             removelink: true
             updownlink: true
             hasscroll: true
             initempty: true
-            displayed_columns: ""
-            maxadd: ""
-            title: ""
             removedesc: true
-            allow: ""
-            size: ""
-            validate:
-            - message:
-                ru: ""
-                en: ""
-                it: ""
-                hy: ""
-              method: (field, validator) => { return true; /* false */ }
-            valuegenerator: ""
-            onchangehandler: ""
           placeholder:
-            ru: ""
+            ru: Разрешить восстановление по короткому токену
             en: ""
             it: ""
             hy: ""
+            es: ""
+            kk: ""
+            uz: ""
           tag: []
           group: window
         autologin:
           desc:
-            ru: Разрешить автологин
+            ru: ""
             en: Allow autologin
             it: Consenti l'accesso automatico
             hy: Թույլատրել ավտոմատ մուտքագրումը
+            es: ""
+            kk: ""
+            uz: ""
           placeholder:
-            ru: ""
+            ru: Разрешить автологин
             en: ""
             it: ""
             hy: ""
-          note:
-            ru: ""
-            en: ""
-            it: ""
-            hy: ""
+            es: ""
+            kk: ""
+            uz: ""
           type: bool
           component: Colibri.UI.Forms.Checkbox
           class: bool
-          attrs: []
+          attrs:
+            inputWidth: ""
           params:
             required: false
             enabled: true
@@ -511,41 +501,19 @@ applications:
             list: true
             template: false
             multiple: false
-            greed: ""
-            viewer: ~
             vertical: false
             visual: false
             code: 0
-            mask: ""
-            fieldgenerator: ""
-            generator: ""
-            noteClass: ""
-            simplearraywidth: ""
-            simplearrayheight: ""
-            addlink:
-              ru: ""
-              en: ""
-              it: ""
-              hy: ""
+            keyTitle: ""
+            valueTitle: ""
+            canEditKey: false
+            canAddNew: false
+            canRemoveRows: false
             removelink: true
             updownlink: true
             hasscroll: true
             initempty: true
-            displayed_columns: ""
-            maxadd: ""
-            title: ""
             removedesc: true
-            allow: ""
-            size: ""
-            validate:
-            - message:
-                ru: ""
-                en: ""
-                it: ""
-                hy: ""
-              method: (field, validator) => { return true; /* false */ }
-            valuegenerator: ""
-            onchangehandler: ""
           tag: []
           group: window
         roles:
@@ -823,15 +791,19 @@ applications:
           group: window
         enable_two_factor_authentication:
           desc:
-            ru: Включить двухфакторную аутентификацию
+            ru: ""
             en: Enable two-factor authentication
             it: Abilita l&#39;autenticazione a due fattori
             hy: Միացնել երկու գործոնով նույնականացումը
+            es: ""
+            kk: ""
+            uz: ""
           type: bool
           component: Colibri.UI.Forms.Checkbox
           class: bool
           default: "true"
-          attrs: []
+          attrs:
+            inputWidth: ""
           params:
             required: false
             enabled: true
@@ -841,56 +813,30 @@ applications:
             list: true
             template: false
             multiple: false
-            greed: ""
-            viewer: ~
             vertical: false
             visual: false
             code: 0
-            mask: ""
-            fieldgenerator: ""
-            generator: ""
-            noteClass: ""
-            simplearraywidth: ""
-            simplearrayheight: ""
-            addlink:
-              ru: ""
-              en: ""
-              it: ""
-              hy: ""
+            keyTitle: ""
+            valueTitle: ""
+            canEditKey: false
+            canAddNew: false
+            canRemoveRows: false
             removelink: true
             updownlink: true
             hasscroll: true
             initempty: true
-            displayed_columns: ""
-            maxadd: ""
-            title: ""
             removedesc: true
-            allow: ""
-            size: ""
-            validate: []
-            valuegenerator: ""
-            onchangehandler: ""
           placeholder:
-            ru: ""
-            en: ""
-            it: ""
-            hy: ""
-          note:
-            ru: ""
-            en: ""
-            it: ""
-            hy: ""
-          tag: []
-          group: window
-        enable_device_authentification:
-          desc:
-            ru: Включить авторизацию через устройства
+            ru: Включить двухфакторную аутентификацию
             en: ""
             it: ""
             hy: ""
             es: ""
             kk: ""
             uz: ""
+          tag: []
+          group: window
+        enable_two_factor_authentification_applications:
           type: bool
           component: Colibri.UI.Forms.Checkbox
           class: bool
@@ -919,6 +865,51 @@ applications:
             initempty: true
             removedesc: true
           group: window
+          placeholder:
+            ru: 'Включить 2-факторную аутентификацию на основе приложения '
+            en: ""
+            it: ""
+            hy: ""
+            es: ""
+            kk: ""
+            uz: ""
+        enable_device_authentification:
+          type: bool
+          component: Colibri.UI.Forms.Checkbox
+          class: bool
+          attrs:
+            inputWidth: ""
+          params:
+            required: false
+            enabled: true
+            canbeempty: true
+            readonly: false
+            searchable: false
+            list: true
+            template: false
+            multiple: false
+            vertical: false
+            visual: false
+            code: 0
+            keyTitle: ""
+            valueTitle: ""
+            canEditKey: false
+            canAddNew: false
+            canRemoveRows: false
+            removelink: true
+            updownlink: true
+            hasscroll: true
+            initempty: true
+            removedesc: true
+          group: window
+          placeholder:
+            ru: Включить авторизацию через устройства
+            en: ""
+            it: ""
+            hy: ""
+            es: ""
+            kk: ""
+            uz: ""
         design:
           desc:
             ru: Макет
@@ -2602,6 +2593,44 @@ members:
         it: ""
         hy: ""
       tag: []
+    two_factor_application:
+      desc:
+        ru: Приложение аутентификации (код для приложения)
+        en: ""
+        it: ""
+        hy: ""
+        es: ""
+        kk: ""
+        uz: ""
+      type: varchar
+      length: "256"
+      component: Colibri.UI.Forms.Text
+      class: string
+      attrs:
+        inputWidth: ""
+      params:
+        required: false
+        enabled: true
+        canbeempty: true
+        readonly: false
+        searchable: false
+        list: false
+        template: false
+        multiple: false
+        vertical: false
+        visual: false
+        code: 0
+        keyTitle: ""
+        valueTitle: ""
+        canEditKey: false
+        canAddNew: false
+        canRemoveRows: false
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        removedesc: true
+      group: window
   indices:
     members_token_idx:
       fields:
