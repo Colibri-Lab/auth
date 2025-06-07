@@ -173,7 +173,7 @@ class Member extends BaseModelDataRow
         }
 
         /** @var Application|null $app */
-        $app = Module::$instance->application;
+        $app = Module::Instance()->application;
         if (!$app) {
             throw new InvalidArgumentException('Application not found', 404);
         }
@@ -198,7 +198,7 @@ class Member extends BaseModelDataRow
     {
 
         /** @var Application|null $app */
-        $app = Module::$instance->application;
+        $app = Module::Instance()->application;
         if (!$app) {
             throw new InvalidArgumentException('Application not found', 404);
         }
@@ -221,7 +221,7 @@ class Member extends BaseModelDataRow
     public function SendTwoFactorAuthorizationMessage(): bool
     {
         /** @var Application|null $app */
-        $app = Module::$instance->application;
+        $app = Module::Instance()->application;
         if (!$app) {
             throw new InvalidArgumentException('Application not found', 404);
         }
@@ -362,7 +362,7 @@ class Member extends BaseModelDataRow
     public function UpdateRole(string $newRole): bool
     {
         $currentRole = $this->role;
-        $roles = Module::$instance->application->params->roles;
+        $roles = Module::Instance()->application->params->roles;
         $currentIndex = 0;
         foreach ($roles as $index => $role) {
             if ($role->name === $currentRole) {

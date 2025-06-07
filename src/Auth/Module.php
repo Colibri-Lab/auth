@@ -38,12 +38,6 @@ use Composer\Autoload\AutoloadGenerator;
 class Module extends BaseModule
 {
 
-    /**
-     * Синглтон
-     *
-     * @var Module
-     */
-    public static ? Module $instance = null;
 
     private static ? Session $session = null;
 
@@ -62,7 +56,6 @@ class Module extends BaseModule
      */
     public function InitializeModule(): void
     {
-        self::$instance = $this;
 
         if(App::$domainKey === 'auth') {
             if(App::$moduleManager->{'lang'}) {
@@ -71,7 +64,7 @@ class Module extends BaseModule
         }
 
 
-        App::$instance->HandleEvent(EventsContainer::RpcGotRequest, function ($event, $args) {
+        App::Instance()->HandleEvent(EventsContainer::RpcGotRequest, function ($event, $args) {
             if (isset($args->class) && in_array(trim($args->class, '\\'), self::NeedAuthorization)) {
                 if (App::$request->server->{'request_method'} === 'OPTIONS') {
                     App::$response->Origin();
@@ -79,7 +72,7 @@ class Module extends BaseModule
                     exit;
                 }
 
-                if (!Module::$instance->LoadApplication()) {
+                if (!Module::Instance()->LoadApplication()) {
                     $args->cancel = true;
                     $args->result = (object) [
                         'code' => 403,
@@ -91,7 +84,7 @@ class Module extends BaseModule
         });
 
         // @No Code
-        // App::$instance->HandleEvent([EventsContainer::RpcRequestProcessed, EventsContainer::RpcRequestError], function($event, $args) {
+        // App::Instance()->HandleEvent([EventsContainer::RpcRequestProcessed, EventsContainer::RpcRequestError], function($event, $args) {
         //     if(isset($args->class) && strstr($args->class, '\\Auth') !== false) {
         //         $customerKey = App::$request->headers->customer;
         //         if($customerKey && ($customer = Customers::LoadByKey($customerKey))) {

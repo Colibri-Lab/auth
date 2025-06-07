@@ -29,10 +29,10 @@ class AppController extends WebController
     public function Settings(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
 
-        $app = Module::$instance->application;
+        $app = Module::Instance()->application;
         $settings = $app->ExportForUserInterface();
 
-        $membersStorage = Storages::Create()->Load('members');
+        $membersStorage = Storages::Instance()->Load('members');
         $memberForm = $membersStorage->ToArray();
 
         unset($memberForm['fields']['token']);
@@ -71,7 +71,7 @@ class AppController extends WebController
         $result = [];
         $message = 'Result message';
         
-        $app = Module::$instance->application;
+        $app = Module::Instance()->application;
         if(!$app->params->allowed_ip) {
             throw new AppException('Not allowed', 403);
         }

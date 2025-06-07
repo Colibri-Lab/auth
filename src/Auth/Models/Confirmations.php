@@ -48,7 +48,7 @@ class Confirmations extends BaseModelDataTable
      */
     static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true): ? Confirmations
     {
-        $storage = Storages::Create()->Load('confirmations', 'auth');
+        $storage = Storages::Instance()->Load('confirmations', 'auth');
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params, $calculateAffected);
     }
 
@@ -70,7 +70,7 @@ class Confirmations extends BaseModelDataTable
         string $sortOrder = 'asc'
     ) : ?Confirmations
     {
-        $storage = Storages::Create()->Load('confirmations', 'auth');
+        $storage = Storages::Instance()->Load('confirmations', 'auth');
         [$filter, $order, $params] = $storage->accessPoint->ProcessFilters($storage, $searchTerm, $filtersArray, $sortField, $sortOrder);
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params);
     }
@@ -148,7 +148,7 @@ class Confirmations extends BaseModelDataTable
      */
     static function DeleteAllByFilter(string $filter): bool
     {
-        $storage = Storages::Create()->Load('confirmations');
+        $storage = Storages::Instance()->Load('confirmations');
         return self::DeleteByFilter($storage, $filter);
 
     }

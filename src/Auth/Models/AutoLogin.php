@@ -75,7 +75,7 @@ class AutoLogin extends BaseModelDataRow
 
     public function GenerateLink(): string
     {
-        $app = Module::$instance->application;
+        $app = Module::Instance()->application;
         return $app->GetLink() . AutologinController::GetEntryPoint('perform', 'html', ['code' => $this->code]);
     }
 

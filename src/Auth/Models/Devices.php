@@ -63,7 +63,7 @@ class Devices extends BaseModelDataTable
         bool $calculateAffected = true
     ) : ?Devices
     {
-        $storage = Storages::Create()->Load('devices', 'auth');
+        $storage = Storages::Instance()->Load('devices', 'auth');
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params, $calculateAffected);
     }
 
@@ -87,7 +87,7 @@ class Devices extends BaseModelDataTable
         bool $calculateAffected = true
     ) : ?Devices
     {
-        $storage = Storages::Create()->Load('devices', 'auth');
+        $storage = Storages::Instance()->Load('devices', 'auth');
         [$filter, $order, $params] = $storage->accessPoint->ProcessFilters($storage, $searchTerm, $filtersArray, $sortField, $sortOrder);
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params, $calculateAffected);
     }
@@ -163,7 +163,7 @@ class Devices extends BaseModelDataTable
      */
     public static function RestoreAllByIds(array $ids): bool
     {
-        $storage = Storages::Create()->Load('devices', 'auth');
+        $storage = Storages::Instance()->Load('devices', 'auth');
         return self::RestoreByFilter($storage, '{id} in ('.implode(',', $ids).')');
     }
 
@@ -174,7 +174,7 @@ class Devices extends BaseModelDataTable
      */
     public static function DeleteAllByFilter(string $filter): bool
     {
-        $storage = Storages::Create()->Load('devices', 'auth');
+        $storage = Storages::Instance()->Load('devices', 'auth');
         return self::DeleteByFilter($storage, $filter);
     }
 

@@ -66,7 +66,7 @@ class Invitations extends BaseModelDataTable
         bool $calculateAffected = true
     ) : ?Invitations
     {
-        $storage = Storages::Create()->Load('invites', 'auth');
+        $storage = Storages::Instance()->Load('invites', 'auth');
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params, $calculateAffected);
     }
 
@@ -88,7 +88,7 @@ class Invitations extends BaseModelDataTable
         string $sortOrder = 'asc'
     ) : ?Invitations
     {
-        $storage = Storages::Create()->Load('invites', 'auth');
+        $storage = Storages::Instance()->Load('invites', 'auth');
         [$filter, $order, $params] = $storage->accessPoint->ProcessFilters($storage, $searchTerm, $filtersArray, $sortField, $sortOrder);
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params);
     }
@@ -181,7 +181,7 @@ class Invitations extends BaseModelDataTable
      */
     public static function RestoreAllByIds(array $ids): bool
     {
-        $storage = Storages::Create()->Load('invites', 'auth');
+        $storage = Storages::Instance()->Load('invites', 'auth');
         return self::RestoreByFilter($storage, '{id} in ('.implode(',', $ids).')');
     }
 
@@ -192,7 +192,7 @@ class Invitations extends BaseModelDataTable
      */
     public static function DeleteAllByFilter(string $filter): bool
     {
-        $storage = Storages::Create()->Load('invites', 'auth');
+        $storage = Storages::Instance()->Load('invites', 'auth');
         return self::DeleteByFilter($storage, $filter);
     }
 
@@ -210,7 +210,7 @@ class Invitations extends BaseModelDataTable
         $invitation = self::LoadByEmail($email);
         if(!$invitation) {
             $invitation = self::LoadEmpty();
-            $invitation->application = Module::$instance->application->key;
+            $invitation->application = Module::Instance()->application->key;
             $invitation->email = $email;
         }
 

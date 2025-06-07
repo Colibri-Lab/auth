@@ -49,7 +49,7 @@ class Applications extends BaseModelDataTable
      */
     static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true): ? Applications
     {
-        $storage = Storages::Create()->Load('applications', 'auth');
+        $storage = Storages::Instance()->Load('applications', 'auth');
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params, $calculateAffected);
     }
 
@@ -71,7 +71,7 @@ class Applications extends BaseModelDataTable
         string $sortOrder = 'asc'
     ) : ?Applications
     {
-        $storage = Storages::Create()->Load('applications', 'auth');
+        $storage = Storages::Instance()->Load('applications', 'auth');
         [$filter, $order, $params] = $storage->accessPoint->ProcessFilters($storage, $searchTerm, $filtersArray, $sortField, $sortOrder);
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params);
     }
@@ -148,7 +148,7 @@ class Applications extends BaseModelDataTable
      */
     static function DeleteAllByFilter(string $filter): bool
     {
-        $storage = Storages::Create()->Load('applications');
+        $storage = Storages::Instance()->Load('applications');
         return self::DeleteByFilter($storage, $filter);
 
     }

@@ -40,7 +40,7 @@ class InvitesController extends WebController
         }
 
         /** @var \App\Modules\Auth\Models\Application|null $app */
-        $app = Module::$instance->application;
+        $app = Module::Instance()->application;
         if (!$app) {
             return $this->Finish(400, 'Bad Request', ['message' => 'Application not found', 'code' => 400]);
         }

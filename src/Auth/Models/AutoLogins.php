@@ -64,7 +64,7 @@ class AutoLogins extends BaseModelDataTable
         bool $calculateAffected = true
     ) : ?AutoLogins
     {
-        $storage = Storages::Create()->Load('autologin', 'auth');
+        $storage = Storages::Instance()->Load('autologin', 'auth');
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params, $calculateAffected);
     }
 
@@ -86,7 +86,7 @@ class AutoLogins extends BaseModelDataTable
         string $sortOrder = 'asc'
     ) : ?AutoLogins
     {
-        $storage = Storages::Create()->Load('autologin', 'auth');
+        $storage = Storages::Instance()->Load('autologin', 'auth');
         [$filter, $order, $params] = $storage->accessPoint->ProcessFilters($storage, $searchTerm, $filtersArray, $sortField, $sortOrder);
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params);
     }
@@ -167,7 +167,7 @@ class AutoLogins extends BaseModelDataTable
      */
     public static function RestoreAllByIds(array $ids): bool
     {
-        $storage = Storages::Create()->Load('autologin', 'auth');
+        $storage = Storages::Instance()->Load('autologin', 'auth');
         return self::RestoreByFilter($storage, '{id} in ('.implode(',', $ids).')');
     }
 
@@ -178,7 +178,7 @@ class AutoLogins extends BaseModelDataTable
      */
     public static function DeleteAllByFilter(string $filter): bool
     {
-        $storage = Storages::Create()->Load('autologin', 'auth');
+        $storage = Storages::Instance()->Load('autologin', 'auth');
         return self::DeleteByFilter($storage, $filter);
     }
 

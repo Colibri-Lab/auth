@@ -138,10 +138,10 @@ class MemberController extends WebController
         }
 
         if (!$role) {
-            $role = Module::$instance->application->params->defaultrole;
+            $role = Module::Instance()->application->params->defaultrole;
         }
 
-        if (!Module::$instance->application->CheckRole($role)) {
+        if (!Module::Instance()->application->CheckRole($role)) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-role-not-exists}', 'code' => 400]);
         }
 
@@ -212,7 +212,7 @@ class MemberController extends WebController
         $session = Sessions::LoadFromRequest();
 
         /** @var \App\Modules\Auth\Models\Application|null $app */
-        $app = Module::$instance->application;
+        $app = Module::Instance()->application;
         if (!$app) {
             throw new InvalidArgumentException('Application not found', 404);
         }
@@ -332,7 +332,7 @@ class MemberController extends WebController
         if(App::$isDev) {
 
             /** @var \App\Modules\Auth\Models\Application|null $app */
-            $app = Module::$instance->application;
+            $app = Module::Instance()->application;
 
             $confirmation = Confirmations::LoadByMember(Confirmation::PropertyReset, $member->token);
             if (!$confirmation) {
@@ -419,7 +419,7 @@ class MemberController extends WebController
         if(App::$isDev) {
 
             /** @var \App\Modules\Auth\Models\Application|null $app */
-            $app = Module::$instance->application;
+            $app = Module::Instance()->application;
 
             $confirmation = Confirmations::LoadByMember($property, $member->token);
             if (!$confirmation) {
@@ -879,7 +879,7 @@ class MemberController extends WebController
 
         if($member->two_factor_application) {
 
-            $totplink = 'otpauth://totp/'.Module::$instance->application->key.':'.rawurlencode($member->email).'?secret='.$member->two_factor_application.'&issuer='.Module::$instance->application->key.'&algorithm=SHA1&digits=6&period=30';
+            $totplink = 'otpauth://totp/'.Module::Instance()->application->key.':'.rawurlencode($member->email).'?secret='.$member->two_factor_application.'&issuer='.Module::Instance()->application->key.'&algorithm=SHA1&digits=6&period=30';
             
             $builder = new Builder(
                 writer: new PngWriter(),
@@ -1468,7 +1468,7 @@ class MemberController extends WebController
                 return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
             }
 
-            $app = Module::$instance->application;
+            $app = Module::Instance()->application;
             if(!$app->params->autologin) {
                 return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-autologin}', 'code' => 400]);
             }

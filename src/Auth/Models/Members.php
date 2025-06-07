@@ -58,7 +58,7 @@ class Members extends BaseModelDataTable
         array $params = [],
         bool $calculateAffected = true
     ): ?Members {
-        $storage = Storages::Create()->Load('members', 'auth');
+        $storage = Storages::Instance()->Load('members', 'auth');
         return parent::_loadByFilter(
             $storage,
             $page,
@@ -88,7 +88,7 @@ class Members extends BaseModelDataTable
         string $sortOrder = 'asc'
     ) : ?Members
     {
-        $storage = Storages::Create()->Load('members', 'auth');
+        $storage = Storages::Instance()->Load('members', 'auth');
         [$filter, $order, $params] = $storage->accessPoint->ProcessFilters($storage, $searchTerm, $filtersArray, $sortField, $sortOrder);
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params);
     }
@@ -214,7 +214,7 @@ class Members extends BaseModelDataTable
      */
     public static function DeleteAllByFilter(string $filter): bool
     {
-        $storage = Storages::Create()->Load('members');
+        $storage = Storages::Instance()->Load('members');
         return self::DeleteByFilter($storage, $filter);
 
     }
