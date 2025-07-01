@@ -22,8 +22,8 @@ App.Modules.Auth.Components.SearchForm = class extends Colibri.UI.Component {
         this._listGroup = this.Children('list/group');
         
 
-        this._term.AddHandler(['Filled','Cleared'], (event, args) => this.__termFilled(event, args));
-        this._list.AddHandler('ItemClicked', (event, args) => this.__listItemClicked(event, args));
+        this._term.AddHandler(['Filled','Cleared'], this.__termFilled, false, this);
+        this._list.AddHandler('ItemClicked', this.__listItemClicked, false, this);
 
     }
 

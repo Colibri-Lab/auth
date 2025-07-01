@@ -54,15 +54,21 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
         this._resetButton = this.Children('button-container/reset');
         this._loginButton = this.Children('button-container/login');
 
-        this._form.AddHandler('Changed', (event, args) => {
-            this._resetButton.enabled = this._validator.ValidateAll();
-        });
+        this._form.AddHandler('Changed', this.__formChanged, false, this);
 
         
-        this._loginButton.AddHandler('Clicked', (event, args) => this.Dispatch('LoginButtonClicked', args));
-        this._resetButton.AddHandler('Clicked', (event, args) => this.__resetFormResetButtonClicked(event, args));
+        this._loginButton.AddHandler('Clicked', this.__loginButtonClicked, false, this);
+        this._resetButton.AddHandler('Clicked', this.__resetFormResetButtonClicked, false, this);
 
     } 
+
+    __loginButtonClicked(event, args) {
+        return this.Dispatch('LoginButtonClicked', args);
+    }
+
+    __formChanged(event, args) {
+        this._resetButton.enabled = this._validator.ValidateAll();
+    }
 
     /** @protected */
     _registerEvents() {

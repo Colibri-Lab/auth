@@ -20,7 +20,7 @@ App.Modules.Auth.Components.AutologinRequest = class extends Colibri.UI.Window {
         this._link = this.Children('link');
         this._copy = this.Children('copy');
         
-        this._copy.AddHandler('Clicked', (event, args) => this.__copyClicked(event, args)); 
+        this._copy.AddHandler('Clicked', this.__copyClicked, false, this); 
     }
 
     __copyClicked(event, args) {

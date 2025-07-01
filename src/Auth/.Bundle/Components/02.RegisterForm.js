@@ -22,13 +22,13 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this._registerButton = this.Children('form-container/step3/button-container/register');
 
         this._loginButton.AddHandler('Clicked', (event, args) => this.Dispatch('LoginButtonClicked', args));
-        this._registerButton.AddHandler('Clicked', (event, args) => this.__registerFormRegisterButtonClicked(event, args));
+        this._registerButton.AddHandler('Clicked', this.__registerFormRegisterButtonClicked, false, this);
 
         this._step1.AddHandler('Changed', (event, args) => this.Dispatch('ExternalValidation', args));
         this._step2.AddHandler('Changed', (event, args) => this.Dispatch('ExternalValidation', args));
 
-        this._step1.AddHandler('PropertyConfirmed', (event, args) => this.__step1PropertyConfirmed(event, args));
-        this._step2.AddHandler('PropertyConfirmed', (event, args) => this.__step2PropertyConfirmed(event, args));
+        this._step1.AddHandler('PropertyConfirmed', this.__step1PropertyConfirmed, false, this);
+        this._step2.AddHandler('PropertyConfirmed', this.__step2PropertyConfirmed, false, this);
 
         this._registrationData = {
             phone: null, 

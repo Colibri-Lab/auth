@@ -22,7 +22,7 @@ App.Modules.Auth.Components.InviteMember = class extends Colibri.UI.Component {
         this.multiple = false;
 
         this._saveButton = this.Children('button-container/save');
-        this._saveButton.AddHandler('Clicked', (event, args) => this.__saveButtonClicked(event, args)); 
+        this._saveButton.AddHandler('Clicked', this.__saveButtonClicked, false, this); 
 
     }
 

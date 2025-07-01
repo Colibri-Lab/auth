@@ -16,10 +16,6 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         this._buttonContainerFingerprint = this.Children('button-container/fingerprint');
         
 
-        // this._form.AddHandler('Changed', (event, args) => {
-        //     this._loginButton.enabled = this._validator.Status();
-        // });
-
         this._timerContainer = this.Children('timer-container');
         this._timer = this.Children('timer-container/timer');
         this._timerTemplate = this._timer.value;
@@ -28,11 +24,11 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         this._timeLeft = 60;
         this._timer.value = this._timerTemplate.replaceAll('%s', this._timeLeft);
         
-        this._registerButton.AddHandler('Clicked', (event, args) => this.Dispatch('RegisterButtonClicked', args));
-        this._resetButton.AddHandler('Clicked', (event, args) => this.Dispatch('ResetButtonClicked', args));
-        this._loginButton.AddHandler('Clicked', (event, args) => this.__loginFormLoginButtonClicked(event, args));
-        this._requestCode.AddHandler('Clicked', (event, args) => this.__requestCodeAgainClicked(event, args));
-        this._buttonContainerFingerprint.AddHandler('Clicked', (event, args) => this.__buttonContainerFingerprintClicked(event, args));
+        this._registerButton.AddHandler('Clicked', this.__registerButtonClicked, false, this);
+        this._resetButton.AddHandler('Clicked', this.__resetButtonClicked, false, this);
+        this._loginButton.AddHandler('Clicked', this.__loginFormLoginButtonClicked, false, this);
+        this._requestCode.AddHandler('Clicked', this.__requestCodeAgainClicked, false, this);
+        this._buttonContainerFingerprint.AddHandler('Clicked', this.__buttonContainerFingerprintClicked, false, this);
 
         Auth.App.Settings().then((settings) => {
             this._buttonContainerFingerprint.shown = settings.params.enable_device_authentification;
@@ -42,6 +38,14 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         });
 
     } 
+
+    __resetButtonClicked(event, args) {
+        return this.Dispatch('ResetButtonClicked', args);
+    }
+
+    __registerButtonClicked(event, args) {
+        return this.Dispatch('RegisterButtonClicked', args);
+    }
 
     __buttonContainerFingerprintClicked(event, args) {
         App.Device.Auth.IsAvailable().then(() => {

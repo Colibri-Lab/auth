@@ -1,11 +1,11 @@
-App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Component  {
-    
+App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Component {
+
     constructor(name, container) {
         /* создаем компонент и передаем шаблон */
         super(name, container, Colibri.UI.Templates['App.Modules.Auth.Components.ConfirmationForm']);
- 
-        this.AddClass('app-auth-form-component'); 
-        this.AddClass('app-auth-confirmation-form-component'); 
+
+        this.AddClass('app-auth-form-component');
+        this.AddClass('app-auth-confirmation-form-component');
         this._property = 'none';
 
         this._form1 = this.Children('form-container/form1');
@@ -22,31 +22,35 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         this._timeLeft = 60;
         this._timer.value = this._timerTemplate.replaceAll('%s', this._timeLeft);
 
-        this._send.AddHandler('Clicked', (event, args) => this.__sendClicked(event, args));
+        this._send.AddHandler('Clicked', this.__sendClicked, false, this);
 
-        this._form2.AddHandler('Changed', (event, args) => {
-            if(this._validator2.ValidateAll()) {
-                if(this._confirming) {
-                    return;
-                }
-                this._confirming = true;
-                this.__confirmationFormConfirmationButtonClicked(event, args);
-                
+        this._form2.AddHandler('Changed', this.__form2Changed, false, this);
+
+        this._requestCode.AddHandler('Clicked', this.__requestCodeAgainClicked, false, this);
+        this._form1.AddHandler('Changed', this.__form1Changed, false, this);
+
+    }
+
+    __form1Changed(event, args) {
+        return this.Dispatch('ExternalValidation', Object.assign(args, { validator: this._validator1, property: this._property, form: this._form1, submit: this._send }));
+    }
+
+    __form2Changed(event, args) {
+        if (this._validator2.ValidateAll()) {
+            if (this._confirming) {
+                return;
             }
-        });
+            this._confirming = true;
+            this.__confirmationFormConfirmationButtonClicked(event, args);
 
-        this._requestCode.AddHandler('Clicked', (event, args) => this.__requestCodeAgainClicked(event, args));
-        this._form1.AddHandler('Changed', (event, args) => {
-            this.Dispatch('ExternalValidation', Object.assign(args, {validator: this._validator1, property: this._property, form: this._form1, submit: this._send}));
-        });
-
-    } 
+        }
+    }
 
     /**
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
-     */ 
+     */
     __sendClicked(event, args) {
         this.RequestCode();
     }
@@ -97,7 +101,7 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
     }
 
     _setFields() {
-        if(this._property === 'email') {
+        if (this._property === 'email') {
             const fields = this._form1.fields;
             fields.message.desc = this._message1;
             fields.property.desc = '#{auth-confirmationform-property-email-desc}';
@@ -109,7 +113,7 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
             ];
             this._form1.fields = fields;
 
-        } else if(this._property === 'phone') {
+        } else if (this._property === 'phone') {
             const fields = this._form1.fields;
             fields.message.desc = this._message1;
             fields.property.desc = '#{auth-confirmationform-property-phone-desc}';
@@ -128,7 +132,7 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
-     */ 
+     */
     __requestCodeAgainClicked(event, args) {
         this._form2.enabled = false;
         this.RequestCode();
@@ -138,20 +142,20 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
-     */ 
+     */
     __confirmationFormConfirmationButtonClicked(event, args) {
 
-        if(this._form2.value.code) {
+        if (this._form2.value.code) {
 
             Auth.Members.ConfirmProperty(this._form2.value.code, this._property, this._form1.value.property).then((session) => {
-                this.Dispatch('PropertyConfirmed', {property: this._property, value: this._form1.value.property});
+                this.Dispatch('PropertyConfirmed', { property: this._property, value: this._form1.value.property });
                 this._confirming = false;
             }).catch(response => {
                 response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
-                if(response.result.validation && Object.keys(response.result.validation).length > 0) {
+                if (response.result.validation && Object.keys(response.result.validation).length > 0) {
                     Object.forEach(response.result.validation, (field, message, index) => {
                         this._validator2.Invalidate(field, message);
-                        if(index === 0) {
+                        if (index === 0) {
                             this._form2.FindField(field).Focus();
                         }
                     });
@@ -161,7 +165,7 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
                     this._form2.Focus();
                 }
                 this._confirming = false;
-            });    
+            });
 
         }
 
@@ -175,14 +179,14 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         this._timeLeft = 60;
         this._timer.value = this._timerTemplate.replaceAll('%s', this._timeLeft);
         Colibri.Common.StartTimer('request-code-timer', 1000, () => {
-            if(this._timeLeft <= 2) {
+            if (this._timeLeft <= 2) {
                 Colibri.Common.StopTimer('request-code-timer');
                 this._timerContainer.shown = true;
                 this._timer.shown = false;
                 this._requestCode.shown = true;
                 return;
             }
-            this._timeLeft --;
+            this._timeLeft--;
             this._timer.shown = true;
             this._timerContainer.shown = true;
             this._requestCode.shown = false;
@@ -191,7 +195,7 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
     }
 
     Show(property) {
-        if(property) {
+        if (property) {
             this._property = property;
         }
         super.Show();
@@ -199,7 +203,7 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
     }
 
     RequestCode() {
-        if(!this._validator1.ValidateAll()) {
+        if (!this._validator1.ValidateAll()) {
             return;
         }
 
@@ -215,10 +219,10 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
             this._startTimer();
         }).catch(response => {
             response.result = (typeof response.result === 'string' ? JSON.parse(response.result) : response.result);
-            if(response.result.validation && Object.keys(response.result.validation).length > 0) {
+            if (response.result.validation && Object.keys(response.result.validation).length > 0) {
                 Object.forEach(response.result.validation, (field, message, index) => {
                     this._validator1.Invalidate(field, message);
-                    if(index === 0) {
+                    if (index === 0) {
                         this._form1.FindField(field).Focus();
                     }
                 });
@@ -228,7 +232,7 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
                 this._form1.Focus();
             }
             this._confirming = false;
-        }); 
+        });
     }
 
     /**
@@ -280,7 +284,7 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
      */
     set message3(value) {
         this._message3 = value;
-        this._form2.FindField('code').title = this._message3;   
+        this._form2.FindField('code').title = this._message3;
     }
 
     /**
@@ -296,7 +300,7 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
      */
     set mode(value) {
         this._mode = value;
-        if(value === 'phone') {
+        if (value === 'phone') {
             const fields = this._form1.fields;
             fields.property.params.pattern = '[0-9]*';
             fields.property.params.inputmode = 'numeric';
