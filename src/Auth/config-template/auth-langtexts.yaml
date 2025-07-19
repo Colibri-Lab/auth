@@ -302,4 +302,3 @@ auth-errors-member-provide-token:
   es: Por favor, proporcione el token del usuario
   kk: Пайдаланушы токенін жіберіңіз
   uz: Iltimos, foydalanuvchi tokenini taqdim eting
-auth-errors-member-property-two-factorapp-needed: {}
