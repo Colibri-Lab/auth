@@ -1165,8 +1165,8 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
         }
 
-        $member = Members::LoadByToken($session->member);
-        if (!$member) {
+        $currentMember = Members::LoadByToken($session->member);
+        if (!$currentMember) {
             return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
@@ -1183,7 +1183,11 @@ class MemberController extends WebController
             if($found) {
                 $ret[$found->token] = $found->ExportForUserInterface(true);
             } else {
-                $members = Members::LoadByFilter(-1, 20, 'concat({last_name}, \' \', {first_name}, \' \', {patronymic}, \' \', {phone}, \' \', {email}) like \'%' . $term . '%\'');
+                $members = Members::LoadByFilter(
+                    -1, 
+                    20, 
+                    '(concat({last_name}, \' \', {first_name}, \' \', {patronymic}, \' \', {phone}, \' \', {email}) like \'%' . $term . '%\') and ({token} <> \''.$currentMember->token.'\')'
+                );
                 foreach ($members as $member) {
                     /** @var Member $member */
                     $ret[$member->token] = $member->ExportForUserInterface(true);
