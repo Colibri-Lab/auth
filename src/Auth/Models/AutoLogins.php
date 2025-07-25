@@ -36,7 +36,7 @@ class AutoLogins extends BaseModelDataTable
      */
     public function __construct(
         DataAccessPoint $point, 
-        IDataReader $reader = null, 
+        ?IDataReader $reader = null, 
         string $returnAs = 'AutoLogin', 
         Storage|null $storage = null
     )
@@ -58,8 +58,8 @@ class AutoLogins extends BaseModelDataTable
     public static function LoadByFilter(
         int $page = -1, 
         int $pagesize = 20, 
-        string $filter = null, 
-        string $order = null, 
+        ?string $filter = null, 
+        ?string $order = null, 
         array $params = [], 
         bool $calculateAffected = true
     ) : ?AutoLogins

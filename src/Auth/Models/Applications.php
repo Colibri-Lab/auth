@@ -32,7 +32,7 @@ class Applications extends BaseModelDataTable
      * @param Storage|null $storage хранилище
      * @return void 
      */
-    public function __construct(DataAccessPoint $point, IDataReader $reader = null, string $returnAs = 'Application', Storage|null $storage = null)
+    public function __construct(DataAccessPoint $point, ?IDataReader $reader = null, string $returnAs = 'Application', Storage|null $storage = null)
     {
         parent::__construct($point, $reader, $returnAs, $storage);
     }
@@ -47,7 +47,7 @@ class Applications extends BaseModelDataTable
      * @param array $params параметры к запросу
      * @return Applications
      */
-    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true): ? Applications
+    static function LoadByFilter(int $page = -1, int $pagesize = 20, ?string $filter = null, ?string $order = null, array $params = [], bool $calculateAffected = true): ? Applications
     {
         $storage = Storages::Instance()->Load('applications', 'auth');
         return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params, $calculateAffected);
