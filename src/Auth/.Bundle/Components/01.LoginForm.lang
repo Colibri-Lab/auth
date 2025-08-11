@@ -181,7 +181,7 @@ auth-login-register-button:
   de: Registrieren
   tr: Kayıt Ol
   zh: 注册
-auth-fingerprint-button: {}
+
 auth-loginform-appcode-desc:
   ru: Введите код подтверждения из приложения аутентификации
   en: Enter the confirmation code from your authentication app
