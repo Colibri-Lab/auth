@@ -7,6 +7,9 @@ auth-changepassform-original-desc:
   kk: Ағымдағы құпия сөз
   uz: Joriy parol
   cz: Aktuální heslo
+  de: Aktuelles Passwort
+  tr: Mevcut şifre
+  zh: 当前密码
 auth-changepassform-password-desc:
   ru: Новый пароль
   en: New password
@@ -16,6 +19,9 @@ auth-changepassform-password-desc:
   kk: Жаңа құпия сөз
   uz: Yangi parol
   cz: Nové heslo
+  de: Neues Passwort
+  tr: Yeni şifre
+  zh: 新密码
 auth-changepassform-password-tip-text:
   ru: Придумайте пароль, который сложно подобрать
   en: Create a password that is hard to guess
@@ -25,6 +31,9 @@ auth-changepassform-password-tip-text:
   kk: Болжау қиын құпия сөз жасаңыз
   uz: Taxmin qilish qiyin bo'lgan parol yarating
   cz: Vytvořte heslo, které je těžké uhodnout
+  de: Erstellen Sie ein schwer zu erratendes Passwort
+  tr: Tahmin edilmesi zor bir şifre oluşturun
+  zh: 创建一个难以猜测的密码
 auth-changepassform-password-tip-success:
   ru: Пароль соответствует требованиям
   en: Password meets requirements
@@ -34,6 +43,9 @@ auth-changepassform-password-tip-success:
   kk: Құпия сөз талаптарға сәйкес келеді
   uz: Parol talablarni qondiradi
   cz: Heslo splňuje požadavky
+  de: Passwort erfüllt die Anforderungen
+  tr: Şifre gereksinimleri karşılıyor
+  zh: 密码符合要求
 auth-changepassform-password-tip-error:
   ru: Пароль не соответствует требованиям
   en: Password does not meet requirements
@@ -43,6 +55,9 @@ auth-changepassform-password-tip-error:
   kk: Құпия сөз талаптарға сәйкес келмейді
   uz: Parol talablarni qondirmaydi
   cz: Heslo nesplňuje požadavky
+  de: Passwort erfüllt die Anforderungen nicht
+  tr: Şifre gereksinimleri karşılamıyor
+  zh: 密码不符合要求
 auth-changepassform-password-tip-generate:
   ru: Сгенерировать пароль
   en: Generate password
@@ -52,6 +67,9 @@ auth-changepassform-password-tip-generate:
   kk: Құпия сөзді жасау
   uz: Parol yaratish
   cz: Vygenerovat heslo
+  de: Passwort generieren
+  tr: Şifre oluştur
+  zh: 生成密码
 auth-changepassform-password-tip-copied:
   ru: Пароль скопирован в буфер обмена
   en: Password copied to clipboard
@@ -61,6 +79,9 @@ auth-changepassform-password-tip-copied:
   kk: Құпия сөз алмасу буферіне көшірілді
   uz: Parol clipboardga nusxalandi
   cz: Heslo zkopírováno do schránky
+  de: Passwort in die Zwischenablage kopiert
+  tr: Şifre panoya kopyalandı
+  zh: 密码已复制到剪贴板
 auth-changepassform-password-tip-additional-1:
   ru: цифры
   en: digits
@@ -70,6 +91,9 @@ auth-changepassform-password-tip-additional-1:
   kk: сандар
   uz: raqamlar
   cz: číslice
+  de: Ziffern
+  tr: rakamlar
+  zh: 数字
 auth-changepassform-password-tip-additional-2:
   ru: символы (!, $, ^ и др.)
   en: symbols (!, $, ^, etc.)
@@ -79,6 +103,9 @@ auth-changepassform-password-tip-additional-2:
   kk: таңбалар (!, $, ^ және т.б.)
   uz: belgilar (!, $, ^ va boshqalar)
   cz: symboly (!, $, ^, atd.)
+  de: Symbole (!, $, ^, usw.)
+  tr: semboller (!, $, ^, vb.)
+  zh: 符号（!、$、^等）
 auth-changepassform-password-tip-additional-3:
   ru: заглавные латинские буквы
   en: capital latin letters
@@ -88,6 +115,9 @@ auth-changepassform-password-tip-additional-3:
   kk: бас әріптер латын әріптері
   uz: katta lotin harflari
   cz: velká písmena latinky
+  de: Großbuchstaben
+  tr: büyük harfler
+  zh: 大写字母
 auth-changepassform-password-tip-additional-4:
   ru: строчные латинские буквы
   en: lowercase latin letters
@@ -97,6 +127,9 @@ auth-changepassform-password-tip-additional-4:
   kk: кіші әріптер латын әріптері
   uz: kichik lotin harflari
   cz: malá písmena latinky
+  de: Kleinbuchstaben
+  tr: küçük harfler
+  zh: 小写字母
 auth-changepassform-password-validation1:
   ru: Пожалуйста, введите пароль
   en: Please enter a password
@@ -106,6 +139,9 @@ auth-changepassform-password-validation1:
   kk: Құпия сөзді енгізіңіз
   uz: Iltimos, parolni kiriting
   cz: Zadejte heslo
+  de: Bitte geben Sie ein Passwort ein
+  tr: Lütfen bir şifre girin
+  zh: 请输入密码
 auth-changepassform-password-validation2:
   ru: Пожалуйста, повторите пароль
   en: Please repeat password
@@ -115,6 +151,9 @@ auth-changepassform-password-validation2:
   kk: Құпия сөзді қайталаңыз
   uz: Iltimos, parolni takrorlang
   cz: Zopakujte heslo
+  de: Bitte wiederholen Sie das Passwort
+  tr: Lütfen şifreyi tekrar girin
+  zh: 请再次输入密码
 auth-changepassform-password-validation3:
   ru: Пароль не соответствует требованиям
   en: Password does not meet requirements
@@ -124,6 +163,9 @@ auth-changepassform-password-validation3:
   kk: Құпия сөз талаптарға сәйкес келмейді
   uz: Parol talablarni qondirmaydi
   cz: Heslo nesplňuje požadavky
+  de: Passwort erfüllt die Anforderungen nicht
+  tr: Şifre gereksinimleri karşılamıyor
+  zh: 密码不符合要求
 auth-changepassform-confirmation-validation4:
   ru: Пароли должны совпадать
   en: Passwords must match
@@ -133,6 +175,9 @@ auth-changepassform-confirmation-validation4:
   kk: Құпия сөздер сәйкес келуі керек
   uz: Parollar bir xil bo'lishi kerak
   cz: Hesla se musí shodovat
+  de: Passwörter müssen übereinstimmen
+  tr: Şifreler eşleşmeli
+  zh: 两次输入的密码必须一致
 auth-changepassform-confirmation-desc:
   ru: Повторите новый пароль
   en: Repeat new password
@@ -142,6 +187,9 @@ auth-changepassform-confirmation-desc:
   kk: Жаңа құпия сөзді қайталаңыз
   uz: Yangi parolni takrorlang
   cz: Zopakujte nové heslo
+  de: Neues Passwort wiederholen
+  tr: Yeni şifreyi tekrar girin
+  zh: 再次输入新密码
 auth-changepass-button:
   ru: Обновить пароль
   en: Update password
@@ -151,6 +199,9 @@ auth-changepass-button:
   kk: Құпия сөзді жаңарту
   uz: Parolni yangilash
   cz: Aktualizovat heslo
+  de: Passwort aktualisieren
+  tr: Şifreyi güncelle
+  zh: 更新密码
 auth-changepassform-password-tip-text2:
   ru: "Пароль должен содержать:"
   en: "Password must contains:"
@@ -160,6 +211,9 @@ auth-changepassform-password-tip-text2:
   kk: "Құпия сөз мыналарды қамтуы керек:"
   uz: "Parol quyidagilarni o'z ichiga olishi kerak:"
   cz: "Heslo musí obsahovat:"
+  de: "Das Passwort muss enthalten:"
+  tr: "Şifre şunları içermelidir:"
+  zh: 密码必须包含：
 auth-changepassform-password-tip-digits:
   ru: более %s символов
   en: at least %s symbols
@@ -169,3 +223,6 @@ auth-changepassform-password-tip-digits:
   kk: кем дегенде %s таңба
   uz: kamida %s belgilar
   cz: alespoň %s znaků
+  de: mindestens %s Zeichen
+  tr: en az %s karakter
+  zh: 至少%s个字符

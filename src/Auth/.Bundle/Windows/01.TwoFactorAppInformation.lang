@@ -7,6 +7,9 @@ auth-windows-twofactorappinformation-code:
   kk: Тексеріп, сақтау
   uz: Tekshirish va saqlash
   cz: Ověřit a uložit
+  de: Überprüfen und speichern
+  tr: Doğrula ve kaydet
+  zh: 验证并保存
 auth-windows-twofactorappinformation-title:
   ru: Сканируйте QR-код в приложение аутентификации, например Google Authenticator
   en: Scan the QR code in your authentication app, such as Google Authenticator
@@ -22,6 +25,10 @@ auth-windows-twofactorappinformation-title:
     skanerlang
   cz: Naskenujte QR kód ve své autentizační aplikaci, například Google
     Authenticator
+  de: Scannen Sie den QR-Code in Ihrer Authentifizierungs-App, z.B. Google
+    Authenticator
+  tr: Google Authenticator gibi kimlik doğrulama uygulamanızda QR kodunu tarayın
+  zh: 在您的认证应用（如Google身份验证器）中扫描二维码
 auth-windows-twofactorappinformation-code-placeholder:
   ru: Введите код из приложения аутентификации для проверки
   en: Enter the code from your authentication app to verify
@@ -31,6 +38,9 @@ auth-windows-twofactorappinformation-code-placeholder:
   kk: Тексеру үшін аутентификациялау қосымшаңыздан кодты енгізіңіз
   uz: Tekshirish uchun autentifikatsiya ilovangizdan kodni kiriting
   cz: Zadejte kód z autentizační aplikace pro ověření
+  de: Geben Sie den Code aus Ihrer Authentifizierungs-App zur Überprüfung ein
+  tr: Doğrulamak için kimlik doğrulama uygulamanızdan kodu girin
+  zh: 输入认证应用中的验证码进行验证
 auth-windows-twofactorappinformation-title2:
   ru: Или введите код вручную
   en: Or enter the code manually
@@ -40,6 +50,9 @@ auth-windows-twofactorappinformation-title2:
   kk: Немесе кодты қолмен енгізіңіз
   uz: Yoki kodni qo'lda kiriting
   cz: Nebo zadejte kód ručně
+  de: Oder geben Sie den Code manuell ein
+  tr: Veya kodu manuel olarak girin
+  zh: 或手动输入验证码
 auth-windows-twofactorappinformation-delete:
   ru: Удалить код и не использовать приложение
   en: Delete code and do not use the app
@@ -49,3 +62,6 @@ auth-windows-twofactorappinformation-delete:
   kk: Кодты жою және қосымшаны пайдаланбау
   uz: Kodni o'chirish va ilovadan foydalanmaslik
   cz: Smazat kód a nepoužívat aplikaci
+  de: Code löschen und App nicht verwenden
+  tr: Kodu sil ve uygulamayı kullanma
+  zh: 删除验证码并不再使用应用
