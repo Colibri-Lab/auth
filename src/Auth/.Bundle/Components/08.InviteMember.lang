@@ -6,6 +6,7 @@ auth-inviteform-email:
   es: Correo electrónico
   kk: Электрондық пошта
   uz: Elektron pochta
+  cz: Email
 auth-inviteform-email-validation1:
   ru: Пожалуйста, введите корректный эл. адрес
   en: Please, enter the correct email
@@ -14,6 +15,7 @@ auth-inviteform-email-validation1:
   es: Por favor, introduce un correo electrónico válido
   kk: Дұрыс электрондық поштаны енгізіңіз
   uz: Iltimos, to'g'ri elektron pochtani kiriting
+  cz: Zadejte správný e-mail
 auth-inviteform-phone:
   ru: Телефон
   en: Phone
@@ -22,6 +24,7 @@ auth-inviteform-phone:
   es: Teléfono
   kk: Телефон
   uz: Telefon
+  cz: Telefon
 auth-inviteform-fio:
   ru: ФИО
   en: Full name
@@ -30,6 +33,7 @@ auth-inviteform-fio:
   es: Nombre completo
   kk: Толық аты-жөні
   uz: To'liq ism
+  cz: Celé jméno
 auth-invite-button:
   ru: Отправить
   en: Send
@@ -38,6 +42,7 @@ auth-invite-button:
   es: Enviar
   kk: Жіберу
   uz: Yuborish
+  cz: Odeslat
 auth-inviteform-multiple:
   ru: Список приглашений
   en: List of invitations
@@ -46,6 +51,7 @@ auth-inviteform-multiple:
   es: Lista de invitaciones
   kk: Шақырулар тізімі
   uz: Takliflar ro'yxati
+  cz: Seznam pozvánek
 auth-inviteform-multiple-note:
   ru: 'Пожалуйста, введите список приглашений в формате: "email" "name", строки
     разделите переводом строки. Вы можете выделить нужную область в эксель и
@@ -69,6 +75,9 @@ auth-inviteform-multiple-note:
   uz: "Takliflar ro'yxatini quyidagi formatda kiriting: \"elektron pochta\"
     \"ism\", qatorlarni yangi qator bilan ajrating. Excel-da kerakli hududni
     tanlab, maydonga nusxalashingiz mumkin, format to'g'ri bo'ladi "
+  cz: 'Zadejte seznam pozvánek ve formátu: "email" "jméno", jednotlivé řádky
+    oddělte novým řádkem. Můžete vybrat požadovanou oblast v Excelu a zkopírovat
+    ji do pole, formát bude správný.'
 auth-inviteform-rows-validation1:
   ru: Пожалуйста, введите список строк для приглашения
   en: Please, enter the list of rows for the invitation
@@ -77,6 +86,7 @@ auth-inviteform-rows-validation1:
   es: Por favor, introduce la lista de filas para la invitación
   kk: Шақыру үшін жолдар тізімін енгізіңіз
   uz: Iltimos, taklif uchun qatorlar ro'yxatini kiriting
+  cz: Zadejte seznam řádků pro pozvánku
 auth-inviteform-rows-validation2:
   ru: Пожалуста, введите строки которые содержат в первой части электронный адрес
   en: Please, enter the rows that contain an email address in the first part
@@ -88,3 +98,4 @@ auth-inviteform-rows-validation2:
     electrónico en la primera parte
   kk: Бірінші бөлігінде электрондық пошта мекенжайы бар жолдарды енгізіңіз
   uz: Iltimos, birinchi qismida elektron pochta manzili bo'lgan qatorlarni kiriting
+  cz: Zadejte řádky, které obsahují e-mailovou adresu v první části

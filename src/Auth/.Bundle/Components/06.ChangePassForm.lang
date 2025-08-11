@@ -6,6 +6,7 @@ auth-changepassform-original-desc:
   es: Contraseña actual
   kk: Ағымдағы құпия сөз
   uz: Joriy parol
+  cz: Aktuální heslo
 auth-changepassform-password-desc:
   ru: Новый пароль
   en: New password
@@ -14,6 +15,7 @@ auth-changepassform-password-desc:
   es: Nueva contraseña
   kk: Жаңа құпия сөз
   uz: Yangi parol
+  cz: Nové heslo
 auth-changepassform-password-tip-text:
   ru: Придумайте пароль, который сложно подобрать
   en: Create a password that is hard to guess
@@ -22,6 +24,7 @@ auth-changepassform-password-tip-text:
   es: Crea una contraseña difícil de adivinar
   kk: Болжау қиын құпия сөз жасаңыз
   uz: Taxmin qilish qiyin bo'lgan parol yarating
+  cz: Vytvořte heslo, které je těžké uhodnout
 auth-changepassform-password-tip-success:
   ru: Пароль соответствует требованиям
   en: Password meets requirements
@@ -30,6 +33,7 @@ auth-changepassform-password-tip-success:
   es: La contraseña cumple con los requisitos
   kk: Құпия сөз талаптарға сәйкес келеді
   uz: Parol talablarni qondiradi
+  cz: Heslo splňuje požadavky
 auth-changepassform-password-tip-error:
   ru: Пароль не соответствует требованиям
   en: Password does not meet requirements
@@ -38,6 +42,7 @@ auth-changepassform-password-tip-error:
   es: La contraseña no cumple con los requisitos
   kk: Құпия сөз талаптарға сәйкес келмейді
   uz: Parol talablarni qondirmaydi
+  cz: Heslo nesplňuje požadavky
 auth-changepassform-password-tip-generate:
   ru: Сгенерировать пароль
   en: Generate password
@@ -46,6 +51,7 @@ auth-changepassform-password-tip-generate:
   es: Generar contraseña
   kk: Құпия сөзді жасау
   uz: Parol yaratish
+  cz: Vygenerovat heslo
 auth-changepassform-password-tip-copied:
   ru: Пароль скопирован в буфер обмена
   en: Password copied to clipboard
@@ -54,6 +60,7 @@ auth-changepassform-password-tip-copied:
   es: Contraseña copiada al portapapeles
   kk: Құпия сөз алмасу буферіне көшірілді
   uz: Parol clipboardga nusxalandi
+  cz: Heslo zkopírováno do schránky
 auth-changepassform-password-tip-additional-1:
   ru: цифры
   en: digits
@@ -62,6 +69,7 @@ auth-changepassform-password-tip-additional-1:
   es: dígitos
   kk: сандар
   uz: raqamlar
+  cz: číslice
 auth-changepassform-password-tip-additional-2:
   ru: символы (!, $, ^ и др.)
   en: symbols (!, $, ^, etc.)
@@ -70,6 +78,7 @@ auth-changepassform-password-tip-additional-2:
   es: símbolos (!, $, ^, etc.)
   kk: таңбалар (!, $, ^ және т.б.)
   uz: belgilar (!, $, ^ va boshqalar)
+  cz: symboly (!, $, ^, atd.)
 auth-changepassform-password-tip-additional-3:
   ru: заглавные латинские буквы
   en: capital latin letters
@@ -78,6 +87,7 @@ auth-changepassform-password-tip-additional-3:
   es: letras latinas mayúsculas
   kk: бас әріптер латын әріптері
   uz: katta lotin harflari
+  cz: velká písmena latinky
 auth-changepassform-password-tip-additional-4:
   ru: строчные латинские буквы
   en: lowercase latin letters
@@ -86,6 +96,7 @@ auth-changepassform-password-tip-additional-4:
   es: letras latinas minúsculas
   kk: кіші әріптер латын әріптері
   uz: kichik lotin harflari
+  cz: malá písmena latinky
 auth-changepassform-password-validation1:
   ru: Пожалуйста, введите пароль
   en: Please enter a password
@@ -94,6 +105,7 @@ auth-changepassform-password-validation1:
   es: Por favor, introduzca una contraseña
   kk: Құпия сөзді енгізіңіз
   uz: Iltimos, parolni kiriting
+  cz: Zadejte heslo
 auth-changepassform-password-validation2:
   ru: Пожалуйста, повторите пароль
   en: Please repeat password
@@ -102,6 +114,7 @@ auth-changepassform-password-validation2:
   es: Por favor, repita la contraseña
   kk: Құпия сөзді қайталаңыз
   uz: Iltimos, parolni takrorlang
+  cz: Zopakujte heslo
 auth-changepassform-password-validation3:
   ru: Пароль не соответствует требованиям
   en: Password does not meet requirements
@@ -110,6 +123,7 @@ auth-changepassform-password-validation3:
   es: La contraseña no cumple con los requisitos
   kk: Құпия сөз талаптарға сәйкес келмейді
   uz: Parol talablarni qondirmaydi
+  cz: Heslo nesplňuje požadavky
 auth-changepassform-confirmation-validation4:
   ru: Пароли должны совпадать
   en: Passwords must match
@@ -118,6 +132,7 @@ auth-changepassform-confirmation-validation4:
   es: Las contraseñas deben coincidir
   kk: Құпия сөздер сәйкес келуі керек
   uz: Parollar bir xil bo'lishi kerak
+  cz: Hesla se musí shodovat
 auth-changepassform-confirmation-desc:
   ru: Повторите новый пароль
   en: Repeat new password
@@ -126,6 +141,7 @@ auth-changepassform-confirmation-desc:
   es: Repetir nueva contraseña
   kk: Жаңа құпия сөзді қайталаңыз
   uz: Yangi parolni takrorlang
+  cz: Zopakujte nové heslo
 auth-changepass-button:
   ru: Обновить пароль
   en: Update password
@@ -134,6 +150,7 @@ auth-changepass-button:
   es: Actualizar contraseña
   kk: Құпия сөзді жаңарту
   uz: Parolni yangilash
+  cz: Aktualizovat heslo
 auth-changepassform-password-tip-text2:
   ru: "Пароль должен содержать:"
   en: "Password must contains:"
@@ -142,6 +159,7 @@ auth-changepassform-password-tip-text2:
   es: "La contraseña debe contener:"
   kk: "Құпия сөз мыналарды қамтуы керек:"
   uz: "Parol quyidagilarni o'z ichiga olishi kerak:"
+  cz: "Heslo musí obsahovat:"
 auth-changepassform-password-tip-digits:
   ru: более %s символов
   en: at least %s symbols
@@ -150,3 +168,4 @@ auth-changepassform-password-tip-digits:
   es: al menos %s símbolos
   kk: кем дегенде %s таңба
   uz: kamida %s belgilar
+  cz: alespoň %s znaků

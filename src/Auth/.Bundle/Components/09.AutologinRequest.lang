@@ -6,6 +6,7 @@ auth-autologin-title:
   es: Inicio de sesión automático
   kk: Автоматты кіру
   uz: Avtologin
+  cz: Automatické přihlášení
 auth-autologin-message:
   ru: Нажмите или скопируйте ссылку для перехода
   en: Click or copy the link to go
@@ -14,6 +15,7 @@ auth-autologin-message:
   es: Haga clic o copie el enlace para ir
   kk: Өту үшін сілтемені басыңыз немесе көшіріңіз
   uz: O‘tish uchun havolani bosing yoki nusxa oling
+  cz: Klikněte nebo zkopírujte odkaz pro pokračování
 auth-autologin-copy:
   ru: Копировать ссылку
   en: Copy link
@@ -22,6 +24,7 @@ auth-autologin-copy:
   es: Copiar enlace
   kk: Сілтемені көшіру
   uz: Havolani nusxalash
+  cz: Zkopírovat odkaz
 auth-autologin-copied:
   ru: Ссылка скопирована в буфер обмена
   en: Link copied to clipboard
@@ -30,3 +33,4 @@ auth-autologin-copied:
   es: Enlace copiado al portapapeles
   kk: Сілтеме алмасу буферіне көшірілді
   uz: Havola buferga nusxalandi
+  cz: Odkaz zkopírován do schránky

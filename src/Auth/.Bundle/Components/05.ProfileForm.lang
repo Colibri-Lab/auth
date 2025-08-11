@@ -6,6 +6,7 @@ auth-profileform-last_name-desc:
   es: Apellido
   kk: Тегі
   uz: Familiya
+  cz: Příjmení
 auth-profileform-last_name-validation1:
   ru: Пожалуйста, введите вашу фамилию
   en: Please enter your surname
@@ -14,6 +15,7 @@ auth-profileform-last_name-validation1:
   es: Por favor, introduzca su apellido
   kk: Өтінеміз, тегіңізді енгізіңіз
   uz: Iltimos, familiyangizni kiriting
+  cz: Zadejte své příjmení
 auth-profileform-first_name-desc:
   ru: Имя
   en: First name
@@ -22,6 +24,7 @@ auth-profileform-first_name-desc:
   es: Nombre
   kk: Аты
   uz: Ism
+  cz: Jméno
 auth-profileform-first_name-placeholder:
   ru: "Например: Иван"
   en: "For example: John"
@@ -30,6 +33,7 @@ auth-profileform-first_name-placeholder:
   es: "Por ejemplo: Juan"
   kk: "Мысалы: Иван"
   uz: "Masalan: Ivan"
+  cz: "Například: Jan"
 auth-profileform-first_name-validation1:
   ru: Пожалуйста, введите ваше имя
   en: Please enter your name
@@ -38,6 +42,7 @@ auth-profileform-first_name-validation1:
   es: Por favor, introduzca su nombre
   kk: Өтінеміз, атыңызды енгізіңіз
   uz: Iltimos, ismingizni kiriting
+  cz: Zadejte své jméno
 auth-profileform-partonymic-desc:
   ru: Отчество
   en: Patronymic
@@ -46,6 +51,7 @@ auth-profileform-partonymic-desc:
   es: Segundo nombre
   kk: Әкесінің аты
   uz: Otasining ismi
+  cz: Prostřední jméno
 auth-profileform-birtdate-desc:
   ru: Дата рождения
   en: Date of birth
@@ -54,6 +60,7 @@ auth-profileform-birtdate-desc:
   es: Fecha de nacimiento
   kk: Туған күні
   uz: Tug‘ilgan sana
+  cz: Datum narození
 auth-profileform-birthdate-validation1:
   ru: Вам слишком мало лет, нашим проектом могут пользоваться только
     совершеннолетние
@@ -63,6 +70,7 @@ auth-profileform-birthdate-validation1:
   es: Eres demasiado joven, solo los adultos pueden usar nuestro proyecto.
   kk: Сіз тым жассыз, біздің жобаны тек ересектер пайдалана алады.
   uz: Siz juda yoshsiz, loyihamizdan faqat kattalar foydalanishi mumkin.
+  cz: Jste příliš mladí, pouze dospělí mohou používat náš projekt.
 auth-profileform-gender-desc:
   ru: Пол
   en: Gender
@@ -71,6 +79,7 @@ auth-profileform-gender-desc:
   es: Género
   kk: Жынысы
   uz: Jinsi
+  cz: Pohlaví
 auth-profileform-gender-values-male:
   ru: Господин
   en: Mr.
@@ -79,6 +88,7 @@ auth-profileform-gender-values-male:
   es: Señor
   kk: Мырза
   uz: Janob
+  cz: Pan
 auth-profileform-gender-values-female:
   ru: Госпожа
   en: Mrs.
@@ -87,6 +97,7 @@ auth-profileform-gender-values-female:
   es: Señora
   kk: Ханым
   uz: Xonim
+  cz: Paní
 auth-profile-button:
   ru: Сохранить
   en: Save
@@ -95,6 +106,7 @@ auth-profile-button:
   es: Guardar
   kk: Сақтау
   uz: Saqlash
+  cz: Uložit
 auth-profileform-last_name-placeholder:
   ru: "Например: Иванов"
   en: "For example: Doe"
@@ -103,6 +115,7 @@ auth-profileform-last_name-placeholder:
   es: "Por ejemplo: Pérez"
   kk: "Мысалы: Иванов"
   uz: "Masalan: Ivanov"
+  cz: "Například: Novák"
 auth-profileform-avatar-desc:
   ru: Выберите аватар
   en: Choose an avatar
@@ -111,3 +124,4 @@ auth-profileform-avatar-desc:
   es: Elige un avatar
   kk: Аватарды таңдаңыз
   uz: Avatarni tanlang
+  cz: Vyberte avatar

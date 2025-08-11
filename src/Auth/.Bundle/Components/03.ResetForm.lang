@@ -6,6 +6,7 @@ auth-logincontainer-reset-title:
   es: Restablecer contraseña
   kk: Құпиясөзді қалпына келтіру
   uz: Parolni tiklash
+  cz: Obnovit heslo
 auth-back-button:
   ru: Назад
   en: Back
@@ -14,6 +15,7 @@ auth-back-button:
   es: Atrás
   kk: Артқа
   uz: Orqaga
+  cz: Zpět
 auth-reset-button:
   ru: Восстановить
   en: Reset
@@ -22,6 +24,7 @@ auth-reset-button:
   es: Restablecer
   kk: Қалпына келтіру
   uz: Tiklash
+  cz: Obnovit
 auth-resetform-email-desc:
   ru: Электронная почта
   en: Email
@@ -30,6 +33,7 @@ auth-resetform-email-desc:
   es: Correo electrónico
   kk: Электрондық пошта
   uz: Elektron pochta
+  cz: Email
 auth-resetform-email-validation1:
   ru: Пожалуйста, введите эл. адрес
   en: Please enter email
@@ -38,6 +42,7 @@ auth-resetform-email-validation1:
   es: Por favor, introduzca el correo electrónico
   kk: Электрондық поштаны енгізіңіз
   uz: Iltimos, elektron pochta manzilini kiriting
+  cz: Zadejte e-mail
 auth-resetform-email-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
   en: You are entering an invalid email address. Please try again!
@@ -48,6 +53,7 @@ auth-resetform-email-validation2:
   kk: Сіз жарамсыз электрондық пошта мекенжайын енгізіп жатырсыз. Қайта көріңіз!
   uz: Siz noto‘g‘ri elektron pochta manzilini kiritdingiz. Iltimos, qayta urinib
     ko‘ring!
+  cz: Zadali jste neplatnou e-mailovou adresu. Zkuste to prosím znovu!
 auth-resetform-phone-desc:
   ru: Телефон
   en: Phone number
@@ -56,6 +62,7 @@ auth-resetform-phone-desc:
   es: Teléfono
   kk: Телефон
   uz: Telefon
+  cz: Telefonní číslo
 auth-resetform-phone-validation1:
   ru: Пожалуйста, введите телефон
   en: Please enter phone number
@@ -64,6 +71,7 @@ auth-resetform-phone-validation1:
   es: Por favor, introduzca el número de teléfono
   kk: Телефон нөмірін енгізіңіз
   uz: Iltimos, telefon raqamini kiriting
+  cz: Zadejte telefonní číslo
 auth-resetform-code-desc:
   ru: Код восстановления
   en: Confirmation code
@@ -72,6 +80,7 @@ auth-resetform-code-desc:
   es: Código de confirmación
   kk: Қалпына келтіру коды
   uz: Tasdiqlash kodi
+  cz: Ověřovací kód
 auth-confirmationform-code-validation1:
   ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
   en: Please enter the 6 digit code we have sent to your contact
@@ -81,6 +90,7 @@ auth-confirmationform-code-validation1:
     contacto
   kk: Біз сіздің байланысыңызға жіберген 6 таңбалы кодты енгізіңіз
   uz: Biz sizning kontaktlaringizga yuborgan 6 xonali kodni kiriting
+  cz: Zadejte 6místný kód, který jsme vám zaslali
 auth-resetform-pass-desc:
   ru: Пароль
   en: Password
@@ -89,6 +99,7 @@ auth-resetform-pass-desc:
   es: Contraseña
   kk: Құпиясөз
   uz: Parol
+  cz: Heslo
 auth-resetform-password-placeholder:
   ru: Придумайте пароль
   en: Pick a password
@@ -97,6 +108,7 @@ auth-resetform-password-placeholder:
   es: Elija una contraseña
   kk: Құпиясөз ойлап табыңыз
   uz: Parol tanlang
+  cz: Zvolte heslo
 auth-resetform-password-desc:
   ru: Пароль
   en: Password
@@ -105,6 +117,7 @@ auth-resetform-password-desc:
   es: Contraseña
   kk: Құпиясөз
   uz: Parol
+  cz: Heslo
 auth-resetform-password-tip-text:
   ru: Придумайте пароль, который сложно подобрать
   en: Create a password that is hard to guess
@@ -113,6 +126,7 @@ auth-resetform-password-tip-text:
   es: Cree una contraseña difícil de adivinar
   kk: Болжау қиын құпиясөз жасаңыз
   uz: Taxmin qilish qiyin bo‘lgan parol yarating
+  cz: Vytvořte heslo, které je těžké uhodnout
 auth-resetform-password-tip-success:
   ru: Пароль соответствует требованиям
   en: Password meets requirements
@@ -121,6 +135,7 @@ auth-resetform-password-tip-success:
   es: La contraseña cumple con los requisitos
   kk: Құпиясөз талаптарға сәйкес келеді
   uz: Parol talablarni qondiradi
+  cz: Heslo splňuje požadavky
 auth-resetform-password-tip-error:
   ru: Пароль не соответствует требованиям
   en: Password does not meet requirements
@@ -129,6 +144,7 @@ auth-resetform-password-tip-error:
   es: La contraseña no cumple con los requisitos
   kk: Құпиясөз талаптарға сәйкес келмейді
   uz: Parol talablarni qondirmaydi
+  cz: Heslo nesplňuje požadavky
 auth-resetform-password-tip-generate:
   ru: Сгенерировать пароль
   en: Generate password
@@ -137,6 +153,7 @@ auth-resetform-password-tip-generate:
   es: Generar contraseña
   kk: Құпиясөзді жасау
   uz: Parol yaratish
+  cz: Vygenerovat heslo
 auth-resetform-password-tip-copied:
   ru: Пароль скопирован в буфер обмена
   en: Password copied to clipboard
@@ -145,6 +162,7 @@ auth-resetform-password-tip-copied:
   es: Contraseña copiada al portapapeles
   kk: Құпиясөз алмасу буферіне көшірілді
   uz: Parol buferga nusxalandi
+  cz: Heslo zkopírováno do schránky
 auth-resetform-password-tip-additional-1:
   ru: цифры
   en: digits
@@ -153,6 +171,7 @@ auth-resetform-password-tip-additional-1:
   es: dígitos
   kk: сандар
   uz: raqamlar
+  cz: číslice
 auth-resetform-password-tip-additional-2:
   ru: символы (!, $, ^ и др.)
   en: symbols (!, $, ^, etc.)
@@ -161,6 +180,7 @@ auth-resetform-password-tip-additional-2:
   es: símbolos (!, $, ^, etc.)
   kk: таңбалар (!, $, ^ және т.б.)
   uz: belgilar (!, $, ^ va boshqalar)
+  cz: symboly (!, $, ^, atd.)
 auth-resetform-password-tip-additional-3:
   ru: заглавные латинские буквы
   en: capital latin letters
@@ -169,6 +189,7 @@ auth-resetform-password-tip-additional-3:
   es: letras latinas mayúsculas
   kk: бас әріптер латын әріптері
   uz: katta lotin harflari
+  cz: velká písmena latinky
 auth-resetform-password-tip-additional-4:
   ru: строчные латинские буквы
   en: lowercase latin letters
@@ -177,6 +198,7 @@ auth-resetform-password-tip-additional-4:
   es: letras latinas minúsculas
   kk: кіші әріптер латын әріптері
   uz: kichik lotin harflari
+  cz: malá písmena latinky
 auth-resetform-password-validation1:
   ru: Пожалуйста, введите пароль
   en: Please enter a password
@@ -185,6 +207,7 @@ auth-resetform-password-validation1:
   es: Por favor, introduzca una contraseña
   kk: Құпиясөзді енгізіңіз
   uz: Iltimos, parolni kiriting
+  cz: Zadejte heslo
 auth-resetform-password-validation3:
   ru: Пароль не соответствует требованиям
   en: Password does not meet requirements
@@ -193,6 +216,7 @@ auth-resetform-password-validation3:
   es: La contraseña no cumple con los requisitos
   kk: Құпиясөз талаптарға сәйкес келмейді
   uz: Parol talablarni qondirmaydi
+  cz: Heslo nesplňuje požadavky
 auth-resetform-confirmation-placeholder:
   ru: Повторите пароль
   en: Confirm password
@@ -201,6 +225,7 @@ auth-resetform-confirmation-placeholder:
   es: Confirmar contraseña
   kk: Құпиясөзді растаңыз
   uz: Parolni tasdiqlang
+  cz: Potvrďte heslo
 auth-resetform-password-validation2:
   ru: Пожалуйста, повторите пароль
   en: Please repeat password
@@ -209,6 +234,7 @@ auth-resetform-password-validation2:
   es: Por favor, repita la contraseña
   kk: Құпиясөзді қайталаңыз
   uz: Iltimos, parolni qayta kiriting
+  cz: Zopakujte heslo
 auth-resetform-confirmation-validation4:
   ru: Пароли должны совпадать
   en: Passwords must match
@@ -217,6 +243,7 @@ auth-resetform-confirmation-validation4:
   es: Las contraseñas deben coincidir
   kk: Құпиясөздер сәйкес келуі керек
   uz: Parollar mos kelishi kerak
+  cz: Hesla se musí shodovat
 auth-resetform-password-tip-digits:
   ru: более %s символов
   en: at least %s symbols
@@ -225,3 +252,4 @@ auth-resetform-password-tip-digits:
   es: al menos %s símbolos
   kk: кемінде %s таңба
   uz: kamida %s belgilar
+  cz: alespoň %s znaků

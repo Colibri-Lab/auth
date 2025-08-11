@@ -6,6 +6,7 @@ auth-loginform-email-desc:
   es: Correo electrónico
   kk: Электрондық пошта
   uz: Elektron pochta
+  cz: Email
 auth-loginform-login-validation1:
   ru: Пожалуйста, введите эл. адрес
   en: Please enter your email
@@ -14,6 +15,7 @@ auth-loginform-login-validation1:
   es: Por favor, introduce tu correo electrónico
   kk: Электрондық поштаңызды енгізіңіз
   uz: Iltimos, elektron pochtangizni kiriting
+  cz: Zadejte svůj e-mail
 auth-logincontainer-login-title:
   ru: Вход в систему
   en: Login
@@ -22,6 +24,7 @@ auth-logincontainer-login-title:
   es: Iniciar sesión
   kk: Жүйеге кіру
   uz: Tizimga kirish
+  cz: Přihlášení
 auth-loginform-login-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
   en: You are entering an invalid email address. mail. Please try again!
@@ -32,6 +35,7 @@ auth-loginform-login-validation2:
   kk: Сіз жарамсыз электрондық пошта мекенжайын енгізіп жатырсыз. Қайтадан көріңіз!
   uz: Siz noto`g`ri elektron pochta manzilini kiritmoqdasiz. Iltimos, qayta urinib
     ko`ring!
+  cz: Zadali jste neplatnou e-mailovou adresu. Zkuste to prosím znovu!
 auth-loginform-password-desc:
   ru: Пароль
   en: Password
@@ -40,6 +44,7 @@ auth-loginform-password-desc:
   es: Contraseña
   kk: Құпия сөз
   uz: Parol
+  cz: Heslo
 auth-loginform-password-validation1:
   ru: Пожалуйста, введите пароль
   en: Please enter password
@@ -48,6 +53,7 @@ auth-loginform-password-validation1:
   es: Por favor, introduce tu contraseña
   kk: Құпия сөзіңізді енгізіңіз
   uz: Iltimos, parolingizni kiriting
+  cz: Zadejte heslo
 auth-loginform-code-desc:
   ru: Введите код подтверждения
   en: Enter confirmation code
@@ -56,6 +62,7 @@ auth-loginform-code-desc:
   es: Introduce el código de confirmación
   kk: Растау кодын енгізіңіз
   uz: Tasdiqlash kodini kiriting
+  cz: Zadejte ověřovací kód
 auth-loginform-code-validation1:
   ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
   en: Please enter the 6 digit code we have sent to your contact
@@ -64,6 +71,7 @@ auth-loginform-code-validation1:
   es: Por favor, introduce el código de 6 dígitos que hemos enviado a tu contacto
   kk: Біз сіздің байланысыңызға жіберген 6 таңбалы кодты енгізіңіз
   uz: Biz sizning kontaktlaringizga yuborgan 6 xonali kodni kiriting
+  cz: Zadejte 6místný kód, který jsme vám zaslali
 auth-login-timer-value:
   ru: Вы сможете снова запросить код через %s секунд.
   en: You will be able to request the code again in %s seconds.
@@ -72,6 +80,7 @@ auth-login-timer-value:
   es: Podrás solicitar el código nuevamente en %s segundos.
   kk: Сіз %s секундтан кейін кодты қайта сұрай аласыз.
   uz: Siz %s soniyadan keyin kodni qayta so`rashingiz mumkin.
+  cz: Kód budete moci znovu požádat za %s sekund.
 auth-login-requestagain:
   ru: Получить новый код
   en: Get a new code
@@ -80,6 +89,7 @@ auth-login-requestagain:
   es: Obtener un nuevo código
   kk: Жаңа код алу
   uz: Yangi kodni olish
+  cz: Získat nový kód
 auth-login-reset:
   ru: Забыли пароль?
   en: Forgot your password?
@@ -88,6 +98,7 @@ auth-login-reset:
   es: ¿Olvidaste tu contraseña?
   kk: Құпия сөзіңізді ұмыттыңыз ба?
   uz: Parolingizni unutdingizmi?
+  cz: Zapomněli jste heslo?
 auth-login-button:
   ru: Войти
   en: Login
@@ -96,6 +107,7 @@ auth-login-button:
   es: Iniciar sesión
   kk: Кіру
   uz: Kirish
+  cz: Přihlásit se
 auth-register-login-text:
   ru: У вас нет аккаунта?
   en: Don't have an account?
@@ -104,6 +116,7 @@ auth-register-login-text:
   es: ¿No tienes una cuenta?
   kk: Сізде тіркелгі жоқ па?
   uz: Hisobingiz yo`qmi?
+  cz: Nemáte účet?
 auth-register-button:
   ru: Зарегистрироваться
   en: Register
@@ -112,6 +125,7 @@ auth-register-button:
   es: Registrarse
   kk: Тіркелу
   uz: Ro`yxatdan o`tish
+  cz: Registrovat se
 auth-login-register-button:
   ru: Зарегистрироваться
   en: Register
@@ -120,6 +134,7 @@ auth-login-register-button:
   es: Registrarse
   kk: Тіркелу
   uz: Ro`yxatdan o`tish
+  cz: Registrovat se
 auth-fingerprint-button: {}
 auth-loginform-appcode-desc:
   ru: Введите код подтверждения из приложения аутентификации
@@ -129,3 +144,4 @@ auth-loginform-appcode-desc:
   es: Introduce el código de confirmación de tu aplicación de autenticación
   kk: Растау кодын енгізіңіз аутентификациялау қосымшаңыздан
   uz: Autentifikatsiya ilovangizdan tasdiqlash kodini kiriting
+  cz: Zadejte ověřovací kód z vaší autentizační aplikace

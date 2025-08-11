@@ -6,6 +6,7 @@ auth-confirmationform-code-desc:
   es: Introduzca el código de confirmación
   kk: Растау кодын енгізіңіз
   uz: Tasdiqlash kodini kiriting
+  cz: Zadejte ověřovací kód
 auth-confirmationform-code-validation1:
   ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
   en: Please enter the 6 digit code we have sent to your contact
@@ -15,6 +16,7 @@ auth-confirmationform-code-validation1:
     contacto
   kk: Біз сіздің байланысыңызға жіберген 6 таңбалы кодты енгізіңіз
   uz: Biz sizning kontaktlaringizga yuborgan 6 xonali kodni kiriting
+  cz: Zadejte 6místný kód, který jsme vám zaslali
 auth-confirmation-timer-value:
   ru: Вы сможете снова запросить код через %s секунд.
   en: You will be able to request the code again in %s seconds.
@@ -23,6 +25,7 @@ auth-confirmation-timer-value:
   es: Podrá solicitar el código nuevamente en %s segundos.
   kk: Сіз %s секундтан кейін кодты қайта сұрай аласыз.
   uz: Siz %s soniyadan keyin kodni qayta so'rashingiz mumkin.
+  cz: Kód budete moci znovu požádat za %s sekund.
 auth-confirmation-requestagain:
   ru: Получить новый код
   en: Get a new code
@@ -31,6 +34,7 @@ auth-confirmation-requestagain:
   es: Obtener un nuevo código
   kk: Жаңа код алу
   uz: Yangi kodni olish
+  cz: Získat nový kód
 auth-confirmationform-code-button:
   ru: Выслать код
   en: Send a code
@@ -39,6 +43,7 @@ auth-confirmationform-code-button:
   es: Enviar un código
   kk: Код жіберу
   uz: Kodni yuborish
+  cz: Odeslat kód
 auth-confirmationform-property-email-desc:
   ru: Эл. адрес
   en: E-mail
@@ -47,6 +52,7 @@ auth-confirmationform-property-email-desc:
   es: Correo electrónico
   kk: Электрондық пошта
   uz: Elektron pochta
+  cz: E-mail
 auth-confirmationform-property-email-validation1:
   ru: Пожалуйста, введите корректный электроннный адрес
   en: Please enter the correct email address
@@ -55,6 +61,7 @@ auth-confirmationform-property-email-validation1:
   es: Por favor, introduzca una dirección de correo electrónico válida
   kk: Дұрыс электрондық пошта мекенжайын енгізіңіз
   uz: Iltimos, to'g'ri elektron pochta manzilini kiriting
+  cz: Zadejte správnou e-mailovou adresu
 auth-confirmationform-property-phone-desc:
   ru: Номер телефона
   en: Phone number
@@ -63,6 +70,7 @@ auth-confirmationform-property-phone-desc:
   es: Número de teléfono
   kk: Телефон нөмірі
   uz: Telefon raqami
+  cz: Telefonní číslo
 auth-confirmationform-property-phone-validation1:
   ru: Пожалуйста, введите корректный номер телефона
   en: Please enter a valid phone number.
@@ -71,3 +79,4 @@ auth-confirmationform-property-phone-validation1:
   es: Por favor, introduzca un número de teléfono válido
   kk: Жарамды телефон нөмірін енгізіңіз
   uz: Iltimos, to'g'ri telefon raqamini kiriting
+  cz: Zadejte platné telefonní číslo.

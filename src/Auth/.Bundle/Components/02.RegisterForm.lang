@@ -6,6 +6,7 @@ auth-logincontainer-register-title:
   es: Registro
   kk: Тіркелу
   uz: Ro'yxatdan o'tish
+  cz: Registrace
 auth-registerform-fio-desc:
   ru: Личные данные
   en: Personal data
@@ -14,6 +15,7 @@ auth-registerform-fio-desc:
   es: Datos personales
   kk: Жеке деректер
   uz: Shaxsiy ma'lumotlar
+  cz: Osobní údaje
 auth-registerform-fio-last_name-placeholder:
   ru: Фамилия
   en: Surname
@@ -22,6 +24,7 @@ auth-registerform-fio-last_name-placeholder:
   es: Apellido
   kk: Тегі
   uz: Familiya
+  cz: Příjmení
 auth-registerform-fio-validation1:
   ru: Пожалуйста, введите фамилию
   en: Please enter your surname
@@ -30,6 +33,7 @@ auth-registerform-fio-validation1:
   es: Por favor, introduzca su apellido
   kk: Өтінеміз, тегіңізді енгізіңіз
   uz: Iltimos, familiyangizni kiriting
+  cz: Zadejte své příjmení
 auth-registerform-fio-first_name-placeholder:
   ru: Имя
   en: First name
@@ -38,6 +42,7 @@ auth-registerform-fio-first_name-placeholder:
   es: Nombre
   kk: Аты
   uz: Ism
+  cz: Jméno
 auth-registerform-fio-validation2:
   ru: Пожалуйста, введите ваше имя
   en: Please enter your first name
@@ -46,6 +51,7 @@ auth-registerform-fio-validation2:
   es: Por favor, introduzca su nombre
   kk: Өтінеміз, атыңызды енгізіңіз
   uz: Iltimos, ismingizni kiriting
+  cz: Zadejte své jméno
 auth-registerform-fio-patronymic-placeholder:
   ru: Отчество
   en: Patronymic
@@ -54,6 +60,7 @@ auth-registerform-fio-patronymic-placeholder:
   es: Segundo nombre
   kk: Әкесінің аты
   uz: Otasining ismi
+  cz: Prostřední jméno
 auth-registerform-birtdate-desc:
   ru: Дата рождения
   en: Date of birth
@@ -62,6 +69,7 @@ auth-registerform-birtdate-desc:
   es: Fecha de nacimiento
   kk: Туған күні
   uz: Tug'ilgan sana
+  cz: Datum narození
 auth-registerform-birthdate-validation1:
   ru: Пожалуйста, введите дату рождения
   en: Please enter the date of birth
@@ -70,6 +78,7 @@ auth-registerform-birthdate-validation1:
   es: Por favor, introduzca la fecha de nacimiento
   kk: Өтінеміз, туған күніңізді енгізіңіз
   uz: Iltimos, tug'ilgan sanani kiriting
+  cz: Zadejte datum narození
 auth-registerform-birthdate-validation2:
   ru: Вам слишком мало лет, нашим проектом могут пользоваться только
     совершеннолетние
@@ -79,6 +88,7 @@ auth-registerform-birthdate-validation2:
   es: Eres demasiado joven, solo los adultos pueden usar nuestro proyecto
   kk: Сіз тым жассыз, біздің жобаны тек ересектер пайдалана алады
   uz: Siz juda yoshsiz, loyihamizdan faqat kattalar foydalanishi mumkin
+  cz: Jste příliš mladí, pouze dospělí mohou používat náš projekt
 auth-registerform-gender-desc:
   ru: Пол
   en: Gender
@@ -87,6 +97,7 @@ auth-registerform-gender-desc:
   es: Género
   kk: Жыныс
   uz: Jins
+  cz: Pohlaví
 auth-registerform-gender-validation1:
   ru: Пожалуйста, выберите пол
   en: Please select a gender
@@ -95,6 +106,7 @@ auth-registerform-gender-validation1:
   es: Por favor, seleccione un género
   kk: Өтінеміз, жынысыңызды таңдаңыз
   uz: Iltimos, jinsni tanlang
+  cz: Vyberte pohlaví
 auth-registerform-gender-values-female:
   ru: Женский
   en: Female
@@ -103,6 +115,7 @@ auth-registerform-gender-values-female:
   es: Femenino
   kk: Әйел
   uz: Ayol
+  cz: Žena
 auth-registerform-email-desc:
   ru: Электронная почта
   en: Email
@@ -111,6 +124,7 @@ auth-registerform-email-desc:
   es: Correo electrónico
   kk: Электрондық пошта
   uz: Elektron pochta
+  cz: Email
 auth-registerform-email-validation1:
   ru: Пожалуйста, введите эл. адрес
   en: Please enter the email
@@ -119,6 +133,7 @@ auth-registerform-email-validation1:
   es: Por favor, introduzca el correo electrónico
   kk: Өтінеміз, электрондық поштаңызды енгізіңіз
   uz: Iltimos, elektron pochtangizni kiriting
+  cz: Zadejte e-mail
 auth-registerform-email-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
   en: You are entering an invalid email address. Please try again!
@@ -129,6 +144,7 @@ auth-registerform-email-validation2:
   kk: Сіз жарамсыз электрондық пошта мекенжайын енгізіп жатырсыз. Қайтадан көріңіз!
   uz: Siz noto'g'ri elektron pochta manzilini kiritmoqdasiz. Iltimos, qayta urinib
     ko'ring!
+  cz: Zadali jste neplatnou e-mailovou adresu. Zkuste to prosím znovu!
 auth-registerform-phone-desc:
   ru: Телефон
   en: Phone number
@@ -137,6 +153,7 @@ auth-registerform-phone-desc:
   es: Teléfono
   kk: Телефон
   uz: Telefon
+  cz: Telefonní číslo
 auth-registerform-phone-validation1:
   ru: Пожалуйста, введите телефон
   en: Please enter the phone number
@@ -145,6 +162,7 @@ auth-registerform-phone-validation1:
   es: Por favor, introduzca el número de teléfono
   kk: Өтінеміз, телефон нөміріңізді енгізіңіз
   uz: Iltimos, telefon raqamingizni kiriting
+  cz: Zadejte telefonní číslo
 auth-registerform-pass-desc:
   ru: Пароль
   en: Password
@@ -153,6 +171,7 @@ auth-registerform-pass-desc:
   es: Contraseña
   kk: Құпия сөз
   uz: Parol
+  cz: Heslo
 auth-registerform-password-placeholder:
   ru: Выберите пароль
   en: Pick a password
@@ -161,6 +180,7 @@ auth-registerform-password-placeholder:
   es: Elija una contraseña
   kk: Құпия сөз таңдаңыз
   uz: Parol tanlang
+  cz: Zvolte heslo
 auth-registerform-password-desc:
   ru: Пароль
   en: Password
@@ -169,6 +189,7 @@ auth-registerform-password-desc:
   es: Contraseña
   kk: Құпия сөз
   uz: Parol
+  cz: Heslo
 auth-registerform-password-tip-text:
   ru: Придумайте пароль, который сложно подобрать
   en: Create a password that is hard to guess
@@ -177,6 +198,7 @@ auth-registerform-password-tip-text:
   es: Cree una contraseña difícil de adivinar
   kk: Болжау қиын құпия сөз жасаңыз
   uz: Taxmin qilish qiyin bo'lgan parol yarating
+  cz: Vytvořte heslo, které je těžké uhodnout
 auth-registerform-password-tip-success:
   ru: Пароль соотвествует требованиям
   en: Password meets requirements
@@ -185,6 +207,7 @@ auth-registerform-password-tip-success:
   es: La contraseña cumple con los requisitos
   kk: Құпия сөз талаптарға сәйкес келеді
   uz: Parol talablariga javob beradi
+  cz: Heslo splňuje požadavky
 auth-registerform-password-tip-error:
   ru: Пароль не соответствует требованиям
   en: Password does not meet requirements
@@ -193,6 +216,7 @@ auth-registerform-password-tip-error:
   es: La contraseña no cumple con los requisitos
   kk: Құпия сөз талаптарға сәйкес келмейді
   uz: Parol talablariga javob bermaydi
+  cz: Heslo nesplňuje požadavky
 auth-registerform-password-tip-generate:
   ru: Сгенерировать пароль
   en: Generate password
@@ -201,6 +225,7 @@ auth-registerform-password-tip-generate:
   es: Generar contraseña
   kk: Құпия сөзді жасау
   uz: Parol yaratish
+  cz: Vygenerovat heslo
 auth-registerform-password-tip-copied:
   ru: Пароль скопирован в буфер обмена
   en: Password copied to clipboard
@@ -209,6 +234,7 @@ auth-registerform-password-tip-copied:
   es: Contraseña copiada al portapapeles
   kk: Құпия сөз алмасу буферіне көшірілді
   uz: Parol clipboardga nusxalandi
+  cz: Heslo zkopírováno do schránky
 auth-registerform-password-tip-additional-1:
   ru: цифры
   en: digits
@@ -217,6 +243,7 @@ auth-registerform-password-tip-additional-1:
   es: dígitos
   kk: сандар
   uz: raqamlar
+  cz: číslice
 auth-registerform-password-tip-additional-2:
   ru: символы (!, $, ^ и др.)
   en: symbols (!, $, ^, etc.)
@@ -225,6 +252,7 @@ auth-registerform-password-tip-additional-2:
   es: símbolos (!, $, ^, etc.)
   kk: таңбалар (!, $, ^ және т.б.)
   uz: belgilar (!, $, ^ va boshqalar)
+  cz: symboly (!, $, ^, atd.)
 auth-registerform-password-tip-additional-3:
   ru: заглавные латинские буквы
   en: capital latin letters
@@ -233,6 +261,7 @@ auth-registerform-password-tip-additional-3:
   es: letras latinas mayúsculas
   kk: бас әріптер латын әріптері
   uz: katta lotin harflari
+  cz: velká písmena latinky
 auth-registerform-password-tip-additional-4:
   ru: строчные латинские буквы
   en: lowercase latin letters
@@ -241,6 +270,7 @@ auth-registerform-password-tip-additional-4:
   es: letras latinas minúsculas
   kk: кіші әріптер латын әріптері
   uz: kichik lotin harflari
+  cz: malá písmena latinky
 auth-registerform-password-validation1:
   ru: Пожалуйста, введите пароль
   en: Please enter a password
@@ -249,6 +279,7 @@ auth-registerform-password-validation1:
   es: Por favor, introduzca una contraseña
   kk: Құпия сөзді енгізіңіз
   uz: Iltimos, parolni kiriting
+  cz: Zadejte heslo
 auth-registerform-password-validation3:
   ru: Пароль не соответствует требованиям
   en: Password does not meet requirements
@@ -257,6 +288,7 @@ auth-registerform-password-validation3:
   es: La contraseña no cumple con los requisitos
   kk: Құпия сөз талаптарға сәйкес келмейді
   uz: Parol talablariga javob bermaydi
+  cz: Heslo nesplňuje požadavky
 auth-registerform-confirmation-placeholder:
   ru: Повторите пароль
   en: Confirm password
@@ -265,6 +297,7 @@ auth-registerform-confirmation-placeholder:
   es: Confirme la contraseña
   kk: Құпия сөзді растаңыз
   uz: Parolni tasdiqlang
+  cz: Potvrďte heslo
 auth-registerform-confirmation-desc:
   ru: Повторите пароль
   en: Confirm password
@@ -273,6 +306,7 @@ auth-registerform-confirmation-desc:
   es: Confirme la contraseña
   kk: Құпия сөзді растаңыз
   uz: Parolni tasdiqlang
+  cz: Potvrďte heslo
 auth-registerform-password-validation2:
   ru: Пожалуйста, повторите пароль
   en: Please repeat password
@@ -281,6 +315,7 @@ auth-registerform-password-validation2:
   es: Por favor, repita la contraseña
   kk: Құпия сөзді қайталаңыз
   uz: Iltimos, parolni takrorlang
+  cz: Zopakujte heslo
 auth-registerform-confirmation-validation4:
   ru: Пароли должны совпадать
   en: Passwords must match
@@ -289,6 +324,7 @@ auth-registerform-confirmation-validation4:
   es: Las contraseñas deben coincidir
   kk: Құпия сөздер сәйкес келуі керек
   uz: Parollar mos kelishi kerak
+  cz: Hesla se musí shodovat
 auth-registerform-aggreenment-placeholder:
   ru: Я соглашаюсь с условиями и даю согласие на обработку персональных данных
   en: I agree to the terms and consent to the processing of personal data
@@ -300,6 +336,7 @@ auth-registerform-aggreenment-placeholder:
   kk: Мен шарттармен келісемін және жеке деректерді өңдеуге келісімімді беремін
   uz: Men shartlarga roziman va shaxsiy ma'lumotlarni qayta ishlashga rozilik
     beraman
+  cz: Souhlasím s podmínkami a se zpracováním osobních údajů
 auth-registerform-aggreenment-validation1:
   ru: Вам необходимо подтвердить соглашение на обработку персональных данных и
     согласие на условия
@@ -315,6 +352,7 @@ auth-registerform-aggreenment-validation1:
     растауыңыз керек
   uz: Siz shaxsiy ma'lumotlarni qayta ishlash bo'yicha kelishuvni va shartlarni
     qabul qilishingiz kerak
+  cz: Musíte potvrdit souhlas se zpracováním osobních údajů a podmínkami
 auth-register-button:
   ru: Регистрация
   en: Registration
@@ -323,6 +361,7 @@ auth-register-button:
   es: Registro
   kk: Тіркелу
   uz: Ro'yxatdan o'tish
+  cz: Registrace
 auth-login-register-text:
   ru: Уже есть аккаунт?
   en: Already have an account?
@@ -331,6 +370,7 @@ auth-login-register-text:
   es: ¿Ya tienes una cuenta?
   kk: Сізде тіркелгі бар ма?
   uz: Sizda hisob bormi?
+  cz: Už máte účet?
 auth-login-button:
   ru: Вход
   en: Login
@@ -339,6 +379,7 @@ auth-login-button:
   es: Iniciar sesión
   kk: Кіру
   uz: Kirish
+  cz: Přihlásit se
 auth-registerform-password-tip-text2:
   ru: "Пароль должен содержать: "
   en: "Password must contains:"
@@ -347,6 +388,7 @@ auth-registerform-password-tip-text2:
   es: "La contraseña debe contener: "
   kk: "Құпия сөз мыналарды қамтуы керек: "
   uz: "Parol quyidagilarni o'z ichiga olishi kerak: "
+  cz: "Heslo musí obsahovat:"
 auth-registerform-password-tip-digits:
   ru: более %s символов
   en: at least %s symbols
@@ -355,6 +397,7 @@ auth-registerform-password-tip-digits:
   es: al menos %s símbolos
   kk: кемінде %s таңба
   uz: kamida %s belgilar
+  cz: alespoň %s znaků
 auth-logincontainer-confirmation-phone-message:
   ru: Подтвердите номер телефона, чтобы мы могли оперативно связаться с вами и
     уточнить детали по заявке
@@ -370,6 +413,8 @@ auth-logincontainer-confirmation-phone-message:
     нөміріңізді растаңыз
   uz: Siz bilan tezda bog'lanishimiz va ariza tafsilotlarini aniqlashtirishimiz
     uchun telefon raqamingizni tasdiqlang
+  cz: Potvrďte své telefonní číslo, abychom vás mohli rychle kontaktovat a
+    upřesnit detaily žádosti
 auth-logincontainer-confirmation-phone-message2:
   ru: "Мы отправили код SMS-сообщением на номер: %s"
   en: "We sent the code via SMS to the number: %s"
@@ -378,6 +423,7 @@ auth-logincontainer-confirmation-phone-message2:
   es: "Enviamos el código por SMS al número: %s"
   kk: "Біз кодты SMS арқылы нөмірге жібердік: %s"
   uz: "Biz kodni SMS orqali raqamga yubordik: %s"
+  cz: "Kód jsme zaslali SMS na číslo: %s"
 auth-logincontainer-confirmation-email-message:
   ru: Подтвердите Email. Мы будем присылать только важные письма. Например, об
     изменении статуса вашей заявки или напоминания заплатить по кредиту
@@ -396,6 +442,8 @@ auth-logincontainer-confirmation-email-message:
   uz: Elektron pochtangizni tasdiqlang. Biz faqat muhim elektron xabarlarni
     yuboramiz. Masalan, arizangiz holatidagi o'zgarish yoki kreditni to'lash
     eslatmasi
+  cz: Potvrďte e-mail. Budeme posílat pouze důležité e-maily, například změnu
+    stavu žádosti nebo připomenutí platby půjčky
 auth-logincontainer-confirmation-email-message2:
   ru: "Мы отправили код подтверждения на email: %s"
   en: "We have sent a confirmation code to email: %s"
@@ -404,6 +452,7 @@ auth-logincontainer-confirmation-email-message2:
   es: "Hemos enviado un código de confirmación al correo electrónico: %s"
   kk: "Біз растау кодын электрондық поштаға жібердік: %s"
   uz: "Biz tasdiqlash kodini elektron pochta orqali yubordik: %s"
+  cz: "Potvrzovací kód jsme zaslali na e-mail: %s"
 auth-registerform-complete-button:
   ru: Зарегистрироваться
   en: Register
@@ -412,6 +461,7 @@ auth-registerform-complete-button:
   es: Registrarse
   kk: Тіркелу
   uz: Ro'yxatdan o'tish
+  cz: Registrovat se
 auth-logincontainer-confirmation-phone-message3:
   ru: Введите код подтверждения, который мы отправили сам в SMS
   en: Enter the confirmation code that we sent you in SMS
@@ -420,6 +470,7 @@ auth-logincontainer-confirmation-phone-message3:
   es: Ingrese el código de confirmación que le enviamos por SMS
   kk: Біз жіберген растау кодын енгізіңіз SMS арқылы
   uz: Biz yuborgan tasdiqlash kodini SMS orqali kiriting
+  cz: Zadejte ověřovací kód, který jsme vám zaslali SMS
 auth-logincontainer-confirmation-email-message3:
   ru: Введите код подтверждения, который мы отправили на почту
   en: Enter the confirmation code that we sent you by email
@@ -428,3 +479,4 @@ auth-logincontainer-confirmation-email-message3:
   es: Ingrese el código de confirmación que le enviamos por correo electrónico
   kk: Біз жіберген растау кодын енгізіңіз электрондық пошта арқылы
   uz: Biz yuborgan tasdiqlash kodini elektron pochta orqali kiriting
+  cz: Zadejte ověřovací kód, který jsme vám zaslali e-mailem

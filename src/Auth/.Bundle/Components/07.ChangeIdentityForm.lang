@@ -6,6 +6,7 @@ auth-changeform-property-validation1:
   es: Este campo es obligatorio
   kk: Бұл өріс толтырылуы міндетті
   uz: Bu maydonni to'ldirish majburiy
+  cz: Toto pole je povinné
 auth-changeidentity-button:
   ru: Отправить
   en: Send
@@ -14,6 +15,7 @@ auth-changeidentity-button:
   es: Enviar
   kk: Жіберу
   uz: Yuborish
+  cz: Odeslat
 auth-changeform-code-desc:
   ru: Введите код восстановления
   en: Enter recovery code
@@ -22,6 +24,7 @@ auth-changeform-code-desc:
   es: Introduzca el código de recuperación
   kk: Қалпына келтіру кодын енгізіңіз
   uz: Tiklash kodini kiriting
+  cz: Zadejte obnovovací kód
 auth-changeform-code-validation1:
   ru: Пожалуйста, введите эл. адрес
   en: Please enter an email address
@@ -30,6 +33,7 @@ auth-changeform-code-validation1:
   es: Por favor, introduzca una dirección de correo electrónico
   kk: Электрондық пошта мекенжайын енгізіңіз
   uz: Iltimos, elektron pochta manzilini kiriting
+  cz: Zadejte e-mailovou adresu
 auth-changeidentity-timer-value:
   ru: Вы сможете снова запросить код через %s секунд.
   en: You will be able to request the code again in %s seconds.
@@ -38,6 +42,7 @@ auth-changeidentity-timer-value:
   es: Podrá solicitar el código nuevamente en %s segundos.
   kk: Сіз кодты қайта сұрай аласыз %s секундтан кейін.
   uz: Siz kodni %s soniyadan keyin qayta so'rashingiz mumkin.
+  cz: Kód budete moci znovu požádat za %s sekund.
 auth-changeidentity-requestagain:
   ru: Получить новый код
   en: Get a new code
@@ -46,3 +51,4 @@ auth-changeidentity-requestagain:
   es: Obtener un nuevo código
   kk: Жаңа код алу
   uz: Yangi kodni olish
+  cz: Získat nový kód

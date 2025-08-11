@@ -6,6 +6,7 @@ auth-windows-twofactorappinformation-code:
   hy: Ստուգել և պահպանել
   kk: Тексеріп, сақтау
   uz: Tekshirish va saqlash
+  cz: Ověřit a uložit
 auth-windows-twofactorappinformation-title:
   ru: Сканируйте QR-код в приложение аутентификации, например Google Authenticator
   en: Scan the QR code in your authentication app, such as Google Authenticator
@@ -19,6 +20,8 @@ auth-windows-twofactorappinformation-title:
     сканерлеңіз
   uz: QR kodni autentifikatsiya ilovangizda, masalan, Google Authenticator-da
     skanerlang
+  cz: Naskenujte QR kód ve své autentizační aplikaci, například Google
+    Authenticator
 auth-windows-twofactorappinformation-code-placeholder:
   ru: Введите код из приложения аутентификации для проверки
   en: Enter the code from your authentication app to verify
@@ -27,6 +30,7 @@ auth-windows-twofactorappinformation-code-placeholder:
   hy: Մուտքագրեք ձեր վավերացման հավելվածից կոդը ստուգման համար
   kk: Тексеру үшін аутентификациялау қосымшаңыздан кодты енгізіңіз
   uz: Tekshirish uchun autentifikatsiya ilovangizdan kodni kiriting
+  cz: Zadejte kód z autentizační aplikace pro ověření
 auth-windows-twofactorappinformation-title2:
   ru: Или введите код вручную
   en: Or enter the code manually
@@ -35,6 +39,7 @@ auth-windows-twofactorappinformation-title2:
   hy: Կամ մուտքագրեք կոդը ձեռքով
   kk: Немесе кодты қолмен енгізіңіз
   uz: Yoki kodni qo'lda kiriting
+  cz: Nebo zadejte kód ručně
 auth-windows-twofactorappinformation-delete:
   ru: Удалить код и не использовать приложение
   en: Delete code and do not use the app
@@ -43,3 +48,4 @@ auth-windows-twofactorappinformation-delete:
   hy: Հեռացնել կոդը և չօգտագործել հավելվածը
   kk: Кодты жою және қосымшаны пайдаланбау
   uz: Kodni o'chirish va ilovadan foydalanmaslik
+  cz: Smazat kód a nepoužívat aplikaci
