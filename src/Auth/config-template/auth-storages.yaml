@@ -205,6 +205,49 @@ applications:
         valuegenerator: ""
         onchangehandler: ""
       fields:
+        askforphone:
+          desc:
+            ru: Требовать номер телефона
+            en: ""
+            it: ""
+            hy: ""
+            es: ""
+            kk: ""
+            uz: ""
+            cz: ""
+            de: ""
+            tr: ""
+            zh: ""
+          type: bool
+          component: Colibri.UI.Forms.Checkbox
+          class: bool
+          attrs:
+            inputWidth: ""
+          params:
+            required: false
+            enabled: true
+            canbeempty: true
+            readonly: false
+            searchable: false
+            list: true
+            template: false
+            multiple: false
+            viewer: Colibri.UI.CheckboxViewer
+            vertical: false
+            visual: false
+            code: 0
+            keyTitle: ""
+            valueTitle: ""
+            canEditKey: false
+            canAddNew: false
+            canRemoveRows: false
+            removelink: true
+            updownlink: true
+            hasscroll: true
+            initempty: true
+            removedesc: true
+          group: window
+          default: "1"
         livetime:
           desc:
             ru: Время жизни
