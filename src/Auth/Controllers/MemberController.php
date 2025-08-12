@@ -51,6 +51,7 @@ class MemberController extends WebController
     {
 
         $session = Sessions::LoadFromRequest();
+        $app = Module::Instance()->application;
 
         $payloadArray = $payload->ToArray();
         $email = $payloadArray['email'] ?? $post->{'email'};
@@ -81,6 +82,11 @@ class MemberController extends WebController
 
             $invitation->accepted = new DateTimeField('now');
             $invitation->Save(true);
+        }
+
+        if(!$app->params->askforphone) {
+            $phone = Module::Instance()->GenerateLocalPhoneNumber();
+            $phone_confirmed = true;
         }
 
         if (!$email || !$phone || !$password || !$confirmation) {

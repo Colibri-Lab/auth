@@ -9,14 +9,14 @@
  * @copyright 2019 Colibri
  * @package App\Modules\Auth
  */
+
 namespace App\Modules\Auth;
 
- 
 use Colibri\Modules\Module as BaseModule;
 use Colibri\Utils\Menu\Item;
 use Colibri\Events\EventsContainer;
 use Colibri\App;
-use Colibri\Utils\Logs\Logger; 
+use Colibri\Utils\Logs\Logger;
 use App\Modules\Auth\Models\Applications;
 use App\Modules\Auth\Models\Application;
 use App\Modules\Auth\Controllers\SessionController;
@@ -26,6 +26,8 @@ use App\Modules\Auth\Controllers\AutologinController;
 use App\Modules\Auth\Controllers\InvitesController;
 use App\Modules\Auth\Models\Sessions;
 use App\Modules\Auth\Models\Session;
+use Colibri\Common\RandomizationHelper;
+use Colibri\Common\StringHelper;
 use Composer\Autoload\AutoloadGenerator;
 
 /**
@@ -37,13 +39,11 @@ use Composer\Autoload\AutoloadGenerator;
  */
 class Module extends BaseModule
 {
+    private static ?Session $session = null;
 
+    private ?Application $_app = null;
 
-    private static ? Session $session = null;
-
-    private ? Application $_app = null;
-
-    const NeedAuthorization = [
+    public const NeedAuthorization = [
         SessionController::class,
         MemberController::class,
         AppController::class,
@@ -143,7 +143,7 @@ class Module extends BaseModule
      */
     public function Backup(Logger $logger, string $path)
     {
-        // Do nothing   
+        // Do nothing
 
         $modulePath = $path . 'modules/Auth/';
 
@@ -178,6 +178,16 @@ class Module extends BaseModule
         } else {
             return parent::__get($prop);
         }
+    }
+
+    public function GenerateLocalPhoneNumber(): string
+    {
+        $microtime = microtime(true);
+        // Убираем точку, получаем строку с цифрами
+        $numStr = str_replace('.', '', number_format($microtime, 6, '.', ''));
+        // Берём последние 10 цифр
+        $digits = substr($numStr, -10);
+        return '+997' . $digits;
     }
 
 }

@@ -1793,6 +1793,13 @@ members:
         en: Telephone
         it: Telefono
         hy: Հեռախոս
+        es: ""
+        kk: ""
+        uz: ""
+        cz: ""
+        de: ""
+        tr: ""
+        zh: ""
       note:
         ru: Телефон в формате «код страны»«код внутри страны»«номер» без знаков, только
           цифры
@@ -1800,11 +1807,19 @@ members:
           only numbers
         it: ""
         hy: ""
+        es: ""
+        kk: ""
+        uz: ""
+        cz: ""
+        de: ""
+        tr: ""
+        zh: ""
       type: varchar
       length: "50"
       component: Colibri.UI.Forms.Text
       class: string
-      attrs: []
+      attrs:
+        inputWidth: ""
       params:
         required: true
         enabled: true
@@ -1814,46 +1829,20 @@ members:
         list: true
         template: false
         multiple: false
-        greed: ""
-        viewer: ~
         vertical: false
         visual: false
         code: 0
         mask: "99999999999"
-        fieldgenerator: ""
-        generator: ""
-        noteClass: ""
-        simplearraywidth: ""
-        simplearrayheight: ""
-        addlink:
-          ru: ""
-          en: ""
-          it: ""
-          hy: ""
+        keyTitle: ""
+        valueTitle: ""
+        canEditKey: false
+        canAddNew: false
+        canRemoveRows: false
         removelink: true
         updownlink: true
         hasscroll: true
         initempty: true
-        displayed_columns: ""
-        maxadd: ""
-        title: ""
         removedesc: true
-        allow: ""
-        size: ""
-        validate:
-        - message:
-            ru: ""
-            en: ""
-            it: ""
-            hy: ""
-          method: (field, validator) => { return true; /* false */ }
-        valuegenerator: ""
-        onchangehandler: ""
-      placeholder:
-        ru: ""
-        en: ""
-        it: ""
-        hy: ""
       tag: []
     password:
       group: window
