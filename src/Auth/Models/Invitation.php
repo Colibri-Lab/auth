@@ -128,6 +128,8 @@ class Invitation extends BaseModelDataRow
         unset($arr['datecreated']);
         unset($arr['datemodified']);
         unset($arr['datedeleted']);
+		$arr['invitation'] = true;
+		$arr['token'] = $arr['code'];
         return $arr;
 	}
 

@@ -329,7 +329,7 @@ class MemberController extends WebController
                 'validation' => [
                     'email' => '#{auth-errors-member-with-email-not-exists}'
                 ]
-            ]);
+            ]); 
         }
 
         if ($app->params->askforphone && $member->phone != $phone) {
@@ -1206,14 +1206,25 @@ class MemberController extends WebController
             if($found) {
                 $ret[$found->token] = $found->ExportForUserInterface(true);
             } else {
-                $members = Members::LoadByFilter(
-                    -1, 
-                    20, 
-                    '(concat({last_name}, \' \', {first_name}, \' \', {patronymic}, \' \', {phone}, \' \', {email}) like \'%' . $term . '%\') and ({token} <> \''.$currentMember->token.'\')'
-                );
-                foreach ($members as $member) {
-                    /** @var Member $member */
-                    $ret[$member->token] = $member->ExportForUserInterface(true);
+                $found = Invitations::LoadByCode($term);
+                if($found) {
+                    $ret[$found->code] = $found->ExportForUserInterface();
+                } else {
+
+                    $members = Members::LoadByFilter(
+                        -1, 
+                        20, 
+                        '(concat({last_name}, \' \', {first_name}, \' \', {patronymic}, \' \', {phone}, \' \', {email}) like \'%' . $term . '%\') and ({token} <> \''.$currentMember->token.'\')'
+                    );
+                    foreach ($members as $member) {
+                        /** @var Member $member */
+                        $ret[$member->token] = $member->ExportForUserInterface(true);
+                    }
+    
+                    $invitations = Invitations::LoadByFilter(-1, 20, '(concat({fio}, \' \', {email}) like \'%' . $term . '%\') and ({code} <> \''.$currentMember->token.'\')');
+                    foreach($invitations as $invite) {
+                        $ret[$invite->token] = $invite->ExportForUserInterface();
+                    }
                 }
             }
         } elseif (is_array($term)) {
@@ -1222,6 +1233,10 @@ class MemberController extends WebController
                 $found = Members::LoadByToken($t);
                 if($found) {
                     $ret[$found->token] = $found->ExportForUserInterface(true);
+                }
+                $found = Invitations::LoadByCode($t);
+                if($found) {
+                    $ret[$found->code] = $found->ExportForUserInterface();
                 }
             }
         }
