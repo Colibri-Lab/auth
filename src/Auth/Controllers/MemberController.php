@@ -297,9 +297,16 @@ class MemberController extends WebController
 
         $payloadArray = $payload->ToArray();
         $email = $payloadArray['email'] ?? $post->{'email'};
-        $phone = $payloadArray['phone'] ?? $post->{'phone'};
+        $phone = $payloadArray['phone'] ?? $post->{'phone'} ?? null;
 
-        if (!$email || !$phone) {
+        $app = Module::Instance()->application;
+        if(!$app->params->askforphone) {
+            $requestNOk = !$email;
+        } else {
+            $requestNOk = !$email || !$phone;
+        }
+
+        if ($requestNOk) {
             $validation = [];
             if (!$email) {
                 $validation['email'] = '#{auth-errors-member-field-required}';
@@ -325,7 +332,7 @@ class MemberController extends WebController
             ]);
         }
 
-        if ($member->phone != $phone) {
+        if ($app->params->askforphone && $member->phone != $phone) {
             return $this->Finish(400, 'Bad Request', [
                 'message' => '#{auth-errors-phone-incorrect}',
                 'code' => 400,
@@ -549,13 +556,21 @@ class MemberController extends WebController
 
         $payloadArray = $payload->ToArray();
         $email = $payloadArray['email'] ?? $post->{'email'};
-        $phone = $payloadArray['phone'] ?? $post->{'phone'};
+        $phone = $payloadArray['phone'] ?? $post->{'phone'} ?? null;
         $code = $payloadArray['code'] ?? $post->{'code'};
         $password = $payloadArray['password'] ?? $post->{'password'};
         $confirmation = $payloadArray['confirmation'] ?? $post->{'confirmation'};
 
-        if (!$email || !$phone || !$code || !$password) {
-            return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
+        $app = Module::Instance()->application;
+
+        if(!$app->params->askforphone) {
+            if (!$email || !$code || !$password) {
+                return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
+            }
+        } else {
+            if (!$email || !$phone || !$code || !$password) {
+                return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
+            }
         }
 
         $member = Members::LoadByEmail($email);
@@ -569,14 +584,16 @@ class MemberController extends WebController
             ]);
         }
 
-        if ($member->phone != $phone) {
-            return $this->Finish(400, 'Bad Request', [
-                'message' => '#{auth-errors-phone-incorrect}',
-                'code' => 400,
-                'validation' => [
-                    'phone' => '#{auth-errors-member-with-phone-not-exists}'
-                ]
-            ]);
+        if($app->params->askforphone) {
+            if ($member->phone != $phone) {
+                return $this->Finish(400, 'Bad Request', [
+                    'message' => '#{auth-errors-phone-incorrect}',
+                    'code' => 400,
+                    'validation' => [
+                        'phone' => '#{auth-errors-member-with-phone-not-exists}'
+                    ]
+                ]);
+            }
         }
 
         if ($password != $confirmation) {
