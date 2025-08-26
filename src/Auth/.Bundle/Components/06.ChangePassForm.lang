@@ -10,6 +10,7 @@ auth-changepassform-original-desc:
   de: Aktuelles Passwort
   tr: Mevcut şifre
   zh: 当前密码
+  fa: رمز عبور فعلی
 auth-changepassform-password-desc:
   ru: Новый пароль
   en: New password
@@ -22,6 +23,7 @@ auth-changepassform-password-desc:
   de: Neues Passwort
   tr: Yeni şifre
   zh: 新密码
+  fa: رمز عبور جدید
 auth-changepassform-password-tip-text:
   ru: Придумайте пароль, который сложно подобрать
   en: Create a password that is hard to guess
@@ -34,6 +36,7 @@ auth-changepassform-password-tip-text:
   de: Erstellen Sie ein schwer zu erratendes Passwort
   tr: Tahmin edilmesi zor bir şifre oluşturun
   zh: 创建一个难以猜测的密码
+  fa: یک رمز عبور بسازید که حدس زدن آن سخت باشد
 auth-changepassform-password-tip-success:
   ru: Пароль соответствует требованиям
   en: Password meets requirements
@@ -46,6 +49,7 @@ auth-changepassform-password-tip-success:
   de: Passwort erfüllt die Anforderungen
   tr: Şifre gereksinimleri karşılıyor
   zh: 密码符合要求
+  fa: رمز عبور با الزامات مطابقت دارد
 auth-changepassform-password-tip-error:
   ru: Пароль не соответствует требованиям
   en: Password does not meet requirements
@@ -58,6 +62,7 @@ auth-changepassform-password-tip-error:
   de: Passwort erfüllt die Anforderungen nicht
   tr: Şifre gereksinimleri karşılamıyor
   zh: 密码不符合要求
+  fa: رمز عبور با الزامات مطابقت ندارد
 auth-changepassform-password-tip-generate:
   ru: Сгенерировать пароль
   en: Generate password
@@ -70,6 +75,7 @@ auth-changepassform-password-tip-generate:
   de: Passwort generieren
   tr: Şifre oluştur
   zh: 生成密码
+  fa: تولید رمز عبور
 auth-changepassform-password-tip-copied:
   ru: Пароль скопирован в буфер обмена
   en: Password copied to clipboard
@@ -82,6 +88,7 @@ auth-changepassform-password-tip-copied:
   de: Passwort in die Zwischenablage kopiert
   tr: Şifre panoya kopyalandı
   zh: 密码已复制到剪贴板
+  fa: رمز عبور در کلیپ‌بورد کپی شد
 auth-changepassform-password-tip-additional-1:
   ru: цифры
   en: digits
@@ -94,6 +101,7 @@ auth-changepassform-password-tip-additional-1:
   de: Ziffern
   tr: rakamlar
   zh: 数字
+  fa: ارقام
 auth-changepassform-password-tip-additional-2:
   ru: символы (!, $, ^ и др.)
   en: symbols (!, $, ^, etc.)
@@ -106,6 +114,7 @@ auth-changepassform-password-tip-additional-2:
   de: Symbole (!, $, ^, usw.)
   tr: semboller (!, $, ^, vb.)
   zh: 符号（!、$、^等）
+  fa: نمادها (!، $، ^ و غیره)
 auth-changepassform-password-tip-additional-3:
   ru: заглавные латинские буквы
   en: capital latin letters
@@ -118,6 +127,7 @@ auth-changepassform-password-tip-additional-3:
   de: Großbuchstaben
   tr: büyük harfler
   zh: 大写字母
+  fa: حروف لاتین بزرگ
 auth-changepassform-password-tip-additional-4:
   ru: строчные латинские буквы
   en: lowercase latin letters
@@ -130,6 +140,7 @@ auth-changepassform-password-tip-additional-4:
   de: Kleinbuchstaben
   tr: küçük harfler
   zh: 小写字母
+  fa: حروف لاتین کوچک
 auth-changepassform-password-validation1:
   ru: Пожалуйста, введите пароль
   en: Please enter a password
@@ -142,6 +153,7 @@ auth-changepassform-password-validation1:
   de: Bitte geben Sie ein Passwort ein
   tr: Lütfen bir şifre girin
   zh: 请输入密码
+  fa: لطفاً رمز عبور را وارد کنید
 auth-changepassform-password-validation2:
   ru: Пожалуйста, повторите пароль
   en: Please repeat password
@@ -154,6 +166,7 @@ auth-changepassform-password-validation2:
   de: Bitte wiederholen Sie das Passwort
   tr: Lütfen şifreyi tekrar girin
   zh: 请再次输入密码
+  fa: لطفاً رمز عبور را دوباره وارد کنید
 auth-changepassform-password-validation3:
   ru: Пароль не соответствует требованиям
   en: Password does not meet requirements
@@ -166,6 +179,7 @@ auth-changepassform-password-validation3:
   de: Passwort erfüllt die Anforderungen nicht
   tr: Şifre gereksinimleri karşılamıyor
   zh: 密码不符合要求
+  fa: رمز عبور با الزامات مطابقت ندارد
 auth-changepassform-confirmation-validation4:
   ru: Пароли должны совпадать
   en: Passwords must match
@@ -178,6 +192,7 @@ auth-changepassform-confirmation-validation4:
   de: Passwörter müssen übereinstimmen
   tr: Şifreler eşleşmeli
   zh: 两次输入的密码必须一致
+  fa: رمزهای عبور باید یکسان باشند
 auth-changepassform-confirmation-desc:
   ru: Повторите новый пароль
   en: Repeat new password
@@ -190,6 +205,7 @@ auth-changepassform-confirmation-desc:
   de: Neues Passwort wiederholen
   tr: Yeni şifreyi tekrar girin
   zh: 再次输入新密码
+  fa: رمز عبور جدید را دوباره وارد کنید
 auth-changepass-button:
   ru: Обновить пароль
   en: Update password
@@ -202,6 +218,7 @@ auth-changepass-button:
   de: Passwort aktualisieren
   tr: Şifreyi güncelle
   zh: 更新密码
+  fa: به‌روزرسانی رمز عبور
 auth-changepassform-password-tip-text2:
   ru: "Пароль должен содержать:"
   en: "Password must contains:"
@@ -214,6 +231,7 @@ auth-changepassform-password-tip-text2:
   de: "Das Passwort muss enthalten:"
   tr: "Şifre şunları içermelidir:"
   zh: 密码必须包含：
+  fa: "رمز عبور باید شامل موارد زیر باشد:"
 auth-changepassform-password-tip-digits:
   ru: более %s символов
   en: at least %s symbols
@@ -226,3 +244,4 @@ auth-changepassform-password-tip-digits:
   de: mindestens %s Zeichen
   tr: en az %s karakter
   zh: 至少%s个字符
+  fa: حداقل %s کاراکتر

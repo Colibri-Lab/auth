@@ -10,6 +10,7 @@ auth-inviteform-email:
   de: E-Mail
   tr: E-posta
   zh: 邮箱
+  fa: ایمیل
 auth-inviteform-email-validation1:
   ru: Пожалуйста, введите корректный эл. адрес
   en: Please, enter the correct email
@@ -22,6 +23,7 @@ auth-inviteform-email-validation1:
   de: Bitte geben Sie die korrekte E-Mail-Adresse ein
   tr: Lütfen doğru e-posta adresini girin
   zh: 请输入正确的邮箱
+  fa: لطفا ایمیل صحیح را وارد کنید
 auth-inviteform-phone:
   ru: Телефон
   en: Phone
@@ -34,6 +36,7 @@ auth-inviteform-phone:
   de: Telefon
   tr: Telefon
   zh: 电话
+  fa: تلفن
 auth-inviteform-fio:
   ru: ФИО
   en: Full name
@@ -46,6 +49,7 @@ auth-inviteform-fio:
   de: Vollständiger Name
   tr: Tam ad
   zh: 全名
+  fa: نام کامل
 auth-invite-button:
   ru: Отправить
   en: Send
@@ -58,6 +62,7 @@ auth-invite-button:
   de: Senden
   tr: Gönder
   zh: 发送
+  fa: ارسال
 auth-inviteform-multiple:
   ru: Список приглашений
   en: List of invitations
@@ -70,6 +75,7 @@ auth-inviteform-multiple:
   de: Einladungsliste
   tr: Davet listesi
   zh: 邀请列表
+  fa: لیست دعوت‌ها
 auth-inviteform-multiple-note:
   ru: 'Пожалуйста, введите список приглашений в формате: "email" "name", строки
     разделите переводом строки. Вы можете выделить нужную область в эксель и
@@ -103,6 +109,7 @@ auth-inviteform-multiple-note:
     yeni satır ile ayırın. Excel'de istediğiniz alanı seçip bu alana
     kopyalayabilirsiniz, format doğru olacaktır "
   zh: 请输入邀请列表，格式为："邮箱" "姓名"，每行一个。可在Excel中选择区域复制粘贴，格式会自动正确。
+  fa: 'لطفا لیست دعوت‌ها را با فرمت: "ایمیل" "نام" وارد کنید، هر دعوت در یک خط جداگانه. می‌توانید محدوده مورد نظر را در اکسل انتخاب و در این قسمت کپی کنید، فرمت صحیح خواهد بود.'
 auth-inviteform-rows-validation1:
   ru: Пожалуйста, введите список строк для приглашения
   en: Please, enter the list of rows for the invitation
@@ -115,6 +122,7 @@ auth-inviteform-rows-validation1:
   de: Bitte geben Sie die Zeilen für die Einladung ein
   tr: Lütfen davet için satır listesini girin
   zh: 请输入邀请的行列表
+  fa: لطفا لیست سطرهای دعوت را وارد کنید
 auth-inviteform-rows-validation2:
   ru: Пожалуста, введите строки которые содержат в первой части электронный адрес
   en: Please, enter the rows that contain an email address in the first part
@@ -131,3 +139,4 @@ auth-inviteform-rows-validation2:
     enthalten
   tr: Lütfen ilk kısmında e-posta adresi olan satırları girin
   zh: 请输入首项为邮箱地址的行
+  fa: لطفا سطرهایی که بخش اول آن‌ها شامل ایمیل است را وارد کنید

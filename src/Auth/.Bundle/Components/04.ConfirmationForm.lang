@@ -10,6 +10,7 @@ auth-confirmationform-code-desc:
   de: Bestätigungscode eingeben
   tr: Onay kodunu girin
   zh: 输入验证码
+  fa: کد تأیید را وارد کنید
 auth-confirmationform-code-validation1:
   ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
   en: Please enter the 6 digit code we have sent to your contact
@@ -23,6 +24,7 @@ auth-confirmationform-code-validation1:
   de: Bitte geben Sie den 6-stelligen Code ein, den wir Ihnen gesendet haben
   tr: Size gönderdiğimiz 6 haneli kodu girin
   zh: 请输入我们发送到您联系方式的6位验证码
+  fa: لطفاً کد ۶ رقمی که برای شما ارسال کرده‌ایم را وارد کنید
 auth-confirmation-timer-value:
   ru: Вы сможете снова запросить код через %s секунд.
   en: You will be able to request the code again in %s seconds.
@@ -35,6 +37,7 @@ auth-confirmation-timer-value:
   de: Sie können den Code in %s Sekunden erneut anfordern.
   tr: Kodu tekrar %s saniye sonra isteyebilirsiniz.
   zh: "%s秒后可再次请求验证码。"
+  fa: شما می‌توانید کد را دوباره در %s ثانیه درخواست کنید.
 auth-confirmation-requestagain:
   ru: Получить новый код
   en: Get a new code
@@ -47,6 +50,7 @@ auth-confirmation-requestagain:
   de: Neuen Code anfordern
   tr: Yeni kod al
   zh: 获取新验证码
+  fa: دریافت کد جدید
 auth-confirmationform-code-button:
   ru: Выслать код
   en: Send a code
@@ -59,6 +63,7 @@ auth-confirmationform-code-button:
   de: Code senden
   tr: Kod gönder
   zh: 发送验证码
+  fa: ارسال کد
 auth-confirmationform-property-email-desc:
   ru: Эл. адрес
   en: E-mail
@@ -71,6 +76,7 @@ auth-confirmationform-property-email-desc:
   de: E-Mail
   tr: E-posta
   zh: 邮箱
+  fa: ایمیل
 auth-confirmationform-property-email-validation1:
   ru: Пожалуйста, введите корректный электроннный адрес
   en: Please enter the correct email address
@@ -83,6 +89,7 @@ auth-confirmationform-property-email-validation1:
   de: Bitte geben Sie die korrekte E-Mail-Adresse ein
   tr: Lütfen doğru e-posta adresini girin
   zh: 请输入正确的邮箱地址
+  fa: لطفاً ایمیل صحیح را وارد کنید
 auth-confirmationform-property-phone-desc:
   ru: Номер телефона
   en: Phone number
@@ -95,6 +102,7 @@ auth-confirmationform-property-phone-desc:
   de: Telefonnummer
   tr: Telefon numarası
   zh: 手机号
+  fa: شماره تلفن
 auth-confirmationform-property-phone-validation1:
   ru: Пожалуйста, введите корректный номер телефона
   en: Please enter a valid phone number.
@@ -107,3 +115,4 @@ auth-confirmationform-property-phone-validation1:
   de: Bitte geben Sie eine gültige Telefonnummer ein.
   tr: Lütfen geçerli bir telefon numarası girin.
   zh: 请输入有效的手机号
+  fa: لطفاً شماره تلفن معتبر وارد کنید

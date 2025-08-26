@@ -10,6 +10,7 @@ auth-changeform-property-validation1:
   de: Dieses Feld ist erforderlich
   tr: Bu alan zorunludur
   zh: 此字段为必填项
+  fa: این فیلد الزامی است
 auth-changeidentity-button:
   ru: Отправить
   en: Send
@@ -22,6 +23,7 @@ auth-changeidentity-button:
   de: Senden
   tr: Gönder
   zh: 发送
+  fa: ارسال
 auth-changeform-code-desc:
   ru: Введите код восстановления
   en: Enter recovery code
@@ -34,6 +36,7 @@ auth-changeform-code-desc:
   de: Wiederherstellungscode eingeben
   tr: Kurtarma kodunu girin
   zh: 输入恢复码
+  fa: کد بازیابی را وارد کنید
 auth-changeform-code-validation1:
   ru: Пожалуйста, введите эл. адрес
   en: Please enter an email address
@@ -46,6 +49,7 @@ auth-changeform-code-validation1:
   de: Bitte geben Sie eine E-Mail-Adresse ein
   tr: Lütfen bir e-posta adresi girin
   zh: 请输入邮箱地址
+  fa: لطفاً یک آدرس ایمیل وارد کنید
 auth-changeidentity-timer-value:
   ru: Вы сможете снова запросить код через %s секунд.
   en: You will be able to request the code again in %s seconds.
@@ -58,6 +62,7 @@ auth-changeidentity-timer-value:
   de: Sie können den Code in %s Sekunden erneut anfordern.
   tr: Kodu tekrar %s saniye sonra isteyebilirsiniz.
   zh: "%s秒后可再次请求验证码。"
+  fa: شما می‌توانید کد را دوباره در %s ثانیه درخواست کنید.
 auth-changeidentity-requestagain:
   ru: Получить новый код
   en: Get a new code
@@ -70,3 +75,4 @@ auth-changeidentity-requestagain:
   de: Neuen Code anfordern
   tr: Yeni kod al
   zh: 获取新验证码
+  fa: دریافت کد جدید

@@ -10,6 +10,7 @@ auth-profileform-last_name-desc:
   de: Nachname
   tr: Soyadı
   zh: 姓氏
+  fa: نام خانوادگی
 auth-profileform-last_name-validation1:
   ru: Пожалуйста, введите вашу фамилию
   en: Please enter your surname
@@ -22,6 +23,7 @@ auth-profileform-last_name-validation1:
   de: Bitte geben Sie Ihren Nachnamen ein
   tr: Lütfen soyadınızı girin
   zh: 请输入您的姓氏
+  fa: لطفاً نام خانوادگی خود را وارد کنید
 auth-profileform-first_name-desc:
   ru: Имя
   en: First name
@@ -34,6 +36,7 @@ auth-profileform-first_name-desc:
   de: Vorname
   tr: Adı
   zh: 名字
+  fa: نام
 auth-profileform-first_name-placeholder:
   ru: "Например: Иван"
   en: "For example: John"
@@ -46,6 +49,7 @@ auth-profileform-first_name-placeholder:
   de: "Zum Beispiel: John"
   tr: "Örneğin: Ahmet"
   zh: 例如：John
+  fa: "مثال: علی"
 auth-profileform-first_name-validation1:
   ru: Пожалуйста, введите ваше имя
   en: Please enter your name
@@ -58,6 +62,7 @@ auth-profileform-first_name-validation1:
   de: Bitte geben Sie Ihren Namen ein
   tr: Lütfen adınızı girin
   zh: 请输入您的名字
+  fa: لطفاً نام خود را وارد کنید
 auth-profileform-partonymic-desc:
   ru: Отчество
   en: Patronymic
@@ -70,6 +75,7 @@ auth-profileform-partonymic-desc:
   de: Vatersname
   tr: Baba adı
   zh: 父名
+  fa: نام پدر
 auth-profileform-birtdate-desc:
   ru: Дата рождения
   en: Date of birth
@@ -82,6 +88,7 @@ auth-profileform-birtdate-desc:
   de: Geburtsdatum
   tr: Doğum tarihi
   zh: 出生日期
+  fa: تاریخ تولد
 auth-profileform-birthdate-validation1:
   ru: Вам слишком мало лет, нашим проектом могут пользоваться только
     совершеннолетние
@@ -95,6 +102,7 @@ auth-profileform-birthdate-validation1:
   de: Sie sind zu jung, nur Erwachsene können unser Projekt nutzen.
   tr: Çok gençsiniz, projemizi yalnızca yetişkinler kullanabilir.
   zh: 您年龄太小，仅限成年人使用本项目。
+  fa: شما خیلی جوان هستید، فقط بزرگسالان می‌توانند از پروژه ما استفاده کنند.
 auth-profileform-gender-desc:
   ru: Пол
   en: Gender
@@ -107,6 +115,7 @@ auth-profileform-gender-desc:
   de: Geschlecht
   tr: Cinsiyet
   zh: 性别
+  fa: جنسیت
 auth-profileform-gender-values-male:
   ru: Господин
   en: Mr.
@@ -119,6 +128,7 @@ auth-profileform-gender-values-male:
   de: Herr
   tr: Bay
   zh: 先生
+  fa: آقا
 auth-profileform-gender-values-female:
   ru: Госпожа
   en: Mrs.
@@ -131,6 +141,7 @@ auth-profileform-gender-values-female:
   de: Frau
   tr: Bayan
   zh: 女士
+  fa: خانم
 auth-profile-button:
   ru: Сохранить
   en: Save
@@ -143,6 +154,7 @@ auth-profile-button:
   de: Speichern
   tr: Kaydet
   zh: 保存
+  fa: ذخیره
 auth-profileform-last_name-placeholder:
   ru: "Например: Иванов"
   en: "For example: Doe"
@@ -155,6 +167,7 @@ auth-profileform-last_name-placeholder:
   de: "Zum Beispiel: Doe"
   tr: "Örneğin: Yılmaz"
   zh: 例如：Doe
+  fa: "مثال: محمدی"
 auth-profileform-avatar-desc:
   ru: Выберите аватар
   en: Choose an avatar
@@ -167,3 +180,4 @@ auth-profileform-avatar-desc:
   de: Avatar auswählen
   tr: Avatar seçin
   zh: 选择头像
+  fa: یک آواتار انتخاب کنید

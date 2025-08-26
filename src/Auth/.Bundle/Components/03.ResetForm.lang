@@ -10,6 +10,7 @@ auth-logincontainer-reset-title:
   de: Passwort zurücksetzen
   tr: Şifreyi sıfırla
   zh: 重置密码
+  fa: بازیابی رمز عبور
 auth-back-button:
   ru: Назад
   en: Back
@@ -22,6 +23,7 @@ auth-back-button:
   de: Zurück
   tr: Geri
   zh: 返回
+  fa: بازگشت
 auth-reset-button:
   ru: Восстановить
   en: Reset
@@ -34,6 +36,7 @@ auth-reset-button:
   de: Zurücksetzen
   tr: Sıfırla
   zh: 重置
+  fa: بازنشانی
 auth-resetform-email-desc:
   ru: Электронная почта
   en: Email
@@ -46,6 +49,7 @@ auth-resetform-email-desc:
   de: E-Mail
   tr: E-posta
   zh: 邮箱
+  fa: ایمیل
 auth-resetform-email-validation1:
   ru: Пожалуйста, введите эл. адрес
   en: Please enter email
@@ -58,6 +62,7 @@ auth-resetform-email-validation1:
   de: Bitte geben Sie die E-Mail-Adresse ein
   tr: Lütfen e-posta adresinizi girin
   zh: 请输入邮箱
+  fa: لطفا ایمیل را وارد کنید
 auth-resetform-email-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
   en: You are entering an invalid email address. Please try again!
@@ -73,6 +78,7 @@ auth-resetform-email-validation2:
     erneut!
   tr: Geçersiz bir e-posta adresi girdiniz. Lütfen tekrar deneyin!
   zh: 您输入的邮箱地址无效。请重试！
+  fa: شما یک آدرس ایمیل نامعتبر وارد کرده‌اید. لطفا دوباره تلاش کنید!
 auth-resetform-phone-desc:
   ru: Телефон
   en: Phone number
@@ -85,6 +91,7 @@ auth-resetform-phone-desc:
   de: Telefonnummer
   tr: Telefon numarası
   zh: 手机号
+  fa: شماره تلفن
 auth-resetform-phone-validation1:
   ru: Пожалуйста, введите телефон
   en: Please enter phone number
@@ -97,6 +104,7 @@ auth-resetform-phone-validation1:
   de: Bitte geben Sie die Telefonnummer ein
   tr: Lütfen telefon numaranızı girin
   zh: 请输入手机号
+  fa: لطفا شماره تلفن را وارد کنید
 auth-resetform-code-desc:
   ru: Код восстановления
   en: Confirmation code
@@ -109,6 +117,7 @@ auth-resetform-code-desc:
   de: Bestätigungscode
   tr: Onay kodu
   zh: 验证码
+  fa: کد تأیید
 auth-confirmationform-code-validation1:
   ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
   en: Please enter the 6 digit code we have sent to your contact
@@ -122,6 +131,7 @@ auth-confirmationform-code-validation1:
   de: Bitte geben Sie den 6-stelligen Code ein, den wir Ihnen gesendet haben
   tr: Size gönderdiğimiz 6 haneli kodu girin
   zh: 请输入我们发送到您联系方式的6位验证码
+  fa: لطفا کد ۶ رقمی که برای شما ارسال کرده‌ایم را وارد کنید
 auth-resetform-pass-desc:
   ru: Пароль
   en: Password
@@ -134,6 +144,7 @@ auth-resetform-pass-desc:
   de: Passwort
   tr: Şifre
   zh: 密码
+  fa: رمز عبور
 auth-resetform-password-placeholder:
   ru: Придумайте пароль
   en: Pick a password
@@ -146,6 +157,7 @@ auth-resetform-password-placeholder:
   de: Passwort wählen
   tr: Şifre seçin
   zh: 选择密码
+  fa: یک رمز عبور انتخاب کنید
 auth-resetform-password-desc:
   ru: Пароль
   en: Password
@@ -158,6 +170,7 @@ auth-resetform-password-desc:
   de: Passwort
   tr: Şifre
   zh: 密码
+  fa: رمز عبور
 auth-resetform-password-tip-text:
   ru: Придумайте пароль, который сложно подобрать
   en: Create a password that is hard to guess
@@ -170,6 +183,7 @@ auth-resetform-password-tip-text:
   de: Erstellen Sie ein schwer zu erratendes Passwort
   tr: Tahmin edilmesi zor bir şifre oluşturun
   zh: 创建一个难以猜测的密码
+  fa: یک رمز عبور انتخاب کنید که حدس زدن آن دشوار باشد
 auth-resetform-password-tip-success:
   ru: Пароль соответствует требованиям
   en: Password meets requirements
@@ -182,6 +196,7 @@ auth-resetform-password-tip-success:
   de: Passwort erfüllt die Anforderungen
   tr: Şifre gereksinimleri karşılıyor
   zh: 密码符合要求
+  fa: رمز عبور با الزامات مطابقت دارد
 auth-resetform-password-tip-error:
   ru: Пароль не соответствует требованиям
   en: Password does not meet requirements
@@ -194,6 +209,7 @@ auth-resetform-password-tip-error:
   de: Passwort erfüllt die Anforderungen nicht
   tr: Şifre gereksinimleri karşılamıyor
   zh: 密码不符合要求
+  fa: رمز عبور با الزامات مطابقت ندارد
 auth-resetform-password-tip-generate:
   ru: Сгенерировать пароль
   en: Generate password
@@ -206,6 +222,7 @@ auth-resetform-password-tip-generate:
   de: Passwort generieren
   tr: Şifre oluştur
   zh: 生成密码
+  fa: تولید رمز عبور
 auth-resetform-password-tip-copied:
   ru: Пароль скопирован в буфер обмена
   en: Password copied to clipboard
@@ -218,6 +235,7 @@ auth-resetform-password-tip-copied:
   de: Passwort in die Zwischenablage kopiert
   tr: Şifre panoya kopyalandı
   zh: 密码已复制到剪贴板
+  fa: رمز عبور در کلیپ‌بورد کپی شد
 auth-resetform-password-tip-additional-1:
   ru: цифры
   en: digits
@@ -230,6 +248,7 @@ auth-resetform-password-tip-additional-1:
   de: Ziffern
   tr: rakamlar
   zh: 数字
+  fa: ارقام
 auth-resetform-password-tip-additional-2:
   ru: символы (!, $, ^ и др.)
   en: symbols (!, $, ^, etc.)
@@ -242,6 +261,7 @@ auth-resetform-password-tip-additional-2:
   de: Symbole (!, $, ^, usw.)
   tr: semboller (!, $, ^, vb.)
   zh: 符号（!、$、^等）
+  fa: نمادها (!، $، ^ و غیره)
 auth-resetform-password-tip-additional-3:
   ru: заглавные латинские буквы
   en: capital latin letters
@@ -254,6 +274,7 @@ auth-resetform-password-tip-additional-3:
   de: Großbuchstaben
   tr: büyük harfler
   zh: 大写字母
+  fa: حروف لاتین بزرگ
 auth-resetform-password-tip-additional-4:
   ru: строчные латинские буквы
   en: lowercase latin letters
@@ -266,6 +287,7 @@ auth-resetform-password-tip-additional-4:
   de: Kleinbuchstaben
   tr: küçük harfler
   zh: 小写字母
+  fa: حروف لاتین کوچک
 auth-resetform-password-validation1:
   ru: Пожалуйста, введите пароль
   en: Please enter a password
@@ -278,6 +300,7 @@ auth-resetform-password-validation1:
   de: Bitte geben Sie ein Passwort ein
   tr: Lütfen bir şifre girin
   zh: 请输入密码
+  fa: لطفا رمز عبور را وارد کنید
 auth-resetform-password-validation3:
   ru: Пароль не соответствует требованиям
   en: Password does not meet requirements
@@ -290,6 +313,7 @@ auth-resetform-password-validation3:
   de: Passwort erfüllt die Anforderungen nicht
   tr: Şifre gereksinimleri karşılamıyor
   zh: 密码不符合要求
+  fa: رمز عبور با الزامات مطابقت ندارد
 auth-resetform-confirmation-placeholder:
   ru: Повторите пароль
   en: Confirm password
@@ -302,6 +326,7 @@ auth-resetform-confirmation-placeholder:
   de: Passwort bestätigen
   tr: Şifreyi onayla
   zh: 确认密码
+  fa: تایید رمز عبور
 auth-resetform-password-validation2:
   ru: Пожалуйста, повторите пароль
   en: Please repeat password
@@ -314,6 +339,7 @@ auth-resetform-password-validation2:
   de: Bitte wiederholen Sie das Passwort
   tr: Lütfen şifreyi tekrar girin
   zh: 请再次输入密码
+  fa: لطفا رمز عبور را دوباره وارد کنید
 auth-resetform-confirmation-validation4:
   ru: Пароли должны совпадать
   en: Passwords must match
@@ -326,6 +352,7 @@ auth-resetform-confirmation-validation4:
   de: Passwörter müssen übereinstimmen
   tr: Şifreler eşleşmeli
   zh: 两次输入的密码必须一致
+  fa: رمزهای عبور باید مطابقت داشته باشند
 auth-resetform-password-tip-digits:
   ru: более %s символов
   en: at least %s symbols
@@ -338,3 +365,4 @@ auth-resetform-password-tip-digits:
   de: mindestens %s Zeichen
   tr: en az %s karakter
   zh: 至少%s个字符
+  fa: حداقل %s کاراکتر
