@@ -3,7 +3,7 @@
 
 App.Modules.Auth = class extends Colibri.Modules.Module {
 
-    _ready = false;
+    _ready = false; 
     _app_token = null;
 
     /** @constructor */
