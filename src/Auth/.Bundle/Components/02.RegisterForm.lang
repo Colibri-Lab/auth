@@ -116,7 +116,8 @@ auth-registerform-birthdate-validation1:
   zh: 请输入出生日期
   fa: لطفا تاریخ تولد خود را وارد کنید
 auth-registerform-birthdate-validation2:
-  ru: Вам слишком мало лет, нашим проектом могут пользоваться только совершеннолетние
+  ru: Вам слишком мало лет, нашим проектом могут пользоваться только
+    совершеннолетние
   en: You are too young, only adults can use our project
   it: Sei troppo giovane, solo gli adulti possono utilizzare il nostro progetto
   hy: Դուք չափազանց երիտասարդ եք, միայն մեծահասակները կարող են օգտվել մեր նախագծից
@@ -198,11 +199,14 @@ auth-registerform-email-validation2:
   en: You are entering an invalid email address. Please try again!
   it: Stai inserendo un indirizzo email non valido. Riprova!
   hy: "Դուք մուտքագրում եք անվավեր էլփոստի հասցե: Խնդրում ենք կրկին փորձել:"
-  es: Está ingresando una dirección de correo electrónico no válida. ¡Inténtalo de nuevo!
+  es: Está ingresando una dirección de correo electrónico no válida. ¡Inténtalo de
+    nuevo!
   kk: Сіз жарамсыз электрондық пошта мекенжайын енгізіп жатырсыз. Қайтадан көріңіз!
-  uz: Siz noto'g'ri elektron pochta manzilini kiritmoqdasiz. Iltimos, qayta urinib ko'ring!
+  uz: Siz noto'g'ri elektron pochta manzilini kiritmoqdasiz. Iltimos, qayta urinib
+    ko'ring!
   cz: Zadali jste neplatnou e-mailovou adresu. Zkuste to prosím znovu!
-  de: Sie haben eine ungültige E-Mail-Adresse eingegeben. Bitte versuchen Sie es erneut!
+  de: Sie haben eine ungültige E-Mail-Adresse eingegeben. Bitte versuchen Sie es
+    erneut!
   tr: Geçersiz bir e-posta adresi girdiniz. Lütfen tekrar deneyin!
   zh: 您输入的邮箱地址无效。请重试！
   fa: شما یک آدرس ایمیل نامعتبر وارد کرده‌اید. لطفا دوباره تلاش کنید!
@@ -375,278 +379,314 @@ auth-registerform-password-tip-additional-3:
   tr: büyük harfler
   zh: 大写字母
   fa: حروف لاتین بزرگ
-
-
-  auth-registerform-password-tip-additional-4:
-    ru: строчные латинские буквы
-    en: lowercase latin letters
-    it: lettere latine minuscole
-    hy: փոքրատառ լատինատառ
-    es: letras latinas minúsculas
-    kk: кіші әріптер латын әріптері
-    uz: kichik lotin harflari
-    cz: malá písmena latinky
-    de: Kleinbuchstaben
-    tr: küçük harfler
-    zh: 小写字母
-    fa: حروف لاتین کوچک
-  auth-registerform-password-validation1:
-    ru: Пожалуйста, введите пароль
-    en: Please enter a password
-    it: per favore inserisci LA TUA password
-    hy: Խնդրում ենք մուտքագրել ձեր գաղտնաբառը
-    es: Por favor, introduzca una contraseña
-    kk: Құпия сөзді енгізіңіз
-    uz: Iltimos, parolni kiriting
-    cz: Zadejte heslo
-    de: Bitte geben Sie ein Passwort ein
-    tr: Lütfen bir şifre girin
-    zh: 请输入密码
-    fa: لطفا یک رمز عبور وارد کنید
-  auth-registerform-password-validation3:
-    ru: Пароль не соответствует требованиям
-    en: Password does not meet requirements
-    it: La password non soddisfa i requisiti
-    hy: Գաղտնաբառը չի համապատասխանում պահանջներին
-    es: La contraseña no cumple con los requisitos
-    kk: Құпия сөз талаптарға сәйкес келмейді
-    uz: Parol talablariga javob bermaydi
-    cz: Heslo nesplňuje požadavky
-    de: Passwort erfüllt die Anforderungen nicht
-    tr: Şifre gereksinimleri karşılamıyor
-    zh: 密码不符合要求
-    fa: رمز عبور با الزامات مطابقت ندارد
-  auth-registerform-confirmation-placeholder:
-    ru: Повторите пароль
-    en: Confirm password
-    it: Ripeti la password
-    hy: Կրկնեք գաղտնաբառը
-    es: Confirme la contraseña
-    kk: Құпия сөзді растаңыз
-    uz: Parolni tasdiqlang
-    cz: Potvrďte heslo
-    de: Passwort bestätigen
-    tr: Şifreyi onayla
-    zh: 确认密码
-    fa: رمز عبور را تکرار کنید
-  auth-registerform-confirmation-desc:
-    ru: Повторите пароль
-    en: Confirm password
-    it: Ripeti la password
-    hy: Կրկնեք գաղտնաբառը
-    es: Confirme la contraseña
-    kk: Құпия сөзді растаңыз
-    uz: Parolni tasdiqlang
-    cz: Potvrďte heslo
-    de: Passwort bestätigen
-    tr: Şifreyi onayla
-    zh: 确认密码
-    fa: رمز عبور را تکرار کنید
-  auth-registerform-password-validation2:
-    ru: Пожалуйста, повторите пароль
-    en: Please repeat password
-    it: Per favore ripeti la tua password
-    hy: Խնդրում ենք կրկնել ձեր գաղտնաբառը
-    es: Por favor, repita la contraseña
-    kk: Құпия сөзді қайталаңыз
-    uz: Iltimos, parolni takrorlang
-    cz: Zopakujte heslo
-    de: Bitte wiederholen Sie das Passwort
-    tr: Lütfen şifreyi tekrar girin
-    zh: 请再次输入密码
-    fa: لطفا رمز عبور را دوباره وارد کنید
-  auth-registerform-confirmation-validation4:
-    ru: Пароли должны совпадать
-    en: Passwords must match
-    it: Le password devono essere identiche
-    hy: Գաղտնաբառերը պետք է համընկնեն
-    es: Las contraseñas deben coincidir
-    kk: Құпия сөздер сәйкес келуі керек
-    uz: Parollar mos kelishi kerak
-    cz: Hesla se musí shodovat
-    de: Passwörter müssen übereinstimmen
-    tr: Şifreler eşleşmeli
-    zh: 两次输入的密码必须一致
-    fa: رمزهای عبور باید یکسان باشند
-  auth-registerform-aggreenment-placeholder:
-    ru: Я соглашаюсь с условиями и даю согласие на обработку персональных данных
-    en: I agree to the terms and consent to the processing of personal data
-    it: Accetto i termini e le condizioni e acconsento al trattamento dei dati personali
-    hy: Ես համաձայն եմ պայմաններին և համաձայն եմ անձնական տվյալների մշակմանը
-    es: Acepto los términos y doy mi consentimiento para el procesamiento de datos personales
-    kk: Мен шарттармен келісемін және жеке деректерді өңдеуге келісімімді беремін
-    uz: Men shartlarga roziman va shaxsiy ma'lumotlarni qayta ishlashga rozilik beraman
-    cz: Souhlasím s podmínkami a se zpracováním osobních údajů
-    de: Ich stimme den Bedingungen zu und willige in die Verarbeitung personenbezogener Daten ein
-    tr: Şartları kabul ediyorum ve kişisel verilerin işlenmesine onay veriyorum
-    zh: 我同意条款并同意处理个人数据
-    fa: من با شرایط موافقم و رضایت خود را برای پردازش داده‌های شخصی اعلام می‌کنم
-  auth-registerform-aggreenment-validation1:
-    ru: Вам необходимо подтвердить соглашение на обработку персональных данных и согласие на условия
-    en: You need to confirm the agreement on the processing of personal data and consent to the terms
-    it: È necessario confermare l'accordo per il trattamento dei dati personali e accettare i termini
-    hy: Դուք պետք է հաստատեք անձնական տվյալների մշակման համաձայնագիրը և պայմանների համաձայնությունը
-    es: Debe confirmar el acuerdo sobre el procesamiento de datos personales y aceptar los términos
-    kk: Сіз жеке деректерді өңдеу туралы келісімді және шарттарды қабылдауды растауыңыз керек
-    uz: Siz shaxsiy ma'lumotlarni qayta ishlash bo'yicha kelishuvni va shartlarni qabul qilishingiz kerak
-    cz: Musíte potvrdit souhlas se zpracováním osobních údajů a podmínkami
-    de: Sie müssen der Verarbeitung personenbezogener Daten und den Bedingungen zustimmen
-    tr: Kişisel verilerin işlenmesine ilişkin sözleşmeyi ve şartları onaylamanız gerekmektedir
-    zh: 您需要确认同意处理个人数据并同意条款
-    fa: شما باید موافقت خود را با پردازش داده‌های شخصی و شرایط تأیید کنید
-  auth-register-button:
-    ru: Регистрация
-    en: Registration
-    it: Registrazione
-    hy: Գրանցում
-    es: Registro
-    kk: Тіркелу
-    uz: Ro'yxatdan o'tish
-    cz: Registrace
-    de: Registrierung
-    tr: Kayıt
-    zh: 注册
-    fa: ثبت نام
-  auth-login-register-text:
-    ru: Уже есть аккаунт?
-    en: Already have an account?
-    it: Hai già un account?
-    hy: Արդեն գրանցվաձ՝ էք
-    es: ¿Ya tienes una cuenta?
-    kk: Сізде тіркелгі бар ма?
-    uz: Sizda hisob bormi?
-    cz: Už máte účet?
-    de: Sie haben bereits ein Konto?
-    tr: Zaten bir hesabınız var mı?
-    zh: 已有账号？
-    fa: قبلاً حساب کاربری دارید؟
-  auth-login-button:
-    ru: Вход
-    en: Login
-    it: Login
-    hy: Մուտք
-    es: Iniciar sesión
-    kk: Кіру
-    uz: Kirish
-    cz: Přihlásit se
-    de: Anmelden
-    tr: Giriş Yap
-    zh: 登录
-    fa: ورود
-  auth-registerform-password-tip-text2:
-    ru: "Пароль должен содержать: "
-    en: "Password must contains:"
-    it: "La password deve contenere: "
-    hy: "Գաղտնաբառը պետք է պարունակի. "
-    es: "La contraseña debe contener: "
-    kk: "Құпия сөз мыналарды қамтуы керек: "
-    uz: "Parol quyidagilarni o'z ichiga olishi kerak: "
-    cz: "Heslo musí obsahovat:"
-    de: "Das Passwort muss enthalten:"
-    tr: "Şifre şunları içermelidir:"
-    zh: 密码必须包含：
-    fa: "رمز عبور باید شامل موارد زیر باشد:"
-  auth-registerform-password-tip-digits:
-    ru: более %s символов
-    en: at least %s symbols
-    hy: ավելի քան %s նիշ
-    it: più di %s caratteri
-    es: al menos %s símbolos
-    kk: кемінде %s таңба
-    uz: kamida %s belgilar
-    cz: alespoň %s znaků
-    de: mindestens %s Zeichen
-    tr: en az %s karakter
-    zh: 至少%s个字符
-    fa: حداقل %s کاراکتر
-  auth-logincontainer-confirmation-phone-message:
-    ru: Подтвердите номер телефона, чтобы мы могли оперативно связаться с вами и уточнить детали по заявке
-    en: Confirm your phone number so that we can quickly contact you and clarify the details of the application
-    it: Conferma il tuo numero di telefono in modo che possiamo contattarti rapidamente e chiarire i dettagli della tua richiesta
-    hy: Հաստատեք ձեր հեռախոսահամարը, որպեսզի մենք կարողանանք արագ կապվել ձեզ հետ և ճշտել ձեր դիմումի մանրամասները
-    es: Confirme su número de teléfono para que podamos contactarlo rápidamente y aclarar los detalles de la solicitud
-    kk: Біз сізбен тез байланысып, өтінімнің егжей-тегжейлерін нақтылау үшін телефон нөміріңізді растаңыз
-    uz: Siz bilan tezda bog'lanishimiz va ariza tafsilotlarini aniqlashtirishimiz uchun telefon raqamingizni tasdiqlang
-    cz: Potvrďte své telefonní číslo, abychom vás mohli rychle kontaktovat a upřesnit detaily žádosti
-    de: Bestätigen Sie Ihre Telefonnummer, damit wir Sie schnell kontaktieren und Details zur Bewerbung klären können
-    tr: Sizinle hızlıca iletişime geçebilmemiz ve başvurunuzun detaylarını netleştirebilmemiz için telefon numaranızı onaylayın
-    zh: 请确认您的手机号，以便我们能及时联系您并确认申请细节
-    fa: شماره تلفن خود را تأیید کنید تا بتوانیم سریعاً با شما تماس بگیریم و جزئیات درخواست را روشن کنیم
-  auth-logincontainer-confirmation-phone-message2:
-    ru: "Мы отправили код SMS-сообщением на номер: %s"
-    en: "We sent the code via SMS to the number: %s"
-    it: "Abbiamo inviato il codice via SMS al numero: %s"
-    hy: Մենք SMS-ի միջոցով ուղարկել ենք կոդը՝ %s հեռախոսահամարին
-    es: "Enviamos el código por SMS al número: %s"
-    kk: "Біз кодты SMS арқылы нөмірге жібердік: %s"
-    uz: "Biz kodni SMS orqali raqamga yubordik: %s"
-    cz: "Kód jsme zaslali SMS na číslo: %s"
-    de: Wir haben den Code per SMS an die Nummer %s gesendet
-    tr: "Kodu SMS ile şu numaraya gönderdik: %s"
-    zh: 我们已将验证码通过短信发送至：%s
-    fa: "ما کد را از طریق پیامک به شماره %s ارسال کردیم"
-  auth-logincontainer-confirmation-email-message:
-    ru: Подтвердите Email. Мы будем присылать только важные письма. Например, об изменении статуса вашей заявки или напоминания заплатить по кредиту
-    en: Confirm Email. We will only send important emails. For example, a change in the status of your application or a reminder to pay a loan
-    it: Conferma email. Invieremo solo email importanti. Ad esempio, su un cambiamento nello stato della tua domanda o su un promemoria per pagare un prestito
-    hy: Հաստատեք ձեր էլ․ հասցեն։ Մենք կուղարկենք միայն կարևոր նամակներ։ Օրինակ՝ ձեր դիմումի կարգավիճակի փոփոխության կամ վարկի վճարման հիշեցման մասին
-    es: Confirme su correo electrónico. Solo enviaremos correos importantes. Por ejemplo, un cambio en el estado de su solicitud o un recordatorio para pagar un préstamo
-    kk: Электрондық поштаны растаңыз. Біз тек маңызды хаттарды жібереміз. Мысалы, өтініміңіздің күйінің өзгеруі немесе несие төлеу туралы еске салу
-    uz: Elektron pochtangizni tasdiqlang. Biz faqat muhim elektron xabarlarni yuboramiz. Masalan, arizangiz holatidagi o'zgarish yoki kreditni to'lash eslatmasi
-    cz: Potvrďte e-mail. Budeme posílat pouze důležité e-maily, například změnu stavu žádosti nebo připomenutí platby půjčky
-    de: Bestätigen Sie Ihre E-Mail-Adresse. Wir senden nur wichtige E-Mails, z.B. Statusänderungen Ihrer Bewerbung oder Zahlungserinnerungen
-    tr: E-postanızı onaylayın. Sadece önemli e-postalar göndereceğiz. Örneğin, başvurunuzun durumundaki bir değişiklik veya kredi ödeme hatırlatması
-    zh: 请确认邮箱。我们只会发送重要邮件，例如申请状态变更或还款提醒
-    fa: ایمیل خود را تأیید کنید. ما فقط ایمیل‌های مهم ارسال خواهیم کرد. مثلاً تغییر وضعیت درخواست یا یادآوری پرداخت وام
-  auth-logincontainer-confirmation-email-message2:
-    ru: "Мы отправили код подтверждения на email: %s"
-    en: "We have sent a confirmation code to email: %s"
-    hy: Մենք ուղարկել ենք հաստատման կոդը՝ %s էլեկտրոնային հասցեին
-    it: "Abbiamo inviato un codice di conferma all'e-mail: %s"
-    es: "Hemos enviado un código de confirmación al correo electrónico: %s"
-    kk: "Біз растау кодын электрондық поштаға жібердік: %s"
-    uz: "Biz tasdiqlash kodini elektron pochta orqali yubordik: %s"
-    cz: "Potvrzovací kód jsme zaslali na e-mail: %s"
-    de: Wir haben einen Bestätigungscode an die E-Mail-Adresse %s gesendet
-    tr: "Onay kodunu şu e-posta adresine gönderdik: %s"
-    zh: 我们已将验证码发送至邮箱：%s
-    fa: "ما کد تأیید را به ایمیل %s ارسال کردیم"
-  auth-registerform-complete-button:
-    ru: Зарегистрироваться
-    en: Register
-    it: Registrati
-    hy: Գրանցվել
-    es: Registrarse
-    kk: Тіркелу
-    uz: Ro'yxatdan o'tish
-    cz: Registrovat se
-    de: Registrieren
-    tr: Kayıt Ol
-    zh: 注册
-    fa: ثبت نام
-  auth-logincontainer-confirmation-phone-message3:
-    ru: Введите код подтверждения, который мы отправили сам в SMS
-    en: Enter the confirmation code that we sent you in SMS
-    it: Inserisci il codice di conferma che ti abbiamo inviato in SMS
-    hy: Մուտքագրեք հաստատման կոդը, որը մենք ուղարկել ենք SMS-ով
-    es: Ingrese el código de confirmación que le enviamos por SMS
-    kk: Біз жіберген растау кодын енгізіңіз SMS арқылы
-    uz: Biz yuborgan tasdiqlash kodini SMS orqali kiriting
-    cz: Zadejte ověřovací kód, který jsme vám zaslali SMS
-    de: Geben Sie den Bestätigungscode ein, den wir Ihnen per SMS gesendet haben
-    tr: Size SMS ile gönderdiğimiz onay kodunu girin
-    zh: 输入我们通过短信发送给您的验证码
-    fa: کد تأییدی که از طریق پیامک ارسال کردیم را وارد کنید
-  auth-logincontainer-confirmation-email-message3:
-    ru: Введите код подтверждения, который мы отправили на почту
-    en: Enter the confirmation code that we sent you by email
-    it: Inserisci il codice di conferma che ti abbiamo inviato via email
-    hy: Մուտքագրեք հաստատման կոդը, որը մենք ուղարկել ենք էլ․ հասցեով
-    es: Ingrese el código de confirmación que le enviamos por correo electrónico
-    kk: Біз жіберген растау кодын енгізіңіз электрондық пошта арқылы
-    uz: Biz yuborgan tasdiqlash kodini elektron pochta orqali kiriting
-    cz: Zadejte ověřovací kód, který jsme vám zaslali e-mailem
-    de: Geben Sie den Bestätigungscode ein, den wir Ihnen per E-Mail gesendet haben
-    tr: Size e-posta ile gönderdiğimiz onay kodunu girin
-    zh: 输入我们通过邮箱发送给您的验证码
-    fa: کد تأییدی که از طریق ایمیل ارسال کردیم را وارد کنید
+auth-registerform-password-tip-additional-4:
+  ru: строчные латинские буквы
+  en: lowercase latin letters
+  it: lettere latine minuscole
+  hy: փոքրատառ լատինատառ
+  es: letras latinas minúsculas
+  kk: кіші әріптер латын әріптері
+  uz: kichik lotin harflari
+  cz: malá písmena latinky
+  de: Kleinbuchstaben
+  tr: küçük harfler
+  zh: 小写字母
+  fa: حروف لاتین کوچک
+auth-registerform-password-validation1:
+  ru: Пожалуйста, введите пароль
+  en: Please enter a password
+  it: per favore inserisci LA TUA password
+  hy: Խնդրում ենք մուտքագրել ձեր գաղտնաբառը
+  es: Por favor, introduzca una contraseña
+  kk: Құпия сөзді енгізіңіз
+  uz: Iltimos, parolni kiriting
+  cz: Zadejte heslo
+  de: Bitte geben Sie ein Passwort ein
+  tr: Lütfen bir şifre girin
+  zh: 请输入密码
+  fa: لطفا یک رمز عبور وارد کنید
+auth-registerform-password-validation3:
+  ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+  it: La password non soddisfa i requisiti
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
+  es: La contraseña no cumple con los requisitos
+  kk: Құпия сөз талаптарға сәйкес келмейді
+  uz: Parol talablariga javob bermaydi
+  cz: Heslo nesplňuje požadavky
+  de: Passwort erfüllt die Anforderungen nicht
+  tr: Şifre gereksinimleri karşılamıyor
+  zh: 密码不符合要求
+  fa: رمز عبور با الزامات مطابقت ندارد
+auth-registerform-confirmation-placeholder:
+  ru: Повторите пароль
+  en: Confirm password
+  it: Ripeti la password
+  hy: Կրկնեք գաղտնաբառը
+  es: Confirme la contraseña
+  kk: Құпия сөзді растаңыз
+  uz: Parolni tasdiqlang
+  cz: Potvrďte heslo
+  de: Passwort bestätigen
+  tr: Şifreyi onayla
+  zh: 确认密码
+  fa: رمز عبور را تکرار کنید
+auth-registerform-confirmation-desc:
+  ru: Повторите пароль
+  en: Confirm password
+  it: Ripeti la password
+  hy: Կրկնեք գաղտնաբառը
+  es: Confirme la contraseña
+  kk: Құпия сөзді растаңыз
+  uz: Parolni tasdiqlang
+  cz: Potvrďte heslo
+  de: Passwort bestätigen
+  tr: Şifreyi onayla
+  zh: 确认密码
+  fa: رمز عبور را تکرار کنید
+auth-registerform-password-validation2:
+  ru: Пожалуйста, повторите пароль
+  en: Please repeat password
+  it: Per favore ripeti la tua password
+  hy: Խնդրում ենք կրկնել ձեր գաղտնաբառը
+  es: Por favor, repita la contraseña
+  kk: Құпия сөзді қайталаңыз
+  uz: Iltimos, parolni takrorlang
+  cz: Zopakujte heslo
+  de: Bitte wiederholen Sie das Passwort
+  tr: Lütfen şifreyi tekrar girin
+  zh: 请再次输入密码
+  fa: لطفا رمز عبور را دوباره وارد کنید
+auth-registerform-confirmation-validation4:
+  ru: Пароли должны совпадать
+  en: Passwords must match
+  it: Le password devono essere identiche
+  hy: Գաղտնաբառերը պետք է համընկնեն
+  es: Las contraseñas deben coincidir
+  kk: Құпия сөздер сәйкес келуі керек
+  uz: Parollar mos kelishi kerak
+  cz: Hesla se musí shodovat
+  de: Passwörter müssen übereinstimmen
+  tr: Şifreler eşleşmeli
+  zh: 两次输入的密码必须一致
+  fa: رمزهای عبور باید یکسان باشند
+auth-registerform-aggreenment-placeholder:
+  ru: Я соглашаюсь с условиями и даю согласие на обработку персональных данных
+  en: I agree to the terms and consent to the processing of personal data
+  it: Accetto i termini e le condizioni e acconsento al trattamento dei dati
+    personali
+  hy: Ես համաձայն եմ պայմաններին և համաձայն եմ անձնական տվյալների մշակմանը
+  es: Acepto los términos y doy mi consentimiento para el procesamiento de datos
+    personales
+  kk: Мен шарттармен келісемін және жеке деректерді өңдеуге келісімімді беремін
+  uz: Men shartlarga roziman va shaxsiy ma'lumotlarni qayta ishlashga rozilik
+    beraman
+  cz: Souhlasím s podmínkami a se zpracováním osobních údajů
+  de: Ich stimme den Bedingungen zu und willige in die Verarbeitung
+    personenbezogener Daten ein
+  tr: Şartları kabul ediyorum ve kişisel verilerin işlenmesine onay veriyorum
+  zh: 我同意条款并同意处理个人数据
+  fa: من با شرایط موافقم و رضایت خود را برای پردازش داده‌های شخصی اعلام می‌کنم
+auth-registerform-aggreenment-validation1:
+  ru: Вам необходимо подтвердить соглашение на обработку персональных данных и
+    согласие на условия
+  en: You need to confirm the agreement on the processing of personal data and
+    consent to the terms
+  it: È necessario confermare l'accordo per il trattamento dei dati personali e
+    accettare i termini
+  hy: Դուք պետք է հաստատեք անձնական տվյալների մշակման համաձայնագիրը և պայմանների
+    համաձայնությունը
+  es: Debe confirmar el acuerdo sobre el procesamiento de datos personales y
+    aceptar los términos
+  kk: Сіз жеке деректерді өңдеу туралы келісімді және шарттарды қабылдауды
+    растауыңыз керек
+  uz: Siz shaxsiy ma'lumotlarni qayta ishlash bo'yicha kelishuvni va shartlarni
+    qabul qilishingiz kerak
+  cz: Musíte potvrdit souhlas se zpracováním osobních údajů a podmínkami
+  de: Sie müssen der Verarbeitung personenbezogener Daten und den Bedingungen
+    zustimmen
+  tr: Kişisel verilerin işlenmesine ilişkin sözleşmeyi ve şartları onaylamanız
+    gerekmektedir
+  zh: 您需要确认同意处理个人数据并同意条款
+  fa: شما باید موافقت خود را با پردازش داده‌های شخصی و شرایط تأیید کنید
+auth-register-button:
+  ru: Регистрация
+  en: Registration
+  it: Registrazione
+  hy: Գրանցում
+  es: Registro
+  kk: Тіркелу
+  uz: Ro'yxatdan o'tish
+  cz: Registrace
+  de: Registrierung
+  tr: Kayıt
+  zh: 注册
+  fa: ثبت نام
+auth-login-register-text:
+  ru: Уже есть аккаунт?
+  en: Already have an account?
+  it: Hai già un account?
+  hy: Արդեն գրանցվաձ՝ էք
+  es: ¿Ya tienes una cuenta?
+  kk: Сізде тіркелгі бар ма?
+  uz: Sizda hisob bormi?
+  cz: Už máte účet?
+  de: Sie haben bereits ein Konto?
+  tr: Zaten bir hesabınız var mı?
+  zh: 已有账号？
+  fa: قبلاً حساب کاربری دارید؟
+auth-login-button:
+  ru: Вход
+  en: Login
+  it: Login
+  hy: Մուտք
+  es: Iniciar sesión
+  kk: Кіру
+  uz: Kirish
+  cz: Přihlásit se
+  de: Anmelden
+  tr: Giriş Yap
+  zh: 登录
+  fa: ورود
+auth-registerform-password-tip-text2:
+  ru: "Пароль должен содержать: "
+  en: "Password must contains:"
+  it: "La password deve contenere: "
+  hy: "Գաղտնաբառը պետք է պարունակի. "
+  es: "La contraseña debe contener: "
+  kk: "Құпия сөз мыналарды қамтуы керек: "
+  uz: "Parol quyidagilarni o'z ichiga olishi kerak: "
+  cz: "Heslo musí obsahovat:"
+  de: "Das Passwort muss enthalten:"
+  tr: "Şifre şunları içermelidir:"
+  zh: 密码必须包含：
+  fa: "رمز عبور باید شامل موارد زیر باشد:"
+auth-registerform-password-tip-digits:
+  ru: более %s символов
+  en: at least %s symbols
+  hy: ավելի քան %s նիշ
+  it: più di %s caratteri
+  es: al menos %s símbolos
+  kk: кемінде %s таңба
+  uz: kamida %s belgilar
+  cz: alespoň %s znaků
+  de: mindestens %s Zeichen
+  tr: en az %s karakter
+  zh: 至少%s个字符
+  fa: حداقل %s کاراکتر
+auth-logincontainer-confirmation-phone-message:
+  ru: Подтвердите номер телефона, чтобы мы могли оперативно связаться с вами и
+    уточнить детали по заявке
+  en: Confirm your phone number so that we can quickly contact you and clarify the
+    details of the application
+  it: Conferma il tuo numero di telefono in modo che possiamo contattarti
+    rapidamente e chiarire i dettagli della tua richiesta
+  hy: Հաստատեք ձեր հեռախոսահամարը, որպեսզի մենք կարողանանք արագ կապվել ձեզ հետ և
+    ճշտել ձեր դիմումի մանրամասները
+  es: Confirme su número de teléfono para que podamos contactarlo rápidamente y
+    aclarar los detalles de la solicitud
+  kk: Біз сізбен тез байланысып, өтінімнің егжей-тегжейлерін нақтылау үшін телефон
+    нөміріңізді растаңыз
+  uz: Siz bilan tezda bog'lanishimiz va ariza tafsilotlarini aniqlashtirishimiz
+    uchun telefon raqamingizni tasdiqlang
+  cz: Potvrďte své telefonní číslo, abychom vás mohli rychle kontaktovat a
+    upřesnit detaily žádosti
+  de: Bestätigen Sie Ihre Telefonnummer, damit wir Sie schnell kontaktieren und
+    Details zur Bewerbung klären können
+  tr: Sizinle hızlıca iletişime geçebilmemiz ve başvurunuzun detaylarını
+    netleştirebilmemiz için telefon numaranızı onaylayın
+  zh: 请确认您的手机号，以便我们能及时联系您并确认申请细节
+  fa: شماره تلفن خود را تأیید کنید تا بتوانیم سریعاً با شما تماس بگیریم و جزئیات
+    درخواست را روشن کنیم
+auth-logincontainer-confirmation-phone-message2:
+  ru: "Мы отправили код SMS-сообщением на номер: %s"
+  en: "We sent the code via SMS to the number: %s"
+  it: "Abbiamo inviato il codice via SMS al numero: %s"
+  hy: Մենք SMS-ի միջոցով ուղարկել ենք կոդը՝ %s հեռախոսահամարին
+  es: "Enviamos el código por SMS al número: %s"
+  kk: "Біз кодты SMS арқылы нөмірге жібердік: %s"
+  uz: "Biz kodni SMS orqali raqamga yubordik: %s"
+  cz: "Kód jsme zaslali SMS na číslo: %s"
+  de: Wir haben den Code per SMS an die Nummer %s gesendet
+  tr: "Kodu SMS ile şu numaraya gönderdik: %s"
+  zh: 我们已将验证码通过短信发送至：%s
+  fa: ما کد را از طریق پیامک به شماره %s ارسال کردیم
+auth-logincontainer-confirmation-email-message:
+  ru: Подтвердите Email. Мы будем присылать только важные письма. Например, об
+    изменении статуса вашей заявки или напоминания заплатить по кредиту
+  en: Confirm Email. We will only send important emails. For example, a change in
+    the status of your application or a reminder to pay a loan
+  it: Conferma email. Invieremo solo email importanti. Ad esempio, su un
+    cambiamento nello stato della tua domanda o su un promemoria per pagare un
+    prestito
+  hy: Հաստատեք ձեր էլ․ հասցեն։ Մենք կուղարկենք միայն կարևոր նամակներ։ Օրինակ՝ ձեր
+    դիմումի կարգավիճակի փոփոխության կամ վարկի վճարման հիշեցման մասին
+  es: Confirme su correo electrónico. Solo enviaremos correos importantes. Por
+    ejemplo, un cambio en el estado de su solicitud o un recordatorio para
+    pagar un préstamo
+  kk: Электрондық поштаны растаңыз. Біз тек маңызды хаттарды жібереміз. Мысалы,
+    өтініміңіздің күйінің өзгеруі немесе несие төлеу туралы еске салу
+  uz: Elektron pochtangizni tasdiqlang. Biz faqat muhim elektron xabarlarni
+    yuboramiz. Masalan, arizangiz holatidagi o'zgarish yoki kreditni to'lash
+    eslatmasi
+  cz: Potvrďte e-mail. Budeme posílat pouze důležité e-maily, například změnu
+    stavu žádosti nebo připomenutí platby půjčky
+  de: Bestätigen Sie Ihre E-Mail-Adresse. Wir senden nur wichtige E-Mails, z.B.
+    Statusänderungen Ihrer Bewerbung oder Zahlungserinnerungen
+  tr: E-postanızı onaylayın. Sadece önemli e-postalar göndereceğiz. Örneğin,
+    başvurunuzun durumundaki bir değişiklik veya kredi ödeme hatırlatması
+  zh: 请确认邮箱。我们只会发送重要邮件，例如申请状态变更或还款提醒
+  fa: ایمیل خود را تأیید کنید. ما فقط ایمیل‌های مهم ارسال خواهیم کرد. مثلاً تغییر
+    وضعیت درخواست یا یادآوری پرداخت وام
+auth-logincontainer-confirmation-email-message2:
+  ru: "Мы отправили код подтверждения на email: %s"
+  en: "We have sent a confirmation code to email: %s"
+  hy: Մենք ուղարկել ենք հաստատման կոդը՝ %s էլեկտրոնային հասցեին
+  it: "Abbiamo inviato un codice di conferma all'e-mail: %s"
+  es: "Hemos enviado un código de confirmación al correo electrónico: %s"
+  kk: "Біз растау кодын электрондық поштаға жібердік: %s"
+  uz: "Biz tasdiqlash kodini elektron pochta orqali yubordik: %s"
+  cz: "Potvrzovací kód jsme zaslali na e-mail: %s"
+  de: Wir haben einen Bestätigungscode an die E-Mail-Adresse %s gesendet
+  tr: "Onay kodunu şu e-posta adresine gönderdik: %s"
+  zh: 我们已将验证码发送至邮箱：%s
+  fa: ما کد تأیید را به ایمیل %s ارسال کردیم
+auth-registerform-complete-button:
+  ru: Зарегистрироваться
+  en: Register
+  it: Registrati
+  hy: Գրանցվել
+  es: Registrarse
+  kk: Тіркелу
+  uz: Ro'yxatdan o'tish
+  cz: Registrovat se
+  de: Registrieren
+  tr: Kayıt Ol
+  zh: 注册
+  fa: ثبت نام
+auth-logincontainer-confirmation-phone-message3:
+  ru: Введите код подтверждения, который мы отправили сам в SMS
+  en: Enter the confirmation code that we sent you in SMS
+  it: Inserisci il codice di conferma che ti abbiamo inviato in SMS
+  hy: Մուտքագրեք հաստատման կոդը, որը մենք ուղարկել ենք SMS-ով
+  es: Ingrese el código de confirmación que le enviamos por SMS
+  kk: Біз жіберген растау кодын енгізіңіз SMS арқылы
+  uz: Biz yuborgan tasdiqlash kodini SMS orqali kiriting
+  cz: Zadejte ověřovací kód, který jsme vám zaslali SMS
+  de: Geben Sie den Bestätigungscode ein, den wir Ihnen per SMS gesendet haben
+  tr: Size SMS ile gönderdiğimiz onay kodunu girin
+  zh: 输入我们通过短信发送给您的验证码
+  fa: کد تأییدی که از طریق پیامک ارسال کردیم را وارد کنید
+auth-logincontainer-confirmation-email-message3:
+  ru: Введите код подтверждения, который мы отправили на почту
+  en: Enter the confirmation code that we sent you by email
+  it: Inserisci il codice di conferma che ti abbiamo inviato via email
+  hy: Մուտքագրեք հաստատման կոդը, որը մենք ուղարկել ենք էլ․ հասցեով
+  es: Ingrese el código de confirmación que le enviamos por correo electrónico
+  kk: Біз жіберген растау кодын енгізіңіз электрондық пошта арқылы
+  uz: Biz yuborgan tasdiqlash kodini elektron pochta orqali kiriting
+  cz: Zadejte ověřovací kód, který jsme vám zaslali e-mailem
+  de: Geben Sie den Bestätigungscode ein, den wir Ihnen per E-Mail gesendet haben
+  tr: Size e-posta ile gönderdiğimiz onay kodunu girin
+  zh: 输入我们通过邮箱发送给您的验证码
+  fa: کد تأییدی که از طریق ایمیل ارسال کردیم را وارد کنید
