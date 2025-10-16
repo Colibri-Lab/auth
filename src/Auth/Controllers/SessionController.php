@@ -114,7 +114,7 @@ class SessionController extends WebController
             }
     
             if(!$app->params->multilogin) {
-                $sessions = Sessions::LoadByMember($session->member);
+                $sessions = Sessions::LoadByMember($member->token);
                 foreach ($sessions as $s) {
                     /** @var \App\Modules\Auth\Models\Session $s */
                     $s->member = null;
