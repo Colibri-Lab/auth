@@ -5,6 +5,7 @@ namespace App\Modules\Auth\Controllers;
 use App\Modules\Auth\Models\Devices;
 use App\Modules\Auth\Models\Members;
 use App\Modules\Auth\Models\Sessions;
+use App\Modules\Auth\Module;
 use Colibri\Common\TwoFactorHelper;
 use Colibri\Exceptions\ValidationException;
 use Colibri\Web\Controller as WebController;
@@ -62,6 +63,7 @@ class SessionController extends WebController
             return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-session-allreadylogged}', 'code' => 403]);
         }
 
+        $app = Module::Instance()->application;
  
         $payloadArray = $payload->ToArray();
         $login = $payloadArray['login'] ?? $post->{'login'};
@@ -111,6 +113,15 @@ class SessionController extends WebController
                 }
             }
     
+            if(!$app->params->multilogin) {
+                $sessions = Sessions::LoadByMember($session->member);
+                foreach ($sessions as $s) {
+                    /** @var \App\Modules\Auth\Models\Session $s */
+                    $s->member = null;
+                    $s->Save(true);
+                }
+            }
+
             $session->member = $member->token;
             $session->Save(true);
 

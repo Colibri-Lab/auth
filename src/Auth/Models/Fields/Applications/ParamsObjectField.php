@@ -22,7 +22,9 @@ use Colibri\Data\Storages\Fields\ArrayField;
  * @property int|null $livetime Время жизни
  * @property ParamsDomainsArrayField|null $domains Домены
  * @property bool|null $allowrenew 
+ * @property string|null $allowed_ip IP с которого разрешено восстановление по короткому токену
  * @property bool|null $autologin 
+ * @property bool|null $multilogin 
  * @property ParamsRolesArrayField|null $roles Роли
  * @property string $defaultrole Роль по умолчанию
  * @property bool|null $enable_two_factor_authentication 
@@ -30,7 +32,6 @@ use Colibri\Data\Storages\Fields\ArrayField;
  * @property bool|null $enable_device_authentification 
  * @property ParamsDesignObjectField|null $design Макет
  * @property ParamsProxiesObjectField|null $proxies Прокси для коммуникаций
- * @property string|null $allowed_ip IP с которого разрешено восстановление по короткому токену
  * endregion Properties;
  */
 class ParamsObjectField extends ObjectField
@@ -48,7 +49,9 @@ class ParamsObjectField extends ObjectField
 			'livetime' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'integer', ] ] ],
 			'domains' => [  'oneOf' => [ ParamsDomainsArrayField::JsonSchema, [ 'type' => 'null'] ] ],
 			'allowrenew' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
+			'allowed_ip' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 256, ] ] ],
 			'autologin' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
+			'multilogin' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
 			'roles' => [  'oneOf' => [ ParamsRolesArrayField::JsonSchema, [ 'type' => 'null'] ] ],
 			'defaultrole' => ['type' => 'string', 'maxLength' => 255, ],
 			'enable_two_factor_authentication' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
@@ -56,7 +59,6 @@ class ParamsObjectField extends ObjectField
 			'enable_device_authentification' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
 			'design' => [  'oneOf' => [ ParamsDesignObjectField::JsonSchema, [ 'type' => 'null'] ] ],
 			'proxies' => [  'oneOf' => [ ParamsProxiesObjectField::JsonSchema, [ 'type' => 'null'] ] ],
-			'allowed_ip' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 256, ] ] ],
 			# endregion SchemaProperties;
         ]
     ];

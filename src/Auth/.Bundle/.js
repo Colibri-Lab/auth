@@ -82,7 +82,7 @@ App.Modules.Auth = class extends Colibri.Modules.Module {
     }
 
     Settings(returnPromise = true) {
-        const promise = this.Call('App', 'Settings', {}, {'X-AppToken': Auth.appToken});
+        const promise = this.Call('App', 'Settings', {}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id});
         if(returnPromise) {
             return promise;
         }
@@ -102,7 +102,7 @@ App.Modules.Auth.Session = class extends Colibri.IO.RpcRequest  {
 
     Start() {
         return new Promise((resolve, reject) => {
-            this.Call('Session', 'Start', {}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Session', 'Start', {}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
@@ -111,7 +111,7 @@ App.Modules.Auth.Session = class extends Colibri.IO.RpcRequest  {
 
     LoginByCreds(creds) {
         return new Promise((resolve, reject) => {
-            this.Call('Session', 'LoginByCreds', {credentials: creds}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Session', 'LoginByCreds', {credentials: creds}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => {
@@ -122,7 +122,7 @@ App.Modules.Auth.Session = class extends Colibri.IO.RpcRequest  {
 
     Login(login, password, code) {
         return new Promise((resolve, reject) => {
-            this.Call('Session', 'Login', {login: login, password: password, code: code}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Session', 'Login', {login: login, password: password, code: code}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 resolve({session: response.result.session, code: response.result.code});
             }).catch(response => {
@@ -138,7 +138,7 @@ App.Modules.Auth.Session = class extends Colibri.IO.RpcRequest  {
 
     Logout() {
         return new Promise((resolve, reject) => {
-            this.Call('Session', 'Logout', {}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Session', 'Logout', {}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 resolve(response.result.session);
                 Auth.Store.Set('auth.session', response.result.session);
             }).catch(response => reject(response));
@@ -147,7 +147,7 @@ App.Modules.Auth.Session = class extends Colibri.IO.RpcRequest  {
 
     LogoutFromAll() {
         return new Promise((resolve, reject) => {
-            this.Call('Session', 'LogoutFromAll', {}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Session', 'LogoutFromAll', {}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
@@ -177,7 +177,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
                 gender: gender,
                 birthdate: birthdate,
                 invitation: invitation
-            }, {'X-AppToken': Auth.appToken}).then((response) => {
+            }, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
@@ -186,7 +186,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
     GetInvite(code) {
         return new Promise((resolve, reject) => {
-            this.Call('Invites', 'Get', {code: code}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Invites', 'Get', {code: code}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 resolve(response.result);
             }).catch(response => reject(response));
         });
@@ -198,7 +198,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
                 email: email,
                 fio: fio,
                 params: params
-            }, {'X-AppToken': Auth.appToken}).then((response) => {
+            }, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 resolve(response.result);
             }).catch(response => reject(response));
         });
@@ -206,7 +206,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
     BeginConfirmationProcess(property = 'email', value = '') {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'BeginConfirmationProcess', {property: property, value: value}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'BeginConfirmationProcess', {property: property, value: value}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 // Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
@@ -215,7 +215,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
     ConfirmProperty(code, property = 'email', value = '') {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'ConfirmProperty', {property: property, code: code, value: value}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'ConfirmProperty', {property: property, code: code, value: value}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
@@ -233,7 +233,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
     ResetPassword(email, phone, code, password, confirmation) {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'ResetPassword', {email: email, phone: phone, code: code, password: password, confirmation: confirmation}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'ResetPassword', {email: email, phone: phone, code: code, password: password, confirmation: confirmation}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 // Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
@@ -242,7 +242,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
     BeginIdentityUpdateProcess(value, property = 'email') {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'BeginIdentityUpdateProcess', {property: property, value: value}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'BeginIdentityUpdateProcess', {property: property, value: value}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 // Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
@@ -251,7 +251,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
     ChangeIdentity(code, value, property = 'email') {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'ChangeIdentity', {property: property, code: code, value: value}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'ChangeIdentity', {property: property, code: code, value: value}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
@@ -260,7 +260,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
     SaveProfile(last_name, first_name, patronymic = null, birthdate = null, gender = null) {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'UpdateProfile', {last_name: last_name, first_name: first_name, patronymic: patronymic, birthdate: birthdate, gender: gender}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'UpdateProfile', {last_name: last_name, first_name: first_name, patronymic: patronymic, birthdate: birthdate, gender: gender}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
@@ -269,7 +269,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
     ChangePassword(original, password, confirmation) {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'ChangePassword', {original: original, password: password, confirmation: confirmation}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'ChangePassword', {original: original, password: password, confirmation: confirmation}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 // Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
@@ -278,7 +278,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
     BlockAccount() {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'BlockAccount', {}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'BlockAccount', {}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
@@ -287,7 +287,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
     ToggleTwoFactorAuth() {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'ToggleTwoFactorAuth', {}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'ToggleTwoFactorAuth', {}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
@@ -296,7 +296,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
     ToggleTwoFactorAppAuth() {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'ToggleTwoFactorAppAuth', {}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'ToggleTwoFactorAppAuth', {}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 if(response.result.code) {
                     const wnd = new App.Modules.Auth.Windows.TwoFactorAppInformation('twofactorapp-information', document.body, 800);
@@ -321,7 +321,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
     
     RequestAutoLogin(memberToken, returnTo) {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'RequestAutologin', {token: memberToken, return: returnTo}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'RequestAutologin', {token: memberToken, return: returnTo}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 Auth.Store.Set('auth.session', response.result.session);
                 const w = new App.Modules.Auth.Components.AutologinRequest('autologin-window', document.body);
                 w.Show(response.result.link);
@@ -389,7 +389,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
     SaveLocalPublicKey(publicKey) {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'SaveLocalPublicKey', {public: publicKey}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'SaveLocalPublicKey', {public: publicKey}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 resolve(response.result);
             }).catch(response => reject(response));
         });
@@ -438,7 +438,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
     Encrypt(message, member) {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'EncryptMessage', {message: message, for: member}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'EncryptMessage', {message: message, for: member}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 resolve(response.result.encrypted);
             }).catch(response => reject(response));
         });
@@ -446,7 +446,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
     Decrypt(message) {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'DecryptMessage', {message: message}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'DecryptMessage', {message: message}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 resolve(response.result.decrypted);
             }).catch(response => reject(response));
         });
@@ -454,7 +454,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
 
     Search(term) {
         return new Promise((resolve, reject) => {
-            this.Call('Member', 'Search', {term: term}, {'X-AppToken': Auth.appToken}).then((response) => {
+            this.Call('Member', 'Search', {term: term}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                 resolve(response.result);
             }).catch(response => reject(response));
         });
@@ -465,7 +465,7 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
             const session = Auth.Store.Query('auth.session');
             App.Device.Auth.IsAvailable().then(() => {
                 App.Device.Auth.Create(session.member.token, session.member.last_name + ' ' + session.member.first_name, session.member.email).then((credential) => {
-                    this.Call('Member', 'CreateDevice', {credentials: credential}, {'X-AppToken': Auth.appToken}).then((response) => {
+                    this.Call('Member', 'CreateDevice', {credentials: credential}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
                         resolve(response.result);
                     }).catch(response => reject(response));
                 });
@@ -483,7 +483,7 @@ App.Modules.Auth.Application = class extends Colibri.IO.RpcRequest  {
 
     Settings() {
         return new Promise((resolve, reject) => {
-            this.Call('App', 'Settings', {}, {'X-AppToken': Auth.appToken}).then((settings) => {
+            this.Call('App', 'Settings', {}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((settings) => {
                 Auth.Store.Set('auth.settings', settings.result);
                 resolve(settings.result);
             }).catch(response => reject(response));

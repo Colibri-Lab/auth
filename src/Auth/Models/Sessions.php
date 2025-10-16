@@ -9,6 +9,7 @@ use Colibri\Data\Storages\Storage;
 use Colibri\Utils\Logs\Logger;
 use Colibri\Data\Storages\Models\DataTable as BaseModelDataTable;
 use App\Modules\Auth\Models\Session;
+use App\Modules\Auth\Module;
 use Colibri\App;
 use Colibri\Utils\Cache\Mem;
 use Colibri\Data\Storages\Fields\DateTimeField;
@@ -107,8 +108,9 @@ class Sessions extends BaseModelDataTable
      */
     static function LoadByMember(Member|string $member): Sessions|null
     {
-        return self::LoadByFilter(1, 1, '{member}=[[member:string]]', null, ['member' => $member instanceof Member ? $member->token : $member], false);
+        return self::LoadByFilter(-1, 1, '{member}=[[member:string]]', null, ['member' => $member instanceof Member ? $member->token : $member], false);
     }
+
 
     /**
      * Возвращает модель по key
@@ -160,6 +162,7 @@ class Sessions extends BaseModelDataTable
         $session = self::LoadEmpty();
         $session->expires = 3600;
         $session->member = null;
+        $session->device = Module::Instance()->device;
         $session->datecreated = new DateTimeField('now');
         $session->Save(true);
         return $session;

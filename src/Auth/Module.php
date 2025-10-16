@@ -175,6 +175,8 @@ class Module extends BaseModule
     {
         if (strtolower($prop) == 'application') {
             return $this->_app;
+        } elseif (strtolower($prop) == 'device') {
+            return App::$request->headers->{'DeviceId'} ?? null;
         } else {
             return parent::__get($prop);
         }
