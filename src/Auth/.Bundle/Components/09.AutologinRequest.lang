@@ -1,0 +1,52 @@
+auth-autologin-title:
+  ru: Автовход
+  en: Autologin
+  it: Autologin
+  hy: Ավտոմատ մուտք
+  es: Inicio de sesión automático
+  kk: Автоматты кіру
+  uz: Avtologin
+  cz: Automatické přihlášení
+  de: Automatische Anmeldung
+  tr: Otomatik Giriş
+  zh: 自动登录
+  fa: ورود خودکار
+auth-autologin-message:
+  ru: Нажмите или скопируйте ссылку для перехода
+  en: Click or copy the link to go
+  it: Fare clic o copiare il link per andare
+  hy: Սեղմեք կամ պատճենեք հղումը գնալու
+  es: Haga clic o copie el enlace para ir
+  kk: Өту үшін сілтемені басыңыз немесе көшіріңіз
+  uz: O‘tish uchun havolani bosing yoki nusxa oling
+  cz: Klikněte nebo zkopírujte odkaz pro pokračování
+  de: Klicken oder kopieren Sie den Link, um fortzufahren
+  tr: Gitmek için bağlantıya tıklayın veya kopyalayın
+  zh: 点击或复制链接前往
+  fa: برای رفتن روی لینک کلیک کنید یا آن را کپی کنید
+auth-autologin-copy:
+  ru: Копировать ссылку
+  en: Copy link
+  it: Copia il link
+  hy: Պատճենեք հղումը
+  es: Copiar enlace
+  kk: Сілтемені көшіру
+  uz: Havolani nusxalash
+  cz: Zkopírovat odkaz
+  de: Link kopieren
+  tr: Bağlantıyı kopyala
+  zh: 复制链接
+  fa: کپی کردن لینک
+auth-autologin-copied:
+  ru: Ссылка скопирована в буфер обмена
+  en: Link copied to clipboard
+  it: Link copiato negli appunti
+  hy: Հղումը պատճենվեց
+  es: Enlace copiado al portapapeles
+  kk: Сілтеме алмасу буферіне көшірілді
+  uz: Havola buferga nusxalandi
+  cz: Odkaz zkopírován do schránky
+  de: Link in die Zwischenablage kopiert
+  tr: Bağlantı panoya kopyalandı
+  zh: 链接已复制到剪贴板
+  fa: لینک در حافظه کپی شد

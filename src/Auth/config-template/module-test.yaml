@@ -1,4 +1,5 @@
 
+lang-cookie-domain: test.colibrilab.pro
   
 texts: include(auth-langtexts.yaml)
 

@@ -1,12 +1,15 @@
 
 texts: include(auth-langtexts.yaml)
 
+lang-cookie-domain: local.bsft.loc
+
 databases:
 
   access-points: 
 
     drivers:
       mysql:
+        config: Colibri\Data\MySql\Config
         connection: Colibri\Data\MySql\Connection
         command: Colibri\Data\MySql\Command
         reader: Colibri\Data\MySql\DataReader
@@ -29,6 +32,7 @@ databases:
       auth: 
         connection: auth
         database: auth
+        logqueries: false
 
   storages: include(auth-storages.yaml)
       

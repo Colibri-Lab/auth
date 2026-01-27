@@ -1,0 +1,368 @@
+auth-logincontainer-reset-title:
+  ru: Восстановление пароля
+  en: Reset password
+  hy: Գաղտնաբառի վերականգնում
+  it: Recupero della password
+  es: Restablecer contraseña
+  kk: Құпиясөзді қалпына келтіру
+  uz: Parolni tiklash
+  cz: Obnovit heslo
+  de: Passwort zurücksetzen
+  tr: Şifreyi sıfırla
+  zh: 重置密码
+  fa: بازیابی رمز عبور
+auth-back-button:
+  ru: Назад
+  en: Back
+  hy: Վերադառնալ
+  it: Indietro
+  es: Atrás
+  kk: Артқа
+  uz: Orqaga
+  cz: Zpět
+  de: Zurück
+  tr: Geri
+  zh: 返回
+  fa: بازگشت
+auth-reset-button:
+  ru: Восстановить
+  en: Reset
+  hy: Վերականգնել
+  it: Ristabilire
+  es: Restablecer
+  kk: Қалпына келтіру
+  uz: Tiklash
+  cz: Obnovit
+  de: Zurücksetzen
+  tr: Sıfırla
+  zh: 重置
+  fa: بازنشانی
+auth-resetform-email-desc:
+  ru: Электронная почта
+  en: Email
+  it: E-mail
+  hy: Էլ՝ հասցե
+  es: Correo electrónico
+  kk: Электрондық пошта
+  uz: Elektron pochta
+  cz: Email
+  de: E-Mail
+  tr: E-posta
+  zh: 邮箱
+  fa: ایمیل
+auth-resetform-email-validation1:
+  ru: Пожалуйста, введите эл. адрес
+  en: Please enter email
+  it: Inserisci l'e-mail. indirizzo
+  hy: Խնդրում ենք մուտքագրել էլ. հասցեն
+  es: Por favor, introduzca el correo electrónico
+  kk: Электрондық поштаны енгізіңіз
+  uz: Iltimos, elektron pochta manzilini kiriting
+  cz: Zadejte e-mail
+  de: Bitte geben Sie die E-Mail-Adresse ein
+  tr: Lütfen e-posta adresinizi girin
+  zh: 请输入邮箱
+  fa: لطفا ایمیل را وارد کنید
+auth-resetform-email-validation2:
+  ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
+  en: You are entering an invalid email address. Please try again!
+  it: Stai inserendo un indirizzo email errato. posta. Per favore riprova!
+  hy: "Դուք սխալ էլփոստի հասցե եք մուտքագրում: փոստ. Խնդրում եմ կրկին փորձեք!"
+  es: Está ingresando una dirección de correo electrónico no válida. ¡Inténtalo de
+    nuevo!
+  kk: Сіз жарамсыз электрондық пошта мекенжайын енгізіп жатырсыз. Қайта көріңіз!
+  uz: Siz noto‘g‘ri elektron pochta manzilini kiritdingiz. Iltimos, qayta urinib
+    ko‘ring!
+  cz: Zadali jste neplatnou e-mailovou adresu. Zkuste to prosím znovu!
+  de: Sie haben eine ungültige E-Mail-Adresse eingegeben. Bitte versuchen Sie es
+    erneut!
+  tr: Geçersiz bir e-posta adresi girdiniz. Lütfen tekrar deneyin!
+  zh: 您输入的邮箱地址无效。请重试！
+  fa: شما یک آدرس ایمیل نامعتبر وارد کرده‌اید. لطفا دوباره تلاش کنید!
+auth-resetform-phone-desc:
+  ru: Телефон
+  en: Phone number
+  it: Telefono
+  hy: Հեռախոս
+  es: Teléfono
+  kk: Телефон
+  uz: Telefon
+  cz: Telefonní číslo
+  de: Telefonnummer
+  tr: Telefon numarası
+  zh: 手机号
+  fa: شماره تلفن
+auth-resetform-phone-validation1:
+  ru: Пожалуйста, введите телефон
+  en: Please enter phone number
+  it: Inserisci il numero di telefono
+  hy: Խնդրում ենք մուտքագրել հեռախոսահամարը
+  es: Por favor, introduzca el número de teléfono
+  kk: Телефон нөмірін енгізіңіз
+  uz: Iltimos, telefon raqamini kiriting
+  cz: Zadejte telefonní číslo
+  de: Bitte geben Sie die Telefonnummer ein
+  tr: Lütfen telefon numaranızı girin
+  zh: 请输入手机号
+  fa: لطفا شماره تلفن را وارد کنید
+auth-resetform-code-desc:
+  ru: Код восстановления
+  en: Confirmation code
+  it: Codice di ripristino
+  hy: Վերականգնման կոդը
+  es: Código de confirmación
+  kk: Қалпына келтіру коды
+  uz: Tasdiqlash kodi
+  cz: Ověřovací kód
+  de: Bestätigungscode
+  tr: Onay kodu
+  zh: 验证码
+  fa: کد تأیید
+auth-confirmationform-code-validation1:
+  ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
+  en: Please enter the 6 digit code we have sent to your contact
+  it: Inserisci il codice di 6 cifre che abbiamo inviato al tuo contatto
+  hy: Խնդրում ենք մուտքագրել 6 նիշանոց կոդը, որը մենք ուղարկել ենք ձեր կոնտակտին
+  es: Por favor, introduzca el código de 6 dígitos que le hemos enviado a su
+    contacto
+  kk: Біз сіздің байланысыңызға жіберген 6 таңбалы кодты енгізіңіз
+  uz: Biz sizning kontaktlaringizga yuborgan 6 xonali kodni kiriting
+  cz: Zadejte 6místný kód, který jsme vám zaslali
+  de: Bitte geben Sie den 6-stelligen Code ein, den wir Ihnen gesendet haben
+  tr: Size gönderdiğimiz 6 haneli kodu girin
+  zh: 请输入我们发送到您联系方式的6位验证码
+  fa: لطفا کد ۶ رقمی که برای شما ارسال کرده‌ایم را وارد کنید
+auth-resetform-pass-desc:
+  ru: Пароль
+  en: Password
+  it: Parola d'ordine
+  hy: Գաղտնաբառ
+  es: Contraseña
+  kk: Құпиясөз
+  uz: Parol
+  cz: Heslo
+  de: Passwort
+  tr: Şifre
+  zh: 密码
+  fa: رمز عبور
+auth-resetform-password-placeholder:
+  ru: Придумайте пароль
+  en: Pick a password
+  it: Crea una password
+  hy: Ստեղծել գաղտնաբառ
+  es: Elija una contraseña
+  kk: Құпиясөз ойлап табыңыз
+  uz: Parol tanlang
+  cz: Zvolte heslo
+  de: Passwort wählen
+  tr: Şifre seçin
+  zh: 选择密码
+  fa: یک رمز عبور انتخاب کنید
+auth-resetform-password-desc:
+  ru: Пароль
+  en: Password
+  it: Parola d'ordine
+  hy: Գաղտնաբառ
+  es: Contraseña
+  kk: Құпиясөз
+  uz: Parol
+  cz: Heslo
+  de: Passwort
+  tr: Şifre
+  zh: 密码
+  fa: رمز عبور
+auth-resetform-password-tip-text:
+  ru: Придумайте пароль, который сложно подобрать
+  en: Create a password that is hard to guess
+  it: Crea una password difficile da indovinare
+  hy: Ստեղծեք գաղտնաբառ, որը դժվար է կռահել
+  es: Cree una contraseña difícil de adivinar
+  kk: Болжау қиын құпиясөз жасаңыз
+  uz: Taxmin qilish qiyin bo‘lgan parol yarating
+  cz: Vytvořte heslo, které je těžké uhodnout
+  de: Erstellen Sie ein schwer zu erratendes Passwort
+  tr: Tahmin edilmesi zor bir şifre oluşturun
+  zh: 创建一个难以猜测的密码
+  fa: یک رمز عبور انتخاب کنید که حدس زدن آن دشوار باشد
+auth-resetform-password-tip-success:
+  ru: Пароль соответствует требованиям
+  en: Password meets requirements
+  it: La password soddisfa i requisiti
+  hy: Գաղտնաբառը համապատասխանում է պահանջներին
+  es: La contraseña cumple con los requisitos
+  kk: Құпиясөз талаптарға сәйкес келеді
+  uz: Parol talablarni qondiradi
+  cz: Heslo splňuje požadavky
+  de: Passwort erfüllt die Anforderungen
+  tr: Şifre gereksinimleri karşılıyor
+  zh: 密码符合要求
+  fa: رمز عبور با الزامات مطابقت دارد
+auth-resetform-password-tip-error:
+  ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+  it: La password non soddisfa i requisiti
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
+  es: La contraseña no cumple con los requisitos
+  kk: Құпиясөз талаптарға сәйкес келмейді
+  uz: Parol talablarni qondirmaydi
+  cz: Heslo nesplňuje požadavky
+  de: Passwort erfüllt die Anforderungen nicht
+  tr: Şifre gereksinimleri karşılamıyor
+  zh: 密码不符合要求
+  fa: رمز عبور با الزامات مطابقت ندارد
+auth-resetform-password-tip-generate:
+  ru: Сгенерировать пароль
+  en: Generate password
+  it: Genera password
+  hy: Ստեղծեք գաղտնաբառ
+  es: Generar contraseña
+  kk: Құпиясөзді жасау
+  uz: Parol yaratish
+  cz: Vygenerovat heslo
+  de: Passwort generieren
+  tr: Şifre oluştur
+  zh: 生成密码
+  fa: تولید رمز عبور
+auth-resetform-password-tip-copied:
+  ru: Пароль скопирован в буфер обмена
+  en: Password copied to clipboard
+  it: La password è stata copiata negli appunti
+  hy: Գաղտնաբառը պատճենվել է clipboard-ում
+  es: Contraseña copiada al portapapeles
+  kk: Құпиясөз алмасу буферіне көшірілді
+  uz: Parol buferga nusxalandi
+  cz: Heslo zkopírováno do schránky
+  de: Passwort in die Zwischenablage kopiert
+  tr: Şifre panoya kopyalandı
+  zh: 密码已复制到剪贴板
+  fa: رمز عبور در کلیپ‌بورد کپی شد
+auth-resetform-password-tip-additional-1:
+  ru: цифры
+  en: digits
+  it: numeri
+  hy: թվեր
+  es: dígitos
+  kk: сандар
+  uz: raqamlar
+  cz: číslice
+  de: Ziffern
+  tr: rakamlar
+  zh: 数字
+  fa: ارقام
+auth-resetform-password-tip-additional-2:
+  ru: символы (!, $, ^ и др.)
+  en: symbols (!, $, ^, etc.)
+  it: simboli (!, $, ^, ecc.)
+  hy: նշաններ (!, $, ^ և այլն)
+  es: símbolos (!, $, ^, etc.)
+  kk: таңбалар (!, $, ^ және т.б.)
+  uz: belgilar (!, $, ^ va boshqalar)
+  cz: symboly (!, $, ^, atd.)
+  de: Symbole (!, $, ^, usw.)
+  tr: semboller (!, $, ^, vb.)
+  zh: 符号（!、$、^等）
+  fa: نمادها (!، $، ^ و غیره)
+auth-resetform-password-tip-additional-3:
+  ru: заглавные латинские буквы
+  en: capital latin letters
+  it: lettere latine maiuscole
+  hy: մեծատառ լատինատառ
+  es: letras latinas mayúsculas
+  kk: бас әріптер латын әріптері
+  uz: katta lotin harflari
+  cz: velká písmena latinky
+  de: Großbuchstaben
+  tr: büyük harfler
+  zh: 大写字母
+  fa: حروف لاتین بزرگ
+auth-resetform-password-tip-additional-4:
+  ru: строчные латинские буквы
+  en: lowercase latin letters
+  it: lettere latine minuscole
+  hy: փոքրատառ լատինատառ
+  es: letras latinas minúsculas
+  kk: кіші әріптер латын әріптері
+  uz: kichik lotin harflari
+  cz: malá písmena latinky
+  de: Kleinbuchstaben
+  tr: küçük harfler
+  zh: 小写字母
+  fa: حروف لاتین کوچک
+auth-resetform-password-validation1:
+  ru: Пожалуйста, введите пароль
+  en: Please enter a password
+  it: per favore inserisci LA TUA password
+  hy: Խնդրում ենք մուտքագրել ձեր գաղտնաբառը
+  es: Por favor, introduzca una contraseña
+  kk: Құпиясөзді енгізіңіз
+  uz: Iltimos, parolni kiriting
+  cz: Zadejte heslo
+  de: Bitte geben Sie ein Passwort ein
+  tr: Lütfen bir şifre girin
+  zh: 请输入密码
+  fa: لطفا رمز عبور را وارد کنید
+auth-resetform-password-validation3:
+  ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+  it: La password non soddisfa i requisiti
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
+  es: La contraseña no cumple con los requisitos
+  kk: Құпиясөз талаптарға сәйкес келмейді
+  uz: Parol talablarni qondirmaydi
+  cz: Heslo nesplňuje požadavky
+  de: Passwort erfüllt die Anforderungen nicht
+  tr: Şifre gereksinimleri karşılamıyor
+  zh: 密码不符合要求
+  fa: رمز عبور با الزامات مطابقت ندارد
+auth-resetform-confirmation-placeholder:
+  ru: Повторите пароль
+  en: Confirm password
+  it: Ripeti la password
+  hy: Կրկնեք գաղտնաբառը
+  es: Confirmar contraseña
+  kk: Құпиясөзді растаңыз
+  uz: Parolni tasdiqlang
+  cz: Potvrďte heslo
+  de: Passwort bestätigen
+  tr: Şifreyi onayla
+  zh: 确认密码
+  fa: تایید رمز عبور
+auth-resetform-password-validation2:
+  ru: Пожалуйста, повторите пароль
+  en: Please repeat password
+  it: Per favore ripeti la tua password
+  hy: Խնդրում ենք կրկնել ձեր գաղտնաբառը
+  es: Por favor, repita la contraseña
+  kk: Құпиясөзді қайталаңыз
+  uz: Iltimos, parolni qayta kiriting
+  cz: Zopakujte heslo
+  de: Bitte wiederholen Sie das Passwort
+  tr: Lütfen şifreyi tekrar girin
+  zh: 请再次输入密码
+  fa: لطفا رمز عبور را دوباره وارد کنید
+auth-resetform-confirmation-validation4:
+  ru: Пароли должны совпадать
+  en: Passwords must match
+  it: Le password devono essere identiche
+  hy: Գաղտնաբառերը պետք է համընկնեն
+  es: Las contraseñas deben coincidir
+  kk: Құпиясөздер сәйкес келуі керек
+  uz: Parollar mos kelishi kerak
+  cz: Hesla se musí shodovat
+  de: Passwörter müssen übereinstimmen
+  tr: Şifreler eşleşmeli
+  zh: 两次输入的密码必须一致
+  fa: رمزهای عبور باید مطابقت داشته باشند
+auth-resetform-password-tip-digits:
+  ru: более %s символов
+  en: at least %s symbols
+  it: più di %s caratteri
+  hy: ավելի քան %s նիշ
+  es: al menos %s símbolos
+  kk: кемінде %s таңба
+  uz: kamida %s belgilar
+  cz: alespoň %s znaků
+  de: mindestens %s Zeichen
+  tr: en az %s karakter
+  zh: 至少%s个字符
+  fa: حداقل %s کاراکتر

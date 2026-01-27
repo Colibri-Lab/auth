@@ -1,0 +1,69 @@
+auth-windows-twofactorappinformation-code:
+  ru: Проверить и сохранить
+  en: Verify and save
+  it: Verifica e salva
+  es: Verificar y guardar
+  hy: Ստուգել և պահպանել
+  kk: Тексеріп, сақтау
+  uz: Tekshirish va saqlash
+  cz: Ověřit a uložit
+  de: Überprüfen und speichern
+  tr: Doğrula ve kaydet
+  zh: 验证并保存
+  fa: بررسی و ذخیره
+
+auth-windows-twofactorappinformation-title:
+  ru: Сканируйте QR-код в приложение аутентификации, например Google Authenticator
+  en: Scan the QR code in your authentication app, such as Google Authenticator
+  it: Scansiona il codice QR nella tua app di autenticazione, come Google Authenticator
+  es: Escanea el código QR en tu aplicación de autenticación, como Google Authenticator
+  hy: Սքանավորեք QR կոդը ձեր վավերացման հավելվածում, օրինակ՝ Google Authenticator-ում
+  kk: QR кодты аутентификациялау қосымшаңызда, мысалы, Google Authenticator-де сканерлеңіз
+  uz: QR kodni autentifikatsiya ilovangizda, masalan, Google Authenticator-da skanerlang
+  cz: Naskenujte QR kód ve své autentizační aplikaci, například Google Authenticator
+  de: Scannen Sie den QR-Code in Ihrer Authentifizierungs-App, z.B. Google Authenticator
+  tr: Google Authenticator gibi kimlik doğrulama uygulamanızda QR kodunu tarayın
+  zh: 在您的认证应用（如Google身份验证器）中扫描二维码
+  fa: کد QR را در برنامه احراز هویت خود، مانند Google Authenticator، اسکن کنید
+
+auth-windows-twofactorappinformation-code-placeholder:
+  ru: Введите код из приложения аутентификации для проверки
+  en: Enter the code from your authentication app to verify
+  it: Inserisci il codice dalla tua app di autenticazione per verificare
+  es: Introduce el código de tu aplicación de autenticación para verificar
+  hy: Մուտքագրեք ձեր վավերացման հավելվածից կոդը ստուգման համար
+  kk: Тексеру үшін аутентификациялау қосымшаңыздан кодты енгізіңіз
+  uz: Tekshirish uchun autentifikatsiya ilovangizdan kodni kiriting
+  cz: Zadejte kód z autentizační aplikace pro ověření
+  de: Geben Sie den Code aus Ihrer Authentifizierungs-App zur Überprüfung ein
+  tr: Doğrulamak için kimlik doğrulama uygulamanızdan kodu girin
+  zh: 输入认证应用中的验证码进行验证
+  fa: کد را از برنامه احراز هویت خود وارد کنید تا تأیید شود
+
+auth-windows-twofactorappinformation-title2:
+  ru: Или введите код вручную
+  en: Or enter the code manually
+  it: Oppure inserisci il codice manualmente
+  es: O introduce el código manualmente
+  hy: Կամ մուտքագրեք կոդը ձեռքով
+  kk: Немесе кодты қолмен енгізіңіз
+  uz: Yoki kodni qo'lda kiriting
+  cz: Nebo zadejte kód ručně
+  de: Oder geben Sie den Code manuell ein
+  tr: Veya kodu manuel olarak girin
+  zh: 或手动输入验证码
+  fa: یا کد را به صورت دستی وارد کنید
+
+auth-windows-twofactorappinformation-delete:
+  ru: Удалить код и не использовать приложение
+  en: Delete code and do not use the app
+  it: Elimina il codice e non utilizzare l'app
+  es: Eliminar código y no usar la aplicación
+  hy: Հեռացնել կոդը և չօգտագործել հավելվածը
+  kk: Кодты жою және қосымшаны пайдаланбау
+  uz: Kodni o'chirish va ilovadan foydalanmaslik
+  cz: Smazat kód a nepoužívat aplikaci
+  de: Code löschen und App nicht verwenden
+  tr: Kodu sil ve uygulamayı kullanma
+  zh: 删除验证码并不再使用应用
+  fa: حذف کد و عدم استفاده از برنامه

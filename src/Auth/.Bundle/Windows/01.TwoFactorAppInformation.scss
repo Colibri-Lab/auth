@@ -1,0 +1,53 @@
+.app-modules-auth-windows-twofactorappinformation {
+    
+    .app-component-window-title {
+        height: 20px !important;
+        border-bottom: 0px !important;
+    }
+    .app-component-window-content {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+
+        [data-object-name="tfa-flex"] {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;    
+        }
+
+        [data-object-name="check-flex"] {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            [data-object-name="buttons-flex"] {
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+                
+            }
+        }
+
+        .app-component-heading {
+            text-align: center;
+        }
+
+        .app-component-textspan {
+            text-align: center;
+        }
+
+        [data-object-name="input-code"] {
+            input {
+                text-align: center;
+            }
+        }
+
+    }
+
+
+}

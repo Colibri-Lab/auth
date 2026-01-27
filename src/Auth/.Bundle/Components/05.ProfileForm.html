@@ -1,0 +1,100 @@
+<div ComponentName="App.Modules.Auth.Components.ProfileForm">
+
+    <Pane name="form-container" shown="true">    
+        <Forms.Form name="form" shown="true">
+            <fields>
+                {
+                    gender: {
+                        component: 'Select',
+                        desc: '#{auth-profileform-gender-desc}',
+                        params: {
+                            required: false,
+                            readonly: false,
+                            searchable: false
+                        },
+                        selector: {
+                            title: 'title',
+                            value: 'value'
+                        },
+                        values: [
+                            {value: 'male', title: '#{auth-profileform-gender-values-male}'},
+                            {value: 'female', title: '#{auth-profileform-gender-values-female}'},
+                        ],
+                        attrs: {
+                            width: '100%'
+                        }
+                    },
+                    first_name: {
+                        component: 'Text',
+                        desc: '#{auth-profileform-first_name-desc}',
+                        placeholder: '#{auth-profileform-first_name-placeholder}',
+                        params: {
+                            required: true,
+                            readonly: false,
+                            validate: [
+                                {
+                                    message: '#{auth-profileform-first_name-validation1}',
+                                    method: '(field, validator) => !!field.value'
+                                }
+                            ]                  
+                        },
+                        attrs: {
+                            width: '100%'
+                        }
+                    },
+                    patronymic: {
+                        component: 'Text',
+                        desc: '#{auth-profileform-partonymic-desc}',
+                        params: {
+                            required: true,
+                            readonly: false                        
+                        },
+                        attrs: {
+                            width: '100%'
+                        }
+                    },
+                    last_name: {
+                        component: 'Text',
+                        desc: '#{auth-profileform-last_name-desc}',
+                        placeholder: '#{auth-profileform-last_name-placeholder}',
+                        params: {
+                            required: true,
+                            readonly: false,
+                            validate: [
+                                {
+                                    message: '#{auth-profileform-last_name-validation1}',
+                                    method: '(field, validator) => !!field.value'
+                                }
+                            ]               
+                        },
+                        attrs: {
+                            width: '100%'
+                        }
+                    },
+                    birthdate: {
+                        component: 'Date',
+                        desc: '#{auth-profileform-birtdate-desc}',
+                        params: {
+                            required: false,
+                            readonly: true,
+                            validate: [
+                                {
+                                    message: '#{auth-profileform-birthdate-validation1}',
+                                    method: '(field, validator) => !field.value || field.value.toDate().Diff(new Date()) > 18 * 365 * 86400'
+                                }
+                            ]  
+                        },
+                        attrs: {
+                            width: '100%'
+                        }
+                    }
+                    
+                }
+            </fields>
+        </Forms.Form>
+    </Pane>
+    <FlexBox name="button-container" shown="true" className="buttons-pane">            
+        <SuccessButton name="save" shown="true" enabled="true" tabIndex="true" value="#{auth-profile-button}"></SuccessButton>
+    </FlexBox>
+
+</div>

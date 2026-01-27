@@ -1,0 +1,247 @@
+auth-changepassform-original-desc:
+  ru: Текущий пароль
+  en: Current password
+  it: password attuale
+  hy: Ընթացիկ գաղտնաբառը
+  es: Contraseña actual
+  kk: Ағымдағы құпия сөз
+  uz: Joriy parol
+  cz: Aktuální heslo
+  de: Aktuelles Passwort
+  tr: Mevcut şifre
+  zh: 当前密码
+  fa: رمز عبور فعلی
+auth-changepassform-password-desc:
+  ru: Новый пароль
+  en: New password
+  it: nuova password
+  hy: նոր ծածկագիր
+  es: Nueva contraseña
+  kk: Жаңа құпия сөз
+  uz: Yangi parol
+  cz: Nové heslo
+  de: Neues Passwort
+  tr: Yeni şifre
+  zh: 新密码
+  fa: رمز عبور جدید
+auth-changepassform-password-tip-text:
+  ru: Придумайте пароль, который сложно подобрать
+  en: Create a password that is hard to guess
+  it: Crea una password difficile da indovinare
+  hy: Ստեղծեք գաղտնաբառ, որը դժվար է կռահել
+  es: Crea una contraseña difícil de adivinar
+  kk: Болжау қиын құпия сөз жасаңыз
+  uz: Taxmin qilish qiyin bo'lgan parol yarating
+  cz: Vytvořte heslo, které je těžké uhodnout
+  de: Erstellen Sie ein schwer zu erratendes Passwort
+  tr: Tahmin edilmesi zor bir şifre oluşturun
+  zh: 创建一个难以猜测的密码
+  fa: یک رمز عبور بسازید که حدس زدن آن سخت باشد
+auth-changepassform-password-tip-success:
+  ru: Пароль соответствует требованиям
+  en: Password meets requirements
+  it: La password soddisfa i requisiti
+  hy: Գաղտնաբառը համապատասխանում է պահանջներին
+  es: La contraseña cumple con los requisitos
+  kk: Құпия сөз талаптарға сәйкес келеді
+  uz: Parol talablarni qondiradi
+  cz: Heslo splňuje požadavky
+  de: Passwort erfüllt die Anforderungen
+  tr: Şifre gereksinimleri karşılıyor
+  zh: 密码符合要求
+  fa: رمز عبور با الزامات مطابقت دارد
+auth-changepassform-password-tip-error:
+  ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+  it: La password non soddisfa i requisiti
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
+  es: La contraseña no cumple con los requisitos
+  kk: Құпия сөз талаптарға сәйкес келмейді
+  uz: Parol talablarni qondirmaydi
+  cz: Heslo nesplňuje požadavky
+  de: Passwort erfüllt die Anforderungen nicht
+  tr: Şifre gereksinimleri karşılamıyor
+  zh: 密码不符合要求
+  fa: رمز عبور با الزامات مطابقت ندارد
+auth-changepassform-password-tip-generate:
+  ru: Сгенерировать пароль
+  en: Generate password
+  it: Genera password
+  hy: Ստեղծեք գաղտնաբառ
+  es: Generar contraseña
+  kk: Құпия сөзді жасау
+  uz: Parol yaratish
+  cz: Vygenerovat heslo
+  de: Passwort generieren
+  tr: Şifre oluştur
+  zh: 生成密码
+  fa: تولید رمز عبور
+auth-changepassform-password-tip-copied:
+  ru: Пароль скопирован в буфер обмена
+  en: Password copied to clipboard
+  it: Password copiata negli appunti
+  hy: Գաղտնաբառը պատճենվեց clipboard-ում
+  es: Contraseña copiada al portapapeles
+  kk: Құпия сөз алмасу буферіне көшірілді
+  uz: Parol clipboardga nusxalandi
+  cz: Heslo zkopírováno do schránky
+  de: Passwort in die Zwischenablage kopiert
+  tr: Şifre panoya kopyalandı
+  zh: 密码已复制到剪贴板
+  fa: رمز عبور در کلیپ‌بورد کپی شد
+auth-changepassform-password-tip-additional-1:
+  ru: цифры
+  en: digits
+  it: numeri
+  hy: թվեր
+  es: dígitos
+  kk: сандар
+  uz: raqamlar
+  cz: číslice
+  de: Ziffern
+  tr: rakamlar
+  zh: 数字
+  fa: ارقام
+auth-changepassform-password-tip-additional-2:
+  ru: символы (!, $, ^ и др.)
+  en: symbols (!, $, ^, etc.)
+  it: simboli (!, $, ^, ecc.)
+  hy: նշաններ (!, $, ^ և այլն)
+  es: símbolos (!, $, ^, etc.)
+  kk: таңбалар (!, $, ^ және т.б.)
+  uz: belgilar (!, $, ^ va boshqalar)
+  cz: symboly (!, $, ^, atd.)
+  de: Symbole (!, $, ^, usw.)
+  tr: semboller (!, $, ^, vb.)
+  zh: 符号（!、$、^等）
+  fa: نمادها (!، $، ^ و غیره)
+auth-changepassform-password-tip-additional-3:
+  ru: заглавные латинские буквы
+  en: capital latin letters
+  it: lettere latine maiuscole
+  hy: մեծատառ լատինատառ
+  es: letras latinas mayúsculas
+  kk: бас әріптер латын әріптері
+  uz: katta lotin harflari
+  cz: velká písmena latinky
+  de: Großbuchstaben
+  tr: büyük harfler
+  zh: 大写字母
+  fa: حروف لاتین بزرگ
+auth-changepassform-password-tip-additional-4:
+  ru: строчные латинские буквы
+  en: lowercase latin letters
+  it: lettere latine minuscole
+  hy: փոքրատառ լատինատառ
+  es: letras latinas minúsculas
+  kk: кіші әріптер латын әріптері
+  uz: kichik lotin harflari
+  cz: malá písmena latinky
+  de: Kleinbuchstaben
+  tr: küçük harfler
+  zh: 小写字母
+  fa: حروف لاتین کوچک
+auth-changepassform-password-validation1:
+  ru: Пожалуйста, введите пароль
+  en: Please enter a password
+  it: per favore inserisci LA TUA password
+  hy: Խնդրում ենք մուտքագրել ձեր գաղտնաբառը
+  es: Por favor, introduzca una contraseña
+  kk: Құпия сөзді енгізіңіз
+  uz: Iltimos, parolni kiriting
+  cz: Zadejte heslo
+  de: Bitte geben Sie ein Passwort ein
+  tr: Lütfen bir şifre girin
+  zh: 请输入密码
+  fa: لطفاً رمز عبور را وارد کنید
+auth-changepassform-password-validation2:
+  ru: Пожалуйста, повторите пароль
+  en: Please repeat password
+  it: Per favore ripeti la tua password
+  hy: Խնդրում ենք կրկնել ձեր գաղտնաբառը
+  es: Por favor, repita la contraseña
+  kk: Құпия сөзді қайталаңыз
+  uz: Iltimos, parolni takrorlang
+  cz: Zopakujte heslo
+  de: Bitte wiederholen Sie das Passwort
+  tr: Lütfen şifreyi tekrar girin
+  zh: 请再次输入密码
+  fa: لطفاً رمز عبور را دوباره وارد کنید
+auth-changepassform-password-validation3:
+  ru: Пароль не соответствует требованиям
+  en: Password does not meet requirements
+  it: La password non soddisfa i requisiti
+  hy: Գաղտնաբառը չի համապատասխանում պահանջներին
+  es: La contraseña no cumple con los requisitos
+  kk: Құпия сөз талаптарға сәйкес келмейді
+  uz: Parol talablarni qondirmaydi
+  cz: Heslo nesplňuje požadavky
+  de: Passwort erfüllt die Anforderungen nicht
+  tr: Şifre gereksinimleri karşılamıyor
+  zh: 密码不符合要求
+  fa: رمز عبور با الزامات مطابقت ندارد
+auth-changepassform-confirmation-validation4:
+  ru: Пароли должны совпадать
+  en: Passwords must match
+  it: Le password devono essere identiche
+  hy: Գաղտնաբառերը պետք է համընկնեն
+  es: Las contraseñas deben coincidir
+  kk: Құпия сөздер сәйкес келуі керек
+  uz: Parollar bir xil bo'lishi kerak
+  cz: Hesla se musí shodovat
+  de: Passwörter müssen übereinstimmen
+  tr: Şifreler eşleşmeli
+  zh: 两次输入的密码必须一致
+  fa: رمزهای عبور باید یکسان باشند
+auth-changepassform-confirmation-desc:
+  ru: Повторите новый пароль
+  en: Repeat new password
+  it: ripetere la nuova password
+  hy: կրկնել նոր գաղտնաբառը
+  es: Repetir nueva contraseña
+  kk: Жаңа құпия сөзді қайталаңыз
+  uz: Yangi parolni takrorlang
+  cz: Zopakujte nové heslo
+  de: Neues Passwort wiederholen
+  tr: Yeni şifreyi tekrar girin
+  zh: 再次输入新密码
+  fa: رمز عبور جدید را دوباره وارد کنید
+auth-changepass-button:
+  ru: Обновить пароль
+  en: Update password
+  it: Aggiorna password
+  hy: Թարմացրեք գաղտնաբառը
+  es: Actualizar contraseña
+  kk: Құпия сөзді жаңарту
+  uz: Parolni yangilash
+  cz: Aktualizovat heslo
+  de: Passwort aktualisieren
+  tr: Şifreyi güncelle
+  zh: 更新密码
+  fa: به‌روزرسانی رمز عبور
+auth-changepassform-password-tip-text2:
+  ru: "Пароль должен содержать:"
+  en: "Password must contains:"
+  it: "La password deve contenere:"
+  hy: Գաղտնաբառը պետք է պարունակի.
+  es: "La contraseña debe contener:"
+  kk: "Құпия сөз мыналарды қамтуы керек:"
+  uz: "Parol quyidagilarni o'z ichiga olishi kerak:"
+  cz: "Heslo musí obsahovat:"
+  de: "Das Passwort muss enthalten:"
+  tr: "Şifre şunları içermelidir:"
+  zh: 密码必须包含：
+  fa: "رمز عبور باید شامل موارد زیر باشد:"
+auth-changepassform-password-tip-digits:
+  ru: более %s символов
+  en: at least %s symbols
+  it: più di %s caratteri
+  hy: ավելի քան %s նիշ
+  es: al menos %s símbolos
+  kk: кем дегенде %s таңба
+  uz: kamida %s belgilar
+  cz: alespoň %s znaků
+  de: mindestens %s Zeichen
+  tr: en az %s karakter
+  zh: 至少%s个字符
+  fa: حداقل %s کاراکتر

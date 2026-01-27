@@ -1,0 +1,62 @@
+<div ComponentName="App.Modules.Auth.Components.ChangeIdentityForm">
+
+    <Pane name="form-container" shown="true">    
+        <Forms.Form name="form1" shown="false" shuffleFieldNames="true">
+            <fields>
+                {
+                    message: {
+                        component: 'Label',
+                    },
+                    property: {
+                        component: 'Text',
+                        params: {
+                            required: true,
+                            readonly: false,
+                            validate: [
+                                {
+                                    message: '#{auth-changeform-property-validation1}', 
+                                    method: '(field, validator) => !!field.value'
+                                }
+                            ],
+                        },
+                        attrs: {
+                            width: '100%'
+                        }
+                    }
+                }
+            </fields>
+        </Forms.Form>
+        <Forms.Form name="form2" shown="false" shuffleFieldNames="true">
+            <fields>
+                {
+                    message: {
+                        component: 'Label',
+                    },
+                    code: {
+                        component: 'Text',
+                        placeholder: '#{auth-changeform-code-desc}',
+                        params: { 
+                            required: true,
+                            readonly: false,
+                            validate: [
+                                {
+                                    message: '#{auth-changeform-code-validation1}',
+                                    method: '(field, validator) => !!field.value &amp;&amp; field.value.length === 6'
+                                }
+                            ],
+                        },
+                        attrs: {
+                            width: '100%'
+                        }
+                    }
+                }
+            </fields>
+        </Forms.Form>
+    </Pane>
+    <Pane name="timer-container" shown="true">
+        <SuccessButton name="send" shown="true" enabled="false" tabIndex="true">#{auth-changeidentity-button}</SuccessButton>
+        <TextSpan name="timer" shown="false" value="#{auth-changeidentity-timer-value}" />
+        <Link name="request-code-again" shown="false" value="#{auth-changeidentity-requestagain}" />
+    </Pane>
+
+</div>

@@ -1,0 +1,24 @@
+.app-modules-auth-components-autologinrequest {
+    
+    .app-component-window-container {
+        max-width: 500px;
+        width: 100%;
+
+        .app-component-window-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+    
+            [data-object-name="link"] {
+                text-align: center;
+                width: 100%;
+                word-wrap: break-word;
+            }
+    
+    
+        }
+
+    }
+}

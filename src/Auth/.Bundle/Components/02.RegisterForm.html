@@ -1,0 +1,25 @@
+<div ComponentName="App.Modules.Auth.Components.RegisterForm">
+
+    <Pane name="form-container" shown="true">    
+        <TextSpan shown="true" name="form-register-title" className="app-auth-form-component-title">#{auth-logincontainer-register-title}</TextSpan>
+
+        <ConfirmationForm shown="true" name="step1" property="phone" width="100%" message1="#{auth-logincontainer-confirmation-phone-message}" message2="#{auth-logincontainer-confirmation-phone-message2}" message3="#{auth-logincontainer-confirmation-phone-message3}" mode="phone" />
+        <ConfirmationForm shown="false" name="step2" property="email" width="100%" message1="#{auth-logincontainer-confirmation-email-message}" message2="#{auth-logincontainer-confirmation-email-message2}" message3="#{auth-logincontainer-confirmation-email-message3}" mode="email" />  
+        
+        <Pane shown="false" name="step3">
+            <Forms.Form shown="true" name="form" />
+        
+            <FlexBox name="button-container" shown="true" className="buttons-pane">            
+                <SuccessButton name="register" shown="true" enabled="true" tabIndex="true" value="#{auth-registerform-complete-button}"></SuccessButton>
+            </FlexBox>
+        
+        </Pane>
+
+    </Pane>
+    
+    <FlexBox shown="true" name="button-container2" className="buttons-pane -gap10">
+        <TextSpan shown="true" value="#{auth-login-register-text}"></TextSpan>
+        <Link name="login" shown="true" enabled="true" tabIndex="true" value="#{auth-login-button}"></Link>
+    </FlexBox>
+
+</div>

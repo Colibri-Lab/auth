@@ -1,15 +1,16 @@
 {
 
-    "name": "colibri/auth",
+    "name": "colibri/auth", 
     "description": "Auth System",
     "type": "project",
     "license": "proprietary",
-    "minimum-stability": "dev",
+    "minimum-stability": "dev", 
     "require": {
         "php": ">=8.0.0",
         "colibri/core": "dev-master",
         "colibri/ui": "dev-master",
-        "firebase/php-jwt": "^6"
+        "firebase/php-jwt": "^6",
+        "endroid/qr-code": "6.x-dev"
     },
     "autoload": {
         "psr-4": {
@@ -17,13 +18,13 @@
         }
     },
     "repositories": {
-        "gitlab.repeatme.online/22": {
+        "gitlab.colibrilab.pro/22": {
             "type": "composer",
-            "url": "https://gitlab.repeatme.online/api/v4/group/22/-/packages/composer/packages.json"
+            "url": "https://gitlab.colibrilab.pro/api/v4/group/22/-/packages/composer/packages.json"
         },
-        "gitlab.repeatme.online/7": {
+        "gitlab.colibrilab.pro/7": {
             "type": "composer",
-            "url": "https://gitlab.repeatme.online/api/v4/group/7/-/packages/composer/packages.json"
+            "url": "https://gitlab.colibrilab.pro/api/v4/group/7/-/packages/composer/packages.json"
         }
     }
 }

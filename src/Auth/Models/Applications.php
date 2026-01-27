@@ -12,7 +12,7 @@ use App\Modules\Auth\Models\Application;
 use Colibri\App;
 
 /**
- * Таблица, представление данных в хранилище #{auth-storages-applications-desc;Приложения}
+ * Таблица, представление данных в хранилище Приложения
  * @author <author name and email>
  * @package App\Modules\Auth\Models
  * 
@@ -21,7 +21,8 @@ use Colibri\App;
  * @method Application _read()
  * 
  */
-class Applications extends BaseModelDataTable {
+class Applications extends BaseModelDataTable
+{
 
     /**
      * Конструктор
@@ -31,12 +32,12 @@ class Applications extends BaseModelDataTable {
      * @param Storage|null $storage хранилище
      * @return void 
      */
-    public function __construct(DataAccessPoint $point, IDataReader $reader = null, string $returnAs = 'Application', Storage|null $storage = null)
+    public function __construct(DataAccessPoint $point, ?IDataReader $reader = null, string $returnAs = 'Application', Storage|null $storage = null)
     {
         parent::__construct($point, $reader, $returnAs, $storage);
     }
 
-    
+
     /**
      * Создание модели по названию хранилища
      * @param int $page страница
@@ -46,18 +47,33 @@ class Applications extends BaseModelDataTable {
      * @param array $params параметры к запросу
      * @return Applications
      */
-    static function LoadByFilter(int $page = -1, int $pagesize = 20, string $filter = null, string $order = null, array $params = [], bool $calculateAffected = true) : ?Applications
+    static function LoadByFilter(int $page = -1, int $pagesize = 20, ?string $filter = null, ?string $order = null, array $params = [], bool $calculateAffected = true): ? Applications
     {
-        $storage = Storages::Create()->Load('applications');
-        $additionalParams = ['page' => $page, 'pagesize' => $pagesize, 'params' => $params];
-        $additionalParams['type'] = $calculateAffected ? DataAccessPoint::QueryTypeReader : DataAccessPoint::QueryTypeBigData;
-        return self::LoadByQuery(
-            $storage,
-            'select * from ' . $storage->name . 
-                ($filter ? ' where ' . $filter : '') . 
-                ($order ? ' order by ' . $order : ''), 
-            $additionalParams
-        );
+        $storage = Storages::Instance()->Load('applications', 'auth');
+        return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params, $calculateAffected);
+    }
+
+    /**
+     * Create table by any filters
+     * @param int $page page
+     * @param int $pagesize page size
+     * @param ?array $filtersArray filters array|object
+     * @param string $sortField sort field
+     * @param string $sortOrder sort order, default asc
+     * @return ?Applications
+     */
+    public static function LoadBy(
+        int $page = -1, 
+        int $pagesize = 20, 
+        ?string $searchTerm = null,
+        ?array $filtersArray = null,
+        ?string $sortField = null,
+        string $sortOrder = 'asc'
+    ) : ?Applications
+    {
+        $storage = Storages::Instance()->Load('applications', 'auth');
+        [$filter, $order, $params] = $storage->accessPoint->ProcessFilters($storage, $searchTerm, $filtersArray, $sortField, $sortOrder);
+        return parent::_loadByFilter($storage, $page, $pagesize, $filter, $order, $params);
     }
 
     /**
@@ -66,7 +82,7 @@ class Applications extends BaseModelDataTable {
      * @param int $pagesize размер страницы
      * @return Applications 
      */
-    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false) : ?Applications
+    static function LoadAll(int $page = -1, int $pagesize = 20, bool $calculateAffected = false): ? Applications
     {
         return self::LoadByFilter($page, $pagesize, null, null, [], $calculateAffected);
     }
@@ -76,16 +92,27 @@ class Applications extends BaseModelDataTable {
      * @param int $id ID строки
      * @return Application|null
      */
-    static function LoadById(int $id) : Application|null 
+    static function LoadById(int $id): Application|null
     {
         $table = self::LoadByFilter(1, 1, '{id}=[[id:integer]]', null, ['id' => $id], false);
         return $table && $table->Count() > 0 ? $table->First() : null;
     }
 
     /**
+     * Возвращает модель по ключу
+     * @param string $key Ключ приложения
+     * @return Application|null
+     */
+    static function LoadByKey(string $key): Application|null
+    {
+        $table = self::LoadByFilter(1, 1, '{key}=[[key:string]]', null, ['key' => $key], false);
+        return $table && $table->Count() > 0 ? $table->First() : null;
+    }
+
+    /**
      * Берем приложение из заголовков запроса
      */
-    static function LoadFromRequest(): ?Application
+    static function LoadFromRequest(): ? Application
     {
         $appName = App::$request->headers->{'X-AppName'};
         $appToken = App::$request->headers->{'X-AppToken'};
@@ -98,7 +125,7 @@ class Applications extends BaseModelDataTable {
      * Создание модели по названию хранилища
      * @return Application
      */
-    static function LoadEmpty() : Application
+    static function LoadEmpty(): Application
     {
         $table = self::LoadByFilter(-1, 20, 'false', null, [], false);
         return $table->CreateEmptyRow();
@@ -111,7 +138,7 @@ class Applications extends BaseModelDataTable {
      */
     static function DeleteAllByIds(array $ids): bool
     {
-        return self::DeleteAllByFilter('{id} in ('.implode(',', $ids).')');
+        return self::DeleteAllByFilter('{id} in (' . implode(',', $ids) . ')');
     }
 
     /**
@@ -121,10 +148,12 @@ class Applications extends BaseModelDataTable {
      */
     static function DeleteAllByFilter(string $filter): bool
     {
-        return self::DeleteByFilter('applications', $filter);
+        $storage = Storages::Instance()->Load('applications');
+        return self::DeleteByFilter($storage, $filter);
+
     }
 
-    static function DataMigrate(?Logger $logger = null): bool
+    static function DataMigrate(? Logger $logger = null): bool
     {
         // миграция данных
         return true;

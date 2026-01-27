@@ -1,0 +1,211 @@
+auth-loginform-email-desc:
+  ru: Электронный адрес
+  en: Email
+  it: Indirizzo e-mail
+  hy: Էլեկտրոնային հասցե
+  es: Correo electrónico
+  kk: Электрондық пошта
+  uz: Elektron pochta
+  cz: Email
+  de: E-Mail
+  tr: E-posta
+  zh: 邮箱
+  fa: ایمیل
+auth-loginform-login-validation1:
+  ru: Пожалуйста, введите эл. адрес
+  en: Please enter your email
+  it: Inserisci l'e-mail. indirizzo
+  hy: Խնդրում ենք մուտքագրել էլ. հասցեն
+  es: Por favor, introduce tu correo electrónico
+  kk: Электрондық поштаңызды енгізіңіз
+  uz: Iltimos, elektron pochtangizni kiriting
+  cz: Zadejte svůj e-mail
+  de: Bitte geben Sie Ihre E-Mail-Adresse ein
+  tr: Lütfen e-posta adresinizi girin
+  zh: 请输入您的邮箱
+  fa: لطفا ایمیل خود را وارد کنید
+auth-logincontainer-login-title:
+  ru: Вход в систему
+  en: Login
+  it: Login
+  hy: Մուտք գործել
+  es: Iniciar sesión
+  kk: Жүйеге кіру
+  uz: Tizimga kirish
+  cz: Přihlášení
+  de: Anmeldung
+  tr: Giriş Yap
+  zh: 登录
+  fa: ورود
+auth-loginform-login-validation2:
+  ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
+  en: You are entering an invalid email address. mail. Please try again!
+  it: Stai inserendo un indirizzo email errato. posta. Per favore riprova!
+  hy: "Դուք սխալ էլփոստի հասցե եք մուտքագրում: փոստ. Խնդրում եմ կրկին փորձեք!"
+  es: Estás introduciendo una dirección de correo electrónico no válida. ¡Por
+    favor, inténtalo de nuevo!
+  kk: Сіз жарамсыз электрондық пошта мекенжайын енгізіп жатырсыз. Қайтадан көріңіз!
+  uz: Siz noto`g`ri elektron pochta manzilini kiritmoqdasiz. Iltimos, qayta urinib
+    ko`ring!
+  cz: Zadali jste neplatnou e-mailovou adresu. Zkuste to prosím znovu!
+  de: Sie haben eine ungültige E-Mail-Adresse eingegeben. Bitte versuchen Sie es
+    erneut!
+  tr: Geçersiz bir e-posta adresi girdiniz. Lütfen tekrar deneyin!
+  zh: 您输入的邮箱地址无效。请重试！
+  fa: شما یک آدرس ایمیل نامعتبر وارد کرده‌اید. لطفا دوباره تلاش کنید!
+auth-loginform-password-desc:
+  ru: Пароль
+  en: Password
+  it: Parola d'ordine
+  hy: Գաղտնաբառ
+  es: Contraseña
+  kk: Құпия сөз
+  uz: Parol
+  cz: Heslo
+  de: Passwort
+  tr: Şifre
+  zh: 密码
+  fa: رمز عبور
+auth-loginform-password-validation1:
+  ru: Пожалуйста, введите пароль
+  en: Please enter password
+  it: per favore inserisci LA TUA password
+  hy: Խնդրում ենք մուտքագրել ձեր գաղտնաբառը
+  es: Por favor, introduce tu contraseña
+  kk: Құпия сөзіңізді енгізіңіз
+  uz: Iltimos, parolingizni kiriting
+  cz: Zadejte heslo
+  de: Bitte geben Sie Ihr Passwort ein
+  tr: Lütfen şifrenizi girin
+  zh: 请输入密码
+  fa: لطفا رمز عبور خود را وارد کنید
+auth-loginform-code-desc:
+  ru: Введите код подтверждения
+  en: Enter confirmation code
+  it: Inserire il codice di conferma
+  hy: Մուտքագրեք հաստատման կոդը
+  es: Introduce el código de confirmación
+  kk: Растау кодын енгізіңіз
+  uz: Tasdiqlash kodini kiriting
+  cz: Zadejte ověřovací kód
+  de: Bestätigungscode eingeben
+  tr: Onay kodunu girin
+  zh: 输入验证码
+  fa: کد تایید را وارد کنید
+auth-loginform-code-validation1:
+  ru: Пожалуйста, введите код из 6 цифр, который мы отправили вам на контакт
+  en: Please enter the 6 digit code we have sent to your contact
+  it: Inserisci il codice di 6 cifre che abbiamo inviato al tuo contatto
+  hy: Խնդրում ենք մուտքագրել 6 նիշանոց կոդը, որը մենք ուղարկել ենք ձեր կոնտակտին
+  es: Por favor, introduce el código de 6 dígitos que hemos enviado a tu contacto
+  kk: Біз сіздің байланысыңызға жіберген 6 таңбалы кодты енгізіңіз
+  uz: Biz sizning kontaktlaringizga yuborgan 6 xonali kodni kiriting
+  cz: Zadejte 6místný kód, který jsme vám zaslali
+  de: Bitte geben Sie den 6-stelligen Code ein, den wir Ihnen gesendet haben
+  tr: Size gönderdiğimiz 6 haneli kodu girin
+  zh: 请输入我们发送到您联系方式的6位验证码
+  fa: لطفا کد ۶ رقمی که برای شما ارسال کرده‌ایم را وارد کنید
+auth-login-timer-value:
+  ru: Вы сможете снова запросить код через %s секунд.
+  en: You will be able to request the code again in %s seconds.
+  it: Potrai richiedere nuovamente il codice tra %s secondi.
+  hy: "Դուք կկարողանաք կրկին պահանջել կոդը %s վայրկյանից:"
+  es: Podrás solicitar el código nuevamente en %s segundos.
+  kk: Сіз %s секундтан кейін кодты қайта сұрай аласыз.
+  uz: Siz %s soniyadan keyin kodni qayta so`rashingiz mumkin.
+  cz: Kód budete moci znovu požádat za %s sekund.
+  de: Sie können den Code in %s Sekunden erneut anfordern.
+  tr: Kodu tekrar %s saniye sonra isteyebilirsiniz.
+  zh: "%s秒后可再次请求验证码。"
+  fa: شما می‌توانید کد را دوباره در %s ثانیه درخواست کنید.
+auth-login-requestagain:
+  ru: Получить новый код
+  en: Get a new code
+  it: Ottieni un nuovo codice
+  hy: Ստացեք նոր կոդ
+  es: Obtener un nuevo código
+  kk: Жаңа код алу
+  uz: Yangi kodni olish
+  cz: Získat nový kód
+  de: Neuen Code anfordern
+  tr: Yeni kod al
+  zh: 获取新验证码
+  fa: دریافت کد جدید
+auth-login-reset:
+  ru: Забыли пароль?
+  en: Forgot your password?
+  it: Hai dimenticato la password?
+  hy: Մոռացե՞լ եք Ձեր գաղտնաբառը
+  es: ¿Olvidaste tu contraseña?
+  kk: Құпия сөзіңізді ұмыттыңыз ба?
+  uz: Parolingizni unutdingizmi?
+  cz: Zapomněli jste heslo?
+  de: Passwort vergessen?
+  tr: Şifrenizi mi unuttunuz?
+  zh: 忘记密码？
+  fa: رمز عبور خود را فراموش کرده‌اید؟
+auth-login-button:
+  ru: Войти
+  en: Login
+  it: Entrare
+  hy: Մուտք գործել
+  es: Iniciar sesión
+  kk: Кіру
+  uz: Kirish
+  cz: Přihlásit se
+  de: Anmelden
+  tr: Giriş Yap
+  zh: 登录
+  fa: ورود
+auth-register-login-text:
+  ru: У вас нет аккаунта?
+  en: Don't have an account?
+  it: Non hai un account?
+  hy: Դեռ գրանցվա՞ձ չեք։
+  es: ¿No tienes una cuenta?
+  kk: Сізде тіркелгі жоқ па?
+  uz: Hisobingiz yo`qmi?
+  cz: Nemáte účet?
+  de: Sie haben noch kein Konto?
+  tr: Hesabınız yok mu?
+  zh: 没有账号？
+  fa: حساب کاربری ندارید؟
+auth-register-button:
+  ru: Зарегистрироваться
+  en: Register
+  it: Registrati
+  hy: Գրանցվել
+  es: Registrarse
+  kk: Тіркелу
+  uz: Ro`yxatdan o`tish
+  cz: Registrovat se
+  de: Registrieren
+  tr: Kayıt Ol
+  zh: 注册
+  fa: ثبت نام
+auth-login-register-button:
+  ru: Зарегистрироваться
+  en: Register
+  it: Registrati
+  hy: Գրանցվել
+  es: Registrarse
+  kk: Тіркелу
+  uz: Ro`yxatdan o`tish
+  cz: Registrovat se
+  de: Registrieren
+  tr: Kayıt Ol
+  zh: 注册
+  fa: ثبت نام
+auth-loginform-appcode-desc:
+  ru: Введите код подтверждения из приложения аутентификации
+  en: Enter the confirmation code from your authentication app
+  it: Inserisci il codice di conferma dalla tua app di autenticazione
+  hy: Մուտքագրեք հաստատման կոդը ձեր վավերացման հավելվածից
+  es: Introduce el código de confirmación de tu aplicación de autenticación
+  kk: Растау кодын енгізіңіз аутентификациялау қосымшаңыздан
+  uz: Autentifikatsiya ilovangizdan tasdiqlash kodini kiriting
+  cz: Zadejte ověřovací kód z vaší autentizační aplikace
+  de: Geben Sie den Bestätigungscode aus Ihrer Authentifizierungs-App ein
+  tr: Kimlik doğrulama uygulamanızdan onay kodunu girin
+  zh: 输入您认证应用中的验证码
+  fa: کد تایید را از برنامه احراز هویت خود وارد کنید

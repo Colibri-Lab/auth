@@ -1,0 +1,142 @@
+auth-inviteform-email:
+  ru: Эл. адрес
+  en: Email
+  it: E-mail
+  hy: Էլ․ հասցէ
+  es: Correo electrónico
+  kk: Электрондық пошта
+  uz: Elektron pochta
+  cz: Email
+  de: E-Mail
+  tr: E-posta
+  zh: 邮箱
+  fa: ایمیل
+auth-inviteform-email-validation1:
+  ru: Пожалуйста, введите корректный эл. адрес
+  en: Please, enter the correct email
+  hy: Խնդրում ենք մուտքագրել ճիշտ էլ
+  it: Inserisci l'email corretta
+  es: Por favor, introduce un correo electrónico válido
+  kk: Дұрыс электрондық поштаны енгізіңіз
+  uz: Iltimos, to'g'ri elektron pochtani kiriting
+  cz: Zadejte správný e-mail
+  de: Bitte geben Sie die korrekte E-Mail-Adresse ein
+  tr: Lütfen doğru e-posta adresini girin
+  zh: 请输入正确的邮箱
+  fa: لطفا ایمیل صحیح را وارد کنید
+auth-inviteform-phone:
+  ru: Телефон
+  en: Phone
+  it: Telefono
+  hy: Հեռախոս
+  es: Teléfono
+  kk: Телефон
+  uz: Telefon
+  cz: Telefon
+  de: Telefon
+  tr: Telefon
+  zh: 电话
+  fa: تلفن
+auth-inviteform-fio:
+  ru: ФИО
+  en: Full name
+  it: Nome e cognome
+  hy: Անուն և ազգանուն
+  es: Nombre completo
+  kk: Толық аты-жөні
+  uz: To'liq ism
+  cz: Celé jméno
+  de: Vollständiger Name
+  tr: Tam ad
+  zh: 全名
+  fa: نام کامل
+auth-invite-button:
+  ru: Отправить
+  en: Send
+  hy: Ուղարկել
+  it: Inviare
+  es: Enviar
+  kk: Жіберу
+  uz: Yuborish
+  cz: Odeslat
+  de: Senden
+  tr: Gönder
+  zh: 发送
+  fa: ارسال
+auth-inviteform-multiple:
+  ru: Список приглашений
+  en: List of invitations
+  it: Elenco degli inviti
+  hy: Հրավիրությունների ցանկ
+  es: Lista de invitaciones
+  kk: Шақырулар тізімі
+  uz: Takliflar ro'yxati
+  cz: Seznam pozvánek
+  de: Einladungsliste
+  tr: Davet listesi
+  zh: 邀请列表
+  fa: لیست دعوت‌ها
+auth-inviteform-multiple-note:
+  ru: 'Пожалуйста, введите список приглашений в формате: "email" "name", строки
+    разделите переводом строки. Вы можете выделить нужную область в эксель и
+    скопировать в поле, формат будет соотвествовать '
+  en: 'Please, enter the list of invitations in the format: "email" "name",
+    separate lines with a new line. You can select the desired area in Excel and
+    copy it to the field, the format will be correct '
+  it: "Inserisci l'elenco degli inviti nel formato: \"email\" \"nome\", separa le
+    righe con un ritorno a capo. Puoi selezionare l'area desiderata in Excel e
+    copiarla nel campo, il formato sarà corretto "
+  hy: 'Ներմուծեք հրավիրությունների ցանկը հետևյալ ֆորմատով: "էլ․ հասցե" "անուն",
+    առաջացրեք տողերը նոր տողով: Դուք կարող եք ընտրել կարգավիճակը Excel-ում և
+    պատճենել այն դաշտում, որտեղ կլինի այս տեսքը '
+  es: 'Por favor, introduce la lista de invitaciones en el formato: "correo
+    electrónico" "nombre", separa las líneas con un salto de línea. Puedes
+    seleccionar el área deseada en Excel y copiarla en el campo, el formato será
+    correcto '
+  kk: 'Шақырулар тізімін келесі форматта енгізіңіз: "электрондық пошта" "аты",
+    жолдарды жаңа жолмен бөліңіз. Excel-де қажетті аймақты таңдап, оны өріске
+    көшіруге болады, формат дұрыс болады '
+  uz: "Takliflar ro'yxatini quyidagi formatda kiriting: \"elektron pochta\"
+    \"ism\", qatorlarni yangi qator bilan ajrating. Excel-da kerakli hududni
+    tanlab, maydonga nusxalashingiz mumkin, format to'g'ri bo'ladi "
+  cz: 'Zadejte seznam pozvánek ve formátu: "email" "jméno", jednotlivé řádky
+    oddělte novým řádkem. Můžete vybrat požadovanou oblast v Excelu a zkopírovat
+    ji do pole, formát bude správný.'
+  de: 'Bitte geben Sie die Einladungsliste im Format: "E-Mail" "Name" ein, trennen
+    Sie die Zeilen mit einem Zeilenumbruch. Sie können den gewünschten Bereich
+    in Excel auswählen und in das Feld kopieren, das Format ist korrekt.'
+  tr: "Lütfen davet listesini şu formatta girin: \"e-posta\" \"isim\", satırları
+    yeni satır ile ayırın. Excel'de istediğiniz alanı seçip bu alana
+    kopyalayabilirsiniz, format doğru olacaktır "
+  zh: 请输入邀请列表，格式为："邮箱" "姓名"，每行一个。可在Excel中选择区域复制粘贴，格式会自动正确。
+  fa: 'لطفا لیست دعوت‌ها را با فرمت: "ایمیل" "نام" وارد کنید، هر دعوت در یک خط جداگانه. می‌توانید محدوده مورد نظر را در اکسل انتخاب و در این قسمت کپی کنید، فرمت صحیح خواهد بود.'
+auth-inviteform-rows-validation1:
+  ru: Пожалуйста, введите список строк для приглашения
+  en: Please, enter the list of rows for the invitation
+  it: Per favore, inserisci l'elenco delle righe per l'invito
+  hy: Խնդրում ենք մուտքագրել հրավերի համար նախատեսված տողերի ցանկը
+  es: Por favor, introduce la lista de filas para la invitación
+  kk: Шақыру үшін жолдар тізімін енгізіңіз
+  uz: Iltimos, taklif uchun qatorlar ro'yxatini kiriting
+  cz: Zadejte seznam řádků pro pozvánku
+  de: Bitte geben Sie die Zeilen für die Einladung ein
+  tr: Lütfen davet için satır listesini girin
+  zh: 请输入邀请的行列表
+  fa: لطفا لیست سطرهای دعوت را وارد کنید
+auth-inviteform-rows-validation2:
+  ru: Пожалуста, введите строки которые содержат в первой части электронный адрес
+  en: Please, enter the rows that contain an email address in the first part
+  it: Per favore, inserisci le righe che contengono un indirizzo email nella prima
+    parte
+  hy: Խնդրում ենք մուտքագրել այն տողերը, որոնք առաջին մասում պարունակում են էլ․
+    հասցե
+  es: Por favor, introduce las filas que contengan una dirección de correo
+    electrónico en la primera parte
+  kk: Бірінші бөлігінде электрондық пошта мекенжайы бар жолдарды енгізіңіз
+  uz: Iltimos, birinchi qismida elektron pochta manzili bo'lgan qatorlarni kiriting
+  cz: Zadejte řádky, které obsahují e-mailovou adresu v první části
+  de: Bitte geben Sie die Zeilen ein, die im ersten Teil eine E-Mail-Adresse
+    enthalten
+  tr: Lütfen ilk kısmında e-posta adresi olan satırları girin
+  zh: 请输入首项为邮箱地址的行
+  fa: لطفا سطرهایی که بخش اول آن‌ها شامل ایمیل است را وارد کنید

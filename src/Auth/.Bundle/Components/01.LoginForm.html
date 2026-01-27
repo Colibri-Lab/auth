@@ -1,0 +1,85 @@
+<div ComponentName="App.Modules.Auth.Components.LoginForm">
+
+    <Pane name="form-container" shown="true">    
+        <TextSpan shown="true" name="form-login-title" className="app-auth-form-component-title">#{auth-logincontainer-login-title}</TextSpan>
+        <Forms.Form name="form" shown="true">
+            <fields>
+                {
+                    login: {
+                        component: 'Text', 
+                        desc: '#{auth-loginform-email-desc}',
+                        params: {   
+                            required: true,
+                            readonly: false,
+                            validate: [
+                                { 
+                                    message: '#{auth-loginform-login-validation1}',
+                                    method: '(field, validator) => !!field.value'
+                                },
+                                {
+                                    message: '#{auth-loginform-login-validation2}',
+                                    method: '(field, validator) => field.value.isEmail()'
+                                }
+                            ]
+                        }, 
+                        attrs: {
+                            width: '100%'
+                        }
+                    },
+                    password: {
+                        component: 'Password',
+                        desc: '#{auth-loginform-password-desc}',
+                        params: {
+                            required: true,
+                            readonly: false,
+                            validate: [
+                                {
+                                    message: '#{auth-loginform-password-validation1}',
+                                    method: '(field, validator) => !!field.value'
+                                }
+                            ],
+                            eyeicon: true                        
+                        },
+                        attrs: {
+                            width: '100%'
+                        }
+                    },
+                    code: {
+                        component: 'Text',
+                        desc: '#{auth-loginform-code-desc}',
+                        params: {
+                            hidden: true,
+                            required: true,
+                            readonly: false,
+                            validate: [
+                                {
+                                    message: '#{auth-loginform-code-validation1}',
+                                    method: '(field, validator) => !!field.value &amp;&amp; field.value.length === 6'
+                                }
+                            ],
+                        },
+                        attrs: {
+                            width: '100%'
+                        }
+                    }
+                }
+            </fields>
+        </Forms.Form>
+    </Pane>
+    <Pane name="timer-container" shown="false">
+        <TextSpan name="timer" shown="false" value="#{auth-login-timer-value}" />
+        <Link name="request-code-again" shown="false" value="#{auth-login-requestagain}" />
+    </Pane>
+    <FlexBox name="links-container" shown="true">
+        <Link name="reset" shown="true" value="#{auth-login-reset}"></Link>
+    </FlexBox>
+    <FlexBox name="button-container" shown="true" className="buttons-pane">            
+        <SuccessButton name="login" shown="true" enabled="true" tabIndex="true" value="#{auth-login-button}"></SuccessButton>
+        <SuccessButton name="fingerprint" shown="false" enabled="true" tabIndex="true" icon="Colibri.UI.FingerprintIcon" iconPosition="right"></SuccessButton>
+    </FlexBox>
+    <FlexBox shown="true" name="button-container2" className="buttons-pane -gap10">
+        <TextSpan shown="true" value="#{auth-register-login-text}"></TextSpan>
+        <Link name="register" shown="true" enabled="true" tabIndex="true" value="#{auth-login-register-button}"></Link>
+    </FlexBox>
+
+</div>
