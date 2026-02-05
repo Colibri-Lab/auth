@@ -9,7 +9,7 @@
         "php": ">=8.0.0",
         "colibri/core": "dev-master",
         "colibri/ui": "dev-master",
-        "firebase/php-jwt": "^6",
+        "firebase/php-jwt": "^7",
         "endroid/qr-code": "6.x-dev"
     },
     "autoload": {
