@@ -30,7 +30,7 @@
     - name: Download and install "modules" {{ modules }}
       community.general.composer:
         command: require
-        arguments: "{{ item }}"
+        arguments: "{{ item }} --with-all-dependencies"
         working_dir: "{{ awd }}/{{ folder }}"
         composer_executable: "/usr/bin/composer{{ composer | default('') }}"
         executable: "/usr/bin/php{{ php | default('') }}"
