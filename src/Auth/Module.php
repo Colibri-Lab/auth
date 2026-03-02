@@ -193,4 +193,9 @@ class Module extends BaseModule
         return '+997' . $digits;
     }
 
+    public function GenerateLocalEmail(string $login): string
+    {
+        return (string)$login . '@auth.loc';
+    }
+
 }

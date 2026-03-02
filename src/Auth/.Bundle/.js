@@ -172,9 +172,10 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
         super('Auth', Auth.requestType, Auth.remoteDomain);
     }
 
-    Register(email, email_confirmed, phone, phone_confirmed, password, confirmation, first_name = '', last_name = '', patronymic = '', gender = 'male', birthdate = null, invitation = null) {
+    Register(login, email, email_confirmed, phone, phone_confirmed, password, confirmation, first_name = '', last_name = '', patronymic = '', gender = 'male', birthdate = null, invitation = null) {
         return new Promise((resolve, reject) => {
             this.Call('Member', 'Register', {
+                login: login,
                 email: email,
                 email_confirmed: email_confirmed,
                 phone: phone,

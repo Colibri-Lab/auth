@@ -18,6 +18,7 @@ use Colibri\Data\Storages\Fields\ArrayField;
  * @package App\Modules\Auth\Models\Fields\Applications\Fields
  * 
  * region Properties:
+ * @property bool|null $askforemail Требовать эл. адрес
  * @property bool|null $askforphone Требовать номер телефона
  * @property int|null $livetime Время жизни
  * @property ParamsDomainsArrayField|null $domains Домены
@@ -45,6 +46,7 @@ class ParamsObjectField extends ObjectField
         ],
         'properties' => [
             # region SchemaProperties:
+			'askforemail' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
 			'askforphone' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
 			'livetime' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'integer', ] ] ],
 			'domains' => [  'oneOf' => [ ParamsDomainsArrayField::JsonSchema, [ 'type' => 'null'] ] ],

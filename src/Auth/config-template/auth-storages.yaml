@@ -205,6 +205,49 @@ applications:
         valuegenerator: ""
         onchangehandler: ""
       fields:
+        askforemail:
+          desc:
+            ru: Требовать эл. адрес
+            en: ""
+            it: ""
+            hy: ""
+            es: ""
+            kk: ""
+            uz: ""
+            cz: ""
+            de: ""
+            tr: ""
+            zh: ""
+            fa: ""
+          type: bool
+          component: Colibri.UI.Forms.Checkbox
+          class: bool
+          attrs:
+            inputWidth: ""
+          params:
+            required: false
+            enabled: true
+            canbeempty: true
+            readonly: false
+            searchable: false
+            list: true
+            template: false
+            multiple: false
+            viewer: Colibri.UI.CheckboxViewer
+            vertical: false
+            visual: false
+            code: 0
+            keyTitle: ""
+            valueTitle: ""
+            canEditKey: false
+            canAddNew: false
+            canRemoveRows: false
+            removelink: true
+            updownlink: true
+            hasscroll: true
+            initempty: true
+            removedesc: true
+          group: window
         askforphone:
           desc:
             ru: Требовать номер телефона
@@ -1810,6 +1853,49 @@ members:
         hy: ""
       tag: []
       group: window
+    login:
+      desc:
+        ru: Логин пользователя
+        en: Member login
+        it: ""
+        hy: Օգտատիրոջ անուն
+        es: ""
+        kk: ""
+        uz: ""
+        cz: ""
+        de: ""
+        tr: ""
+        zh: ""
+        fa: ""
+      type: varchar
+      length: "256"
+      component: Colibri.UI.Forms.Text
+      class: string
+      attrs:
+        inputWidth: ""
+      params:
+        required: true
+        enabled: true
+        canbeempty: true
+        readonly: false
+        searchable: false
+        list: true
+        template: false
+        multiple: false
+        vertical: false
+        visual: false
+        code: 0
+        keyTitle: ""
+        valueTitle: ""
+        canEditKey: false
+        canAddNew: false
+        canRemoveRows: false
+        removelink: true
+        updownlink: true
+        hasscroll: true
+        initempty: true
+        removedesc: true
+      group: window
     email:
       group: window
       desc:
@@ -2779,6 +2865,11 @@ members:
       type: NORMAL
       method: BTREE
       name: members_role_idx
+    members_login_idx:
+      fields:
+      - login
+      type: NORMAL
+      method: BTREE
   group: ~
 confirmations:
   desc:

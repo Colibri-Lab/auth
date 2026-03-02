@@ -162,6 +162,17 @@ class Members extends BaseModelDataTable
     }
 
     /**
+     * Возвращает модель по login
+     * @param string $login member login
+     * @return Member|null
+     */
+    public static function LoadByLogin(string $login): Member|null
+    {
+        $table = self::LoadByFilter(1, 1, '{login}=[[login:string]]', null, ['login' => $login], false);
+        return $table && $table->Count() > 0 ? $table->First() : null;
+    }
+
+    /**
      * Возвращает модель по phone
      * @param string $phone ID строки
      * @return Member|null
@@ -186,9 +197,10 @@ class Members extends BaseModelDataTable
      * Регистрация пользователя
      * @return Member
      */
-    public static function Register(string $email, string $phone, string $password): Member
+    public static function Register(string $login, string $email, string $phone, string $password): Member
     {
         $model = self::LoadEmpty();
+        $model->login = $login;
         $model->email = $email;
         $model->phone = $phone;
         $model->password = $password;
