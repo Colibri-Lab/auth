@@ -11,7 +11,7 @@ auth-loginform-email-desc:
   tr: E-posta
   zh: 邮箱
   fa: ایمیل
-auth-loginform-login-validation1:
+auth-loginform-email-validation1:
   ru: Пожалуйста, введите эл. адрес
   en: Please enter your email
   it: Inserisci l'e-mail. indirizzo
@@ -37,7 +37,7 @@ auth-logincontainer-login-title:
   tr: Giriş Yap
   zh: 登录
   fa: ورود
-auth-loginform-login-validation2:
+auth-loginform-email-validation2:
   ru: Вы вводите некорректный адрес эл. почты. Пожалуйста, попробуйте снова!
   en: You are entering an invalid email address. mail. Please try again!
   it: Stai inserendo un indirizzo email errato. posta. Per favore riprova!
@@ -209,3 +209,29 @@ auth-loginform-appcode-desc:
   tr: Kimlik doğrulama uygulamanızdan onay kodunu girin
   zh: 输入您认证应用中的验证码
   fa: کد تایید را از برنامه احراز هویت خود وارد کنید
+auth-loginform-login-desc:
+  ru: Логин
+  en: Login
+  it: Login
+  hy: Մուտքանուն
+  es: Usuario
+  kk: Логин
+  uz: Login
+  cz: Přihlašovací jméno
+  de: Benutzername
+  tr: Kullanıcı Adı
+  zh: 登录名
+  fa: نام کاربری
+auth-loginform-login-validation1:
+  ru: Пожалуйста, введите логин
+  en: Please enter your login
+  it: Inserisci il tuo login
+  hy: Խնդրում ենք մուտքագրել ձեր մուտքանունը
+  es: Por favor, introduce tu usuario
+  kk: Логиніңізді енгізіңіз
+  uz: Iltimos, loginingizni kiriting
+  cz: Zadejte své přihlašovací jméno
+  de: Bitte geben Sie Ihren Benutzernamen ein
+  tr: Lütfen kullanıcı adınızı girin
+  zh: 请输入您的登录名
+  fa: لطفا نام کاربری خود را وارد کنید

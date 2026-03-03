@@ -1100,6 +1100,90 @@ applications:
             es: ""
             kk: ""
             uz: ""
+        enable_invitations:
+          type: bool
+          component: Colibri.UI.Forms.Checkbox
+          class: bool
+          attrs:
+            inputWidth: ""
+          params:
+            required: false
+            enabled: true
+            canbeempty: true
+            readonly: false
+            searchable: false
+            list: false
+            template: false
+            multiple: false
+            vertical: false
+            visual: false
+            code: 0
+            keyTitle: ""
+            valueTitle: ""
+            canEditKey: false
+            canAddNew: false
+            canRemoveRows: false
+            removelink: true
+            updownlink: true
+            hasscroll: true
+            initempty: true
+            removedesc: true
+          group: window
+          placeholder:
+            ru: Включить приглашения
+            en: ""
+            it: ""
+            hy: ""
+            es: ""
+            kk: ""
+            uz: ""
+            cz: ""
+            de: ""
+            tr: ""
+            zh: ""
+            fa: ""
+        enable_contactsearch:
+          type: bool
+          component: Colibri.UI.Forms.Checkbox
+          class: bool
+          attrs:
+            inputWidth: ""
+          params:
+            required: false
+            enabled: true
+            canbeempty: true
+            readonly: false
+            searchable: false
+            list: false
+            template: false
+            multiple: false
+            vertical: false
+            visual: false
+            code: 0
+            keyTitle: ""
+            valueTitle: ""
+            canEditKey: false
+            canAddNew: false
+            canRemoveRows: false
+            removelink: true
+            updownlink: true
+            hasscroll: true
+            initempty: true
+            removedesc: true
+          group: window
+          placeholder:
+            ru: Включить поиск пользователей
+            en: ""
+            it: ""
+            hy: ""
+            es: ""
+            kk: ""
+            uz: ""
+            cz: ""
+            de: ""
+            tr: ""
+            zh: ""
+            fa: ""
         design:
           desc:
             ru: Макет

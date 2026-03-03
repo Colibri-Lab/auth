@@ -31,6 +31,7 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         this._buttonContainerFingerprint.AddHandler('Clicked', this.__buttonContainerFingerprintClicked, false, this);
 
         Auth.App.Settings().then((settings) => {
+            this._renderFields(settings.params.askforemail);
             this._buttonContainerFingerprint.shown = settings.params.enable_device_authentification;
             if(settings.params.enable_device_authentification) {
                 this.__buttonContainerFingerprintClicked(null, null);
@@ -38,6 +39,91 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         });
 
     } 
+
+    _renderFields(withEmail) {
+        const fields = {
+            login: {
+                component: 'Text', 
+                desc: '#{auth-loginform-login-desc}',
+                params: {   
+                    required: true,
+                    readonly: false,
+                    validate: [
+                        { 
+                            message: '#{auth-loginform-login-validation1}',
+                            method: '(field, validator) => !!field.value'
+                        }
+                    ]
+                }, 
+                attrs: {
+                    width: '100%'
+                }
+            },
+            email: {
+                component: 'Text', 
+                desc: '#{auth-loginform-email-desc}',
+                params: {   
+                    required: true,
+                    readonly: false,
+                    validate: [
+                        { 
+                            message: '#{auth-loginform-email-validation1}',
+                            method: '(field, validator) => !!field.value'
+                        },
+                        {
+                            message: '#{auth-loginform-email-validation2}',
+                            method: '(field, validator) => field.value.isEmail()'
+                        }
+                    ]
+                }, 
+                attrs: {
+                    width: '100%'
+                }
+            },
+            password: {
+                component: 'Password',
+                desc: '#{auth-loginform-password-desc}',
+                params: {
+                    required: true,
+                    readonly: false,
+                    validate: [
+                        {
+                            message: '#{auth-loginform-password-validation1}',
+                            method: '(field, validator) => !!field.value'
+                        }
+                    ],
+                    eyeicon: true                        
+                },
+                attrs: {
+                    width: '100%'
+                }
+            },
+            code: {
+                component: 'Text',
+                desc: '#{auth-loginform-code-desc}',
+                params: {
+                    hidden: true,
+                    required: true,
+                    readonly: false,
+                    validate: [
+                        {
+                            message: '#{auth-loginform-code-validation1}',
+                            method: '(field, validator) => !!field.value &amp;&amp; field.value.length === 6'
+                        }
+                    ],
+                },
+                attrs: {
+                    width: '100%'
+                }
+            }
+        };
+        if(!withEmail) {
+            delete fields.email;
+        } else {
+            delete fields.login;
+        }
+        this._form.fields = fields;
+    }
 
     __resetButtonClicked(event, args) {
         return this.Dispatch('ResetButtonClicked', args);
@@ -127,7 +213,7 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         const value = Object.cloneRecursive(this._form.value);
         this._form.enabled = false;
         this._loginButton.enabled = false;
-        Auth.Session.Login(value.login, value.password, !rerequestCode ? (value.code ?? null) : null).then((sessionAndCode) => {
+        Auth.Session.Login(value.login ?? value.email, value.password, !rerequestCode ? (value.code ?? null) : null).then((sessionAndCode) => {
             let session = sessionAndCode;
             let code = 206;
             if(sessionAndCode?.code) {

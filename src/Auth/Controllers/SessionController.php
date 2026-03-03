@@ -74,8 +74,10 @@ class SessionController extends WebController
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-session-data-incorrect}', 'code' => 400]);
         }
 
-        
-        $member = Members::LoadByEmail($login);
+        $member = Members::LoadByLogin($login);
+        if (!$member) {
+            $member = Members::LoadByEmail($login);
+        }
         if (!$member) {
             $member = Members::LoadByPhone($login);
         }
@@ -90,8 +92,8 @@ class SessionController extends WebController
         }
 
         try {
-            
-            if ($member->two_factor) {
+        
+            if ($app->params->askforemail && $member->two_factor) {
                 if ($code) {
                     if (!$member->ConfirmLogin($code)) {
                         return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-property-tho-factor-error}', 'code' => 403]);
@@ -103,7 +105,7 @@ class SessionController extends WebController
                         return $this->Finish(206, 'Tho factor authentification', ['message' => '#{auth-errors-member-property-two-factor-needed}', 'code' => 206]);
                     }
                 }
-            } else if($member->two_factor_application) {
+            } else if($app->params->askforemail && $member->two_factor_application) {
                 if ($code) {
                     if (!TwoFactorHelper::Verify($member->two_factor_application, $code)) {
                         return $this->Finish(403, 'Forbidden', ['message' => '#{auth-errors-member-property-tho-factor-error}', 'code' => 403]);

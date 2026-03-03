@@ -31,6 +31,8 @@ use Colibri\Data\Storages\Fields\ArrayField;
  * @property bool|null $enable_two_factor_authentication 
  * @property bool|null $enable_two_factor_authentification_applications 
  * @property bool|null $enable_device_authentification 
+ * @property bool|null $enable_invitations 
+ * @property bool|null $enable_contactsearch 
  * @property ParamsDesignObjectField|null $design Макет
  * @property ParamsProxiesObjectField|null $proxies Прокси для коммуникаций
  * endregion Properties;
@@ -59,6 +61,8 @@ class ParamsObjectField extends ObjectField
 			'enable_two_factor_authentication' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
 			'enable_two_factor_authentification_applications' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
 			'enable_device_authentification' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
+			'enable_invitations' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
+			'enable_contactsearch' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
 			'design' => [  'oneOf' => [ ParamsDesignObjectField::JsonSchema, [ 'type' => 'null'] ] ],
 			'proxies' => [  'oneOf' => [ ParamsProxiesObjectField::JsonSchema, [ 'type' => 'null'] ] ],
 			# endregion SchemaProperties;

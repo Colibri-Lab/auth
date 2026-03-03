@@ -1,3 +1,7 @@
 .app-ui-component.app-auth-login-form-component {
-   
+   [data-object-name="login"], [data-object-name="fingerprint"] {
+        svg {
+            fill: white;
+        }
+   }
 }    
