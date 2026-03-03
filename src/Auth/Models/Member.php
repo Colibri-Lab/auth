@@ -30,6 +30,7 @@ use Colibri\IO\FileSystem\File;
  * @property DateTimeField $datemodified Дата последнего обновления строки
  * @property DateTimeField $datedeleted Дата удаления строки (если включно мягкое удаление)
  * @property string $token Токен пользователя
+ * @property string|null $login Логин пользователя
  * @property string $email Эл. адрес пользователя
  * @property string $phone Телефон
  * @property string $password Пароль
@@ -76,6 +77,7 @@ class Member extends BaseModelDataRow
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
 			'token' => ['type' => 'string', 'maxLength' => 32, ],
+			'login' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 256, ] ] ],
 			'email' => ['type' => 'string', 'maxLength' => 255, ],
 			'phone' => ['type' => 'string', 'maxLength' => 50, ],
 			'password' => ['type' => 'string', 'maxLength' => 128, ],
@@ -104,9 +106,9 @@ class Member extends BaseModelDataRow
 	# endregion Consts;
 
 
-    public function setPropertyEmail(string $value): void
+    public function setPropertyLogin(string $value): void
     {
-        $this->_data['members_email'] = $value;
+        $this->_data['members_login'] = $value;
         $this->_data['members_token'] = md5($value);
     }
 

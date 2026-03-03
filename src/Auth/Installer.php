@@ -70,8 +70,8 @@ class Installer
         } elseif ($mode === 'prod') {
             // захватываем управление админкой
             // управляющий модуль должен быть один
-            $hosts['domains']['manage'] = array_merge($hosts['domains']['manage'], ['backend.auth.ecolo-place.com']);
-            $hosts['domains']['auth'] = ['*.auth.ecolo-place.com'];
+            $hosts['domains']['manage'] = array_merge($hosts['domains']['manage'], ['backend.auth.colibrilab.pro']);
+            $hosts['domains']['auth'] = ['*.auth.colibrilab.pro'];
         }
         self::_saveConfig($file, $hosts);
 

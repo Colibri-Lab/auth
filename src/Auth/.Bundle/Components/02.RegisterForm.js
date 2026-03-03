@@ -28,281 +28,192 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         
         
         Auth.App.Settings().then((settings) => {
-            
-            if(settings.params.askforphone) {                
-                this._registrationData = {
-                    phone: null, 
-                    phone_confirmed: false,
-                    email: null,
-                    email_confirmed: false,
-                };
-                this._renderFields(true);
-                this._currentStep = 1;
-            } else {
-                this._registrationData = {
-                    email: null,
-                    email_confirmed: false,
-                };
-                this._renderFields(false);
-                this._currentStep = 2;
+    
+            this._registrationData = {
+                login: null, 
+                phone: null, 
+                phone_confirmed: false,
+                email: null,
+                email_confirmed: false,
+            };
+            if(!settings.params.askforphone) {                
+                delete this._registrationData.phone;
+                delete this._registrationData.phone_confirmed;
             }
+            if(!settings.params.askforemail) {
+                delete this._registrationData.email;
+                delete this._registrationData.email_confirmed;
+            } 
+
+            if(!settings.params.askforphone) {
+                this['_step1'].enabled = false;
+            }
+            if(!settings.params.askforemail) {
+                this['_step2'].enabled = false;
+            }
+
+            this._renderFields(settings.params.askforemail, settings.params.askforphone);
+            this._currentStep = 1;
             this._showStep();
         });
 
     } 
 
-    _renderFields(withPhone = true) {
-        if(withPhone) {
-            this._form.fields = {
-                email_confirmed: {
-                    component: 'Checkbox',
-                    hidden: true,
+    _renderFields(withEmail = true, withPhone = true) {
+        const fields = {
+            email_confirmed: {
+                component: 'Checkbox',
+                hidden: true,
+            },
+            phone_confirmed: {
+                component: 'Checkbox',
+                hidden: true
+            },
+            login: {
+                component: 'Text',
+                desc: '#{auth-registerform-login-desc}',
+                params: {
+                    required: true,
+                    readonly: false,
+                    enabled: true
                 },
-                phone_confirmed: {
-                    component: 'Checkbox',
-                    hidden: true
+                attrs: {
+                    width: '100%'
+                } 
+            },
+            email: {
+                component: 'Text',
+                desc: '#{auth-registerform-email-desc}',
+                params: {
+                    required: true,
+                    readonly: false,
+                    enabled: false,
+                    icon: App.Modules.Auth.Icons.Done,
+                    className: '-icon-right -icon-green'
                 },
-                email: {
-                    component: 'Text',
-                    desc: '#{auth-registerform-email-desc}',
-                    params: {
-                        required: true,
-                        readonly: false,
-                        enabled: false,
-                        icon: App.Modules.Auth.Icons.Done,
-                        className: '-icon-right -icon-green'
-                    },
-                    attrs: {
-                        width: '100%'
-                    } 
+                attrs: {
+                    width: '100%'
+                } 
+            },
+            phone: {
+                component: 'Text',
+                desc: '#{auth-registerform-phone-desc}',
+                params: {
+                    required: true,
+                    readonly: false,
+                    enabled: false,
+                    icon: App.Modules.Auth.Icons.Done,
+                    className: '-icon-right -icon-green'
                 },
-                phone: {
-                    component: 'Text',
-                    desc: '#{auth-registerform-phone-desc}',
-                    params: {
-                        required: true,
-                        readonly: false,
-                        enabled: false,
-                        icon: App.Modules.Auth.Icons.Done,
-                        className: '-icon-right -icon-green'
-                    },
-                    attrs: {
-                        width: '100%'
-                    }
+                attrs: {
+                    width: '100%'
+                }
+            },
+            pass: {
+                component: 'Object',
+                desc: '#{auth-registerform-pass-desc}',
+                params: {
+                    vertical: true
                 },
-                pass: {
-                    component: 'Object',
-                    desc: '#{auth-registerform-pass-desc}',
-                    params: {
-                        vertical: true
-                    },
-                    fields: {
-                        password: {
-                            component: 'Password',
-                            desc: '#{auth-registerform-password-placeholder}',
-                            /* desc: '#{auth-registerform-password-desc}', */
-                            params: {
-                                required: true,
-                                readonly: false,
-                                eyeicon: true,
-                                tip: {
-                                    orientation: [Colibri.UI.ToolTip.RT, Colibri.UI.ToolTip.LT],
-                                    className: 'app-password-tip-component',
-                                    text: ['#{auth-registerform-password-tip-text}', '#{auth-registerform-password-tip-text2}'],
-                                    success: '#{auth-registerform-password-tip-success}',
-                                    error: '#{auth-registerform-password-tip-error}',
-                                    generate: '#{auth-registerform-password-tip-generate}',
-                                    copied: '#{auth-registerform-password-tip-copied}',
-                                    digits: '#{auth-registerform-password-tip-digits}',
-                                    additional: [
-                                        '#{auth-registerform-password-tip-additional-1}', 
-                                        '#{auth-registerform-password-tip-additional-2}',
-                                        '#{auth-registerform-password-tip-additional-3}', 
-                                        '#{auth-registerform-password-tip-additional-4}'
-                                    ]
-                                },
-                                requirements: {
-                                    digits: 8,
-                                    strength: 70,
-                                    minForStrong: 90,
-                                    minForGood: 70,
-                                    minForWeak: 50
-                                },
-                                validate: [
-                                    {
-                                        message: '#{auth-registerform-password-validation1}',
-                                        method: '(field, validator) => !!field.value'
-                                    },
-                                    {
-                                        message: '#{auth-registerform-password-validation3}',
-                                        method: '(field, validator) => validator.form.FindField("pass/password").CalcPasswordStrength() > 60'
-                                    }
+                fields: {
+                    password: {
+                        component: 'Password',
+                        desc: '#{auth-registerform-password-placeholder}',
+                        /* desc: '#{auth-registerform-password-desc}', */
+                        params: {
+                            required: true,
+                            readonly: false,
+                            eyeicon: true,
+                            tip: {
+                                orientation: [Colibri.UI.ToolTip.RT, Colibri.UI.ToolTip.LT],
+                                className: 'app-password-tip-component',
+                                text: ['#{auth-registerform-password-tip-text}', '#{auth-registerform-password-tip-text2}'],
+                                success: '#{auth-registerform-password-tip-success}',
+                                error: '#{auth-registerform-password-tip-error}',
+                                generate: '#{auth-registerform-password-tip-generate}',
+                                copied: '#{auth-registerform-password-tip-copied}',
+                                digits: '#{auth-registerform-password-tip-digits}',
+                                additional: [
+                                    '#{auth-registerform-password-tip-additional-1}', 
+                                    '#{auth-registerform-password-tip-additional-2}',
+                                    '#{auth-registerform-password-tip-additional-3}', 
+                                    '#{auth-registerform-password-tip-additional-4}'
                                 ]
                             },
-                            attrs: {
-                                width: '100%'
-                            }
-                        },
-                        confirmation: {
-                            component: 'Password',
-                            desc: '#{auth-registerform-confirmation-placeholder}',
-                            /* desc: '#{auth-registerform-confirmation-desc}', */
-                            params: {
-                                required: true,
-                                readonly: false,
-                                eyeicon: true,
-                                validate: [
-                                    {
-                                        message: '#{auth-registerform-password-validation2}',
-                                        method: '(field, validator) => !!field.value'
-                                    },
-                                    {
-                                        message: '#{auth-registerform-confirmation-validation4}',
-                                        method: '(field, validator) => field.value == validator.form.value.pass.password'
-                                    }
-                                ]                  
+                            requirements: {
+                                digits: 8,
+                                strength: 70,
+                                minForStrong: 90,
+                                minForGood: 70,
+                                minForWeak: 50
                             },
-                            attrs: {
-                                width: '100%'
-                            }
-                        } 
-                    }
-                },
-                aggreenment: {
-                    component: 'Checkbox',
-                    placeholder: '#{auth-registerform-aggreenment-placeholder}',
-                    params: {
-                        required: true,
-                        readonly: false,
-                        validate: [
-                            {
-                                message: '#{auth-registerform-aggreenment-validation1}',
-                                method: '(field, validator) => !!field.value'
-                            }
-                        ]              
+                            validate: [
+                                {
+                                    message: '#{auth-registerform-password-validation1}',
+                                    method: '(field, validator) => !!field.value'
+                                },
+                                {
+                                    message: '#{auth-registerform-password-validation3}',
+                                    method: '(field, validator) => validator.form.FindField("pass/password").CalcPasswordStrength() > 60'
+                                }
+                            ]
+                        },
+                        attrs: {
+                            width: '100%'
+                        }
                     },
-                    attrs: {
-                        width: '100%'
-                    }
-                }
-            };
-        } else {
-            this._form.fields = {
-                email_confirmed: {
-                    component: 'Checkbox',
-                    hidden: true,
-                },
-                email: {
-                    component: 'Text',
-                    desc: '#{auth-registerform-email-desc}',
-                    params: {
-                        required: true,
-                        readonly: false,
-                        enabled: false,
-                        icon: App.Modules.Auth.Icons.Done,
-                        className: '-icon-right -icon-green'
-                    },
-                    attrs: {
-                        width: '100%'
+                    confirmation: {
+                        component: 'Password',
+                        desc: '#{auth-registerform-confirmation-placeholder}',
+                        /* desc: '#{auth-registerform-confirmation-desc}', */
+                        params: {
+                            required: true,
+                            readonly: false,
+                            eyeicon: true,
+                            validate: [
+                                {
+                                    message: '#{auth-registerform-password-validation2}',
+                                    method: '(field, validator) => !!field.value'
+                                },
+                                {
+                                    message: '#{auth-registerform-confirmation-validation4}',
+                                    method: '(field, validator) => field.value == validator.form.value.pass.password'
+                                }
+                            ]                  
+                        },
+                        attrs: {
+                            width: '100%'
+                        }
                     } 
-                },
-                pass: {
-                    component: 'Object',
-                    desc: '#{auth-registerform-pass-desc}',
-                    params: {
-                        vertical: true
-                    },
-                    fields: {
-                        password: {
-                            component: 'Password',
-                            desc: '#{auth-registerform-password-placeholder}',
-                            /* desc: '#{auth-registerform-password-desc}', */
-                            params: {
-                                required: true,
-                                readonly: false,
-                                eyeicon: true,
-                                tip: {
-                                    orientation: [Colibri.UI.ToolTip.RT, Colibri.UI.ToolTip.LT],
-                                    className: 'app-password-tip-component',
-                                    text: ['#{auth-registerform-password-tip-text}', '#{auth-registerform-password-tip-text2}'],
-                                    success: '#{auth-registerform-password-tip-success}',
-                                    error: '#{auth-registerform-password-tip-error}',
-                                    generate: '#{auth-registerform-password-tip-generate}',
-                                    copied: '#{auth-registerform-password-tip-copied}',
-                                    digits: '#{auth-registerform-password-tip-digits}',
-                                    additional: [
-                                        '#{auth-registerform-password-tip-additional-1}', 
-                                        '#{auth-registerform-password-tip-additional-2}',
-                                        '#{auth-registerform-password-tip-additional-3}', 
-                                        '#{auth-registerform-password-tip-additional-4}'
-                                    ]
-                                },
-                                requirements: {
-                                    digits: 8,
-                                    strength: 70,
-                                    minForStrong: 90,
-                                    minForGood: 70,
-                                    minForWeak: 50
-                                },
-                                validate: [
-                                    {
-                                        message: '#{auth-registerform-password-validation1}',
-                                        method: '(field, validator) => !!field.value'
-                                    },
-                                    {
-                                        message: '#{auth-registerform-password-validation3}',
-                                        method: '(field, validator) => validator.form.FindField("pass/password").CalcPasswordStrength() > 60'
-                                    }
-                                ]
-                            },
-                            attrs: {
-                                width: '100%'
-                            }
-                        },
-                        confirmation: {
-                            component: 'Password',
-                            desc: '#{auth-registerform-confirmation-placeholder}',
-                            /* desc: '#{auth-registerform-confirmation-desc}', */
-                            params: {
-                                required: true,
-                                readonly: false,
-                                eyeicon: true,
-                                validate: [
-                                    {
-                                        message: '#{auth-registerform-password-validation2}',
-                                        method: '(field, validator) => !!field.value'
-                                    },
-                                    {
-                                        message: '#{auth-registerform-confirmation-validation4}',
-                                        method: '(field, validator) => field.value == validator.form.value.pass.password'
-                                    }
-                                ]                  
-                            },
-                            attrs: {
-                                width: '100%'
-                            }
-                        } 
-                    }
-                },
-                aggreenment: {
-                    component: 'Checkbox',
-                    placeholder: '#{auth-registerform-aggreenment-placeholder}',
-                    params: {
-                        required: true,
-                        readonly: false,
-                        validate: [
-                            {
-                                message: '#{auth-registerform-aggreenment-validation1}',
-                                method: '(field, validator) => !!field.value'
-                            }
-                        ]              
-                    },
-                    attrs: {
-                        width: '100%'
-                    }
                 }
-            };
+            },
+            aggreenment: {
+                component: 'Checkbox',
+                placeholder: '#{auth-registerform-aggreenment-placeholder}',
+                params: {
+                    required: true,
+                    readonly: false,
+                    validate: [
+                        {
+                            message: '#{auth-registerform-aggreenment-validation1}',
+                            method: '(field, validator) => !!field.value'
+                        }
+                    ]              
+                },
+                attrs: {
+                    width: '100%'
+                }
+            }
+        };
+        if(!withEmail) {
+            delete fields.email;
+            delete fields.email_confirmed;
         }
+        if(!withPhone) {
+            delete fields.phone;
+            delete fields.phone_confirmed;
+        }
+        this._form.fields = fields;
     }
 
     /**
@@ -338,6 +249,9 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
 
     _showStep() {
         this._step1.shown = this._step2.shown = this._step3.shown = false;
+        while(this['_step' + this._currentStep] && !this['_step' + this._currentStep].enabled) {
+            this._currentStep++;
+        }
         this['_step' + this._currentStep].shown = true;
         if(this._currentStep === 3) {
             this._form.value = this._registrationData;
@@ -392,6 +306,7 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this._form.enabled = false;
         this._registerButton.enabled = false;
         Auth.Members.Register(
+            formData.login, 
             formData.email, 
             formData.email_confirmed, 
             formData.phone ? formData.phone.replaceAll(/[^[0-9+]/, '') : null, 

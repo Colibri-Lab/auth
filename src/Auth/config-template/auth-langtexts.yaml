@@ -302,3 +302,11 @@ auth-errors-member-provide-token:
   es: Por favor, proporcione el token del usuario
   kk: Пайдаланушы токенін жіберіңіз
   uz: Iltimos, foydalanuvchi tokenini taqdim eting
+auth-errors-member-with-login-exists:
+  ru: Пользователь с таким login-ом существует
+  en: A user with such an login exists
+  it: Esiste un utente con questa login
+  hy: Այս օգտատերը արդեն գոյություն ունի
+  es: Existe un usuario con ese login
+  kk: Бұл логині бар пайдаланушы
+  uz: Bu login bilan foydalanuvchi mavjud

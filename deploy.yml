@@ -30,7 +30,7 @@
     - name: Download and install "modules" {{ modules }}
       community.general.composer:
         command: require
-        arguments: "{{ item }} --with-all-dependencies"
+        arguments: "{{ item }} --verbose"
         working_dir: "{{ awd }}/{{ folder }}"
         composer_executable: "/usr/bin/composer{{ composer | default('') }}"
         executable: "/usr/bin/php{{ php | default('') }}"
@@ -52,14 +52,14 @@
   tasks:
     - name: Make target directory if not
       ansible.builtin.file:
-        path: "/var/www/{{ project_dir }}"
+        path: "{{ project_dir }}"
         state: directory
 
     - name: Synchronize passing in extra rsync options
       ansible.posix.synchronize:
         delete: false
         src: "{{ awd }}/{{ folder }}/"
-        dest: /var/www/{{ project_dir }}
+        dest: "{{ project_dir }}"
         recursive: true
         rsync_opts:
           - "--exclude=.git"
@@ -72,7 +72,7 @@
 
     - name: Remove and create directory "_cache/code"
       ansible.builtin.file:
-        path: "/var/www/{{ project_dir }}/web/_cache/code"
+        path: "{{ project_dir }}/web/_cache/code"
         state: "{{ item }}"
       with_items:
         - absent
@@ -80,7 +80,7 @@
 
     - name: Set owner and group to "www-data"
       ansible.builtin.file:
-        path: "/var/www/{{ project_dir }}"
+        path: "{{ project_dir }}"
         state: directory
         recurse: yes
         owner: www-data
@@ -88,21 +88,33 @@
 
     - name: Set 766 to "_cache" directory
       ansible.builtin.file:
-        path: "/var/www/{{ project_dir }}/web/_cache"
+        path: "{{ project_dir }}/web/_cache"
         state: directory
         recurse: yes
         mode: "0766"
 
     - name: Set 766 to "/bin" directory
       ansible.builtin.file:
-        path: "/var/www/{{ project_dir }}/bin"
+        path: "{{ project_dir }}/bin"
         state: directory
         recurse: yes
         mode: "0777"
 
-    - name: Execute migration
+    - name: Execute php scripts
+      ansible.builtin.shell: "/usr/bin/php {{ item }} || true" 
+      args:
+        chdir: "{{ project_dir }}/bin"
+      loop: "{{ php_scripts }}"
+
+    - name: Execute bin scripts
       ansible.builtin.shell: "/bin/sh {{ item }} || true" 
       args:
-        chdir: "/var/www/{{ project_dir }}/bin"
+        chdir: "{{ project_dir }}/bin"
       loop: "{{ bin_scripts }}"
-  
+    
+    - name: Restart queues
+      ansible.builtin.service:
+        name: colibri-queue-service-{{ item }}
+        state: restarted    
+      loop: "{{ queues }}" 
+

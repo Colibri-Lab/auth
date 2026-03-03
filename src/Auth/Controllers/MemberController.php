@@ -54,6 +54,7 @@ class MemberController extends WebController
         $app = Module::Instance()->application;
 
         $payloadArray = $payload->ToArray();
+        $login = $payloadArray['login'] ?? $post->{'login'};
         $email = $payloadArray['email'] ?? $post->{'email'};
         $email_confirmed = $payloadArray['email_confirmed'] ?? $post->{'email_confirmed'};
         $phone = $payloadArray['phone'] ?? $post->{'phone'};
@@ -84,13 +85,23 @@ class MemberController extends WebController
             $invitation->Save(true);
         }
 
+        if(!$app->params->askforemail) {
+            $email = Module::Instance()->GenerateLocalEmail($login);
+            $email_confirmed = true;
+        } else {
+            $login = $email;
+        }
+
         if(!$app->params->askforphone) {
             $phone = Module::Instance()->GenerateLocalPhoneNumber();
             $phone_confirmed = true;
         }
 
-        if (!$email || !$phone || !$password || !$confirmation) {
+        if (!$login || !$email || !$phone || !$password || !$confirmation) {
             $validation = [];
+            if (!$login) {
+                $validation['login'] = 'Field «login» is required';
+            }
             if (!$email) {
                 $validation['email'] = 'Field «email» is required';
             }
@@ -114,6 +125,15 @@ class MemberController extends WebController
             $validation['email'] = 'Field «email» contains invalid email address';
         }
 
+        if (Members::LoadByLogin($login) !== null) {
+            return $this->Finish(400, 'Bad Request', [
+                'message' => '#{auth-errors-member-with-login-exists}',
+                'code' => 400,
+                'validation' => [
+                    'login' => '#{auth-errors-member-with-login-exists}'
+                ]
+            ]);
+        }
         if (Members::LoadByEmail($email) !== null) {
             return $this->Finish(400, 'Bad Request', [
                 'message' => '#{auth-errors-member-with-email-exists}',
@@ -162,7 +182,7 @@ class MemberController extends WebController
         }
 
         try {
-            $member = Members::Register($email, $phone, $password);
+            $member = Members::Register($login, $email, $phone, $password);
             $member->first_name = $firstName;
             $member->last_name = $lastName;
             $member->patronymic = $patronymic;
