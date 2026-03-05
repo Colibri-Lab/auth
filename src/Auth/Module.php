@@ -198,4 +198,22 @@ class Module extends BaseModule
         return (string)$login . '@auth.loc';
     }
 
+    public function Seeders(Logger $logger): void
+    {
+        
+        $logger->info('Starting update seeds for Auth');
+        
+        $logger->info('Applications');
+        $applications = Applications::LoadAll();
+        if(!$applications->Count()) {
+            $name = 'default-application';
+            $app = Applications::LoadEmpty();
+            $app->key = $name;
+            $app->token = md5($name);
+            $app->params = json_decode('{"roles": [{"desc": "Administrator","name": "admin"},{"desc": "User","name": "user"}],"design": {"images": [{"key": "","image": ""}]},"domains": [{"pattern": "*"}],"proxies": {"email": "","phone": ""},"livetime": "3600","autologin": true,"allowed_ip": "127.0.0.1","allowrenew": true,"multilogin": true,"askforemail": true,"askforphone": true,"defaultrole": "user","enable_invitations": true,"enable_contactsearch": true,"enable_device_authentification": true,"enable_two_factor_authentication": true,"enable_two_factor_authentification_applications": true}');
+            $app->Save(true);
+        }
+
+    }
+
 }
