@@ -225,7 +225,8 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
 
             if(!session && code === 206) { // 2-х факторка
                 const fields = Object.cloneRecursive(this._form.fields);
-                fields.login.params.readonly = true;
+                fields.login && (fields.login.params.readonly = true);
+                fields.email && (fields.email.params.readonly = true);
                 fields.password.params.readonly = true;
                 fields.code.params.hidden = false;
                 this._form.fields = fields;
@@ -236,7 +237,8 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
                 this._startTimer();
             } else if(!session && code === 207) {
                 const fields = Object.cloneRecursive(this._form.fields);
-                fields.login.params.readonly = true;
+                fields.login && (fields.login.params.readonly = true);
+                fields.email && (fields.email.params.readonly = true);
                 fields.password.params.readonly = true;
                 fields.code.params.hidden = false;
                 fields.code.desc = '#{auth-loginform-appcode-desc}';
