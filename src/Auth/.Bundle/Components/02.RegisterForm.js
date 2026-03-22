@@ -309,7 +309,7 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
             formData.login, 
             formData.email, 
             formData.email_confirmed, 
-            formData.phone ? formData.phone.replaceAll(/[^[0-9+]/, '') : null, 
+            formData.phone ? formData.phone.replaceAll(/[^[0-9+]/g, '') : null, 
             formData.phone_confirmed ?? false, 
             formData.pass.password, 
             formData.pass.confirmation,
