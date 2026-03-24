@@ -101,6 +101,69 @@ App.Modules.Auth = class extends Colibri.Modules.Module {
         }).catch(response => reject(response)); 
     }
 
+    
+    DataPageAdditionalMethods(dataPage, storage) {
+        return new Promise((resolve, reject) => {
+            if (storage.name === 'members') {
+                resolve({
+                    contextmenu: [
+                        { name: 'create-autologin', title: 'Создать Автовход', icon: Colibri.UI.ChangePassIcon },
+                    ]
+                });
+            } else {
+                resolve({});
+            }
+        });
+
+    }
+
+    DataPageAdditionalExecuteMethod(command, storage, data) {
+        return new Promise((resolve, reject) => {
+            try {
+                if (command.name === 'create-autologin') {
+
+                    App.Prompt.Show('Создание ссылки для автологина', {
+                        domain: {
+                            component: 'Text',
+                            desc: 'Введите адрес (только домен)',
+                        },
+                        app: {
+                            component: 'Select',
+                            desc: 'Выберите приложение',
+                            lookup: {
+                                storage: {
+                                    module: 'Auth',
+                                    name: 'applications',
+                                    select: '*',
+                                    title: 'key',
+                                    value: 'token',
+                                    controller: {
+                                        module: 'Manage',
+                                        class: 'Lookup',
+                                        method: 'Get'
+                                    }
+                                }
+                            },
+                            selector: {
+                                title: 'key',
+                                value: 'token'
+                            }
+                        }
+                    }, 'Создать').then(d => {
+                        debugger;
+                        Auth.Members.RequestAutoLoginBackend(d.app, data.token, 'https://' + d.domain);
+                    });
+                    
+
+                } else {
+                    resolve();
+                }
+            } catch (e) {
+                resolve();
+            }
+        });
+    }
+
 }
 
 App.Modules.Auth.Session = class extends Colibri.IO.RpcRequest  {
@@ -343,6 +406,20 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
             }).catch(response => reject(response));
         });
     }
+
+    RequestAutoLoginBackend(appToken, memberToken, returnTo) {
+        return new Promise((resolve, reject) => {
+            this.Call('Backend', 'RequestAutologin', {app: appToken, token: memberToken, return: returnTo}).then((response) => {
+                const w = new App.Modules.Auth.Components.AutologinRequest('autologin-window', document.body);
+                w.Show(response.result.link);
+                w.AddHandler('WindowClosed', (event, args) => {
+                    w.Dispose();
+                });
+                resolve({});
+            }).catch(response => reject(response));
+        });
+    }
+
 
     _exportKeyAsPEM(key, type) {
         return new Promise((resolve, reject) => {
