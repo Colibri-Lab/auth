@@ -108,7 +108,7 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
                     validate: [
                         {
                             message: '#{auth-loginform-code-validation1}',
-                            method: '(field, validator) => !!field.value &amp;&amp; field.value.length === 6'
+                            method: '(field, validator) => !!field.value && field.value.length === 6'
                         }
                     ],
                 },
