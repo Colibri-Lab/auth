@@ -110,6 +110,17 @@ class Applications extends BaseModelDataTable
     }
 
     /**
+     * Возвращает модель по ключу
+     * @param string $token
+     * @return Application|null
+     */
+    static function LoadByToken(string $token): Application|null
+    {
+        $table = self::LoadByFilter(1, 1, '{token}=[[token:string]]', null, ['token' => $token], false);
+        return $table && $table->Count() > 0 ? $table->First() : null;
+    }    
+
+    /**
      * Берем приложение из заголовков запроса
      */
     static function LoadFromRequest(): ? Application
