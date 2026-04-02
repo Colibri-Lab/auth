@@ -2112,66 +2112,57 @@ members:
         en: Password
         it: Parola d&#39;ordine
         hy: Գաղտնաբառ
+        es: ""
+        kk: ""
+        uz: ""
+        cz: ""
+        de: ""
+        tr: ""
+        zh: ""
+        fa: ""
       note:
         ru: Пароль, закодирован, нет обратной кодировки
         en: Password, encoded, no reverse encoding
         it: ""
         hy: ""
+        es: ""
+        kk: ""
+        uz: ""
+        cz: ""
+        de: ""
+        tr: ""
+        zh: ""
+        fa: ""
       type: varchar
       length: "128"
       component: Colibri.UI.Forms.Password
       class: string
-      attrs: []
+      attrs:
+        inputWidth: ""
       params:
         required: true
         enabled: true
         canbeempty: true
-        readonly: false
+        readonly: true
         searchable: false
         list: false
         template: false
         multiple: false
-        greed: ""
-        viewer: ~
         vertical: false
         visual: false
         code: 0
-        mask: ""
-        fieldgenerator: ""
-        generator: ""
-        noteClass: ""
-        simplearraywidth: ""
-        simplearrayheight: ""
-        addlink:
-          ru: ""
-          en: ""
-          it: ""
-          hy: ""
+        keyTitle: ""
+        valueTitle: ""
+        canEditKey: false
+        canAddNew: false
+        canRemoveRows: false
         removelink: true
         updownlink: true
         hasscroll: true
         initempty: true
-        displayed_columns: ""
-        maxadd: ""
-        title: ""
         removedesc: true
-        allow: ""
-        size: ""
-        validate:
-        - message:
-            ru: ""
-            en: ""
-            it: ""
-            hy: ""
-          method: (field, validator) => { return true; /* false */ }
-        valuegenerator: ""
-        onchangehandler: ""
-      placeholder:
-        ru: ""
-        en: ""
-        it: ""
-        hy: ""
       tag: []
+      protected: true
     first_name:
       group: window
       desc:

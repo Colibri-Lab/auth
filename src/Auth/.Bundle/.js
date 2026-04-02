@@ -107,7 +107,8 @@ App.Modules.Auth = class extends Colibri.Modules.Module {
             if (storage.name === 'members') {
                 resolve({
                     contextmenu: [
-                        { name: 'create-autologin', title: 'Создать Автовход', icon: Colibri.UI.ChangePassIcon },
+                        { name: 'create-autologin', title: 'Создать Автовход', icon: Colibri.UI.MeasureIcon },
+                        { name: 'change-password', title: 'Изменить пароль', icon: Colibri.UI.ChangePassIcon },
                     ]
                 });
             } else {
@@ -150,8 +151,23 @@ App.Modules.Auth = class extends Colibri.Modules.Module {
                             }
                         }
                     }, 'Создать').then(d => {
-                        debugger;
                         Auth.Members.RequestAutoLoginBackend(d.app, data.token, 'https://' + d.domain);
+                    });
+                    
+
+                } else if (command.name === 'change-password') {
+
+                    App.Prompt.Show('Изменение пароля', {
+                        pass: {
+                            component: 'Password',
+                            desc: 'Введите новый пароль',
+                        }
+                    }, 'Изменить').then(d => {
+                        Auth.Members.ChangePasswordBackend(data.token, d.pass).then(() => {
+                            App.Notices.Add(new Colibri.UI.Notice('Пароль успешно изменен', Colibri.UI.Notice.Success));
+                        }).catch((e) => {
+                            App.Notices.Add(new Colibri.UI.Notice(e.result, Colibri.UI.Notice.Error));
+                        });
                     });
                     
 
@@ -344,6 +360,15 @@ App.Modules.Auth.Members = class extends Colibri.IO.RpcRequest  {
     ChangePassword(original, password, confirmation) {
         return new Promise((resolve, reject) => {
             this.Call('Member', 'ChangePassword', {original: original, password: password, confirmation: confirmation}, {'X-AppToken': Auth.appToken, 'DeviceId': App.Device.id}).then((response) => {
+                // Auth.Store.Set('auth.session', response.result.session);
+                resolve(response.result.session);
+            }).catch(response => reject(response));
+        });
+    }
+
+    ChangePasswordBackend(member, password) {
+        return new Promise((resolve, reject) => {
+            this.Call('Backend', 'ChangePassword', { member, password }, {}).then((response) => {
                 // Auth.Store.Set('auth.session', response.result.session);
                 resolve(response.result.session);
             }).catch(response => reject(response));
