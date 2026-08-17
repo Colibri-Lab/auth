@@ -5,6 +5,7 @@ namespace App\Modules\Auth;
 
 /**
  * @suppress PHP0419
+ * @ignore
  */
 class Installer
 {

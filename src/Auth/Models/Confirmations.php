@@ -12,8 +12,7 @@ use App\Modules\Auth\Models\Confirmation;
 
 /**
  * Таблица, представление данных в хранилище Коды верификации
- * @author <author name and email>
- * @package App\Modules\Auth\Models
+ * @class
  * 
  * @method Confirmation[] getIterator()
  * @method Confirmation _createDataRowObject()

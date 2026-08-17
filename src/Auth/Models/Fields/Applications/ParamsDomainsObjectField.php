@@ -10,8 +10,7 @@ use Colibri\Data\Storages\Fields\ObjectField;
 
 /**
  * Представление поля в таблице в хранилище Домены
- * @author <author name and email>
- * @package App\Modules\Auth\Models\Fields\Applications\Fields
+ * @class
  * 
  * region Properties:
  * @property string|null $pattern Паттерн домена
@@ -19,6 +18,11 @@ use Colibri\Data\Storages\Fields\ObjectField;
  */
 class ParamsDomainsObjectField extends ObjectField
 {
+    /**
+     * JsonSchema
+     * @const array
+     * @public
+     */
     public const JsonSchema = [
         'type' => 'object',
         'required' => [

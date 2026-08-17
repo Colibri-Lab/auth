@@ -14,6 +14,8 @@ use Colibri\Web\RequestCollection;
 
 /**
  * Session controller
+ * @class
+ * @extends WebController
  */
 class SessionController extends WebController
 { 
@@ -24,6 +26,7 @@ class SessionController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function Start(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -54,6 +57,7 @@ class SessionController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function Login(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -153,6 +157,7 @@ class SessionController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function Logout(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -186,6 +191,7 @@ class SessionController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function LogoutFromAll(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -232,6 +238,7 @@ class SessionController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function Decode(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -263,6 +270,7 @@ class SessionController extends WebController
      * @param RequestCollection $post
      * @param PayloadCopy|null $payload
      * @return object
+     * @public
      */
     public function CheckProperty(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -307,6 +315,7 @@ class SessionController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function LoginByCreds(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {

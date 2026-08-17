@@ -10,13 +10,17 @@ use App\Modules\Auth\Models\Fields\Applications\ParamsDomainsObjectField;
 
 /**
  * Представление поля в таблице в хранилище Домены
- * @author <author name and email>
- * @package App\Modules\Auth\Models\Fields\Applications\Fields
+ * @class
  * @method ParamsDomainsObjectField Item(int $index)
  * @method ParamsDomainsObjectField offsetGet(mixed $offset)
  */
 class ParamsDomainsArrayField extends ArrayField
 {
+    /**
+     * JsonSchema
+     * @const array
+     * @public
+     */
     public const JsonSchema = [
         'type' => 'array',
         'items' => ParamsDomainsObjectField::JsonSchema

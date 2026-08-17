@@ -13,8 +13,7 @@ use App\Modules\Auth\Models\Device;
 
 /**
  * Table class of Аутентификация по биометрии storage
- * @author <author name and email>
- * @package App\Modules\Auth\Models
+ * @class
  * 
  * @method Device[] getIterator()
  * @method Device _createDataRowObject()

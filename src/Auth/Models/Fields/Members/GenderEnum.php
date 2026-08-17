@@ -4,12 +4,16 @@ namespace App\Modules\Auth\Models\Fields\Members;
 
 /**
  * Enum Пол
- * @author <author name and email>
- * @package App\Modules\Auth\Models\Fields\Members
+ * @enum
  */
 enum GenderEnum:string 
 {
 
+    /**
+     * JsonSchema
+     * @const array
+     * @public
+     */
     public const JsonSchema = [
         'type' => 'string',
         'enum' => [
@@ -22,17 +26,13 @@ enum GenderEnum:string
 
     # region Properties:
 	/** 
-	 * @ru: Мужской
-	 * @en: Male
-	 * @it: Maschio
-	 * @hy: Արական
+	 * Male
+	 * @const string
 	 */
 	case Male = 'male';
 	/** 
-	 * @ru: Женский
-	 * @en: Female
-	 * @it: Femmina
-	 * @hy: իգական
+	 * Female
+	 * @const string
 	 */
 	case Female = 'female';	
 	# endregion Properties;

@@ -11,8 +11,7 @@ use Colibri\Data\Storages\Fields\ArrayField;
 
 /**
  * Представление поля в таблице в хранилище Макет
- * @author <author name and email>
- * @package App\Modules\Auth\Models\Fields\Applications\Fields
+ * @class
  * 
  * region Properties:
  * @property ParamsDesignImagesArrayField|null $images Изображения
@@ -20,6 +19,11 @@ use Colibri\Data\Storages\Fields\ArrayField;
  */
 class ParamsDesignObjectField extends ObjectField
 {
+    /**
+     * JsonSchema
+     * @const array
+     * @public
+     */
     public const JsonSchema = [
         'type' => 'object',
         'required' => [

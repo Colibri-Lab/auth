@@ -16,8 +16,8 @@ use InvalidArgumentException;
 
 /**
  * Make autologin
- * @author self
- * @package App\Modules\Auth\Controllers
+ * @class
+ * @extends WebController
  */
 class AutologinController extends WebController
 {
@@ -27,6 +27,7 @@ class AutologinController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function Perform(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
     {

@@ -21,8 +21,7 @@ use Colibri\IO\FileSystem\File;
 
 /**
  * Представление строки в таблице в хранилище Пользователи
- * @author <author name and email>
- * @package App\Modules\Auth\Models
+ * @class
  * 
  * region Properties:
  * @property int $id ID строки

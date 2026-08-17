@@ -10,13 +10,17 @@ use App\Modules\Auth\Models\Fields\Applications\ParamsDesignImagesObjectField;
 
 /**
  * Представление поля в таблице в хранилище Изображения
- * @author <author name and email>
- * @package App\Modules\Auth\Models\Fields\Applications\Fields
+ * @class
  * @method ParamsDesignImagesObjectField Item(int $index)
  * @method ParamsDesignImagesObjectField offsetGet(mixed $offset)
  */
 class ParamsDesignImagesArrayField extends ArrayField
 {
+    /**
+     * JsonSchema
+     * @const array
+     * @public
+     */
     public const JsonSchema = [
         'type' => 'array',
         'items' => ParamsDesignImagesObjectField::JsonSchema

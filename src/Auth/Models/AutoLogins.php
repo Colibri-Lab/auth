@@ -14,8 +14,7 @@ use Colibri\Common\RandomizationHelper;
 
 /**
  * Table class of Запрос на автовход storage
- * @author <author name and email>
- * @package App\Modules\Auth\Models
+ * @class
  * 
  * @method AutoLogin[] getIterator()
  * @method AutoLogin _createDataRowObject()

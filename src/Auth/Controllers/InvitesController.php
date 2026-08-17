@@ -15,8 +15,8 @@ use InvalidArgumentException;
 
 /**
  * Send check or accept invites
- * @author self
- * @package App\Modules\Auth\Controllers
+ * @class
+ * @extends WebController
  */
 class InvitesController extends WebController
 {
@@ -26,6 +26,7 @@ class InvitesController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function Create(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
     {
@@ -95,6 +96,7 @@ class InvitesController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function Get(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {

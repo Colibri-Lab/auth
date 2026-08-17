@@ -14,8 +14,7 @@ use Colibri\Utils\Debug;
 
 /**
  * Представление строки в таблице в хранилище Запрос на автовход
- * @author <author name and email>
- * @package App\Modules\Auth\Models
+ * @class
  * 
  * region Properties:
  * @property int $id ID строки

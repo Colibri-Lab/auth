@@ -13,8 +13,7 @@ use Colibri\App;
 
 /**
  * Таблица, представление данных в хранилище Приложения
- * @author <author name and email>
- * @package App\Modules\Auth\Models
+ * @class
  * 
  * @method Application[] getIterator()
  * @method Application _createDataRowObject()
