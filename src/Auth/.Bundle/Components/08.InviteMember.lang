@@ -109,7 +109,9 @@ auth-inviteform-multiple-note:
     yeni satır ile ayırın. Excel'de istediğiniz alanı seçip bu alana
     kopyalayabilirsiniz, format doğru olacaktır "
   zh: 请输入邀请列表，格式为："邮箱" "姓名"，每行一个。可在Excel中选择区域复制粘贴，格式会自动正确。
-  fa: 'لطفا لیست دعوت‌ها را با فرمت: "ایمیل" "نام" وارد کنید، هر دعوت در یک خط جداگانه. می‌توانید محدوده مورد نظر را در اکسل انتخاب و در این قسمت کپی کنید، فرمت صحیح خواهد بود.'
+  fa: 'لطفا لیست دعوت‌ها را با فرمت: "ایمیل" "نام" وارد کنید، هر دعوت در یک خط
+    جداگانه. می‌توانید محدوده مورد نظر را در اکسل انتخاب و در این قسمت کپی کنید،
+    فرمت صحیح خواهد بود.'
 auth-inviteform-rows-validation1:
   ru: Пожалуйста, введите список строк для приглашения
   en: Please, enter the list of rows for the invitation

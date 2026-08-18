@@ -1,5 +1,17 @@
+/**
+ * Change password form component for the Auth module
+ * @class
+ * @extends {Colibri.UI.Component}
+ * @memberof App.Modules.Auth.Components
+ */
 App.Modules.Auth.Components.ChangePassForm = class extends Colibri.UI.Component {
 
+    /**
+     * @public
+     * @constructor
+     * @param {string} name name of component
+     * @param {Element|Colibri.UI.component} container container of component
+     */
     constructor(name, container) {
         /* создаем компонент и передаем шаблон */
         super(name, container, Colibri.UI.Templates['App.Modules.Auth.Components.ChangePassForm']);
@@ -17,11 +29,21 @@ App.Modules.Auth.Components.ChangePassForm = class extends Colibri.UI.Component 
 
     }
 
+    /**
+     * Event handler for form change event
+     * @ignore
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */
     __formChanged(event, args) {
         this._saveButton.enabled = this._validator.Status();
     }
 
-    /** @protected */
+    /** 
+     * @ignore
+     * @protected
+     */
     _registerEvents() {
         super._registerEvents();
         this.RegisterEvent('Completed', true, 'When password is changed');
@@ -50,6 +72,7 @@ App.Modules.Auth.Components.ChangePassForm = class extends Colibri.UI.Component 
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments

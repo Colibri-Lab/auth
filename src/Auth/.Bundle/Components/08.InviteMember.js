@@ -26,6 +26,10 @@ App.Modules.Auth.Components.InviteMember = class extends Colibri.UI.Component {
 
     }
 
+    /**
+     * @ignore
+     * @private
+     */
     __saveButtonClicked(event, args) {
 
         if(!this._validator.ValidateAll()) {
@@ -83,7 +87,10 @@ App.Modules.Auth.Components.InviteMember = class extends Colibri.UI.Component {
 
     }
 
-    /** @protected */
+    /** 
+     * @ignore
+     * @protected
+     */
     _registerEvents() {
         super._registerEvents();
         this.RegisterEvent('Completed', true, 'When invitation is sent');
@@ -104,6 +111,10 @@ App.Modules.Auth.Components.InviteMember = class extends Colibri.UI.Component {
         this._value = value;
         this._showValue();
     }
+    /**
+     * @ignore
+     * @private
+     */
     _showValue() {
         
         this._form.value = this._value;
@@ -125,6 +136,10 @@ App.Modules.Auth.Components.InviteMember = class extends Colibri.UI.Component {
         this._multiple = value;
         this._showMultiple();
     }
+    /**
+     * @ignore
+     * @private
+     */
     _showMultiple() {
         this._form.fields = this._multiple ? {
             rows: {

@@ -1,5 +1,16 @@
+/**
+ * Register form component for the Auth module
+ * @class
+ * @extends {Colibri.UI.Component}
+ * @memberof App.Modules.Auth.Components
+ */
 App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
     
+    /**
+     * @constructor
+     * @param {string} name name of component
+     * @param {Element|Colibri.UI.component} container container of component
+     */
     constructor(name, container) {
         /* создаем компонент и передаем шаблон */
         super(name, container, Colibri.UI.Templates['App.Modules.Auth.Components.RegisterForm']);
@@ -59,6 +70,10 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
 
     } 
 
+    /**
+     * @private
+     * @ignore
+     */
     _renderFields(withEmail = true, withPhone = true) {
         const fields = {
             email_confirmed: {
@@ -217,9 +232,12 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
     }
 
     /**
+     * Event handler for the register button click event
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
+     * @returns {boolean|void} return false to stop event propagation
      */ 
     __step1PropertyConfirmed(event, args) {
         this._registrationData.phone = args.value;
@@ -235,6 +253,8 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
     }
 
     /**
+     * Event handler for the register button click event
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object 
      * @param {*} args event arguments
@@ -247,6 +267,10 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         this._showStep();
     }
 
+    /**
+     * @private
+     * @ignore
+     */
     _showStep() {
         this._step1.shown = this._step2.shown = this._step3.shown = false;
         while(this['_step' + this._currentStep] && !this['_step' + this._currentStep].enabled) {
@@ -258,13 +282,21 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
         }
     }
 
-    /** @protected */
+    /** 
+     * @ignore
+     * @protected
+     */
     _registerEvents() {
         this.RegisterEvent('LoginButtonClicked', true, 'When login button is clicked');
         this.RegisterEvent('ExternalValidation', true, 'When external validation is needed');
         this.RegisterEvent('Completed', true, 'When registration is completed');
     }
 
+    /**
+     * Shows the component
+     * @param {string|null} invitation - Optional invitation code for registration
+     * @public
+     */
     Show(invitation = null) {
         if(invitation) {
             Auth.Members.GetInvite(invitation).then(invite => {
@@ -287,6 +319,8 @@ App.Modules.Auth.Components.RegisterForm = class extends Colibri.UI.Component  {
     }
 
     /**
+     * Event handler for the register form register button click event
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments

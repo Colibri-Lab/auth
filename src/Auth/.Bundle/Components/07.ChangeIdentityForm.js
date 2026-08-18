@@ -1,5 +1,17 @@
+/**
+ * Change identity form component for the Auth module
+ * @class
+ * @extends {Colibri.UI.Component}
+ * @memberof App.Modules.Auth.Components
+ */
 App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Component {
 
+    /**
+     * @public
+     * @constructor
+     * @param {string} name name of component
+     * @param {Element|Colibri.UI.component} container container of component
+     */
     constructor(name, container) {
         /* создаем компонент и передаем шаблон */
         super(name, container, Colibri.UI.Templates['App.Modules.Auth.Components.ChangeIdentityForm']);
@@ -33,6 +45,12 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
 
     }
 
+    /**
+     * @ignore
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */
     __form2Changed(event, args) {
         if (this._validator2.ValidateAll()) {
             if (this._changing) {
@@ -43,11 +61,20 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
         }
     }
 
+    /**
+     * @ignore
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */
     __form1Changed(event, args) {
         this._send.enabled = this._validator1.Status();
     }
 
-    /** @protected */
+    /** 
+     * @protected
+     * @ignore
+     */
     _registerEvents() {
         this.RegisterEvent('PropertyChanged', true, 'When property is changed');
     }
@@ -96,17 +123,33 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
         this._message3 = value;
     }
 
+    /**
+     * Gets the form 2 message
+     * @type {string}
+     */
     get message3() {
         return this._message3;
     }
 
+    /**
+     * Gets the current identity value
+     * @type {string}
+     */
     get current() {
         return this._current;
     }
+    /**
+     * Sets the current identity value
+     * @type {string}
+     */
     set current(value) {
         this._current = value;
     }
 
+    /**
+     * Gets the description
+     * @type {string}
+     */
     get desc() {
         return this._form1.Children('property').title;
     }
@@ -135,12 +178,17 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
         this._form1.value = Object.assign(this._form1.value, value);
     }
 
+    /**
+     * Value object
+     * @type {Object}
+     */
     get value() {
         return this._form1.value;
     }
 
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -208,12 +256,20 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
 
     }
 
+    /**
+     * @ignore
+     * @private
+     */
     _stopTimer() {
         Colibri.Common.StopTimer('request-code-timer');
         this._timer.shown = false;
         this._requestCode.shown = true;
     }
 
+    /**
+     * @ignore
+     * @private
+     */
     _startTimer() {
         this._timer.shown = true;
         this._requestCode.shown = false;
@@ -231,6 +287,10 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
         });
     }
 
+    /**
+     * Shows the component
+     * @public
+     */
     Show(property) {
 
         if (property) {
@@ -245,6 +305,7 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
 
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -253,6 +314,11 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
         this.RequestCode('identity');
     }
 
+    /**
+     * Requests a code for the current or new identity
+     * @param {string} step 'current' or 'identity'
+     * @public
+     */
     RequestCode(step) {
         this._step = step;
 
@@ -313,6 +379,7 @@ App.Modules.Auth.Components.ChangeIdentityForm = class extends Colibri.UI.Compon
 
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments

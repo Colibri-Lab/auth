@@ -1,5 +1,17 @@
+/**
+ * Confirmation form component for the Auth module
+ * @class
+ * @extends {Colibri.UI.Component}
+ * @memberof App.Modules.Auth.Components
+ */
 App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Component {
 
+    /**
+     * @public
+     * @constructor
+     * @param {string} name name of component
+     * @param {Element|Colibri.UI.component} container container of component
+     */
     constructor(name, container) {
         /* создаем компонент и передаем шаблон */
         super(name, container, Colibri.UI.Templates['App.Modules.Auth.Components.ConfirmationForm']);
@@ -31,10 +43,24 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
 
     }
 
+    /**
+     * Event handler for the form1 changed event
+     * @ignore 
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */
     __form1Changed(event, args) {
         return this.Dispatch('ExternalValidation', Object.assign(args, { validator: this._validator1, property: this._property, form: this._form1, submit: this._send }));
     }
 
+    /**
+     * Event handler for the form2 changed event
+     * @ignore 
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */
     __form2Changed(event, args) {
         if (this._validator2.ValidateAll()) {
             if (this._confirming) {
@@ -47,6 +73,8 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
     }
 
     /**
+     * Event handler for the send button click event
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -55,7 +83,10 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         this.RequestCode();
     }
 
-    /** @protected */
+    /** 
+     * @protected
+     * @ignore
+     */
     _registerEvents() {
         super._registerEvents();
         this.RegisterEvent('PropertyConfirmed', true, 'When property is confirmed');
@@ -100,6 +131,10 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
 
     }
 
+    /**
+     * @ignore
+     * @private
+     */
     _setFields() {
         if (this._property === 'email') {
             const fields = this._form1.fields;
@@ -129,6 +164,8 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
     }
 
     /**
+     * Event handler for the request code again button click event
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -139,6 +176,8 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
     }
 
     /**
+     * Event handler for the confirmation button click event    
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -171,6 +210,10 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
 
     }
 
+    /**
+     * @private
+     * @ignore
+     */
     _startTimer() {
         this._send.shown = false;
         this._timerContainer.shown = true;
@@ -194,6 +237,11 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
         });
     }
 
+    /**
+     * Shows the component
+     * @public
+     * @param {string} property property to confirm (email or phone)
+     */
     Show(property) {
         if (property) {
             this._property = property;
@@ -202,6 +250,10 @@ App.Modules.Auth.Components.ConfirmationForm = class extends Colibri.UI.Componen
 
     }
 
+    /**
+     * Requests a confirmation code to be sent to the user
+     * @public
+     */
     RequestCode() {
         if (!this._validator1.ValidateAll()) {
             return;
