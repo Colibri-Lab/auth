@@ -1465,7 +1465,7 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
         } catch (ValidationException $e) {
             return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
                     
@@ -1580,7 +1580,7 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
         } catch (ValidationException $e) {
             return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
             
@@ -1627,7 +1627,7 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
         } catch (ValidationException $e) {
             return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
             
@@ -1679,7 +1679,7 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
         } catch (ValidationException $e) {
             return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
             
@@ -1729,7 +1729,7 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
         } catch (ValidationException $e) {
             return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
             
