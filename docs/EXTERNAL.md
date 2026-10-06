@@ -11,12 +11,11 @@ title: External Auth Forms
 Add the Auth service mapping to the consuming module's `config-template/module-<mode>.yaml` files. For example, in `config-template/module-local.yaml`:
 
 ```yaml
-config:
-    services:
-        auth:
-            url: auth.example.com
-            cookie: cc-jwt
-            token: "REPLACE_WITH_LOCAL_AUTH_APP_TOKEN"
+services:
+    auth:
+        url: auth.example.com
+        cookie: cc-jwt
+        token: "REPLACE_WITH_LOCAL_AUTH_APP_TOKEN"
 ```
 
 Add the same keys to `module-dev.yaml`, `module-test.yaml`, and `module-prod.yaml`. Set the Auth hostname and application credential for each environment; do not copy a local credential into another environment.
