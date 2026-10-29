@@ -24,7 +24,6 @@ publish:
       fi
   tags:
     - gitlab
-    - atg-gitlab
 
 playbook:
   stage: playbook
