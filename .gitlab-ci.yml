@@ -116,9 +116,9 @@ deploy-private:
   extends: .deploy-template
   after_script:
   - |
-    ssh root@10.10.10.8 "
-      sed -i 's/auth\.colibrilab\.pro/auth.atg.loc/g' /var/www/auth/config/hosts.yaml
-      sed -i 's/test\.colibrilab\.pro/atg.loc/g' /var/www/auth/config/auth.yaml
+    ssh gitlab-runner@10.10.10.8 "
+      sudo sed -i 's/auth\.colibrilab\.pro/auth.atg.loc/g' /var/www/auth/config/hosts.yaml
+      sudo sed -i 's/test\.colibrilab\.pro/atg.loc/g' /var/www/auth/config/auth.yaml
     "
   needs:
     - job: build-private
