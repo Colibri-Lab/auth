@@ -114,8 +114,12 @@ deploy-public:
 
 deploy-private:
   extends: .deploy-template
+  after_script:
+    - echo "Finishing private deploying"
+    - sed -i 's/auth\.colibrilab\.pro/auth.atg.loc/g' /var/www/auth/config/hosts.yaml
+    - sed -i 's/test\.colibrilab\.pro/atg.loc/g' /var/www/auth/config/auth.yaml
   needs:
     - job: build-private
-      artifacts: true
+      artifacts: true  
   tags: 
     - atg-gitlab
