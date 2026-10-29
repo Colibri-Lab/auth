@@ -35,8 +35,7 @@ playbook:
       - ./playbook/
     expire_in: 1 hour  
   tags:
-    - gitlab
-    - atg-gitlab
+    - infra
 
 build:
   stage: build
@@ -56,7 +55,7 @@ build:
       - playbook/
       - auth_dist/
     expire_in: 1 hour
-    
+
   needs:
     - job: publish
       artifacts: false
@@ -65,8 +64,7 @@ build:
   only:
     - master
   tags:
-    - gitlab
-    - atg-gitlab
+    - infra
 
 deploy:
   stage: deploy
@@ -88,5 +86,4 @@ deploy:
   only:
     - master
   tags:
-    - gitlab
-    - atg-gitlab
+    - infra
