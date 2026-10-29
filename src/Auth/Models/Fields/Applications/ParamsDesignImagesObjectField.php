@@ -10,8 +10,7 @@ use Colibri\Data\Storages\Fields\ObjectField;
 
 /**
  * Представление поля в таблице в хранилище Изображения
- * @author <author name and email>
- * @package App\Modules\Auth\Models\Fields\Applications\Fields
+ * @class
  * 
  * region Properties:
  * @property string|null $key Ключ изображения
@@ -20,6 +19,11 @@ use Colibri\Data\Storages\Fields\ObjectField;
  */
 class ParamsDesignImagesObjectField extends ObjectField
 {
+    /**
+     * JsonSchema
+     * @const array
+     * @public
+     */
     public const JsonSchema = [
         'type' => 'object',
         'required' => [

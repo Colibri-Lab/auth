@@ -23,12 +23,24 @@ App.Modules.Auth.Components.AutologinRequest = class extends Colibri.UI.Window {
         this._copy.AddHandler('Clicked', this.__copyClicked, false, this); 
     }
 
+    /**
+     * Event handler for copy button click event
+     * @ignore
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */
     __copyClicked(event, args) {
         this._link.value.copyToClipboard();
         App.Notices.Add(new Colibri.UI.Notice('#{auth-autologin-copied}', Colibri.UI.Notice.Success));
         this.Close();
     }
 
+    /**
+     * Shows the component
+     * @public
+     * @param {string} link autologin link
+     */
     Show(link) {
         this._link.value = link;
         super.Show();

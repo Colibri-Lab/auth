@@ -15,6 +15,8 @@ use Colibri\Web\RequestCollection;
 
 /**
  * Application controller
+ * @class
+ * @extends WebController
  */
 class AppController extends WebController
 {
@@ -25,6 +27,7 @@ class AppController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function Settings(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -63,6 +66,7 @@ class AppController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function Session(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -96,7 +100,10 @@ class AppController extends WebController
             throw new AppException('Session not found', 404);
         }
 
-        /** @var \App\Modules\Auth\Models\Session */
+        /** 
+         * @var \App\Modules\Auth\Models\Session
+         * @ignore 
+         */
         $session = $sessions->First();
         $result = $session->ExportForUserInterface();
 
@@ -108,9 +115,5 @@ class AppController extends WebController
         );
 
     }
-
-
-
-
-    
+   
 }

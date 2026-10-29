@@ -1,5 +1,16 @@
+/**
+ * Reset form component for the Auth module
+ * @class
+ * @extends {Colibri.UI.Component}
+ * @memberof App.Modules.Auth.Components
+ */
 App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
     
+    /**
+     * @constructor
+     * @param {string} name name of component
+     * @param {Element|Colibri.UI.component} container container of component
+     */
     constructor(name, container) {
         /* создаем компонент и передаем шаблон */
         super(name, container, Colibri.UI.Templates['App.Modules.Auth.Components.ResetForm']);
@@ -94,15 +105,32 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
 
     } 
 
+    /**
+     * Event handler for the login button click event
+     * @ignore
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */
     __loginButtonClicked(event, args) {
         return this.Dispatch('LoginButtonClicked', args);
     }
 
+    /**
+     * Event handler for the form changed event
+     * @ignore
+     * @private
+     * @param {Colibri.Events.Event} event event object
+     * @param {*} args event arguments
+     */
     __formChanged(event, args) {
         this._resetButton.enabled = this._validator.ValidateAll();
     }
 
-    /** @protected */
+    /** 
+     * @ignore
+     * @protected
+     */
     _registerEvents() {
         this.RegisterEvent('LoginButtonClicked', true, 'When login button is clicked');
         this.RegisterEvent('Completed', true, 'When reset is completed');
@@ -117,6 +145,10 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
         this._form.Focus();
     }
 
+    /**
+     * @private
+     * @ignore
+     */
     _showCodeAndPasswordFields() {
         const value = this._form.value;
         Auth.App.Settings().then((settings) => {
@@ -377,6 +409,8 @@ App.Modules.Auth.Components.ResetForm = class extends Colibri.UI.Component  {
     }
 
     /**
+     * Event handler for the reset button click event
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments

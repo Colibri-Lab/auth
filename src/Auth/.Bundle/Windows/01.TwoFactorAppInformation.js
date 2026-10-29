@@ -27,6 +27,15 @@ App.Modules.Auth.Windows.TwoFactorAppInformation = class extends Colibri.UI.Wind
 
     }
 
+    /**
+     * Shows the component
+     * @public
+     * @param {string} email email of user
+     * @param {string} issuer issuer of two factor app
+     * @param {string} code code of two factor app
+     * @param {string} qrcode qrcode of two factor app
+     * @returns {Promise<string>} promise that resolves with the code entered by the user or rejects if the user cancels
+     */
     Show(email, issuer, code, qrcode) {
         return new Promise((resolve, reject) => {
             super.Show();
@@ -36,7 +45,6 @@ App.Modules.Auth.Windows.TwoFactorAppInformation = class extends Colibri.UI.Wind
 
             this._checkFlexCheck.ClearHandlers();
             this._checkFlexCheck.AddHandler('Clicked', (event, args) => {
-                debugger;
                 if(this._checkFlexInputCode.value) {
                     resolve(this._checkFlexInputCode.value);
                 } 
@@ -44,7 +52,6 @@ App.Modules.Auth.Windows.TwoFactorAppInformation = class extends Colibri.UI.Wind
             
             this._checkFlexButtonsFlexDelete.ClearHandlers();
             this._checkFlexButtonsFlexDelete.AddHandler('Clicked', (event, args) => {
-                debugger;
                 reject();
             });
         });

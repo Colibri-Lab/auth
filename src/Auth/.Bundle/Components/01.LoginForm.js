@@ -1,5 +1,16 @@
+/**
+ * Login form component for the Auth module
+ * @class
+ * @extends {Colibri.UI.Component}
+ * @memberof App.Modules.Auth.Components
+ */
 App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
     
+    /**
+     * @constructor
+     * @param {string} name name of component
+     * @param {Element|Colibri.UI.component} container container of component
+     */
     constructor(name, container) {
         /* создаем компонент и передаем шаблон */
         super(name, container, Colibri.UI.Templates['App.Modules.Auth.Components.LoginForm']);
@@ -40,6 +51,10 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
 
     } 
 
+    /**
+     * @ignore
+     * @private
+     */
     _renderFields(withEmail) {
         const fields = {
             login: {
@@ -124,15 +139,39 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         }
         this._form.fields = fields;
     }
-
+    
+    /**
+     * Event handler for the reset button click event 
+     * @param {Colibri.UI.Event} event event object
+     * @param {object} args event arguments
+     * @returns {boolean|void} return false to stop event propagation
+     * @private
+     * @ignore
+     */
     __resetButtonClicked(event, args) {
         return this.Dispatch('ResetButtonClicked', args);
     }
 
+    /**
+     * Event handler for the register button click event 
+     * @param {Colibri.UI.Event} event event object
+     * @param {object} args event arguments
+     * @returns {boolean|void} return false to stop event propagation
+     * @private
+     * @ignore
+     */
     __registerButtonClicked(event, args) {
         return this.Dispatch('RegisterButtonClicked', args);
     }
 
+    /**
+     * Event handler for the fingerprint button click event
+     * @param {Colibri.UI.Event} event event object
+     * @param {object} args event arguments
+     * @returns {boolean|void} return false to stop event propagation
+     * @private
+     * @ignore
+     */
     __buttonContainerFingerprintClicked(event, args) {
         App.Device.Auth.IsAvailable().then(() => {
             App.Device.Auth.Authenticate().then((credentials) => {
@@ -144,6 +183,7 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -153,7 +193,10 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         this.Login(true);
     }
 
-    /** @protected */
+    /** 
+     * @protected
+     * @ignore
+     */
     _registerEvents() {
         this.RegisterEvent('RegisterButtonClicked', true, 'Когда нажата кнопка регистрации');
         this.RegisterEvent('ResetButtonClicked', true, 'Когда нажата кнопка восстановления пароля');
@@ -169,9 +212,12 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
     }
 
     /**
-     * @private
+     * Event handler for the login button click event
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
+     * @returns {boolean|void} return false to stop event propagation
+     * @ignore
+     * @private
      */ 
     __loginFormLoginButtonClicked(event, args) {
 
@@ -189,6 +235,10 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
 
     }
 
+    /**
+     * @private
+     * @ignore
+     */
     _startTimer() {
         this._timerContainer.shown = true;
         this._timer.shown = true;
@@ -209,6 +259,11 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         });
     }
 
+    /**
+     * Login method to authenticate the user with the provided credentials
+     * @param {boolean} [rerequestCode=false] - Flag indicating whether to re-request the code for two-factor authentication
+     * @public
+     */
     Login(rerequestCode = false) {
         const value = Object.cloneRecursive(this._form.value);
         this._form.enabled = false;
@@ -259,6 +314,11 @@ App.Modules.Auth.Components.LoginForm = class extends Colibri.UI.Component  {
         });
     }
     
+    /**
+     * Login method to authenticate the user with the provided credentials
+     * @param {object} credentials - The credentials object containing the necessary authentication information
+     * @public
+     */
     LoginByCreds(credentials) {
         const value = Object.cloneRecursive(this._form.value);
         this._form.enabled = false;

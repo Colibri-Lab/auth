@@ -1,10 +1,12 @@
 stages:
+  - publish
+  - playbook
   - build
   - deploy
 
 publish:
   image: curlimages/curl:latest
-  stage: build
+  stage: publish
   variables:
     URL: "$CI_SERVER_PROTOCOL://$CI_SERVER_HOST:$CI_SERVER_PORT/api/v4/projects/$CI_PROJECT_ID/packages/composer?job_token=$CI_JOB_TOKEN"
   script:
@@ -22,66 +24,66 @@ publish:
       fi
   tags:
     - gitlab
- 
-production:
+
+playbook:
+  stage: playbook
+  script:
+    - rm -rf ./playbook || true
+    - git clone https://gitlab.colibrilab.pro/colibrilab/recipes.git ./playbook
+  artifacts:
+    paths:
+      - ./playbook/
+    expire_in: 1 hour  
+  tags:
+    - infra
+
+build:
+  stage: build
+  script:
+
+    - echo "Building ..."
+    - ansible-playbook ./playbook/colibri-build.yml 
+        -e mode="prod"
+        -e folder="auth_dist"
+        -e "repositories=[]"
+        -e "modules=['colibri/security:dev-master','colibri/mainframe:dev-master','colibri/manage:dev-master','colibri/lang:dev-master','colibri/sites:dev-master','colibri/tools:dev-master','colibri/auth:dev-$CI_COMMIT_REF_NAME']"
+        -e php=8.3
+        -e composer=2
+
+  artifacts:
+    paths:
+      - playbook/
+      - auth_dist/
+    expire_in: 1 hour
+
+  needs:
+    - job: publish
+      artifacts: false
+    - job: playbook
+      artifacts: true
+  only:
+    - master
+  tags:
+    - infra
+
+deploy:
   stage: deploy
   script:
-     
-    # host= host
-    # mode= prod, test, dev
-    # module_name=
-    # project_dir= target directory
-    # folder= temporary directory
-    # modules= moudules that composer will install (все модули в одну строку, через пробел, как в композере)
-    # php= php version 8.0, 7.4
-    # composer= composer version 2
-    - ansible-playbook ./deploy.yml
-      -e host="$COLIBRI_PROD_DOMAIN"
-      -e mode="prod"
-      -e ui_version="master" 
-      -e module_name="auth"
-      -e project_dir="/var/www/auth.colibrilab.pro"
-      -e folder="auth_dist"
-      -e "modules=['colibri/security:dev-master','colibri/mainframe:dev-master','colibri/manage:dev-master','colibri/lang:dev-master','colibri/sites:dev-master','colibri/tools:dev-master','colibri/auth:$CI_COMMIT_REF_NAME']"
-      -e "queues=[]"
-      -e "php_scripts=[]"
-      -e "bin_scripts=['migrate','auth-bundle.sh backend.auth.colibrilab.pro','auth-bundle.sh auth.colibrilab.pro bundle']"
-      -e php=8.4
-      -e composer=2
- 
-  when: manual
+
+    - echo "Deploying ..."
+    - ansible-playbook ./playbook/colibri-deploy.yml 
+        -e host="$COLIBRI_PROD_DOMAIN"
+        -e project_dir="/var/www/auth"
+        -e folder="auth_dist"
+        -e "php_scripts=[]"
+        -e "bin_scripts=['migrate','auth-bundle.sh auth.colibrilab.pro','auth-bundle.sh backend.auth.colibrilab.pro','auth-publish.sh auth.colibrilab.pro','auth-queues.sh']"
+        -e "queues=[]"
+        -e php=8.3
+    
+  needs:
+    - job: build
+      artifacts: true
   only:
-    - tags
+    - master
   tags:
-    - gitlab
- 
-test:
-  stage: deploy
-  script:
- 
-    # host= host
-    # mode= prod, test, dev
-    # module_name=
-    # project_dir= target directory
-    # folder= temporary directory
-    # modules= moudules that composer will install (все модули в одну строку, через пробел, как в композере)
-    # php= php version 8.0, 7.4
-    # composer= composer version 2
-    - ansible-playbook ./deploy.yml
-      -e host="$COLIBRI_TEST_DOMAIN"
-      -e mode="test"
-      -e ui_version="master" 
-      -e module_name="auth"
-      -e project_dir="auth.test.colibrilab.pro"
-      -e folder="auth_dist"
-      -e "modules=['colibri/security:dev-master','colibri/mainframe:dev-master','colibri/manage:dev-master','colibri/lang:dev-master','colibri/sites:dev-master','colibri/tools:dev-master','colibri/auth:dev-$CI_COMMIT_REF_NAME']"
-      -e "bin_scripts=['migrate','auth-bundle.sh backend_auth.test.colibrilab.pro','auth-bundle.sh ecolo-place_auth.test.colibrilab.pro bundle']"
-      -e "queues=[]"
-      -e "php_scripts=[]"
-      -e php=8.4
-      -e composer=2
-  when: always
-  only:
-    - dev
-  tags:
-    - gitlab
+    - infra

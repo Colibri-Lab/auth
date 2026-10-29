@@ -27,17 +27,28 @@ App.Modules.Auth.Components.SearchForm = class extends Colibri.UI.Component {
 
     }
 
+    /**
+     * @ignore
+     * @private
+     */
     __listItemClicked(event, args) {
         this.Dispatch('Completed', args.item.value);
     }
 
+    /**
+     * @ignore
+     * @private
+     */
     __termFilled(event, args) {
         Auth.Members.Search(this._term.value).then((result) => {
             this._listGroup.value = Object.values(result.list);
         });
     }
 
-    /** @protected */
+    /**
+     * @ignore
+     * @protected
+     */
     _registerEvents() {
         super._registerEvents();
         this.RegisterEvent('Completed', true, 'When invitation is sent');
@@ -58,6 +69,10 @@ App.Modules.Auth.Components.SearchForm = class extends Colibri.UI.Component {
         this._value = value;
         this._showValue();
     }
+    /**
+     * @ignore
+     * @private
+     */
     _showValue() {
         
     }

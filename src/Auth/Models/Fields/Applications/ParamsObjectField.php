@@ -14,8 +14,7 @@ use Colibri\Data\Storages\Fields\ArrayField;
 
 /**
  * Представление поля в таблице в хранилище Параметры
- * @author <author name and email>
- * @package App\Modules\Auth\Models\Fields\Applications\Fields
+ * @class
  * 
  * region Properties:
  * @property bool|null $askforemail Требовать эл. адрес
@@ -39,6 +38,11 @@ use Colibri\Data\Storages\Fields\ArrayField;
  */
 class ParamsObjectField extends ObjectField
 {
+	/**
+	 * JsonSchema
+	 * @const array
+	 * @public
+	 */
     public const JsonSchema = [
         'type' => 'object',
         'required' => [

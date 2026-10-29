@@ -12,8 +12,7 @@ use Colibri\Data\Storages\Models\DataRow as BaseModelDataRow;
 
 /**
  * Представление строки в таблице в хранилище Приложения
- * @author <author name and email>
- * @package App\Modules\Auth\Models
+ * @class
  * 
  * region Properties:
  * @property int $id ID строки

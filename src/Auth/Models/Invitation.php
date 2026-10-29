@@ -16,8 +16,7 @@ use Colibri\Utils\Debug;
 
 /**
  * Представление строки в таблице в хранилище Приглашения
- * @author <author name and email>
- * @package App\Modules\Auth\Models
+ * @class
  * 
  * region Properties:
  * @property int $id ID строки

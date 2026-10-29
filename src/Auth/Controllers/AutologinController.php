@@ -16,8 +16,8 @@ use InvalidArgumentException;
 
 /**
  * Make autologin
- * @author self
- * @package App\Modules\Auth\Controllers
+ * @class
+ * @extends WebController
  */
 class AutologinController extends WebController
 {
@@ -27,6 +27,7 @@ class AutologinController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function Perform(RequestCollection $get, RequestCollection $post, ?PayloadCopy $payload = null): object
     {
@@ -35,7 +36,7 @@ class AutologinController extends WebController
         $message = 'Result message';
         $code = 200;
 
-        $appName = App::$request->headers->{'X-AppName'};
+        $appName = App::$request->headers->{'X-AppName'} ?: App::$request->headers->{'http_x_appname'};
         $app = Applications::LoadByKey($appName);
         // if(!$app->params->allowed_ip) {
         //     throw new AppException('Not allowed', 403);

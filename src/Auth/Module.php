@@ -32,17 +32,31 @@ use Composer\Autoload\AutoloadGenerator;
 
 /**
  * Authorization module
- * @package App\Modules\Auth
+ * @class
  *
  * @property-read Application $application
  *
  */
 class Module extends BaseModule
 {
+    /**
+     * @var Session|null $session The current session
+     * @private
+     * @static
+     */
     private static ?Session $session = null;
 
+    /**
+     * @var Application|null $_app The current application
+     * @private
+     */
     private ?Application $_app = null;
 
+    /**
+     * List of controllers that require authorization
+     * @var array
+     * @public
+     */
     public const NeedAuthorization = [
         SessionController::class,
         MemberController::class,
@@ -53,6 +67,7 @@ class Module extends BaseModule
     /**
      * Initializes a module
      * @return void
+     * @public
      */
     public function InitializeModule(): void
     {
@@ -106,6 +121,7 @@ class Module extends BaseModule
     /**
      * Gets a current session
      * @return Session
+     * @public
      */
     public function GetSession(): Session
     {
@@ -117,6 +133,8 @@ class Module extends BaseModule
 
     /**
      * Returns a topmost menu for backend
+     * @return Item|array
+     * @public
      */
     public function GetTopmostMenu(bool $hideExecuteCommand = true): Item|array
     {
@@ -128,6 +146,7 @@ class Module extends BaseModule
     /**
      * Returns a permissions for module
      * @return array
+     * @public
      */
     public function GetPermissions(): array
     {
@@ -141,6 +160,7 @@ class Module extends BaseModule
      * @param Logger $logger
      * @param string $path
      * @return void
+     * @public
      */
     public function Backup(Logger $logger, string $path)
     {
@@ -157,6 +177,8 @@ class Module extends BaseModule
 
     /**
      * Loads an application from request
+     * @return bool
+     * @public
      */
     public function LoadApplication(): bool
     {
@@ -171,6 +193,8 @@ class Module extends BaseModule
      * Provides an access to properties
      * @param string $prop
      * @return mixed
+     * @public
+     * @magic
      */
     public function __get(string $prop): mixed
     {
@@ -183,6 +207,11 @@ class Module extends BaseModule
         }
     }
 
+    /**
+     * Generates a local phone number for testing
+     * @return string
+     * @public
+     */
     public function GenerateLocalPhoneNumber(): string
     {
         $microtime = microtime(true);
@@ -193,11 +222,23 @@ class Module extends BaseModule
         return '+997' . $digits;
     }
 
+    /**
+     * Generates a local email for testing
+     * @param string $login
+     * @return string
+     * @public
+     */
     public function GenerateLocalEmail(string $login): string
     {
         return (string)$login . '@auth.loc';
     }
 
+    /**
+     * Seeds the module with initial data
+     * @param Logger $logger
+     * @return void
+     * @public
+     */
     public function Seeders(Logger $logger): void
     {
         

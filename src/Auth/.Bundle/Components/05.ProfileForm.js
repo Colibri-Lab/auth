@@ -1,5 +1,17 @@
+/**
+ * Profile form component for the Auth module
+ * @class
+ * @extends {Colibri.UI.Component}
+ * @memberof App.Modules.Auth.Components
+ */
 App.Modules.Auth.Components.ProfileForm = class extends Colibri.UI.Component  {
     
+    /**
+     * @public
+     * @constructor
+     * @param {string} name name of component
+     * @param {Element|Colibri.UI.component} container container of component
+     */
     constructor(name, container) {
         /* создаем компонент и передаем шаблон */
         super(name, container, Colibri.UI.Templates['App.Modules.Auth.Components.ProfileForm']);
@@ -16,7 +28,10 @@ App.Modules.Auth.Components.ProfileForm = class extends Colibri.UI.Component  {
 
     } 
 
-    /** @protected */
+    /** 
+     * @protected
+     * @ignore
+     */
     _registerEvents() {
         super._registerEvents();
         this.RegisterEvent('Completed', true, 'When profile is saved');
@@ -44,6 +59,7 @@ App.Modules.Auth.Components.ProfileForm = class extends Colibri.UI.Component  {
     }
 
     /**
+     * @ignore
      * @private
      * @param {Colibri.Events.Event} event event object
      * @param {*} args event arguments
@@ -98,6 +114,10 @@ App.Modules.Auth.Components.ProfileForm = class extends Colibri.UI.Component  {
         this._simple = value;
         this._showSimple();
     }
+    /**
+     * @private
+     * @ignore
+     */
     _showSimple() {
         if(this._simple) {
             const fields = Object.cloneRecursive(this._form.fields);

@@ -19,6 +19,8 @@ use InvalidArgumentException;
 
 /**
  * Application controller
+ * @class
+ * @extends WebController
  */
 class BackendController extends WebController
 {
@@ -29,6 +31,7 @@ class BackendController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function RequestAutologin(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -65,7 +68,7 @@ class BackendController extends WebController
             $result['link'] = $autologin->GenerateLink($app);
             
 
-        } catch (\InvalidArgumentException $e) {
+        } catch (InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
         } catch (ValidationException $e) {
             return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
@@ -90,6 +93,7 @@ class BackendController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function ChangePassword(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {

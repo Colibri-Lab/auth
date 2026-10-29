@@ -15,8 +15,7 @@ use Colibri\IO\Request\Type;
 
 /**
  * Представление строки в таблице в хранилище Коды верификации
- * @author <author name and email>
- * @package App\Modules\Auth\Models
+ * @class
  * 
  * region Properties:
  * @property int $id ID строки

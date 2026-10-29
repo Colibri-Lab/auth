@@ -1,5 +1,4 @@
 /**
- * undefined
  * @namespace
  * @memberof App.Modules.Auth.Components
  */

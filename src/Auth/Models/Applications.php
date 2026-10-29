@@ -13,8 +13,7 @@ use Colibri\App;
 
 /**
  * Таблица, представление данных в хранилище Приложения
- * @author <author name and email>
- * @package App\Modules\Auth\Models
+ * @class
  * 
  * @method Application[] getIterator()
  * @method Application _createDataRowObject()
@@ -125,8 +124,8 @@ class Applications extends BaseModelDataTable
      */
     static function LoadFromRequest(): ? Application
     {
-        $appName = App::$request->headers->{'X-AppName'};
-        $appToken = App::$request->headers->{'X-AppToken'};
+        $appName = App::$request->headers->{'X-AppName'} ?? App::$request->headers->{'http_x_appname'};
+        $appToken = App::$request->headers->{'X-AppToken'} ?? App::$request->headers->{'http_x_apptoken'};
         $table = self::LoadByFilter(1, 1, '{key}=[[name:string]] and {token}=[[token:string]]', '', ['name' => $appName, 'token' => $appToken]);
         return $table->Count() > 0 ? $table->First() : null;
     }

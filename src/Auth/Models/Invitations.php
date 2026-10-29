@@ -16,8 +16,7 @@ use Colibri\Data\Storages\Fields\DateTimeField;
 
 /**
  * Table class of Приглашения storage
- * @author <author name and email>
- * @package App\Modules\Auth\Models
+ * @class
  * 
  * @method Invitation[] getIterator()
  * @method Invitation _createDataRowObject()

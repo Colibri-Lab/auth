@@ -36,6 +36,8 @@ use Endroid\QrCode\Writer\PngWriter;
 
 /**
  * Members controller
+ * @class
+ * @extends WebController
  */
 class MemberController extends WebController
 {
@@ -46,6 +48,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function Register(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -231,6 +234,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function BeginConfirmationProcess(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -307,6 +311,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function BeginPasswordResetProcess(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -418,6 +423,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function BeginIdentityUpdateProcess(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -505,6 +511,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function ConfirmProperty(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -566,6 +573,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function ResetPassword(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -662,6 +670,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function ChangeIdentity(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -732,6 +741,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function ChangePassword(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -804,6 +814,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function BlockAccount(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -852,6 +863,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function ToggleTwoFactorAuth(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -892,6 +904,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function ToggleTwoFactorAppAuth(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -972,6 +985,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function CheckTwoFactorAppAuth(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -1005,6 +1019,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function UpdateProfile(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -1060,6 +1075,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function UpdatePassword(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -1110,6 +1126,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function List(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -1155,6 +1172,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function ListByRole(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -1199,6 +1217,7 @@ class MemberController extends WebController
      * @param RequestCollection $post a request post data
      * @param mixed $payload payload object in POST/PUT request
      * @return object
+     * @public
      */
     public function Search(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -1278,6 +1297,7 @@ class MemberController extends WebController
      * @param RequestCollection $post
      * @param PayloadCopy|null $payload
      * @return object
+     * @public
      */
     public function PerformMutation(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -1353,6 +1373,7 @@ class MemberController extends WebController
      * @param RequestCollection $post
      * @param PayloadCopy|null $payload
      * @return object
+     * @public
      */
     public function ChangeRole(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -1414,6 +1435,7 @@ class MemberController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function ForceLogout(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -1443,7 +1465,7 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
         } catch (ValidationException $e) {
             return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
                     
@@ -1462,6 +1484,7 @@ class MemberController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function ForceBlock(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -1515,6 +1538,7 @@ class MemberController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function RequestAutologin(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -1556,7 +1580,7 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
         } catch (ValidationException $e) {
             return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
             
@@ -1576,6 +1600,7 @@ class MemberController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function DecryptMessage(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -1602,7 +1627,7 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
         } catch (ValidationException $e) {
             return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
             
@@ -1621,6 +1646,7 @@ class MemberController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function EncryptMessage(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -1653,7 +1679,7 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
         } catch (ValidationException $e) {
             return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
             
@@ -1672,6 +1698,7 @@ class MemberController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function SaveLocalPublicKey(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -1702,7 +1729,7 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
         } catch (ValidationException $e) {
             return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => $e->getExceptionDataAsArray()]);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return $this->Finish(500, 'Application error', ['message' => $e->getMessage(), 'code' => 500]);
         }
             
@@ -1723,6 +1750,7 @@ class MemberController extends WebController
      * @param RequestCollection $post данные POST
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
+     * @public
      */
     public function CreateDevice(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {

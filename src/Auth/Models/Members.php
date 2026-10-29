@@ -12,8 +12,7 @@ use App\Modules\Auth\Models\Member;
 
 /**
  * Таблица, представление данных в хранилище Пользователи
- * @author <author name and email>
- * @package App\Modules\Auth\Models
+ * @class
  *
  * @method Member[] getIterator()
  * @method Member _createDataRowObject()
