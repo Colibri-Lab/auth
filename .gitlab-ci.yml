@@ -25,7 +25,7 @@ publish:
   tags:
     - gitlab
 
-playbook:
+.playbook-template:
   stage: playbook
   script:
     - rm -rf ./playbook || true
@@ -34,10 +34,8 @@ playbook:
     paths:
       - ./playbook/
     expire_in: 1 hour  
-  tags:
-    - infra
 
-build:
+.build-template:
   stage: build
   script:
 
@@ -56,17 +54,10 @@ build:
       - auth_dist/
     expire_in: 1 hour
 
-  needs:
-    - job: publish
-      artifacts: false
-    - job: playbook
-      artifacts: true
   only:
     - master
-  tags:
-    - infra
 
-deploy:
+.deploy-template:
   stage: deploy
   script:
 
@@ -79,11 +70,52 @@ deploy:
         -e "bin_scripts=['migrate','auth-bundle.sh auth.colibrilab.pro','auth-bundle.sh backend.auth.colibrilab.pro','auth-publish.sh auth.colibrilab.pro','auth-queues.sh']"
         -e "queues=[]"
         -e php=8.3
-    
-  needs:
-    - job: build
-      artifacts: true
   only:
     - master
-  tags:
-    - infra
+  
+
+playbook-public:
+  extends: .playbook-template
+  tags: 
+    - gitlab
+
+playbook-private:
+  extends: .playbook-template
+  tags: 
+    - atg-gitlab
+
+build-public:
+  extends: .build-template
+  needs:
+    - job: publish
+      artifacts: false
+    - job: playbook-public
+      artifacts: true
+  tags: 
+    - gitlab
+
+build-private:
+  extends: .build-template
+  needs:
+    - job: publish
+      artifacts: false
+    - job: playbook-private
+      artifacts: true
+  tags: 
+    - atg-gitlab
+
+deploy-public:
+  extends: .deploy-template
+  needs:
+    - job: build-public
+      artifacts: true
+  tags: 
+    - gitlab
+
+deploy-private:
+  extends: .deploy-template
+  needs:
+    - job: build-private
+      artifacts: true
+  tags: 
+    - atg-gitlab
