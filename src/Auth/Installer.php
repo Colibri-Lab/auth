@@ -254,6 +254,7 @@ class Installer
 
         print_r('Установка скриптов' . "\n");
         self::_copyOrSymlink($mode, $path . '/src/Auth/bin/', './bin/', 'auth-bundle.sh', 'auth-bundle.sh');
+        self::_copyOrSymlink($mode, $path . '/src/Auth/bin/', './bin/', 'auth-bundle-all.sh', 'auth-bundle-all.sh');
 
         print_r('Установка стилей' . "\n");
         self::_copyOrSymlink($mode, $path . '/src/Auth/web/res/css/', './' . $webRoot . '/res/css/', 'auth-styles.scss', 'auth-styles.scss');
