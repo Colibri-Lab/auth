@@ -2134,7 +2134,7 @@ members:
         zh: ""
         fa: ""
       type: varchar
-      length: "128"
+      length: 128
       component: Colibri.UI.Forms.Password
       class: string
       attrs:
@@ -2143,24 +2143,9 @@ members:
         required: true
         enabled: true
         canbeempty: true
-        readonly: true
-        searchable: false
+        readonly: false
         list: false
         template: false
-        multiple: false
-        vertical: false
-        visual: false
-        code: 0
-        keyTitle: ""
-        valueTitle: ""
-        canEditKey: false
-        canAddNew: false
-        canRemoveRows: false
-        removelink: true
-        updownlink: true
-        hasscroll: true
-        initempty: true
-        removedesc: true
       tag: []
       protected: true
     first_name:
