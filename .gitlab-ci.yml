@@ -67,7 +67,7 @@ publish:
         -e project_dir="/var/www/auth"
         -e folder="auth_dist"
         -e "php_scripts=[]"
-        -e "bin_scripts=['migrate','auth-bundle.sh auth.colibrilab.pro','auth-bundle.sh backend.auth.colibrilab.pro']"
+        -e "bin_scripts=['migrate','auth-bundle.sh auth.colibrilab.pro bundle','auth-bundle.sh backend.auth.colibrilab.pro ru,en,hy','auth-bundle.sh backend.auth.colibrilab.pro ru,en,hy']"
         -e "queues=[]"
         -e php=8.3
   only:
