@@ -67,7 +67,7 @@ publish:
         -e project_dir="/var/www/auth"
         -e folder="auth_dist"
         -e "php_scripts=[]"
-        -e "bin_scripts=['migrate','auth-bundle.sh auth.colibrilab.pro','auth-bundle.sh backend.auth.colibrilab.pro']"
+        -e "bin_scripts=['migrate','auth-bundle.sh auth.colibrilab.pro bundle','auth-bundle.sh backend.auth.colibrilab.pro ru,en,hy','auth-bundle.sh backend.auth.colibrilab.pro ru,en,hy']"
         -e "queues=[]"
         -e php=8.3
   only:
@@ -117,6 +117,7 @@ deploy-private:
   after_script:
   - |
     ssh gitlab-runner@10.10.10.8 "
+      sudo sed -i 's/backend\.auth\.colibrilab\.pro/auth.atg.loc/g' /var/www/auth/config/hosts.yaml
       sudo sed -i 's/auth\.colibrilab\.pro/auth.atg.loc/g' /var/www/auth/config/hosts.yaml
       sudo sed -i 's/test\.colibrilab\.pro/atg.loc/g' /var/www/auth/config/auth.yaml
     "
