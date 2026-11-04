@@ -117,7 +117,6 @@ deploy-private:
   after_script:
   - |
     ssh gitlab-runner@10.10.10.8 "
-      sudo sed -i 's/backend\.auth\.colibrilab\.pro/auth.atg.loc/g' /var/www/auth/config/hosts.yaml
       sudo sed -i 's/auth\.colibrilab\.pro/auth.atg.loc/g' /var/www/auth/config/hosts.yaml
       sudo sed -i 's/test\.colibrilab\.pro/atg.loc/g' /var/www/auth/config/auth.yaml
     "
