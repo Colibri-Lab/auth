@@ -189,6 +189,16 @@ class Controller extends WebController
         $files = [];
         $langModule = App::$moduleManager->Get('lang');
         $selectedLangs = $get?->langs ? explode(',', $get?->langs) : [];
+        if(empty($selectedLangs)) {
+            $lang = App::$request->headers->{'Colibri-Language'};
+            if($lang) {
+                $selectedLangs[] = $lang;
+            }
+        }
+        $moduleOnly = $get?->module ? $get?->module : null;
+        if(!$moduleOnly) {
+            $moduleOnly = App::$request->headers->{'Module-Only'};
+        }
 
         $themeFile = null;
         $themeKey = '';
@@ -242,35 +252,54 @@ class Controller extends WebController
                 
                 $langModule->InitCurrent($langKey);
 
-                $css = Bundle::Automate(
-                    App::$domainKey,
-                    ($langKey . '.') . ($themeKey ? $themeKey . '.' : '') . 'assets.css',
-                    'scss',
-                    array_merge(
-                        [['path' => App::$appRoot . 'vendor/colibri/ui/src/']],
-                        [['path' => $themeFile]],
-                        [['path' => App::$webRoot . 'res/css/']],
-                        App::$moduleManager->GetPathsFromModuleConfig(),
-                        App::$moduleManager->GetPaths('web/res/css/'),
-                        App::$moduleManager->GetPaths('.Bundle/'),
-                        App::$moduleManager->GetPaths('templates/'),
-                    )
-                );
-                $files[] = $css; 
-                $cssa[] = $css;
-                $js = Bundle::Automate(
-                    App::$domainKey,
-                    ($langKey . '.') . 'assets.js',
-                    'js',
-                    array_merge(
-                        [['path' => App::$appRoot . 'vendor/colibri/ui/src/', 'exts' => ['js', 'html']]],
-                        App::$moduleManager->GetPathsFromModuleConfig(['exts' => ['js', 'html']]),
-                        App::$moduleManager->GetPaths('.Bundle/', ['exts' => ['js', 'html']]),
-                        App::$moduleManager->GetPaths('templates/', ['exts' => ['js', 'html']]),
-                    )
-                );
-                $files[] = $js;
-                $jsa[] = $js;
+                if($moduleOnly) {
+                    $jsBundle = Bundle::Automate(App::$domainKey, ($langModule ? $langModule->current . '.' : '') . 'assets.bundle.js', 'js', [
+                        App::$moduleManager->Get('Auth')->GetPathsFromModuleConfig(['exts' => ['js', 'html']]),
+                        ['path' => App::$moduleManager->{'Auth'}->modulePath . '.Bundle/', 'exts' => ['js', 'html']],
+                    ]);
+                    $cssBundle = Bundle::Automate(App::$domainKey, ($langModule ? $langModule->current . '.' : '') . ($themeKey ? $themeKey . '.' : '') . 'assets.bundle.css', 'scss', [
+                        ['path' => App::$moduleManager->{'Auth'}->modulePath . 'web/res/css/'],
+                        ['path' => App::$moduleManager->{'Auth'}->modulePath . '.Bundle/'],
+                        ['path' => $themeFile],
+                        App::$moduleManager->Get('Auth')->GetPathsFromModuleConfig(),
+                    ], 'https://' . App::$request->host);
+                    $files[] = $cssBundle; 
+                    $cssa[] = $cssBundle;
+                    $files[] = $jsBundle;
+                    $jsa[] = $jsBundle;
+                } else {
+                    $css = Bundle::Automate(
+                        App::$domainKey,
+                        ($langKey . '.') . ($themeKey ? $themeKey . '.' : '') . 'assets.css',
+                        'scss',
+                        array_merge(
+                            [['path' => App::$appRoot . 'vendor/colibri/ui/src/']],
+                            [['path' => $themeFile]],
+                            [['path' => App::$webRoot . 'res/css/']],
+                            App::$moduleManager->GetPathsFromModuleConfig(),
+                            App::$moduleManager->GetPaths('web/res/css/'),
+                            App::$moduleManager->GetPaths('.Bundle/'),
+                            App::$moduleManager->GetPaths('templates/'),
+                        )
+                    );
+                    $files[] = $css; 
+                    $cssa[] = $css;
+                    $js = Bundle::Automate(
+                        App::$domainKey,
+                        ($langKey . '.') . 'assets.js',
+                        'js',
+                        array_merge(
+                            [['path' => App::$appRoot . 'vendor/colibri/ui/src/', 'exts' => ['js', 'html']]],
+                            App::$moduleManager->GetPathsFromModuleConfig(['exts' => ['js', 'html']]),
+                            App::$moduleManager->GetPaths('.Bundle/', ['exts' => ['js', 'html']]),
+                            App::$moduleManager->GetPaths('templates/', ['exts' => ['js', 'html']]),
+                        )
+                    );
+                    $files[] = $js;
+                    $jsa[] = $js;
+                }
+
+                
 
             }
             $langModule->InitCurrent($oldLangKey);
@@ -299,8 +328,8 @@ class Controller extends WebController
                 200,
                 'Bundle created successfuly',
                 (object) [
-                    'js' => $jsa,
-                    'css' => $cssa
+                    'js' => \count($jsa) == 1 ? 'https://' .  App::$request->server->{'http_host'} . '/' . $jsa[0] : array_map(function($file) { return 'https://' .  App::$request->server->{'http_host'} . '/' . $file; }, $jsa),
+                    'css' => \count($cssa) == 1 ? 'https://' .  App::$request->server->{'http_host'} . '/' . $cssa[0] : array_map(function($file) { return 'https://' .  App::$request->server->{'http_host'} . '/' . $file; }, $cssa)
                 ],
                 'utf-8'
             );
