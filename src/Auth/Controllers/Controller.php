@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Modules\Auth\Controllers;
 
 use Colibri\App;
 use Colibri\AppException;
@@ -25,7 +25,7 @@ use Colibri\IO\FileSystem\Directory;
 /**
  * Default controller
  * @author Vahan P. Grigoryan
- * @package App\Controllers
+ * @package App\Modules\Auth\Controllers
  */
 class Controller extends WebController
 {
