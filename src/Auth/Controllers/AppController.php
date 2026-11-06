@@ -132,7 +132,7 @@ class AppController extends WebController
         $code = 200;
 
         $app = Module::Instance()->application;
-        $result = $app->roles->ToArray(true);
+        $result = $app->params->roles->ToArray(true);
             
         return $this->Finish(
             $code,
