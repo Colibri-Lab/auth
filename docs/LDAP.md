@@ -2,7 +2,7 @@
 
 Experimental read-only LDAPv3 using `Colibri\Threading\Worker` and native PHP
 streams. No ReactPHP, new libraries or external LDAP server products. HTTP
-continues to use nginx/PHP-FPM; LDAP needs a separate foreground PHP CLI process.
+continues to use nginx/PHP-FPM; LDAP runs in a separate PHP worker process.
 
 ## Startup
 
@@ -12,24 +12,29 @@ Run as the application service user, not root. Restrict access with a firewall.
 
 From the booth root, supply `AUTH_LDAP_APP_TOKEN` through a protected environment
 file or supervisor environment. Never commit it or put it in command arguments.
-The token must match the existing application selected by `--application`.
+The token must match the existing application selected by the second script argument.
 Set `AUTH_HOST` to an Auth hostname configured in this booth's `config/hosts.yaml`,
-not the Tasks website hostname. `--host` selects Colibri configuration;
-`--listen` selects the listening interface. They are separate settings.
+not the Tasks website hostname. The first argument selects Colibri configuration;
+`listen` selects the listening interface. They are separate settings.
+
+The module installer installs `auth-ldap.sh` into the booth's `bin/` directory.
+The script invokes `LdapController::Start()` through `web/index.php`; the
+CLI-only action starts `LdapWorker` through `Colibri\Threading\Process`.
+The application token is inherited through the environment, not serialized into
+the worker's command-line parameters. The action returns the spawned worker PID;
+this is not confirmation that LDAP has finished starting. Check the listener
+with an LDAP client before using it.
 
 ```sh
-php vendor/colibri/auth/src/Auth/bin/ldap.php \
-  --root="$PWD" --host="$AUTH_HOST" --application=tasks \
-  --listen=tcp://127.0.0.1:1389
+sh bin/auth-ldap.sh "$AUTH_HOST" tasks listen=tcp://127.0.0.1:1389
 ```
 
 Encrypted LDAP on test server `10.10.10.8`:
 
 ```sh
-php vendor/colibri/auth/src/Auth/bin/ldap.php \
-  --root="$PWD" --host="$AUTH_HOST" --application=tasks \
-  --listen=tls://10.10.10.8:1636 \
-  --cert=/path/to/fullchain.pem --key=/path/to/private-key.pem
+sh bin/auth-ldap.sh "$AUTH_HOST" tasks \
+  listen=tls://10.10.10.8:1636 \
+  cert=/path/to/fullchain.pem key=/path/to/private-key.pem
 ```
 
 Clients use `ldaps://<certificate-hostname>:1636`. The hostname must resolve to
@@ -39,42 +44,25 @@ must include that IP in subjectAltName. TLS 1.2/1.3 are supported, not StartTLS.
 Only for an isolated test network, plaintext can be explicitly enabled:
 
 ```sh
-php vendor/colibri/auth/src/Auth/bin/ldap.php \
-  --root="$PWD" --host="$AUTH_HOST" --application=tasks \
-  --listen=tcp://10.10.10.8:1389 --allow-insecure
+sh bin/auth-ldap.sh "$AUTH_HOST" tasks \
+  listen=tcp://10.10.10.8:1389 allow-insecure=true
 ```
 
 Without TLS, Simple Bind transmits passwords in cleartext. Non-loopback plaintext
-is rejected without `--allow-insecure`. No migrations or new tables are required.
+is rejected without `allow-insecure=true`. No migrations or new tables are required.
 The application must already exist; an Auth hostname does not create it.
 
 ## Supervision
 
-The worker stays in the foreground. Stop it with SIGTERM/SIGINT. Do not start it
-through HTTP. Adapt this systemd example to the booth's paths and service user:
+The controller invocation exits after spawning the worker; the LDAP listener
+continues in the child process. Stop that PID with SIGTERM/SIGINT, not the shell
+script's PID. Do not start the action through HTTP. A foreground `Type=simple`
+systemd unit cannot supervise this launcher as if it were the listener itself.
+Configure supervision of the returned worker PID separately if required.
 
-```ini
-[Unit]
-Description=Auth LDAP for tasks
-After=network.target
-
-[Service]
-Type=simple
-User=www-data
-WorkingDirectory=/srv/www/cblank/htdocs
-EnvironmentFile=/etc/colibri/auth-ldap-tasks.env
-ExecStart=/usr/bin/php /srv/www/cblank/htdocs/vendor/colibri/auth/src/Auth/bin/ldap.php --root=/srv/www/cblank/htdocs --host=${AUTH_HOST} --application=tasks --listen=tls://10.10.10.8:1636 --cert=/path/to/fullchain.pem --key=/path/to/private-key.pem
-Restart=on-failure
-RestartSec=5
-TimeoutStopSec=15
-
-[Install]
-WantedBy=multi-user.target
-```
-
-The protected environment file supplies `AUTH_HOST`, `AUTH_LDAP_APP_TOKEN` and
-the booth's `COLIBRI_MODE` when needed. Without PCNTL, SIGTERM terminates the
-process directly instead of invoking the graceful shutdown handler.
+The protected launcher environment supplies `AUTH_HOST`, `AUTH_LDAP_APP_TOKEN`
+and the booth's `COLIBRI_MODE` when needed. Without PCNTL, SIGTERM terminates
+the process directly instead of invoking the graceful shutdown handler.
 
 ## Directory and authentication
 

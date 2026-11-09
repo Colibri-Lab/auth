@@ -43,7 +43,14 @@ class LdapWorker extends Worker
     public function Run(): void
     {
         $options = (array)$this->_params;
-        $directory = new Directory((string)($options['application'] ?? ''), (string)($options['token'] ?? ''));
+        if (isset($options['token'])) {
+            $token = (string)$options['token'];
+        } else {
+            $token = (string)getenv('AUTH_LDAP_APP_TOKEN');
+        }
+        $directory = new Directory((string)($options['application'] ?? ''), $token);
+        putenv('AUTH_LDAP_APP_TOKEN');
+        unset($token);
         unset($options['token']);
         $this->Serve($directory, $options);
     }
