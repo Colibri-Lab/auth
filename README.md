@@ -1,3 +1,7 @@
+# LDAP
+
+Read-only LDAP service: [configuration, CLI startup and tests](docs/LDAP.md).
+
 # миграция
  
 cd ./web
