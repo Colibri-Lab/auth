@@ -256,6 +256,7 @@ class Installer
         self::_copyOrSymlink($mode, $path . '/src/Auth/bin/', './bin/', 'auth-bundle.sh', 'auth-bundle.sh');
         self::_copyOrSymlink($mode, $path . '/src/Auth/bin/', './bin/', 'auth-bundle-all.sh', 'auth-bundle-all.sh');
         self::_copyOrSymlink($mode, $path . '/src/Auth/bin/', './bin/', 'auth-ldap.sh', 'auth-ldap.sh');
+        self::_copyOrSymlink($mode, $path . '/src/Auth/bin/', './bin/', 'auth-security-tests.sh', 'auth-security-tests.sh');
 
         print_r('Установка стилей' . "\n");
         self::_copyOrSymlink($mode, $path . '/src/Auth/web/res/css/', './' . $webRoot . '/res/css/', 'auth-styles.scss', 'auth-styles.scss');

@@ -32,6 +32,8 @@ use Colibri\Data\Storages\Fields\ArrayField;
  * @property bool|null $enable_device_authentification 
  * @property bool|null $enable_invitations 
  * @property bool|null $enable_contactsearch 
+ * @property int|bool|null $forcelogout Можно выбрасывать пользователей ниже рангом
+ * @property bool|null $forceblock Можно блокировать пользователей ниже рангом
  * @property ParamsDesignObjectField|null $design Макет
  * @property ParamsProxiesObjectField|null $proxies Прокси для коммуникаций
  * endregion Properties;
@@ -67,6 +69,8 @@ class ParamsObjectField extends ObjectField
 			'enable_device_authentification' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
 			'enable_invitations' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
 			'enable_contactsearch' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
+			'forcelogout' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'integer', ] ] ],
+			'forceblock' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],] ] ],
 			'design' => [  'oneOf' => [ ParamsDesignObjectField::JsonSchema, [ 'type' => 'null'] ] ],
 			'proxies' => [  'oneOf' => [ ParamsProxiesObjectField::JsonSchema, [ 'type' => 'null'] ] ],
 			# endregion SchemaProperties;

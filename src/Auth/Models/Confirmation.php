@@ -3,7 +3,7 @@
 namespace App\Modules\Auth\Models;
 
 # region Uses:
-use Colibri\App;
+use App\Modules\Auth\Models\Fields\Confirmations\PropertyEnum;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\ValueField;
 # endregion Uses;
@@ -18,12 +18,13 @@ use Colibri\IO\Request\Type;
  * @class
  * 
  * region Properties:
- * @property int $id ID строки
- * @property DateTimeField $datecreated Дата создания строки
- * @property DateTimeField $datemodified Дата последнего обновления строки
- * @property DateTimeField $datedeleted Дата удаления строки (если включно мягкое удаление)
- * @property ValueField|string|ValueField $property Свойство
+ * @property int $id ID of the row
+ * @property DateTimeField $datecreated Creation date of the row
+ * @property DateTimeField $datemodified Last modification date of the row
+ * @property DateTimeField $datedeleted Deletion date of the row (if soft delete is enabled)
+ * @property PropertyEnum|ValueField|ValueField $property Свойство
  * @property string|null $value Значение свойства
+ * @property string|null $valuebefore Предыдущее значение
  * @property string|null $member Пользователь
  * @property string $code Код
  * @property bool $verified Верифицирован
@@ -50,8 +51,9 @@ class Confirmation extends BaseModelDataRow
 			'datecreated' => ['type' => 'string', 'format' => 'db-date-time'],
 			'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
 			# region SchemaProperties:
-			'property' => ['type' => 'string', 'enum' => ['email', 'phone', 'reset', 'login']],
+			'property' => PropertyEnum::JsonSchema, 
 			'value' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
+			'valuebefore' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
 			'member' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 36, ] ] ],
 			'code' => ['type' => 'string', 'maxLength' => 10, ],
 			'verified' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
@@ -61,13 +63,29 @@ class Confirmation extends BaseModelDataRow
 	];
 
 	# region Consts:
-	/** Эл. адрес */
+	/** 
+     * Эл. адрес
+     * @const string
+     * @public
+     */
 	public const PropertyEmail = 'email';
-	/** Телефон */
+	/** 
+     * Телефон
+     * @const string
+     * @public
+     */
 	public const PropertyPhone = 'phone';
-	/** Восстановление пароля */
+	/** 
+     * Восстановление пароля
+     * @const string
+     * @public
+     */
 	public const PropertyReset = 'reset';
-	/** Вход/Двух-факторная авторизация */
+	/** 
+     * Вход/Двух-факторная авторизация
+     * @const string
+     * @public
+     */
 	public const PropertyLogin = 'login';
 	# endregion Consts;
 

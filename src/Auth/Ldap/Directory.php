@@ -81,6 +81,7 @@ class Directory
         if ($member === null || !$this->_eligible($member, $this->_application()) || !$member->Authorize($password)) {
             return null;
         }
+        $member->UpgradePasswordHash($password);
         return $member->token;
     }
 

@@ -52,12 +52,12 @@ class SessionController extends WebController
     }
 
     /**
-     * Logins member into session
-     * @param RequestCollection $get data from get request
-     * @param RequestCollection $post a request post data
-     * @param mixed $payload payload object in POST/PUT request
-     * @return object
+     * Authenticates a member and upgrades the password hash after all factors pass.
      * @public
+     * @param RequestCollection $get GET parameters.
+     * @param RequestCollection $post POST parameters.
+     * @param PayloadCopy|null $payload Request payload.
+     * @return object Login response.
      */
     public function Login(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -72,7 +72,7 @@ class SessionController extends WebController
         $payloadArray = $payload->ToArray();
         $login = $payloadArray['login'] ?? $post->{'login'};
         $password = $payloadArray['password'] ?? $post->{'password'};
-        $code = $payloadArray['password'] ?? $post->{'code'};
+        $code = $payloadArray['code'] ?? $post->{'code'};
 
         if (!$login || !$password) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-session-data-incorrect}', 'code' => 400]);
@@ -119,6 +119,8 @@ class SessionController extends WebController
                 }
             }
     
+            $member->UpgradePasswordHash($password);
+
             if(!$app->params->multilogin) {
                 $sessions = Sessions::LoadByMember($member->token);
                 foreach ($sessions as $s) {

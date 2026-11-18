@@ -25,4 +25,20 @@ class ParamsRolesArrayField extends ArrayField
         'type' => 'array',
         'items' => ParamsRolesObjectField::JsonSchema
     ];
+
+    /**
+     * Search for the role in list
+     * @param string $name name of the role
+     * @public
+     */
+    public function Search(string $name): ?ParamsRolesObjectField 
+    {
+        foreach($this as $item) {
+            if($item->name === $name) {
+                return $item;
+            }
+        }
+        return null;
+    }
+
 }

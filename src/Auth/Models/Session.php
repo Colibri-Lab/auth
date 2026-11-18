@@ -16,11 +16,12 @@ use Colibri\Utils\Cache\Mem;
  * @class
  * 
  * region Properties:
- * @property int $id ID строки
- * @property DateTimeField $datecreated Дата создания строки
- * @property DateTimeField $datemodified Дата последнего обновления строки
- * @property DateTimeField $datedeleted Дата удаления строки (если включно мягкое удаление)
+ * @property int $id ID of the row
+ * @property DateTimeField $datecreated Creation date of the row
+ * @property DateTimeField $datemodified Last modification date of the row
+ * @property DateTimeField $datedeleted Deletion date of the row (if soft delete is enabled)
  * @property string $member Токен пользователя
+ * @property string|null $device Устройство
  * @property string $key Ключ сессии
  * @property string $token Токен сессии (JWT)
  * @property int $expires Время жизни
@@ -51,6 +52,7 @@ class Session extends BaseModelDataRow
             'datemodified' => ['type' => 'string', 'format' => 'db-date-time'],
             # region SchemaProperties:
 			'member' => ['type' => 'string', 'maxLength' => 32, ],
+			'device' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 256, ] ] ],
 			'key' => ['type' => 'string', 'maxLength' => 32, ],
 			'token' => ['type' => 'string', 'maxLength' => 8192, ],
 			'expires' => ['type' => 'integer', ],

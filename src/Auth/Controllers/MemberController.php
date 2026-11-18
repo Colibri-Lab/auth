@@ -59,9 +59,7 @@ class MemberController extends WebController
         $payloadArray = $payload->ToArray();
         $login = $payloadArray['login'] ?? $post->{'login'};
         $email = $payloadArray['email'] ?? $post->{'email'};
-        $email_confirmed = $payloadArray['email_confirmed'] ?? $post->{'email_confirmed'};
         $phone = $payloadArray['phone'] ?? $post->{'phone'};
-        $phone_confirmed = $payloadArray['phone_confirmed'] ?? $post->{'phone_confirmed'};
         $firstName = $payloadArray['first_name'] ?? $post->{'first_name'};
         $lastName = $payloadArray['last_name'] ?? $post->{'last_name'};
         $patronymic = $payloadArray['patronymic'] ?? $post->{'patronymic'};
@@ -69,7 +67,32 @@ class MemberController extends WebController
         $birthdate = $payloadArray['birthdate'] ?? $post->{'birthdate'};
         $password = $payloadArray['password'] ?? $post->{'password'};
         $confirmation = $payloadArray['confirmation'] ?? $post->{'confirmation'};
-        $role = $payloadArray['role'] ?? $post->{'role'};
+
+        //! CRITICAL ISSUE FROM AI: Email and phone confirmation should not be directly set from user input for security reasons. They should only be assigned based on trusted sources like the invitation or system-generated values.
+        // $email_confirmed = $payloadArray['email_confirmed'] ?? $post->{'email_confirmed'};
+        // $phone_confirmed = $payloadArray['phone_confirmed'] ?? $post->{'phone_confirmed'};
+
+        $emailConfirmation = Confirmations::LoadByValue(Confirmation::PropertyEmail, $email);
+        $phoneConfirmation = Confirmations::LoadByValue(Confirmation::PropertyPhone, $phone);
+
+        if($emailConfirmation && $emailConfirmation->member == $session->key) {
+            $email_confirmed = $emailConfirmation->verified;    
+        } else {
+            $email_confirmed = false;
+        }
+
+        if($phoneConfirmation && $phoneConfirmation->member == $session->key) {
+            $phone_confirmed = $phoneConfirmation->verified;    
+        } else {
+            $phone_confirmed = false;
+        }
+
+        $emailConfirmation->Delete();
+        $phoneConfirmation->Delete();
+        
+        //! CRITICAL ISSUE FROM AI: Role should not be directly set from user input for security reasons. It should only be assigned based on the invitation or other trusted sources.
+        // $role = $payloadArray['role'] ?? $post->{'role'};
+
         $invitationCode = $payloadArray['invitation'] ?? $post->{'invitation'};
         if($invitationCode) {
             $invitation = Invitations::LoadByCode($invitationCode);
@@ -80,12 +103,48 @@ class MemberController extends WebController
                 ]);
             }
 
-            $email = $invitation->email;
-            $phone = $invitation->phone ?: $phone;
-            $role = $invitation->params?->role ?: $role;
+            $inviterMember = Members::LoadByToken($invitation->inviter);
+            if(!$inviterMember || $inviterMember->blocked) {
+                $invitation->Delete();
+                return $this->Finish(400, 'Bad Request', [
+                    'message' => 'Inviter is blocked or not known',
+                    'code' => 400
+                ]);
+            }
+
+
+            // $email = $invitation->email;
+            // $phone = $invitation->phone ?: $phone;
+            
+            $roleFrom = $app->params->roles->Search($inviterMember->role);
+            $roleTo = $app->params->roles->Search($invitation->params?->role);
+
+            if(!$roleFrom || !$roleTo) {
+                $invitation->Delete();
+                return $this->Finish(400, 'Bad Request', [
+                    'message' => 'Role is not allowed',
+                    'code' => 400
+                ]);
+            }
+
+            if($roleFrom->priority <= $roleTo->priority) {
+                $role = $invitation->params?->role;
+            } else {
+                $invitation->Delete();
+                return $this->Finish(400, 'Bad Request', [
+                    'message' => 'Role is not allowed',
+                    'code' => 400
+                ]);
+            }
+            
+            $role = $invitation->params?->role;
 
             $invitation->accepted = new DateTimeField('now');
             $invitation->Save(true);
+        }
+
+        if(!$role) {
+            $role = Module::Instance()->application->params->defaultrole;
         }
 
         if(!$app->params->askforemail) {
@@ -270,8 +329,10 @@ class MemberController extends WebController
             $confirmation = Confirmations::LoadEmpty();
             $confirmation->property = $property;
             $confirmation->value = $value;
+            $confirmation->valuebefore = $member?->{$property} ?? null; 
         }
 
+        $confirmation->member = $session->key;
         $confirmation->code = RandomizationHelper::Numeric(6);
         $confirmation->verified = false;
         $confirmation->Save();
@@ -377,6 +438,7 @@ class MemberController extends WebController
                 $confirmation = Confirmations::LoadEmpty();
                 $confirmation->property = Confirmation::PropertyReset;
                 $confirmation->member = $member->token;
+                $confirmation->valuebefore = $member->email;
             }
 
             $confirmation->code = RandomizationHelper::Numeric(6);
@@ -465,6 +527,7 @@ class MemberController extends WebController
                 $confirmation = Confirmations::LoadEmpty();
                 $confirmation->property = $property;
                 $confirmation->member = $member->token;
+                $confirmation->valuebefore = $member->{$property};
             }
 
             $confirmation->code = RandomizationHelper::Numeric(6);
@@ -529,6 +592,16 @@ class MemberController extends WebController
         $confirmation = Confirmations::LoadByValue($property, $value);
         if(!$confirmation || $confirmation->verified) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
+        }
+
+        if($session->member) {
+            if($session->member !== $confirmation->member) {
+                return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
+            }
+        } else {
+            if($session->key !== $confirmation->member) {
+                return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-data-incorrect}', 'code' => 400]);
+            }
         }
 
         try {
@@ -1436,6 +1509,7 @@ class MemberController extends WebController
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
      * @public
+     * ! SECURITY PROBLEM: This action will force logout the member from all sessions using the provided token.
      */
     public function ForceLogout(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -1451,8 +1525,36 @@ class MemberController extends WebController
                 return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
             }
 
+            
+            /** @var \App\Modules\Auth\Models\Application|null $app */
+            $app = Module::Instance()->application;
+            if (!$app) {
+                throw new InvalidArgumentException('Application not found', 404);
+            }
+
+            if(!$app->params->forcelogout) {
+                throw new InvalidArgumentException('Function is not allowed', 403);
+            }
+
             $payloadArray = $payload->ToArray();
             $token = $payloadArray['token'] ?? $post->{'token'};
+
+            $loggedMember = Members::LoadByToken($session->member);
+            if(!$loggedMember->blocked) {
+                throw new InvalidArgumentException('Member blocked', 403);
+            }
+            $member = Members::LoadByToken($token);
+
+            $roleFrom = $app->params->roles->Search($loggedMember->role);
+            $roleTo = $app->params->roles->Search($member->role);
+
+            if(!$roleFrom || !$roleTo) {
+                throw new InvalidArgumentException('Function is not allowed', 403);
+            }
+
+            if($roleFrom->priority >= $roleTo->priority) {
+                throw new InvalidArgumentException('Function is not allowed', 403);
+            }
 
             $sessions = Sessions::LoadByMember($token);
             foreach ($sessions as $s) {
@@ -1485,6 +1587,7 @@ class MemberController extends WebController
      * @param mixed $payload данные payload обьекта переданного через POST/PUT
      * @return object
      * @public
+     * ! SECURITY PROBLEM: This action will force logout the member from all sessions using the provided token and block the account.
      */
     public function ForceBlock(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
     {
@@ -1494,12 +1597,40 @@ class MemberController extends WebController
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-member-not-logged}', 'code' => 400]);
         }
 
+        /** @var \App\Modules\Auth\Models\Application|null $app */
+        $app = Module::Instance()->application;
+        if (!$app) {
+            throw new InvalidArgumentException('Application not found', 404);
+        }
+
+        if(!$app->params->forceblock) {
+            throw new InvalidArgumentException('Function is not allowed', 403);
+        }
+
         try {
 
             $payloadArray = $payload->ToArray();
             $token = $payloadArray['token'] ?? $post->{'token'};
 
+            
+            $loggedMember = Members::LoadByToken($session->member);
+            if(!$loggedMember->blocked) {
+                throw new InvalidArgumentException('Member blocked', 403);
+            }
             $member = Members::LoadByToken($token);
+
+            $roleFrom = $app->params->roles->Search($loggedMember->role);
+            $roleTo = $app->params->roles->Search($member->role);
+
+            if(!$roleFrom || !$roleTo) {
+                throw new InvalidArgumentException('Function is not allowed', 403);
+            }
+
+            
+            if($roleFrom->priority >= $roleTo->priority) {
+                throw new InvalidArgumentException('Function is not allowed', 403);
+            }
+
             $member->blocked = 1;
             if (($res = $member->Save(true)) !== true) {
                 /** @var \Colibri\Data\SqlClient\QueryInfo $res */

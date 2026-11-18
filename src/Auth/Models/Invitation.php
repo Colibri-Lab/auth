@@ -19,11 +19,12 @@ use Colibri\Utils\Debug;
  * @class
  * 
  * region Properties:
- * @property int $id ID строки
- * @property DateTimeField $datecreated Дата создания строки
- * @property DateTimeField $datemodified Дата последнего обновления строки
- * @property DateTimeField $datedeleted Дата удаления строки (если включно мягкое удаление)
+ * @property int $id ID of the row
+ * @property DateTimeField $datecreated Creation date of the row
+ * @property DateTimeField $datemodified Last modification date of the row
+ * @property DateTimeField $datedeleted Deletion date of the row (if soft delete is enabled)
  * @property string|null $application Приложение
+ * @property string|null $inviter Отправитель
  * @property string|null $email Эл. почта
  * @property string|null $fio ФИО
  * @property string $code Код
@@ -52,6 +53,7 @@ class Invitation extends BaseModelDataRow
             'datedeleted' => [  'oneOf' => [ ['type' => 'null'], ['type' => 'string', 'format' => 'db-date-time'] ] ],
             # region SchemaProperties:
 			'application' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 256, ] ] ],
+			'inviter' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 36, ] ] ],
 			'email' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 256, ] ] ],
 			'fio' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 256, ] ] ],
 			'code' => ['type' => 'string', 'maxLength' => 32, ],

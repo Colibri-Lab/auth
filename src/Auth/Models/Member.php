@@ -22,6 +22,8 @@ use Colibri\IO\FileSystem\File;
 /**
  * Представление строки в таблице в хранилище Пользователи
  * @class
+ * @memberof App\Modules\Auth\Models
+ * @extends BaseModelDataRow
  * 
  * region Properties:
  * @property int $id ID строки
@@ -111,17 +113,51 @@ class Member extends BaseModelDataRow
         $this->_data['members_token'] = md5($value);
     }
 
+    /**
+     * Hashes a newly assigned password after checking its strength.
+     * @public
+     * @param string $value Plaintext password.
+     * @return void
+     */
     public function setPropertyPassword(string $value): void
     {
         if (($strength = self::CheckPasswordStrength($this->email, $value)) < 40) {
             throw new InvalidArgumentException(sprintf('#{auth-errors-member-password-strength-not-match}', $strength));
         }
-        $this->_data['members_password'] = md5(Crypt::Encrypt(self::PasswordKey, $value));
+        $this->_data['members_password'] = password_hash($value, PASSWORD_ARGON2ID);
     }
 
+    /**
+     * Verifies a current or legacy password hash without changing the member.
+     * @public
+     * @param string $password Plaintext password.
+     * @return bool Whether the password matches.
+     */
     public function Authorize(string $password): bool
     {
-        return $this->password === md5(Crypt::Encrypt(self::PasswordKey, $password));
+        if (preg_match('/\A[a-f0-9]{32}\z/', $this->password)) {
+            return hash_equals($this->password, md5(Crypt::Encrypt(self::PasswordKey, $password)));
+        }
+        return password_verify($password, $this->password);
+    }
+
+    /**
+     * Upgrades an already verified password after successful authentication.
+     * @public
+     * @param string $password Plaintext password accepted by Authorize().
+     * @return void
+     */
+    public function UpgradePasswordHash(string $password): void
+    {
+        if (!password_needs_rehash($this->password, PASSWORD_ARGON2ID)) {
+            return;
+        }
+
+        // Existing passwords must not be rejected by the current strength policy.
+        $this->_data['members_password'] = password_hash($password, PASSWORD_ARGON2ID);
+        if (($res = $this->Save(true)) !== true) {
+            throw new \InvalidArgumentException($res->error, 400);
+        }
     }
 
     public static function CheckPasswordStrength(string $email, string $password): float
@@ -184,6 +220,7 @@ class Member extends BaseModelDataRow
             $confirmation = Confirmations::LoadEmpty();
             $confirmation->property = $property;
             $confirmation->member = $this->token;
+            $confirmation->valuebefore = $this->{$property};
         }
 
         $confirmation->code = RandomizationHelper::Numeric(6);
@@ -209,6 +246,7 @@ class Member extends BaseModelDataRow
             $confirmation = Confirmations::LoadEmpty();
             $confirmation->property = Confirmation::PropertyReset;
             $confirmation->member = $this->token;
+            $confirmation->valuebefore = $this->email;
         }
 
         $confirmation->code = RandomizationHelper::Numeric(6);
@@ -232,6 +270,7 @@ class Member extends BaseModelDataRow
             $confirmation = Confirmations::LoadEmpty();
             $confirmation->property = Confirmation::PropertyLogin;
             $confirmation->member = $this->token;
+            $confirmation->valuebefore = $this->email;
         }
 
         $confirmation->code = RandomizationHelper::Numeric(6);
@@ -260,18 +299,14 @@ class Member extends BaseModelDataRow
     public function ConfirmProperty(string $property, string $code): bool
     {
         $confirmation = Confirmations::LoadByMember($property, $this->token);
-        if ($confirmation && $confirmation->code === $code) {
+        if ($confirmation && $confirmation->code === $code && $confirmation->valuebefore === $this->{$property}) {
             $this->{$property . '_confirmed'} = true;
 
             if (($res = $this->Save(true)) !== true) {
                 throw new \InvalidArgumentException($res->error, 400);
             }
 
-            $res = $confirmation->Delete();
-            if ($res->error) {
-                throw new \InvalidArgumentException($res->error, 400);
-            }
-
+            $confirmation->Delete();
             return true;
 
         }
@@ -282,7 +317,7 @@ class Member extends BaseModelDataRow
     public function UpdateIdentify(string $property, string $code, string $value): bool
     {
         $confirmation = Confirmations::LoadByMember($property, $this->token);
-        if ($confirmation && $confirmation->code === $code) {
+        if ($confirmation && $confirmation->code === $code && $confirmation->valuebefore === $this->{$property}) {
             $this->{$property . '_confirmed'} = true;
             $this->$property = $value;
 
@@ -290,11 +325,7 @@ class Member extends BaseModelDataRow
                 throw new \InvalidArgumentException($res->error, 400);
             }
 
-            $res = $confirmation->Delete();
-            if ($res->error) {
-                throw new \InvalidArgumentException($res->error, 400);
-            }
-
+            $confirmation->Delete();
             return true;
         }
         return false;
@@ -416,6 +447,15 @@ class Member extends BaseModelDataRow
             if (($res = $this->Save(true)) !== true) {
                 throw new \InvalidArgumentException($res->error, 400);
             }
+
+            // clear all sessions for this member to force logout after password reset
+            $sessions = Sessions::LoadByMember($this);
+            foreach ($sessions as $s) {
+                /** @var \App\Modules\Auth\Models\Session $s */
+                $s->member = null;
+                $s->Save(true);
+            }
+
 
         } catch (Throwable $e) {
             throw new InvalidArgumentException($e->getMessage(), 405);

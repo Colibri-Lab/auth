@@ -67,7 +67,7 @@ class InvitesController extends WebController
             );
         }
         
-        $invitation = Invitations::CreateInvitation($email, $fio, $params);
+        $invitation = Invitations::CreateInvitation($session->member, $email, $fio, $params);
         if(!$invitation) {
             return $this->Finish(400, 'Bad Request', ['message' => '#{auth-errors-invitation-send-error}', 'code' => 400]);
         }

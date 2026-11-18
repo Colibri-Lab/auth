@@ -13,6 +13,7 @@ use Colibri\Data\Storages\Fields\ObjectField;
  * @class
  * 
  * region Properties:
+ * @property int|null $priority Приоритет
  * @property string|null $name Наименование роли
  * @property string|null $desc Описание роли
  * endregion Properties;
@@ -33,9 +34,20 @@ class ParamsRolesObjectField extends ObjectField
         ],
         'properties' => [
             # region SchemaProperties:
+			'priority' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'integer', ] ] ],
 			'name' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
 			'desc' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 255, ] ] ],
 			# endregion SchemaProperties;
         ]
     ];
+
+    /**
+     * Get the property priority
+     * @return int
+     * @public
+     */
+    public function getPropertyPriority(): int
+    {
+        return $this->data['priority'] === null ? PHP_INT_MAX : $this->data['priority'];
+    }
 }
