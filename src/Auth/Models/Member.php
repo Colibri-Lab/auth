@@ -4,6 +4,8 @@ namespace App\Modules\Auth\Models;
 
 # region Uses:
 use App\Modules\Auth\Models\Fields\Members\GenderEnum;
+use App\Modules\Auth\Models\Fields\Members\RoleArrayField;
+use Colibri\Data\Storages\Fields\ArrayField;
 use Colibri\Data\Storages\Fields\DateField;
 use Colibri\Data\Storages\Fields\DateTimeField;
 use Colibri\Data\Storages\Fields\ObjectField;
@@ -41,7 +43,7 @@ use Colibri\IO\FileSystem\File;
  * @property DateField|null $birthdate Дата рождения
  * @property GenderEnum|ValueField|ValueField|null $gender Пол
  * @property ObjectField|null $avatar Аватар
- * @property string|null $role Роль
+ * @property RoleArrayField|null $role Assigned application roles.
  * @property bool $email_confirmed Почта подтверждена
  * @property bool $phone_confirmed Телефон подтвержден
  * @property bool $blocked Заблокирован (удален)
@@ -88,7 +90,7 @@ class Member extends BaseModelDataRow
 			'birthdate' => [ 'anyOf' => [ ['type' => ['string', 'null'], 'format' => 'date'], ['type' => ['string', 'null'], 'maxLength' => 0] ] ],
 			'gender' => [ 'oneOf' => [ [ 'type' => 'null' ], GenderEnum::JsonSchema ] ], 
 			'avatar' => [  'oneOf' => [ ObjectField::JsonSchema, [ 'type' => 'null'] ] ],
-			'role' => [ 'oneOf' => [ [ 'type' => 'null'], ['type' => 'string', 'maxLength' => 20, ] ] ],
+			'role' => [  'oneOf' => [ RoleArrayField::JsonSchema, [ 'type' => 'null'] ] ],
 			'email_confirmed' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
 			'phone_confirmed' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
 			'blocked' => ['type' => ['boolean','number'], 'enum' => [true, false, 0, 1],],
@@ -111,6 +113,97 @@ class Member extends BaseModelDataRow
     {
         $this->_data['members_login'] = $value;
         $this->_data['members_token'] = md5($value);
+    }
+
+    /**
+     * Normalizes legacy role names and Array form values.
+     * @public
+     * @static
+     * @param mixed $value A role name or an array of role objects.
+     * @return array<array{role: string}> Unique assigned roles.
+     */
+    public static function NormalizeRoles(mixed $value): array
+    {
+        if ($value instanceof ArrayField) {
+            $value = $value->ToArray(true);
+        } elseif (is_string($value)) {
+            if (str_starts_with(ltrim($value), '[')) {
+                $value = json_decode($value, true, 512, JSON_THROW_ON_ERROR);
+            } elseif ($value === '' || $value === 'json_array()') {
+                $value = [];
+            } else {
+                $value = [['role' => $value]];
+            }
+        } elseif ($value === null) {
+            $value = [];
+        }
+        if (!is_array($value) || !array_is_list($value)) {
+            throw new \InvalidArgumentException('Expected an array of role objects', 400);
+        }
+        $roles = [];
+        foreach ($value as $item) {
+            if (is_object($item)) {
+                $item = (array)$item;
+            }
+            $name = is_array($item) ? ($item['role'] ?? null) : null;
+            if (!is_string($name) || $name === '' || mb_strlen($name) > 20) {
+                throw new \InvalidArgumentException('Invalid member role name', 400);
+            }
+            $roles[$name] = ['role' => $name];
+        }
+        return array_values($roles);
+    }
+
+    /**
+     * Assigns roles while retaining compatibility with single-role callers.
+     * @public
+     * @param mixed $value A legacy role name or Array form value.
+     * @return void
+     */
+    public function setPropertyRole(mixed $value): void
+    {
+        $roles = json_encode(self::NormalizeRoles($value), JSON_THROW_ON_ERROR);
+        $this->_typeExchange('set', 'members_role', $roles);
+        $this->_changed = true;
+    }
+
+    /**
+     * Returns the assigned role names.
+     * @public
+     * @return string[] Unique role names.
+     */
+    public function GetRoleNames(): array
+    {
+        return array_column(self::NormalizeRoles($this->role), 'role');
+    }
+
+    /**
+     * Checks whether a particular role is assigned.
+     * @public
+     * @param string $role Application role name.
+     * @return bool Whether the member has the role.
+     */
+    public function HasRole(string $role): bool
+    {
+        return in_array($role, $this->GetRoleNames(), true);
+    }
+
+    /**
+     * Finds the most privileged configured role for priority comparisons.
+     * @public
+     * @param Application $application Application defining the roles.
+     * @return ObjectField|null Role with the lowest priority number.
+     */
+    public function GetApplicationRole(Application $application): ?ObjectField
+    {
+        $names = $this->GetRoleNames();
+        $result = null;
+        foreach ($application->params->roles as $role) {
+            if (in_array($role->name, $names, true) && ($result === null || $role->priority < $result->priority)) {
+                $result = $role;
+            }
+        }
+        return $result;
     }
 
     /**
@@ -391,36 +484,29 @@ class Member extends BaseModelDataRow
         return true;
     }
 
-    public function UpdateRole(string $newRole): bool
+    /**
+     * Replaces assigned roles after validating every application role.
+     * @public
+     * @param string|array $newRole Legacy role name or Array form value.
+     * @return bool Whether the roles were saved.
+     */
+    public function UpdateRole(string|array $newRole): bool
     {
-        $currentRole = $this->role;
-        $roles = Module::Instance()->application->params->roles;
-        $currentIndex = 0;
-        foreach ($roles as $index => $role) {
-            if ($role->name === $currentRole) {
-                $currentIndex = $index;
+        $roles = self::NormalizeRoles($newRole);
+        $application = Module::Instance()->application;
+        if (!$application) {
+            throw new \InvalidArgumentException('Application not found', 404);
+        }
+        foreach ($roles as $role) {
+            if (!$application->CheckRole($role['role'])) {
+                throw new \InvalidArgumentException('#{auth-errors-member-role-not-exists}', 400);
             }
         }
-
-        $newIndex = 0;
-        foreach ($roles as $index => $role) {
-            if ($role->name === $newRole) {
-                $newIndex = $index;
-            }
+        $this->role = $roles;
+        if (($res = $this->Save(true)) !== true) {
+            throw new \InvalidArgumentException($res->error, 400);
         }
-
-        if ($newIndex > $currentIndex) {
-            $this->role = $newRole;
-
-            if (($res = $this->Save(true)) !== true) {
-                throw new \InvalidArgumentException($res->error, 400);
-            }
-
-            return true;
-
-        }
-
-        return false;
+        return true;
     }
 
     public function ResetPassword(string $code, string $newPassword): bool

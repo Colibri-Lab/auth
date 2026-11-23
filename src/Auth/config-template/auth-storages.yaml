@@ -2630,19 +2630,57 @@ members:
     role:
       group: window
       desc:
-        ru: Роль
-        en: Role
-        it: Ruolo
-        hy: Դեր
+        ru: Роли
+        en: Roles
+        it: Ruoli
+        hy: Դերեր
+        es: Roles
+        kk: Рөлдер
+        uz: Rollar
+        cz: Role
+        de: Rollen
+        tr: Roller
+        zh: 角色
+        fa: نقش‌ها
       note:
-        ru: Роль выбранная из списка ролей приложения
-        en: Role selected from the list of application roles
-        it: Ruolo selezionato dall&#39;elenco dei ruoli dell&#39;applicazione
-        hy: Դիմումի դերերի ցանկից ընտրված դերը
-      type: varchar
-      length: "20"
-      component: Colibri.UI.Forms.Text
-      class: string
+        ru: Названия ролей из списка ролей приложения
+        en: Role names from the application's role list
+        it: Nomi dei ruoli dall'elenco dei ruoli dell'applicazione
+        hy: Դերերի անունները հավելվածի դերերի ցանկից
+        es: Nombres de roles de la lista de roles de la aplicación
+        kk: Қолданба рөлдерінің тізіміндегі рөл атаулары
+        uz: Ilovaning rollar ro'yxatidagi rol nomlari
+        cz: Názvy rolí ze seznamu rolí aplikace
+        de: Rollennamen aus der Rollenliste der Anwendung
+        tr: Uygulamanın rol listesindeki rol adları
+        zh: 应用程序角色列表中的角色名称
+        fa: نام نقش‌ها از فهرست نقش‌های برنامه
+      type: json
+      component: Colibri.UI.Forms.Array
+      class: ArrayField
+      default: json_array()
+      fields:
+        role:
+          desc:
+            ru: Роль
+            en: Role
+            it: Ruolo
+            hy: Դեր
+            es: Rol
+            kk: Рөл
+            uz: Rol
+            cz: Role
+            de: Rolle
+            tr: Rol
+            zh: 角色
+            fa: نقش
+          type: varchar
+          length: "20"
+          component: Colibri.UI.Forms.Text
+          class: string
+          params:
+            required: true
+            enabled: true
       attrs: []
       params:
         required: false
@@ -2654,7 +2692,7 @@ members:
         template: false
         multiple: false
         greed: ""
-        viewer: ~
+        viewer: Colibri.UI.ArrayViewer
         vertical: false
         visual: false
         code: 0
@@ -3013,12 +3051,6 @@ members:
       type: UNIQUE
       method: BTREE
       name: members_phone_idx
-    members_role_idx:
-      fields:
-      - role
-      type: NORMAL
-      method: BTREE
-      name: members_role_idx
     members_login_idx:
       fields:
       - login

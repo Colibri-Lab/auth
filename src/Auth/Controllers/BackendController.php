@@ -10,6 +10,9 @@ use App\Modules\Auth\Module;
 use Colibri\App;
 use Colibri\AppException;
 use Colibri\Data\Storages\Storages;
+use Colibri\Data\DataAccessPoint;
+use Colibri\Data\SqlClient\QueryInfo;
+use Colibri\Utils\Cache\Mem;
 use Colibri\Exceptions\PermissionDeniedException;
 use Colibri\Exceptions\ValidationException;
 use Colibri\Web\Controller as WebController;
@@ -20,6 +23,7 @@ use InvalidArgumentException;
 /**
  * Application controller
  * @class
+ * @memberof App\Modules\Auth\Controllers
  * @extends WebController
  */
 class BackendController extends WebController
@@ -126,4 +130,81 @@ class BackendController extends WebController
 
 
     
+    /**
+     * Migrates legacy member roles to JSON arrays through a CLI-only invocation
+     * @public
+     * @param RequestCollection $get RequestCollection containing GET data
+     * @param RequestCollection $post RequestCollection containing POST data
+     * @param ?PayloadCopy $payload Request payload data as PayloadCopy object
+     * @return object
+     */
+    public function MigrateMemberRoles(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
+    {
+
+        if (PHP_SAPI !== 'cli' || App::$request->server->{'request_method'} || App::$domainKey !== 'manage') {
+            throw new PermissionDeniedException('Role migration requires a Manage CLI invocation', 403);
+        }
+
+        $storage = Storages::Instance()->Load('members', 'Auth');
+        $table = $storage->table;
+        if (!preg_match('/\A[a-zA-Z0-9_]+\z/', $table)) {
+            throw new InvalidArgumentException('Invalid members table name');
+        }
+        $point = $storage->accessPoint;
+        $reader = $point->Query('SHOW COLUMNS FROM `' . $table . '` WHERE Field = \'members_role\'');
+        if ($reader instanceof QueryInfo) {
+            throw new InvalidArgumentException($reader->error);
+        }
+        $column = $reader->Read();
+        if (!$column) {
+            throw new InvalidArgumentException('Member role column not found');
+        }
+        if ($column->Type !== 'json') {
+            // Keep the original column intact until the complete conversion is ready.
+            foreach ([
+                'ALTER TABLE `' . $table . '` ADD COLUMN `members_role_array` JSON NULL',
+                'UPDATE `' . $table . '` SET `members_role_array` = CASE '
+                    . 'WHEN `members_role` IS NULL OR `members_role` = \'\' THEN JSON_ARRAY() '
+                    . 'ELSE JSON_ARRAY(JSON_OBJECT(\'role\', `members_role`)) END'
+            ] as $query) {
+                $result = $point->Query($query, ['type' => DataAccessPoint::QueryTypeNonInfo]);
+                if ($result->error) {
+                    throw new InvalidArgumentException($result->error);
+                }
+            }
+            $reader = $point->Query('SELECT COUNT(*) AS invalid FROM `' . $table . '` '
+                . 'WHERE NOT (`members_role_array` <=> CASE '
+                . 'WHEN `members_role` IS NULL OR `members_role` = \'\' THEN JSON_ARRAY() '
+                . 'ELSE JSON_ARRAY(JSON_OBJECT(\'role\', `members_role`)) END)');
+            if ($reader instanceof QueryInfo) {
+                throw new InvalidArgumentException($reader->error);
+            }
+            if ((int)$reader->Read()->invalid !== 0) {
+                throw new InvalidArgumentException('Role conversion verification failed');
+            }
+            $result = $point->Query('ALTER TABLE `' . $table . '` DROP COLUMN `members_role`, '
+                . 'CHANGE COLUMN `members_role_array` `members_role` JSON NULL DEFAULT (JSON_ARRAY())',
+                ['type' => DataAccessPoint::QueryTypeNonInfo]);
+            if ($result->error) {
+                throw new InvalidArgumentException($result->error);
+            }
+        }
+
+        $reader = $point->Query('SELECT COUNT(*) AS invalid FROM `' . $table . '` '
+            . 'WHERE `members_role` IS NOT NULL AND JSON_TYPE(`members_role`) <> \'ARRAY\'');
+        if ($reader instanceof QueryInfo) {
+            throw new InvalidArgumentException($reader->error);
+        }
+        if ((int)$reader->Read()->invalid !== 0) {
+            throw new InvalidArgumentException('Member roles contain non-array JSON values');
+        }
+        Storages::Instance()->ClearCache();
+        foreach (App::$config->Query('hosts.domains')->ToArray() as $domain => $hosts) {
+            foreach ($hosts as $host) {
+                Mem::Delete('storages' . $domain . $host);
+            }
+        }
+        return $this->Finish(200, 'ok', ['role_type' => 'json']);
+
+    }
 }

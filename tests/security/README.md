@@ -11,6 +11,15 @@ directory. The execution chain is launcher -> `web/index.php` ->
 `SecurityTestsController::Run()` -> `tests/security/Regression.php`.
 The controller rejects HTTP requests, including PHP development-server requests.
 
+Run only the multi-role storage, filtering, LDAP and administrator API checks:
+
+```sh
+AUTH_SECURITY_TESTS=1 AUTH_SECURITY_TESTS_ROLES_ONLY=1 sh bin/auth-security-tests.sh tasks_auth-v5.local.bsft.loc
+```
+
+These checks use disposable fixtures and the same cleanup and HTTPS requirements
+as the full suite. Full-suite registration assertions now expect role arrays.
+
 ## Safety and prerequisites
 
 - Use a dedicated test deployment and database. Do not point the suite at production
@@ -23,7 +32,9 @@ The controller rejects HTTP requests, including PHP development-server requests.
   never included in the report or command arguments.
 - The suite creates one temporary application and uniquely named accounts,
   sessions, device credentials and reset codes. It uses only these identities for
-  privileged operations. No emails or SMS messages are requested.
+  privileged operations. Role-change HTTP checks use the normal notice delivery:
+  use a test mail sink if an `administrator_invite` template is configured.
+  The remaining checks do not request emails or SMS messages.
 - Cleanup runs in `finally`: exact fixture accounts, dependent rows, observed
   session-cache keys and generated key files are removed. Empty fixture key
   directories are removed without recursively deleting shared directories.

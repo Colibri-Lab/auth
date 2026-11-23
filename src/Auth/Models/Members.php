@@ -136,17 +136,27 @@ class Members extends BaseModelDataTable
     }
 
     /**
-     * Возвращает модели по роли
-     * @param array $role
+     * Loads members assigned any of the requested roles.
+     * @public
+     * @static
+     * @param string|array $role Role name or list of role names.
      * @return Members|null
      */
     public static function LoadByRole(string|array $role): Members|null
     {
-        if (is_array($role)) {
-            return self::LoadByFilter(1, 100, '{role} in (\'' . implode('\',\'', $role) . '\')', null, [], false);
-        } else {
-            return self::LoadByFilter(1, 100, '{role}=[[role:string]]', null, ['role' => $role], false);
+        $roles = is_array($role) ? array_values($role) : [$role];
+        $filters = [];
+        $params = [];
+        foreach ($roles as $index => $name) {
+            if (!is_string($name) || $name === '') {
+                throw new \InvalidArgumentException('Invalid role filter', 400);
+            }
+            $key = 'role' . $index;
+            $filters[] = 'JSON_CONTAINS({role}, JSON_OBJECT(\'role\', [[' . $key . ':string]]))';
+            $params[$key] = $name;
         }
+        $filter = $filters ? '(' . implode(' OR ', $filters) . ')' : '1=0';
+        return self::LoadByFilter(1, 100, $filter, null, $params, false);
     }
 
     /**

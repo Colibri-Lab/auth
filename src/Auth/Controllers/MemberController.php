@@ -116,8 +116,8 @@ class MemberController extends WebController
             // $email = $invitation->email;
             // $phone = $invitation->phone ?: $phone;
             
-            $roleFrom = $app->params->roles->Search($inviterMember->role);
-            $roleTo = $app->params->roles->Search($invitation->params?->role);
+            $roleFrom = $inviterMember->GetApplicationRole($app);
+            $roleTo = $app->GetRole((string)$invitation->params?->role);
 
             if(!$roleFrom || !$roleTo) {
                 $invitation->Delete();
@@ -1214,7 +1214,8 @@ class MemberController extends WebController
             return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
-        if ($member->role === 'user') {
+        $roles = $member->GetRoleNames();
+        if (!$roles || $roles === ['user']) {
             return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
@@ -1385,7 +1386,7 @@ class MemberController extends WebController
             return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
-        if ($member->role !== 'administrator') {
+        if (!$member->HasRole('administrator')) {
             return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
@@ -1461,7 +1462,7 @@ class MemberController extends WebController
             return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
-        if ($member->role !== 'administrator') {
+        if (!$member->HasRole('administrator')) {
             return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-data-consistency}', 'code' => 500]);
         }
 
@@ -1478,7 +1479,7 @@ class MemberController extends WebController
             if (!$member->UpdateRole($memberRole)) {
                 return $this->Finish(500, 'Application error', ['message' => '#{auth-errors-member-role-incorrect}', 'code' => 500]);
             }
-        } catch (InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException $e) {
             return $this->Finish(400, 'Bad request', ['message' => $e->getMessage(), 'code' => 400]);
         } catch (ValidationException $e) {
             return $this->Finish(500, 'Application validation error', ['message' => $e->getMessage(), 'code' => 400, 'data' => Debug::Rout($e->getExceptionData())]);
@@ -1488,8 +1489,12 @@ class MemberController extends WebController
 
         $langModule = App::$moduleManager->{'lang'};
         $notice = Notices::LoadByName('administrator_invite' . ($langModule ? '_' . App::$moduleManager->{'lang'}->current : ''));
-        $notice->Apply(['first_name' => $member->first_name]);
-        Notices::Send($member->email, $notice);
+        if ($notice) {
+            $notice->Apply(['first_name' => $member->first_name]);
+            Notices::Send($member->email, $notice);
+        } else {
+            App::$log->warning('Auth role-change notification template is not configured');
+        }
 
         return $this->Finish(
             200,
@@ -1545,8 +1550,8 @@ class MemberController extends WebController
             }
             $member = Members::LoadByToken($token);
 
-            $roleFrom = $app->params->roles->Search($loggedMember->role);
-            $roleTo = $app->params->roles->Search($member->role);
+            $roleFrom = $loggedMember->GetApplicationRole($app);
+            $roleTo = $member->GetApplicationRole($app);
 
             if(!$roleFrom || !$roleTo) {
                 throw new InvalidArgumentException('Function is not allowed', 403);
@@ -1619,8 +1624,8 @@ class MemberController extends WebController
             }
             $member = Members::LoadByToken($token);
 
-            $roleFrom = $app->params->roles->Search($loggedMember->role);
-            $roleTo = $app->params->roles->Search($member->role);
+            $roleFrom = $loggedMember->GetApplicationRole($app);
+            $roleTo = $member->GetApplicationRole($app);
 
             if(!$roleFrom || !$roleTo) {
                 throw new InvalidArgumentException('Function is not allowed', 403);

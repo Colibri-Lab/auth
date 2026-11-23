@@ -17,6 +17,7 @@ use Colibri\App;
 use Colibri\Data\Storages\Models\DataRow;
 use Colibri\Encryption\Crypt;
 use Colibri\Utils\Cache\Mem;
+use App\Modules\Auth\Ldap\Directory;
 use RuntimeException;
 
 /**
@@ -132,14 +133,17 @@ class Regression
             $password = 'Aa9!-' . bin2hex(random_bytes(20));
             $alice = $this->_member('alice', $password);
             $bob = $this->_member('bob', $password);
-            $this->_passwordHashing($password, $headers);
-            $this->_boundaries($headers);
-            $this->_registration($password, $headers);
-            $this->_verifiedRegistration($password, $headers);
-            $this->_sessions($alice, $bob, $password, $headers);
-            $this->_administration($alice, $bob, $password, $headers);
-            $this->_device($bob, $headers);
-            $this->_reset($alice, $password, $headers);
+            $this->_roles($alice, $password, $headers);
+            if (getenv('AUTH_SECURITY_TESTS_ROLES_ONLY') !== '1') {
+                $this->_passwordHashing($password, $headers);
+                $this->_boundaries($headers);
+                $this->_registration($password, $headers);
+                $this->_verifiedRegistration($password, $headers);
+                $this->_sessions($alice, $bob, $password, $headers);
+                $this->_administration($alice, $bob, $password, $headers);
+                $this->_device($bob, $headers);
+                $this->_reset($alice, $password, $headers);
+            }
         } finally {
             $this->_cleanup();
         }
@@ -151,6 +155,90 @@ class Regression
             'failed' => count(array_filter($this->_checks, static fn(array $check): bool => !$check['passed'])),
             'checks' => $this->_checks
         ];
+    }
+
+    /**
+     * Verifies role persistence, filtering, priority and LDAP membership.
+     * @private
+     * @ignore
+     * @param Member $member Disposable fixture member.
+     * @param string $password Fixture password.
+     * @param array $headers Fixture application headers.
+     * @return void
+     */
+    private function _roles(Member $member, string $password, array $headers): void
+    {
+        $this->_check('legacy-role-assignment-becomes-array', $member->role->ToArray(true) === [['role' => 'user']]);
+        $member->role = [['role' => 'user'], ['role' => 'administrator'], ['role' => 'user']];
+        $this->_save($member);
+        $fresh = Members::LoadById($member->id);
+        $expected = [['role' => 'user'], ['role' => 'administrator']];
+        $this->_check('multiple-roles-survive-save-and-export', $fresh->ToArray(true)['role'] === $expected);
+        $this->_check('administrator-role-is-detected-in-any-position', $fresh->HasRole('administrator'));
+        $found = false;
+        foreach (Members::LoadByRole('administrator') as $match) {
+            if ($match->token === $member->token) {
+                $found = true;
+            }
+        }
+        $this->_check('role-filter-matches-array-membership', $found);
+        $this->_check('empty-role-filter-matches-nothing', Members::LoadByRole([])->Count() === 0);
+
+        $application = Applications::LoadById($this->_application->id);
+        $application->params->roles = [
+            ['name' => 'administrator', 'desc' => 'Fixture administrator', 'priority' => 1],
+            ['name' => 'user', 'desc' => 'Fixture user', 'priority' => 10]
+        ];
+        $this->_save($application);
+        $this->_check('priority-uses-most-privileged-assigned-role', $fresh->GetApplicationRole($application)->name === 'administrator');
+        $directory = new Directory($application->key, $application->token);
+        $base = $directory->GetBaseDn();
+        $dn = 'uid=' . $member->token . ',ou=users,' . $base;
+        $membership = [];
+        foreach ($directory->Entries() as $entry) {
+            if ($entry['dn'] === $dn) {
+                $membership = $entry['attributes']['memberof'];
+            }
+        }
+        $this->_check('ldap-exposes-all-configured-role-groups', $membership === [
+            'cn=user,ou=groups,' . $base,
+            'cn=administrator,ou=groups,' . $base
+        ]);
+        try {
+            $member->role = ['administrator'];
+            $this->_check('primitive-role-arrays-are-rejected', false);
+        } catch (\InvalidArgumentException $exception) {
+            $this->_check('primitive-role-arrays-are-rejected', true);
+        }
+        $member = Members::LoadById($member->id);
+        $member->role = [];
+        $this->_save($member);
+        $this->_check('empty-roles-remove-current-role', !$member->HasRole('administrator'));
+        $this->_check('empty-roles-persist', Members::LoadById($member->id)->GetRoleNames() === []);
+        $this->_check('empty-roles-remove-ldap-access', !$directory->IsAuthorized($member->token));
+        $member = Members::LoadById($member->id);
+        $member->role = 'user';
+        $this->_save($member);
+        $member = Members::LoadById($member->id);
+        $member->role = $expected;
+        $this->_save($member);
+        $login = $this->_login($member, $password, $headers);
+        $adminHeaders = array_merge($headers, ['Authorization: ' . $login['data']['session']['token']]);
+        $response = $this->_request(MemberController::GetEntryPoint('ChangeRole', 'json'), [
+            'email' => $member->email,
+            'role' => [['role' => 'administrator'], ['role' => 'user']]
+        ], $adminHeaders);
+        $this->_check('administrator-can-change-multiple-roles', $response['status'] === 200
+            && Members::LoadById($member->id)->GetRoleNames() === ['administrator', 'user']);
+        $response = $this->_request(MemberController::GetEntryPoint('ChangeRole', 'json'), [
+            'email' => $member->email,
+            'role' => [['role' => 'unknown-fixture-role']]
+        ], $adminHeaders);
+        $this->_check('unknown-role-change-is-rejected-without-saving', $response['status'] !== 200
+            && Members::LoadById($member->id)->GetRoleNames() === ['administrator', 'user']);
+        $member = Members::LoadById($member->id);
+        $member->role = 'user';
+        $this->_save($member);
     }
 
     /**
@@ -276,7 +364,7 @@ class Regression
         ], $ownerHeaders);
         $this->_requireSuccess($response);
         $member = Members::LoadByEmail($email);
-        $this->_check('verified-registration-preserves-contact-proof', $member->email_confirmed && $member->phone_confirmed && $member->role === 'user');
+        $this->_check('verified-registration-preserves-contact-proof', $member->email_confirmed && $member->phone_confirmed && $member->GetRoleNames() === ['user']);
         $this->_check('registration-consumes-contact-proofs',
             Confirmations::LoadById($records[0]->id) === null && Confirmations::LoadById($records[1]->id) === null
         );
@@ -377,7 +465,7 @@ class Regression
             'phone_confirmed' => true
         ], $headers);
         $member = Members::LoadByEmail($email);
-        $this->_check('registration-cannot-select-administrator', !$member || $member->role !== 'administrator', $response['status']);
+        $this->_check('registration-cannot-select-administrator', !$member || !$member->HasRole('administrator'), $response['status']);
         $this->_check('registration-cannot-self-confirm-email', !$member || !$member->email_confirmed, $response['status']);
         $this->_check('registration-cannot-self-confirm-phone', !$member || !$member->phone_confirmed, $response['status']);
         if (!$member && $response['status'] === 200) {

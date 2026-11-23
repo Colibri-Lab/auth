@@ -76,6 +76,22 @@ class Application extends BaseModelDataRow
         return false;
     }
 
+    /**
+     * Finds a configured role by name.
+     * @public
+     * @param string $name Application role name.
+     * @return ObjectField|null Matching role.
+     */
+    public function GetRole(string $name): ?ObjectField
+    {
+        foreach ($this->params->roles as $role) {
+            if ($role->name === $name) {
+                return $role;
+            }
+        }
+        return null;
+    }
+
     public function GetLink(): string
     {
         $hosts = App::$config->Query('hosts.domains.auth')->AsArray();

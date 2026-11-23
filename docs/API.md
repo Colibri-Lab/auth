@@ -8,6 +8,23 @@ title: Auth API
 
 This reference describes the public actions in `src/Auth/Controllers/` and the request methods used by the Auth PHP API client. It documents the current implementation; it is not a versioned OpenAPI contract.
 
+## Member roles
+
+Member responses expose `role` as an array of objects, for example
+`[{"role":"administrator"},{"role":"user"}]`, rather than a string.
+The administration form uses `Colibri.UI.Forms.Array` with one role-name field per
+item; the storage is JSON and the model field extends `ArrayField`.
+`ChangeRole` accepts this same array (or a legacy single role name) and validates
+every name against the selected application's roles. An empty array removes all roles.
+The administrator check accepts `administrator` anywhere in the assigned list.
+Priority comparisons use the assigned application role with the lowest numeric
+priority; ties follow the application's role-list order. `ListByRole` matches any
+assigned role. Registration still assigns only the trusted invitation/default role
+and does not accept privileged roles from caller input.
+Member-list access is denied for an empty role list and for the `user`-only role list.
+Role changes still send the configured administrator notice; a missing notice
+template is logged as a warning instead of failing after the roles have been saved.
+
 ## Base URL and Routes
 
 Use the Auth host for the target environment. For example:

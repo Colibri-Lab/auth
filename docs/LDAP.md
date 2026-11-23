@@ -79,7 +79,9 @@ For `tasks`, the base DN is `dc=tasks`. Users live at
 - Bind accepts a canonical user DN or bare login/email/phone and calls
   `Member::Authorize()`. Password storage is unchanged. No passwords, 2FA secrets
   or application tokens are returned; web sessions are not created.
-- Only unblocked members without email/app 2FA, whose role exists in the selected
+- Users belong to every assigned role group configured by the selected application;
+  `memberOf` contains all corresponding group DNs.
+- Only unblocked members without email/app 2FA, with at least one role in the selected
   application, can authenticate or appear in this directory. LDAP does not
   bypass 2FA or send confirmation messages.
 - Auth stores users globally, without a separate application membership relation.

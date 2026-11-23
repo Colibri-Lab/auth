@@ -130,8 +130,13 @@ class Directory
                     continue;
                 }
                 $dn = 'uid=' . $member->token . ',ou=users,' . $base;
-                $groupDn = 'cn=' . self::EscapeDn((string)$member->role) . ',ou=groups,' . $base;
-                $groups[$member->role]['members'][] = $dn;
+                $groupDns = [];
+                foreach ($member->GetRoleNames() as $name) {
+                    if (isset($groups[$name])) {
+                        $groupDns[] = 'cn=' . self::EscapeDn($name) . ',ou=groups,' . $base;
+                        $groups[$name]['members'][] = $dn;
+                    }
+                }
                 $displayName = trim($member->first_name . ' ' . $member->last_name);
                 if ($displayName === '') {
                     $displayName = $member->login ?: $member->email;
@@ -146,7 +151,7 @@ class Directory
                     'givenname' => [(string)$member->first_name],
                     'mail' => [(string)$member->email],
                     'telephonenumber' => [(string)$member->phone],
-                    'memberof' => [$groupDn],
+                    'memberof' => $groupDns,
                 ];
                 yield ['dn' => $dn, 'attributes' => array_filter($attributes, static fn(array $values): bool => $values !== [''])];
             }
@@ -217,6 +222,6 @@ class Directory
     {
         return !$member->blocked && !$member->two_factor && !$member->two_factor_application
             && preg_match('/^[a-f0-9]{32}$/D', (string)$member->token) === 1
-            && $member->role !== null && $application->CheckRole($member->role);
+            && $member->GetApplicationRole($application) !== null;
     }
 }
