@@ -965,9 +965,17 @@ applications:
             hy: Կանխադրված դերը
           type: varchar
           length: "255"
-          component: Colibri.UI.Forms.Text
+          component: Colibri.UI.Forms.Select
           class: string
           attrs: []
+          lookup:
+            controller:
+              module: Auth
+              class: Backend
+              method: Roles
+          selector:
+            value: value
+            title: title
           params:
             required: true
             enabled: true
@@ -2675,12 +2683,21 @@ members:
             zh: 角色
             fa: نقش
           type: varchar
-          length: "20"
-          component: Colibri.UI.Forms.Text
+          length: "255"
+          component: Colibri.UI.Forms.Select
           class: string
+          lookup:
+            controller:
+              module: Auth
+              class: Backend
+              method: Roles
+          selector:
+            value: value
+            title: title
           params:
             required: true
             enabled: true
+            searchable: true
       attrs: []
       params:
         required: false

@@ -146,7 +146,7 @@ class Member extends BaseModelDataRow
                 $item = (array)$item;
             }
             $name = is_array($item) ? ($item['role'] ?? null) : null;
-            if (!is_string($name) || $name === '' || mb_strlen($name) > 20) {
+            if (!is_string($name) || $name === '' || mb_strlen($name) > 255) {
                 throw new \InvalidArgumentException('Invalid member role name', 400);
             }
             $roles[$name] = ['role' => $name];
@@ -162,7 +162,14 @@ class Member extends BaseModelDataRow
      */
     public function setPropertyRole(mixed $value): void
     {
-        $roles = json_encode(self::NormalizeRoles($value), JSON_THROW_ON_ERROR);
+        $roles = self::NormalizeRoles($value);
+        $knownRoles = Applications::LoadRoles();
+        foreach ($roles as $role) {
+            if (!isset($knownRoles[$role['role']])) {
+                throw new \InvalidArgumentException('Unknown member role: ' . $role['role'], 400);
+            }
+        }
+        $roles = json_encode($roles, JSON_THROW_ON_ERROR);
         $this->_typeExchange('set', 'members_role', $roles);
         $this->_changed = true;
     }

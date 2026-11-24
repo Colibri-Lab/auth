@@ -183,6 +183,14 @@ class Regression
         }
         $this->_check('role-filter-matches-array-membership', $found);
         $this->_check('empty-role-filter-matches-nothing', Members::LoadByRole([])->Count() === 0);
+        $rejected = false;
+        try {
+            $fresh->role = [['role' => 'user'], ['role' => 'unknown-fixture-role']];
+        } catch (\InvalidArgumentException) {
+            $rejected = true;
+        }
+        $this->_check('role-outside-application-lists-is-rejected', $rejected
+            && Members::LoadById($member->id)->GetRoleNames() === ['user', 'administrator']);
 
         $application = Applications::LoadById($this->_application->id);
         $application->params->roles = [

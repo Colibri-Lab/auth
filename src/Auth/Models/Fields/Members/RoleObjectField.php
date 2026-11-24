@@ -34,7 +34,7 @@ class RoleObjectField extends ObjectField
         ],
         'properties' => [
             # region SchemaProperties:
-			'role' => ['type' => 'string', 'maxLength' => 20, ],
+			'role' => ['type' => 'string', 'maxLength' => 255, ],
             # endregion SchemaProperties;
         ]
     ];

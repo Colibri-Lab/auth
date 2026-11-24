@@ -169,4 +169,32 @@ class Applications extends BaseModelDataTable
         return true;
     }
 
+    /**
+     * Collects the unique roles configured in all applications.
+     * @public
+     * @static
+     * @return array<string, array{name: string, desc: string, applications: string[]}> Roles keyed by name.
+     */
+    public static function LoadRoles(): array
+    {
+        $roles = [];
+        $applications = self::LoadAll(-1, 1000);
+        if (!$applications) {
+            return $roles;
+        }
+        foreach ($applications as $application) {
+            foreach ($application->params?->roles ?? [] as $role) {
+                $name = (string)$role->name;
+                if ($name === '') {
+                    continue;
+                }
+                if (!isset($roles[$name])) {
+                    $roles[$name] = ['name' => $name, 'desc' => (string)$role->desc, 'applications' => []];
+                }
+                $roles[$name]['applications'][] = (string)$application->key;
+            }
+        }
+        return $roles;
+    }
+
 }

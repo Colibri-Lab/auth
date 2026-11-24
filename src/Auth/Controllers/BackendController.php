@@ -129,7 +129,37 @@ class BackendController extends WebController
     }
 
 
-    
+    /**
+     * Returns roles configured in all applications as Select lookup options
+     * @public
+     * @param RequestCollection $get RequestCollection containing GET data
+     * @param RequestCollection $post RequestCollection containing POST data
+     * @param ?PayloadCopy $payload Request payload data as PayloadCopy object
+     * @return object
+     */
+    public function Roles(RequestCollection $get, RequestCollection $post, ? PayloadCopy $payload = null): object
+    {
+
+        $security = App::$moduleManager->{'security'};
+        if (App::$domainKey != 'manage' || !$security || !$security->current) {
+            throw new PermissionDeniedException('Permission denied', 403);
+        }
+
+        $term = mb_strtolower(trim((string)$post->{'term'}));
+        $result = [];
+        foreach (Applications::LoadRoles() as $role) {
+            $title = $role['name'] . ($role['desc'] !== '' ? ' — ' . $role['desc'] : '')
+                . ' (' . implode(', ', array_unique($role['applications'])) . ')';
+            if ($term !== '' && !str_contains(mb_strtolower($title), $term)) {
+                continue;
+            }
+            $result[] = ['value' => $role['name'], 'title' => $title];
+        }
+
+        return $this->Finish(200, 'ok', $result);
+
+    }
+
     /**
      * Migrates legacy member roles to JSON arrays through a CLI-only invocation
      * @public
