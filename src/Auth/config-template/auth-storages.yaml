@@ -2248,6 +2248,29 @@ members:
         readonly: false
         list: false
         template: false
+        tip:
+          contains: true
+          orientation: ['rt', 'lt']
+          className: 'app-password-tip-component'
+          text: 
+            - Create a password that is hard to guess
+            - "Password must contains:"
+          success: Password meets requirements
+          error: Password does not meet requirements
+          generate: Generate password
+          copied: Password copied to clipboard
+          digits: at least %s symbols
+          additional: 
+            - digits, 
+            - symbols (!, $, ^, etc.)
+            - uppercase letters
+            - lowercase letters
+        requirements:
+          digits: 8
+          strength: 70
+          minForStrong: 90
+          minForGood: 70
+          minForWeak: 50
       tag: []
       protected: true
     first_name:
