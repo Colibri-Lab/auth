@@ -976,6 +976,7 @@ applications:
           selector:
             value: value
             title: title
+            ondemand: true
           params:
             required: true
             enabled: true
@@ -2717,6 +2718,7 @@ members:
           selector:
             value: value
             title: title
+            ondemand: true
           params:
             required: true
             enabled: true
