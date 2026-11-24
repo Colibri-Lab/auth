@@ -214,13 +214,36 @@ class Member extends BaseModelDataRow
     }
 
     /**
-     * Hashes a newly assigned password after checking its strength.
+     * Checks whether a value is a stored password hash rather than a plaintext password.
      * @public
-     * @param string $value Plaintext password.
+     * @param string $value Value assigned to the password property.
+     * @return bool Whether the value must be stored without hashing.
+     */
+    public function IsPasswordHash(string $value): bool
+    {
+        if (password_get_info($value)['algo'] !== null && preg_match(
+            '/\A(\$2[aby]\$\d{2}\$[.\/A-Za-z0-9]{53}|\$argon2id?\$v=\d+\$m=\d+,t=\d+,p=\d+\$[A-Za-z0-9+\/]+\$[A-Za-z0-9+\/]+)\z/',
+            $value
+        )) {
+            return true;
+        }
+        // A legacy MD5 hash is indistinguishable from a 32-character plaintext, so accept only the stored one.
+        $current = (string)($this->_data['members_password'] ?? '');
+        return preg_match('/\A[a-f0-9]{32}\z/', $value) && $current !== '' && hash_equals($current, $value);
+    }
+
+    /**
+     * Stores a password hash as is or hashes a newly assigned plaintext password after checking its strength.
+     * @public
+     * @param string $value Password hash or plaintext password.
      * @return void
      */
     public function setPropertyPassword(string $value): void
     {
+        if ($this->IsPasswordHash($value)) {
+            $this->_data['members_password'] = $value;
+            return;
+        }
         if (($strength = self::CheckPasswordStrength($this->email, $value)) < 40) {
             throw new InvalidArgumentException(sprintf('#{auth-errors-member-password-strength-not-match}', $strength));
         }

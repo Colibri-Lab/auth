@@ -307,6 +307,16 @@ class Regression
         $fresh = Members::LoadById($member->id);
         $this->_check('current-password-hash-is-not-rewritten', $fresh->password === $upgradedHash);
         $this->_check('upgraded-password-rejects-wrong-password', !$fresh->Authorize($password));
+        $fresh->password = $upgradedHash;
+        $this->_save($fresh);
+        $fresh = Members::LoadById($member->id);
+        $this->_check('assigned-password-hash-is-stored-as-is', $fresh->password === $upgradedHash
+            && $fresh->Authorize($legacyPassword));
+        $fresh->password = $password;
+        $this->_save($fresh);
+        $fresh = Members::LoadById($member->id);
+        $this->_check('assigned-plaintext-password-is-hashed', $fresh->password !== $password
+            && password_get_info($fresh->password)['algoName'] === 'argon2id' && $fresh->Authorize($password));
     }
 
     /**
