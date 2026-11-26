@@ -14,7 +14,7 @@
       ansible.builtin.file:
         path: "{{ awd }}/{{ folder }}"
         state: "{{ item }}"
-      with_items:
+      with_items: 
         - absent
         - directory
 
